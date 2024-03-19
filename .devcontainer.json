@@ -10,6 +10,9 @@
                 "ms-vscode.hexeditor",
                 "ms-vsliveshare.vsliveshare"
             ]
+        },
+        "settings": {
+            "git.enabled": false
         }
     }
 }
