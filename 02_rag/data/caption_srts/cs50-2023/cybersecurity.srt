@@ -1,0 +1,8904 @@
+1
+00:00:00,000 --> 00:00:03,479
+[MUSIC PLAYING]
+
+2
+00:00:03,479 --> 00:01:01,710
+
+
+3
+00:01:01,710 --> 00:01:04,780
+DAVID MALAN: All right, one last time.
+
+4
+00:01:04,780 --> 00:01:09,780
+This is CS50, and we realize this
+has been a bit of a fire hose
+
+5
+00:01:09,780 --> 00:01:10,980
+over the past-- thank you.
+
+6
+00:01:10,980 --> 00:01:13,210
+[APPLAUSE]
+
+7
+00:01:13,210 --> 00:01:14,550
+
+
+8
+00:01:14,550 --> 00:01:15,510
+Thank you.
+
+9
+00:01:15,510 --> 00:01:17,520
+We realize this has been
+a bit of a fire hose.
+
+10
+00:01:17,520 --> 00:01:20,340
+Indeed, recall that we
+began the class in week 0,
+
+11
+00:01:20,340 --> 00:01:23,190
+months ago with this
+here MIT hack, wherein
+
+12
+00:01:23,190 --> 00:01:26,040
+a fire hose was connected
+to a fire hydrant,
+
+13
+00:01:26,040 --> 00:01:27,750
+in turn connected to a water fountain.
+
+14
+00:01:27,750 --> 00:01:29,843
+And it really spoke to
+just how much information
+
+15
+00:01:29,843 --> 00:01:32,760
+we predicted would be sort of flowing
+at you over the past few months.
+
+16
+00:01:32,760 --> 00:01:35,850
+If you are feeling all these
+weeks later that it never actually
+
+17
+00:01:35,850 --> 00:01:40,530
+got easy, and with pset 1 to
+pset 2, pset 3 on to pset 9,
+
+18
+00:01:40,530 --> 00:01:42,540
+you never quite felt like
+you got your footing,
+
+19
+00:01:42,540 --> 00:01:46,620
+realize that it's kind of by design
+because every time you did get your--
+
+20
+00:01:46,620 --> 00:01:48,660
+every time you did get
+your footing, our goal
+
+21
+00:01:48,660 --> 00:01:50,410
+was to ratchet things
+up a little bit more
+
+22
+00:01:50,410 --> 00:01:52,160
+so that you feel like
+you're still getting
+
+23
+00:01:52,160 --> 00:01:53,805
+something out of that final week.
+
+24
+00:01:53,805 --> 00:01:55,680
+And indeed, that final
+week is now behind us.
+
+25
+00:01:55,680 --> 00:01:57,990
+All that remains ahead of
+us is the final project.
+
+26
+00:01:57,990 --> 00:02:01,590
+And what we thought we'd do today is
+recap a little bit of where we began
+
+27
+00:02:01,590 --> 00:02:03,310
+and where you hopefully now are.
+
+28
+00:02:03,310 --> 00:02:05,143
+Take a look at the
+world of cybersecurity,
+
+29
+00:02:05,143 --> 00:02:07,560
+because it's a scary place out
+there, but hopefully you're
+
+30
+00:02:07,560 --> 00:02:09,930
+all the more equipped
+now with a mental model
+
+31
+00:02:09,930 --> 00:02:14,710
+and vocabulary to evaluate threats in
+the real world, and as educated people,
+
+32
+00:02:14,710 --> 00:02:17,828
+make decisions, be it in
+industry, be it in government,
+
+33
+00:02:17,828 --> 00:02:19,870
+be it in your own personal
+or professional lives.
+
+34
+00:02:19,870 --> 00:02:22,037
+And we hope ultimately,
+too, that you've walked away
+
+35
+00:02:22,037 --> 00:02:24,280
+with a very practical
+skill, including how
+
+36
+00:02:24,280 --> 00:02:26,650
+to program in C, how
+to program in Python,
+
+37
+00:02:26,650 --> 00:02:29,290
+how to program in SQL, how
+to program in JavaScript
+
+38
+00:02:29,290 --> 00:02:32,740
+in the context, for instance, of
+even more HTML, CSS, and the like.
+
+39
+00:02:32,740 --> 00:02:35,320
+But most importantly, we hope
+that you've really walked away
+
+40
+00:02:35,320 --> 00:02:37,690
+with an understanding of how to program.
+
+41
+00:02:37,690 --> 00:02:41,680
+Like, you're not going to have CS50 by
+your side or even the duck by your side
+
+42
+00:02:41,680 --> 00:02:42,250
+forever.
+
+43
+00:02:42,250 --> 00:02:45,000
+You're going to have really, that
+foundation that hopefully you'll
+
+44
+00:02:45,000 --> 00:02:47,900
+walk out of here today having
+accumulated over the past few months.
+
+45
+00:02:47,900 --> 00:02:50,317
+And even though the world's
+languages are going to change,
+
+46
+00:02:50,317 --> 00:02:52,962
+new technologies are going
+to exist tomorrow, hopefully,
+
+47
+00:02:52,962 --> 00:02:54,670
+you'll find that a
+lot of the foundations
+
+48
+00:02:54,670 --> 00:02:56,997
+over the past several months
+really do stay with you
+
+49
+00:02:56,997 --> 00:02:59,080
+and allow you to bootstrap
+to a new understanding,
+
+50
+00:02:59,080 --> 00:03:02,260
+even if you never take
+another CS course again.
+
+51
+00:03:02,260 --> 00:03:05,110
+Ultimately, we claim that this
+was all about solving problems.
+
+52
+00:03:05,110 --> 00:03:08,020
+And hopefully, we've kind of cleaned
+up your thinking a little bit,
+
+53
+00:03:08,020 --> 00:03:11,470
+given you more tools in your toolkit
+to think and evaluate and solve
+
+54
+00:03:11,470 --> 00:03:16,390
+problems more methodically, not only in
+code, but just algorithmically as well.
+
+55
+00:03:16,390 --> 00:03:17,680
+And keep this mind too.
+
+56
+00:03:17,680 --> 00:03:21,400
+If you're still feeling like, oh, I
+never really quite got your footing--
+
+57
+00:03:21,400 --> 00:03:26,462
+my footing, think back to how hard Mario
+might have felt some three months ago.
+
+58
+00:03:26,462 --> 00:03:29,170
+But what ultimately matters in
+this course is indeed, not so much
+
+59
+00:03:29,170 --> 00:03:31,045
+where you end up relative
+to your classmates,
+
+60
+00:03:31,045 --> 00:03:34,390
+but where you end up relative
+to yourself when you began.
+
+61
+00:03:34,390 --> 00:03:36,940
+So here we are, and
+consider that there delta.
+
+62
+00:03:36,940 --> 00:03:39,760
+And if you don't believe me, like,
+literally go back this weekend
+
+63
+00:03:39,760 --> 00:03:43,420
+or sometime soon, try
+implementing Mario in C. And I do
+
+64
+00:03:43,420 --> 00:03:45,978
+dare say it's going to come
+a little more readily to you.
+
+65
+00:03:45,978 --> 00:03:48,520
+Even if you need to Google
+something, ask the duck something,
+
+66
+00:03:48,520 --> 00:03:52,030
+ask ChatGPT something just to
+remember some stupid syntactic detail,
+
+67
+00:03:52,030 --> 00:03:55,840
+the ideas hopefully are
+with you now for some time.
+
+68
+00:03:55,840 --> 00:03:59,400
+So that there hack is actually
+fully documented here in MIT.
+
+69
+00:03:59,400 --> 00:04:01,150
+Our friends down the
+road have a tradition
+
+70
+00:04:01,150 --> 00:04:03,100
+of doing such things every year.
+
+71
+00:04:03,100 --> 00:04:05,770
+One year, one of my favorites
+was they turned the dome of MIT
+
+72
+00:04:05,770 --> 00:04:08,290
+into a recreation of R2-D2.
+
+73
+00:04:08,290 --> 00:04:13,000
+So there's a rich history of going
+to great lengths to prank each other,
+
+74
+00:04:13,000 --> 00:04:17,240
+or even us here Harvard folks
+akin to the Harvard Yale video
+
+75
+00:04:17,240 --> 00:04:18,940
+we took a look at last time.
+
+76
+00:04:18,940 --> 00:04:22,150
+And this duck has really become
+a defining characteristic
+
+77
+00:04:22,150 --> 00:04:26,350
+of late of CS50, so much so that last
+year, the CS50 Hackathon, we invited
+
+78
+00:04:26,350 --> 00:04:27,565
+the duck along.
+
+79
+00:04:27,565 --> 00:04:32,050
+It posed, as it is here, for
+photographs with your classmates past.
+
+80
+00:04:32,050 --> 00:04:38,230
+And then around like, 4:00 AM, it
+disappeared, and the duck went missing.
+
+81
+00:04:38,230 --> 00:04:42,068
+And we were about to head off
+to IHOP, our friends from Yale.
+
+82
+00:04:42,068 --> 00:04:44,110
+Your former classmates
+had just kind of packed up
+
+83
+00:04:44,110 --> 00:04:45,693
+and started driving back to New haven.
+
+84
+00:04:45,693 --> 00:04:49,960
+And I'm ashamed to say our first
+thought was that Yale took it.
+
+85
+00:04:49,960 --> 00:04:55,032
+And we texted our TA friends on the
+shuttle buses, 4:30 AM asking, hey,
+
+86
+00:04:55,032 --> 00:04:58,240
+did you take our duck because we kind
+of need it next week for the CS50 fair?
+
+87
+00:04:58,240 --> 00:05:02,260
+And I'm ashamed to say that we thought
+so, but it was not in fact, them.
+
+88
+00:05:02,260 --> 00:05:05,710
+It was this guy instead, down the road.
+
+89
+00:05:05,710 --> 00:05:09,490
+Because a few hours later after I
+think, no sleep on much of our part,
+
+90
+00:05:09,490 --> 00:05:12,490
+we got the equivalent of a ransom email.
+
+91
+00:05:12,490 --> 00:05:15,390
+"Hi, David, it's your friend, bbd.
+
+92
+00:05:15,390 --> 00:05:18,120
+I hope you're well and not too
+worried after I left so abruptly
+
+93
+00:05:18,120 --> 00:05:21,810
+yesterday night after such a successful
+Hackathon and semester so far.
+
+94
+00:05:21,810 --> 00:05:25,170
+I just needed to unwind a bit and take
+a trip to new places and fresh air.
+
+95
+00:05:25,170 --> 00:05:28,540
+Don't worry though, I will
+return safe, sound, healthy, home
+
+96
+00:05:28,540 --> 00:05:29,700
+once I am more relaxed.
+
+97
+00:05:29,700 --> 00:05:32,880
+As of right now, I'm just spending
+some few days with our tech friends
+
+98
+00:05:32,880 --> 00:05:34,140
+up Massachusetts Avenue.
+
+99
+00:05:34,140 --> 00:05:36,030
+They gave me a hand on moving tonight.
+
+100
+00:05:36,030 --> 00:05:40,080
+For some reason, I could never find my
+feet, and they've been amazing hosts.
+
+101
+00:05:40,080 --> 00:05:43,980
+I will see you soon and I will miss
+you and Harvard specially our students.
+
+102
+00:05:43,980 --> 00:05:46,380
+Sincerely yours, CS50 bbd."
+
+103
+00:05:46,380 --> 00:05:47,790
+So almost a perfect hack.
+
+104
+00:05:47,790 --> 00:05:51,690
+They didn't quite get the
+DDB detail quite right.
+
+105
+00:05:51,690 --> 00:05:58,140
+But after this, they proceeded to make
+a scavenger hunt of sorts of clues here.
+
+106
+00:05:58,140 --> 00:06:00,000
+This here is Hundredville.
+
+107
+00:06:00,000 --> 00:06:03,390
+And so in Hundredville, they handed
+out flyers to students at MIT,
+
+108
+00:06:03,390 --> 00:06:06,150
+inviting folks to write a Python
+program to solve a mystery.
+
+109
+00:06:06,150 --> 00:06:07,960
+"The CS50 duck has been stolen.
+
+110
+00:06:07,960 --> 00:06:09,930
+The town of Hundredville
+has been called on you
+
+111
+00:06:09,930 --> 00:06:11,880
+to solve the mystery
+of the-- authorities
+
+112
+00:06:11,880 --> 00:06:15,140
+believe that the thief stole the
+duck and then shortly thereafter took
+
+113
+00:06:15,140 --> 00:06:16,130
+a walk out of town.
+
+114
+00:06:16,130 --> 00:06:19,760
+Your goal is to identify who the thief
+is, what school the thief escaped to,
+
+115
+00:06:19,760 --> 00:06:22,850
+and who the thief's accomplice
+is who helped them escape.
+
+116
+00:06:22,850 --> 00:06:29,000
+This took place on December 2, 2022,
+and took place at the CS50 Hackathon."
+
+117
+00:06:29,000 --> 00:06:32,570
+In the days to come, we proceeded to
+receive a series of ransom postcards
+
+118
+00:06:32,570 --> 00:06:40,020
+as the duck traveled, not only to MIT
+to Professor John Guttag 6.100B class,
+
+119
+00:06:40,020 --> 00:06:43,160
+which is a rough equivalent
+of CS50 down the road.
+
+120
+00:06:43,160 --> 00:06:47,480
+Pictured there our CS50 duck
+with some tape on its torso.
+
+121
+00:06:47,480 --> 00:06:50,180
+But then the duck took,
+apparently, a ride,
+
+122
+00:06:50,180 --> 00:06:53,900
+either in actuality or with
+Photoshop, not only there,
+
+123
+00:06:53,900 --> 00:06:56,870
+took a tour of the Charles
+River in front of Harvard,
+
+124
+00:06:56,870 --> 00:06:59,400
+the Charles in front of Boston.
+
+125
+00:06:59,400 --> 00:07:01,280
+It went all the way over to Yale.
+
+126
+00:07:01,280 --> 00:07:03,740
+We then received this
+postcard from Princeton
+
+127
+00:07:03,740 --> 00:07:06,530
+all the way over from Stanford.
+
+128
+00:07:06,530 --> 00:07:09,110
+Duck took a flight according
+to this photo here,
+
+129
+00:07:09,110 --> 00:07:12,090
+and then saw a bit of the world as well.
+
+130
+00:07:12,090 --> 00:07:15,330
+So eventually, we received a
+follow-up email saying, "Hi, David.
+
+131
+00:07:15,330 --> 00:07:19,350
+I intend to arrive for the fair
+between 8:37 AM and 9:47 AM.
+
+132
+00:07:19,350 --> 00:07:22,380
+It would be easier for my MIT hacker
+friends to bring me to the right
+
+133
+00:07:22,380 --> 00:07:26,220
+location if there's someone waiting
+there with a sign that says 'Duck'."
+
+134
+00:07:26,220 --> 00:07:29,743
+I'm not sure if we actually stood
+there with a sign holding duck,
+
+135
+00:07:29,743 --> 00:07:32,160
+but it turns out they came
+actually earlier in the morning
+
+136
+00:07:32,160 --> 00:07:33,720
+to escape detection altogether.
+
+137
+00:07:33,720 --> 00:07:37,420
+The duck found its home and
+everyone lived happily ever after.
+
+138
+00:07:37,420 --> 00:07:39,240
+And here the duck is again today.
+
+139
+00:07:39,240 --> 00:07:41,640
+But our props to our
+friends down the road at MIT
+
+140
+00:07:41,640 --> 00:07:45,210
+for returning the duck safely and
+for going to such crazy lengths
+
+141
+00:07:45,210 --> 00:07:49,680
+to put us in the annals
+of MIT's Hacks Gallery.
+
+142
+00:07:49,680 --> 00:07:53,400
+In fact, in exchange for this,
+we sent them a little package.
+
+143
+00:07:53,400 --> 00:07:55,650
+And without telling you what
+it is, you can read more
+
+144
+00:07:55,650 --> 00:07:57,960
+about this here hack that's
+now been immortalized
+
+145
+00:07:57,960 --> 00:08:01,320
+on hacks.mit.edu at this URL here.
+
+146
+00:08:01,320 --> 00:08:03,180
+So maybe round of
+applause for our friends
+
+147
+00:08:03,180 --> 00:08:06,030
+down the road for having
+pulled that off a year ago.
+
+148
+00:08:06,030 --> 00:08:07,000
+[APPLAUSE]
+
+149
+00:08:07,000 --> 00:08:12,550
+So before we dive into
+some of today's material,
+
+150
+00:08:12,550 --> 00:08:15,190
+I wanted to give you a sense
+of what lies ahead as well.
+
+151
+00:08:15,190 --> 00:08:17,850
+So this year's CS50 Hackathon
+is an annual tradition,
+
+152
+00:08:17,850 --> 00:08:20,458
+whereby students here at Harvard
+and our friends from Yale who
+
+153
+00:08:20,458 --> 00:08:22,500
+will take buses in the
+other direction to join us
+
+154
+00:08:22,500 --> 00:08:26,130
+in about a week's time for an epic
+all-nighter, starting roughly at 7:00
+
+155
+00:08:26,130 --> 00:08:28,890
+PM ending roughly at 7:00
+AM will be punctuated
+
+156
+00:08:28,890 --> 00:08:32,640
+by multiple meals, first meal-- first
+dinner around 9:00 PM, second dinner
+
+157
+00:08:32,640 --> 00:08:33,480
+around 1:00 AM.
+
+158
+00:08:33,480 --> 00:08:35,607
+And those of you who
+still have the energy
+
+159
+00:08:35,607 --> 00:08:38,190
+and are still awake around 5:00
+AM, we'll hop in a shuttle bus
+
+160
+00:08:38,190 --> 00:08:41,100
+and head down to IHOP, the
+larger one down the road,
+
+161
+00:08:41,100 --> 00:08:44,430
+not the one in the square, and have
+a little bit of breakfast together.
+
+162
+00:08:44,430 --> 00:08:46,140
+The evening typically
+begins a little bit
+
+163
+00:08:46,140 --> 00:08:48,223
+like this with a lot of
+energy, the focus of which
+
+164
+00:08:48,223 --> 00:08:50,310
+is entirely on final projects.
+
+165
+00:08:50,310 --> 00:08:52,110
+The staff will be
+present, but the intent
+
+166
+00:08:52,110 --> 00:08:54,622
+is not to be 12 hours of office hours.
+
+167
+00:08:54,622 --> 00:08:57,330
+Indeed, the staff will be working
+on their own projects or psets,
+
+168
+00:08:57,330 --> 00:09:01,230
+final projects, and the like, but
+to guide you toward and point you
+
+169
+00:09:01,230 --> 00:09:03,720
+in the direction of solutions
+to new problems you have.
+
+170
+00:09:03,720 --> 00:09:09,450
+And we do think that the duck, and
+in turn, AI, CS50.ai and other tools
+
+171
+00:09:09,450 --> 00:09:13,440
+you'll now be able to use, including
+the actual ChatGPT, the actual GitHub
+
+172
+00:09:13,440 --> 00:09:17,040
+Copilot, or other AI tools
+which are now reasonable to use
+
+173
+00:09:17,040 --> 00:09:19,890
+at this point in the semester
+as you off board from CS50
+
+174
+00:09:19,890 --> 00:09:21,300
+and enter the real world.
+
+175
+00:09:21,300 --> 00:09:24,540
+Should be an opportunity for you to
+take your newfound knowledge of software
+
+176
+00:09:24,540 --> 00:09:27,600
+out for a spin and build something
+of your very own, something
+
+177
+00:09:27,600 --> 00:09:30,510
+that even maybe the TFs and myself
+have never dabbled in before,
+
+178
+00:09:30,510 --> 00:09:33,600
+but with all of this now
+software support by your side.
+
+179
+00:09:33,600 --> 00:09:37,590
+This here is our very own CS50 shuttles
+that will take us then to IHOP.
+
+180
+00:09:37,590 --> 00:09:40,770
+And then a week after
+that is the epic CS50
+
+181
+00:09:40,770 --> 00:09:43,650
+fair, which will be an opportunity
+to showcase what it is you'll
+
+182
+00:09:43,650 --> 00:09:46,630
+pull off over the next few
+weeks to students, faculty,
+
+183
+00:09:46,630 --> 00:09:47,940
+and staff across campus.
+
+184
+00:09:47,940 --> 00:09:50,820
+More details to come, but you'll
+bring over your laptop or phone
+
+185
+00:09:50,820 --> 00:09:52,170
+to a large space on campus.
+
+186
+00:09:52,170 --> 00:09:55,110
+We'll invite all of your friends,
+even family if they're around.
+
+187
+00:09:55,110 --> 00:09:57,330
+And the goal will be simply
+to have chats like this
+
+188
+00:09:57,330 --> 00:09:59,640
+and present your final
+project to passersby.
+
+189
+00:09:59,640 --> 00:10:01,950
+There'll be a bit of an
+incentive model, whereby
+
+190
+00:10:01,950 --> 00:10:04,050
+anyone who chats you
+up about their project,
+
+191
+00:10:04,050 --> 00:10:05,490
+you can give a little sticker to.
+
+192
+00:10:05,490 --> 00:10:08,220
+And that will enter them into
+a raffle for fabulous prizes
+
+193
+00:10:08,220 --> 00:10:10,630
+to grease the wheels of
+conversations as well.
+
+194
+00:10:10,630 --> 00:10:14,740
+And you'll see faculty from
+across campus join us as well.
+
+195
+00:10:14,740 --> 00:10:18,510
+But ultimately, you walk out of that
+event with this here CS50 shirt,
+
+196
+00:10:18,510 --> 00:10:23,250
+one like it, so you too, can proudly
+proclaim that you indeed took CS50.
+
+197
+00:10:23,250 --> 00:10:27,160
+So all that and more to come, resting
+on finally, those final projects.
+
+198
+00:10:27,160 --> 00:10:28,035
+But how to get there.
+
+199
+00:10:28,035 --> 00:10:30,535
+So here are some general advice
+that's not necessarily going
+
+200
+00:10:30,535 --> 00:10:32,190
+to be applicable to all final projects.
+
+201
+00:10:32,190 --> 00:10:35,140
+But as we exit CS50 and
+enter the real world,
+
+202
+00:10:35,140 --> 00:10:38,460
+here are some tips on what you
+might read, what you might download,
+
+203
+00:10:38,460 --> 00:10:42,730
+sort of starting points so that
+in answer to the FAQ, what now?
+
+204
+00:10:42,730 --> 00:10:45,030
+So for instance, if
+you would like to begin
+
+205
+00:10:45,030 --> 00:10:49,020
+to experience on your own Mac or PC
+more of the programming environment
+
+206
+00:10:49,020 --> 00:10:53,670
+that we provided to you, sort of turnkey
+style in the cloud using cs50.dev,
+
+207
+00:10:53,670 --> 00:10:57,790
+you can actually install command line
+tools on your own laptop, desktop,
+
+208
+00:10:57,790 --> 00:10:58,320
+or the like.
+
+209
+00:10:58,320 --> 00:10:59,910
+For instance, Apple has their own.
+
+210
+00:10:59,910 --> 00:11:00,900
+Windows has their own.
+
+211
+00:11:00,900 --> 00:11:03,150
+So you can open a terminal
+window on your own computer
+
+212
+00:11:03,150 --> 00:11:06,210
+and execute much of the same commands
+that you've been doing in Linux
+
+213
+00:11:06,210 --> 00:11:07,200
+this whole term.
+
+214
+00:11:07,200 --> 00:11:10,320
+Learning Git, so Git is
+version control software.
+
+215
+00:11:10,320 --> 00:11:12,560
+And it's very, very popular in industry.
+
+216
+00:11:12,560 --> 00:11:16,882
+And it's a mechanism for saving
+multiple versions of your files.
+
+217
+00:11:16,882 --> 00:11:19,340
+Now, this is something you
+might be familiar with if still,
+
+218
+00:11:19,340 --> 00:11:23,060
+even using file names in the real
+world, like on your Mac or PC--
+
+219
+00:11:23,060 --> 00:11:26,120
+maybe this is resume
+version 1, resume version 2,
+
+220
+00:11:26,120 --> 00:11:30,380
+resume Monday night version, resume
+Tuesday, or whatever the case may be.
+
+221
+00:11:30,380 --> 00:11:33,500
+If you're using Google documents,
+this happens automatically nowadays.
+
+222
+00:11:33,500 --> 00:11:36,830
+But with code, it can happen
+automatically, but also
+
+223
+00:11:36,830 --> 00:11:39,380
+more methodically using this here tool.
+
+224
+00:11:39,380 --> 00:11:43,130
+And Git is a very popular tool for
+collaborating with others as well.
+
+225
+00:11:43,130 --> 00:11:45,050
+And you've actually
+been secretly using it
+
+226
+00:11:45,050 --> 00:11:47,540
+underneath the hood for
+a lot of CS50's tools.
+
+227
+00:11:47,540 --> 00:11:49,490
+But we've abstracted
+away some of the details.
+
+228
+00:11:49,490 --> 00:11:52,160
+But Brian, via this video and
+any number of other references,
+
+229
+00:11:52,160 --> 00:11:55,500
+can peel back that abstraction and
+show you how to use it more manually.
+
+230
+00:11:55,500 --> 00:11:58,680
+You don't need to use cs50.dev
+anymore but you are welcome to.
+
+231
+00:11:58,680 --> 00:12:01,820
+You can instead install VS
+Code onto your own Mac or PC.
+
+232
+00:12:01,820 --> 00:12:04,307
+If you go to this first URL
+here, it's a free download.
+
+233
+00:12:04,307 --> 00:12:05,390
+It's actually open source.
+
+234
+00:12:05,390 --> 00:12:08,330
+So you can even poke around and
+see how it, itself is built.
+
+235
+00:12:08,330 --> 00:12:11,090
+And at CS50's own
+documentation, we have some tips
+
+236
+00:12:11,090 --> 00:12:15,160
+for making it look like CS50's
+environment even if longer term,
+
+237
+00:12:15,160 --> 00:12:17,490
+you want to cut the cord entirely.
+
+238
+00:12:17,490 --> 00:12:18,730
+What can you now do?
+
+239
+00:12:18,730 --> 00:12:20,550
+Well, many of you for
+your final projects
+
+240
+00:12:20,550 --> 00:12:24,570
+will typically tackle websites, sort
+of building on the ideas of problem
+
+241
+00:12:24,570 --> 00:12:28,510
+set 9, CS50 finance and the like,
+or just generally something dynamic.
+
+242
+00:12:28,510 --> 00:12:32,940
+But if you instead want to host a
+portfolio, like just your resume, just
+
+243
+00:12:32,940 --> 00:12:35,730
+projects you've worked on and
+the like, a static websites
+
+244
+00:12:35,730 --> 00:12:38,280
+can be hosted for free
+via various services.
+
+245
+00:12:38,280 --> 00:12:41,190
+A popular one is this URL
+here, called GitHub pages.
+
+246
+00:12:41,190 --> 00:12:43,440
+There's another service that
+offers a free tier called
+
+247
+00:12:43,440 --> 00:12:47,610
+Netlify that can allow you to host
+your own projects statically for free.
+
+248
+00:12:47,610 --> 00:12:51,210
+But when it comes to more dynamic
+hosting, you have many more options.
+
+249
+00:12:51,210 --> 00:12:53,140
+And these are just some
+of the most popular.
+
+250
+00:12:53,140 --> 00:12:55,560
+The first three are some of
+the biggest cloud providers
+
+251
+00:12:55,560 --> 00:13:00,120
+nowadays, whether it's Amazon or
+Microsoft Azure or Google services.
+
+252
+00:13:00,120 --> 00:13:03,967
+If you go to this fourth URL here,
+this is GitHub's education pack,
+
+253
+00:13:03,967 --> 00:13:06,300
+they essentially broker with
+lots of different companies
+
+254
+00:13:06,300 --> 00:13:08,760
+to give students,
+specifically, discounts on
+
+255
+00:13:08,760 --> 00:13:10,550
+or free access to a lot of tools.
+
+256
+00:13:10,550 --> 00:13:13,050
+So you might want to sign up
+for that while you're eligible.
+
+257
+00:13:13,050 --> 00:13:16,350
+And then lastly, here are two
+other popular third-party, but not
+
+258
+00:13:16,350 --> 00:13:18,480
+free services, but
+that are very commonly
+
+259
+00:13:18,480 --> 00:13:20,798
+used when you want to host
+actual web applications.
+
+260
+00:13:20,798 --> 00:13:23,340
+So maybe it's Flask, maybe it's
+something else, but something
+
+261
+00:13:23,340 --> 00:13:26,310
+that involves some input and output.
+
+262
+00:13:26,310 --> 00:13:29,170
+Questions meanwhile-- so there's
+just lots of communities.
+
+263
+00:13:29,170 --> 00:13:32,190
+If you want to keep an eye
+on what's happening in tech,
+
+264
+00:13:32,190 --> 00:13:34,470
+these are just some of
+the popular options.
+
+265
+00:13:34,470 --> 00:13:36,735
+And undoubtedly, if you
+have some techie friends,
+
+266
+00:13:36,735 --> 00:13:38,110
+they'll have suggestions as well.
+
+267
+00:13:38,110 --> 00:13:40,590
+But you might find some of
+these destinations of interest.
+
+268
+00:13:40,590 --> 00:13:44,970
+Of course increasingly, will you just
+ask questions of software itself,
+
+269
+00:13:44,970 --> 00:13:50,020
+AI, whether it's ChatGPT,
+GitHub Copilot, or the like.
+
+270
+00:13:50,020 --> 00:13:53,320
+And then classes, we're clearly a little
+biased here with what's on the screen.
+
+271
+00:13:53,320 --> 00:13:57,570
+So these aren't college classes per
+se, but freely available OpenCourseWare
+
+272
+00:13:57,570 --> 00:14:00,180
+courses that CS50's team
+has put together over time.
+
+273
+00:14:00,180 --> 00:14:03,780
+And in a nutshell as you can infer
+from the suffix of each of these URLs,
+
+274
+00:14:03,780 --> 00:14:05,940
+if you want to learn
+more about Python, CS50
+
+275
+00:14:05,940 --> 00:14:09,150
+has got a free, open online
+class for that, or SQL, thanks
+
+276
+00:14:09,150 --> 00:14:13,770
+to Carter, web and AI stuff, thanks to
+Brian, a games class, thanks to Colton,
+
+277
+00:14:13,770 --> 00:14:17,570
+cybersecurity, which will
+extend where we leave off today.
+
+278
+00:14:17,570 --> 00:14:19,320
+And then if you're
+more interested, not so
+
+279
+00:14:19,320 --> 00:14:22,590
+much in coding and going
+more deeply into software,
+
+280
+00:14:22,590 --> 00:14:28,140
+but want to take a step higher level and
+focus more on intersections of computer
+
+281
+00:14:28,140 --> 00:14:30,122
+science with business
+or law or technology,
+
+282
+00:14:30,122 --> 00:14:31,830
+those two are freely
+available, if you're
+
+283
+00:14:31,830 --> 00:14:35,850
+looking for something to do over January
+the summer or just to dabble over time.
+
+284
+00:14:35,850 --> 00:14:37,830
+And there's innumerable
+other free resources
+
+285
+00:14:37,830 --> 00:14:42,090
+from other folks on the
+internet as well certainly too.
+
+286
+00:14:42,090 --> 00:14:45,510
+All right, so a few
+invitations and thank yous.
+
+287
+00:14:45,510 --> 00:14:49,470
+So one, after today, after we dive
+into and out of cybersecurity,
+
+288
+00:14:49,470 --> 00:14:52,590
+please do stay in touch via any
+of CS50's online communities.
+
+289
+00:14:52,590 --> 00:14:55,710
+As we start to recruit next year's
+team for teaching fellows, teaching
+
+290
+00:14:55,710 --> 00:14:58,560
+assistants, course assistants,
+we'll be in touch via email
+
+291
+00:14:58,560 --> 00:15:01,030
+for those opportunities as well.
+
+292
+00:15:01,030 --> 00:15:04,780
+And now some thanks for the group before
+we then dive into here today's topic.
+
+293
+00:15:04,780 --> 00:15:08,430
+So one, allow me to thank
+our hosts here for giving us
+
+294
+00:15:08,430 --> 00:15:12,150
+access to such a wonderful, privileged
+space to just hold classes in,
+
+295
+00:15:12,150 --> 00:15:13,740
+the whole team for Memorial Hall.
+
+296
+00:15:13,740 --> 00:15:17,610
+Our thanks too, to ESS, which is the
+team that makes everything sound so
+
+297
+00:15:17,610 --> 00:15:20,880
+good in spaces like this with music,
+mics, and the like, our friends,
+
+298
+00:15:20,880 --> 00:15:23,580
+of course, Wesley down the road
+at Changsho, where we went most
+
+299
+00:15:23,580 --> 00:15:25,380
+every other Friday this semester.
+
+300
+00:15:25,380 --> 00:15:28,050
+If you've never actually been,
+or if you're hearing this online,
+
+301
+00:15:28,050 --> 00:15:31,320
+please join our friends at Changsho
+show on Mass Ave down the road
+
+302
+00:15:31,320 --> 00:15:32,760
+any time you might like.
+
+303
+00:15:32,760 --> 00:15:35,970
+And then especially, CS50's
+team-- there's quite a few humans
+
+304
+00:15:35,970 --> 00:15:40,320
+operating cameras in the room, both
+here and way in back, as well as online.
+
+305
+00:15:40,320 --> 00:15:41,340
+My thanks.
+
+306
+00:15:41,340 --> 00:15:42,580
+[APPLAUSE]
+
+307
+00:15:42,580 --> 00:15:48,020
+Thank you to them for making
+this look and sound so good.
+
+308
+00:15:48,020 --> 00:15:50,630
+And what you don't see is
+when I do actually screw up,
+
+309
+00:15:50,630 --> 00:15:53,030
+even if we don't fix it in
+real time, they very kindly
+
+310
+00:15:53,030 --> 00:15:56,870
+help us go back in time, fix things,
+so that your successors have hopefully,
+
+311
+00:15:56,870 --> 00:15:59,310
+an even improved version as well.
+
+312
+00:15:59,310 --> 00:16:03,770
+And then as well, CS50's
+own Sophie Anderson,
+
+313
+00:16:03,770 --> 00:16:06,050
+who is the daughter of one
+of CS50's teaching fellows
+
+314
+00:16:06,050 --> 00:16:08,960
+who lives all the way over in
+New Zealand, who has wonderfully
+
+315
+00:16:08,960 --> 00:16:12,110
+brought the CS50 duck to
+life in this animated form.
+
+316
+00:16:12,110 --> 00:16:16,040
+thanks to Sophie, this duck is now
+everywhere, including most recently,
+
+317
+00:16:16,040 --> 00:16:17,660
+on some T-shirts too.
+
+318
+00:16:17,660 --> 00:16:20,060
+But of course, we have this
+massive support structure
+
+319
+00:16:20,060 --> 00:16:21,530
+in the form of the team.
+
+320
+00:16:21,530 --> 00:16:23,810
+This is some of our past
+team members, but who
+
+321
+00:16:23,810 --> 00:16:26,690
+wonderfully via Zoom you'll
+recall in week seven,
+
+322
+00:16:26,690 --> 00:16:31,350
+showed us how TCP/IP works by
+passing those envelopes up,
+
+323
+00:16:31,350 --> 00:16:32,510
+down, left, and right.
+
+324
+00:16:32,510 --> 00:16:35,060
+I commented at the time,
+disclaim, that it actually took us
+
+325
+00:16:35,060 --> 00:16:36,600
+quite a bit of effort to do that.
+
+326
+00:16:36,600 --> 00:16:39,770
+And so I thought I would share
+as a representative thanks
+
+327
+00:16:39,770 --> 00:16:45,240
+of our whole teaching team, whether
+it's Carter and Julia and Ozan and Cody
+
+328
+00:16:45,240 --> 00:16:48,930
+and all of C50's team members
+in Cambridge in New Hey,
+
+329
+00:16:48,930 --> 00:16:52,740
+thought I'd give you a look behind
+the scenes at how things go indeed,
+
+330
+00:16:52,740 --> 00:16:54,900
+behind the scenes that
+you don't necessarily see.
+
+331
+00:16:54,900 --> 00:16:58,243
+So let me switch over here and hit play.
+
+332
+00:16:58,243 --> 00:16:58,910
+[VIDEO PLAYBACK]
+
+333
+00:16:58,910 --> 00:16:59,410
+[INAUDIBLE]
+
+334
+00:16:59,410 --> 00:17:01,410
+[INAUDIBLE] Buffering.
+
+335
+00:17:01,410 --> 00:17:03,600
+OK.
+
+336
+00:17:03,600 --> 00:17:04,440
+Josh?
+
+337
+00:17:04,440 --> 00:17:06,430
+Nice.
+
+338
+00:17:06,430 --> 00:17:07,079
+Helen?
+
+339
+00:17:07,079 --> 00:17:07,819
+Oh.
+
+340
+00:17:07,819 --> 00:17:10,926
+[CHUCKLING]
+
+341
+00:17:10,926 --> 00:17:12,294
+
+
+342
+00:17:12,294 --> 00:17:14,144
+[INAUDIBLE] Moni-- no, oh, wait.
+
+343
+00:17:14,144 --> 00:17:20,060
+
+
+344
+00:17:20,060 --> 00:17:21,019
+That was amazing, Josh.
+
+345
+00:17:21,019 --> 00:17:25,644
+
+
+346
+00:17:25,644 --> 00:17:26,144
+Sophie.
+
+347
+00:17:26,144 --> 00:17:33,420
+
+
+348
+00:17:33,420 --> 00:17:35,700
+Amazing.
+
+349
+00:17:35,700 --> 00:17:37,840
+That was perfect.
+
+350
+00:17:37,840 --> 00:17:38,340
+Moni.
+
+351
+00:17:38,340 --> 00:17:42,940
+[LAUGHTER] I think I--
+
+352
+00:17:42,940 --> 00:17:44,760
+[INTERPOSING VOICES]
+
+353
+00:17:44,760 --> 00:17:47,620
+- Over to you, [INAUDIBLE].
+
+354
+00:17:47,620 --> 00:17:48,120
+Guy.
+
+355
+00:17:48,120 --> 00:17:52,110
+
+
+356
+00:17:52,110 --> 00:17:53,310
+That was amazing.
+
+357
+00:17:53,310 --> 00:17:54,225
+Thank you all.
+
+358
+00:17:54,225 --> 00:17:54,800
+- So good.
+
+359
+00:17:54,800 --> 00:17:55,240
+[END PLAYBACK]
+
+360
+00:17:55,240 --> 00:17:57,115
+DAVID MALAN: All right,
+these outtakes aside,
+
+361
+00:17:57,115 --> 00:18:00,510
+my thanks to the whole teaching team
+for making this whole class possible.
+
+362
+00:18:00,510 --> 00:18:03,497
+[APPLAUSE]
+
+363
+00:18:03,497 --> 00:18:05,980
+So cybersecurity, this
+refers to the process
+
+364
+00:18:05,980 --> 00:18:09,310
+of keeping secure our systems,
+our data, our accounts, and.
+
+365
+00:18:09,310 --> 00:18:12,550
+More and it's something that's going
+to be increasingly important, as it
+
+366
+00:18:12,550 --> 00:18:15,910
+already is, just because of the
+sheer omnipresence of technology
+
+367
+00:18:15,910 --> 00:18:18,650
+on our desks, on our laps,
+in our pockets, and beyond.
+
+368
+00:18:18,650 --> 00:18:19,900
+So exactly what is it?
+
+369
+00:18:19,900 --> 00:18:23,650
+And how can we, as students of computer
+science over the past many weeks,
+
+370
+00:18:23,650 --> 00:18:27,700
+think about things a little more
+methodically, a little more carefully,
+
+371
+00:18:27,700 --> 00:18:31,060
+and maybe even put some numbers to the
+intuition that I think a lot of you
+
+372
+00:18:31,060 --> 00:18:34,930
+probably have when it comes to deciding,
+is something secure or is it not?
+
+373
+00:18:34,930 --> 00:18:38,170
+So first of all, what does it
+mean for something to be secure?
+
+374
+00:18:38,170 --> 00:18:42,140
+How might you as citizens of the
+world now answer that question?
+
+375
+00:18:42,140 --> 00:18:43,510
+What does it mean to be secure?
+
+376
+00:18:43,510 --> 00:18:45,010
+AUDIENCE: Resistant to attack.
+
+377
+00:18:45,010 --> 00:18:47,950
+DAVID MALAN: OK, so resistant to
+attack, I like that formulation.
+
+378
+00:18:47,950 --> 00:18:52,110
+Other thoughts on what
+it means to be secure?
+
+379
+00:18:52,110 --> 00:18:52,860
+What does it mean?
+
+380
+00:18:52,860 --> 00:18:53,388
+Yeah.
+
+381
+00:18:53,388 --> 00:18:55,180
+AUDIENCE: You control
+who has access to it.
+
+382
+00:18:55,180 --> 00:18:58,270
+DAVID MALAN: Yeah, so you control
+who has access to something.
+
+383
+00:18:58,270 --> 00:19:01,660
+And there's these techniques known
+as authentication, like logging in,
+
+384
+00:19:01,660 --> 00:19:03,910
+authorization, deciding
+whether or not that person,
+
+385
+00:19:03,910 --> 00:19:06,220
+once authenticated, should
+have access to things.
+
+386
+00:19:06,220 --> 00:19:08,110
+And, of course, you
+and I are very commonly
+
+387
+00:19:08,110 --> 00:19:10,900
+in the habit of using fairly
+primitive mechanisms still.
+
+388
+00:19:10,900 --> 00:19:13,688
+Although, we'll touch
+today on some technologies
+
+389
+00:19:13,688 --> 00:19:16,730
+that we'll see all the more of in the
+weeks and months and years to come.
+
+390
+00:19:16,730 --> 00:19:18,480
+But you and I are
+pretty much in the habit
+
+391
+00:19:18,480 --> 00:19:21,393
+of relying on passwords for
+most everything still today.
+
+392
+00:19:21,393 --> 00:19:23,560
+And so we thought we'd begin
+with exactly this topic
+
+393
+00:19:23,560 --> 00:19:27,730
+to consider just how secure or
+insecure is this mechanism and why
+
+394
+00:19:27,730 --> 00:19:29,755
+and see if we can't
+evaluate it a little more
+
+395
+00:19:29,755 --> 00:19:32,380
+methodically so that we can make
+more than intuitive arguments,
+
+396
+00:19:32,380 --> 00:19:34,940
+but quantitative compelling
+arguments as well.
+
+397
+00:19:34,940 --> 00:19:38,890
+So unfortunately we humans are
+not so good at choosing passwords.
+
+398
+00:19:38,890 --> 00:19:41,723
+And every year, accounts
+are hacked into.
+
+399
+00:19:41,723 --> 00:19:44,140
+Maybe yours, maybe your friends,
+maybe your family members
+
+400
+00:19:44,140 --> 00:19:45,640
+have experienced this already.
+
+401
+00:19:45,640 --> 00:19:48,100
+And this unfortunately happens
+to so many people online.
+
+402
+00:19:48,100 --> 00:19:50,140
+But, fortunately, there
+are security researchers
+
+403
+00:19:50,140 --> 00:19:54,350
+in the world that take a look at
+attacks once they have happened,
+
+404
+00:19:54,350 --> 00:19:58,550
+particularly when data from attacks,
+databases, are posted online
+
+405
+00:19:58,550 --> 00:20:01,250
+or on the so-called dark web
+or the like and downloaded
+
+406
+00:20:01,250 --> 00:20:04,460
+by others for malicious purposes,
+they can also conversely provide us
+
+407
+00:20:04,460 --> 00:20:07,250
+with some insights as to
+the behavior of us humans
+
+408
+00:20:07,250 --> 00:20:09,770
+that might give us some insights
+as to when and why things
+
+409
+00:20:09,770 --> 00:20:12,030
+are getting attacked successfully.
+
+410
+00:20:12,030 --> 00:20:15,440
+So as of last year, here, for
+instance, according to one measure
+
+411
+00:20:15,440 --> 00:20:18,680
+are the top 10 most popular, a.k.a.
+
+412
+00:20:18,680 --> 00:20:21,770
+worst passwords-- at least
+according to the data
+
+413
+00:20:21,770 --> 00:20:24,080
+that security researchers
+have been able to glean--
+
+414
+00:20:24,080 --> 00:20:25,860
+by attacks that have already happened.
+
+415
+00:20:25,860 --> 00:20:29,960
+So the number one password as of last
+year, according to systems compromised,
+
+416
+00:20:29,960 --> 00:20:33,080
+was 123456.
+
+417
+00:20:33,080 --> 00:20:35,360
+The second most, admin.
+
+418
+00:20:35,360 --> 00:20:37,970
+The third most, 12345678.
+
+419
+00:20:37,970 --> 00:20:51,080
+And thereafter, 123456789, 1234, 12345,
+password, 123, Aa123456, and then
+
+420
+00:20:51,080 --> 00:20:53,150
+1234567890.
+
+421
+00:20:53,150 --> 00:20:54,710
+So you can actually infer--
+
+422
+00:20:54,710 --> 00:20:58,970
+sort of goofy as some of these are--
+you can actually infer certain policies
+
+423
+00:20:58,970 --> 00:20:59,720
+from these, right?
+
+424
+00:20:59,720 --> 00:21:03,402
+The fact that we're taking such
+little effort to choose our password
+
+425
+00:21:03,402 --> 00:21:05,360
+seems to correlate really
+with probably, what's
+
+426
+00:21:05,360 --> 00:21:08,400
+the minimum length of a
+password required for systems?
+
+427
+00:21:08,400 --> 00:21:10,580
+And you can see that
+at worst, some systems
+
+428
+00:21:10,580 --> 00:21:13,670
+require only three digit passwords.
+
+429
+00:21:13,670 --> 00:21:17,840
+And maybe they might require
+six or eight or nine or even 10.
+
+430
+00:21:17,840 --> 00:21:22,670
+But you can kind of infer corporate or
+policies from these passwords alone.
+
+431
+00:21:22,670 --> 00:21:26,318
+If you keep going through the list,
+there's some funnier ones even down
+
+432
+00:21:26,318 --> 00:21:28,110
+the list that are
+nonetheless enlightening.
+
+433
+00:21:28,110 --> 00:21:31,820
+So, for instance, lower on the
+list is Iloveyou, no spaces.
+
+434
+00:21:31,820 --> 00:21:34,620
+Sort of adorable, maybe
+it's meaningful to you.
+
+435
+00:21:34,620 --> 00:21:37,860
+But if you can think of
+it, so can an adversary,
+
+436
+00:21:37,860 --> 00:21:41,750
+so can some hacker, so much so that
+it's this popular on these lists.
+
+437
+00:21:41,750 --> 00:21:48,660
+Qwertyuiop, it's not quite English, but
+its derivative of English keyboards.
+
+438
+00:21:48,660 --> 00:21:49,160
+Anyone?
+
+439
+00:21:49,160 --> 00:21:51,560
+Yeah, so this is, if you look
+at a US English keyboard,
+
+440
+00:21:51,560 --> 00:21:53,450
+it's just the top row
+of keys if you just
+
+441
+00:21:53,450 --> 00:21:57,290
+hit them all together left or right
+to choose your, therefore, password.
+
+442
+00:21:57,290 --> 00:22:00,515
+And then this one,
+"password," which has an at
+
+443
+00:22:00,515 --> 00:22:05,090
+sign for the A and a zero for the O,
+which I guess I'm guessing some of you
+
+444
+00:22:05,090 --> 00:22:06,402
+do similar tricks.
+
+445
+00:22:06,402 --> 00:22:09,110
+But this is the thing too, if you
+think like you're being clever,
+
+446
+00:22:09,110 --> 00:22:11,000
+well, there's a lot
+of other adversaries,
+
+447
+00:22:11,000 --> 00:22:14,930
+there's a lot of adversaries out there
+who are just as good at being clever.
+
+448
+00:22:14,930 --> 00:22:17,750
+So even heuristics like this
+that in the past, to be fair,
+
+449
+00:22:17,750 --> 00:22:20,330
+you might have been taught
+to do because it confuses
+
+450
+00:22:20,330 --> 00:22:23,900
+adversaries' or hackers' attempts,
+unfortunately, if you know to do it,
+
+451
+00:22:23,900 --> 00:22:25,260
+so does the adversary.
+
+452
+00:22:25,260 --> 00:22:29,550
+And so your accounts aren't necessarily
+any more secure as a result.
+
+453
+00:22:29,550 --> 00:22:31,490
+So what are some of our
+takeaways from this?
+
+454
+00:22:31,490 --> 00:22:36,590
+Well, one, if you have these lists
+of passwords, all too possible
+
+455
+00:22:36,590 --> 00:22:39,920
+are, for instance, dictionary attacks.
+
+456
+00:22:39,920 --> 00:22:42,147
+Like we literally have
+published on the internet--
+
+457
+00:22:42,147 --> 00:22:44,480
+and there's a citation in the
+slides if you're curious--
+
+458
+00:22:44,480 --> 00:22:46,340
+of these most popular
+passwords in the world.
+
+459
+00:22:46,340 --> 00:22:49,230
+So what's a smart adversary going to do
+when trying to get into your account?
+
+460
+00:22:49,230 --> 00:22:51,800
+They're not necessarily going
+to try all possible passwords
+
+461
+00:22:51,800 --> 00:22:53,790
+or try your birthday
+or things like that.
+
+462
+00:22:53,790 --> 00:22:56,690
+They're just going to start with
+this top 10 list, this top 100 list.
+
+463
+00:22:56,690 --> 00:22:58,880
+And odds are, statistically,
+in a room this big,
+
+464
+00:22:58,880 --> 00:23:02,240
+they're probably going to get into
+at least one person's account.
+
+465
+00:23:02,240 --> 00:23:07,710
+But let's consider maybe a little more
+academically what we can do about this.
+
+466
+00:23:07,710 --> 00:23:10,502
+And let's start with something
+simple like the simplest, the most
+
+467
+00:23:10,502 --> 00:23:12,710
+omnipresent device we might
+all have now is some kind
+
+468
+00:23:12,710 --> 00:23:14,270
+of mobile device like a phone.
+
+469
+00:23:14,270 --> 00:23:16,610
+Generally speaking, Apple
+and Google and others
+
+470
+00:23:16,610 --> 00:23:18,560
+are requiring of us
+that we at least have
+
+471
+00:23:18,560 --> 00:23:20,990
+a passcode or at least
+you're prompted to set it up
+
+472
+00:23:20,990 --> 00:23:22,560
+even if you therefore opt out of it.
+
+473
+00:23:22,560 --> 00:23:27,470
+But most of us probably have a
+passcode, be it numeric or alphabetic
+
+474
+00:23:27,470 --> 00:23:28,590
+or something else.
+
+475
+00:23:28,590 --> 00:23:31,318
+So what might we take away from that?
+
+476
+00:23:31,318 --> 00:23:33,110
+Well, suppose that you
+do the bare minimum.
+
+477
+00:23:33,110 --> 00:23:35,235
+And the default for years
+has generally been having
+
+478
+00:23:35,235 --> 00:23:37,790
+at least four digits in your passcode.
+
+479
+00:23:37,790 --> 00:23:39,240
+Well, what does that mean?
+
+480
+00:23:39,240 --> 00:23:40,758
+Well, how secure is that?
+
+481
+00:23:40,758 --> 00:23:42,050
+How quickly might it be hacked?
+
+482
+00:23:42,050 --> 00:23:44,480
+And, in fact, Carter, would
+you mind joining me up here?
+
+483
+00:23:44,480 --> 00:23:50,330
+Perhaps we can actually decide
+together how best to proceed here.
+
+484
+00:23:50,330 --> 00:23:52,670
+If you want to flip over
+to your other screen there,
+
+485
+00:23:52,670 --> 00:23:55,390
+we're going to ask everyone to go to--
+
+486
+00:23:55,390 --> 00:23:59,140
+I'll pull it up here-- this URL
+here if you haven't already.
+
+487
+00:23:59,140 --> 00:24:02,980
+And this is going to pull
+up a polling website that's
+
+488
+00:24:02,980 --> 00:24:07,100
+going to allow you in a moment to
+answer some multiple choice questions.
+
+489
+00:24:07,100 --> 00:24:10,160
+This is the same URL as earlier
+if you already logged in.
+
+490
+00:24:10,160 --> 00:24:13,220
+And in just a moment, we're
+going to ask you a question.
+
+491
+00:24:13,220 --> 00:24:17,030
+And I think, can we show the
+question before we do this?
+
+492
+00:24:17,030 --> 00:24:19,700
+Here's the first question
+from Carter here.
+
+493
+00:24:19,700 --> 00:24:22,190
+How long might it take to crack--
+
+494
+00:24:22,190 --> 00:24:26,750
+that is, figure out-- a four-digit
+passcode on someone's phone,
+
+495
+00:24:26,750 --> 00:24:28,110
+for instance?
+
+496
+00:24:28,110 --> 00:24:33,230
+How long might it take to
+crack a four-digit passcode?
+
+497
+00:24:33,230 --> 00:24:37,280
+Why don't we go ahead and flip
+over to see who is typing in what.
+
+498
+00:24:37,280 --> 00:24:41,540
+And we'll see what the
+scores are already.
+
+499
+00:24:41,540 --> 00:24:44,750
+All right, and it looks like
+most of you think a few seconds.
+
+500
+00:24:44,750 --> 00:24:47,160
+Some of you think a few minutes,
+a few hours, a few days.
+
+501
+00:24:47,160 --> 00:24:50,908
+So I'd say most of you are about
+to be very unpleasantly surprised.
+
+502
+00:24:50,908 --> 00:24:53,450
+In fact, the winner here is
+indeed going to be a few seconds,
+
+503
+00:24:53,450 --> 00:24:55,822
+but perhaps even faster than that.
+
+504
+00:24:55,822 --> 00:24:57,530
+So, in fact, let me
+go ahead and do this.
+
+505
+00:24:57,530 --> 00:24:58,100
+Thank you to Carter.
+
+506
+00:24:58,100 --> 00:24:59,900
+Let me flip over and
+let me introduce you
+
+507
+00:24:59,900 --> 00:25:02,990
+to, unfortunately, what's a very real
+world problem known as a brute force
+
+508
+00:25:02,990 --> 00:25:03,560
+attack.
+
+509
+00:25:03,560 --> 00:25:05,360
+As the word kind of
+conjures, if you think
+
+510
+00:25:05,360 --> 00:25:08,360
+to-- back to yesteryear when there
+was some kind of battering ram trying
+
+511
+00:25:08,360 --> 00:25:10,710
+to brute force their
+way into a castle door,
+
+512
+00:25:10,710 --> 00:25:13,440
+it just meant trying to hammer
+the heck out of a system.
+
+513
+00:25:13,440 --> 00:25:17,670
+A castle, in that case, to
+get into the destination.
+
+514
+00:25:17,670 --> 00:25:20,760
+Digitally though, this might
+mean being a little more clever.
+
+515
+00:25:20,760 --> 00:25:23,610
+We all know how to write code in a
+bunch of different languages now.
+
+516
+00:25:23,610 --> 00:25:28,080
+You could maybe open up a text editor,
+write a Python program to try all
+
+517
+00:25:28,080 --> 00:25:35,760
+possible four-digit codes from 0000 to
+9999 in order to figure out exactly,
+
+518
+00:25:35,760 --> 00:25:37,770
+how long does it actually take?
+
+519
+00:25:37,770 --> 00:25:39,990
+So let's first consider this.
+
+520
+00:25:39,990 --> 00:25:41,550
+Let me ask the next question.
+
+521
+00:25:41,550 --> 00:25:43,252
+How many four-digit passcodes are there?
+
+522
+00:25:43,252 --> 00:25:45,960
+Carter, if you wouldn't mind
+joining me and maybe just staying up
+
+523
+00:25:45,960 --> 00:25:49,620
+with me here to run our second
+question at this same URL.
+
+524
+00:25:49,620 --> 00:25:53,460
+How many four-digit passcodes
+are there in the world?
+
+525
+00:25:53,460 --> 00:25:57,380
+On your phone or laptop, you
+should now see the second question.
+
+526
+00:25:57,380 --> 00:26:05,677
+And the answers include 4, 40, 9,999,
+10,000, or it's OK to be unsure.
+
+527
+00:26:05,677 --> 00:26:07,510
+Let's go ahead and flip
+over to the results.
+
+528
+00:26:07,510 --> 00:26:09,620
+And it looks like most
+of you think 10,000.
+
+529
+00:26:09,620 --> 00:26:10,870
+And, indeed, that is the case.
+
+530
+00:26:10,870 --> 00:26:16,010
+Because if I kind of led you with 0000
+to 9999, that's 10,000 possibilities.
+
+531
+00:26:16,010 --> 00:26:17,140
+So that is, in fact, a lot.
+
+532
+00:26:17,140 --> 00:26:21,520
+But most of you thought it'd take maybe
+a few seconds to actually brute force
+
+533
+00:26:21,520 --> 00:26:22,700
+your way into that.
+
+534
+00:26:22,700 --> 00:26:26,380
+Let's consider how we might measure
+how long that actually takes.
+
+535
+00:26:26,380 --> 00:26:26,950
+So thank you.
+
+536
+00:26:26,950 --> 00:26:29,890
+So in the world of a
+four-digit passcode-- and they
+
+537
+00:26:29,890 --> 00:26:32,220
+are, indeed, digits,
+decimal digits from 0 to 9--
+
+538
+00:26:32,220 --> 00:26:35,470
+another way to think about it is there's
+10 possibilities for the first digit,
+
+539
+00:26:35,470 --> 00:26:37,750
+10 for the next, 10 to the 10.
+
+540
+00:26:37,750 --> 00:26:42,340
+So that really gives us 10 times
+itself four times or 10,000 in total.
+
+541
+00:26:42,340 --> 00:26:44,083
+But how long does that actually take?
+
+542
+00:26:44,083 --> 00:26:45,500
+Well, let me go ahead and do this.
+
+543
+00:26:45,500 --> 00:26:49,300
+I'm going to go ahead and open
+up on my Mac here, not even--
+
+544
+00:26:49,300 --> 00:26:52,160
+not even Codespaces or cs50.dev today.
+
+545
+00:26:52,160 --> 00:26:54,290
+I'm going to open up VS Code itself.
+
+546
+00:26:54,290 --> 00:26:58,340
+So before class, I went ahead and
+installed VS Code on my own Mac here.
+
+547
+00:26:58,340 --> 00:27:01,453
+It looks almost the same as
+Codespaces, though the windows
+
+548
+00:27:01,453 --> 00:27:03,620
+might look a little different
+and the menus as well.
+
+549
+00:27:03,620 --> 00:27:06,590
+And I've gone ahead here and
+begun a file called crack.py.
+
+550
+00:27:06,590 --> 00:27:09,230
+To crack something
+means to break into it,
+
+551
+00:27:09,230 --> 00:27:12,300
+to figure out in this case
+what the passcode actually is.
+
+552
+00:27:12,300 --> 00:27:16,970
+Well, how might I write some code to
+try all 10,000 possible passcodes?
+
+553
+00:27:16,970 --> 00:27:19,310
+And, heck, even though
+this isn't quite going
+
+554
+00:27:19,310 --> 00:27:21,110
+to be like hacking
+into my actual phone, I
+
+555
+00:27:21,110 --> 00:27:24,920
+bet I could find a USB or a lightning
+cable, connect the two devices,
+
+556
+00:27:24,920 --> 00:27:28,740
+and maybe send all of these passcodes
+to my device trying to brute force
+
+557
+00:27:28,740 --> 00:27:29,240
+my way in.
+
+558
+00:27:29,240 --> 00:27:31,940
+And that's indeed how a hacker
+might go about doing this
+
+559
+00:27:31,940 --> 00:27:34,290
+if the manufacturer doesn't
+protect against that.
+
+560
+00:27:34,290 --> 00:27:35,300
+So here's some code.
+
+561
+00:27:35,300 --> 00:27:36,530
+Let me go ahead and do this.
+
+562
+00:27:36,530 --> 00:27:38,750
+From string, import digits.
+
+563
+00:27:38,750 --> 00:27:40,250
+This isn't strictly necessary.
+
+564
+00:27:40,250 --> 00:27:42,830
+But in Python, there is a
+string library from which
+
+565
+00:27:42,830 --> 00:27:45,050
+you can get all of the
+decimal digits just so I don't
+
+566
+00:27:45,050 --> 00:27:46,730
+have to manually type out 0 through 9.
+
+567
+00:27:46,730 --> 00:27:48,530
+But that's just a minor optimization.
+
+568
+00:27:48,530 --> 00:27:51,200
+But there's another
+library called itertools,
+
+569
+00:27:51,200 --> 00:27:55,670
+tools related to iteration, doing
+things in like a looping fashion, where
+
+570
+00:27:55,670 --> 00:27:58,520
+I can import a cross product
+function, a function that's
+
+571
+00:27:58,520 --> 00:28:01,460
+going to allow me to combine
+like all numbers with all numbers
+
+572
+00:28:01,460 --> 00:28:03,890
+again and again and again for
+the length of the passcode.
+
+573
+00:28:03,890 --> 00:28:07,220
+Now I can do a simple
+Python for loop like this.
+
+574
+00:28:07,220 --> 00:28:14,430
+For each passcode in the cross product
+of those 10 digits repeated four times.
+
+575
+00:28:14,430 --> 00:28:18,020
+In other words, this is just
+a programmatic Pythonic way
+
+576
+00:28:18,020 --> 00:28:21,980
+to implement the idea of combining
+all 10 digits with itself
+
+577
+00:28:21,980 --> 00:28:24,170
+four times in a loop in this fashion.
+
+578
+00:28:24,170 --> 00:28:26,540
+And just so we can visualize
+this, let's just go ahead
+
+579
+00:28:26,540 --> 00:28:28,040
+and print out the passcode.
+
+580
+00:28:28,040 --> 00:28:31,100
+But if I did have a lightning cable
+or a USB cable, I wouldn't print it.
+
+581
+00:28:31,100 --> 00:28:33,530
+I would maybe send it through
+the cable to the device
+
+582
+00:28:33,530 --> 00:28:35,990
+to try to get through
+the passcode screen.
+
+583
+00:28:35,990 --> 00:28:38,390
+So we can revisit now
+the question of how long
+
+584
+00:28:38,390 --> 00:28:40,070
+might it take to get into this device.
+
+585
+00:28:40,070 --> 00:28:41,240
+Well, let's just try this.
+
+586
+00:28:41,240 --> 00:28:43,100
+Python of crack.py.
+
+587
+00:28:43,100 --> 00:28:45,050
+And assume, again, it's
+connected via cable.
+
+588
+00:28:45,050 --> 00:28:49,280
+So we'll see how long this program takes
+to run and break into this here phone.
+
+589
+00:28:49,280 --> 00:28:50,480
+Done.
+
+590
+00:28:50,480 --> 00:28:53,820
+So that's all it took
+for 10,000 iterations.
+
+591
+00:28:53,820 --> 00:28:56,720
+And this is on a Mac that's not
+even the fastest one out there.
+
+592
+00:28:56,720 --> 00:28:58,530
+You could imagine
+doing this even faster.
+
+593
+00:28:58,530 --> 00:29:02,180
+So that's actually not necessarily
+all the best for our security.
+
+594
+00:29:02,180 --> 00:29:04,250
+So what could we do
+instead of 10 digits?
+
+595
+00:29:04,250 --> 00:29:07,190
+Well, most of you have probably
+upgraded a lot of your passwords
+
+596
+00:29:07,190 --> 00:29:10,560
+to maybe being alphabetical instead.
+
+597
+00:29:10,560 --> 00:29:13,970
+So what if I instead were to ask
+the question-- and Carter, if you
+
+598
+00:29:13,970 --> 00:29:17,300
+want to rejoin me here in a second--
+what if I instead were to consider
+
+599
+00:29:17,300 --> 00:29:19,160
+maybe four-letter passcodes?
+
+600
+00:29:19,160 --> 00:29:23,060
+So now we have A through Z four times.
+
+601
+00:29:23,060 --> 00:29:25,557
+And maybe we'll throw into
+the mix uppercase and--
+
+602
+00:29:25,557 --> 00:29:27,140
+well, let's just keep it four letters.
+
+603
+00:29:27,140 --> 00:29:31,220
+Let's just go ahead and do
+maybe uppercase and lowercase,
+
+604
+00:29:31,220 --> 00:29:34,430
+so 52 possibilities.
+
+605
+00:29:34,430 --> 00:29:39,080
+This is going to give us 52
+times 52 times 52 times 52.
+
+606
+00:29:39,080 --> 00:29:41,870
+And anyone want to
+ballpark the math here,
+
+607
+00:29:41,870 --> 00:29:48,800
+how many possible four-letter
+passcodes are there, roughly?
+
+608
+00:29:48,800 --> 00:29:53,400
+7 million, yeah, so roughly 7 million,
+which is way bigger than 10,000.
+
+609
+00:29:53,400 --> 00:29:57,560
+So, oh, I spoiled this, didn't I?
+
+610
+00:29:57,560 --> 00:29:58,550
+Can you flip over?
+
+611
+00:29:58,550 --> 00:30:02,720
+So how many four-letter
+passcodes are there?
+
+612
+00:30:02,720 --> 00:30:07,550
+It seems that most of you, 93% of
+you, in fact, got the answer right.
+
+613
+00:30:07,550 --> 00:30:09,860
+Those of you who are
+changing your answer-- there
+
+614
+00:30:09,860 --> 00:30:12,090
+we go, no, definitely not that.
+
+615
+00:30:12,090 --> 00:30:13,310
+So, anyhow, I screwed up.
+
+616
+00:30:13,310 --> 00:30:16,820
+Order of operations matters in computing
+and, indeed, including lectures.
+
+617
+00:30:16,820 --> 00:30:19,250
+So 7 million, so the
+segue I wanted to make
+
+618
+00:30:19,250 --> 00:30:22,200
+is, OK, how long does that
+actually take to implement in code?
+
+619
+00:30:22,200 --> 00:30:24,860
+Well, let me just tweak
+our code here a little bit.
+
+620
+00:30:24,860 --> 00:30:30,320
+Let me go ahead and go back into
+the VS Code on my Mac in which I
+
+621
+00:30:30,320 --> 00:30:32,790
+had the same code as before.
+
+622
+00:30:32,790 --> 00:30:36,050
+So let me shrink my terminal window,
+go back to the code from which I began.
+
+623
+00:30:36,050 --> 00:30:38,270
+And let's just actually
+make a simple change.
+
+624
+00:30:38,270 --> 00:30:42,320
+Let me go ahead and simply change digits
+to something called ASCII letters.
+
+625
+00:30:42,320 --> 00:30:45,000
+And this too is just a
+time saving technique.
+
+626
+00:30:45,000 --> 00:30:48,450
+So I don't have to type out A through
+Z and uppercase and lowercase like 52
+
+627
+00:30:48,450 --> 00:30:49,410
+total times.
+
+628
+00:30:49,410 --> 00:30:52,650
+And so I'm going to change
+digits to ASCII letters.
+
+629
+00:30:52,650 --> 00:30:55,360
+And we'll get a quantitative
+sense of how long this takes.
+
+630
+00:30:55,360 --> 00:30:58,170
+So Python of crack.py,
+here's how long it takes
+
+631
+00:30:58,170 --> 00:31:01,380
+to go through 7 million possibilities.
+
+632
+00:31:01,380 --> 00:31:05,243
+All right, clearly slower because we
+haven't seen the end of the list yet.
+
+633
+00:31:05,243 --> 00:31:08,160
+And you can see we're going through
+all of the lowercase letters here.
+
+634
+00:31:08,160 --> 00:31:11,160
+We're about to hit Z. But now we're
+going through the uppercase letters.
+
+635
+00:31:11,160 --> 00:31:14,850
+So it looks like the answer this time
+is going to be a few seconds, indeed.
+
+636
+00:31:14,850 --> 00:31:17,340
+But definitely less than a
+minute would seem, at least
+
+637
+00:31:17,340 --> 00:31:18,570
+on this particular computer.
+
+638
+00:31:18,570 --> 00:31:20,190
+So odds are if I'm
+the adversary and I've
+
+639
+00:31:20,190 --> 00:31:22,020
+plugged this phone into
+someone's device-- maybe
+
+640
+00:31:22,020 --> 00:31:24,510
+I'm not here in a lecture,
+but in Starbucks or an airport
+
+641
+00:31:24,510 --> 00:31:27,360
+or anywhere where I have physical
+opportunity to grab that device
+
+642
+00:31:27,360 --> 00:31:31,320
+and plug a cable in-- it's not going
+to take long to hack into that device
+
+643
+00:31:31,320 --> 00:31:31,890
+either.
+
+644
+00:31:31,890 --> 00:31:35,980
+So what might be better than just
+digits and letters from the real world?
+
+645
+00:31:35,980 --> 00:31:39,090
+So add in some punctuation,
+which like almost every website
+
+646
+00:31:39,090 --> 00:31:40,810
+requires that we do.
+
+647
+00:31:40,810 --> 00:31:44,640
+Well, if we want to add punctuation
+into the mix, if I can get this segue
+
+648
+00:31:44,640 --> 00:31:48,060
+correct so that we can now
+ask Carter one last time,
+
+649
+00:31:48,060 --> 00:31:52,860
+how many four-character passcodes
+are possible where a character is
+
+650
+00:31:52,860 --> 00:31:57,870
+an uppercase or lowercase letter or a
+decimal digit or a punctuation symbol?
+
+651
+00:31:57,870 --> 00:32:00,420
+If you go to your
+device now, you'll see--
+
+652
+00:32:00,420 --> 00:32:02,130
+if we want to flip over to the screen--
+
+653
+00:32:02,130 --> 00:32:03,750
+these possibilities.
+
+654
+00:32:03,750 --> 00:32:08,050
+There's a million, maybe, a
+billion, a trillion, a quadrillion,
+
+655
+00:32:08,050 --> 00:32:12,510
+or a quintillion when it comes
+to a-- oh, wrong question.
+
+656
+00:32:12,510 --> 00:32:14,220
+Wow, we're new here, OK.
+
+657
+00:32:14,220 --> 00:32:16,410
+OK, we're going to escalate things here.
+
+658
+00:32:16,410 --> 00:32:18,780
+How many eight-character
+passcodes are possible?
+
+659
+00:32:18,780 --> 00:32:23,670
+We're going to make things more
+secure, even though I said four.
+
+660
+00:32:23,670 --> 00:32:26,430
+We're now making it
+more secure to eight.
+
+661
+00:32:26,430 --> 00:32:29,650
+All right, you want to
+flip over to the chart?
+
+662
+00:32:29,650 --> 00:32:31,800
+All right, so it looks
+like most of you are now
+
+663
+00:32:31,800 --> 00:32:34,900
+erring on the side of
+quintillion or quadrillion.
+
+664
+00:32:34,900 --> 00:32:37,862
+1% of you still said million, even
+though there's definitely more
+
+665
+00:32:37,862 --> 00:32:39,070
+than there were a moment ago.
+
+666
+00:32:39,070 --> 00:32:39,790
+But that's OK.
+
+667
+00:32:39,790 --> 00:32:42,470
+So quadrillion-- quintillion
+is still winning.
+
+668
+00:32:42,470 --> 00:32:45,290
+And I think if we go and
+reveal this, with the math,
+
+669
+00:32:45,290 --> 00:32:48,070
+you should be doing is
+94 to the 4th power.
+
+670
+00:32:48,070 --> 00:32:53,290
+Because there's 26 plus 26
+plus 10 plus some more digits,
+
+671
+00:32:53,290 --> 00:32:55,190
+some punctuation digits
+in there as well.
+
+672
+00:32:55,190 --> 00:33:00,670
+So it's actually, oh, this is
+the other example, isn't it?
+
+673
+00:33:00,670 --> 00:33:01,990
+This is embarrassing.
+
+674
+00:33:01,990 --> 00:33:04,930
+All right, we had a good run
+in the past nine weeks instead.
+
+675
+00:33:04,930 --> 00:33:08,950
+All right, so if you were curious as to
+how many four-character passwords are
+
+676
+00:33:08,950 --> 00:33:10,330
+possible, it's 78 million.
+
+677
+00:33:10,330 --> 00:33:11,890
+But that's not the question at hand.
+
+678
+00:33:11,890 --> 00:33:15,470
+The question at hand was, how many
+eight character passcodes are there?
+
+679
+00:33:15,470 --> 00:33:17,680
+And in this case, the
+math you would be doing
+
+680
+00:33:17,680 --> 00:33:21,710
+is 94 to the 8th power,
+which is a really big number.
+
+681
+00:33:21,710 --> 00:33:23,770
+And, in fact, it's
+this number here, which
+
+682
+00:33:23,770 --> 00:33:27,100
+is roughly 6 quadrillion possibilities.
+
+683
+00:33:27,100 --> 00:33:30,830
+Now, I could go about actually
+doing this in code here.
+
+684
+00:33:30,830 --> 00:33:33,010
+So let me actually,
+for a final flourish,
+
+685
+00:33:33,010 --> 00:33:35,590
+let me open up VS Code
+one last time here.
+
+686
+00:33:35,590 --> 00:33:39,730
+And in VS Code, I'm going to go
+ahead and shrink my terminal window,
+
+687
+00:33:39,730 --> 00:33:43,300
+go back into the code, and I'm going to
+import not just ASCII letters, not just
+
+688
+00:33:43,300 --> 00:33:45,580
+digits, but punctuation
+as well, which is
+
+689
+00:33:45,580 --> 00:33:48,070
+going to give me like
+32 punctuation symbols
+
+690
+00:33:48,070 --> 00:33:49,762
+from a typical US English keyboard.
+
+691
+00:33:49,762 --> 00:33:52,720
+And I'm going to go ahead and just
+concatenate them all together in one
+
+692
+00:33:52,720 --> 00:33:55,750
+big list by using the
+plus operator in Python
+
+693
+00:33:55,750 --> 00:33:58,870
+to plus in both digits and punctuation.
+
+694
+00:33:58,870 --> 00:34:01,030
+And I'm going to change the 4 to an 8.
+
+695
+00:34:01,030 --> 00:34:04,090
+So this now, it's what
+four actual lines of code
+
+696
+00:34:04,090 --> 00:34:06,910
+is, all it takes for an
+adversary to whip up some code,
+
+697
+00:34:06,910 --> 00:34:09,460
+find a cable as step two,
+and hack into a phone that
+
+698
+00:34:09,460 --> 00:34:11,949
+even has eight-character passcodes.
+
+699
+00:34:11,949 --> 00:34:15,100
+Let me enlarge in my
+terminal window here, run
+
+700
+00:34:15,100 --> 00:34:17,830
+for a final time Python of crack.py.
+
+701
+00:34:17,830 --> 00:34:20,860
+And this I'll actually
+leave running for some time.
+
+702
+00:34:20,860 --> 00:34:25,000
+Because you can get already sort of
+a palpable feel of how much slower it
+
+703
+00:34:25,000 --> 00:34:27,730
+is-- because these characters
+clearly haven't moved--
+
+704
+00:34:27,730 --> 00:34:28,947
+how long it's going to take.
+
+705
+00:34:28,947 --> 00:34:31,030
+We might actually do--
+need to do a bit more math.
+
+706
+00:34:31,030 --> 00:34:33,820
+Because doing just four-digit
+passcodes was super fast.
+
+707
+00:34:33,820 --> 00:34:37,630
+Doing four-letter passcodes was
+slower, but still under a minute.
+
+708
+00:34:37,630 --> 00:34:41,170
+We'll see maybe in time how
+long this actually runs for.
+
+709
+00:34:41,170 --> 00:34:46,870
+But this clearly seems to be better,
+at least for some definition of better.
+
+710
+00:34:46,870 --> 00:34:51,610
+But it should hopefully not be
+that easy to hack into a system.
+
+711
+00:34:51,610 --> 00:34:57,180
+What does your own device probably do to
+defend against that brute force attack?
+
+712
+00:34:57,180 --> 00:34:58,042
+Yeah.
+
+713
+00:34:58,042 --> 00:34:59,280
+AUDIENCE: Gives you a
+limited number of tries.
+
+714
+00:34:59,280 --> 00:35:01,822
+DAVID MALAN: Yeah, so it gives
+you a limited number of tries.
+
+715
+00:35:01,822 --> 00:35:05,730
+So odds are, at least once in your
+life, you've somehow locked yourself out
+
+716
+00:35:05,730 --> 00:35:09,748
+of a device, typically after typing
+your passcode more than 10 times
+
+717
+00:35:09,748 --> 00:35:12,540
+or 10 attempts or maybe it's your
+siblings or your roommate's phone
+
+718
+00:35:12,540 --> 00:35:16,540
+that you realize this is a feature of
+iPhones and Android devices as well.
+
+719
+00:35:16,540 --> 00:35:18,780
+But here's a screenshot
+of what an iPhone might
+
+720
+00:35:18,780 --> 00:35:23,740
+do if you do try to input the wrong
+passcode maybe 10 or so times.
+
+721
+00:35:23,740 --> 00:35:26,770
+Notice that it's really telling
+you to try again in one minute.
+
+722
+00:35:26,770 --> 00:35:30,030
+So this isn't fundamentally
+changing what the adversary can do.
+
+723
+00:35:30,030 --> 00:35:33,630
+The adversary can absolutely use those
+same four lines of code with a cable
+
+724
+00:35:33,630 --> 00:35:35,140
+and try to hack into your device.
+
+725
+00:35:35,140 --> 00:35:36,510
+But what has this just done?
+
+726
+00:35:36,510 --> 00:35:40,770
+It's significantly increased
+the cost to the adversary,
+
+727
+00:35:40,770 --> 00:35:43,620
+where the cost might be measured
+in sheer number amount of time--
+
+728
+00:35:43,620 --> 00:35:46,080
+like minutes, seconds,
+hours, days, or beyond.
+
+729
+00:35:46,080 --> 00:35:48,520
+Maybe it's increased the
+cost in the sense of risk.
+
+730
+00:35:48,520 --> 00:35:49,020
+Why?
+
+731
+00:35:49,020 --> 00:35:51,480
+Because if this were like
+a movie incarnation of this
+
+732
+00:35:51,480 --> 00:35:53,640
+and the adversary has just
+plugged into the phone
+
+733
+00:35:53,640 --> 00:35:56,098
+and is kind of creepily looking
+around until you come back,
+
+734
+00:35:56,098 --> 00:36:00,490
+it's going to take way too long for
+them to safely get away with that,
+
+735
+00:36:00,490 --> 00:36:03,370
+assuming your passcode
+is not 123456, it's
+
+736
+00:36:03,370 --> 00:36:05,930
+somewhere in the middle of
+that massive search space.
+
+737
+00:36:05,930 --> 00:36:09,687
+So this just kind of fundamentally
+raises the bar to the adversary.
+
+738
+00:36:09,687 --> 00:36:12,520
+And that's one of the biggest
+takeaways of cybersecurity in general.
+
+739
+00:36:12,520 --> 00:36:16,270
+It's completely naive to think
+in terms of absolute security
+
+740
+00:36:16,270 --> 00:36:19,480
+or to even say a sentence like
+"my website is secure" or even
+
+741
+00:36:19,480 --> 00:36:21,260
+"my home is physically secure."
+
+742
+00:36:21,260 --> 00:36:21,760
+Why?
+
+743
+00:36:21,760 --> 00:36:24,220
+Well, for a couple of reasons,
+like, one, an adversary
+
+744
+00:36:24,220 --> 00:36:27,370
+with enough time, energy,
+motivation, or resources
+
+745
+00:36:27,370 --> 00:36:31,840
+can surely get into most any system
+and can surely get into most any home.
+
+746
+00:36:31,840 --> 00:36:34,105
+But the other thing to
+consider, unfortunately,
+
+747
+00:36:34,105 --> 00:36:36,730
+that if we're the good people in
+this story and the adversaries
+
+748
+00:36:36,730 --> 00:36:40,480
+are the bad people, you and
+I rather have to be perfect.
+
+749
+00:36:40,480 --> 00:36:44,200
+In the physical world, we have
+to lock every door, every window.
+
+750
+00:36:44,200 --> 00:36:48,367
+Because if we mess up just one
+spot, the adversary can get in.
+
+751
+00:36:48,367 --> 00:36:50,200
+And so where there's
+sort of this imbalance.
+
+752
+00:36:50,200 --> 00:36:52,750
+The adversary just has
+to find the window that's
+
+753
+00:36:52,750 --> 00:36:54,370
+ajar to get into your physical home.
+
+754
+00:36:54,370 --> 00:36:56,680
+The adversary just needs
+to find one user who's
+
+755
+00:36:56,680 --> 00:36:59,990
+got a really bad password to
+somehow get into that system.
+
+756
+00:36:59,990 --> 00:37:01,700
+And so cybersecurity is hard.
+
+757
+00:37:01,700 --> 00:37:04,180
+And so what we'll see
+today really are techniques
+
+758
+00:37:04,180 --> 00:37:07,750
+that can let you create a gauntlet
+of defenses-- so not just one,
+
+759
+00:37:07,750 --> 00:37:09,310
+but maybe two, maybe three.
+
+760
+00:37:09,310 --> 00:37:12,730
+And even if the adversary gets in,
+another tenant of cybersecurity
+
+761
+00:37:12,730 --> 00:37:15,910
+is at least, let's have
+mechanisms in place that detect
+
+762
+00:37:15,910 --> 00:37:19,247
+the adversary, some kind of
+monitoring, automatic emails.
+
+763
+00:37:19,247 --> 00:37:21,580
+You can increasingly see this
+already in the real world.
+
+764
+00:37:21,580 --> 00:37:25,360
+If you log into your Instagram
+account from a different city or state
+
+765
+00:37:25,360 --> 00:37:27,370
+suddenly because maybe
+you're traveling, you
+
+766
+00:37:27,370 --> 00:37:29,890
+will-- if you've opted into
+settings like these-- often
+
+767
+00:37:29,890 --> 00:37:32,110
+get a notification or
+an email saying, hey,
+
+768
+00:37:32,110 --> 00:37:35,890
+you seems to have logged in from
+Palo Alto rather than Cambridge.
+
+769
+00:37:35,890 --> 00:37:37,430
+Is this, in fact, you?
+
+770
+00:37:37,430 --> 00:37:40,030
+So even though we might not be
+able to keep the adversary out,
+
+771
+00:37:40,030 --> 00:37:43,000
+let's at least minimize the
+window of opportunity or damage
+
+772
+00:37:43,000 --> 00:37:46,990
+by letting humans like us know
+that something's been compromised.
+
+773
+00:37:46,990 --> 00:37:48,490
+Of course, there is a downside here.
+
+774
+00:37:48,490 --> 00:37:50,620
+And this is another
+theme of cybersecurity.
+
+775
+00:37:50,620 --> 00:37:54,680
+Every time you improve something,
+you've got to pay a price.
+
+776
+00:37:54,680 --> 00:37:56,020
+There's going to be a tradeoff.
+
+777
+00:37:56,020 --> 00:38:00,250
+And we've seen this with time and space
+and money and other such resources
+
+778
+00:38:00,250 --> 00:38:03,010
+when it comes to
+designing systems already.
+
+779
+00:38:03,010 --> 00:38:06,940
+What's the downside of this mechanism?
+
+780
+00:38:06,940 --> 00:38:09,800
+Why is this perhaps a bad thing
+or what's the downside to you,
+
+781
+00:38:09,800 --> 00:38:11,620
+the good person in the story?
+
+782
+00:38:11,620 --> 00:38:12,340
+Yeah.
+
+783
+00:38:12,340 --> 00:38:14,763
+AUDIENCE: [INAUDIBLE]
+
+784
+00:38:14,763 --> 00:38:17,180
+DAVID MALAN: Yeah, if you've
+just forgotten your passcode,
+
+785
+00:38:17,180 --> 00:38:19,760
+it's going to be more
+difficult for you to log in.
+
+786
+00:38:19,760 --> 00:38:23,338
+Or maybe you just really need
+to get into your phone now
+
+787
+00:38:23,338 --> 00:38:25,130
+and you don't really
+want to wait a minute.
+
+788
+00:38:25,130 --> 00:38:27,770
+And if you, worse, if you
+keep trying, sometimes it'll
+
+789
+00:38:27,770 --> 00:38:30,320
+change to two minutes,
+five minutes, one hour.
+
+790
+00:38:30,320 --> 00:38:32,130
+It'll increase exponentially.
+
+791
+00:38:32,130 --> 00:38:32,630
+Why?
+
+792
+00:38:32,630 --> 00:38:35,660
+Because Apple and Google figure
+that, they don't necessarily
+
+793
+00:38:35,660 --> 00:38:38,120
+know what the right cutoff is.
+
+794
+00:38:38,120 --> 00:38:40,370
+Maybe it's 10, maybe it's
+fewer, maybe it's more.
+
+795
+00:38:40,370 --> 00:38:43,130
+But at some point, it
+is much more likely
+
+796
+00:38:43,130 --> 00:38:46,698
+that this is a hacker trying to get in
+than it is for getting your passcode.
+
+797
+00:38:46,698 --> 00:38:48,740
+But in the corporate world,
+it can be even worse.
+
+798
+00:38:48,740 --> 00:38:51,668
+There's a feature that lets phones
+essentially self-destruct whereby
+
+799
+00:38:51,668 --> 00:38:53,460
+rather than just waiting
+you wait a minute,
+
+800
+00:38:53,460 --> 00:38:55,882
+it will wipe the device,
+more dramatically.
+
+801
+00:38:55,882 --> 00:38:59,090
+The presumption being that, no, no, no,
+no, no, if this is a corporate phone,
+
+802
+00:38:59,090 --> 00:39:01,580
+let's lock it down further
+so that it is an adversary,
+
+803
+00:39:01,580 --> 00:39:04,460
+the data is gone after
+10 failed attempts.
+
+804
+00:39:04,460 --> 00:39:07,220
+But there's other mechanisms as well.
+
+805
+00:39:07,220 --> 00:39:10,910
+In addition to logging
+into phones via passcodes,
+
+806
+00:39:10,910 --> 00:39:12,920
+there's also websites
+like Gmail, for instance.
+
+807
+00:39:12,920 --> 00:39:16,200
+And it's very common, therefore,
+to log in to websites like these.
+
+808
+00:39:16,200 --> 00:39:18,930
+And odds are,
+statistically, a lot of you
+
+809
+00:39:18,930 --> 00:39:21,630
+are in the habit of reusing passwords.
+
+810
+00:39:21,630 --> 00:39:23,310
+Like, no, don't nod if you are.
+
+811
+00:39:23,310 --> 00:39:24,540
+We have cameras everywhere.
+
+812
+00:39:24,540 --> 00:39:26,680
+But maybe you're in the
+habit of reusing it.
+
+813
+00:39:26,680 --> 00:39:27,180
+Why?
+
+814
+00:39:27,180 --> 00:39:31,302
+Because it's hard to remember
+really big long cryptic passwords.
+
+815
+00:39:31,302 --> 00:39:33,510
+So mathematically, there's
+surely an advantage there.
+
+816
+00:39:33,510 --> 00:39:33,870
+Why?
+
+817
+00:39:33,870 --> 00:39:36,150
+Because it just makes it so much
+harder, more time-consuming,
+
+818
+00:39:36,150 --> 00:39:37,930
+more risky for an adversary to get in.
+
+819
+00:39:37,930 --> 00:39:40,440
+But the other tradeoff is
+like, my God, I just can't even
+
+820
+00:39:40,440 --> 00:39:42,930
+remember most of my
+passwords as a result
+
+821
+00:39:42,930 --> 00:39:47,245
+unless I reuse the one good password
+I thought of and memorized already
+
+822
+00:39:47,245 --> 00:39:49,620
+or maybe I write it down on
+a post-it note on my monitor,
+
+823
+00:39:49,620 --> 00:39:51,840
+as all too often happens
+in corporate workplaces.
+
+824
+00:39:51,840 --> 00:39:54,390
+Or maybe you're being clever
+and in your top right drawer,
+
+825
+00:39:54,390 --> 00:39:56,400
+you've got a printout
+of all of your accounts.
+
+826
+00:39:56,400 --> 00:39:58,815
+Well, if you do, like ha-ha,
+so do a lot of other people.
+
+827
+00:39:58,815 --> 00:40:00,690
+Or maybe it's a little
+more secure than that,
+
+828
+00:40:00,690 --> 00:40:05,490
+but there are sociological side effects
+of these technological policies that
+
+829
+00:40:05,490 --> 00:40:07,980
+really until recent years
+were maybe underappreciated.
+
+830
+00:40:07,980 --> 00:40:11,040
+The academics, the IT administrators
+were mandating policies
+
+831
+00:40:11,040 --> 00:40:15,540
+that you and I as human users were
+not necessarily behaving properly
+
+832
+00:40:15,540 --> 00:40:16,650
+in the face of.
+
+833
+00:40:16,650 --> 00:40:19,530
+So nowadays, there are things
+called password managers.
+
+834
+00:40:19,530 --> 00:40:22,380
+And a password manager is just
+a piece of software on Macs,
+
+835
+00:40:22,380 --> 00:40:25,440
+on PCs, on phones that manage
+your passwords for you.
+
+836
+00:40:25,440 --> 00:40:27,540
+What this means
+specifically is when you go
+
+837
+00:40:27,540 --> 00:40:30,390
+to a website for the very
+first time, you, the human,
+
+838
+00:40:30,390 --> 00:40:32,490
+don't need to choose
+your password anymore.
+
+839
+00:40:32,490 --> 00:40:35,340
+You instead click a button or
+use some keyboard shortcut.
+
+840
+00:40:35,340 --> 00:40:39,810
+And the software generates a really
+long cryptic password for you
+
+841
+00:40:39,810 --> 00:40:41,250
+that's not even eight characters.
+
+842
+00:40:41,250 --> 00:40:45,750
+It might be 16 or 32 characters, can
+be even bigger than that, but with lots
+
+843
+00:40:45,750 --> 00:40:46,410
+of randomness.
+
+844
+00:40:46,410 --> 00:40:49,350
+Definitely not going to be on
+that top 10 or that top 100 list.
+
+845
+00:40:49,350 --> 00:40:52,170
+The software thereafter
+remembers that password
+
+846
+00:40:52,170 --> 00:40:55,640
+for you and even your username, whether
+it's your email address or something
+
+847
+00:40:55,640 --> 00:40:56,140
+else.
+
+848
+00:40:56,140 --> 00:41:00,600
+And it saves it onto your Mac or your
+phone or your PC's disk or hard drive.
+
+849
+00:41:00,600 --> 00:41:03,840
+The next time you visit that
+same website, what you can do
+
+850
+00:41:03,840 --> 00:41:07,560
+is via menu or, better yet, a keyboard
+shortcut, log into the website
+
+851
+00:41:07,560 --> 00:41:10,560
+without even remembering or
+even knowing your password.
+
+852
+00:41:10,560 --> 00:41:12,570
+I mean, to this day, I'll
+tell you, I don't even
+
+853
+00:41:12,570 --> 00:41:15,870
+know anymore 99% of my own passwords.
+
+854
+00:41:15,870 --> 00:41:20,250
+Rather, I rely on software like
+this to do the heavy lifting for me.
+
+855
+00:41:20,250 --> 00:41:23,820
+But there's an obvious
+downside here, which
+
+856
+00:41:23,820 --> 00:41:26,010
+might be what if you're doing this?
+
+857
+00:41:26,010 --> 00:41:26,862
+Yeah.
+
+858
+00:41:26,862 --> 00:41:28,100
+AUDIENCE: [INAUDIBLE]
+
+859
+00:41:28,100 --> 00:41:31,730
+DAVID MALAN: Right, so what if
+they find out the one password
+
+860
+00:41:31,730 --> 00:41:33,560
+that's protecting this software?
+
+861
+00:41:33,560 --> 00:41:37,460
+Because unstated by me up until now
+is that this password manager itself
+
+862
+00:41:37,460 --> 00:41:42,270
+has a primary password that protects all
+of those other eggs in the one basket,
+
+863
+00:41:42,270 --> 00:41:42,860
+so to speak.
+
+864
+00:41:42,860 --> 00:41:46,130
+And my one primary password
+for my own password manager,
+
+865
+00:41:46,130 --> 00:41:48,022
+it is really long and hard to guess.
+
+866
+00:41:48,022 --> 00:41:49,730
+And the odds that
+anyone's going to guess
+
+867
+00:41:49,730 --> 00:41:52,010
+are just so low that I'm
+comfortable with that
+
+868
+00:41:52,010 --> 00:41:55,640
+being the one really difficult thing
+that I've committed to my memory.
+
+869
+00:41:55,640 --> 00:41:59,150
+But the problem is if someone does
+figure it out nonetheless somehow
+
+870
+00:41:59,150 --> 00:42:01,310
+or, worse, I forget what it is.
+
+871
+00:42:01,310 --> 00:42:04,700
+Now, I've not lost access to one
+account, but all of my accounts.
+
+872
+00:42:04,700 --> 00:42:06,620
+Now, that might be too
+high of a price to pay.
+
+873
+00:42:06,620 --> 00:42:09,620
+But, again, if you're in the habit
+of choosing easy passwords like being
+
+874
+00:42:09,620 --> 00:42:13,310
+on that top 10 list, reusing
+passwords, it's probably a net
+
+875
+00:42:13,310 --> 00:42:18,170
+positive to incur this single
+risk versus the many risks you're
+
+876
+00:42:18,170 --> 00:42:21,110
+incurring across the board
+with all of these other sites.
+
+877
+00:42:21,110 --> 00:42:24,440
+As for what you can use,
+increasingly our operating systems
+
+878
+00:42:24,440 --> 00:42:28,080
+come with support for this, be it in the
+Apple world, Google, Microsoft world,
+
+879
+00:42:28,080 --> 00:42:28,650
+or the like.
+
+880
+00:42:28,650 --> 00:42:31,140
+There's third party software
+you can pay for and download.
+
+881
+00:42:31,140 --> 00:42:32,412
+But even then, I would beware.
+
+882
+00:42:32,412 --> 00:42:34,620
+And I would ask friends
+whose opinion you trust or do
+
+883
+00:42:34,620 --> 00:42:36,570
+some googling for reviews and the like.
+
+884
+00:42:36,570 --> 00:42:41,760
+All too often in the software
+world have password managers
+
+885
+00:42:41,760 --> 00:42:44,850
+been determined to be buggy themselves.
+
+886
+00:42:44,850 --> 00:42:48,120
+I mean, you've seen in weeks of CS50
+how easy it is to introduce bugs.
+
+887
+00:42:48,120 --> 00:42:51,570
+And even the best of programmers
+still introduce bugs to software.
+
+888
+00:42:51,570 --> 00:42:55,020
+So you're also trusting that the
+companies making this password
+
+889
+00:42:55,020 --> 00:42:57,430
+management software
+is really good at it.
+
+890
+00:42:57,430 --> 00:42:59,047
+And that's not always the case.
+
+891
+00:42:59,047 --> 00:42:59,880
+So beware there too.
+
+892
+00:42:59,880 --> 00:43:02,820
+But we'll also focus today
+on some of the fundamentals
+
+893
+00:43:02,820 --> 00:43:05,875
+that these companies can be using
+to better protect your data as well.
+
+894
+00:43:05,875 --> 00:43:09,000
+But there's another mechanism, which
+odds are you're in the habit of using.
+
+895
+00:43:09,000 --> 00:43:11,812
+Two-factor authentication,
+like most of us
+
+896
+00:43:11,812 --> 00:43:14,020
+probably have to use this
+for some of your accounts--
+
+897
+00:43:14,020 --> 00:43:17,312
+your Harvard account, your Yale account,
+maybe your bank accounts, or the like.
+
+898
+00:43:17,312 --> 00:43:21,500
+So what is two-factor
+authentication in a nutshell?
+
+899
+00:43:21,500 --> 00:43:22,630
+Yeah.
+
+900
+00:43:22,630 --> 00:43:25,130
+AUDIENCE: [INAUDIBLE]
+
+901
+00:43:25,130 --> 00:43:26,900
+DAVID MALAN: Yeah, you
+get a second factor
+
+902
+00:43:26,900 --> 00:43:29,360
+that you have to provide to
+the website or application
+
+903
+00:43:29,360 --> 00:43:31,520
+to prove that it's you
+like a text to your phone
+
+904
+00:43:31,520 --> 00:43:34,918
+or maybe it's an actual application that
+gets push notifications or the like.
+
+905
+00:43:34,918 --> 00:43:36,710
+Maybe in the corporate
+world, it's actually
+
+906
+00:43:36,710 --> 00:43:40,100
+a tiny little device with a screen on
+it that's on your keychain or the like.
+
+907
+00:43:40,100 --> 00:43:43,430
+Maybe it's actually a USB dongle that
+you have to plug into your work laptop.
+
+908
+00:43:43,430 --> 00:43:45,380
+In short, it's some second factor.
+
+909
+00:43:45,380 --> 00:43:47,520
+And by factor, I mean
+something technical.
+
+910
+00:43:47,520 --> 00:43:50,840
+It's not just a second password,
+which would be one factor.
+
+911
+00:43:50,840 --> 00:43:52,980
+It's a second fundamentally
+different factor.
+
+912
+00:43:52,980 --> 00:43:57,950
+So generally speaking in the world of
+two-factor authentication or 2FA or MFA
+
+913
+00:43:57,950 --> 00:44:00,710
+is the generalization as
+multi-factor authentication,
+
+914
+00:44:00,710 --> 00:44:03,770
+you have not just a password,
+which is something you know,
+
+915
+00:44:03,770 --> 00:44:06,750
+the second factor is
+usually something you have--
+
+916
+00:44:06,750 --> 00:44:09,830
+whether it's your phone or that
+application or the keychain.
+
+917
+00:44:09,830 --> 00:44:12,830
+It might also be biometrics like
+your fingerprints, your retinas,
+
+918
+00:44:12,830 --> 00:44:14,990
+or something else physically about you.
+
+919
+00:44:14,990 --> 00:44:18,180
+But it's something that significantly
+decreases the probability
+
+920
+00:44:18,180 --> 00:44:20,430
+that some adversary is going
+to get into that account.
+
+921
+00:44:20,430 --> 00:44:20,810
+Why?
+
+922
+00:44:20,810 --> 00:44:23,460
+Because right now, if you've
+only got a username and password,
+
+923
+00:44:23,460 --> 00:44:26,640
+your adversaries are literally
+every human in the world
+
+924
+00:44:26,640 --> 00:44:28,350
+with an internet connection, arguably.
+
+925
+00:44:28,350 --> 00:44:30,750
+But as soon as you
+introduce 2FA, now it's
+
+926
+00:44:30,750 --> 00:44:34,500
+only people on campus or, more
+narrowly, only the people in Starbucks
+
+927
+00:44:34,500 --> 00:44:36,780
+at that moment who might
+physically have access
+
+928
+00:44:36,780 --> 00:44:40,020
+to your person and your
+second factor, in this case.
+
+929
+00:44:40,020 --> 00:44:43,320
+More technically, what those
+technologies do is they send you
+
+930
+00:44:43,320 --> 00:44:47,530
+a one-time passcode, which is further
+secure because once it's used,
+
+931
+00:44:47,530 --> 00:44:50,520
+there's hopefully some database
+that remembers that it has been used
+
+932
+00:44:50,520 --> 00:44:51,850
+and cannot be used again.
+
+933
+00:44:51,850 --> 00:44:54,570
+So an adversary can't like
+sniff the airwaves and replay
+
+934
+00:44:54,570 --> 00:44:57,250
+that passcode the next
+time they, indeed, expire,
+
+935
+00:44:57,250 --> 00:44:58,980
+which adds some additional defense.
+
+936
+00:44:58,980 --> 00:45:02,130
+And you might type it into a
+phone or maybe a web app that
+
+937
+00:45:02,130 --> 00:45:04,840
+looks a little something like this.
+
+938
+00:45:04,840 --> 00:45:10,800
+So passwords thus far, some defenses,
+therefore, any questions on this
+
+939
+00:45:10,800 --> 00:45:13,250
+here mechanism?
+
+940
+00:45:13,250 --> 00:45:13,750
+No?
+
+941
+00:45:13,750 --> 00:45:15,640
+All right, well, let's consider this.
+
+942
+00:45:15,640 --> 00:45:19,090
+Odds are, with some frequency, you
+forget these passwords, especially
+
+943
+00:45:19,090 --> 00:45:20,800
+if you're not using a password manager.
+
+944
+00:45:20,800 --> 00:45:22,633
+And so you go to Gmail
+and you actually have
+
+945
+00:45:22,633 --> 00:45:24,910
+to click a link like
+this, Forgot Password.
+
+946
+00:45:24,910 --> 00:45:28,630
+And then it typically
+emails you to initiate
+
+947
+00:45:28,630 --> 00:45:30,770
+a process of resetting that password.
+
+948
+00:45:30,770 --> 00:45:35,110
+But if you can recall, has anyone
+ever clicked a link like that
+
+949
+00:45:35,110 --> 00:45:39,700
+and then got an email with
+your password in the email?
+
+950
+00:45:39,700 --> 00:45:42,550
+Maybe if you ever see
+this in the wild, that
+
+951
+00:45:42,550 --> 00:45:45,310
+is to say in the real world, that
+is horrible, horrible design.
+
+952
+00:45:45,310 --> 00:45:45,820
+Why?
+
+953
+00:45:45,820 --> 00:45:49,870
+Because well-designed websites,
+not unlike CS50 Finance,
+
+954
+00:45:49,870 --> 00:45:53,440
+which had a users table, should
+not be storing username-- rather,
+
+955
+00:45:53,440 --> 00:45:59,650
+should not be storing passwords
+in the clear, as it actually is.
+
+956
+00:45:59,650 --> 00:46:02,170
+It should somehow be
+obfuscated so that even
+
+957
+00:46:02,170 --> 00:46:04,930
+if your database from CS50
+Finance or Google's database
+
+958
+00:46:04,930 --> 00:46:08,020
+is hacked and compromised
+and sold on the web,
+
+959
+00:46:08,020 --> 00:46:10,570
+it should not be as simple
+as doing like select star
+
+960
+00:46:10,570 --> 00:46:14,500
+from Account semicolon to see
+what your actual passwords are.
+
+961
+00:46:14,500 --> 00:46:17,140
+And the mechanism that
+well-designed websites use
+
+962
+00:46:17,140 --> 00:46:20,020
+is actually a primitive back
+from like week 5 when we
+
+963
+00:46:20,020 --> 00:46:22,120
+talked about hashing and hash tables.
+
+964
+00:46:22,120 --> 00:46:24,920
+This time, we're using it for
+slightly different purposes.
+
+965
+00:46:24,920 --> 00:46:30,190
+So in the world of passwords, on the
+server side, there's often a database
+
+966
+00:46:30,190 --> 00:46:32,950
+or maybe, more simply, a text
+file somewhere on the server
+
+967
+00:46:32,950 --> 00:46:35,050
+that just associates
+usernames with passwords.
+
+968
+00:46:35,050 --> 00:46:38,590
+So to keep things simple, if there's
+at least two users like Alice and Bob,
+
+969
+00:46:38,590 --> 00:46:40,420
+Alice's password is maybe apple.
+
+970
+00:46:40,420 --> 00:46:43,960
+Bob's password is maybe banana, just
+to keep the mnemonics kind of simple.
+
+971
+00:46:43,960 --> 00:46:46,930
+If though that were
+the case on the server
+
+972
+00:46:46,930 --> 00:46:49,630
+and that server is compromised,
+whoever the hacker now
+
+973
+00:46:49,630 --> 00:46:53,290
+has access to every username and
+every password, which in and of itself
+
+974
+00:46:53,290 --> 00:46:57,700
+might not be a huge deal because maybe
+the server administrators can just
+
+975
+00:46:57,700 --> 00:47:00,730
+disable all of the accounts, make
+everyone change their password,
+
+976
+00:47:00,730 --> 00:47:01,880
+and move on.
+
+977
+00:47:01,880 --> 00:47:05,080
+But there's also this attack
+known as password stuffing, which
+
+978
+00:47:05,080 --> 00:47:08,427
+is a weirdly technical term, which
+means when you compromise one database,
+
+979
+00:47:08,427 --> 00:47:09,010
+you know what?
+
+980
+00:47:09,010 --> 00:47:12,260
+Take advantage of the
+naivety of a lot of us users.
+
+981
+00:47:12,260 --> 00:47:15,440
+Try the compromised Apple
+password, the banana
+
+982
+00:47:15,440 --> 00:47:18,380
+password not on the compromised
+website, but other websites
+
+983
+00:47:18,380 --> 00:47:21,290
+that you and I might have
+access to, the presumption
+
+984
+00:47:21,290 --> 00:47:23,870
+being that some of us
+in this room are using
+
+985
+00:47:23,870 --> 00:47:25,950
+the same passwords in multiple places.
+
+986
+00:47:25,950 --> 00:47:28,970
+So it's bad if your password
+is compromised on one server
+
+987
+00:47:28,970 --> 00:47:32,580
+because, by transitivity, so can all
+of your other accounts be compromised.
+
+988
+00:47:32,580 --> 00:47:34,640
+So in the world of hashing,
+this was the picture
+
+989
+00:47:34,640 --> 00:47:39,180
+we drew some time ago, we can apply
+this same logic whereby, mathematically,
+
+990
+00:47:39,180 --> 00:47:42,170
+a hash function is like some
+function F and the input is X
+
+991
+00:47:42,170 --> 00:47:44,150
+and the output or the
+range is F of X. That
+
+992
+00:47:44,150 --> 00:47:46,400
+was sort of the fancy way
+of describing mathematically
+
+993
+00:47:46,400 --> 00:47:48,860
+hashing as a process weeks ago.
+
+994
+00:47:48,860 --> 00:47:51,800
+But here, at a simpler level,
+the input to this process
+
+995
+00:47:51,800 --> 00:47:53,420
+is going to be your actual password.
+
+996
+00:47:53,420 --> 00:47:56,630
+The output is going to be a
+hash value, which in week 5
+
+997
+00:47:56,630 --> 00:47:58,730
+was something simple
+generally like a number--
+
+998
+00:47:58,730 --> 00:48:01,730
+1 or 2 or 3 based on the first letter.
+
+999
+00:48:01,730 --> 00:48:04,745
+That's not going to be quite
+as naive an approach as we
+
+1000
+00:48:04,745 --> 00:48:05,870
+take in the password world.
+
+1001
+00:48:05,870 --> 00:48:07,578
+It's going to look a
+little more cryptic.
+
+1002
+00:48:07,578 --> 00:48:11,570
+So Apple weeks ago might have just
+been 1, banana might have been 3.
+
+1003
+00:48:11,570 --> 00:48:15,980
+But now let me propose that in the
+world of real world system design, what
+
+1004
+00:48:15,980 --> 00:48:18,140
+the database people
+should actually store
+
+1005
+00:48:18,140 --> 00:48:21,252
+is not apple, but rather
+this cryptic value.
+
+1006
+00:48:21,252 --> 00:48:23,960
+And you can think of this as sort
+of random, but it's not random.
+
+1007
+00:48:23,960 --> 00:48:26,793
+Because it is the result of an
+algorithm, some mathematical function
+
+1008
+00:48:26,793 --> 00:48:29,360
+that someone implemented and
+smart people evaluated and said,
+
+1009
+00:48:29,360 --> 00:48:32,330
+yes, this seems to be
+secure, secure in the sense
+
+1010
+00:48:32,330 --> 00:48:34,740
+that this hash function
+is meant to be one way.
+
+1011
+00:48:34,740 --> 00:48:37,640
+So this is not encryption, a
+la Caesar Cipher from weeks
+
+1012
+00:48:37,640 --> 00:48:42,170
+ago whereby you could just add 1 to
+encrypt and subtract 1 to decrypt.
+
+1013
+00:48:42,170 --> 00:48:44,930
+This is one way in the
+sense that given this value,
+
+1014
+00:48:44,930 --> 00:48:49,190
+it should be pretty much impossible
+mathematically to reverse the process
+
+1015
+00:48:49,190 --> 00:48:53,150
+and figure out that the user's
+password was originally apple.
+
+1016
+00:48:53,150 --> 00:48:57,372
+Meanwhile banana, back in week 5 for
+simplicity, for hashing into a table,
+
+1017
+00:48:57,372 --> 00:48:59,330
+we might have had a simple
+output of 2, since B
+
+1018
+00:48:59,330 --> 00:49:01,205
+is the second letter of
+the English alphabet.
+
+1019
+00:49:01,205 --> 00:49:05,420
+But now the hash value of banana, thanks
+to a fancier mathematical function,
+
+1020
+00:49:05,420 --> 00:49:08,070
+is actually going to be
+something more cryptic like this.
+
+1021
+00:49:08,070 --> 00:49:12,470
+And so what the server really does is
+store not apple and banana, but rather
+
+1022
+00:49:12,470 --> 00:49:15,770
+those two seemingly cryptic values.
+
+1023
+00:49:15,770 --> 00:49:19,460
+And then when the human,
+be it Alice or Bob,
+
+1024
+00:49:19,460 --> 00:49:24,320
+logs in to a web form with their actual
+username and password, like Alice,
+
+1025
+00:49:24,320 --> 00:49:28,130
+apple, Bob, banana, the
+website no longer even
+
+1026
+00:49:28,130 --> 00:49:32,210
+knows that Alice's password is
+apple and that Bob's is banana.
+
+1027
+00:49:32,210 --> 00:49:33,170
+But that's OK.
+
+1028
+00:49:33,170 --> 00:49:36,800
+Because so long as the
+server uses the same code
+
+1029
+00:49:36,800 --> 00:49:40,760
+as it was using when these
+folks registered for accounts,
+
+1030
+00:49:40,760 --> 00:49:44,460
+Alice can type in apple, hit Enter,
+send it via HTTP to the server.
+
+1031
+00:49:44,460 --> 00:49:47,720
+The server can run that same
+hash function on A-P-P-L-E.
+
+1032
+00:49:47,720 --> 00:49:51,590
+And if the value matches, it can
+conclude with high probability, yes,
+
+1033
+00:49:51,590 --> 00:49:55,760
+this is in fact, the original Alice
+or this, in fact, is the original Bob.
+
+1034
+00:49:55,760 --> 00:50:00,470
+So the server never saves the password,
+but it does use the same hash function
+
+1035
+00:50:00,470 --> 00:50:05,660
+to compare those same hash values again
+and again whenever these folks log in
+
+1036
+00:50:05,660 --> 00:50:06,650
+again and again.
+
+1037
+00:50:06,650 --> 00:50:11,390
+So, in reality, here's a simple
+one-way hash for both Alice's
+
+1038
+00:50:11,390 --> 00:50:13,310
+and Bob's passwords in the real world.
+
+1039
+00:50:13,310 --> 00:50:15,560
+It's even longer, this
+is to say, than what I
+
+1040
+00:50:15,560 --> 00:50:17,600
+used as shorter examples a moment ago.
+
+1041
+00:50:17,600 --> 00:50:19,460
+But there is a corner case here.
+
+1042
+00:50:19,460 --> 00:50:23,400
+Suppose that an adversary is
+smart and has some free time
+
+1043
+00:50:23,400 --> 00:50:26,150
+and isn't necessarily interested
+in getting into someone's account
+
+1044
+00:50:26,150 --> 00:50:28,730
+right now, but wants
+to do a bit of prework
+
+1045
+00:50:28,730 --> 00:50:31,910
+to decrease the future cost of
+getting into someone's account.
+
+1046
+00:50:31,910 --> 00:50:34,410
+There is a technical term
+known as a rainbow table,
+
+1047
+00:50:34,410 --> 00:50:38,030
+which is essentially like a dictionary
+in the Python sense or the SQL sense,
+
+1048
+00:50:38,030 --> 00:50:43,790
+whereby in advance an adversary could
+just try hashing all of the fruits
+
+1049
+00:50:43,790 --> 00:50:47,090
+of the world or, really, all of the
+English words of the world or, rather,
+
+1050
+00:50:47,090 --> 00:50:51,470
+all possible four-digit, four-character,
+eight-character passcodes in advance
+
+1051
+00:50:51,470 --> 00:50:53,870
+and just store them in two columns--
+
+1052
+00:50:53,870 --> 00:50:57,260
+the password, like 0000
+or apple or banana,
+
+1053
+00:50:57,260 --> 00:50:59,760
+and then just store in
+advance the hash values.
+
+1054
+00:50:59,760 --> 00:51:04,280
+So the adversary could effectively
+reverse engineer the hash
+
+1055
+00:51:04,280 --> 00:51:09,440
+by just looking at a hash, comparing it
+against its massive database of hashes,
+
+1056
+00:51:09,440 --> 00:51:14,060
+and figuring out what password
+originally correspond to that.
+
+1057
+00:51:14,060 --> 00:51:17,540
+Why then is this still relatively safe?
+
+1058
+00:51:17,540 --> 00:51:19,760
+Rainbow tables are concerning.
+
+1059
+00:51:19,760 --> 00:51:23,480
+But they don't defeat
+passwords altogether.
+
+1060
+00:51:23,480 --> 00:51:26,740
+Why might that be?
+
+1061
+00:51:26,740 --> 00:51:27,400
+Yeah.
+
+1062
+00:51:27,400 --> 00:51:30,340
+AUDIENCE: [INAUDIBLE]
+
+1063
+00:51:30,340 --> 00:51:31,948
+
+
+1064
+00:51:31,948 --> 00:51:33,740
+DAVID MALAN: OK, so
+the adversary might not
+
+1065
+00:51:33,740 --> 00:51:35,948
+know exactly what hash
+function the company is using.
+
+1066
+00:51:35,948 --> 00:51:39,560
+Generally speaking, you would not
+want to necessarily keep that private.
+
+1067
+00:51:39,560 --> 00:51:41,960
+That would be considered
+security through obscurity.
+
+1068
+00:51:41,960 --> 00:51:45,440
+And all it takes is like one bad
+actor to tell the adversary what
+
+1069
+00:51:45,440 --> 00:51:47,340
+hash function is being used.
+
+1070
+00:51:47,340 --> 00:51:49,500
+And then that would put
+your security more at risk.
+
+1071
+00:51:49,500 --> 00:51:51,710
+So generally in the
+security world, openness
+
+1072
+00:51:51,710 --> 00:51:53,750
+when it comes to the
+algorithms in process
+
+1073
+00:51:53,750 --> 00:51:55,400
+is generally considered best practice.
+
+1074
+00:51:55,400 --> 00:51:58,760
+And the reality is, there's a few
+popular hash functions out there
+
+1075
+00:51:58,760 --> 00:52:00,990
+that any company should be using.
+
+1076
+00:52:00,990 --> 00:52:03,950
+And so it's not really
+keeping a secret anyway.
+
+1077
+00:52:03,950 --> 00:52:05,010
+But other thoughts?
+
+1078
+00:52:05,010 --> 00:52:07,190
+Why is this rainbow
+table not such a concern?
+
+1079
+00:52:07,190 --> 00:52:09,883
+AUDIENCE: It takes a lot
+longer for the [INAUDIBLE]..
+
+1080
+00:52:09,883 --> 00:52:12,050
+DAVID MALAN: It takes a lot
+longer for the adversary
+
+1081
+00:52:12,050 --> 00:52:15,020
+to access that information
+because this table could get long.
+
+1082
+00:52:15,020 --> 00:52:18,440
+And even more along those lines--
+anyone want to push a little harder?
+
+1083
+00:52:18,440 --> 00:52:22,460
+This doesn't necessarily put
+all of our passwords at risk.
+
+1084
+00:52:22,460 --> 00:52:25,110
+It easily puts our
+four-digit passcodes at risk.
+
+1085
+00:52:25,110 --> 00:52:25,610
+Why?
+
+1086
+00:52:25,610 --> 00:52:28,575
+Because this table, this dictionary
+would have, what, 10,000 rows?
+
+1087
+00:52:28,575 --> 00:52:30,950
+And we've seen that you can
+search that kind of like that
+
+1088
+00:52:30,950 --> 00:52:33,020
+or even regenerate all
+of the possible values.
+
+1089
+00:52:33,020 --> 00:52:36,200
+But once you get to
+eight-character passcodes,
+
+1090
+00:52:36,200 --> 00:52:38,510
+I said it was 4
+quadrillion possibilities.
+
+1091
+00:52:38,510 --> 00:52:42,652
+That's a crazy big dictionary
+in Python or crazy big list
+
+1092
+00:52:42,652 --> 00:52:43,610
+of some sort in Python.
+
+1093
+00:52:43,610 --> 00:52:48,350
+That's just way more RAM or memory than
+a typical adversary is going to have.
+
+1094
+00:52:48,350 --> 00:52:51,350
+Now, maybe if it's a particularly
+resourced adversary like a government,
+
+1095
+00:52:51,350 --> 00:52:54,140
+a state more generally, maybe
+they do have supercomputers
+
+1096
+00:52:54,140 --> 00:52:55,730
+that can fit that much information.
+
+1097
+00:52:55,730 --> 00:52:58,160
+But, fine, then use a
+16-character passcode
+
+1098
+00:52:58,160 --> 00:53:01,070
+and make it an unpronounceable
+long search space
+
+1099
+00:53:01,070 --> 00:53:02,780
+that's way bigger than 4 quadrillion.
+
+1100
+00:53:02,780 --> 00:53:07,820
+So it's a threat, but only if you're
+on that horrible top 10 list or top 100
+
+1101
+00:53:07,820 --> 00:53:11,470
+or short passcode list that
+we've discussed thus far.
+
+1102
+00:53:11,470 --> 00:53:14,490
+So here's though a related threat
+that's just worth knowing about.
+
+1103
+00:53:14,490 --> 00:53:15,930
+What's problematic here?
+
+1104
+00:53:15,930 --> 00:53:18,570
+If we introduce two more
+users, Carol and Charlie,
+
+1105
+00:53:18,570 --> 00:53:23,370
+and just for the semantics of it,
+whose password happened to be cherry.
+
+1106
+00:53:23,370 --> 00:53:28,140
+What if they both happened to have
+the same password and this database
+
+1107
+00:53:28,140 --> 00:53:28,860
+is compromised?
+
+1108
+00:53:28,860 --> 00:53:29,910
+Some hacker gets in.
+
+1109
+00:53:29,910 --> 00:53:33,810
+And just to be clear, we wouldn't be
+storing apple, banana, cherry, cherry.
+
+1110
+00:53:33,810 --> 00:53:37,380
+We'd still be storing, according
+to this story, these hashes.
+
+1111
+00:53:37,380 --> 00:53:40,080
+But why is this still concerning?
+
+1112
+00:53:40,080 --> 00:53:43,335
+AUDIENCE: [INAUDIBLE]
+
+1113
+00:53:43,335 --> 00:53:44,435
+
+
+1114
+00:53:44,435 --> 00:53:45,310
+DAVID MALAN: Exactly.
+
+1115
+00:53:45,310 --> 00:53:47,852
+If you figure out just one of
+them, now you've got the other.
+
+1116
+00:53:47,852 --> 00:53:50,410
+And this is, in some sense,
+just leaking information, right?
+
+1117
+00:53:50,410 --> 00:53:53,330
+I don't maybe at a glance what I
+could do with this information.
+
+1118
+00:53:53,330 --> 00:53:56,562
+But if Carol and Charlie have
+the same password, you know what?
+
+1119
+00:53:56,562 --> 00:53:59,020
+I bet they have the same password
+on other systems as well.
+
+1120
+00:53:59,020 --> 00:54:02,300
+You're leaking information that
+just does no good for anyone.
+
+1121
+00:54:02,300 --> 00:54:04,460
+So how can we avoid that?
+
+1122
+00:54:04,460 --> 00:54:07,127
+Well, we probably don't want to
+force Carol or Charlie to change
+
+1123
+00:54:07,127 --> 00:54:09,293
+their password, especially
+when they're registering.
+
+1124
+00:54:09,293 --> 00:54:12,760
+You definitely don't want to say, sorry,
+someone's already using that password,
+
+1125
+00:54:12,760 --> 00:54:13,900
+you can't use it as well.
+
+1126
+00:54:13,900 --> 00:54:15,820
+Because that too would leak information.
+
+1127
+00:54:15,820 --> 00:54:19,600
+But there's this technique
+in computing known as salting
+
+1128
+00:54:19,600 --> 00:54:21,460
+whereby we can do this instead.
+
+1129
+00:54:21,460 --> 00:54:26,530
+If cherry we in this scheme hashes
+to a value like this, you know what?
+
+1130
+00:54:26,530 --> 00:54:29,620
+Let's go ahead and sprinkle a
+little bit of salt into the process.
+
+1131
+00:54:29,620 --> 00:54:33,220
+And it's sort of a metaphorical salt
+whereby this hash function now takes
+
+1132
+00:54:33,220 --> 00:54:36,760
+two inputs, not just the password,
+but some other value known as a salt.
+
+1133
+00:54:36,760 --> 00:54:40,450
+And the salt can be generally something
+super short like two characters even,
+
+1134
+00:54:40,450 --> 00:54:41,620
+or something longer.
+
+1135
+00:54:41,620 --> 00:54:43,960
+And the idea is that this
+salt, much like a recipe,
+
+1136
+00:54:43,960 --> 00:54:46,250
+should of perturb the
+output a little bit,
+
+1137
+00:54:46,250 --> 00:54:48,630
+make it taste a little bit
+differently, if you will.
+
+1138
+00:54:48,630 --> 00:54:54,050
+And so concretely, if we take the word
+cherry and then when Carol registers,
+
+1139
+00:54:54,050 --> 00:54:58,490
+for instance, we randomly choose a
+salt of 50, 5-0, so two characters,
+
+1140
+00:54:58,490 --> 00:55:01,310
+the hash value now--
+because there's two inputs--
+
+1141
+00:55:01,310 --> 00:55:02,820
+might now be this value.
+
+1142
+00:55:02,820 --> 00:55:07,040
+But if for Charlie, we still have
+cherry, but we change the 50,
+
+1143
+00:55:07,040 --> 00:55:08,420
+we might see this instead.
+
+1144
+00:55:08,420 --> 00:55:11,570
+Notice that for this
+first example, Carol, 50,
+
+1145
+00:55:11,570 --> 00:55:14,815
+the salt is preserved in the hash
+value, just so you know what it was
+
+1146
+00:55:14,815 --> 00:55:17,690
+and you can sprinkle the same amount
+of salt, so to speak, next time.
+
+1147
+00:55:17,690 --> 00:55:21,260
+But that's the whole hash
+value for Carol in this case.
+
+1148
+00:55:21,260 --> 00:55:26,360
+But if Charlie also has a password
+of cherry, but we change the salt to,
+
+1149
+00:55:26,360 --> 00:55:31,500
+say, 49 arbitrarily, that
+whole hash value changed.
+
+1150
+00:55:31,500 --> 00:55:35,720
+And so now in my hash database, I'm
+going to see different salts there,
+
+1151
+00:55:35,720 --> 00:55:39,410
+different values, which is going
+to effectively cover up the fact
+
+1152
+00:55:39,410 --> 00:55:41,580
+that Carol and Charlie
+have the same password.
+
+1153
+00:55:41,580 --> 00:55:45,075
+Now, if we have so many users
+that we run out of salts,
+
+1154
+00:55:45,075 --> 00:55:46,700
+that still might leak some information.
+
+1155
+00:55:46,700 --> 00:55:50,000
+But that's kind of a we can kick down
+the road and probabilistically not
+
+1156
+00:55:50,000 --> 00:55:53,900
+going to happen if you require passwords
+of sufficiently long length, most
+
+1157
+00:55:53,900 --> 00:55:54,800
+likely.
+
+1158
+00:55:54,800 --> 00:55:58,880
+So any questions on
+salting, which to be clear,
+
+1159
+00:55:58,880 --> 00:56:01,190
+is just a mechanism for
+decreasing the probability
+
+1160
+00:56:01,190 --> 00:56:03,650
+that an adversary is
+going to glean information
+
+1161
+00:56:03,650 --> 00:56:08,090
+that you might not want them to have?
+
+1162
+00:56:08,090 --> 00:56:09,880
+So what does this mean concretely?
+
+1163
+00:56:09,880 --> 00:56:13,060
+When you get an email from a
+website saying "click this link
+
+1164
+00:56:13,060 --> 00:56:16,730
+to reset your password," it's not
+the website, if well designed,
+
+1165
+00:56:16,730 --> 00:56:20,230
+is being difficult or shy and
+not telling you your password,
+
+1166
+00:56:20,230 --> 00:56:23,872
+the web administrators just do
+not know, ideally, your password.
+
+1167
+00:56:23,872 --> 00:56:24,830
+So what are they doing?
+
+1168
+00:56:24,830 --> 00:56:27,160
+They're probably sending you
+a link, similar in spirit
+
+1169
+00:56:27,160 --> 00:56:31,000
+to a one-time password, there's
+some random unique string in there
+
+1170
+00:56:31,000 --> 00:56:32,097
+that's unique to you.
+
+1171
+00:56:32,097 --> 00:56:33,680
+They've stored that in their database.
+
+1172
+00:56:33,680 --> 00:56:36,305
+So as soon as you click on that
+link, they check their database
+
+1173
+00:56:36,305 --> 00:56:39,760
+and be like, oh, wait a minute, I know
+I set this link a minute ago to David.
+
+1174
+00:56:39,760 --> 00:56:43,000
+Let me just trust now-- because
+probabilistically there's no way
+
+1175
+00:56:43,000 --> 00:56:45,580
+someone guessed this
+URL within 60 seconds--
+
+1176
+00:56:45,580 --> 00:56:48,520
+let's trust that whatever he wants
+to type in as his new password
+
+1177
+00:56:48,520 --> 00:56:51,940
+should be associated with that
+Malan account in the database.
+
+1178
+00:56:51,940 --> 00:56:56,380
+But if, conversely, you ever get an
+email saying your password is 123456
+
+1179
+00:56:56,380 --> 00:57:00,970
+or whatever it is, it is clearly
+not being hashed, let alone salted,
+
+1180
+00:57:00,970 --> 00:57:01,910
+on the server.
+
+1181
+00:57:01,910 --> 00:57:06,100
+And that is not a website to do
+anything particularly sensitive with.
+
+1182
+00:57:06,100 --> 00:57:08,730
+All right, so what more can we do?
+
+1183
+00:57:08,730 --> 00:57:12,960
+Well, let's pick up where we left off
+in week two on the art of cryptography,
+
+1184
+00:57:12,960 --> 00:57:17,090
+this art, the science of scrambling
+information, but in a reversible way.
+
+1185
+00:57:17,090 --> 00:57:22,273
+So whereas hashing, as we've described
+it here, is really tends to be one-way,
+
+1186
+00:57:22,273 --> 00:57:25,190
+whereby you should not be able to
+reverse the process unless you cheat
+
+1187
+00:57:25,190 --> 00:57:27,067
+and make a massive table
+of all of the inputs
+
+1188
+00:57:27,067 --> 00:57:29,150
+and all of the outputs,
+which isn't really so much
+
+1189
+00:57:29,150 --> 00:57:31,880
+reversing as it is just looking it up.
+
+1190
+00:57:31,880 --> 00:57:35,060
+Cryptography, like in
+week 2, can actually
+
+1191
+00:57:35,060 --> 00:57:38,120
+be a solution to a lot of
+problems, not just sending messages
+
+1192
+00:57:38,120 --> 00:57:39,740
+across a crowded room.
+
+1193
+00:57:39,740 --> 00:57:43,760
+We, weeks ago, really focused
+on this type of cryptography
+
+1194
+00:57:43,760 --> 00:57:45,800
+whereby you've got some
+plain text message.
+
+1195
+00:57:45,800 --> 00:57:50,060
+You've got a key, like a secret
+number 1 or 13 or something else.
+
+1196
+00:57:50,060 --> 00:57:54,500
+The cipher, which might be a rotational
+cipher or a substitution cipher,
+
+1197
+00:57:54,500 --> 00:57:56,897
+some algorithm, and then
+ciphertext was the term
+
+1198
+00:57:56,897 --> 00:57:58,730
+of art for describing
+the scrambled version.
+
+1199
+00:57:58,730 --> 00:58:01,190
+That should look like random
+zeros and ones or letters
+
+1200
+00:58:01,190 --> 00:58:02,570
+of the alphabet or the like.
+
+1201
+00:58:02,570 --> 00:58:06,880
+This though was reversible,
+whereby you could just
+
+1202
+00:58:06,880 --> 00:58:10,513
+input the ciphertext with the key
+and get back out the plain text.
+
+1203
+00:58:10,513 --> 00:58:13,180
+Maybe you have to change a positive
+number to a negative number.
+
+1204
+00:58:13,180 --> 00:58:14,680
+But the key is really the same.
+
+1205
+00:58:14,680 --> 00:58:19,165
+Be it plus 1 minus 1 or plus 13
+minus 13, the process was symmetric.
+
+1206
+00:58:19,165 --> 00:58:21,040
+And, indeed, what we
+talked about in week two
+
+1207
+00:58:21,040 --> 00:58:24,310
+was an example of something called
+secret key cryptography, where
+
+1208
+00:58:24,310 --> 00:58:27,610
+there's, indeed, one secret
+between two parties, a.k.a.
+
+1209
+00:58:27,610 --> 00:58:29,350
+symmetric cryptography.
+
+1210
+00:58:29,350 --> 00:58:32,770
+Because encryption is pretty much
+the same as decryption, but maybe
+
+1211
+00:58:32,770 --> 00:58:36,160
+you change the sign on the key itself.
+
+1212
+00:58:36,160 --> 00:58:39,470
+But this is not necessarily all we want.
+
+1213
+00:58:39,470 --> 00:58:40,970
+Because here's that general process.
+
+1214
+00:58:40,970 --> 00:58:42,678
+Here's the letter A.
+Here's the key of 1.
+
+1215
+00:58:42,678 --> 00:58:46,360
+We outputed in week 2 a value
+of B. That's not necessarily
+
+1216
+00:58:46,360 --> 00:58:47,960
+the solution to all of our problems.
+
+1217
+00:58:47,960 --> 00:58:48,460
+Why?
+
+1218
+00:58:48,460 --> 00:58:52,652
+Well, if two people want to communicate
+securely, they need some shared secret.
+
+1219
+00:58:52,652 --> 00:58:55,360
+So, for instance, if I wanted to
+send a secret message to Rongxin
+
+1220
+00:58:55,360 --> 00:58:57,970
+in the back of the room
+here, he and I have better
+
+1221
+00:58:57,970 --> 00:59:00,050
+agreed upon a secret in advance.
+
+1222
+00:59:00,050 --> 00:59:03,460
+Otherwise, how can I possibly send
+a message, encrypt it in a way
+
+1223
+00:59:03,460 --> 00:59:04,462
+that he can reverse?
+
+1224
+00:59:04,462 --> 00:59:06,920
+I mean, I could be like,
+(WHISPERING) let's use a key of 1.
+
+1225
+00:59:06,920 --> 00:59:08,510
+(SPEAKING NORMALLY) But
+obviously, anyone in the middle
+
+1226
+00:59:08,510 --> 00:59:09,530
+has just now heard that.
+
+1227
+00:59:09,530 --> 00:59:11,790
+So we might as well not
+communicate securely at all.
+
+1228
+00:59:11,790 --> 00:59:13,760
+So there's this kind of
+chicken-and-the-egg problem,
+
+1229
+00:59:13,760 --> 00:59:15,140
+not just contrived here in lecture.
+
+1230
+00:59:15,140 --> 00:59:17,473
+But the first time I want to
+buy something on amazon.com
+
+1231
+00:59:17,473 --> 00:59:20,270
+with my credit card, I would like
+my credit card to be encrypted,
+
+1232
+00:59:20,270 --> 00:59:21,360
+scrambled somehow.
+
+1233
+00:59:21,360 --> 00:59:24,380
+But I don't know anyone personally
+at amazon.com, let alone someone
+
+1234
+00:59:24,380 --> 00:59:28,730
+that I've prearranged some secret
+for my Mac and their servers.
+
+1235
+00:59:28,730 --> 00:59:33,200
+So it seems that we fundamentally
+can't use symmetric cryptography
+
+1236
+00:59:33,200 --> 00:59:37,370
+all of the time, unless we have some
+other mechanism for securely generating
+
+1237
+00:59:37,370 --> 00:59:41,270
+that key, which we don't have as
+the common case in the world today.
+
+1238
+00:59:41,270 --> 00:59:43,550
+Thankfully, mathematicians
+years ago came up
+
+1239
+00:59:43,550 --> 00:59:46,820
+with something known as
+asymmetric cryptography, which
+
+1240
+00:59:46,820 --> 00:59:50,250
+does not require that you use the
+same secret in both directions.
+
+1241
+00:59:50,250 --> 00:59:53,330
+This is otherwise known as
+public key cryptography.
+
+1242
+00:59:53,330 --> 00:59:56,010
+And it works essentially as follows.
+
+1243
+00:59:56,010 --> 00:59:59,330
+When you want to take some
+plaintext message and encrypt it,
+
+1244
+00:59:59,330 --> 01:00:02,430
+you use the recipient's public key.
+
+1245
+01:00:02,430 --> 01:00:06,080
+So if Rongxin is my colleague
+in back and he has a public key,
+
+1246
+01:00:06,080 --> 01:00:07,280
+it is public by definition.
+
+1247
+01:00:07,280 --> 01:00:09,680
+He can literally shout
+for the whole room
+
+1248
+01:00:09,680 --> 01:00:12,290
+to hear what his public key
+is, which effectively is just
+
+1249
+01:00:12,290 --> 01:00:14,578
+some big, seemingly random number.
+
+1250
+01:00:14,578 --> 01:00:16,620
+But there's some mathematical
+significance of it.
+
+1251
+01:00:16,620 --> 01:00:17,703
+And I can write that down.
+
+1252
+01:00:17,703 --> 01:00:21,290
+Heck, you can all write it down if you
+too want to send him secure messages.
+
+1253
+01:00:21,290 --> 01:00:24,057
+And out of those two inputs, we
+get one output, the ciphertext,
+
+1254
+01:00:24,057 --> 01:00:27,140
+that I can then hand off to people in
+the room in those virtual envelopes.
+
+1255
+01:00:27,140 --> 01:00:29,720
+And it doesn't matter if all of
+you have heard his public key.
+
+1256
+01:00:29,720 --> 01:00:31,803
+Because you can perhaps
+guess where this is going.
+
+1257
+01:00:31,803 --> 01:00:34,230
+How would Rongxin reverse this process?
+
+1258
+01:00:34,230 --> 01:00:36,560
+He's not going to use one public key.
+
+1259
+01:00:36,560 --> 01:00:40,980
+He's going to use, not surprisingly,
+a corresponding private key.
+
+1260
+01:00:40,980 --> 01:00:44,900
+And so in asymmetric cryptography
+or public key cryptography,
+
+1261
+01:00:44,900 --> 01:00:48,377
+you really have a key pair, a
+public key and a private key.
+
+1262
+01:00:48,377 --> 01:00:50,210
+And for our mathematical
+purposes today, let
+
+1263
+01:00:50,210 --> 01:00:53,060
+me just stipulate that there's
+some fancy math involved, such
+
+1264
+01:00:53,060 --> 01:00:56,390
+that when you choose that
+key or, really, those keys,
+
+1265
+01:00:56,390 --> 01:00:59,000
+there's a mathematical
+relationship between them.
+
+1266
+01:00:59,000 --> 01:01:02,760
+And knowing one does not really give
+you any information about the other.
+
+1267
+01:01:02,760 --> 01:01:03,260
+Why?
+
+1268
+01:01:03,260 --> 01:01:06,920
+Because these numbers are so darn
+big it would take adversaries more
+
+1269
+01:01:06,920 --> 01:01:10,640
+time than we all have on Earth
+to figure out via brute force
+
+1270
+01:01:10,640 --> 01:01:12,710
+what the corresponding private key is.
+
+1271
+01:01:12,710 --> 01:01:13,850
+The math is that good.
+
+1272
+01:01:13,850 --> 01:01:15,770
+And even as computers
+get faster, we just
+
+1273
+01:01:15,770 --> 01:01:18,500
+keep using bigger and bigger
+keys, more and more bits
+
+1274
+01:01:18,500 --> 01:01:20,900
+to make the math even
+harder for adversaries.
+
+1275
+01:01:20,900 --> 01:01:24,830
+So when Rongxin receives that
+message, he uses his private key,
+
+1276
+01:01:24,830 --> 01:01:27,230
+takes the ciphertext I
+sent him through the room,
+
+1277
+01:01:27,230 --> 01:01:29,310
+and gets back out the plaintext.
+
+1278
+01:01:29,310 --> 01:01:33,530
+So this is exactly how
+HTTPS works effectively
+
+1279
+01:01:33,530 --> 01:01:38,030
+to securely establish a channel
+between me and Amazon.com, gmail.com.
+
+1280
+01:01:38,030 --> 01:01:44,120
+Any website starting with https://
+uses public key cryptography to come up
+
+1281
+01:01:44,120 --> 01:01:45,650
+with, initially, a secret.
+
+1282
+01:01:45,650 --> 01:01:47,780
+And in practice, it turns
+out, mathematically,
+
+1283
+01:01:47,780 --> 01:01:49,970
+it's faster to use secret key crypto.
+
+1284
+01:01:49,970 --> 01:01:53,000
+So very often, people
+will use asymmetric crypto
+
+1285
+01:01:53,000 --> 01:01:57,350
+to generate a big shared key and then
+use the faster algorithms thereafter.
+
+1286
+01:01:57,350 --> 01:01:59,900
+But it does solve
+asymmetric cryptography,
+
+1287
+01:01:59,900 --> 01:02:03,780
+that chicken-and-the-egg problem, by
+giving us all public keys and private
+
+1288
+01:02:03,780 --> 01:02:04,280
+keys.
+
+1289
+01:02:04,280 --> 01:02:07,312
+If you've heard of RSA, Diffie-Hellman,
+elliptic curve cryptography,
+
+1290
+01:02:07,312 --> 01:02:09,770
+there's different algorithms
+for this that you can actually
+
+1291
+01:02:09,770 --> 01:02:12,030
+study in higher level,
+more theoretical classes.
+
+1292
+01:02:12,030 --> 01:02:15,155
+But there's a bunch of different ways
+mathematically to solve this problem.
+
+1293
+01:02:15,155 --> 01:02:17,750
+But those are the primitives involved.
+
+1294
+01:02:17,750 --> 01:02:20,780
+And how many of you have
+heard of now passkeys, which
+
+1295
+01:02:20,780 --> 01:02:23,960
+is kind of only just catching
+on in recent months, literally.
+
+1296
+01:02:23,960 --> 01:02:26,450
+If I had to make any
+prediction this semester,
+
+1297
+01:02:26,450 --> 01:02:29,460
+odds are, you're going to see
+these in more and more places.
+
+1298
+01:02:29,460 --> 01:02:32,720
+And in fact, the next time you register
+for a website or log into a website,
+
+1299
+01:02:32,720 --> 01:02:37,730
+look for a link, a button that
+maybe doesn't say passkeys, per se.
+
+1300
+01:02:37,730 --> 01:02:40,190
+It's often called passwordless login.
+
+1301
+01:02:40,190 --> 01:02:42,200
+But it's really referring
+to the same thing.
+
+1302
+01:02:42,200 --> 01:02:46,410
+Passkeys are essentially a newish
+feature of operating systems,
+
+1303
+01:02:46,410 --> 01:02:50,630
+be it Mac OS or Windows or Linux
+or the OS running on your phone,
+
+1304
+01:02:50,630 --> 01:02:54,380
+that doesn't require that you choose
+a username and password anymore.
+
+1305
+01:02:54,380 --> 01:02:56,990
+Rather, when you visit a
+website for the very first time,
+
+1306
+01:02:56,990 --> 01:03:01,610
+your device will generate a
+public and private key pair.
+
+1307
+01:03:01,610 --> 01:03:04,270
+Your device will then send
+to the website for what
+
+1308
+01:03:04,270 --> 01:03:09,100
+you're registering your public key
+so that it has one of the values,
+
+1309
+01:03:09,100 --> 01:03:12,010
+but you keep your private
+key, indeed, private.
+
+1310
+01:03:12,010 --> 01:03:15,760
+And using the same mathematical
+process that I alluded to earlier,
+
+1311
+01:03:15,760 --> 01:03:18,790
+you can therefore log into
+that website in the future
+
+1312
+01:03:18,790 --> 01:03:21,880
+by proving mathematically that
+you are, in fact, the owner
+
+1313
+01:03:21,880 --> 01:03:24,230
+of the corresponding private key.
+
+1314
+01:03:24,230 --> 01:03:26,530
+So, in essence, if we
+use a picture like this,
+
+1315
+01:03:26,530 --> 01:03:30,130
+when you proceed to log in to
+that website again-- and, again,
+
+1316
+01:03:30,130 --> 01:03:32,022
+that website has stored
+your public key--
+
+1317
+01:03:32,022 --> 01:03:34,480
+it essentially uses something
+known as digital signatures--
+
+1318
+01:03:34,480 --> 01:03:37,060
+you're familiar with this term,
+you've heard it in the wild--
+
+1319
+01:03:37,060 --> 01:03:40,810
+whereby the website will
+send you a challenge message,
+
+1320
+01:03:40,810 --> 01:03:43,540
+like some random number
+or string of text.
+
+1321
+01:03:43,540 --> 01:03:45,340
+It's just some random value.
+
+1322
+01:03:45,340 --> 01:03:49,690
+If you then effectively encrypt it with
+your private key or run both of those
+
+1323
+01:03:49,690 --> 01:03:52,750
+through a particular algorithm,
+you'll get back a signature.
+
+1324
+01:03:52,750 --> 01:03:57,200
+And that signature can be verified by
+the website by using your public key.
+
+1325
+01:03:57,200 --> 01:04:01,330
+So digital signatures are kind
+of an application of cryptography
+
+1326
+01:04:01,330 --> 01:04:03,040
+but in the reverse direction.
+
+1327
+01:04:03,040 --> 01:04:06,010
+In the world of encryption,
+you use someone's public key
+
+1328
+01:04:06,010 --> 01:04:07,630
+to send a message encrypted.
+
+1329
+01:04:07,630 --> 01:04:09,910
+And they use their
+private key to decrypt it.
+
+1330
+01:04:09,910 --> 01:04:12,220
+In the world of signatures,
+or really passkeys,
+
+1331
+01:04:12,220 --> 01:04:16,420
+you reverse the process, whereby you use
+your private key to effectively encrypt
+
+1332
+01:04:16,420 --> 01:04:18,160
+some random challenge you've been sent.
+
+1333
+01:04:18,160 --> 01:04:20,980
+And the website, the third
+party, can use your public key
+
+1334
+01:04:20,980 --> 01:04:24,760
+to verify, OK, mathematically,
+that response came from David.
+
+1335
+01:04:24,760 --> 01:04:26,740
+Because I have his public key on file.
+
+1336
+01:04:26,740 --> 01:04:28,000
+So what's the upside of this?
+
+1337
+01:04:28,000 --> 01:04:31,060
+We just get out of the business
+of passwords and password managers
+
+1338
+01:04:31,060 --> 01:04:31,930
+more generally.
+
+1339
+01:04:31,930 --> 01:04:34,450
+You do have to trust and
+protect your devices, be it
+
+1340
+01:04:34,450 --> 01:04:36,790
+your phone or your laptop
+or desktop all the more.
+
+1341
+01:04:36,790 --> 01:04:39,190
+And that's going to open
+another possible threat.
+
+1342
+01:04:39,190 --> 01:04:42,310
+But this is a way to chip away
+at what is becoming the reality
+
+1343
+01:04:42,310 --> 01:04:46,090
+that you and I probably have dozens,
+hundreds of usernames and passwords
+
+1344
+01:04:46,090 --> 01:04:48,350
+that's probably not
+sustainable long-term.
+
+1345
+01:04:48,350 --> 01:04:53,580
+And, indeed, we read to often about
+hacks in the wild as a result.
+
+1346
+01:04:53,580 --> 01:05:00,190
+Questions then on
+cryptography or passkeys?
+
+1347
+01:05:00,190 --> 01:05:03,370
+All right, just a few more building
+blocks to equip you for the real world
+
+1348
+01:05:03,370 --> 01:05:07,360
+before we sort of maybe do a final
+check for understanding of sorts.
+
+1349
+01:05:07,360 --> 01:05:11,990
+So when it comes to encryption, we
+can solve other problems as well.
+
+1350
+01:05:11,990 --> 01:05:15,340
+And in this too is a feature you
+should increasingly be seeking out.
+
+1351
+01:05:15,340 --> 01:05:19,720
+So end-to-end encryption refers
+to a stronger use of encryption
+
+1352
+01:05:19,720 --> 01:05:21,970
+than most websites are
+actually in the habit of using.
+
+1353
+01:05:21,970 --> 01:05:25,960
+Case in point, if you're using
+HTTPS to send an email to Gmail,
+
+1354
+01:05:25,960 --> 01:05:28,630
+that's good because no one
+between you and Gmail servers
+
+1355
+01:05:28,630 --> 01:05:30,970
+presumably can see the message
+because it's encrypted.
+
+1356
+01:05:30,970 --> 01:05:32,710
+It just looks like
+random zeros and ones.
+
+1357
+01:05:32,710 --> 01:05:36,670
+So it's effectively secure
+from people on the internet.
+
+1358
+01:05:36,670 --> 01:05:41,140
+The emails are not secure from
+like nosy employees at Google
+
+1359
+01:05:41,140 --> 01:05:43,220
+who do have access to those servers.
+
+1360
+01:05:43,220 --> 01:05:46,855
+Now, maybe through corporate policy,
+they shouldn't or physically don't.
+
+1361
+01:05:46,855 --> 01:05:48,730
+But, theoretically,
+there's someone at Google
+
+1362
+01:05:48,730 --> 01:05:51,823
+who could look at all of your
+email if they were so inclined.
+
+1363
+01:05:51,823 --> 01:05:53,740
+Hopefully it's just not
+a long list of people.
+
+1364
+01:05:53,740 --> 01:05:56,800
+But end-to-end encryption
+ensures that if you're
+
+1365
+01:05:56,800 --> 01:06:00,830
+sending a message from A to B, even if
+it's going through C in the middle--
+
+1366
+01:06:00,830 --> 01:06:03,950
+be it Google or Microsoft or
+someone else-- end-to-end encryption
+
+1367
+01:06:03,950 --> 01:06:08,300
+means that you're encrypting it between
+A and B. And so even C in the middle
+
+1368
+01:06:08,300 --> 01:06:10,410
+has no idea what's going on.
+
+1369
+01:06:10,410 --> 01:06:12,830
+This is not true of services
+like Gmail or Outlook.
+
+1370
+01:06:12,830 --> 01:06:16,040
+This is true of services
+like iMessage or WhatsApp
+
+1371
+01:06:16,040 --> 01:06:20,060
+or Signal or Telegram or other
+services where if you poke around, also
+
+1372
+01:06:20,060 --> 01:06:22,735
+you'll see literally mention
+of end-to-end encryption.
+
+1373
+01:06:22,735 --> 01:06:25,110
+It's a feature that's becoming
+a little more commonplace,
+
+1374
+01:06:25,110 --> 01:06:28,220
+but something you should seek out when
+you don't necessarily trust or want
+
+1375
+01:06:28,220 --> 01:06:31,610
+to trust the machine in
+the middle, the point
+
+1376
+01:06:31,610 --> 01:06:36,200
+C between A and B. So, indeed,
+when sending messages on phones
+
+1377
+01:06:36,200 --> 01:06:38,188
+and even video
+conferencing nowadays too.
+
+1378
+01:06:38,188 --> 01:06:40,730
+And here's something where
+sometimes you kind of have to dig.
+
+1379
+01:06:40,730 --> 01:06:43,020
+Most of us are familiar
+with Zoom certainly by now.
+
+1380
+01:06:43,020 --> 01:06:44,990
+And if we go into Zoom
+settings, which I did
+
+1381
+01:06:44,990 --> 01:06:48,470
+this morning to take this screenshot,
+this is what it looks like as of now.
+
+1382
+01:06:48,470 --> 01:06:51,290
+Here's the menu of options
+for creating a new meeting.
+
+1383
+01:06:51,290 --> 01:06:53,450
+And toward the bottom
+here-- it's a little small--
+
+1384
+01:06:53,450 --> 01:06:56,180
+you'll notice that you have
+two options for encryption.
+
+1385
+01:06:56,180 --> 01:06:58,520
+And funny, enough the one
+that's typically selected
+
+1386
+01:06:58,520 --> 01:07:02,825
+by default, unless you opt in to the
+other one, is enhanced encryption.
+
+1387
+01:07:02,825 --> 01:07:03,950
+Brilliant marketing, right?
+
+1388
+01:07:03,950 --> 01:07:05,990
+Who doesn't want enhanced encryption.
+
+1389
+01:07:05,990 --> 01:07:10,067
+It is weaker than this encryption
+though, which is end-to-end encryption.
+
+1390
+01:07:10,067 --> 01:07:11,900
+End-to-end encryption
+means that when you're
+
+1391
+01:07:11,900 --> 01:07:14,180
+having a video conference
+with one or more people,
+
+1392
+01:07:14,180 --> 01:07:18,200
+not even Zoom can see or hear
+what you're talking about.
+
+1393
+01:07:18,200 --> 01:07:21,470
+Enhanced encryption
+means no one between you
+
+1394
+01:07:21,470 --> 01:07:24,660
+and Zoom can hear or see
+what you're talking about.
+
+1395
+01:07:24,660 --> 01:07:28,880
+So end-to-end ensures that it's A
+to B, and if Zoom is C In the story,
+
+1396
+01:07:28,880 --> 01:07:31,350
+even Zoom can't see what you're doing.
+
+1397
+01:07:31,350 --> 01:07:32,600
+Now, there are some downsides.
+
+1398
+01:07:32,600 --> 01:07:34,460
+And there's some little fine print here.
+
+1399
+01:07:34,460 --> 01:07:39,140
+When you enable end-to-end encryption
+on a cloud-based service like Zoom,
+
+1400
+01:07:39,140 --> 01:07:41,220
+you can't use cloud recordings anymore.
+
+1401
+01:07:41,220 --> 01:07:41,720
+Why?
+
+1402
+01:07:41,720 --> 01:07:43,670
+Well, if Zoom by
+definition mathematically
+
+1403
+01:07:43,670 --> 01:07:46,670
+can't see or hear your meeting, how
+are they going to record it for you?
+
+1404
+01:07:46,670 --> 01:07:48,200
+It's just random zeros and ones.
+
+1405
+01:07:48,200 --> 01:07:50,690
+You can still record it
+locally on your Mac or PC,
+
+1406
+01:07:50,690 --> 01:07:53,060
+but end-to-end encryption
+ensures that you
+
+1407
+01:07:53,060 --> 01:07:56,600
+don't have to worry about prying eyes--
+be it a company, be it a government,
+
+1408
+01:07:56,600 --> 01:07:57,738
+a state more generally.
+
+1409
+01:07:57,738 --> 01:08:00,530
+And so societally, you'll start to
+see this discussed probably even
+
+1410
+01:08:00,530 --> 01:08:04,220
+more than it already is when it comes
+to personal liberties and freedom
+
+1411
+01:08:04,220 --> 01:08:07,700
+among citizens of countries
+and states because
+
+1412
+01:08:07,700 --> 01:08:10,583
+of the implications for actual
+privacy that these primitives
+
+1413
+01:08:10,583 --> 01:08:13,250
+that we've been discussing and
+that you even explored in week 2,
+
+1414
+01:08:13,250 --> 01:08:17,882
+albeit weakly, with these ciphers
+we used in the real world.
+
+1415
+01:08:17,882 --> 01:08:20,840
+But encryption has one other use
+that's worth knowing about too and yet
+
+1416
+01:08:20,840 --> 01:08:22,319
+another feature to turn on.
+
+1417
+01:08:22,319 --> 01:08:26,569
+So when it comes to deleting files,
+odds are, most everyone in the room
+
+1418
+01:08:26,569 --> 01:08:31,100
+knows on a Mac or PC that when you drag
+a file to the trashcan or the recycle
+
+1419
+01:08:31,100 --> 01:08:35,090
+bin, it doesn't actually go
+away unless you right click
+
+1420
+01:08:35,090 --> 01:08:38,540
+or Control click or go to the
+appropriate menu and empty the trash.
+
+1421
+01:08:38,540 --> 01:08:42,020
+But did anyone know that even when
+you empty the trash or recycle bin,
+
+1422
+01:08:42,020 --> 01:08:44,870
+the file also doesn't really go away.
+
+1423
+01:08:44,870 --> 01:08:47,479
+Your operating system typically
+just forgets where it is.
+
+1424
+01:08:47,479 --> 01:08:51,140
+But the zeros and ones that compose
+the file or files you tried to delete
+
+1425
+01:08:51,140 --> 01:08:53,600
+are still there for the
+pickings, especially
+
+1426
+01:08:53,600 --> 01:08:56,729
+if someone gets physical or
+virtual access to your system.
+
+1427
+01:08:56,729 --> 01:08:59,845
+So, for instance, here is a
+whole bunch of ones and zeros.
+
+1428
+01:08:59,845 --> 01:09:01,970
+Maybe it's representing
+something on my hard drive.
+
+1429
+01:09:01,970 --> 01:09:04,279
+And suppose that I want
+to go ahead and delete
+
+1430
+01:09:04,279 --> 01:09:08,060
+a file that comprises these
+zeros and ones, these bits here.
+
+1431
+01:09:08,060 --> 01:09:10,340
+Well, when your operating
+system deletes the file,
+
+1432
+01:09:10,340 --> 01:09:13,040
+even if you click on Empty
+Trash or Empty Recycle Bin,
+
+1433
+01:09:13,040 --> 01:09:18,319
+it essentially just forgets about those
+bits, but doesn't actually change them.
+
+1434
+01:09:18,319 --> 01:09:21,560
+Only once you create a new
+file or download something else
+
+1435
+01:09:21,560 --> 01:09:25,189
+do some of those zeros and ones
+end up getting overwritten.
+
+1436
+01:09:25,189 --> 01:09:29,000
+And per the yellow remnants here, the
+implication of this contrived example
+
+1437
+01:09:29,000 --> 01:09:32,149
+is that even at this point
+in time you can still recover
+
+1438
+01:09:32,149 --> 01:09:34,098
+like half of the file, it would seem.
+
+1439
+01:09:34,098 --> 01:09:36,140
+So maybe the juicy part
+with a credit card number
+
+1440
+01:09:36,140 --> 01:09:38,890
+or a message that you really wanted
+to delete or the like, there's
+
+1441
+01:09:38,890 --> 01:09:41,330
+still remnants on the
+computer's hard drive here.
+
+1442
+01:09:41,330 --> 01:09:42,720
+So what's the alternative?
+
+1443
+01:09:42,720 --> 01:09:44,553
+Well, if you really
+want to be thorough, you
+
+1444
+01:09:44,553 --> 01:09:47,600
+could delete files and then download
+the biggest possible movies you
+
+1445
+01:09:47,600 --> 01:09:49,580
+can to really fill up your hard drive.
+
+1446
+01:09:49,580 --> 01:09:51,925
+Because, probabilistically,
+you would end up
+
+1447
+01:09:51,925 --> 01:09:54,050
+overwriting all of those
+zeros and ones eventually.
+
+1448
+01:09:54,050 --> 01:09:56,422
+But that's not really
+a tenable solution.
+
+1449
+01:09:56,422 --> 01:09:58,130
+It would just take
+too much time and it's
+
+1450
+01:09:58,130 --> 01:10:00,220
+fraught with possible simple mistakes.
+
+1451
+01:10:00,220 --> 01:10:02,500
+So what should we do
+instead, well, maybe we
+
+1452
+01:10:02,500 --> 01:10:04,720
+should securely delete information.
+
+1453
+01:10:04,720 --> 01:10:06,910
+And securely delete would
+mean when you actually
+
+1454
+01:10:06,910 --> 01:10:11,290
+empty the recycle bin or the trash
+can, what happens to the original zeros
+
+1455
+01:10:11,290 --> 01:10:14,050
+and ones is that you take them
+and you change all of them
+
+1456
+01:10:14,050 --> 01:10:17,900
+to zeros or all of them to ones or
+all of them to random zeros and ones.
+
+1457
+01:10:17,900 --> 01:10:18,400
+Why?
+
+1458
+01:10:18,400 --> 01:10:20,500
+So that you can still
+reuse those bits now,
+
+1459
+01:10:20,500 --> 01:10:23,650
+but there's no remnants even
+on the computer's hard drive
+
+1460
+01:10:23,650 --> 01:10:25,480
+that they were once there.
+
+1461
+01:10:25,480 --> 01:10:28,720
+But even now, this is not fully robust.
+
+1462
+01:10:28,720 --> 01:10:29,320
+Why?
+
+1463
+01:10:29,320 --> 01:10:33,610
+It turns out that because of today's
+electronics and solid state devices,
+
+1464
+01:10:33,610 --> 01:10:38,132
+there might still be remnants of files
+on them because these hard drives,
+
+1465
+01:10:38,132 --> 01:10:40,090
+these storage devices
+nowadays are smart enough
+
+1466
+01:10:40,090 --> 01:10:42,460
+that if they realize that
+parts of them are failing,
+
+1467
+01:10:42,460 --> 01:10:45,550
+they might prevent you from
+changing data in certain corners.
+
+1468
+01:10:45,550 --> 01:10:48,550
+So if you think of your memory as
+like a big rectangle, some of the bits
+
+1469
+01:10:48,550 --> 01:10:51,855
+might get blocked off
+to you just over time.
+
+1470
+01:10:51,855 --> 01:10:53,480
+So there might still be remnants there.
+
+1471
+01:10:53,480 --> 01:10:57,670
+So if you really are worried about a
+sibling, an employer, or a government
+
+1472
+01:10:57,670 --> 01:11:01,130
+like finding data on that system,
+there might actually still be remnants.
+
+1473
+01:11:01,130 --> 01:11:03,050
+Now, you can go extreme
+and just physically
+
+1474
+01:11:03,050 --> 01:11:05,258
+destroy the device, which
+should be pretty effective.
+
+1475
+01:11:05,258 --> 01:11:08,600
+But that's going to get pretty expensive
+over time when you want to delete data.
+
+1476
+01:11:08,600 --> 01:11:13,140
+Or, again, we can use encryption
+as the solution to this problem.
+
+1477
+01:11:13,140 --> 01:11:15,500
+So, again, encryption is
+increasingly in the real world
+
+1478
+01:11:15,500 --> 01:11:19,650
+an amazing tool for your toolkit because
+it can be deployed in different ways.
+
+1479
+01:11:19,650 --> 01:11:22,280
+So, in this case, full disk
+encryption is something
+
+1480
+01:11:22,280 --> 01:11:24,500
+you can enable in Windows or Mac OS.
+
+1481
+01:11:24,500 --> 01:11:27,050
+Nowadays, it's typically
+enabled by default on iOS
+
+1482
+01:11:27,050 --> 01:11:29,540
+and you can opt in as
+well on other platforms.
+
+1483
+01:11:29,540 --> 01:11:33,500
+In the world of full disk encryption,
+instead of storing any of your files
+
+1484
+01:11:33,500 --> 01:11:37,640
+as a plain text, like in
+their original raw format,
+
+1485
+01:11:37,640 --> 01:11:41,390
+you essentially randomize
+everything on the disk instead.
+
+1486
+01:11:41,390 --> 01:11:45,110
+You rely on the user's
+password or some unique string
+
+1487
+01:11:45,110 --> 01:11:47,150
+that they know when you
+log into your Mac or PC
+
+1488
+01:11:47,150 --> 01:11:49,958
+to essentially scramble the
+entire contents of the hard drive.
+
+1489
+01:11:49,958 --> 01:11:51,500
+And it's not quite as simple as that.
+
+1490
+01:11:51,500 --> 01:11:53,300
+Typically, there's a
+much larger key that's
+
+1491
+01:11:53,300 --> 01:11:56,570
+used that in turn is protected
+by your actual password.
+
+1492
+01:11:56,570 --> 01:12:01,310
+But, in this case, this means that if
+someone steals your laptop while you're
+
+1493
+01:12:01,310 --> 01:12:04,520
+not paying attention in Starbucks or
+the airport or even your dorm room,
+
+1494
+01:12:04,520 --> 01:12:07,010
+even if they open the lid
+and don't have your password,
+
+1495
+01:12:07,010 --> 01:12:09,260
+they're not going to be able
+to access any of the data
+
+1496
+01:12:09,260 --> 01:12:11,120
+because it's just going to
+look like zeros and ones.
+
+1497
+01:12:11,120 --> 01:12:13,287
+Even if they remove the
+hard drive from your device,
+
+1498
+01:12:13,287 --> 01:12:16,790
+plug it into another device, they're
+only going to see zeros and ones.
+
+1499
+01:12:16,790 --> 01:12:21,170
+Now, if you walk away from your
+laptop at Starbucks with the lid open
+
+1500
+01:12:21,170 --> 01:12:24,290
+and you're logged in, there
+is a window of opportunity.
+
+1501
+01:12:24,290 --> 01:12:27,500
+Because the data has got to be decrypted
+when you care about it and when
+
+1502
+01:12:27,500 --> 01:12:28,500
+you're using it.
+
+1503
+01:12:28,500 --> 01:12:31,178
+So here too is another
+example of best practice.
+
+1504
+01:12:31,178 --> 01:12:33,470
+You should minimally be
+closing the lid of your laptop,
+
+1505
+01:12:33,470 --> 01:12:36,530
+making sure it's logging you out
+or at least locking the screen,
+
+1506
+01:12:36,530 --> 01:12:39,050
+so that someone can't just
+walk off with your device
+
+1507
+01:12:39,050 --> 01:12:42,350
+and have access to
+your logged in account.
+
+1508
+01:12:42,350 --> 01:12:45,500
+But full disk encryption essentially
+decreases the probability
+
+1509
+01:12:45,500 --> 01:12:47,417
+that an adversary is
+going to be successful.
+
+1510
+01:12:47,417 --> 01:12:49,250
+In the world of Macs,
+it's called FileVault.
+
+1511
+01:12:49,250 --> 01:12:50,330
+It's in your System Preferences.
+
+1512
+01:12:50,330 --> 01:12:51,470
+Windows, it's called BitLocker.
+
+1513
+01:12:51,470 --> 01:12:52,910
+There's third party solutions too.
+
+1514
+01:12:52,910 --> 01:12:55,340
+Here too, we have to trust
+that Microsoft and Apple don't
+
+1515
+01:12:55,340 --> 01:12:57,290
+screw up and write buggy code.
+
+1516
+01:12:57,290 --> 01:13:00,590
+But generally speaking, turning
+on features like these things
+
+1517
+01:13:00,590 --> 01:13:02,150
+are good for you.
+
+1518
+01:13:02,150 --> 01:13:08,000
+Except what's maybe an obvious
+downside of doing this?
+
+1519
+01:13:08,000 --> 01:13:08,705
+What's that?
+
+1520
+01:13:08,705 --> 01:13:09,580
+AUDIENCE: [INAUDIBLE]
+
+1521
+01:13:09,580 --> 01:13:11,140
+DAVID MALAN: Yeah, if
+you forget your password.
+
+1522
+01:13:11,140 --> 01:13:12,970
+There's no mathematician
+in the world who
+
+1523
+01:13:12,970 --> 01:13:15,590
+is probably going to be able
+to recover your data for you.
+
+1524
+01:13:15,590 --> 01:13:17,800
+So there too, it's
+maybe a hefty tradeoff.
+
+1525
+01:13:17,800 --> 01:13:19,930
+But hopefully you have
+enough defenses in place,
+
+1526
+01:13:19,930 --> 01:13:22,360
+be it your-- a good
+password, a password manager,
+
+1527
+01:13:22,360 --> 01:13:25,610
+maybe even printing out your primary
+password on a sheet of paper,
+
+1528
+01:13:25,610 --> 01:13:28,810
+but locking it in a box or bringing
+it home so that no one near you
+
+1529
+01:13:28,810 --> 01:13:32,618
+actually has physical access, you can
+at least mitigate some of these risks.
+
+1530
+01:13:32,618 --> 01:13:34,910
+You'll read about, though,
+in the real world even this,
+
+1531
+01:13:34,910 --> 01:13:37,510
+which is like an adversarial
+use of full disk encryption.
+
+1532
+01:13:37,510 --> 01:13:39,455
+Sometimes when hackers
+get into systems, this
+
+1533
+01:13:39,455 --> 01:13:42,580
+has happened literally with hospital
+systems, municipal government systems,
+
+1534
+01:13:42,580 --> 01:13:43,210
+and the like.
+
+1535
+01:13:43,210 --> 01:13:47,900
+If they hack into them, they don't just
+delete the data or just create havoc,
+
+1536
+01:13:47,900 --> 01:13:51,190
+they will proactively encrypt
+the server's hard drive
+
+1537
+01:13:51,190 --> 01:13:53,685
+with some random key that
+only the hacker knows.
+
+1538
+01:13:53,685 --> 01:13:55,810
+They will then demand that
+the hospital or the town
+
+1539
+01:13:55,810 --> 01:13:58,150
+pay them, often in Bitcoin
+or some cryptocurrency
+
+1540
+01:13:58,150 --> 01:14:00,700
+to decrease the probability
+of being caught,
+
+1541
+01:14:00,700 --> 01:14:05,860
+and they'll only turn over that key to
+decrypt the data if someone actually
+
+1542
+01:14:05,860 --> 01:14:06,530
+pays up.
+
+1543
+01:14:06,530 --> 01:14:09,990
+So here too, there's sort of a dark
+side of these mathematical principles.
+
+1544
+01:14:09,990 --> 01:14:15,020
+So there too, it's always a trade off
+between good people and perhaps bad.
+
+1545
+01:14:15,020 --> 01:14:17,390
+Well, maybe before we
+wrap and before we serve
+
+1546
+01:14:17,390 --> 01:14:20,180
+some cake in the transept, Carter,
+can you join me one last time?
+
+1547
+01:14:20,180 --> 01:14:23,750
+But, first, before I turn things over
+to me and Carter, here's your problem
+
+1548
+01:14:23,750 --> 01:14:26,270
+set 10, a sort of unofficial homework.
+
+1549
+01:14:26,270 --> 01:14:28,610
+One, among your takeaways
+for today, you should
+
+1550
+01:14:28,610 --> 01:14:32,815
+start using a password manager or
+even these fancier passkeys, at least
+
+1551
+01:14:32,815 --> 01:14:34,190
+for your most sensitive accounts.
+
+1552
+01:14:34,190 --> 01:14:37,220
+So anything medical, financial,
+particularly personal,
+
+1553
+01:14:37,220 --> 01:14:40,193
+like this is a very concrete
+takeaway and action item.
+
+1554
+01:14:40,193 --> 01:14:42,860
+I wouldn't sit down and try to
+change all of your accounts over.
+
+1555
+01:14:42,860 --> 01:14:45,440
+Because knowing humans, You're not going
+to get through the whole to-do list.
+
+1556
+01:14:45,440 --> 01:14:48,170
+So maybe do it the next time
+you log into that account,
+
+1557
+01:14:48,170 --> 01:14:50,890
+turn on some of these features
+or add it to a password manager
+
+1558
+01:14:50,890 --> 01:14:52,640
+or at least start with
+the most important.
+
+1559
+01:14:52,640 --> 01:14:54,860
+Two, turning on
+two-factor authentication
+
+1560
+01:14:54,860 --> 01:14:57,390
+beyond where you have to at
+places like Harvard and Yale,
+
+1561
+01:14:57,390 --> 01:15:00,740
+but certainly bank accounts,
+privates, anything medical, personal,
+
+1562
+01:15:00,740 --> 01:15:01,290
+or the like.
+
+1563
+01:15:01,290 --> 01:15:04,670
+And then lastly, where you can,
+turning on end-to-end encryption.
+
+1564
+01:15:04,670 --> 01:15:07,020
+Being careful with it,
+you don't want to go
+
+1565
+01:15:07,020 --> 01:15:10,545
+and during lecture, hopefully no one
+clicked the turn on FileVault button
+
+1566
+01:15:10,545 --> 01:15:11,420
+while we're in class.
+
+1567
+01:15:11,420 --> 01:15:14,300
+Because closing your laptop lid
+while things are being encrypted
+
+1568
+01:15:14,300 --> 01:15:16,250
+is generally bad practice.
+
+1569
+01:15:16,250 --> 01:15:18,870
+See us after though if you
+did do that a moment ago.
+
+1570
+01:15:18,870 --> 01:15:21,140
+So here's just then three
+actionable takeaways.
+
+1571
+01:15:21,140 --> 01:15:24,860
+But we thought we'd conclude by taking
+a few final minutes for a CS50 quiz
+
+1572
+01:15:24,860 --> 01:15:28,700
+show of sorts, a final check for
+understanding using some questions
+
+1573
+01:15:28,700 --> 01:15:31,580
+we come up with ourselves, but
+also some of the review questions
+
+1574
+01:15:31,580 --> 01:15:34,830
+that you all kindly contributed as
+part of the most recent problem set.
+
+1575
+01:15:34,830 --> 01:15:37,580
+So some of these questions
+come from you yourselves.
+
+1576
+01:15:37,580 --> 01:15:41,690
+And let me go ahead and turn things over
+to Carter here to help run the show.
+
+1577
+01:15:41,690 --> 01:15:46,190
+We will invite you at this point
+to take out that same device
+
+1578
+01:15:46,190 --> 01:15:47,190
+as you had earlier.
+
+1579
+01:15:47,190 --> 01:15:48,960
+This is the same URL as before.
+
+1580
+01:15:48,960 --> 01:15:52,253
+But if you closed the tab,
+you can reopen it here.
+
+1581
+01:15:52,253 --> 01:15:54,920
+To make things a little fun--
+because we still have some cookies
+
+1582
+01:15:54,920 --> 01:15:58,250
+left-- could we get three
+final CS50 volunteers?
+
+1583
+01:15:58,250 --> 01:15:59,960
+OK, one hand is already up.
+
+1584
+01:15:59,960 --> 01:16:01,580
+How about two hands there?
+
+1585
+01:16:01,580 --> 01:16:03,080
+And how about three hands?
+
+1586
+01:16:03,080 --> 01:16:03,588
+Over here.
+
+1587
+01:16:03,588 --> 01:16:06,380
+All right, yes, sure, a round of
+applause for our final volunteers.
+
+1588
+01:16:06,380 --> 01:16:07,070
+Come on up.
+
+1589
+01:16:07,070 --> 01:16:10,980
+[APPLAUSE]
+
+1590
+01:16:10,980 --> 01:16:13,080
+On the line are some
+delicious Oreo cookies.
+
+1591
+01:16:13,080 --> 01:16:15,247
+If the three of you would
+like to come over and take
+
+1592
+01:16:15,247 --> 01:16:18,125
+any of these seats in the middle,
+you will be our human players,
+
+1593
+01:16:18,125 --> 01:16:20,250
+but we'll invite everyone
+in the group to play too.
+
+1594
+01:16:20,250 --> 01:16:22,833
+Do you want to take a mic and
+introduce yourself to the world?
+
+1595
+01:16:22,833 --> 01:16:23,610
+AUDIENCE: Sure.
+
+1596
+01:16:23,610 --> 01:16:25,140
+Hi, I'm Dani.
+
+1597
+01:16:25,140 --> 01:16:29,910
+I'm a first year in WIG C. And I'm
+planning on studying economics.
+
+1598
+01:16:29,910 --> 01:16:31,065
+DAVID MALAN: Nice, welcome.
+
+1599
+01:16:31,065 --> 01:16:32,190
+AUDIENCE: Hi, I'm Rochelle.
+
+1600
+01:16:32,190 --> 01:16:34,250
+I'm from the best state, Ohio.
+
+1601
+01:16:34,250 --> 01:16:35,250
+DAVID MALAN: [INAUDIBLE]
+
+1602
+01:16:35,250 --> 01:16:37,650
+AUDIENCE: And I'm a freshman in Greeno.
+
+1603
+01:16:37,650 --> 01:16:39,705
+I'm planning on concentrating in CS.
+
+1604
+01:16:39,705 --> 01:16:40,830
+DAVID MALAN: Nice, welcome.
+
+1605
+01:16:40,830 --> 01:16:41,730
+And?
+
+1606
+01:16:41,730 --> 01:16:43,020
+AUDIENCE: My name is Jackson.
+
+1607
+01:16:43,020 --> 01:16:43,942
+I'm from Indiana.
+
+1608
+01:16:43,942 --> 01:16:44,650
+I live in Thayer.
+
+1609
+01:16:44,650 --> 01:16:45,510
+I'm a first year.
+
+1610
+01:16:45,510 --> 01:16:49,650
+And I'm studying linguistics and
+Germanic languages and literatures.
+
+1611
+01:16:49,650 --> 01:16:50,860
+DAVID MALAN: Welcome as well.
+
+1612
+01:16:50,860 --> 01:16:52,680
+So, if our volunteers
+could have a seat, you're
+
+1613
+01:16:52,680 --> 01:16:54,700
+going to want to be able to
+see this screen or that one.
+
+1614
+01:16:54,700 --> 01:16:56,520
+So you can move your
+chairs if you would like.
+
+1615
+01:16:56,520 --> 01:16:59,190
+Carter is going to kindly cue up the
+software, which hopefully everyone
+
+1616
+01:16:59,190 --> 01:17:00,310
+has on their phones as well.
+
+1617
+01:17:00,310 --> 01:17:02,250
+And I should have mentioned, do
+you have your phone with you?
+
+1618
+01:17:02,250 --> 01:17:03,300
+AUDIENCE: [INAUDIBLE]
+
+1619
+01:17:03,300 --> 01:17:04,455
+DAVID MALAN: Do you have
+your phone with you?
+
+1620
+01:17:04,455 --> 01:17:04,770
+AUDIENCE: [INAUDIBLE]
+
+1621
+01:17:04,770 --> 01:17:06,330
+DAVID MALAN: OK, do you
+have your phone over there?
+
+1622
+01:17:06,330 --> 01:17:07,650
+OK, what's your name again?
+
+1623
+01:17:07,650 --> 01:17:08,010
+AUDIENCE: Rochelle.
+
+1624
+01:17:08,010 --> 01:17:09,330
+DAVID MALAN: OK, Rochelle
+will be right back,
+
+1625
+01:17:09,330 --> 01:17:10,930
+if you want to go grab your phones.
+
+1626
+01:17:10,930 --> 01:17:13,690
+And in the meantime, we're
+going to go ahead and-- thank
+
+1627
+01:17:13,690 --> 01:17:16,570
+you so much-- we're going to go
+ahead and cue up the screens here
+
+1628
+01:17:16,570 --> 01:17:17,657
+for the CS50 quiz show.
+
+1629
+01:17:17,657 --> 01:17:19,990
+It's about 20 questions in
+total, the first few of which
+
+1630
+01:17:19,990 --> 01:17:23,290
+are going to focus on
+cybersecurity to see how well we
+
+1631
+01:17:23,290 --> 01:17:24,790
+can check our current understanding.
+
+1632
+01:17:24,790 --> 01:17:29,470
+The rest will be questions written by
+you in the days leading up to today.
+
+1633
+01:17:29,470 --> 01:17:32,590
+All right, Carter, let's go ahead
+and reveal the first question.
+
+1634
+01:17:32,590 --> 01:17:35,500
+And note that you can win up to
+1,000 points this time per question.
+
+1635
+01:17:35,500 --> 01:17:37,208
+It's not just about
+being right or wrong.
+
+1636
+01:17:37,208 --> 01:17:40,430
+And you get more points the
+faster you buzz in as well.
+
+1637
+01:17:40,430 --> 01:17:43,330
+So we'll see who's on the top based
+on all of the guest user names.
+
+1638
+01:17:43,330 --> 01:17:45,460
+All right, here we go,
+Carter, question one,
+
+1639
+01:17:45,460 --> 01:17:48,010
+what is the best way
+to create a password?
+
+1640
+01:17:48,010 --> 01:17:50,830
+Substitute letters with
+numbers or punctuation signs,
+
+1641
+01:17:50,830 --> 01:17:53,320
+ensure it's at least
+eight characters long,
+
+1642
+01:17:53,320 --> 01:17:55,930
+have a password manager
+generated for you,
+
+1643
+01:17:55,930 --> 01:18:00,410
+or include both lowercase
+and uppercase letters?
+
+1644
+01:18:00,410 --> 01:18:03,710
+All right, let's see
+what the results are.
+
+1645
+01:18:03,710 --> 01:18:07,490
+Almost everyone said have a password
+manager generate it for you.
+
+1646
+01:18:07,490 --> 01:18:10,260
+90% of you said that's the case.
+
+1647
+01:18:10,260 --> 01:18:11,700
+And, indeed, that one is correct.
+
+1648
+01:18:11,700 --> 01:18:12,320
+Nicely done.
+
+1649
+01:18:12,320 --> 01:18:15,690
+Let's go ahead and see the
+random usernames you've chosen.
+
+1650
+01:18:15,690 --> 01:18:19,490
+So this looks like it's
+web_hexidecimalidentifier to keep
+
+1651
+01:18:19,490 --> 01:18:20,340
+things anonymous.
+
+1652
+01:18:20,340 --> 01:18:23,420
+So if you are OAF9E,
+nicely done, but there's
+
+1653
+01:18:23,420 --> 01:18:25,040
+a whole lot of ties up at the top.
+
+1654
+01:18:25,040 --> 01:18:27,582
+All right, and I see-- well,
+just to keep things interesting,
+
+1655
+01:18:27,582 --> 01:18:28,665
+you had 792 points.
+
+1656
+01:18:28,665 --> 01:18:29,165
+You had--
+
+1657
+01:18:29,165 --> 01:18:30,320
+AUDIENCE: 917.
+
+1658
+01:18:30,320 --> 01:18:33,320
+DAVID MALAN: 917 points, 917 points.
+
+1659
+01:18:33,320 --> 01:18:34,700
+So it's a close race here.
+
+1660
+01:18:34,700 --> 01:18:38,180
+Number two, what is a downside
+of two-factor authentication?
+
+1661
+01:18:38,180 --> 01:18:40,280
+You might lose access
+to the second factor.
+
+1662
+01:18:40,280 --> 01:18:42,410
+Your account becomes too secure.
+
+1663
+01:18:42,410 --> 01:18:45,440
+You can be notified someone else
+is trying to access your account.
+
+1664
+01:18:45,440 --> 01:18:48,197
+You can pick any
+authentication you like.
+
+1665
+01:18:48,197 --> 01:18:49,280
+Hopefully, you can reload.
+
+1666
+01:18:49,280 --> 01:18:50,060
+You might have missed that one.
+
+1667
+01:18:50,060 --> 01:18:53,360
+And the number one answer was might
+lose access to the second factor.
+
+1668
+01:18:53,360 --> 01:18:55,850
+Indeed, 93% of you got that.
+
+1669
+01:18:55,850 --> 01:18:59,820
+And we're up to 1,375
+points, 792 points, and--
+
+1670
+01:18:59,820 --> 01:19:00,695
+AUDIENCE: [INAUDIBLE]
+
+1671
+01:19:00,695 --> 01:19:01,920
+DAVID MALAN: OK, and forced reload.
+
+1672
+01:19:01,920 --> 01:19:04,190
+So, yes, you tried reloading the page
+and hopefully it'll click back in.
+
+1673
+01:19:04,190 --> 01:19:05,780
+All right, Carter, number 3.
+
+1674
+01:19:05,780 --> 01:19:09,890
+We have, what would you see if you
+tried to read an encrypted disk?
+
+1675
+01:19:09,890 --> 01:19:12,320
+You would see a random
+sequence of zeros and ones,
+
+1676
+01:19:12,320 --> 01:19:14,240
+scrambled words from
+the user's documents,
+
+1677
+01:19:14,240 --> 01:19:18,770
+all of the user's
+information, or all one's?
+
+1678
+01:19:18,770 --> 01:19:20,150
+About 10 seconds remain.
+
+1679
+01:19:20,150 --> 01:19:21,540
+Is it working for you now?
+
+1680
+01:19:21,540 --> 01:19:22,920
+OK.
+
+1681
+01:19:22,920 --> 01:19:24,930
+All right, three seconds.
+
+1682
+01:19:24,930 --> 01:19:29,460
+And the ranked answers are a
+random sequence of zeros and ones.
+
+1683
+01:19:29,460 --> 01:19:31,960
+91% of you indeed got that right.
+
+1684
+01:19:31,960 --> 01:19:34,200
+Let's see who's winning
+on the guest screen.
+
+1685
+01:19:34,200 --> 01:19:37,230
+Web user a28c3, nicely done.
+
+1686
+01:19:37,230 --> 01:19:41,850
+But it's still a close tie among
+three of you anonymous participants.
+
+1687
+01:19:41,850 --> 01:19:45,300
+Number four, which type of
+encryption is most secure--
+
+1688
+01:19:45,300 --> 01:19:49,770
+enhanced encryption, end-to-end
+encryption, full scale encryption,
+
+1689
+01:19:49,770 --> 01:19:51,170
+advanced encryption?
+
+1690
+01:19:51,170 --> 01:19:54,220
+
+
+1691
+01:19:54,220 --> 01:19:55,360
+About five seconds.
+
+1692
+01:19:55,360 --> 01:19:59,460
+
+
+1693
+01:19:59,460 --> 01:20:04,650
+And most popular response is the
+correct one, end-to-end encryption
+
+1694
+01:20:04,650 --> 01:20:06,370
+with 92% of you.
+
+1695
+01:20:06,370 --> 01:20:06,870
+Nice.
+
+1696
+01:20:06,870 --> 01:20:13,950
+We're up to 2,375, 3,792, and 2,917.
+
+1697
+01:20:13,950 --> 01:20:18,330
+And good job to these three
+folks in the front of our list.
+
+1698
+01:20:18,330 --> 01:20:21,120
+All right, Carter, number 5,
+the last on cybersecurity.
+
+1699
+01:20:21,120 --> 01:20:23,910
+When would it make sense to store
+your password on a sticky note
+
+1700
+01:20:23,910 --> 01:20:25,140
+by your computer?
+
+1701
+01:20:25,140 --> 01:20:27,360
+When it's too complicated
+to remember, when
+
+1702
+01:20:27,360 --> 01:20:31,170
+you need to access your account quickly,
+when you share your account with family
+
+1703
+01:20:31,170 --> 01:20:32,450
+members, never.
+
+1704
+01:20:32,450 --> 01:20:37,720
+
+
+1705
+01:20:37,720 --> 01:20:39,190
+Oh.
+
+1706
+01:20:39,190 --> 01:20:43,270
+And the most popular response was
+never, which is indeed correct.
+
+1707
+01:20:43,270 --> 01:20:46,360
+And only 79% of you
+think that right now.
+
+1708
+01:20:46,360 --> 01:20:50,540
+It is never OK to store it on a
+post-it note on your computer.
+
+1709
+01:20:50,540 --> 01:20:54,850
+You should minimally be using today's
+password manager for that same process.
+
+1710
+01:20:54,850 --> 01:21:00,490
+All right, two of you, a28c3 and
+c9a23 are still atop the list.
+
+1711
+01:21:00,490 --> 01:21:03,820
+We have 3,000-plus
+points, 3,000-plus points,
+
+1712
+01:21:03,820 --> 01:21:06,460
+and probably about the same as well.
+
+1713
+01:21:06,460 --> 01:21:09,100
+All right, now we move on to
+the user-generated content
+
+1714
+01:21:09,100 --> 01:21:11,710
+that you all from Harvard
+and Yale generated for us.
+
+1715
+01:21:11,710 --> 01:21:16,120
+Number 6, what is the variable
+type that stores true/false values?
+
+1716
+01:21:16,120 --> 01:21:19,885
+Boolean, string, integer, or double?
+
+1717
+01:21:19,885 --> 01:21:22,520
+
+
+1718
+01:21:22,520 --> 01:21:25,670
+About 10 seconds to come up with this.
+
+1719
+01:21:25,670 --> 01:21:27,950
+We saw these in different
+languages, these types.
+
+1720
+01:21:27,950 --> 01:21:29,750
+But the idea was the same.
+
+1721
+01:21:29,750 --> 01:21:32,300
+And in two seconds,
+we'll see that the answer
+
+1722
+01:21:32,300 --> 01:21:36,950
+is Boolean with 96% response rate.
+
+1723
+01:21:36,950 --> 01:21:39,095
+All right, what else do we have here?
+
+1724
+01:21:39,095 --> 01:21:41,810
+It's still a two-way tie at the top.
+
+1725
+01:21:41,810 --> 01:21:44,630
+All right, next question,
+Carter, is number 7.
+
+1726
+01:21:44,630 --> 01:21:46,640
+What placeholder would
+you use when trying
+
+1727
+01:21:46,640 --> 01:21:55,360
+to print a float in C, a float in C?
+
+1728
+01:21:55,360 --> 01:21:58,420
+Seven seconds.
+
+1729
+01:21:58,420 --> 01:22:01,930
+I'll defer to the visual syntax
+on the screen for this one.
+
+1730
+01:22:01,930 --> 01:22:06,670
+And the most popular and
+correct answer is, indeed, %f.
+
+1731
+01:22:06,670 --> 01:22:10,800
+We never saw %fl and we
+definitely didn't see %float.
+
+1732
+01:22:10,800 --> 01:22:12,550
+Two of you, though,
+are still in the lead.
+
+1733
+01:22:12,550 --> 01:22:14,500
+Nicely done, whoever you are.
+
+1734
+01:22:14,500 --> 01:22:23,450
+All right, next question, what does I++
+do in C++ where I is an integer value?
+
+1735
+01:22:23,450 --> 01:22:26,290
+Note, for the record, we did
+not teach C++ in this course,
+
+1736
+01:22:26,290 --> 01:22:29,980
+but this question is from you.
+
+1737
+01:22:29,980 --> 01:22:34,600
+I will admit it's the same
+as in C, which we did teach.
+
+1738
+01:22:34,600 --> 01:22:37,840
+Decrements the integer, deletes the
+integer, increments the integer by one,
+
+1739
+01:22:37,840 --> 01:22:40,030
+or reassigns the integer to zero?
+
+1740
+01:22:40,030 --> 01:22:42,580
+The most popular answer
+and correct answer
+
+1741
+01:22:42,580 --> 01:22:45,490
+is increments the integer by one.
+
+1742
+01:22:45,490 --> 01:22:47,500
+It definitely doesn't decrement, so.
+
+1743
+01:22:47,500 --> 01:22:49,990
+All right, two responses
+still atop the list.
+
+1744
+01:22:49,990 --> 01:22:52,900
+And here we have 6,000-plus,
+6,000, and 6,000.
+
+1745
+01:22:52,900 --> 01:22:53,980
+So it's getting closer.
+
+1746
+01:22:53,980 --> 01:22:56,890
+Using a hash table to
+retrieve data is useful
+
+1747
+01:22:56,890 --> 01:23:03,490
+because it theoretically achieves a
+search time of O of n, O of n log n,
+
+1748
+01:23:03,490 --> 01:23:06,250
+O of log n, or O of 1?
+
+1749
+01:23:06,250 --> 01:23:09,240
+
+
+1750
+01:23:09,240 --> 01:23:10,950
+Five seconds to make your decision.
+
+1751
+01:23:10,950 --> 01:23:13,200
+Getting a little harder.
+
+1752
+01:23:13,200 --> 01:23:16,920
+And let's see the results.
+
+1753
+01:23:16,920 --> 01:23:24,630
+O of 1, only 30% of you got the correct
+answer from a very core week 5 topic.
+
+1754
+01:23:24,630 --> 01:23:27,360
+That is the theoretical
+hope of a hash table.
+
+1755
+01:23:27,360 --> 01:23:33,090
+In practice, though, to be fair, it
+can devolve, as we saw, into O of n.
+
+1756
+01:23:33,090 --> 01:23:36,850
+We didn't really see those other two
+answers in the context of hash tables
+
+1757
+01:23:36,850 --> 01:23:37,590
+specifically.
+
+1758
+01:23:37,590 --> 01:23:41,340
+All right, wow, a28c3
+is in the lead now.
+
+1759
+01:23:41,340 --> 01:23:46,020
+Let's take a look at
+number 10, halfway there.
+
+1760
+01:23:46,020 --> 01:23:48,230
+What is the first
+program we made in CS50?
+
+1761
+01:23:48,230 --> 01:23:49,640
+This should be fast.
+
+1762
+01:23:49,640 --> 01:23:52,745
+All right, Greet, Meow,
+DNA, Hello, world?
+
+1763
+01:23:52,745 --> 01:24:03,940
+
+
+1764
+01:24:03,940 --> 01:24:04,790
+One second.
+
+1765
+01:24:04,790 --> 01:24:10,870
+And it was, indeed, Hello,
+world, Hello, world.
+
+1766
+01:24:10,870 --> 01:24:15,490
+All right, still in the
+lead with 10,000 points.
+
+1767
+01:24:15,490 --> 01:24:17,770
+And now let's move on
+to the second half.
+
+1768
+01:24:17,770 --> 01:24:21,940
+Question 11, when malloc is used
+to allocate memory in a C program,
+
+1769
+01:24:21,940 --> 01:24:30,670
+that memory is allocated in
+the pile, heap, bin, or stack?
+
+1770
+01:24:30,670 --> 01:24:32,290
+Very creative set of answers.
+
+1771
+01:24:32,290 --> 01:24:35,290
+
+
+1772
+01:24:35,290 --> 01:24:36,460
+Five seconds.
+
+1773
+01:24:36,460 --> 01:24:40,390
+
+
+1774
+01:24:40,390 --> 01:24:43,850
+All right, and the
+results have heap at 43%.
+
+1775
+01:24:43,850 --> 01:24:46,630
+
+
+1776
+01:24:46,630 --> 01:24:49,480
+Malloc was from the heap at the top.
+
+1777
+01:24:49,480 --> 01:24:52,830
+The stack is where function calls go.
+
+1778
+01:24:52,830 --> 01:24:54,580
+It's getting a little
+more worrisome here.
+
+1779
+01:24:54,580 --> 01:24:56,030
+But that's OK.
+
+1780
+01:24:56,030 --> 01:24:59,350
+Still in the lead with perfect
+score, it seems, 11,000 points.
+
+1781
+01:24:59,350 --> 01:25:02,780
+Next up is number 12.
+
+1782
+01:25:02,780 --> 01:25:06,580
+Which data structure allows you to
+change its size dynamically and store
+
+1783
+01:25:06,580 --> 01:25:08,920
+values in different
+areas of the memory--
+
+1784
+01:25:08,920 --> 01:25:11,980
+an array, a queue, a
+linked list, or a stack?
+
+1785
+01:25:11,980 --> 01:25:15,890
+
+
+1786
+01:25:15,890 --> 01:25:18,650
+Change its size dynamically
+and store different values
+
+1787
+01:25:18,650 --> 01:25:21,680
+in different areas of the memory.
+
+1788
+01:25:21,680 --> 01:25:28,100
+And the answer from the group is a
+linked list at 62%, which is correct.
+
+1789
+01:25:28,100 --> 01:25:31,730
+An array, as we defined
+it, cannot be resized.
+
+1790
+01:25:31,730 --> 01:25:34,477
+You can create a new array,
+copy everything over.
+
+1791
+01:25:34,477 --> 01:25:37,310
+I'm starting to think maybe we
+shouldn't end the class on this note.
+
+1792
+01:25:37,310 --> 01:25:38,180
+But that's OK.
+
+1793
+01:25:38,180 --> 01:25:39,200
+We'll move on.
+
+1794
+01:25:39,200 --> 01:25:41,030
+12,000 points for the lead.
+
+1795
+01:25:41,030 --> 01:25:46,400
+And number 13, what does CSS
+stand for in web development--
+
+1796
+01:25:46,400 --> 01:25:50,900
+computer style sheets, cascading
+style sheets, creative style systems,
+
+1797
+01:25:50,900 --> 01:25:53,730
+colorful sheets styles?
+
+1798
+01:25:53,730 --> 01:25:59,600
+And most popular answer is correct
+with 81%, cascading style sheets.
+
+1799
+01:25:59,600 --> 01:26:03,590
+On the top 10 list here at 1,300
+points, still a perfect score,
+
+1800
+01:26:03,590 --> 01:26:07,040
+and our three human volunteers
+are doing well here too.
+
+1801
+01:26:07,040 --> 01:26:11,240
+14, how to represent a
+decimal number 5 in binary.
+
+1802
+01:26:11,240 --> 01:26:13,160
+All right, here we go.
+
+1803
+01:26:13,160 --> 01:26:14,195
+I'll let you read these.
+
+1804
+01:26:14,195 --> 01:26:23,750
+
+
+1805
+01:26:23,750 --> 01:26:31,520
+All rights, fingers crossed, decimal
+number 5 in binary is, indeed, 101.
+
+1806
+01:26:31,520 --> 01:26:36,110
+Because that's a 4 plus 0
+plus 1 gives us a decimal 5.
+
+1807
+01:26:36,110 --> 01:26:41,180
+All right, next question, and amazing
+a28c3, whoever you are out there,
+
+1808
+01:26:41,180 --> 01:26:42,110
+nicely done.
+
+1809
+01:26:42,110 --> 01:26:44,750
+Who is the CS50 mascot--
+
+1810
+01:26:44,750 --> 01:26:49,460
+cat, duck, robot dog
+Spot, Oscar the Grouch?
+
+1811
+01:26:49,460 --> 01:26:51,440
+All of whom have appeared in some form.
+
+1812
+01:26:51,440 --> 01:26:55,790
+
+
+1813
+01:26:55,790 --> 01:27:03,340
+This one will be a little looser with
+answers, but looks like duck and cat
+
+1814
+01:27:03,340 --> 01:27:04,720
+were both the most popular.
+
+1815
+01:27:04,720 --> 01:27:07,120
+Duck has kind of become the
+mascot, suffice it to say.
+
+1816
+01:27:07,120 --> 01:27:09,500
+Cat is kind of everywhere
+on CS50 social media.
+
+1817
+01:27:09,500 --> 01:27:11,620
+So we'll accept cat as well.
+
+1818
+01:27:11,620 --> 01:27:14,860
+We love Spot, but has only
+made that one appearance.
+
+1819
+01:27:14,860 --> 01:27:16,900
+15,000.
+
+1820
+01:27:16,900 --> 01:27:20,650
+Final few questions, what is the output
+of printf quote, unquote, "1" plus
+
+1821
+01:27:20,650 --> 01:27:23,320
+quote, unquote, "2?"
+
+1822
+01:27:23,320 --> 01:27:27,850
+It will return an
+error, twelve, 3, or 12?
+
+1823
+01:27:27,850 --> 01:27:31,750
+English and digits respectively there.
+
+1824
+01:27:31,750 --> 01:27:32,760
+Six seconds.
+
+1825
+01:27:32,760 --> 01:27:36,480
+
+
+1826
+01:27:36,480 --> 01:27:37,620
+All right, one second.
+
+1827
+01:27:37,620 --> 01:27:42,950
+And 12 with 74% is correct.
+
+1828
+01:27:42,950 --> 01:27:45,410
+Because it's not quite
+12, it is more rather
+
+1829
+01:27:45,410 --> 01:27:49,580
+1, 2 because those are two strings that
+got concatenated would not actually
+
+1830
+01:27:49,580 --> 01:27:50,870
+be an error in that case.
+
+1831
+01:27:50,870 --> 01:27:52,690
+It's just not what you expect.
+
+1832
+01:27:52,690 --> 01:27:55,190
+All right, it's getting a little
+harder, but still someone's
+
+1833
+01:27:55,190 --> 01:27:56,060
+got a perfect score.
+
+1834
+01:27:56,060 --> 01:27:58,310
+What does LIFO stand for?
+
+1835
+01:27:58,310 --> 01:28:04,100
+Lost In First Order, Last In First
+Out, Let Inside Fall Outside,
+
+1836
+01:28:04,100 --> 01:28:08,570
+Long Indentation For Organization?
+
+1837
+01:28:08,570 --> 01:28:09,230
+Good one.
+
+1838
+01:28:09,230 --> 01:28:14,420
+
+
+1839
+01:28:14,420 --> 01:28:19,160
+Last In First Out, and we discussed
+this in the context of a stack.
+
+1840
+01:28:19,160 --> 01:28:21,200
+Because as you pile things
+on top of the stack,
+
+1841
+01:28:21,200 --> 01:28:23,330
+the last one in is the first one out.
+
+1842
+01:28:23,330 --> 01:28:25,520
+All right, nicely
+done, this player here.
+
+1843
+01:28:25,520 --> 01:28:26,930
+Three questions to go.
+
+1844
+01:28:26,930 --> 01:28:30,410
+On average, how early did
+you submit the weekly pset?
+
+1845
+01:28:30,410 --> 01:28:34,580
+A couple of days early, no rush, the
+morning of, a couple of hours early,
+
+1846
+01:28:34,580 --> 01:28:40,070
+but was not too nervous,
+11:59:59, I live on the edge.
+
+1847
+01:28:40,070 --> 01:28:41,870
+Again, user-generated content.
+
+1848
+01:28:41,870 --> 01:28:44,670
+
+
+1849
+01:28:44,670 --> 01:28:47,350
+And the most popular answer--
+
+1850
+01:28:47,350 --> 01:28:51,450
+[LAUGHTER] Carter and I
+conferred before class
+
+1851
+01:28:51,450 --> 01:28:53,280
+and we autocratically
+decreed that this is
+
+1852
+01:28:53,280 --> 01:28:55,980
+the only right answer
+and the only one we
+
+1853
+01:28:55,980 --> 01:29:01,440
+will accept here, though we
+appreciate the others as well.
+
+1854
+01:29:01,440 --> 01:29:05,270
+Wow, all right, did you take
+this class for the CS50 shirt?
+
+1855
+01:29:05,270 --> 01:29:07,920
+
+
+1856
+01:29:07,920 --> 01:29:13,380
+Yes, no, maybe, I'm not telling you?
+
+1857
+01:29:13,380 --> 01:29:20,150
+So that is this here shirt, which
+you'll get at the CS50 fair.
+
+1858
+01:29:20,150 --> 01:29:23,470
+One second.
+
+1859
+01:29:23,470 --> 01:29:27,460
+And, yes, no, maybe, I'm not telling
+you, this time, we'll accept all four
+
+1860
+01:29:27,460 --> 01:29:30,147
+of those, which brings us to our
+final question, at which point
+
+1861
+01:29:30,147 --> 01:29:32,230
+we'll reveal the scores
+of all of our participants
+
+1862
+01:29:32,230 --> 01:29:34,940
+and see if we can get the
+number one score online.
+
+1863
+01:29:34,940 --> 01:29:37,900
+What is the phrase that David
+says at the end of each lecture?
+
+1864
+01:29:37,900 --> 01:29:41,450
+
+
+1865
+01:29:41,450 --> 01:29:44,470
+[INTERPOSING VOICES]
+
+1866
+01:29:44,470 --> 01:29:49,640
+
+
+1867
+01:29:49,640 --> 01:29:51,390
+DAVID MALAN: All right,
+before we actually
+
+1868
+01:29:51,390 --> 01:29:54,000
+say what the right answer
+is, though we can show it,
+
+1869
+01:29:54,000 --> 01:30:00,040
+Carter, we'll see that there is 98%--
+
+1870
+01:30:00,040 --> 01:30:04,000
+I've never said this at the end
+here, but 98% answers there.
+
+1871
+01:30:04,000 --> 01:30:05,850
+Let's go ahead and
+look at the top chart.
+
+1872
+01:30:05,850 --> 01:30:11,160
+Do we know who web_a28c3 is?
+
+1873
+01:30:11,160 --> 01:30:12,960
+Oh my goodness, come on down.
+
+1874
+01:30:12,960 --> 01:30:16,438
+And among our friends here, can
+you pull up each of your scores
+
+1875
+01:30:16,438 --> 01:30:17,355
+if you're able to see?
+
+1876
+01:30:17,355 --> 01:30:20,080
+
+
+1877
+01:30:20,080 --> 01:30:29,260
+And among our human volunteers,
+16,792, 17,292, 16,958.
+
+1878
+01:30:29,260 --> 01:30:32,420
+So we have our human winner as well.
+
+1879
+01:30:32,420 --> 01:30:36,062
+So without further ado, allow
+me to thank our volunteers.
+
+1880
+01:30:36,062 --> 01:30:37,270
+Thanks so much to CS50 staff.
+
+1881
+01:30:37,270 --> 01:30:38,920
+We're about to give out some
+cookies and, if you want,
+
+1882
+01:30:38,920 --> 01:30:39,970
+some stress balls here.
+
+1883
+01:30:39,970 --> 01:30:41,380
+Cake is now served.
+
+1884
+01:30:41,380 --> 01:30:43,600
+And this was CS50.
+
+1885
+01:30:43,600 --> 01:30:45,965
+[CHEERING]
+
+1886
+01:30:45,965 --> 01:30:47,040
+[INTERPOSING VOICES]
+
+1887
+01:30:47,040 --> 01:30:50,390
+[MUSIC PLAYING]
+
+1888
+01:30:50,390 --> 01:31:16,000

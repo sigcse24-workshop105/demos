@@ -1,0 +1,5488 @@
+1
+00:00:00,000 --> 00:00:01,896
+
+
+2
+00:00:01,896 --> 00:00:02,850
+CARTER ZENKE: OK.
+
+3
+00:00:02,850 --> 00:00:06,810
+Well, hello one and all, and
+welcome to CS50's third session,
+
+4
+00:00:06,810 --> 00:00:08,760
+this one for week 3.
+
+5
+00:00:08,760 --> 00:00:11,010
+My name is Carter Zenke,
+the course's preceptor.
+
+6
+00:00:11,010 --> 00:00:12,960
+And the goal of these
+sections is to help
+
+7
+00:00:12,960 --> 00:00:16,470
+you bridge the gap between the
+lecture you perhaps just watched
+
+8
+00:00:16,470 --> 00:00:18,660
+and the problem set
+you'll tackle this week,
+
+9
+00:00:18,660 --> 00:00:21,118
+or perhaps throughout the rest
+of some other period of time
+
+10
+00:00:21,118 --> 00:00:23,040
+you'll be working on that problem set.
+
+11
+00:00:23,040 --> 00:00:26,460
+Now, today we actually are going to
+talk about a few different topics.
+
+12
+00:00:26,460 --> 00:00:27,970
+Among them are these here.
+
+13
+00:00:27,970 --> 00:00:32,670
+So talking about how we can learn
+about algorithms, discuss what they do,
+
+14
+00:00:32,670 --> 00:00:36,180
+and what they are, but also
+how we can compare algorithms.
+
+15
+00:00:36,180 --> 00:00:39,270
+What makes one algorithm better
+than some other algorithm?
+
+16
+00:00:39,270 --> 00:00:40,900
+We'll talk about that today.
+
+17
+00:00:40,900 --> 00:00:44,680
+We'll also talk about this idea
+of a struct, or a structure,
+
+18
+00:00:44,680 --> 00:00:47,190
+allowing us to make our
+very own data types.
+
+19
+00:00:47,190 --> 00:00:51,480
+And we'll also, towards the end,
+talk about this idea of recursion,
+
+20
+00:00:51,480 --> 00:00:54,637
+or trying to define something
+by defining it within itself.
+
+21
+00:00:54,637 --> 00:00:57,720
+And that'll hopefully make a little
+more sense towards the end of section.
+
+22
+00:00:57,720 --> 00:01:01,050
+But it is a powerful tool you can use
+to solve problems in computer science,
+
+23
+00:01:01,050 --> 00:01:05,780
+and a worthwhile tool to have in
+your toolkit as a computer scientist.
+
+24
+00:01:05,780 --> 00:01:09,700
+So let's begin by jumping into
+our very first topic, which
+
+25
+00:01:09,700 --> 00:01:11,890
+is how we can compare algorithms.
+
+26
+00:01:11,890 --> 00:01:16,615
+And in lecture, we had two algorithms
+we were going to think about, or two--
+
+27
+00:01:16,615 --> 00:01:18,490
+really, two types of
+algorithms, if you will.
+
+28
+00:01:18,490 --> 00:01:21,100
+One of them is an algorithm
+used for searching,
+
+29
+00:01:21,100 --> 00:01:23,620
+how we can find certain
+data from a data set.
+
+30
+00:01:23,620 --> 00:01:26,320
+And then an other type
+of algorithm for sorting.
+
+31
+00:01:26,320 --> 00:01:28,690
+How do we order data to
+make things perhaps more
+
+32
+00:01:28,690 --> 00:01:30,920
+efficient to search later on?
+
+33
+00:01:30,920 --> 00:01:34,090
+And we also talked a bit
+briefly about these notations
+
+34
+00:01:34,090 --> 00:01:35,770
+we could use to compare algorithms.
+
+35
+00:01:35,770 --> 00:01:39,650
+You might recall big O notation
+and big omega notation.
+
+36
+00:01:39,650 --> 00:01:42,490
+So we'll talk more about
+those in section today.
+
+37
+00:01:42,490 --> 00:01:46,240
+Now, let's go back as a bit
+of a review and think first
+
+38
+00:01:46,240 --> 00:01:48,440
+through some searching algorithms.
+
+39
+00:01:48,440 --> 00:01:50,920
+So here, I have a list of people.
+
+40
+00:01:50,920 --> 00:01:52,270
+You can see on my screen.
+
+41
+00:01:52,270 --> 00:01:54,400
+And currently, what do you notice?
+
+42
+00:01:54,400 --> 00:01:57,040
+The people here are not
+quite sorted by name.
+
+43
+00:01:57,040 --> 00:02:00,610
+We have Matthew first,
+then Samia, then Alyssa.
+
+44
+00:02:00,610 --> 00:02:03,110
+So it isn't quite in alphabetical order.
+
+45
+00:02:03,110 --> 00:02:06,880
+And if I could ask you all, what is
+the algorithm we might use to search,
+
+46
+00:02:06,880 --> 00:02:12,010
+in this case, an array of people,
+if we know the list isn't sorted?
+
+47
+00:02:12,010 --> 00:02:14,770
+What kind of algorithm
+could we use in this case?
+
+48
+00:02:14,770 --> 00:02:17,910
+
+
+49
+00:02:17,910 --> 00:02:20,420
+So I'm seeing some
+people say linear search.
+
+50
+00:02:20,420 --> 00:02:25,020
+And linear search, to be clear, is when
+we start at maybe one side of this list
+
+51
+00:02:25,020 --> 00:02:28,310
+and just look at the very first
+person, then the next person, then
+
+52
+00:02:28,310 --> 00:02:29,970
+the next person, and so on.
+
+53
+00:02:29,970 --> 00:02:33,710
+So let's pretend here we're trying
+to find this person, Alyssa,
+
+54
+00:02:33,710 --> 00:02:35,640
+among these seven people.
+
+55
+00:02:35,640 --> 00:02:39,200
+So if we are a person, I could
+very clearly spot Alyssa.
+
+56
+00:02:39,200 --> 00:02:40,490
+Alyssa seems to be right here.
+
+57
+00:02:40,490 --> 00:02:40,990
+Right?
+
+58
+00:02:40,990 --> 00:02:42,290
+That's not too hard for me.
+
+59
+00:02:42,290 --> 00:02:43,670
+I could do that in one step.
+
+60
+00:02:43,670 --> 00:02:48,085
+But a computer has to look at only
+one piece of information at a time.
+
+61
+00:02:48,085 --> 00:02:49,460
+So it looks a bit more like this.
+
+62
+00:02:49,460 --> 00:02:53,480
+You can imagine these people being
+on a stage and us dimming the lights
+
+63
+00:02:53,480 --> 00:02:56,700
+and allowing us to only
+see one person at a time.
+
+64
+00:02:56,700 --> 00:02:59,900
+So for a computer, it might
+look first and see Matthew.
+
+65
+00:02:59,900 --> 00:03:02,480
+And is Matthew Alyssa?
+
+66
+00:03:02,480 --> 00:03:03,050
+No.
+
+67
+00:03:03,050 --> 00:03:04,800
+So we're going to look
+at the next person.
+
+68
+00:03:04,800 --> 00:03:06,960
+So we'll turn our spotlight
+to the next person.
+
+69
+00:03:06,960 --> 00:03:09,310
+We'll see Samia.
+
+70
+00:03:09,310 --> 00:03:10,870
+And we're not quite there yet.
+
+71
+00:03:10,870 --> 00:03:14,710
+We'll take the next person now
+and we'll see still Alyssa.
+
+72
+00:03:14,710 --> 00:03:18,430
+So now we have Alyssa on our
+third try, going through person
+
+73
+00:03:18,430 --> 00:03:20,290
+by person, left to right.
+
+74
+00:03:20,290 --> 00:03:23,660
+This is an example,
+then, of linear search.
+
+75
+00:03:23,660 --> 00:03:26,890
+So let's imagine that we go
+back and turn on all the lights,
+
+76
+00:03:26,890 --> 00:03:30,130
+and we have people, in
+this case, rearranged.
+
+77
+00:03:30,130 --> 00:03:33,250
+So notice how their names
+are in alphabetical order.
+
+78
+00:03:33,250 --> 00:03:37,610
+We have Alyssa, then Cecelia,
+then Douglas, then Lucas.
+
+79
+00:03:37,610 --> 00:03:44,030
+What kind of algorithm could we
+use now to search for Alyssa?
+
+80
+00:03:44,030 --> 00:03:47,210
+We saw this in lecture 2.
+
+81
+00:03:47,210 --> 00:03:50,340
+So I'm seeing some people say
+this idea of binary search.
+
+82
+00:03:50,340 --> 00:03:53,510
+We actually saw a binary search
+in our very first lecture when
+
+83
+00:03:53,510 --> 00:03:56,300
+David took a phone book
+and opened it to the middle
+
+84
+00:03:56,300 --> 00:04:00,650
+and asked if we went too far or not
+far enough, tore off half of it,
+
+85
+00:04:00,650 --> 00:04:02,480
+and then kept going,
+and going, and going.
+
+86
+00:04:02,480 --> 00:04:06,990
+So a similar idea applies to binary
+search in this case with people, too.
+
+87
+00:04:06,990 --> 00:04:11,030
+So let's again dim the lights and
+let's only look at one person.
+
+88
+00:04:11,030 --> 00:04:13,640
+And if we're using
+binary search, we know
+
+89
+00:04:13,640 --> 00:04:16,040
+it's perhaps most efficient
+to look in the middle
+
+90
+00:04:16,040 --> 00:04:21,233
+and ask ourselves, have we gone too
+far or not far enough in our list?
+
+91
+00:04:21,233 --> 00:04:22,400
+So let's look in the middle.
+
+92
+00:04:22,400 --> 00:04:24,680
+And here we get Lucas.
+
+93
+00:04:24,680 --> 00:04:29,000
+Have we gone too far in
+our list or not far enough?
+
+94
+00:04:29,000 --> 00:04:31,635
+
+
+95
+00:04:31,635 --> 00:04:33,260
+Seems like we've gone a little too far.
+
+96
+00:04:33,260 --> 00:04:38,100
+If Alyssa's name begins with A, Lucas
+is after Alyssa and the alphabet.
+
+97
+00:04:38,100 --> 00:04:42,950
+So let's say, OK, let's not worry
+about Lucas or the people after Lucas.
+
+98
+00:04:42,950 --> 00:04:45,200
+Let's focus this on the
+first half of people
+
+99
+00:04:45,200 --> 00:04:47,670
+here and look in the middle of that.
+
+100
+00:04:47,670 --> 00:04:52,220
+So it turns out the middle of our
+first half here is going to be Cecelia.
+
+101
+00:04:52,220 --> 00:04:57,505
+And again, have we gone
+too far or not far enough?
+
+102
+00:04:57,505 --> 00:04:59,680
+Seems we've gone a
+little bit too far still.
+
+103
+00:04:59,680 --> 00:05:01,040
+So we'll do the same thing.
+
+104
+00:05:01,040 --> 00:05:04,090
+We'll take that half of the
+problem and tear it away,
+
+105
+00:05:04,090 --> 00:05:06,220
+and now I'll focus just
+on that very first half.
+
+106
+00:05:06,220 --> 00:05:09,280
+And it turns out the very first
+person in that first half here
+
+107
+00:05:09,280 --> 00:05:12,020
+is going to be Alyssa themselves.
+
+108
+00:05:12,020 --> 00:05:15,880
+So we have two algorithms
+here, one called linear search
+
+109
+00:05:15,880 --> 00:05:17,660
+and one called binary search.
+
+110
+00:05:17,660 --> 00:05:20,420
+But it's also worth thinking
+about how we can compare them.
+
+111
+00:05:20,420 --> 00:05:24,310
+So let me ask you here, how
+many steps did each algorithm
+
+112
+00:05:24,310 --> 00:05:27,190
+take, if you can think back?
+
+113
+00:05:27,190 --> 00:05:32,550
+Just in terms of a plain, old number
+of steps, how many did each take?
+
+114
+00:05:32,550 --> 00:05:35,680
+Alyssa was the third person
+in our linear search,
+
+115
+00:05:35,680 --> 00:05:37,480
+so it took probably three steps.
+
+116
+00:05:37,480 --> 00:05:41,110
+And if you recall, just now, our
+binary search also took three steps.
+
+117
+00:05:41,110 --> 00:05:43,170
+We start in the middle,
+divide it in half once,
+
+118
+00:05:43,170 --> 00:05:45,250
+and divide it in half
+again for three steps.
+
+119
+00:05:45,250 --> 00:05:49,020
+So it seems like linear search and
+binary search were the same here.
+
+120
+00:05:49,020 --> 00:05:51,340
+They performed the same way.
+
+121
+00:05:51,340 --> 00:05:54,690
+So I might then argue, well, it
+doesn't quite matter which one we use.
+
+122
+00:05:54,690 --> 00:05:56,790
+I could use linear
+search or binary search.
+
+123
+00:05:56,790 --> 00:05:58,690
+Each are equivalent.
+
+124
+00:05:58,690 --> 00:06:04,105
+And what might you say, based
+on what you saw in lecture?
+
+125
+00:06:04,105 --> 00:06:06,730
+If I were arguing with you that
+linear search is the exact same
+
+126
+00:06:06,730 --> 00:06:11,770
+as binary search, what would you say?
+
+127
+00:06:11,770 --> 00:06:14,110
+So I'm seeing some people
+say it depends on the problem
+
+128
+00:06:14,110 --> 00:06:16,650
+size, which does make sense.
+
+129
+00:06:16,650 --> 00:06:18,910
+Depends on the input that we get.
+
+130
+00:06:18,910 --> 00:06:22,330
+So perhaps maybe we just
+got a little unlucky here,
+
+131
+00:06:22,330 --> 00:06:25,720
+and both binary search and
+linear search took three steps.
+
+132
+00:06:25,720 --> 00:06:28,930
+But it might not be
+the case in all inputs.
+
+133
+00:06:28,930 --> 00:06:32,810
+And I like this idea of it depends
+on the size of our data set.
+
+134
+00:06:32,810 --> 00:06:36,610
+So in this case, if we had
+a very, very big data set,
+
+135
+00:06:36,610 --> 00:06:40,390
+we heard, or saw, in lecture that binary
+search might be a little bit better
+
+136
+00:06:40,390 --> 00:06:42,260
+for that big data set.
+
+137
+00:06:42,260 --> 00:06:45,580
+So let's think instead as
+a computer scientist would
+
+138
+00:06:45,580 --> 00:06:50,710
+and think not just in terms of this one
+particular input, but in terms of input
+
+139
+00:06:50,710 --> 00:06:51,670
+in general.
+
+140
+00:06:51,670 --> 00:06:55,900
+In the general case, how well do
+each of these algorithms perform?
+
+141
+00:06:55,900 --> 00:07:00,310
+So a better question to ask
+here is this one, which is,
+
+142
+00:07:00,310 --> 00:07:04,990
+what's the greatest number of steps
+these algorithms will ever take?
+
+143
+00:07:04,990 --> 00:07:07,780
+And let's focus actually just
+here on our seven people.
+
+144
+00:07:07,780 --> 00:07:12,270
+Let's say, how long
+would linear search take?
+
+145
+00:07:12,270 --> 00:07:17,690
+And if we took the greatest number
+of steps here, it seems like seven.
+
+146
+00:07:17,690 --> 00:07:18,190
+Right?
+
+147
+00:07:18,190 --> 00:07:19,033
+So seven steps.
+
+148
+00:07:19,033 --> 00:07:20,950
+We have to go through
+all the different people
+
+149
+00:07:20,950 --> 00:07:24,680
+to find out have we found the
+person we're looking for or not.
+
+150
+00:07:24,680 --> 00:07:26,230
+So it seems like seven.
+
+151
+00:07:26,230 --> 00:07:28,870
+What about binary search, though?
+
+152
+00:07:28,870 --> 00:07:36,230
+What's the greatest number of steps it
+would ever take if we had seven people?
+
+153
+00:07:36,230 --> 00:07:39,300
+I'm seeing n over 2,
+or dividing it in half.
+
+154
+00:07:39,300 --> 00:07:40,970
+And you're almost there.
+
+155
+00:07:40,970 --> 00:07:42,900
+It, in fact, is a logarithm.
+
+156
+00:07:42,900 --> 00:07:46,052
+So a logarithm allows us to take
+something and divide it in half,
+
+157
+00:07:46,052 --> 00:07:48,260
+divide it in half again,
+and divide it in half again.
+
+158
+00:07:48,260 --> 00:07:51,260
+So it's more appropriate here
+to say that linear search takes
+
+159
+00:07:51,260 --> 00:07:55,310
+about seven steps, and binary search for
+this particular input of seven people
+
+160
+00:07:55,310 --> 00:07:59,390
+takes log base 2 of 7,
+which basically means
+
+161
+00:07:59,390 --> 00:08:04,400
+how many times we can divide 7 by 2,
+which turns out to be something like--
+
+162
+00:08:04,400 --> 00:08:05,270
+let's see.
+
+163
+00:08:05,270 --> 00:08:08,990
+Maybe three or so steps.
+
+164
+00:08:08,990 --> 00:08:13,660
+So in the worst case, if you will,
+linear search takes seven steps.
+
+165
+00:08:13,660 --> 00:08:16,780
+In the worst case, binary
+search takes far fewer,
+
+166
+00:08:16,780 --> 00:08:21,070
+and therefore might
+be a better algorithm.
+
+167
+00:08:21,070 --> 00:08:26,040
+So what questions do we have so far on
+this idea of comparing these algorithms
+
+168
+00:08:26,040 --> 00:08:31,350
+using the worst possible case?
+
+169
+00:08:31,350 --> 00:08:32,419
+Any questions?
+
+170
+00:08:32,419 --> 00:08:35,860
+
+
+171
+00:08:35,860 --> 00:08:38,463
+I'm seeing a question
+here about big O notation,
+
+172
+00:08:38,463 --> 00:08:39,880
+which is, where does that come in?
+
+173
+00:08:39,880 --> 00:08:42,470
+So that's actually going
+to be our next step here.
+
+174
+00:08:42,470 --> 00:08:45,550
+So we often don't think
+about problems in terms
+
+175
+00:08:45,550 --> 00:08:48,250
+of the exact number of
+elements we're searching.
+
+176
+00:08:48,250 --> 00:08:51,940
+We often might think about,
+in an even more general case,
+
+177
+00:08:51,940 --> 00:08:58,870
+just some number of people, like N.
+If we had 7, or 8, or 10, or 1,000.
+
+178
+00:08:58,870 --> 00:08:59,480
+Who cares?
+
+179
+00:08:59,480 --> 00:09:02,390
+We'll just call it N.
+Some number of people.
+
+180
+00:09:02,390 --> 00:09:06,313
+And so now we could say, well,
+linear search, in the worst case,
+
+181
+00:09:06,313 --> 00:09:08,230
+the greatest number of
+steps it will ever take
+
+182
+00:09:08,230 --> 00:09:11,620
+is going to be N steps,
+one for each person, where
+
+183
+00:09:11,620 --> 00:09:14,170
+we assume we have N people.
+
+184
+00:09:14,170 --> 00:09:14,980
+Right?
+
+185
+00:09:14,980 --> 00:09:17,500
+Now, binary search
+would do the same thing.
+
+186
+00:09:17,500 --> 00:09:21,100
+It would say, let's actually
+not go through all N of them.
+
+187
+00:09:21,100 --> 00:09:23,560
+Let's divide things in half,
+and in half, and in half
+
+188
+00:09:23,560 --> 00:09:28,330
+again so the most steps we'd ever
+take would be log base 2 of N,
+
+189
+00:09:28,330 --> 00:09:31,340
+where again, N is just the general
+number of people we have overall.
+
+190
+00:09:31,340 --> 00:09:35,360
+It could be 10, 100, 1,000, and so on.
+
+191
+00:09:35,360 --> 00:09:38,770
+But now computer
+scientists, because we often
+
+192
+00:09:38,770 --> 00:09:41,620
+work with data sets that
+are so large and so big,
+
+193
+00:09:41,620 --> 00:09:44,710
+on the order of millions or
+billions of pieces of data,
+
+194
+00:09:44,710 --> 00:09:49,420
+we don't often care about things as
+robust as, OK, is it log base 2 of N
+
+195
+00:09:49,420 --> 00:09:50,650
+or log base 3?
+
+196
+00:09:50,650 --> 00:09:53,000
+We care about an even more general case.
+
+197
+00:09:53,000 --> 00:09:55,880
+And that's where this idea
+of big O notation comes in.
+
+198
+00:09:55,880 --> 00:10:01,640
+So we might say that linear search
+operates on the order of N steps.
+
+199
+00:10:01,640 --> 00:10:04,270
+And in the same way,
+binary search operates
+
+200
+00:10:04,270 --> 00:10:08,150
+on the order of log of N steps.
+
+201
+00:10:08,150 --> 00:10:11,050
+So thinking here not even
+about the general case of,
+
+202
+00:10:11,050 --> 00:10:15,820
+OK, is it 7 or 10 people, but just,
+what are we actually doing here?
+
+203
+00:10:15,820 --> 00:10:20,210
+How does the problem scale
+as we add new people?
+
+204
+00:10:20,210 --> 00:10:23,830
+So big O notation, then, is
+used often for this question of,
+
+205
+00:10:23,830 --> 00:10:27,422
+what is the greatest number of
+steps an algorithm will ever take?
+
+206
+00:10:27,422 --> 00:10:29,380
+If you're more technical,
+you could think of it
+
+207
+00:10:29,380 --> 00:10:31,090
+as the upper bound of the algorithm.
+
+208
+00:10:31,090 --> 00:10:35,650
+The algorithm will never
+run slower than this.
+
+209
+00:10:35,650 --> 00:10:40,960
+So questions then on the
+transition between talking
+
+210
+00:10:40,960 --> 00:10:45,040
+in terms of individual steps and
+talking now in these general, kind
+
+211
+00:10:45,040 --> 00:10:46,285
+of hand-wavy cases?
+
+212
+00:10:46,285 --> 00:10:49,540
+
+
+213
+00:10:49,540 --> 00:10:50,040
+Question.
+
+214
+00:10:50,040 --> 00:10:53,490
+Is there a faster way
+than binary search?
+
+215
+00:10:53,490 --> 00:10:55,163
+Mm-- it's a good question.
+
+216
+00:10:55,163 --> 00:10:58,080
+So if you get really into this, you
+can find other kinds of algorithms
+
+217
+00:10:58,080 --> 00:11:02,100
+to search data, and there might be
+cases that could be a little faster
+
+218
+00:11:02,100 --> 00:11:03,030
+than binary search.
+
+219
+00:11:03,030 --> 00:11:05,190
+I don't know any off the top
+of my head, but certainly there
+
+220
+00:11:05,190 --> 00:11:07,020
+are researchers who are
+working on that kind of thing,
+
+221
+00:11:07,020 --> 00:11:10,000
+to figure out how do we write a
+faster algorithm than, for instance,
+
+222
+00:11:10,000 --> 00:11:13,430
+something like binary search.
+
+223
+00:11:13,430 --> 00:11:18,750
+OK, so let's keep going, and let's think
+about a different kind of scenario.
+
+224
+00:11:18,750 --> 00:11:22,340
+So here, we're talking about the
+worst case, the greatest number
+
+225
+00:11:22,340 --> 00:11:24,110
+of steps our algorithm will ever take.
+
+226
+00:11:24,110 --> 00:11:26,250
+But there's some other case, too.
+
+227
+00:11:26,250 --> 00:11:29,750
+So let's consider this one where
+we're still trying to find Alyssa
+
+228
+00:11:29,750 --> 00:11:31,980
+and we're using linear search.
+
+229
+00:11:31,980 --> 00:11:34,610
+So let's say it just so
+happens to be that Alyssa
+
+230
+00:11:34,610 --> 00:11:37,480
+is the very first person we find.
+
+231
+00:11:37,480 --> 00:11:39,050
+How many steps would that take?
+
+232
+00:11:39,050 --> 00:11:40,360
+Well, just one.
+
+233
+00:11:40,360 --> 00:11:41,230
+Right?
+
+234
+00:11:41,230 --> 00:11:44,350
+And now let's think, too,
+about a binary search.
+
+235
+00:11:44,350 --> 00:11:46,937
+Let's say we have this input of people.
+
+236
+00:11:46,937 --> 00:11:48,520
+They're kind of shuffled a little bit.
+
+237
+00:11:48,520 --> 00:11:52,360
+We have Aaron, Amulya, Alex,
+Alyssa, Cecelia, Lucas, and Ramya,
+
+238
+00:11:52,360 --> 00:11:54,340
+and we're doing binary search.
+
+239
+00:11:54,340 --> 00:11:56,230
+We're still looking for Alyssa.
+
+240
+00:11:56,230 --> 00:12:00,040
+And if we were to do binary search
+on this data set, where would
+
+241
+00:12:00,040 --> 00:12:01,060
+we first look?
+
+242
+00:12:01,060 --> 00:12:02,140
+Well, the middle.
+
+243
+00:12:02,140 --> 00:12:05,480
+So it took us only one
+step to find Alyssa here.
+
+244
+00:12:05,480 --> 00:12:08,943
+So there's another question we
+could ask, then, which is this.
+
+245
+00:12:08,943 --> 00:12:11,860
+Well, first, how many steps did the
+algorithm take, did each one take?
+
+246
+00:12:11,860 --> 00:12:15,740
+Well, we talked about how linear search
+took one, and so did binary search.
+
+247
+00:12:15,740 --> 00:12:18,610
+But in general, we could
+also ask this question.
+
+248
+00:12:18,610 --> 00:12:23,290
+What's the fewest number of steps
+the algorithm could ever take?
+
+249
+00:12:23,290 --> 00:12:27,460
+So with big O notation, we talked
+about what's the greatest number.
+
+250
+00:12:27,460 --> 00:12:32,410
+But now we're asking, what's the fewest
+number the algorithm could ever take?
+
+251
+00:12:32,410 --> 00:12:35,050
+And in this case, you could
+kind of simplify things
+
+252
+00:12:35,050 --> 00:12:37,820
+and say, what happens if we get lucky?
+
+253
+00:12:37,820 --> 00:12:41,030
+Well, it turns out that in
+linear search, the best,
+
+254
+00:12:41,030 --> 00:12:43,250
+fewest number steps we
+could take is just one.
+
+255
+00:12:43,250 --> 00:12:45,320
+Our person is at the
+very front of our list.
+
+256
+00:12:45,320 --> 00:12:48,320
+And in binary search,
+it's similarly just one.
+
+257
+00:12:48,320 --> 00:12:50,580
+Our person is at the middle of our list.
+
+258
+00:12:50,580 --> 00:12:52,610
+So in this case, it's still the same.
+
+259
+00:12:52,610 --> 00:12:59,200
+Linear search and binary search, the
+best case, they only take one step.
+
+260
+00:12:59,200 --> 00:13:00,910
+Now, in general, as
+we just talked about,
+
+261
+00:13:00,910 --> 00:13:04,990
+computer scientists don't tend to
+think about one particular input.
+
+262
+00:13:04,990 --> 00:13:10,040
+They think about general inputs, what
+happens in just the overall best case.
+
+263
+00:13:10,040 --> 00:13:15,280
+And we could say even if we had 10
+people, 100 people, 1,000 people,
+
+264
+00:13:15,280 --> 00:13:17,620
+the best case scenario,
+each of these algorithms
+
+265
+00:13:17,620 --> 00:13:20,840
+would take one and only one steps.
+
+266
+00:13:20,840 --> 00:13:23,600
+And that's where this idea
+of omega notation comes in.
+
+267
+00:13:23,600 --> 00:13:28,390
+So omega notation says, what,
+given any kind of input,
+
+268
+00:13:28,390 --> 00:13:33,480
+would be the fewest number
+of steps we would ever take?
+
+269
+00:13:33,480 --> 00:13:39,270
+And now here, too, is this idea that
+omega notation doesn't even quite
+
+270
+00:13:39,270 --> 00:13:44,790
+care if it takes two, or three,
+or 10 steps in the best case.
+
+271
+00:13:44,790 --> 00:13:48,330
+If it takes some fixed
+number of steps, it only
+
+272
+00:13:48,330 --> 00:13:51,450
+is going to be written as omega of 1.
+
+273
+00:13:51,450 --> 00:13:53,590
+And there are other notations
+we'll consider, too,
+
+274
+00:13:53,590 --> 00:13:55,007
+which I'll show you in just a bit.
+
+275
+00:13:55,007 --> 00:14:01,200
+But consider for now that even if it
+took a fixed number of steps, 10, 100,
+
+276
+00:14:01,200 --> 00:14:04,890
+1, all of those would be
+written as basically omega of 1,
+
+277
+00:14:04,890 --> 00:14:09,180
+indicating it takes some certain
+number of fixed steps in the best
+
+278
+00:14:09,180 --> 00:14:11,560
+possible case.
+
+279
+00:14:11,560 --> 00:14:16,673
+So questions, then, on these algorithms?
+
+280
+00:14:16,673 --> 00:14:17,590
+I see a question here.
+
+281
+00:14:17,590 --> 00:14:20,860
+"Are linear search and binary
+search the only algorithms
+
+282
+00:14:20,860 --> 00:14:22,270
+that we can search data with?"
+
+283
+00:14:22,270 --> 00:14:23,020
+Certainly not.
+
+284
+00:14:23,020 --> 00:14:24,770
+There are many researchers
+who are working
+
+285
+00:14:24,770 --> 00:14:27,070
+on other algorithms we
+can use to search data,
+
+286
+00:14:27,070 --> 00:14:30,740
+and you might find some that are
+suited for a particular use case.
+
+287
+00:14:30,740 --> 00:14:32,680
+And from lecture, you
+might have recalled
+
+288
+00:14:32,680 --> 00:14:36,820
+David saying that there's
+often a trade-off, let's say,
+
+289
+00:14:36,820 --> 00:14:38,890
+between space and time.
+
+290
+00:14:38,890 --> 00:14:43,150
+You could perhaps have an
+algorithm that uses a lot of space,
+
+291
+00:14:43,150 --> 00:14:46,720
+but could perhaps be a little
+bit faster in searching something
+
+292
+00:14:46,720 --> 00:14:49,720
+because it uses so much space.
+
+293
+00:14:49,720 --> 00:14:51,770
+Good questions.
+
+294
+00:14:51,770 --> 00:14:53,790
+A question about can
+we define an algorithm.
+
+295
+00:14:53,790 --> 00:14:55,010
+So it's a good question here.
+
+296
+00:14:55,010 --> 00:14:57,140
+What even is an algorithm to begin with?
+
+297
+00:14:57,140 --> 00:15:02,460
+We often say an algorithm is simply a
+set of steps to accomplish some task,
+
+298
+00:15:02,460 --> 00:15:04,460
+and those steps have to
+be very clearly defined.
+
+299
+00:15:04,460 --> 00:15:08,000
+Like in linear search, we look at the
+first person, then the next person,
+
+300
+00:15:08,000 --> 00:15:12,120
+then the next person until
+we get to the very end.
+
+301
+00:15:12,120 --> 00:15:14,310
+Good questions here.
+
+302
+00:15:14,310 --> 00:15:15,320
+Any others so far?
+
+303
+00:15:15,320 --> 00:15:20,910
+
+
+304
+00:15:20,910 --> 00:15:21,800
+OK.
+
+305
+00:15:21,800 --> 00:15:24,170
+So here's a question for you all, then.
+
+306
+00:15:24,170 --> 00:15:27,020
+Suppose that you are
+creating a new algorithm
+
+307
+00:15:27,020 --> 00:15:29,330
+and you want to assess its runtime.
+
+308
+00:15:29,330 --> 00:15:31,470
+That is, how quickly does it run.
+
+309
+00:15:31,470 --> 00:15:35,660
+You find out that the fewest steps
+this algorithm will ever take
+
+310
+00:15:35,660 --> 00:15:38,370
+is two, and only two.
+
+311
+00:15:38,370 --> 00:15:44,170
+And now question is, what is the big
+omega notation for this algorithm?
+
+312
+00:15:44,170 --> 00:15:49,330
+Keeping in mind what we've just
+discussed, suppose, in the best case,
+
+313
+00:15:49,330 --> 00:15:51,540
+this algorithm takes two steps.
+
+314
+00:15:51,540 --> 00:15:56,853
+What would be the omega
+notation for this algorithm?
+
+315
+00:15:56,853 --> 00:15:59,770
+I'm seeing a few answers here, which
+is actually what I had hoped for.
+
+316
+00:15:59,770 --> 00:16:03,130
+So I'm seeing some saying
+it would be omega of 1
+
+317
+00:16:03,130 --> 00:16:06,340
+and some saying it would be omega of 2.
+
+318
+00:16:06,340 --> 00:16:10,750
+So if we go back here, maybe
+we wouldn't have omega (1).
+
+319
+00:16:10,750 --> 00:16:13,810
+But we instead, have omega (2).
+
+320
+00:16:13,810 --> 00:16:15,670
+And I think it's a good intuition.
+
+321
+00:16:15,670 --> 00:16:19,840
+If you know that the best case will
+take you two steps, it kind of just
+
+322
+00:16:19,840 --> 00:16:22,420
+makes sense to write omega of 2.
+
+323
+00:16:22,420 --> 00:16:26,170
+But it turns out that computer
+scientists, by convention,
+
+324
+00:16:26,170 --> 00:16:30,770
+like to think of things as being on
+the order of some number of steps.
+
+325
+00:16:30,770 --> 00:16:35,650
+And whether it takes two, three, four,
+if it takes some fixed number of steps,
+
+326
+00:16:35,650 --> 00:16:39,760
+we'll say it operates in
+omega of 1 to symbolize
+
+327
+00:16:39,760 --> 00:16:44,030
+that it just takes some finite
+number of steps in the best case.
+
+328
+00:16:44,030 --> 00:16:50,280
+So not omega of 2, but instead, omega
+of 1 by convention in this case.
+
+329
+00:16:50,280 --> 00:16:52,820
+So some other notations
+you might see as you go off
+
+330
+00:16:52,820 --> 00:16:55,770
+and learn more about
+algorithms are these here.
+
+331
+00:16:55,770 --> 00:17:00,470
+So on the furthest left-hand side,
+you'll see the big O notation.
+
+332
+00:17:00,470 --> 00:17:02,190
+The worst case, if you will.
+
+333
+00:17:02,190 --> 00:17:05,420
+So you'll have algorithms
+that, in the worst case,
+
+334
+00:17:05,420 --> 00:17:07,550
+take some fixed number of steps.
+
+335
+00:17:07,550 --> 00:17:10,099
+They'll be in O(1).
+
+336
+00:17:10,099 --> 00:17:13,130
+There are other algorithms, like
+we just saw binary search, that
+
+337
+00:17:13,130 --> 00:17:15,859
+operate in big O of log(N).
+
+338
+00:17:15,859 --> 00:17:19,490
+They keep dividing problems in
+half, and half, and half again.
+
+339
+00:17:19,490 --> 00:17:22,760
+There are still others
+that operate in O(N).
+
+340
+00:17:22,760 --> 00:17:26,450
+That means they have to take a look
+at every individual element they
+
+341
+00:17:26,450 --> 00:17:27,680
+might be searching for.
+
+342
+00:17:27,680 --> 00:17:31,590
+And then there are some that
+operate in big O of N squared,
+
+343
+00:17:31,590 --> 00:17:35,960
+where for every element, they have
+to take that number of element steps
+
+344
+00:17:35,960 --> 00:17:40,210
+before they can move on to the next
+one, and the next one, and the next one.
+
+345
+00:17:40,210 --> 00:17:42,250
+And in general here,
+we don't really care
+
+346
+00:17:42,250 --> 00:17:46,000
+if it's big O of N squared plus
+another 10 steps at the end.
+
+347
+00:17:46,000 --> 00:17:48,400
+In general, we care
+about the biggest term.
+
+348
+00:17:48,400 --> 00:17:53,070
+N squared, N, log(N), or 1.
+
+349
+00:17:53,070 --> 00:17:55,180
+And same thing for omega notation here.
+
+350
+00:17:55,180 --> 00:17:57,990
+But now thinking about not
+the worst case, but the best
+
+351
+00:17:57,990 --> 00:18:02,830
+case, or the fewest number of steps
+the algorithm could ever take.
+
+352
+00:18:02,830 --> 00:18:07,360
+And a question here is, well, let's
+say the algorithm takes maybe 100
+
+353
+00:18:07,360 --> 00:18:09,820
+steps in the worst case.
+
+354
+00:18:09,820 --> 00:18:11,690
+What would that be?
+
+355
+00:18:11,690 --> 00:18:13,570
+Well, it kind of depends now.
+
+356
+00:18:13,570 --> 00:18:16,880
+If the algorithm takes 100
+steps in the worst case,
+
+357
+00:18:16,880 --> 00:18:22,130
+we have to ask ourself not so how many
+steps the algorithm took in that case,
+
+358
+00:18:22,130 --> 00:18:24,950
+but instead, how the steps scale.
+
+359
+00:18:24,950 --> 00:18:29,860
+So if the algorithm will always
+take 100 steps, and only 100 steps,
+
+360
+00:18:29,860 --> 00:18:33,970
+in the worst case, that
+would actually be O(1),
+
+361
+00:18:33,970 --> 00:18:36,580
+because it's some fixed number of steps.
+
+362
+00:18:36,580 --> 00:18:39,460
+If, though, I were to
+add one more element
+
+363
+00:18:39,460 --> 00:18:45,220
+and you would then need to do 101
+steps, or if I added two elements
+
+364
+00:18:45,220 --> 00:18:49,780
+and you had to do 102 steps, that would
+be an example of an algorithm in O(N).
+
+365
+00:18:49,780 --> 00:18:55,350
+Because for every element I
+add, I have to do one more step.
+
+366
+00:18:55,350 --> 00:18:58,190
+Questions, too, on these notations?
+
+367
+00:18:58,190 --> 00:19:03,660
+
+
+368
+00:19:03,660 --> 00:19:06,540
+A question about encountering
+algorithms in other languages,
+
+369
+00:19:06,540 --> 00:19:09,630
+like Python, for instance, as
+you'll see later on in CS50.
+
+370
+00:19:09,630 --> 00:19:13,620
+So certainly there's this idea
+that we can take most any algorithm
+
+371
+00:19:13,620 --> 00:19:16,380
+and translate it into,
+really, any other language.
+
+372
+00:19:16,380 --> 00:19:19,890
+So for the first few weeks of
+CS50, you'll be using C. Later on,
+
+373
+00:19:19,890 --> 00:19:20,882
+you'll use Python.
+
+374
+00:19:20,882 --> 00:19:22,590
+You can take most any
+of these algorithms
+
+375
+00:19:22,590 --> 00:19:24,855
+and put them into any
+language you'd like.
+
+376
+00:19:24,855 --> 00:19:27,630
+
+
+377
+00:19:27,630 --> 00:19:28,560
+Good questions here.
+
+378
+00:19:28,560 --> 00:19:31,110
+
+
+379
+00:19:31,110 --> 00:19:34,450
+OK, so let's try actually putting
+some of this into practice.
+
+380
+00:19:34,450 --> 00:19:38,690
+And so the very first problem this week
+is one called sort, in which you're
+
+381
+00:19:38,690 --> 00:19:41,630
+given some various sorting algorithms.
+
+382
+00:19:41,630 --> 00:19:44,900
+So we've talked here about
+searching algorithms, but now
+
+383
+00:19:44,900 --> 00:19:47,910
+let's transition to thinking
+about sorting algorithms.
+
+384
+00:19:47,910 --> 00:19:51,540
+So in lecture, we saw three
+different sorting algorithms,
+
+385
+00:19:51,540 --> 00:19:56,270
+and here they are, along with their
+big O and big omega notations.
+
+386
+00:19:56,270 --> 00:19:59,540
+So notice here that we
+have merge sort, which we
+
+387
+00:19:59,540 --> 00:20:01,910
+saw was among the fastest of our sorts.
+
+388
+00:20:01,910 --> 00:20:09,110
+You can see that merge sort has
+a big O notation of O(Nlog(N)).
+
+389
+00:20:09,110 --> 00:20:11,420
+And the same thing for
+its omega notation.
+
+390
+00:20:11,420 --> 00:20:14,810
+Big omega of N times log(N).
+
+391
+00:20:14,810 --> 00:20:19,610
+Now, this is faster than
+selection sort and bubble sort.
+
+392
+00:20:19,610 --> 00:20:22,310
+So we'll see selection sort here.
+
+393
+00:20:22,310 --> 00:20:24,300
+It was big O of N squared.
+
+394
+00:20:24,300 --> 00:20:27,420
+And bubble sort was
+also big O of N squared.
+
+395
+00:20:27,420 --> 00:20:30,870
+Now, the omega notation for
+selection sort and bubble sort
+
+396
+00:20:30,870 --> 00:20:32,980
+is also omega of N squared.
+
+397
+00:20:32,980 --> 00:20:35,430
+But for bubble sort, omega of N.
+
+398
+00:20:35,430 --> 00:20:39,907
+So actually, I said earlier that
+merge sort is faster than these two.
+
+399
+00:20:39,907 --> 00:20:42,240
+But can you think of a scenario
+where you might actually
+
+400
+00:20:42,240 --> 00:20:45,945
+want to use bubble sort
+as opposed to merge sort?
+
+401
+00:20:45,945 --> 00:20:48,535
+
+
+402
+00:20:48,535 --> 00:20:54,302
+What scenario we might want to use
+bubble sort instead of merge sort.
+
+403
+00:20:54,302 --> 00:20:56,135
+There is a case where
+bubble sort is faster.
+
+404
+00:20:56,135 --> 00:20:59,680
+
+
+405
+00:20:59,680 --> 00:21:03,430
+Seems like it's faster if
+we are in one of our cases
+
+406
+00:21:03,430 --> 00:21:06,010
+that seems one of our best cases.
+
+407
+00:21:06,010 --> 00:21:07,840
+If we're talking about
+sorting algorithms,
+
+408
+00:21:07,840 --> 00:21:12,250
+well, if we know our data is close to
+being sorted, and we just want to check
+
+409
+00:21:12,250 --> 00:21:16,360
+is it sorted or is it not, bubble sort
+could be a good way to do that faster,
+
+410
+00:21:16,360 --> 00:21:18,310
+in this case, than merge sort.
+
+411
+00:21:18,310 --> 00:21:21,040
+And we know this looking
+at the notation here.
+
+412
+00:21:21,040 --> 00:21:27,160
+We see omega of N for bubble
+sort and omega of N times log N.
+
+413
+00:21:27,160 --> 00:21:32,980
+So that is, for every step we
+do, we have to add in another log
+
+414
+00:21:32,980 --> 00:21:35,090
+N steps in merge sort.
+
+415
+00:21:35,090 --> 00:21:40,120
+But for bubble sort, we don't have
+to actually do that in this case.
+
+416
+00:21:40,120 --> 00:21:43,420
+So I find it helpful to see
+these things in a bit of a chart.
+
+417
+00:21:43,420 --> 00:21:47,670
+And the sorting problem
+asks you to figure out
+
+418
+00:21:47,670 --> 00:21:51,120
+the identities of three mystery sorts.
+
+419
+00:21:51,120 --> 00:21:55,950
+So here, you're given
+sort1, sort2, and sort3,
+
+420
+00:21:55,950 --> 00:21:59,910
+and your job is to
+time them and see which
+
+421
+00:21:59,910 --> 00:22:02,740
+algorithm each sort might be using.
+
+422
+00:22:02,740 --> 00:22:07,230
+And one approach here is to think
+about, like big O and big omega
+
+423
+00:22:07,230 --> 00:22:09,960
+notation, the best and the worst cases.
+
+424
+00:22:09,960 --> 00:22:13,710
+Give them those inputs and see
+how long it takes them to run,
+
+425
+00:22:13,710 --> 00:22:14,790
+and then compare them.
+
+426
+00:22:14,790 --> 00:22:17,310
+Compare those run times
+and see which one you think
+
+427
+00:22:17,310 --> 00:22:21,460
+might best characterize the
+algorithm you are just testing.
+
+428
+00:22:21,460 --> 00:22:25,230
+So here, our goal will be to fill in
+a chart that looks a bit this, where
+
+429
+00:22:25,230 --> 00:22:28,860
+we have a reversed 50,000 numbers.
+
+430
+00:22:28,860 --> 00:22:31,020
+This is the worst possible case.
+
+431
+00:22:31,020 --> 00:22:34,020
+Our numbers are in
+the exact wrong order.
+
+432
+00:22:34,020 --> 00:22:37,410
+We'll go through and time
+each of our algorithms
+
+433
+00:22:37,410 --> 00:22:42,310
+and see, perhaps, which one runs the
+fastest, which ones run the slowest.
+
+434
+00:22:42,310 --> 00:22:47,050
+And we'll do the same thing,
+but now given a sorted list.
+
+435
+00:22:47,050 --> 00:22:49,330
+Our numbers are in the
+best possible condition.
+
+436
+00:22:49,330 --> 00:22:51,010
+They're already sorted for us.
+
+437
+00:22:51,010 --> 00:22:52,600
+And we'll ask that same question.
+
+438
+00:22:52,600 --> 00:22:56,410
+How long, in general, did
+each one seem to take?
+
+439
+00:22:56,410 --> 00:23:01,540
+And so by timing our sorts, we'll be
+able to figure out do they seem to run
+
+440
+00:23:01,540 --> 00:23:09,230
+more equivalently to big O of N squared,
+or O(Nlog(N)), or something in between?
+
+441
+00:23:09,230 --> 00:23:12,820
+So in this case, let's actually
+go back to Visual Studio Code.
+
+442
+00:23:12,820 --> 00:23:16,600
+And I will restart mine here.
+
+443
+00:23:16,600 --> 00:23:19,990
+Once you connect to yours, you'll
+be able to actually download
+
+444
+00:23:19,990 --> 00:23:22,660
+some of the distribution
+code for the sort problem.
+
+445
+00:23:22,660 --> 00:23:26,710
+And you'll be given, in this case,
+three different sorting programs
+
+446
+00:23:26,710 --> 00:23:30,130
+along with the inputs I just mentioned.
+
+447
+00:23:30,130 --> 00:23:32,340
+So I'll wait for mine to start here.
+
+448
+00:23:32,340 --> 00:23:37,110
+But our goal will be to look at each
+of those three sorting algorithms,
+
+449
+00:23:37,110 --> 00:23:40,890
+time them, and make note
+of, let's say, which
+
+450
+00:23:40,890 --> 00:23:44,220
+one might be most equivalent
+to the three algorithms
+
+451
+00:23:44,220 --> 00:23:46,790
+we just discussed so far.
+
+452
+00:23:46,790 --> 00:23:50,330
+So it seems my code space
+is ready to go here.
+
+453
+00:23:50,330 --> 00:23:53,380
+Let me hide a few things
+to get out of your way.
+
+454
+00:23:53,380 --> 00:23:56,278
+And let me show you
+where I have my files.
+
+455
+00:23:56,278 --> 00:23:58,570
+So if you download them, you
+should be able to see them
+
+456
+00:23:58,570 --> 00:24:00,760
+in your very own folder called Sort.
+
+457
+00:24:00,760 --> 00:24:04,570
+And I'll use this command called
+cd to change directory into Sort.
+
+458
+00:24:04,570 --> 00:24:06,370
+I'll hit Enter.
+
+459
+00:24:06,370 --> 00:24:09,760
+And now here, I see my
+prompt changes into sort.
+
+460
+00:24:09,760 --> 00:24:15,400
+I can type ls again, and now I'll
+see some various text files, along
+
+461
+00:24:15,400 --> 00:24:21,160
+with my three sorting programs,
+sort1, sort2, and sort3.
+
+462
+00:24:21,160 --> 00:24:23,470
+So now let me show you
+what's inside answers.txt.
+
+463
+00:24:23,470 --> 00:24:26,260
+I'll say code answers.txt.
+
+464
+00:24:26,260 --> 00:24:29,570
+And now I'll see what
+I'm supposed to do.
+
+465
+00:24:29,570 --> 00:24:34,810
+I'm supposed to identify which
+algorithm each of these sorts uses.
+
+466
+00:24:34,810 --> 00:24:37,540
+So sort1, for instance, could use--
+
+467
+00:24:37,540 --> 00:24:39,100
+well, it could use merge sort.
+
+468
+00:24:39,100 --> 00:24:41,757
+Or it could use, let's say, bubble sort.
+
+469
+00:24:41,757 --> 00:24:43,090
+It could be any of these things.
+
+470
+00:24:43,090 --> 00:24:46,280
+My goal is to type it in and
+figure out which one this--
+
+471
+00:24:46,280 --> 00:24:48,460
+which algorithm this sort is using.
+
+472
+00:24:48,460 --> 00:24:52,340
+And then down below, type in
+why I think that's the case.
+
+473
+00:24:52,340 --> 00:24:57,710
+So let's try timing these, given
+the best and worst case inputs,
+
+474
+00:24:57,710 --> 00:25:00,540
+and seeing how well each one does.
+
+475
+00:25:00,540 --> 00:25:02,280
+So I'll go to my terminal here.
+
+476
+00:25:02,280 --> 00:25:05,060
+And if you read through
+the problem specification,
+
+477
+00:25:05,060 --> 00:25:08,600
+it'll tell you that you can
+time these sorts using this.
+
+478
+00:25:08,600 --> 00:25:14,510
+You can say time, and then followed
+by the command to execute the sort.
+
+479
+00:25:14,510 --> 00:25:17,240
+So in this case, I want to run sort1.
+
+480
+00:25:17,240 --> 00:25:23,460
+I can type ./sort1 and give it either
+the best or the worst case scenario.
+
+481
+00:25:23,460 --> 00:25:25,460
+Maybe I'll give it the
+worst case to begin with.
+
+482
+00:25:25,460 --> 00:25:33,110
+I'll say, let's give sort1 a
+reversed list of 50,000 numbers,
+
+483
+00:25:33,110 --> 00:25:35,480
+and just time it and
+see how well it does.
+
+484
+00:25:35,480 --> 00:25:39,790
+So I'll hit Enter and
+I'll see it's thinking,
+
+485
+00:25:39,790 --> 00:25:41,750
+maybe sorting this list for me.
+
+486
+00:25:41,750 --> 00:25:46,660
+And now down below, I can see how
+long it took to take all 50,000
+
+487
+00:25:46,660 --> 00:25:49,640
+of these numbers and put
+them in sorted order.
+
+488
+00:25:49,640 --> 00:25:54,760
+So it seems sort1 took
+about 4.64 seconds.
+
+489
+00:25:54,760 --> 00:25:57,460
+And you're given three
+different times here.
+
+490
+00:25:57,460 --> 00:26:00,430
+Real, user, and system time.
+
+491
+00:26:00,430 --> 00:26:03,280
+In general, you'll care
+about just the real time,
+
+492
+00:26:03,280 --> 00:26:07,490
+how long did it take based
+on a stopwatch, in this case.
+
+493
+00:26:07,490 --> 00:26:12,940
+So I can go back to my answers.txt and
+I could say, well, I'll just make note.
+
+494
+00:26:12,940 --> 00:26:15,160
+sort1 seemed to take--
+
+495
+00:26:15,160 --> 00:26:21,310
+takes 4.64 seconds in worst case.
+
+496
+00:26:21,310 --> 00:26:23,020
+Or maybe let's be more particular.
+
+497
+00:26:23,020 --> 00:26:28,510
+To sort reversed list like this.
+
+498
+00:26:28,510 --> 00:26:33,430
+Now, I might also care about how this
+algorithm performs in the best case.
+
+499
+00:26:33,430 --> 00:26:37,740
+So I'll go back to my terminal and
+I'll then say, let's time it again,
+
+500
+00:26:37,740 --> 00:26:45,600
+but use ./sort1, and now let's choose
+the sorted list, sorted50000..txt.
+
+501
+00:26:45,600 --> 00:26:49,880
+And hit Enter and see how well it does.
+
+502
+00:26:49,880 --> 00:26:51,110
+Now, that was a lot faster.
+
+503
+00:26:51,110 --> 00:26:53,750
+That only took 0.3 seconds, about.
+
+504
+00:26:53,750 --> 00:26:57,690
+So I'll go back to my answers
+page and I'll write that down.
+
+505
+00:26:57,690 --> 00:27:03,410
+I'll say it takes 0.33
+seconds to sort a sorted list.
+
+506
+00:27:03,410 --> 00:27:04,575
+All-righty.
+
+507
+00:27:04,575 --> 00:27:06,490
+And I could keep going here.
+
+508
+00:27:06,490 --> 00:27:09,490
+And if you're watching this not-live,
+I encourage you to pause the video
+
+509
+00:27:09,490 --> 00:27:11,275
+and go through and time the other sorts.
+
+510
+00:27:11,275 --> 00:27:13,900
+If you are here live, we'll go
+through and time these ourselves
+
+511
+00:27:13,900 --> 00:27:17,620
+and put them all together
+in our answer.txt.
+
+512
+00:27:17,620 --> 00:27:19,600
+So let's keep going.
+
+513
+00:27:19,600 --> 00:27:23,710
+I'll go ahead and say,
+I will run ./sort2 now.
+
+514
+00:27:23,710 --> 00:27:26,170
+But I want to time it. time ./sort2.
+
+515
+00:27:26,170 --> 00:27:28,900
+Let me give it the sorted 50,000--
+
+516
+00:27:28,900 --> 00:27:32,740
+actually, the reversed 50,000 numbers.
+
+517
+00:27:32,740 --> 00:27:34,390
+See how long it takes.
+
+518
+00:27:34,390 --> 00:27:35,750
+That was pretty quick.
+
+519
+00:27:35,750 --> 00:27:43,090
+So I'll say it takes 0.27
+seconds to sort reversed list.
+
+520
+00:27:43,090 --> 00:27:49,783
+Let's try again, doing not
+reversed, but now sorted.
+
+521
+00:27:49,783 --> 00:27:50,950
+That was still pretty quick.
+
+522
+00:27:50,950 --> 00:27:56,125
+So it takes 0.45 seconds
+to sort a sorted list.
+
+523
+00:27:56,125 --> 00:27:58,670
+
+
+524
+00:27:58,670 --> 00:28:00,880
+And now I'll try sort3 now.
+
+525
+00:28:00,880 --> 00:28:01,390
+Oops.
+
+526
+00:28:01,390 --> 00:28:04,960
+Let me move this down to here.
+
+527
+00:28:04,960 --> 00:28:06,550
+Let's try sort3.
+
+528
+00:28:06,550 --> 00:28:12,460
+I'll say, give sort3
+the reversed 50,000.
+
+529
+00:28:12,460 --> 00:28:15,190
+See how long that takes.
+
+530
+00:28:15,190 --> 00:28:16,450
+A little slower.
+
+531
+00:28:16,450 --> 00:28:21,170
+I'll say it takes 2.25
+seconds to sort reversed list.
+
+532
+00:28:21,170 --> 00:28:24,805
+And now I'll try sort3
+with my sorted list.
+
+533
+00:28:24,805 --> 00:28:28,100
+
+
+534
+00:28:28,100 --> 00:28:29,670
+Still took a little while.
+
+535
+00:28:29,670 --> 00:28:36,240
+Let's say it takes 1.99
+seconds to sort a sorted list.
+
+536
+00:28:36,240 --> 00:28:39,890
+And now I'll zoom out here so
+we can see all of our numbers.
+
+537
+00:28:39,890 --> 00:28:44,610
+And now keep in mind that we don't
+care so much about the milliseconds.
+
+538
+00:28:44,610 --> 00:28:45,110
+Right?
+
+539
+00:28:45,110 --> 00:28:47,810
+It doesn't quite matter if
+it took 10 milliseconds here,
+
+540
+00:28:47,810 --> 00:28:49,160
+or 10 milliseconds there.
+
+541
+00:28:49,160 --> 00:28:52,100
+We care more about how
+each algorithm performed
+
+542
+00:28:52,100 --> 00:28:54,660
+in the best and the worst case.
+
+543
+00:28:54,660 --> 00:28:58,770
+And we'll keep in mind what we know
+about our algorithms over here.
+
+544
+00:28:58,770 --> 00:29:02,630
+So it seems merge sort,
+if I look at this list,
+
+545
+00:29:02,630 --> 00:29:05,450
+is generally pretty fast in both cases.
+
+546
+00:29:05,450 --> 00:29:06,410
+Right?
+
+547
+00:29:06,410 --> 00:29:12,350
+Selection sort seems to be pretty slow
+in both cases, both my reversed list
+
+548
+00:29:12,350 --> 00:29:13,820
+and my sorted list.
+
+549
+00:29:13,820 --> 00:29:18,260
+Bubble sort, though, seems
+to be slow in the worst case,
+
+550
+00:29:18,260 --> 00:29:21,690
+but actually pretty
+quick in the best case.
+
+551
+00:29:21,690 --> 00:29:25,640
+So let's take a look,
+then, at our numbers.
+
+552
+00:29:25,640 --> 00:29:30,410
+Here, if we look at sort2,
+it seems like this one
+
+553
+00:29:30,410 --> 00:29:32,670
+was pretty quick in both cases.
+
+554
+00:29:32,670 --> 00:29:36,320
+It took less than a second
+to sort a sorted list
+
+555
+00:29:36,320 --> 00:29:39,550
+and to sort a reversed list.
+
+556
+00:29:39,550 --> 00:29:40,380
+So knowing what we
+
+557
+00:29:40,380 --> 00:29:46,320
+know about merge sort and how it
+performs in both best and worst cases,
+
+558
+00:29:46,320 --> 00:29:48,280
+maybe this one is probably merge sort.
+
+559
+00:29:48,280 --> 00:29:50,790
+So I'll say merge sort here.
+
+560
+00:29:50,790 --> 00:29:53,010
+Now let's consider the other two.
+
+561
+00:29:53,010 --> 00:29:58,620
+I have this one, sort1, that took
+over-- it was almost 5 seconds to sort
+
+562
+00:29:58,620 --> 00:29:59,850
+of reversed list.
+
+563
+00:29:59,850 --> 00:30:03,990
+But then it took less than a
+second to sort a sorted list.
+
+564
+00:30:03,990 --> 00:30:07,860
+Now, knowing what we know about
+our algorithms, which one does this
+
+565
+00:30:07,860 --> 00:30:10,628
+seem to be?
+
+566
+00:30:10,628 --> 00:30:13,780
+It seems likely to be
+bubble sort, because we saw,
+
+567
+00:30:13,780 --> 00:30:18,460
+if I go back to our notations here,
+that bubble sort was big O of N squared,
+
+568
+00:30:18,460 --> 00:30:22,240
+but big omega of N. And
+N is certainly faster
+
+569
+00:30:22,240 --> 00:30:25,660
+than N squared when it
+comes to these notations.
+
+570
+00:30:25,660 --> 00:30:28,900
+And now the final one, we could say,
+well, by process of elimination,
+
+571
+00:30:28,900 --> 00:30:31,210
+it's probably going
+to be selection sort.
+
+572
+00:30:31,210 --> 00:30:34,810
+But we could also say here,
+well, it took about 2 seconds
+
+573
+00:30:34,810 --> 00:30:38,540
+to sort the reverse list and a similar
+amount of time to sort the sorted list.
+
+574
+00:30:38,540 --> 00:30:41,140
+So maybe it's going to be,
+in this case, selection sort.
+
+575
+00:30:41,140 --> 00:30:44,950
+Because we know, based
+on our chart here,
+
+576
+00:30:44,950 --> 00:30:46,930
+that selection sort
+takes out the same amount
+
+577
+00:30:46,930 --> 00:30:50,930
+of time in the best and the worst cases.
+
+578
+00:30:50,930 --> 00:30:52,760
+So I'll fix my typo here.
+
+579
+00:30:52,760 --> 00:30:59,520
+And now we have our mystery solved of
+which algorithms these sorts are using.
+
+580
+00:30:59,520 --> 00:31:06,400
+Now, questions, then, on our process
+or our selection of these algorithms?
+
+581
+00:31:06,400 --> 00:31:13,602
+
+
+582
+00:31:13,602 --> 00:31:16,560
+A good question here just for people
+who are learning computer science.
+
+583
+00:31:16,560 --> 00:31:19,590
+Is it good to practice
+making these algorithms?
+
+584
+00:31:19,590 --> 00:31:22,290
+I would say it's certainly
+good practice to actually write
+
+585
+00:31:22,290 --> 00:31:24,990
+the code for these algorithms
+just so you can get a hand--
+
+586
+00:31:24,990 --> 00:31:29,220
+get an experience of what it
+is each one is actually doing.
+
+587
+00:31:29,220 --> 00:31:35,010
+So it actually is helpful, I think,
+to write things like linear search,
+
+588
+00:31:35,010 --> 00:31:39,510
+like binary search, things bubble
+sort, merge sort, selection sort.
+
+589
+00:31:39,510 --> 00:31:43,440
+Because in doing so, you get an
+appreciation for exactly the process
+
+590
+00:31:43,440 --> 00:31:47,700
+each one is following.
+
+591
+00:31:47,700 --> 00:31:49,133
+Let's see.
+
+592
+00:31:49,133 --> 00:31:49,800
+A question here.
+
+593
+00:31:49,800 --> 00:31:52,980
+Why is the reversed list--
+
+594
+00:31:52,980 --> 00:31:56,990
+why is sorting the reversed list
+faster than sorting the sorted list?
+
+595
+00:31:56,990 --> 00:32:00,210
+So if I look here for
+merge sort, it seems
+
+596
+00:32:00,210 --> 00:32:05,640
+this first case to the reversed
+list was faster than how long it
+
+597
+00:32:05,640 --> 00:32:06,930
+took to sort the sorted list.
+
+598
+00:32:06,930 --> 00:32:08,730
+And that doesn't make any sense to me.
+
+599
+00:32:08,730 --> 00:32:11,460
+If I know that this is
+the worst case, and this
+
+600
+00:32:11,460 --> 00:32:14,280
+is supposed to be the best
+case, well, why is the best case
+
+601
+00:32:14,280 --> 00:32:16,410
+slower than the worst case?
+
+602
+00:32:16,410 --> 00:32:20,070
+Turns out, when we're actually
+timing things in our computer,
+
+603
+00:32:20,070 --> 00:32:23,910
+there are other processes going on
+that could interfere with these things
+
+604
+00:32:23,910 --> 00:32:26,610
+and make them take a little bit
+slower or a little bit faster,
+
+605
+00:32:26,610 --> 00:32:28,600
+depending on the time that I run them.
+
+606
+00:32:28,600 --> 00:32:31,360
+So this is really just a
+single data point here.
+
+607
+00:32:31,360 --> 00:32:33,840
+And this is why computer
+scientists don't time things
+
+608
+00:32:33,840 --> 00:32:35,130
+in terms of milliseconds.
+
+609
+00:32:35,130 --> 00:32:37,140
+They time things in
+terms of number of steps
+
+610
+00:32:37,140 --> 00:32:40,233
+their algorithm might actually take
+in the best and the worst cases.
+
+611
+00:32:40,233 --> 00:32:42,900
+So we don't have to consider here
+whether our computer's running
+
+612
+00:32:42,900 --> 00:32:43,950
+some of their software.
+
+613
+00:32:43,950 --> 00:32:49,060
+Just a single sort in this case.
+
+614
+00:32:49,060 --> 00:32:50,660
+OK.
+
+615
+00:32:50,660 --> 00:32:54,650
+So that will be our recap, then, on
+our searching and sorting algorithms.
+
+616
+00:32:54,650 --> 00:32:58,640
+Hopefully you've gotten a taste of
+big O notation and big omega notation.
+
+617
+00:32:58,640 --> 00:33:03,690
+Let's start now adding another tool to
+our toolkit, this one called structs.
+
+618
+00:33:03,690 --> 00:33:07,700
+So at the end of lecture, or
+towards the middle, I believe,
+
+619
+00:33:07,700 --> 00:33:10,130
+we learned about this
+idea of a structure.
+
+620
+00:33:10,130 --> 00:33:11,880
+And a structure is great.
+
+621
+00:33:11,880 --> 00:33:17,360
+We want to create our very own
+data type to use in our program.
+
+622
+00:33:17,360 --> 00:33:20,030
+It's not quite a full
+data type, but it is a way
+
+623
+00:33:20,030 --> 00:33:25,980
+to encapsulate information so we
+can refer to it with only one name.
+
+624
+00:33:25,980 --> 00:33:28,820
+So let's take, for
+instance, this picture here.
+
+625
+00:33:28,820 --> 00:33:32,490
+We have two candidates
+for US government.
+
+626
+00:33:32,490 --> 00:33:37,580
+And I want to ask you what might you
+use to describe these candidates.
+
+627
+00:33:37,580 --> 00:33:39,830
+If you were going to store
+information about them,
+
+628
+00:33:39,830 --> 00:33:41,690
+what information would you store?
+
+629
+00:33:41,690 --> 00:33:44,660
+
+
+630
+00:33:44,660 --> 00:33:46,280
+Could be these two.
+
+631
+00:33:46,280 --> 00:33:52,250
+Could be any candidate in any
+country for a political office.
+
+632
+00:33:52,250 --> 00:33:56,790
+I'm seeing maybe their age,
+their party, their name.
+
+633
+00:33:56,790 --> 00:33:59,840
+Maybe the contact info
+direct to Joe Biden's desk.
+
+634
+00:33:59,840 --> 00:34:03,900
+Maybe the number of votes
+they got is a good one.
+
+635
+00:34:03,900 --> 00:34:06,650
+So there's lots of things we could
+represent about this candidate.
+
+636
+00:34:06,650 --> 00:34:11,540
+And up until now, we've been able
+to create individual variables that
+
+637
+00:34:11,540 --> 00:34:13,130
+could store this information.
+
+638
+00:34:13,130 --> 00:34:18,139
+But a struct allows us to combine
+these pieces into a single one
+
+639
+00:34:18,139 --> 00:34:21,699
+and refer to it all, in
+general, as some candidate.
+
+640
+00:34:21,699 --> 00:34:22,949
+So let's take an example here.
+
+641
+00:34:22,949 --> 00:34:29,000
+Let's say in C we saw this syntax,
+typedef struct curly brace string name;
+
+642
+00:34:29,000 --> 00:34:31,340
+int votes; end curly brace candidate;.
+
+643
+00:34:31,340 --> 00:34:33,260
+This looks a little confusing at first.
+
+644
+00:34:33,260 --> 00:34:36,060
+We can break it down to figure
+out what we're doing here.
+
+645
+00:34:36,060 --> 00:34:40,730
+So let's say first here
+we have some syntax
+
+646
+00:34:40,730 --> 00:34:43,580
+to create a new quote, unquote, "type."
+
+647
+00:34:43,580 --> 00:34:46,610
+It's not a full type
+like an int is, but it
+
+648
+00:34:46,610 --> 00:34:51,469
+does allow us to say we're
+going to consider name and votes
+
+649
+00:34:51,469 --> 00:34:55,670
+part of some individual
+piece of data in our program.
+
+650
+00:34:55,670 --> 00:34:58,340
+And here is that full text here.
+
+651
+00:34:58,340 --> 00:35:02,750
+One other piece of syntax
+is this, the typedef.
+
+652
+00:35:02,750 --> 00:35:08,850
+This is saying that we're going to take
+this combination of a string called
+
+653
+00:35:08,850 --> 00:35:12,720
+"name" and an integer called
+"votes" and call it something else,
+
+654
+00:35:12,720 --> 00:35:17,220
+in this case, a candidate, so we
+could reuse this idea of candidate
+
+655
+00:35:17,220 --> 00:35:19,350
+throughout our file.
+
+656
+00:35:19,350 --> 00:35:24,090
+And then inside here, we have what
+we call the members of the structure.
+
+657
+00:35:24,090 --> 00:35:29,280
+That is, what kind of data are we going
+to encapsulate or consider to be part
+
+658
+00:35:29,280 --> 00:35:31,660
+of what it means to be a candidate?
+
+659
+00:35:31,660 --> 00:35:35,010
+So here, we chose just the name and
+the number of votes for a candidate.
+
+660
+00:35:35,010 --> 00:35:40,750
+But you could very well have in this
+case their age, their party, and so on.
+
+661
+00:35:40,750 --> 00:35:45,370
+So all we're doing here is saying
+that these two pieces of data,
+
+662
+00:35:45,370 --> 00:35:48,340
+one a string we'll call
+"name" and one an integer.
+
+663
+00:35:48,340 --> 00:35:51,780
+we'll call "votes," are now
+part of this more general data
+
+664
+00:35:51,780 --> 00:35:53,520
+type called a "candidate."
+
+665
+00:35:53,520 --> 00:35:57,580
+And we can reuse that type
+throughout our program.
+
+666
+00:35:57,580 --> 00:36:03,330
+So let's consider here actually
+making our very own candidate.
+
+667
+00:36:03,330 --> 00:36:09,030
+So we'll go through here and say, let's
+create a candidate called president.
+
+668
+00:36:09,030 --> 00:36:10,830
+Let's create a candidate
+called president.
+
+669
+00:36:10,830 --> 00:36:16,210
+And we'll, on the right-hand side,
+have this picture of a candidate here.
+
+670
+00:36:16,210 --> 00:36:18,690
+So see on the right-hand side.
+
+671
+00:36:18,690 --> 00:36:23,530
+Now, if we want to give this candidate
+a name, we could do so like this.
+
+672
+00:36:23,530 --> 00:36:29,320
+We could say president.name equals
+whatever name we have for them.
+
+673
+00:36:29,320 --> 00:36:31,140
+So in this case, Samia.
+
+674
+00:36:31,140 --> 00:36:33,570
+And now, if we want to give
+them some number of votes,
+
+675
+00:36:33,570 --> 00:36:38,470
+we could say president.votes
+now gets the value 10.
+
+676
+00:36:38,470 --> 00:36:44,700
+So notice here, on the line
+below our typedef struct,
+
+677
+00:36:44,700 --> 00:36:47,715
+we're saying candidate space president.
+
+678
+00:36:47,715 --> 00:36:50,340
+So this looks a little similar
+to our prior syntax, where we're
+
+679
+00:36:50,340 --> 00:36:53,700
+able to say maybe int x or string name.
+
+680
+00:36:53,700 --> 00:36:58,610
+But now we're using this name candidate
+as kind of a type name, if you will,
+
+681
+00:36:58,610 --> 00:37:01,780
+for this new variable we've
+created called president.
+
+682
+00:37:01,780 --> 00:37:06,760
+And if I want to assign some value to
+the different members of president,
+
+683
+00:37:06,760 --> 00:37:10,210
+I could simply access
+them using the name.
+
+684
+00:37:10,210 --> 00:37:11,090
+the member's name.
+
+685
+00:37:11,090 --> 00:37:15,700
+So president.name,
+president.votes, and so on.
+
+686
+00:37:15,700 --> 00:37:21,040
+And even further here, I could try to
+create my very own array of candidates.
+
+687
+00:37:21,040 --> 00:37:25,825
+I could say in this case,
+candidate candidates bracket 4.
+
+688
+00:37:25,825 --> 00:37:27,700
+Now, to be clear here,
+what I've done is I've
+
+689
+00:37:27,700 --> 00:37:33,700
+created an array called candidates,
+plural, that stores four elements.
+
+690
+00:37:33,700 --> 00:37:35,710
+But what elements will it store?
+
+691
+00:37:35,710 --> 00:37:38,500
+Well, in this case, those
+that are candidates.
+
+692
+00:37:38,500 --> 00:37:40,870
+So you can see the
+type still comes first,
+
+693
+00:37:40,870 --> 00:37:45,320
+but then we have the name, followed
+by brackets and the candidates here.
+
+694
+00:37:45,320 --> 00:37:51,250
+So questions, then, on the syntax of
+these arrays or these structs here?
+
+695
+00:37:51,250 --> 00:37:55,190
+
+
+696
+00:37:55,190 --> 00:37:58,160
+Is it possible to have a struct
+made out of other structs?
+
+697
+00:37:58,160 --> 00:38:01,650
+I don't quite know.
+
+698
+00:38:01,650 --> 00:38:04,400
+I don't see why it wouldn't be the
+case that you couldn't do that.
+
+699
+00:38:04,400 --> 00:38:07,760
+
+
+700
+00:38:07,760 --> 00:38:08,510
+Yeah.
+
+701
+00:38:08,510 --> 00:38:09,745
+I would try it out and see.
+
+702
+00:38:09,745 --> 00:38:11,870
+I don't have as much
+experience to know about that,
+
+703
+00:38:11,870 --> 00:38:14,420
+but you should definitely
+try it out and see.
+
+704
+00:38:14,420 --> 00:38:15,110
+Let's see.
+
+705
+00:38:15,110 --> 00:38:16,415
+Other questions here, too.
+
+706
+00:38:16,415 --> 00:38:21,680
+
+
+707
+00:38:21,680 --> 00:38:22,250
+Question.
+
+708
+00:38:22,250 --> 00:38:25,650
+"Can we change the data in
+there if needed during runtime?"
+
+709
+00:38:25,650 --> 00:38:26,850
+So that's a good question.
+
+710
+00:38:26,850 --> 00:38:30,680
+If I go back to this candidate
+that we called president here,
+
+711
+00:38:30,680 --> 00:38:34,590
+the question is, could I change
+the data inside of it later?
+
+712
+00:38:34,590 --> 00:38:41,450
+So to be clear, I could assign different
+values to this candidate's members
+
+713
+00:38:41,450 --> 00:38:43,820
+like candidate.name or candidate.votes.
+
+714
+00:38:43,820 --> 00:38:46,100
+I could change those
+throughout my program.
+
+715
+00:38:46,100 --> 00:38:50,810
+But I really shouldn't be able
+to add new members to my struct
+
+716
+00:38:50,810 --> 00:38:52,500
+as my program is running.
+
+717
+00:38:52,500 --> 00:38:57,860
+So up top here, you'll see we defined
+a candidate as having a string called
+
+718
+00:38:57,860 --> 00:39:00,260
+name and an integer called votes.
+
+719
+00:39:00,260 --> 00:39:02,460
+I have to do that at the
+very start of my program.
+
+720
+00:39:02,460 --> 00:39:05,697
+I can't change that, really,
+when my program is running.
+
+721
+00:39:05,697 --> 00:39:06,280
+Good question.
+
+722
+00:39:06,280 --> 00:39:10,100
+
+
+723
+00:39:10,100 --> 00:39:10,685
+All right.
+
+724
+00:39:10,685 --> 00:39:13,657
+
+
+725
+00:39:13,657 --> 00:39:14,490
+And a question here.
+
+726
+00:39:14,490 --> 00:39:19,020
+Could we just use candidate.name
+instead of president.name,
+
+727
+00:39:19,020 --> 00:39:23,380
+the structure name instead of the
+variable name we just created?
+
+728
+00:39:23,380 --> 00:39:26,610
+So it's worth mentioning
+here that the struct
+
+729
+00:39:26,610 --> 00:39:33,150
+candidate is more so not a variable
+we've created, but a template for one.
+
+730
+00:39:33,150 --> 00:39:37,740
+So every new candidate we
+create has to have its own name.
+
+731
+00:39:37,740 --> 00:39:43,980
+But it will all be, let's see,
+inherited from this idea of a candidate.
+
+732
+00:39:43,980 --> 00:39:46,920
+So candidate president,
+candidate vice president
+
+733
+00:39:46,920 --> 00:39:49,620
+We could maybe have a
+candidate called candidate,
+
+734
+00:39:49,620 --> 00:39:54,600
+but we'd still have to instantiate that
+by saying candidate space candidate,
+
+735
+00:39:54,600 --> 00:39:58,130
+the type name, then the variable name.
+
+736
+00:39:58,130 --> 00:40:01,400
+And probably in that case, best
+not to confuse the variable name
+
+737
+00:40:01,400 --> 00:40:02,400
+with the structure name.
+
+738
+00:40:02,400 --> 00:40:04,160
+So I would probably
+avoid that altogether.
+
+739
+00:40:04,160 --> 00:40:06,880
+
+
+740
+00:40:06,880 --> 00:40:08,490
+OK.
+
+741
+00:40:08,490 --> 00:40:10,410
+So let's get some practice with this.
+
+742
+00:40:10,410 --> 00:40:13,560
+And we'll have a task here, which
+is to find a candidate who's
+
+743
+00:40:13,560 --> 00:40:15,510
+gotten the most votes.
+
+744
+00:40:15,510 --> 00:40:18,750
+So what we'll do is first
+create an array of candidates,
+
+745
+00:40:18,750 --> 00:40:21,450
+and we'll search the array,
+perhaps using linear search,
+
+746
+00:40:21,450 --> 00:40:26,010
+to find the votes most awarded
+to any single candidate.
+
+747
+00:40:26,010 --> 00:40:29,250
+And then once we know that, we'll
+print out the candidate's name.
+
+748
+00:40:29,250 --> 00:40:33,190
+And our goal here is to get some
+practice using the syntax of structs.
+
+749
+00:40:33,190 --> 00:40:36,750
+So I'll go back to my
+code space, and now
+
+750
+00:40:36,750 --> 00:40:39,930
+let me pull up a file
+I've already created.
+
+751
+00:40:39,930 --> 00:40:46,220
+This one, called, let's see, search.
+
+752
+00:40:46,220 --> 00:40:46,850
+c.
+
+753
+00:40:46,850 --> 00:40:49,700
+So I'll code search.c to pull it up.
+
+754
+00:40:49,700 --> 00:40:53,910
+And notice how I already
+have some code in here.
+
+755
+00:40:53,910 --> 00:40:59,990
+So at the top, I've included my CS50
+library and my standard I/O library.
+
+756
+00:40:59,990 --> 00:41:05,510
+I've defined for myself a struct
+that has a name and a votes member,
+
+757
+00:41:05,510 --> 00:41:07,610
+and I've called it candidate.
+
+758
+00:41:07,610 --> 00:41:13,280
+Now, down below in main, I've created
+myself an array of candidates.
+
+759
+00:41:13,280 --> 00:41:16,880
+This has a total of
+three possible members.
+
+760
+00:41:16,880 --> 00:41:18,890
+I've defined this
+constant here, a number
+
+761
+00:41:18,890 --> 00:41:21,650
+that can't change, and defined it as 3.
+
+762
+00:41:21,650 --> 00:41:26,570
+So now I have three candidates
+that can go inside of this array.
+
+763
+00:41:26,570 --> 00:41:29,900
+Down below, I've defined their
+name and the number of votes.
+
+764
+00:41:29,900 --> 00:41:34,520
+But now my goal is to find who
+has the highest number of votes.
+
+765
+00:41:34,520 --> 00:41:38,420
+Or even before I do that, before I find
+who has the highest number of votes,
+
+766
+00:41:38,420 --> 00:41:43,650
+I should probably find what the highest
+number of votes actually even is.
+
+767
+00:41:43,650 --> 00:41:46,230
+So the question really
+boils down to, how
+
+768
+00:41:46,230 --> 00:41:51,210
+could we use linear search to
+find this highest number of votes?
+
+769
+00:41:51,210 --> 00:41:55,150
+And now let me ask you,
+what kind of structure
+
+770
+00:41:55,150 --> 00:41:57,825
+might be good to search this array?
+
+771
+00:41:57,825 --> 00:42:00,480
+
+
+772
+00:42:00,480 --> 00:42:05,027
+If I wanted to loop through every
+candidate, what kind of structure
+
+773
+00:42:05,027 --> 00:42:05,610
+might be good?
+
+774
+00:42:05,610 --> 00:42:10,070
+
+
+775
+00:42:10,070 --> 00:42:12,690
+I'm seeing a for loop,
+so I could do for.
+
+776
+00:42:12,690 --> 00:42:17,210
+And I know I want to go from, let's say,
+the very first candidate, all the way
+
+777
+00:42:17,210 --> 00:42:18,650
+to the final candidate.
+
+778
+00:42:18,650 --> 00:42:22,910
+So I'll start my index, i, at 0.
+
+779
+00:42:22,910 --> 00:42:26,000
+And I'll say I'll keep
+going while i is less
+
+780
+00:42:26,000 --> 00:42:28,850
+than, well, however
+many candidates I have,
+
+781
+00:42:28,850 --> 00:42:34,780
+which turns out to be num_candidates,
+which I defined up above right here.
+
+782
+00:42:34,780 --> 00:42:39,210
+So now I want to increase
+i by 1 each time that I go.
+
+783
+00:42:39,210 --> 00:42:43,410
+And now, inside this
+loop, what should I do?
+
+784
+00:42:43,410 --> 00:42:45,960
+My goal is to find the
+highest number of votes,
+
+785
+00:42:45,960 --> 00:42:48,450
+so maybe I should first
+make a variable that
+
+786
+00:42:48,450 --> 00:42:50,250
+defines that number of votes for me.
+
+787
+00:42:50,250 --> 00:42:52,590
+I could say, create an integer.
+
+788
+00:42:52,590 --> 00:42:55,140
+Let's call it highest votes.
+
+789
+00:42:55,140 --> 00:42:57,075
+And we'll set it equal--
+
+790
+00:42:57,075 --> 00:43:00,060
+well, at the beginning, we don't
+quite know what it will be.
+
+791
+00:43:00,060 --> 00:43:03,040
+Maybe it could be 0 to begin with.
+
+792
+00:43:03,040 --> 00:43:08,680
+So now we have this variable,
+highest_votes, that's equal to 0.
+
+793
+00:43:08,680 --> 00:43:11,590
+But now I need to ask,
+under what scenario
+
+794
+00:43:11,590 --> 00:43:17,970
+should I update highest_votes
+as I loop through my candidates?
+
+795
+00:43:17,970 --> 00:43:22,560
+When should I try to
+update the highest_votes?
+
+796
+00:43:22,560 --> 00:43:27,280
+Let's say I look at Carter first.
+
+797
+00:43:27,280 --> 00:43:31,640
+Should I update highest_votes?
+
+798
+00:43:31,640 --> 00:43:33,980
+Seems like I should,
+because Carter has 10 votes,
+
+799
+00:43:33,980 --> 00:43:36,800
+and our previous highest was 0.
+
+800
+00:43:36,800 --> 00:43:39,950
+So while I'm looping, I
+could ask this question.
+
+801
+00:43:39,950 --> 00:43:46,940
+I could say if, let's say,
+candidates bracket i, that is,
+
+802
+00:43:46,940 --> 00:43:52,970
+the candidate in my list at the
+index i, if their number of votes,
+
+803
+00:43:52,970 --> 00:43:58,450
+candidates bracket i .votes, is
+greater than what we've currently set
+
+804
+00:43:58,450 --> 00:44:01,550
+as the highest number of votes,
+well, I want to update it.
+
+805
+00:44:01,550 --> 00:44:11,920
+So I'll say highest_votes then
+becomes candidates bracket i .votes.
+
+806
+00:44:11,920 --> 00:44:16,900
+So now what I've done
+is said that if I ever
+
+807
+00:44:16,900 --> 00:44:21,310
+find a candidate who has a number of
+votes greater than my current highest
+
+808
+00:44:21,310 --> 00:44:24,580
+number of votes, I want to
+update what I'm considering
+
+809
+00:44:24,580 --> 00:44:27,245
+to be the highest number of votes.
+
+810
+00:44:27,245 --> 00:44:29,120
+So let's walk through
+this once step by step.
+
+811
+00:44:29,120 --> 00:44:30,970
+So first highest_votes is 0.
+
+812
+00:44:30,970 --> 00:44:33,190
+I'll look first at Carter.
+
+813
+00:44:33,190 --> 00:44:38,360
+10 is greater than 0, so our highest
+number of votes will now be 10.
+
+814
+00:44:38,360 --> 00:44:41,200
+I'll look at the next
+candidate this one is Yulia.
+
+815
+00:44:41,200 --> 00:44:44,870
+And I'll say, well,
+is 12 greater than 10?
+
+816
+00:44:44,870 --> 00:44:45,370
+It is.
+
+817
+00:44:45,370 --> 00:44:48,760
+So my new highest number
+of votes is now 12.
+
+818
+00:44:48,760 --> 00:44:54,280
+I'll then look at Inno, and I'll
+ask, well, is 7 greater than 12?
+
+819
+00:44:54,280 --> 00:44:55,640
+It's not in this case.
+
+820
+00:44:55,640 --> 00:44:58,810
+So my highest number of votes
+is still going to be 12.
+
+821
+00:44:58,810 --> 00:45:02,290
+And by the time I'm done,
+highest votes should actually
+
+822
+00:45:02,290 --> 00:45:04,870
+equal the person with the highest--
+
+823
+00:45:04,870 --> 00:45:08,080
+or should equal the number
+of votes that is the highest.
+
+824
+00:45:08,080 --> 00:45:13,190
+And to confirm this, I could say
+printf("%i/n") for that integer format
+
+825
+00:45:13,190 --> 00:45:16,550
+code, and I'll print
+out now highest_votes.
+
+826
+00:45:16,550 --> 00:45:21,120
+And let's try to make this program
+and compile it and see what happens.
+
+827
+00:45:21,120 --> 00:45:26,440
+So I'll go back to my terminal and
+I'll say make, in this case, search.
+
+828
+00:45:26,440 --> 00:45:27,700
+Seems like no errors.
+
+829
+00:45:27,700 --> 00:45:33,250
+I'll run ./search, and I'll get back 12
+for the candidate who has that highest
+
+830
+00:45:33,250 --> 00:45:35,860
+number of votes.
+
+831
+00:45:35,860 --> 00:45:40,420
+OK, so that seems to
+accomplish my very first task,
+
+832
+00:45:40,420 --> 00:45:42,640
+finding the highest number of votes.
+
+833
+00:45:42,640 --> 00:45:46,360
+What can I do now to print
+the name of the candidate
+
+834
+00:45:46,360 --> 00:45:48,730
+with that highest number of votes?
+
+835
+00:45:48,730 --> 00:45:49,960
+Any ideas here?
+
+836
+00:45:49,960 --> 00:45:54,680
+
+
+837
+00:45:54,680 --> 00:45:56,510
+I know the highest number.
+
+838
+00:45:56,510 --> 00:45:59,210
+I just want to see who
+has that number of votes.
+
+839
+00:45:59,210 --> 00:46:02,780
+So maybe what I should do is do another
+loop through my candidates array,
+
+840
+00:46:02,780 --> 00:46:05,385
+this time, asking, are you the
+person who has the highest?
+
+841
+00:46:05,385 --> 00:46:07,010
+Are you the person who has the highest?
+
+842
+00:46:07,010 --> 00:46:10,260
+And if you are, I'll print
+out your name as I go.
+
+843
+00:46:10,260 --> 00:46:11,640
+So let's try this.
+
+844
+00:46:11,640 --> 00:46:14,390
+I'll say for (int i = 0;).
+
+845
+00:46:14,390 --> 00:46:17,540
+i is less than my number
+of candidates, i++.
+
+846
+00:46:17,540 --> 00:46:20,540
+I'm going to loop through
+every candidate here,
+
+847
+00:46:20,540 --> 00:46:22,700
+and I'll ask this question now.
+
+848
+00:46:22,700 --> 00:46:27,710
+If candidates bracket i .votes,
+the candidate at this index,
+
+849
+00:46:27,710 --> 00:46:32,390
+their number of votes, if that
+is equal to highest_votes, well,
+
+850
+00:46:32,390 --> 00:46:34,560
+then I want to print out their name.
+
+851
+00:46:34,560 --> 00:46:39,110
+So I'll say printf, and I'll do
+%s for that string format code,
+
+852
+00:46:39,110 --> 00:46:44,570
+and now I'll use candidates bracket
+i .name to get the name of this
+
+853
+00:46:44,570 --> 00:46:46,080
+candidate.
+
+854
+00:46:46,080 --> 00:46:51,020
+So now what I've done is I've
+looped through my entire array
+
+855
+00:46:51,020 --> 00:46:53,725
+asking this question,
+does this candidate
+
+856
+00:46:53,725 --> 00:46:55,100
+have the highest number of votes?
+
+857
+00:46:55,100 --> 00:46:58,570
+And if they do, let me
+print out their name.
+
+858
+00:46:58,570 --> 00:47:02,850
+So now let me go back and
+make my program again.
+
+859
+00:47:02,850 --> 00:47:09,770
+I'll type make-- let's say make
+search, and I'll run ./search,
+
+860
+00:47:09,770 --> 00:47:12,470
+and I'll see the highest
+number of votes is 12.
+
+861
+00:47:12,470 --> 00:47:17,230
+And the candidate with that
+number of votes is now Yulia.
+
+862
+00:47:17,230 --> 00:47:20,680
+So our goal here was to see
+how we could use this structure
+
+863
+00:47:20,680 --> 00:47:23,320
+syntax to simplify things for us.
+
+864
+00:47:23,320 --> 00:47:27,730
+Now I have this structure called
+candidate that I can use in my program.
+
+865
+00:47:27,730 --> 00:47:31,370
+And I can talk in the same
+breath about a candidate's name
+
+866
+00:47:31,370 --> 00:47:34,120
+and the number of votes without
+keeping those two things separate.
+
+867
+00:47:34,120 --> 00:47:36,790
+They're part of that same
+structure I defined up
+
+868
+00:47:36,790 --> 00:47:41,960
+top, which can really help me
+out as I run my program here.
+
+869
+00:47:41,960 --> 00:47:43,730
+So questions, then, on structs?
+
+870
+00:47:43,730 --> 00:47:49,610
+
+
+871
+00:47:49,610 --> 00:47:51,240
+A question about repeating code.
+
+872
+00:47:51,240 --> 00:47:55,580
+So, in general, it is true
+that you generally don't
+
+873
+00:47:55,580 --> 00:47:58,580
+want to repeat code in your programs.
+
+874
+00:47:58,580 --> 00:48:04,520
+In this case, though, I would argue
+we can't avoid repeating code here.
+
+875
+00:48:04,520 --> 00:48:08,590
+So if I'm first trying to find
+the highest number of votes
+
+876
+00:48:08,590 --> 00:48:11,440
+and print out that person's
+name, you might think
+
+877
+00:48:11,440 --> 00:48:13,390
+I could do it all in the same loop.
+
+878
+00:48:13,390 --> 00:48:14,870
+But let's try this.
+
+879
+00:48:14,870 --> 00:48:18,970
+So I'll look first at my very first
+candidate, whose name is Carter,
+
+880
+00:48:18,970 --> 00:48:22,433
+and I'll see that Carter's
+votes for 10, well,
+
+881
+00:48:22,433 --> 00:48:24,100
+that's higher than I've previously seen.
+
+882
+00:48:24,100 --> 00:48:25,030
+It's greater than 0.
+
+883
+00:48:25,030 --> 00:48:26,050
+Right?
+
+884
+00:48:26,050 --> 00:48:32,685
+But should I print Carter's name yet
+as having the highest number of votes?
+
+885
+00:48:32,685 --> 00:48:33,560
+I probably shouldn't.
+
+886
+00:48:33,560 --> 00:48:35,450
+I need to keep looking through my list.
+
+887
+00:48:35,450 --> 00:48:38,300
+I need to confirm that there's
+no person with a higher
+
+888
+00:48:38,300 --> 00:48:40,310
+number of votes than Carter.
+
+889
+00:48:40,310 --> 00:48:43,220
+So that's why I need now two loops.
+
+890
+00:48:43,220 --> 00:48:48,350
+My first loop goes through and confirms
+what is the highest number of votes.
+
+891
+00:48:48,350 --> 00:48:51,470
+My second loop goes
+through and then confirms
+
+892
+00:48:51,470 --> 00:48:54,305
+what will be their candidate's
+name, in that case.
+
+893
+00:48:54,305 --> 00:49:01,070
+
+
+894
+00:49:01,070 --> 00:49:01,990
+Other questions, too?
+
+895
+00:49:01,990 --> 00:49:07,490
+
+
+896
+00:49:07,490 --> 00:49:10,410
+Let's see.
+
+897
+00:49:10,410 --> 00:49:13,635
+That seems to be covering most
+of the questions I'm seeing here.
+
+898
+00:49:13,635 --> 00:49:18,970
+
+
+899
+00:49:18,970 --> 00:49:20,090
+OK.
+
+900
+00:49:20,090 --> 00:49:22,080
+So let's keep going, then.
+
+901
+00:49:22,080 --> 00:49:24,860
+And I think we have an
+idea of what structs are.
+
+902
+00:49:24,860 --> 00:49:28,790
+But I want to give you one more tool
+to use as you go off for this week,
+
+903
+00:49:28,790 --> 00:49:31,830
+and that is a tool called recursion.
+
+904
+00:49:31,830 --> 00:49:37,100
+So often, recursion tends to be a very
+elegant solution to some problems.
+
+905
+00:49:37,100 --> 00:49:39,590
+And for that reason, we
+have to try to find a way
+
+906
+00:49:39,590 --> 00:49:41,600
+to use recursion to solve problems.
+
+907
+00:49:41,600 --> 00:49:45,000
+The caveat here is that it's not
+always the best way to do things,
+
+908
+00:49:45,000 --> 00:49:47,700
+but it can be elegant in certain cases.
+
+909
+00:49:47,700 --> 00:49:49,880
+And so we'll talk about
+the kinds of problems
+
+910
+00:49:49,880 --> 00:49:55,010
+that actually have good potential
+to be solved with recursion.
+
+911
+00:49:55,010 --> 00:49:59,700
+Now, one problem like this,
+this idea of a factorial.
+
+912
+00:49:59,700 --> 00:50:03,110
+So if you aren't familiar,
+a factorial is simply
+
+913
+00:50:03,110 --> 00:50:07,580
+a number where you take
+that number and multiply it
+
+914
+00:50:07,580 --> 00:50:10,002
+by the number that's
+1 less than it, then
+
+915
+00:50:10,002 --> 00:50:12,960
+the number that's 1 less than that,
+the number that's 1 less than that,
+
+916
+00:50:12,960 --> 00:50:13,460
+and so on.
+
+917
+00:50:13,460 --> 00:50:15,230
+So let's take a look at an example here.
+
+918
+00:50:15,230 --> 00:50:19,010
+If I want to find 1 factorial,
+well, that is just 1.
+
+919
+00:50:19,010 --> 00:50:21,780
+And the factorial is this
+exclamation point here.
+
+920
+00:50:21,780 --> 00:50:24,330
+1 factorial equals 1.
+
+921
+00:50:24,330 --> 00:50:28,200
+But now if I want to find
+2 factorial, 2 factorial
+
+922
+00:50:28,200 --> 00:50:33,150
+is simply 2 times 1, so 2
+times the number less than it.
+
+923
+00:50:33,150 --> 00:50:34,620
+1, in this case.
+
+924
+00:50:34,620 --> 00:50:38,940
+Well, 3 factorial, that
+is 3 times 2 times 1.
+
+925
+00:50:38,940 --> 00:50:43,050
+So again, start with that number,
+3, multiply it by the number
+
+926
+00:50:43,050 --> 00:50:45,270
+1 less than it, then again, then again.
+
+927
+00:50:45,270 --> 00:50:46,800
+So 3 times 2 times 1.
+
+928
+00:50:46,800 --> 00:50:48,448
+And now 4 factorial.
+
+929
+00:50:48,448 --> 00:50:49,740
+What do you think that will be?
+
+930
+00:50:49,740 --> 00:50:53,310
+Well, 4 times 3 times 2 times 1.
+
+931
+00:50:53,310 --> 00:50:59,490
+So in this case, 1 factorial, 1;
+2 factorial, 2; 3 factorial, 6;
+
+932
+00:50:59,490 --> 00:51:04,600
+and 4 factorial, about 24 in the end.
+
+933
+00:51:04,600 --> 00:51:10,800
+So what makes this problem
+good for a recursive solution?
+
+934
+00:51:10,800 --> 00:51:13,360
+Well, you might notice
+a bit of a pattern here.
+
+935
+00:51:13,360 --> 00:51:16,530
+And it gets a little more obvious
+if I do this with these numbers,
+
+936
+00:51:16,530 --> 00:51:18,420
+if I slide them over.
+
+937
+00:51:18,420 --> 00:51:27,690
+So what do you notice in
+particular about now 2 factorial?
+
+938
+00:51:27,690 --> 00:51:32,250
+Seems like to me that the
+solution for 1 factorial
+
+939
+00:51:32,250 --> 00:51:34,710
+is part of the solution for 2 factorial.
+
+940
+00:51:34,710 --> 00:51:41,340
+That is, if 1 factorial is 1, we could
+compute 2 factorial by taking 2 times
+
+941
+00:51:41,340 --> 00:51:43,050
+1 factorial.
+
+942
+00:51:43,050 --> 00:51:46,290
+And similarly, for 3
+factorial, looks like to me
+
+943
+00:51:46,290 --> 00:51:51,870
+we could solve that problem by saying,
+well, 3 factorial is just 3 times
+
+944
+00:51:51,870 --> 00:51:53,340
+2 factorial.
+
+945
+00:51:53,340 --> 00:51:54,690
+And same thing with 4.
+
+946
+00:51:54,690 --> 00:51:58,200
+We could say, well, 4
+factorial is just 4 times
+
+947
+00:51:58,200 --> 00:52:01,150
+3 factorial, and so on and so forth.
+
+948
+00:52:01,150 --> 00:52:07,200
+So we're able to find a solution
+to this problem in a smaller
+
+949
+00:52:07,200 --> 00:52:09,300
+version of that problem.
+
+950
+00:52:09,300 --> 00:52:12,550
+Until, of course, we get down
+to 1 factorial, and we just say,
+
+951
+00:52:12,550 --> 00:52:15,530
+well, that is just 1 in the end.
+
+952
+00:52:15,530 --> 00:52:18,410
+So to make things a little more
+concrete, in computer science,
+
+953
+00:52:18,410 --> 00:52:20,450
+we might give a few
+names to these things.
+
+954
+00:52:20,450 --> 00:52:23,510
+So first, we'll say 4
+factorial is equal to what?
+
+955
+00:52:23,510 --> 00:52:25,900
+Well, 4 times 3 factorial.
+
+956
+00:52:25,900 --> 00:52:29,500
+But this here is what we're
+going to call our recursive call.
+
+957
+00:52:29,500 --> 00:52:32,200
+We're going to "kick
+the can," as David said,
+
+958
+00:52:32,200 --> 00:52:37,280
+and say, well, we know the solution to
+4 factorial is just 4 times 3 factorial.
+
+959
+00:52:37,280 --> 00:52:40,610
+Now, the question becomes,
+what is 3 factorial?
+
+960
+00:52:40,610 --> 00:52:42,070
+Let's find out.
+
+961
+00:52:42,070 --> 00:52:44,740
+Let's take 3 factorial
+and let's find it.
+
+962
+00:52:44,740 --> 00:52:47,362
+Well, 3 factorial is
+just 3 times 2 factorial.
+
+963
+00:52:47,362 --> 00:52:48,570
+OK, well, what's 2 factorial?
+
+964
+00:52:48,570 --> 00:52:50,407
+Well, it's 2 times 1 factorial.
+
+965
+00:52:50,407 --> 00:52:51,490
+Well, what is 1 factorial?
+
+966
+00:52:51,490 --> 00:52:53,770
+Eventually, there has
+to be some base case,
+
+967
+00:52:53,770 --> 00:52:57,350
+some definite solution to this problem.
+
+968
+00:52:57,350 --> 00:53:01,600
+In this case, we say 1
+factorial has to be 1.
+
+969
+00:53:01,600 --> 00:53:04,210
+And when we get to
+this base case, we can
+
+970
+00:53:04,210 --> 00:53:07,150
+use that to solve all prior problems.
+
+971
+00:53:07,150 --> 00:53:08,890
+In this case, I could say--
+
+972
+00:53:08,890 --> 00:53:14,190
+I could substitute 1 factorial for
+1, going back up the call stack.
+
+973
+00:53:14,190 --> 00:53:20,000
+So now we have 2 factorial is 2 times
+1, 3 factorial is 3 times 2 times 1,
+
+974
+00:53:20,000 --> 00:53:24,380
+and 4 factorial is just 4
+times 3 times 2 times 1.
+
+975
+00:53:24,380 --> 00:53:28,220
+And to be clear here, the vocabulary
+is that we're calling these functions
+
+976
+00:53:28,220 --> 00:53:29,720
+again, and again, and again.
+
+977
+00:53:29,720 --> 00:53:34,730
+And when we get to that base case, we
+go back up what we call this call stack.
+
+978
+00:53:34,730 --> 00:53:37,370
+We're calling it a call stack
+because we're calling functions,
+
+979
+00:53:37,370 --> 00:53:39,830
+and they kind of stack on top
+of each other one at a time
+
+980
+00:53:39,830 --> 00:53:44,390
+before we resolve everything
+all at once at the end.
+
+981
+00:53:44,390 --> 00:53:52,450
+So questions here on this recursive
+solution to factorials before we
+
+982
+00:53:52,450 --> 00:53:54,220
+write our own implementation in C?
+
+983
+00:53:54,220 --> 00:53:58,270
+
+
+984
+00:53:58,270 --> 00:53:58,900
+A question.
+
+985
+00:53:58,900 --> 00:54:02,020
+"Is recursion faster than
+using regular loops?"
+
+986
+00:54:02,020 --> 00:54:03,260
+That is a great question.
+
+987
+00:54:03,260 --> 00:54:06,718
+So recursion is often seen as this
+elegant way to solve problems,
+
+988
+00:54:06,718 --> 00:54:09,010
+and it certainly is, because
+it is kind of magical when
+
+989
+00:54:09,010 --> 00:54:12,040
+you see how things click together
+and how they work like this.
+
+990
+00:54:12,040 --> 00:54:16,102
+At the same time, recursion
+isn't always necessarily faster.
+
+991
+00:54:16,102 --> 00:54:18,310
+So just because a problem
+uses recursion doesn't mean
+
+992
+00:54:18,310 --> 00:54:21,080
+it's going to be always faster
+than some other solution.
+
+993
+00:54:21,080 --> 00:54:25,390
+It just means we're trying to
+solve the problem by first solving
+
+994
+00:54:25,390 --> 00:54:27,580
+a smaller version of that problem.
+
+995
+00:54:27,580 --> 00:54:32,440
+And eventually, we'll get to a base
+case that we know the answer to.
+
+996
+00:54:32,440 --> 00:54:33,265
+Good question here.
+
+997
+00:54:33,265 --> 00:54:36,650
+
+
+998
+00:54:36,650 --> 00:54:40,010
+OK, so let's now take the same idea.
+
+999
+00:54:40,010 --> 00:54:42,350
+And translate it into code.
+
+1000
+00:54:42,350 --> 00:54:47,110
+So I'll go back to my code space
+here, and I will get rid of search.c,
+
+1001
+00:54:47,110 --> 00:54:53,660
+and I will instead find factorial.c.
+
+1002
+00:54:53,660 --> 00:54:57,410
+So in the same way, we already
+have some code here for us.
+
+1003
+00:54:57,410 --> 00:55:02,990
+I have included the CS50
+library and standard I/O. Now,
+
+1004
+00:55:02,990 --> 00:55:05,743
+I've defined up here a
+function called factorial.
+
+1005
+00:55:05,743 --> 00:55:07,410
+This is the prototype for that function.
+
+1006
+00:55:07,410 --> 00:55:11,750
+So notice here it takes an
+integer called n as an input
+
+1007
+00:55:11,750 --> 00:55:14,360
+and it gives us back
+some integer in the end.
+
+1008
+00:55:14,360 --> 00:55:15,290
+And that makes sense.
+
+1009
+00:55:15,290 --> 00:55:20,400
+If I were to say, give me 4 factorial,
+where I would give it some integer,
+
+1010
+00:55:20,400 --> 00:55:23,870
+in this case 4, I would get
+back some integer in the end.
+
+1011
+00:55:23,870 --> 00:55:25,280
+In this case, 24.
+
+1012
+00:55:25,280 --> 00:55:26,420
+Right?
+
+1013
+00:55:26,420 --> 00:55:30,240
+So now in the main function,
+I have a few components here.
+
+1014
+00:55:30,240 --> 00:55:32,960
+The first is to get the
+input from the user.
+
+1015
+00:55:32,960 --> 00:55:35,930
+And it turns out that
+in factorial land, you
+
+1016
+00:55:35,930 --> 00:55:38,088
+can't take a factorial
+of a negative number,
+
+1017
+00:55:38,088 --> 00:55:40,130
+or at least we don't really
+want to do that here.
+
+1018
+00:55:40,130 --> 00:55:41,297
+It gets kind of complicated.
+
+1019
+00:55:41,297 --> 00:55:43,730
+So we're only going to
+focus on positive numbers.
+
+1020
+00:55:43,730 --> 00:55:48,170
+We'll prompt the user again and
+again for a positive number.
+
+1021
+00:55:48,170 --> 00:55:51,800
+And then finally, we'll print
+the factorial of that number.
+
+1022
+00:55:51,800 --> 00:55:56,190
+In this case, we're going to print
+out our %i format code, a placeholder,
+
+1023
+00:55:56,190 --> 00:56:00,590
+if you will, but we'll substitute in
+the result of calling the factorial
+
+1024
+00:56:00,590 --> 00:56:05,900
+function given our n
+input from the user.
+
+1025
+00:56:05,900 --> 00:56:11,610
+But now, down below, seems like
+factorial isn't quite implemented here.
+
+1026
+00:56:11,610 --> 00:56:17,600
+So if you think you have a solution
+to a problem that involves recursion,
+
+1027
+00:56:17,600 --> 00:56:20,820
+it's often a good first
+step to ask yourself,
+
+1028
+00:56:20,820 --> 00:56:25,820
+what is the base case, what is
+the scenario I know the answer to,
+
+1029
+00:56:25,820 --> 00:56:27,900
+and try to code that one first.
+
+1030
+00:56:27,900 --> 00:56:31,550
+So my question to you,
+then, is, what is the answer
+
+1031
+00:56:31,550 --> 00:56:35,550
+that we know the answer to in this case?
+
+1032
+00:56:35,550 --> 00:56:38,840
+We know the answer to if n is 1.
+
+1033
+00:56:38,840 --> 00:56:44,750
+So I could say if (n == 1),
+like this, what do I return?
+
+1034
+00:56:44,750 --> 00:56:46,460
+Well, I just return 1.
+
+1035
+00:56:46,460 --> 00:56:48,050
+It's a very simple solution.
+
+1036
+00:56:48,050 --> 00:56:48,770
+Right?
+
+1037
+00:56:48,770 --> 00:56:51,590
+If n is 1, return 1.
+
+1038
+00:56:51,590 --> 00:56:53,300
+And now down below--
+
+1039
+00:56:53,300 --> 00:56:59,360
+well, I might actually first
+call this my base case here.
+
+1040
+00:56:59,360 --> 00:57:03,350
+Now, down below, what
+is my recursive call?
+
+1041
+00:57:03,350 --> 00:57:10,250
+If I go back to my template here,
+we certainly have our base case now.
+
+1042
+00:57:10,250 --> 00:57:13,080
+But what is our recursive call?
+
+1043
+00:57:13,080 --> 00:57:15,380
+What should that look like?
+
+1044
+00:57:15,380 --> 00:57:20,260
+Well, I know I could
+return, let's say, n.
+
+1045
+00:57:20,260 --> 00:57:22,120
+But n times what?
+
+1046
+00:57:22,120 --> 00:57:26,500
+n times-- well, I could
+just call factorial again.
+
+1047
+00:57:26,500 --> 00:57:33,770
+I could say, return n times
+factorial (n - 1), like this.
+
+1048
+00:57:33,770 --> 00:57:36,880
+So now what I've done is I've
+added that recursive call.
+
+1049
+00:57:36,880 --> 00:57:43,030
+If I call factorial, given, let's
+say, 4, I won't activate my base case.
+
+1050
+00:57:43,030 --> 00:57:44,470
+4 is not 1.
+
+1051
+00:57:44,470 --> 00:57:47,050
+But I will go down
+here and say, I'm going
+
+1052
+00:57:47,050 --> 00:57:51,040
+to calculate 4 times the factorial of 3.
+
+1053
+00:57:51,040 --> 00:57:53,920
+And I'll go back to running
+factorial again, and again,
+
+1054
+00:57:53,920 --> 00:57:57,580
+and again, until I find that base case
+and return, and return, and return,
+
+1055
+00:57:57,580 --> 00:58:01,353
+and return, until I find
+my ultimate answer here.
+
+1056
+00:58:01,353 --> 00:58:02,770
+So let me prove to you this works.
+
+1057
+00:58:02,770 --> 00:58:06,170
+So I'll go back to my terminal.
+
+1058
+00:58:06,170 --> 00:58:11,380
+I'll say make factorial, and
+then I'll say ./factorial.
+
+1059
+00:58:11,380 --> 00:58:16,150
+And I'll give it, in this
+case, 4, and I get 24.
+
+1060
+00:58:16,150 --> 00:58:17,170
+I'll do it again.
+
+1061
+00:58:17,170 --> 00:58:19,750
+I'll put in 3 and I'll get 6.
+
+1062
+00:58:19,750 --> 00:58:20,620
+I'll do it again.
+
+1063
+00:58:20,620 --> 00:58:24,400
+I'll put in 2, and in
+this case, I'll get 2.
+
+1064
+00:58:24,400 --> 00:58:30,160
+So now let's actually try to
+prove to you that this works.
+
+1065
+00:58:30,160 --> 00:58:34,990
+I will use debug50, which is what
+we saw in an earlier lecture.
+
+1066
+00:58:34,990 --> 00:58:38,110
+And in debug50, I can actually
+step through my program step,
+
+1067
+00:58:38,110 --> 00:58:41,110
+by step, by step to show you what's
+happening underneath the hood
+
+1068
+00:58:41,110 --> 00:58:42,970
+as this program runs.
+
+1069
+00:58:42,970 --> 00:58:48,170
+So I will say let's pause
+on line 17 right here,
+
+1070
+00:58:48,170 --> 00:58:51,640
+and let's walk through
+each step one at a time
+
+1071
+00:58:51,640 --> 00:58:54,370
+to see what this recursive
+function is actually doing.
+
+1072
+00:58:54,370 --> 00:59:00,430
+So I will go back to my terminal
+and I'll say, debug50 ./factorial,
+
+1073
+00:59:00,430 --> 00:59:03,190
+like this.
+
+1074
+00:59:03,190 --> 00:59:06,310
+And we'll wait for things to load here.
+
+1075
+00:59:06,310 --> 00:59:07,645
+It might take a minute or two.
+
+1076
+00:59:07,645 --> 00:59:10,870
+
+
+1077
+00:59:10,870 --> 00:59:18,460
+But as things come into picture
+here, notice a few different areas.
+
+1078
+00:59:18,460 --> 00:59:20,710
+So let me clean this up.
+
+1079
+00:59:20,710 --> 00:59:26,170
+Notice in particular my Variables
+portion and my Call Stack.
+
+1080
+00:59:26,170 --> 00:59:28,180
+So recall what a variable is.
+
+1081
+00:59:28,180 --> 00:59:30,760
+Simply some name that has some value.
+
+1082
+00:59:30,760 --> 00:59:34,360
+And our call stack was some
+new vocabulary we just learned.
+
+1083
+00:59:34,360 --> 00:59:37,000
+That is, the idea of
+calling some function,
+
+1084
+00:59:37,000 --> 00:59:39,700
+then calling another function,
+and calling another one,
+
+1085
+00:59:39,700 --> 00:59:43,940
+until we have this stack of function
+calls we need to resolve at the end.
+
+1086
+00:59:43,940 --> 00:59:46,480
+So here, I'll tell my program--
+
+1087
+00:59:46,480 --> 00:59:50,770
+I'm going to give it an
+input of 3 in this case.
+
+1088
+00:59:50,770 --> 00:59:52,520
+3, like this.
+
+1089
+00:59:52,520 --> 00:59:56,290
+So now I'm paused at
+this step in my program.
+
+1090
+00:59:56,290 --> 01:00:00,940
+Notice here on the Variables
+tab, that n is equal to 3,
+
+1091
+01:00:00,940 --> 01:00:03,050
+like we thought it would be.
+
+1092
+01:00:03,050 --> 01:00:07,760
+Now, instead of stepping over this,
+that is, completing this function
+
+1093
+01:00:07,760 --> 01:00:10,850
+and just printing the
+result, let me step into this
+
+1094
+01:00:10,850 --> 01:00:14,850
+and try to figure out what's going
+on in this factorial function itself.
+
+1095
+01:00:14,850 --> 01:00:18,080
+So I will choose, in
+this case, step into.
+
+1096
+01:00:18,080 --> 01:00:22,040
+And notice how here, I called
+factorial for the first time.
+
+1097
+01:00:22,040 --> 01:00:27,870
+This is the first time I've called
+factorial. n is equal to 3 up top.
+
+1098
+01:00:27,870 --> 01:00:31,120
+Now, is n equal to 1?
+
+1099
+01:00:31,120 --> 01:00:31,870
+It's not.
+
+1100
+01:00:31,870 --> 01:00:33,940
+So what our program will do is move on.
+
+1101
+01:00:33,940 --> 01:00:40,790
+It will go down here and instead
+return n times factorial(n - 1).
+
+1102
+01:00:40,790 --> 01:00:46,010
+So let's step inside again and see what
+this next call to factorial is doing.
+
+1103
+01:00:46,010 --> 01:00:50,090
+I'll step into, and notice
+a few things change.
+
+1104
+01:00:50,090 --> 01:00:55,280
+Well, n is now 2, but I've added
+one more step to my call stack.
+
+1105
+01:00:55,280 --> 01:00:59,000
+Before I can resolve this one,
+I need to resolve this one.
+
+1106
+01:00:59,000 --> 01:00:59,840
+Right?
+
+1107
+01:00:59,840 --> 01:01:00,980
+So I'll keep going.
+
+1108
+01:01:00,980 --> 01:01:02,090
+n is now 2.
+
+1109
+01:01:02,090 --> 01:01:03,320
+Is that equal to 1?
+
+1110
+01:01:03,320 --> 01:01:04,280
+It's not.
+
+1111
+01:01:04,280 --> 01:01:10,130
+We'll step over, and now I'll
+say, n times factorial(n - 1).
+
+1112
+01:01:10,130 --> 01:01:11,750
+I'm going to compute that next.
+
+1113
+01:01:11,750 --> 01:01:14,540
+So 2 times factorial of 1.
+
+1114
+01:01:14,540 --> 01:01:17,010
+I'll step into this again.
+
+1115
+01:01:17,010 --> 01:01:19,170
+And notice my call stack again.
+
+1116
+01:01:19,170 --> 01:01:23,390
+So before I can resolve
+this first factorial call,
+
+1117
+01:01:23,390 --> 01:01:26,930
+I have to resolve those that
+are on top of it, the one for 2,
+
+1118
+01:01:26,930 --> 01:01:28,790
+and now the one for 1.
+
+1119
+01:01:28,790 --> 01:01:30,830
+So let's resolve this one here.
+
+1120
+01:01:30,830 --> 01:01:32,780
+N equals 1.
+
+1121
+01:01:32,780 --> 01:01:36,140
+Well, seems like this is not going
+to be true, so I'll step over
+
+1122
+01:01:36,140 --> 01:01:38,210
+and I'll now return 1.
+
+1123
+01:01:38,210 --> 01:01:39,830
+Notice what happens here.
+
+1124
+01:01:39,830 --> 01:01:44,760
+This call that we're currently
+on, 2 factorial, when we return 1,
+
+1125
+01:01:44,760 --> 01:01:50,100
+it'll go away, and it will just give
+back to this call here that value 1.
+
+1126
+01:01:50,100 --> 01:01:52,500
+So I will now step over.
+
+1127
+01:01:52,500 --> 01:01:53,890
+Step over again.
+
+1128
+01:01:53,890 --> 01:01:57,480
+And now I'll see I've completed
+that call to factorial.
+
+1129
+01:01:57,480 --> 01:02:03,390
+I was able to find that this call is
+now 2 times 1, returning 2 times 1.
+
+1130
+01:02:03,390 --> 01:02:07,920
+This call can now return-- it knows
+that 2 factorial is 2 times 1.
+
+1131
+01:02:07,920 --> 01:02:08,910
+I'll return.
+
+1132
+01:02:08,910 --> 01:02:13,770
+Now, this one knows, well, what is
+3 factorial but 3 times 2 times 1?
+
+1133
+01:02:13,770 --> 01:02:16,590
+I'll return that, and
+now I'm back up at main
+
+1134
+01:02:16,590 --> 01:02:19,950
+and completing my program as a whole.
+
+1135
+01:02:19,950 --> 01:02:28,000
+So that is our step-by-step walkthrough
+of the recursive nature of factorial.
+
+1136
+01:02:28,000 --> 01:02:31,240
+Now, it's OK if it
+didn't come all at once.
+
+1137
+01:02:31,240 --> 01:02:35,700
+And, in fact, I encourage you to do
+the same thing on your own computer,
+
+1138
+01:02:35,700 --> 01:02:40,320
+or even get out some pencil and paper
+and just write stuff down and visualize
+
+1139
+01:02:40,320 --> 01:02:44,040
+as you go through, and you'll hopefully
+see the recursive nature of it, trying
+
+1140
+01:02:44,040 --> 01:02:46,295
+to solve a smaller problem
+and a smaller problem.
+
+1141
+01:02:46,295 --> 01:02:48,420
+Once you get that base
+case, all the other problems
+
+1142
+01:02:48,420 --> 01:02:52,130
+become clearer as you go.
+
+1143
+01:02:52,130 --> 01:02:54,460
+So questions, then, on this?
+
+1144
+01:02:54,460 --> 01:02:57,100
+
+
+1145
+01:02:57,100 --> 01:03:01,990
+A question on, "In the call stack,
+in what order do the calls execute?"
+
+1146
+01:03:01,990 --> 01:03:05,200
+So you'll hear this more
+later in the course,
+
+1147
+01:03:05,200 --> 01:03:09,250
+but there's this idea of a
+data structure called a stack.
+
+1148
+01:03:09,250 --> 01:03:13,780
+And the key idea of a stack is
+that the last thing you put in
+
+1149
+01:03:13,780 --> 01:03:17,110
+is the first thing you
+do, or that you see.
+
+1150
+01:03:17,110 --> 01:03:23,770
+So in a call stack, the last
+function I added was factorial.
+
+1151
+01:03:23,770 --> 01:03:28,370
+That is, then, the first function I must
+resolve before I can do anything else.
+
+1152
+01:03:28,370 --> 01:03:31,630
+So you could imagine here
+I call factorial once.
+
+1153
+01:03:31,630 --> 01:03:36,160
+If I call factorial for 3, I then
+end up calling factorial two more
+
+1154
+01:03:36,160 --> 01:03:37,540
+times overall.
+
+1155
+01:03:37,540 --> 01:03:41,590
+But what I have to do first is
+resolve that very base case.
+
+1156
+01:03:41,590 --> 01:03:44,080
+Then I can resolve the
+2 factorial, then I
+
+1157
+01:03:44,080 --> 01:03:46,990
+can resolve the 3 factorial,
+until finally, I go back up here
+
+1158
+01:03:46,990 --> 01:03:49,757
+and resolve main as a whole.
+
+1159
+01:03:49,757 --> 01:03:51,090
+I hope that helped a little bit.
+
+1160
+01:03:51,090 --> 01:03:55,070
+
+
+1161
+01:03:55,070 --> 01:03:57,270
+A question about the return 1 here.
+
+1162
+01:03:57,270 --> 01:04:01,160
+So if I scroll down here, we said
+return 1 for this factorial call.
+
+1163
+01:04:01,160 --> 01:04:04,130
+And the question was, why didn't
+it kill the entire program?
+
+1164
+01:04:04,130 --> 01:04:05,990
+Why didn't it end the entire program?
+
+1165
+01:04:05,990 --> 01:04:11,340
+Well, notice how return here
+ends my given function call.
+
+1166
+01:04:11,340 --> 01:04:15,350
+So remember how we called
+factorial a total of three times?
+
+1167
+01:04:15,350 --> 01:04:19,500
+That final time we called factorial,
+we triggered our base case
+
+1168
+01:04:19,500 --> 01:04:23,810
+and simply returned 1 without
+making any new recursive calls.
+
+1169
+01:04:23,810 --> 01:04:26,030
+And as soon as we did
+that, we knew, then,
+
+1170
+01:04:26,030 --> 01:04:31,328
+how to resolve the other recursive calls
+that we tried to finish beforehand.
+
+1171
+01:04:31,328 --> 01:04:32,620
+And a clarifying question here.
+
+1172
+01:04:32,620 --> 01:04:34,300
+"Is main always resolved last?"
+
+1173
+01:04:34,300 --> 01:04:36,880
+Yes, it is, because it is
+our very first function
+
+1174
+01:04:36,880 --> 01:04:38,470
+we call when we run our program.
+
+1175
+01:04:38,470 --> 01:04:43,530
+
+
+1176
+01:04:43,530 --> 01:04:44,730
+Other questions here, too?
+
+1177
+01:04:44,730 --> 01:04:54,480
+
+
+1178
+01:04:54,480 --> 01:04:56,390
+All right.
+
+1179
+01:04:56,390 --> 01:04:59,090
+So if there are no more
+questions I'm seeing here,
+
+1180
+01:04:59,090 --> 01:05:02,570
+why don't we call that a
+wrap for this week's section?
+
+1181
+01:05:02,570 --> 01:05:05,790
+Certainly, you've gotten a lot
+of new tools in your tool kit
+
+1182
+01:05:05,790 --> 01:05:09,920
+to solve problems, which you certainly
+solved this week's problem set.
+
+1183
+01:05:09,920 --> 01:05:13,160
+I wish you all the best as you
+go through and finish this week,
+
+1184
+01:05:13,160 --> 01:05:15,480
+and I'll hopefully see you next time.
+
+1185
+01:05:15,480 --> 01:05:17,620
+Thank you all for coming in.
+
+1186
+01:05:17,620 --> 01:05:20,000

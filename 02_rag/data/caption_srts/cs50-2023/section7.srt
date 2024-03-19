@@ -1,0 +1,7362 @@
+1
+00:00:00,000 --> 00:00:02,040
+
+
+2
+00:00:02,040 --> 00:00:04,680
+SPEAKER: OK, well Hello one
+and all and welcome to our week
+
+3
+00:00:04,680 --> 00:00:10,600
+seven section on SQL or Structured Query
+Language and also on databases too.
+
+4
+00:00:10,600 --> 00:00:11,580
+So my name is Carter.
+
+5
+00:00:11,580 --> 00:00:12,630
+The course is Preceptor.
+
+6
+00:00:12,630 --> 00:00:16,410
+And my goal for this section is to help
+you bridge the gap between this week's
+
+7
+00:00:16,410 --> 00:00:18,025
+lecture and this week's problems.
+
+8
+00:00:18,025 --> 00:00:21,150
+I'll be touching on a few different
+topics that we'll get hands on practice
+
+9
+00:00:21,150 --> 00:00:22,240
+with today.
+
+10
+00:00:22,240 --> 00:00:24,830
+So among our topics for today are these.
+
+11
+00:00:24,830 --> 00:00:26,710
+We'll be talking about databases.
+
+12
+00:00:26,710 --> 00:00:29,440
+What are they and how
+do we design them well?
+
+13
+00:00:29,440 --> 00:00:32,220
+And we'll also talk a bit
+about SQL, this new language
+
+14
+00:00:32,220 --> 00:00:35,160
+you can use to write
+queries on databases,
+
+15
+00:00:35,160 --> 00:00:40,517
+basically to ask questions of data and
+find the answers to those questions.
+
+16
+00:00:40,517 --> 00:00:42,600
+We'll do a bit of practice
+with problem set seven,
+
+17
+00:00:42,600 --> 00:00:45,090
+working in particular
+on that songs problem.
+
+18
+00:00:45,090 --> 00:00:48,210
+And we'll also do some practice with
+designing our very own databases too
+
+19
+00:00:48,210 --> 00:00:49,860
+at the very beginning.
+
+20
+00:00:49,860 --> 00:00:51,900
+Now, I'm very excited about SQL.
+
+21
+00:00:51,900 --> 00:00:53,500
+I love working with data.
+
+22
+00:00:53,500 --> 00:00:56,940
+And one of the things I find
+so fascinating about data
+
+23
+00:00:56,940 --> 00:01:01,640
+is just how long we as humans have
+been thinking about and using data.
+
+24
+00:01:01,640 --> 00:01:05,620
+So you'll see today, we're working
+a lot with this idea of a table,
+
+25
+00:01:05,620 --> 00:01:08,830
+like organizing data
+into rows and columns.
+
+26
+00:01:08,830 --> 00:01:11,950
+But that idea is certainly
+not new, certainly not
+
+27
+00:01:11,950 --> 00:01:14,180
+particular to the computer science age.
+
+28
+00:01:14,180 --> 00:01:17,530
+In fact, we have historical
+data showing that humans,
+
+29
+00:01:17,530 --> 00:01:23,090
+as long ago as over 1,000 years ago,
+were working with data in tables.
+
+30
+00:01:23,090 --> 00:01:28,810
+So this is a transcription of some table
+that was inscribed onto a stone tablet
+
+31
+00:01:28,810 --> 00:01:34,550
+from about 1,000 plus years ago
+of worker stipends for a temple.
+
+32
+00:01:34,550 --> 00:01:39,700
+So you'll see here that every row
+denotes some worker at the temple.
+
+33
+00:01:39,700 --> 00:01:44,330
+And it tells us how much they were paid
+every month in the column portion here.
+
+34
+00:01:44,330 --> 00:01:46,480
+So you'll see as we
+work with tables, we'll
+
+35
+00:01:46,480 --> 00:01:50,260
+get to represent individual
+entities in individual rows
+
+36
+00:01:50,260 --> 00:01:54,120
+and often some information about
+those entities in individual columns.
+
+37
+00:01:54,120 --> 00:01:56,620
+So that's kind of a structure
+we're working with here today.
+
+38
+00:01:56,620 --> 00:01:58,660
+And you're probably a
+bit familiar with this
+
+39
+00:01:58,660 --> 00:02:03,790
+if you've used software like this,
+Apple Numbers, Google Sheets, Microsoft
+
+40
+00:02:03,790 --> 00:02:08,710
+Excel, this helps you organize data in
+the information age in terms of rows
+
+41
+00:02:08,710 --> 00:02:11,270
+and in terms of columns.
+
+42
+00:02:11,270 --> 00:02:16,247
+Now, if you've used this software, odds
+are it's performed pretty well for you.
+
+43
+00:02:16,247 --> 00:02:18,580
+But it kind of motivates the
+question, like why would we
+
+44
+00:02:18,580 --> 00:02:20,440
+go beyond this software?
+
+45
+00:02:20,440 --> 00:02:24,370
+Like these pieces of software here
+are not necessarily databases.
+
+46
+00:02:24,370 --> 00:02:26,200
+But we still use them.
+
+47
+00:02:26,200 --> 00:02:27,260
+They're useful.
+
+48
+00:02:27,260 --> 00:02:29,455
+But there are still reasons
+to go beyond them too,
+
+49
+00:02:29,455 --> 00:02:32,500
+to not use Apple Numbers, Google
+Sheets, or Microsoft Excel.
+
+50
+00:02:32,500 --> 00:02:34,760
+What are those reasons?
+
+51
+00:02:34,760 --> 00:02:36,790
+Well, we can think of
+a database as being
+
+52
+00:02:36,790 --> 00:02:40,750
+this way we can actually help us
+organize information so we can better
+
+53
+00:02:40,750 --> 00:02:44,560
+read it, that is, figure out what
+is actually inside our database
+
+54
+00:02:44,560 --> 00:02:48,308
+to update it, that is to change
+it, and then to delete it too.
+
+55
+00:02:48,308 --> 00:02:50,350
+And so we talk about in
+lecture, there are really
+
+56
+00:02:50,350 --> 00:02:54,910
+kinds of four operations the database
+can do for us, creating data, reading
+
+57
+00:02:54,910 --> 00:02:57,810
+data, updating, and deleting data.
+
+58
+00:02:57,810 --> 00:02:59,560
+And the thing about a
+database is, they're
+
+59
+00:02:59,560 --> 00:03:03,190
+designed to do all of these
+things very fast and very well.
+
+60
+00:03:03,190 --> 00:03:07,400
+In fact, a database is very good
+for working with data at scale.
+
+61
+00:03:07,400 --> 00:03:11,230
+If you think about a company
+like Google or like Amazon,
+
+62
+00:03:11,230 --> 00:03:15,410
+they're working with, not just hundreds
+of rows, not just thousands of rows,
+
+63
+00:03:15,410 --> 00:03:18,520
+but often millions, even
+billions of rows of data.
+
+64
+00:03:18,520 --> 00:03:22,990
+And a database works really well for
+that context when Google Sheets just
+
+65
+00:03:22,990 --> 00:03:25,600
+might not be able to
+handle billions of rows.
+
+66
+00:03:25,600 --> 00:03:30,850
+You could also use a database because it
+helps you access data very frequently.
+
+67
+00:03:30,850 --> 00:03:33,730
+If you think of something like
+again, like Google or Amazon,
+
+68
+00:03:33,730 --> 00:03:36,910
+people are often searching for
+a product very, very frequently.
+
+69
+00:03:36,910 --> 00:03:41,980
+You can query data very fast
+when you have a database at hand.
+
+70
+00:03:41,980 --> 00:03:45,910
+And similarly databases
+just work faster in general.
+
+71
+00:03:45,910 --> 00:03:47,740
+They have structures
+built into them that
+
+72
+00:03:47,740 --> 00:03:51,010
+allow you to find data all the
+more quickly because you've
+
+73
+00:03:51,010 --> 00:03:53,652
+been able to think about
+how best to store it
+
+74
+00:03:53,652 --> 00:03:56,110
+and best to retrieve it using
+some of these data structures
+
+75
+00:03:56,110 --> 00:03:58,570
+you've seen in earlier weeks too.
+
+76
+00:03:58,570 --> 00:04:01,990
+So in summary then, you might want to
+graduate from a spreadsheet software
+
+77
+00:04:01,990 --> 00:04:04,630
+to a database when these
+kinds of things matter to you,
+
+78
+00:04:04,630 --> 00:04:07,720
+being able to have lots of
+data, to access it frequently,
+
+79
+00:04:07,720 --> 00:04:11,450
+and to do all of that
+at a very fast speed.
+
+80
+00:04:11,450 --> 00:04:16,269
+So we saw in lecture too, that there's
+this idea of a database management
+
+81
+00:04:16,269 --> 00:04:16,959
+system.
+
+82
+00:04:16,959 --> 00:04:21,010
+And we saw in particular one kind
+of database management system
+
+83
+00:04:21,010 --> 00:04:22,660
+one called SQLite.
+
+84
+00:04:22,660 --> 00:04:25,930
+So you can think of a database
+and this database manager system
+
+85
+00:04:25,930 --> 00:04:27,820
+as being kind of two separate things.
+
+86
+00:04:27,820 --> 00:04:30,340
+A database is anything that
+allows you to store data.
+
+87
+00:04:30,340 --> 00:04:33,790
+But this DBMS, database
+management system
+
+88
+00:04:33,790 --> 00:04:36,640
+allows you to access that
+database in certain ways
+
+89
+00:04:36,640 --> 00:04:41,900
+with certain, let's say,
+paradigms or certain patterns.
+
+90
+00:04:41,900 --> 00:04:45,520
+So there are many different options
+for you as you're working with DBMSs.
+
+91
+00:04:45,520 --> 00:04:46,840
+A few of them are these.
+
+92
+00:04:46,840 --> 00:04:52,810
+You might have heard of MySQL
+or Oracle or PostgreSQL SQLite.
+
+93
+00:04:52,810 --> 00:04:57,790
+These are all software you can
+use to access data in databases.
+
+94
+00:04:57,790 --> 00:05:00,400
+And in CS50, you'll
+actually get to use SQLite,
+
+95
+00:05:00,400 --> 00:05:02,650
+because it's portable it's
+lightweight, but it still
+
+96
+00:05:02,650 --> 00:05:06,940
+offers many, many features for you to
+use, both in your code space online
+
+97
+00:05:06,940 --> 00:05:11,020
+and also on the real world, like
+in applications and across the web
+
+98
+00:05:11,020 --> 00:05:12,770
+and on your phone and so on.
+
+99
+00:05:12,770 --> 00:05:17,900
+So it's very much a real world software,
+even though it is very lightweight.
+
+100
+00:05:17,900 --> 00:05:21,250
+Now we'll also talk about SQL,
+which is this idea of being
+
+101
+00:05:21,250 --> 00:05:25,900
+able to write these queries in
+terms of some structured syntax.
+
+102
+00:05:25,900 --> 00:05:29,828
+And SQL actually stands for
+Structured Query Language.
+
+103
+00:05:29,828 --> 00:05:31,870
+So actually hopefully
+reveal to you the structure
+
+104
+00:05:31,870 --> 00:05:34,090
+of this query language
+and help you actually
+
+105
+00:05:34,090 --> 00:05:40,390
+write those queries to update,
+delete, create and read data overall.
+
+106
+00:05:40,390 --> 00:05:43,840
+Now we'll begin here with a bit
+of an exercise on database design.
+
+107
+00:05:43,840 --> 00:05:47,200
+So we talked about storing
+data in terms of tables
+
+108
+00:05:47,200 --> 00:05:49,330
+and in terms of rows and columns.
+
+109
+00:05:49,330 --> 00:05:54,140
+And I like to think about how I could
+design something a bit more real world.
+
+110
+00:05:54,140 --> 00:05:57,490
+So maybe you've heard of this database
+called Goodreads or this website
+
+111
+00:05:57,490 --> 00:05:58,630
+called Goodreads.
+
+112
+00:05:58,630 --> 00:06:04,460
+They allow you to actually choose
+a book, see a rating for that book,
+
+113
+00:06:04,460 --> 00:06:07,440
+and see how other people
+actually rated that book as well.
+
+114
+00:06:07,440 --> 00:06:12,470
+So it's this database of book titles
+and authors and ratings and so on.
+
+115
+00:06:12,470 --> 00:06:16,940
+We actually begin by trying to
+imagine what Goodreads database looks
+
+116
+00:06:16,940 --> 00:06:18,530
+like underneath the hood.
+
+117
+00:06:18,530 --> 00:06:21,800
+So, I'll go to Google Sheets here.
+
+118
+00:06:21,800 --> 00:06:25,460
+And let me actually ask you
+all, I want to probably store
+
+119
+00:06:25,460 --> 00:06:28,400
+a few things about
+books and about authors.
+
+120
+00:06:28,400 --> 00:06:33,200
+I want to store, let's say the book
+title, maybe it's publication date,
+
+121
+00:06:33,200 --> 00:06:36,860
+the author, the author's birth
+date, and maybe some idea
+
+122
+00:06:36,860 --> 00:06:39,180
+of a rating for that book.
+
+123
+00:06:39,180 --> 00:06:43,070
+So if we only had one table
+here-- let me actually ask you all
+
+124
+00:06:43,070 --> 00:06:49,130
+if you're here live, what kinds of
+columns should I have, in this table?
+
+125
+00:06:49,130 --> 00:06:51,990
+I want to store some of those ideas.
+
+126
+00:06:51,990 --> 00:06:53,980
+Maybe one called a
+title, which makes sense.
+
+127
+00:06:53,980 --> 00:06:55,740
+So this could be my book title here.
+
+128
+00:06:55,740 --> 00:07:01,050
+I'll put it in bold to denote that it
+is the header, the column name here.
+
+129
+00:07:01,050 --> 00:07:04,320
+I'm seeing, maybe author, which
+could stand for the author's name.
+
+130
+00:07:04,320 --> 00:07:06,330
+That's a good idea.
+
+131
+00:07:06,330 --> 00:07:09,310
+I see like something like
+publish date, publication date.
+
+132
+00:07:09,310 --> 00:07:10,740
+So I'll go ahead and add that in.
+
+133
+00:07:10,740 --> 00:07:16,800
+I'll just call this one published, let's
+say, the date this book was published.
+
+134
+00:07:16,800 --> 00:07:18,960
+What else do we have?
+
+135
+00:07:18,960 --> 00:07:21,510
+Maybe one called--
+
+136
+00:07:21,510 --> 00:07:22,950
+I see rating.
+
+137
+00:07:22,950 --> 00:07:24,220
+That could be a good one.
+
+138
+00:07:24,220 --> 00:07:25,710
+So a rating column.
+
+139
+00:07:25,710 --> 00:07:29,940
+And we also want to store, let's
+say, the author's birth date.
+
+140
+00:07:29,940 --> 00:07:35,437
+So I'll say author birth here,
+for the author birth date.
+
+141
+00:07:35,437 --> 00:07:37,020
+So let me organize these a little bit.
+
+142
+00:07:37,020 --> 00:07:39,062
+With Google Sheets I can
+just drag and drop here.
+
+143
+00:07:39,062 --> 00:07:40,660
+So I'll move author over here.
+
+144
+00:07:40,660 --> 00:07:45,390
+So I have some title, published,
+rating for the books, and then author,
+
+145
+00:07:45,390 --> 00:07:47,710
+and the author's birth date here.
+
+146
+00:07:47,710 --> 00:07:49,710
+So let's go and actually
+add in some books.
+
+147
+00:07:49,710 --> 00:07:51,520
+And I have a few here already.
+
+148
+00:07:51,520 --> 00:07:55,030
+These come from the International
+Booker Prize Long List.
+
+149
+00:07:55,030 --> 00:07:57,160
+If you're not familiar,
+is a prize for books
+
+150
+00:07:57,160 --> 00:08:00,252
+that have been translated from
+around the world into English.
+
+151
+00:08:00,252 --> 00:08:01,960
+And it's basically a
+way of keeping track
+
+152
+00:08:01,960 --> 00:08:04,490
+of what are the really good
+books from this past year.
+
+153
+00:08:04,490 --> 00:08:07,870
+So one of the books that made the
+long list over the past several years
+
+154
+00:08:07,870 --> 00:08:12,580
+has been this one called Flights
+that was published in 2017.
+
+155
+00:08:12,580 --> 00:08:15,140
+05 17 here.
+
+156
+00:08:15,140 --> 00:08:16,190
+Let's say the rating.
+
+157
+00:08:16,190 --> 00:08:16,990
+I don't quite know the rating.
+
+158
+00:08:16,990 --> 00:08:18,100
+Let's say it was four.
+
+159
+00:08:18,100 --> 00:08:23,500
+And the author was Olga
+Tokarczuk like this.
+
+160
+00:08:23,500 --> 00:08:26,750
+And Olga was born in 1962.
+
+161
+00:08:26,750 --> 00:08:31,630
+So this is our very first row in
+our database table, let's say.
+
+162
+00:08:31,630 --> 00:08:37,630
+So notice here that one row corresponds
+to one book, Flights, right?
+
+163
+00:08:37,630 --> 00:08:42,230
+Now notice here that the published
+column has a certain format to it.
+
+164
+00:08:42,230 --> 00:08:43,000
+This is a date.
+
+165
+00:08:43,000 --> 00:08:47,270
+It is the year, followed by
+the month, followed by the day.
+
+166
+00:08:47,270 --> 00:08:51,160
+So this would be May 17, 2017.
+
+167
+00:08:51,160 --> 00:08:56,800
+And in SQLite as we'll see, it is often
+important to note that your dates are
+
+168
+00:08:56,800 --> 00:08:57,950
+in a certain format.
+
+169
+00:08:57,950 --> 00:09:02,620
+So this is the format SQLite has
+standardize on to store certain dates,
+
+170
+00:09:02,620 --> 00:09:05,020
+at least in terms of
+years and months and days
+
+171
+00:09:05,020 --> 00:09:11,830
+where you do y, y, y, a four digit year,
+a two digit month, and a two digit day.
+
+172
+00:09:11,830 --> 00:09:13,760
+And the rest I simply
+have a rating out of,
+
+173
+00:09:13,760 --> 00:09:18,680
+let's say five stars, the author's
+name, and the author's birth year here.
+
+174
+00:09:18,680 --> 00:09:20,440
+So I'll go ahead and add a few more.
+
+175
+00:09:20,440 --> 00:09:23,110
+Olga also wrote The Books of Jacob.
+
+176
+00:09:23,110 --> 00:09:27,800
+And this was also long listed for this
+prize called the International Booker
+
+177
+00:09:27,800 --> 00:09:28,300
+Prize.
+
+178
+00:09:28,300 --> 00:09:31,570
+And that was published
+in 2021, November 15.
+
+179
+00:09:31,570 --> 00:09:33,820
+Let's say that got a
+five out of five rating.
+
+180
+00:09:33,820 --> 00:09:37,810
+And it's also by Olga
+who was born in 1962.
+
+181
+00:09:37,810 --> 00:09:38,710
+I'll keep going.
+
+182
+00:09:38,710 --> 00:09:41,410
+Why don't I add one called Paradais.
+
+183
+00:09:41,410 --> 00:09:47,690
+This one was published in 2020, March,
+let's say 23, and got a four out
+
+184
+00:09:47,690 --> 00:09:48,190
+of five.
+
+185
+00:09:48,190 --> 00:09:53,600
+This one was by Fernanda,
+Fernanda Melchor.
+
+186
+00:09:53,600 --> 00:09:57,920
+And they were born in 1982.
+
+187
+00:09:57,920 --> 00:10:00,770
+Now Fernanda also wrote another book.
+
+188
+00:10:00,770 --> 00:10:04,130
+They wrote Hurricane
+Season, which was published,
+
+189
+00:10:04,130 --> 00:10:08,210
+let's say, in 2020 in February 19.
+
+190
+00:10:08,210 --> 00:10:10,250
+And that got a five out of five.
+
+191
+00:10:10,250 --> 00:10:15,180
+Also, of course, by
+Fernanda, born in 1982.
+
+192
+00:10:15,180 --> 00:10:19,850
+So here is my basic database table.
+
+193
+00:10:19,850 --> 00:10:22,200
+Perhaps Goodreads has
+something very similar.
+
+194
+00:10:22,200 --> 00:10:30,600
+Now I want to ask you, what could
+be better designed about this table?
+
+195
+00:10:30,600 --> 00:10:33,360
+Any ideas?
+
+196
+00:10:33,360 --> 00:10:38,330
+If I were to keep adding more and more
+books, what could be better designed?
+
+197
+00:10:38,330 --> 00:10:44,900
+
+
+198
+00:10:44,900 --> 00:10:49,160
+Certainly, I could maybe have
+more tables, more information .
+
+199
+00:10:49,160 --> 00:10:51,930
+Here that could be a good idea.
+
+200
+00:10:51,930 --> 00:10:54,920
+Why don't I add in a
+few more pieces of data
+
+201
+00:10:54,920 --> 00:10:57,290
+and see if we can get
+another sense here?
+
+202
+00:10:57,290 --> 00:11:01,910
+I'll add in the other name, which
+published in 2019, October 10,
+
+203
+00:11:01,910 --> 00:11:03,110
+by John--
+
+204
+00:11:03,110 --> 00:11:03,620
+oops.
+
+205
+00:11:03,620 --> 00:11:06,590
+The rating let's say,
+was, let's go with a five.
+
+206
+00:11:06,590 --> 00:11:10,310
+Was published by John Fosse in 1959.
+
+207
+00:11:10,310 --> 00:11:12,980
+And John Fosse also had
+another book as well.
+
+208
+00:11:12,980 --> 00:11:18,920
+They had A New Name, A New Name,
+which was published in 2021.
+
+209
+00:11:18,920 --> 00:11:20,000
+09/08.
+
+210
+00:11:20,000 --> 00:11:22,160
+That got a four out of five.
+
+211
+00:11:22,160 --> 00:11:25,790
+That of course, is by John
+Foss, who was born in 1959.
+
+212
+00:11:25,790 --> 00:11:29,410
+So here is our total table.
+
+213
+00:11:29,410 --> 00:11:31,280
+And I'm seeing a few
+ideas now coming up.
+
+214
+00:11:31,280 --> 00:11:33,370
+So one is, we could sort this data.
+
+215
+00:11:33,370 --> 00:11:35,020
+That would be a very good idea.
+
+216
+00:11:35,020 --> 00:11:37,930
+Maybe we sort it by
+title, alphabetically.
+
+217
+00:11:37,930 --> 00:11:42,460
+Maybe we sort it by publication
+date, earliest to latest and so on.
+
+218
+00:11:42,460 --> 00:11:44,020
+Those are all good ideas.
+
+219
+00:11:44,020 --> 00:11:46,600
+Here though, I want to
+think about the best way
+
+220
+00:11:46,600 --> 00:11:52,280
+to structure our columns
+and our tables themselves.
+
+221
+00:11:52,280 --> 00:11:55,420
+So I see a few ideas,
+which is that we're often
+
+222
+00:11:55,420 --> 00:11:58,190
+repeating a few things in this table.
+
+223
+00:11:58,190 --> 00:12:00,490
+So notice that Olga comes up twice.
+
+224
+00:12:00,490 --> 00:12:03,070
+So does Fernanda and so does John.
+
+225
+00:12:03,070 --> 00:12:08,500
+And notice how we have to duplicate
+their birth years, 1962, 1962,
+
+226
+00:12:08,500 --> 00:12:14,140
+or 1982, 1982, 1959, 1959.
+
+227
+00:12:14,140 --> 00:12:18,460
+So although this is a table
+trying to store books,
+
+228
+00:12:18,460 --> 00:12:23,140
+we're necessarily repeating author
+names and author birth years
+
+229
+00:12:23,140 --> 00:12:27,470
+to make sure we have that
+information in the same table.
+
+230
+00:12:27,470 --> 00:12:30,730
+So when it comes to
+organizing our databases,
+
+231
+00:12:30,730 --> 00:12:32,810
+there's one principle
+you can keep in mind,
+
+232
+00:12:32,810 --> 00:12:38,360
+which is that let's try to have tables
+that represent one and only one thing.
+
+233
+00:12:38,360 --> 00:12:43,460
+So here we wanted to store books,
+originally, just individual books.
+
+234
+00:12:43,460 --> 00:12:47,140
+So maybe what we do is, I'll go
+down to this bottom piece here,
+
+235
+00:12:47,140 --> 00:12:50,600
+and I'll say this is my
+books table right here.
+
+236
+00:12:50,600 --> 00:12:54,970
+But now, I shouldn't have information
+about authors in my books table.
+
+237
+00:12:54,970 --> 00:12:57,620
+I should make those
+authors a separate table.
+
+238
+00:12:57,620 --> 00:12:59,690
+So I'll go and create a new table.
+
+239
+00:12:59,690 --> 00:13:03,740
+I'll call this one
+perhaps, authors like this.
+
+240
+00:13:03,740 --> 00:13:09,830
+Now let me add in my columns
+for authors over to this table.
+
+241
+00:13:09,830 --> 00:13:13,540
+So now I have Olga, Fernanda, and John.
+
+242
+00:13:13,540 --> 00:13:15,050
+But I don't want to duplicate them.
+
+243
+00:13:15,050 --> 00:13:16,180
+So I'll remove row three.
+
+244
+00:13:16,180 --> 00:13:17,620
+I'll just delete this row.
+
+245
+00:13:17,620 --> 00:13:22,270
+I'll remove row four with duplicate
+Fernanda, row five with John Fosse.
+
+246
+00:13:22,270 --> 00:13:28,763
+And now I have a table of authors
+and a table of just books.
+
+247
+00:13:28,763 --> 00:13:30,680
+But now I think I have
+another problem, right?
+
+248
+00:13:30,680 --> 00:13:34,300
+If I have a table of books
+and a table of authors,
+
+249
+00:13:34,300 --> 00:13:39,420
+what information did
+I lose by doing this?
+
+250
+00:13:39,420 --> 00:13:44,220
+Let's say you're just seeing this table
+or these tables for the first time,
+
+251
+00:13:44,220 --> 00:13:45,540
+what did I lose?
+
+252
+00:13:45,540 --> 00:13:48,390
+I lost who wrote which book.
+
+253
+00:13:48,390 --> 00:13:49,650
+I don't know anymore.
+
+254
+00:13:49,650 --> 00:13:53,400
+Did Olga write Flights
+or was that perhaps John?
+
+255
+00:13:53,400 --> 00:13:57,450
+I don't have association, this
+relationship between these books
+
+256
+00:13:57,450 --> 00:13:59,250
+and these authors.
+
+257
+00:13:59,250 --> 00:14:03,550
+So this is where this idea of a
+relational database comes into play.
+
+258
+00:14:03,550 --> 00:14:06,210
+So we don't just have individual tables.
+
+259
+00:14:06,210 --> 00:14:09,960
+We also have relationships
+between them, that some author
+
+260
+00:14:09,960 --> 00:14:15,390
+wrote some particular book, or some book
+was written by some particular author.
+
+261
+00:14:15,390 --> 00:14:19,000
+And so to actually represent
+these relationships,
+
+262
+00:14:19,000 --> 00:14:23,280
+we have this idea of a primary
+key and a foreign key column
+
+263
+00:14:23,280 --> 00:14:25,050
+that we saw in lecture.
+
+264
+00:14:25,050 --> 00:14:26,890
+So let me clean this up a little bit.
+
+265
+00:14:26,890 --> 00:14:29,310
+I'll go to my ratings column.
+
+266
+00:14:29,310 --> 00:14:31,300
+I'll shorten it just
+to visualize it here.
+
+267
+00:14:31,300 --> 00:14:33,480
+And why don't I do
+something I should have
+
+268
+00:14:33,480 --> 00:14:36,600
+done from the very beginning,
+which is give each of these books
+
+269
+00:14:36,600 --> 00:14:39,360
+its very own unique ID.
+
+270
+00:14:39,360 --> 00:14:40,860
+So why don't we start with one here.
+
+271
+00:14:40,860 --> 00:14:45,160
+I'll say one, two, three,
+four, five, and six.
+
+272
+00:14:45,160 --> 00:14:49,340
+So each of these books has its own
+unique number that refers to it.
+
+273
+00:14:49,340 --> 00:14:53,170
+And the idea of a primary key
+is that I cannot repeat it.
+
+274
+00:14:53,170 --> 00:14:58,580
+Every book should have one and only
+one number that is unique to that book.
+
+275
+00:14:58,580 --> 00:15:04,300
+So when I talk about book number six,
+that is a new name and only a new name.
+
+276
+00:15:04,300 --> 00:15:05,230
+It won't change.
+
+277
+00:15:05,230 --> 00:15:06,563
+It won't ever be something else.
+
+278
+00:15:06,563 --> 00:15:09,670
+It is always going to
+refer to a new name.
+
+279
+00:15:09,670 --> 00:15:14,558
+And this is helpful because I now don't
+have to repeat all the information on,
+
+280
+00:15:14,558 --> 00:15:15,850
+let's say this particular book.
+
+281
+00:15:15,850 --> 00:15:18,790
+I can just say, well, it's
+book number six, right?
+
+282
+00:15:18,790 --> 00:15:20,770
+That's pretty easy enough.
+
+283
+00:15:20,770 --> 00:15:24,240
+So now I'll go to authors here
+and I will try the same thing.
+
+284
+00:15:24,240 --> 00:15:25,920
+I'll go insert new column left.
+
+285
+00:15:25,920 --> 00:15:29,230
+I'll say why don't I give
+every author their own ID too.
+
+286
+00:15:29,230 --> 00:15:31,440
+So Olga has ID one.
+
+287
+00:15:31,440 --> 00:15:33,390
+Fernanda has ID two.
+
+288
+00:15:33,390 --> 00:15:35,250
+John has ID three.
+
+289
+00:15:35,250 --> 00:15:38,670
+And now every author
+has its own unique ID.
+
+290
+00:15:38,670 --> 00:15:41,610
+And it is OK here that I
+repeat certain numbers.
+
+291
+00:15:41,610 --> 00:15:45,420
+Because here I could say, well, it's
+book number one or author number one.
+
+292
+00:15:45,420 --> 00:15:48,480
+Now I'm able to differentiate
+between books and authors,
+
+293
+00:15:48,480 --> 00:15:53,110
+even though they have the
+same ID associated, with them.
+
+294
+00:15:53,110 --> 00:15:54,460
+So this is helpful.
+
+295
+00:15:54,460 --> 00:15:57,250
+But have I solved my problem really?
+
+296
+00:15:57,250 --> 00:16:01,175
+If you look at this table
+have I solved my problem?
+
+297
+00:16:01,175 --> 00:16:04,030
+
+
+298
+00:16:04,030 --> 00:16:05,680
+I'm seeing some head shaking.
+
+299
+00:16:05,680 --> 00:16:07,120
+So no, not really.
+
+300
+00:16:07,120 --> 00:16:08,150
+What could I do?
+
+301
+00:16:08,150 --> 00:16:12,820
+Well, I could try to associate
+these particular primary keys
+
+302
+00:16:12,820 --> 00:16:14,530
+with each other.
+
+303
+00:16:14,530 --> 00:16:18,750
+And any ideas on how I could do that?
+
+304
+00:16:18,750 --> 00:16:24,230
+What could I create to
+associate these IDs?
+
+305
+00:16:24,230 --> 00:16:26,220
+I could use this idea of a foreign key.
+
+306
+00:16:26,220 --> 00:16:30,320
+So we saw in lecture that a primary
+key used in some other table
+
+307
+00:16:30,320 --> 00:16:33,407
+becomes what we call a foreign key.
+
+308
+00:16:33,407 --> 00:16:35,240
+I think that hints at
+the answer here, which
+
+309
+00:16:35,240 --> 00:16:39,350
+is, we probably need another table
+to represent this relationship
+
+310
+00:16:39,350 --> 00:16:42,000
+between the authors and the book.
+
+311
+00:16:42,000 --> 00:16:43,850
+So why don't I go ahead and create that.
+
+312
+00:16:43,850 --> 00:16:50,153
+I'll call this new table maybe I'll call
+it authorship, who wrote which book.
+
+313
+00:16:50,153 --> 00:16:52,070
+Or actually instead of
+authorship, why don't I
+
+314
+00:16:52,070 --> 00:16:53,790
+make it like a verb like authored.
+
+315
+00:16:53,790 --> 00:16:57,230
+So like this author authored
+this particular book.
+
+316
+00:16:57,230 --> 00:17:03,560
+So maybe here what I should do is have
+one column called author id, which
+
+317
+00:17:03,560 --> 00:17:05,010
+will be like a foreign key.
+
+318
+00:17:05,010 --> 00:17:07,940
+It will refer to authors
+and the authors table.
+
+319
+00:17:07,940 --> 00:17:11,630
+And maybe I'll have another
+column here called book id.
+
+320
+00:17:11,630 --> 00:17:14,819
+And this will refer to
+books in the books table.
+
+321
+00:17:14,819 --> 00:17:19,700
+So now if I want to, let's say,
+associate some particular author
+
+322
+00:17:19,700 --> 00:17:22,550
+with some particular book, well,
+I could find the author id,
+
+323
+00:17:22,550 --> 00:17:28,830
+like Olga, who is one, and then add
+in whatever book id Olga authored.
+
+324
+00:17:28,830 --> 00:17:31,980
+So I'll go to the book table,
+and I know Olga authored Flights
+
+325
+00:17:31,980 --> 00:17:34,050
+which is also ID one.
+
+326
+00:17:34,050 --> 00:17:39,450
+So now I see in this author table
+that the author with the ID of one
+
+327
+00:17:39,450 --> 00:17:42,540
+wrote the book with the ID of one.
+
+328
+00:17:42,540 --> 00:17:43,620
+And now I can keep going.
+
+329
+00:17:43,620 --> 00:17:48,300
+I could say, well, Olga also wrote the
+book with ID two, The Flights of Jacob.
+
+330
+00:17:48,300 --> 00:17:49,650
+Let's say, who is two?
+
+331
+00:17:49,650 --> 00:17:50,220
+Fernanda.
+
+332
+00:17:50,220 --> 00:17:53,550
+Fernanda also wrote Paradais
+and Hurricane Season.
+
+333
+00:17:53,550 --> 00:17:56,460
+So two with three, and two with four.
+
+334
+00:17:56,460 --> 00:17:57,930
+And, finally John.
+
+335
+00:17:57,930 --> 00:18:02,170
+John wrote both five and six,
+the other name and a new name.
+
+336
+00:18:02,170 --> 00:18:07,500
+So three and five, and
+then three and six.
+
+337
+00:18:07,500 --> 00:18:10,410
+And this has solved some
+of my problems from before.
+
+338
+00:18:10,410 --> 00:18:14,610
+I'm no longer duplicating
+information in a particular table.
+
+339
+00:18:14,610 --> 00:18:18,780
+I have just the information organized
+into its own separate tables.
+
+340
+00:18:18,780 --> 00:18:23,340
+And now I still have a way of trying
+to organize the information together
+
+341
+00:18:23,340 --> 00:18:27,700
+and have the relationships
+exist between them.
+
+342
+00:18:27,700 --> 00:18:30,180
+So let me pause here
+and ask what questions
+
+343
+00:18:30,180 --> 00:18:33,510
+do we have on this idea
+of organizing our tables
+
+344
+00:18:33,510 --> 00:18:37,290
+and relating information between them?
+
+345
+00:18:37,290 --> 00:18:38,535
+What questions do we have?
+
+346
+00:18:38,535 --> 00:18:42,483
+
+
+347
+00:18:42,483 --> 00:18:43,150
+A good question.
+
+348
+00:18:43,150 --> 00:18:44,920
+What do we call this kind of table?
+
+349
+00:18:44,920 --> 00:18:50,820
+So, often we will see the particular
+kind of format for our tables.
+
+350
+00:18:50,820 --> 00:18:52,500
+This table has many names.
+
+351
+00:18:52,500 --> 00:18:56,280
+It is sometimes called an associative
+entity, sometimes called a junction
+
+352
+00:18:56,280 --> 00:18:58,710
+table, sometimes called a join table.
+
+353
+00:18:58,710 --> 00:19:03,720
+The idea of this table associating
+certain two foreign keys
+
+354
+00:19:03,720 --> 00:19:04,530
+has many names.
+
+355
+00:19:04,530 --> 00:19:07,890
+But among those are the
+ones I just said here.
+
+356
+00:19:07,890 --> 00:19:12,540
+Individually though, these individual
+columns are each foreign keys.
+
+357
+00:19:12,540 --> 00:19:17,680
+Because they refer to the
+primary key of some other table.
+
+358
+00:19:17,680 --> 00:19:22,810
+So remember, a primary key is that
+unique ID for every row in that table.
+
+359
+00:19:22,810 --> 00:19:26,370
+But when it's using some other
+table, like the authored table,
+
+360
+00:19:26,370 --> 00:19:28,710
+it becomes what we call a foreign key.
+
+361
+00:19:28,710 --> 00:19:31,570
+
+
+362
+00:19:31,570 --> 00:19:33,910
+Question, a good one
+here, is making a call
+
+363
+00:19:33,910 --> 00:19:39,220
+to three separate tables as efficient as
+making a single call to a single table
+
+364
+00:19:39,220 --> 00:19:42,010
+even though that single table is bigger?
+
+365
+00:19:42,010 --> 00:19:47,050
+So remember, we first began, we had only
+one single table with duplicate authors
+
+366
+00:19:47,050 --> 00:19:47,590
+in it.
+
+367
+00:19:47,590 --> 00:19:50,650
+Now I mean, you've kind of
+hit the nail on the head here.
+
+368
+00:19:50,650 --> 00:19:52,268
+We have three different tables.
+
+369
+00:19:52,268 --> 00:19:54,310
+And if I want to figure
+out who wrote which book,
+
+370
+00:19:54,310 --> 00:19:56,140
+I have to go to all three tables.
+
+371
+00:19:56,140 --> 00:19:58,030
+It could take more time.
+
+372
+00:19:58,030 --> 00:20:01,780
+Often though as you get much
+bigger data sets, this pays off.
+
+373
+00:20:01,780 --> 00:20:03,580
+And having this kind
+of organization helps
+
+374
+00:20:03,580 --> 00:20:07,150
+you avoid what we call
+data anomalies, helping
+
+375
+00:20:07,150 --> 00:20:10,000
+to make sure your data is
+what we call normalized,
+
+376
+00:20:10,000 --> 00:20:13,990
+able to stay organized over time.
+
+377
+00:20:13,990 --> 00:20:17,640
+So, often you'll see these
+kinds of trade offs more,
+
+378
+00:20:17,640 --> 00:20:20,430
+let's say, clear when
+you have lots of data.
+
+379
+00:20:20,430 --> 00:20:22,290
+And it becomes a little
+more clear that this
+
+380
+00:20:22,290 --> 00:20:25,125
+is going to be a superior
+way of organizing your data.
+
+381
+00:20:25,125 --> 00:20:28,490
+
+
+382
+00:20:28,490 --> 00:20:29,780
+Let's see.
+
+383
+00:20:29,780 --> 00:20:35,120
+Wouldn't it be better if we had the
+author id column in the books table?
+
+384
+00:20:35,120 --> 00:20:36,420
+That's a decent idea.
+
+385
+00:20:36,420 --> 00:20:39,253
+So what if I had not just this authors--
+
+386
+00:20:39,253 --> 00:20:41,420
+actually, let's say I got
+rid of the authored table.
+
+387
+00:20:41,420 --> 00:20:42,693
+I go to books.
+
+388
+00:20:42,693 --> 00:20:44,610
+And couldn't I have
+something a bit like this.
+
+389
+00:20:44,610 --> 00:20:47,180
+I could have an author id column here.
+
+390
+00:20:47,180 --> 00:20:51,860
+And then I could say, well,
+author id one wrote one and two.
+
+391
+00:20:51,860 --> 00:20:55,640
+And then author id two
+wrote three and four.
+
+392
+00:20:55,640 --> 00:20:57,560
+Author id three wrote five and six.
+
+393
+00:20:57,560 --> 00:21:00,110
+And this is kind of the same idea.
+
+394
+00:21:00,110 --> 00:21:03,860
+But notice here, I'm still
+kind of repeating this idea.
+
+395
+00:21:03,860 --> 00:21:07,670
+I could do it, but I
+think it's better to have
+
+396
+00:21:07,670 --> 00:21:11,870
+just books in their own table and
+then just authors in their own table
+
+397
+00:21:11,870 --> 00:21:13,050
+as well.
+
+398
+00:21:13,050 --> 00:21:15,080
+And actually, as we
+saw in lecture, there's
+
+399
+00:21:15,080 --> 00:21:19,580
+this idea of a one to many relationship,
+a many to many relationship,
+
+400
+00:21:19,580 --> 00:21:23,210
+and because authors and books have
+a many to many relationship, that
+
+401
+00:21:23,210 --> 00:21:25,940
+is one author could
+write multiple books,
+
+402
+00:21:25,940 --> 00:21:28,860
+and one book could be
+written by multiple authors,
+
+403
+00:21:28,860 --> 00:21:32,070
+it's often helpful to have a
+joined table or a junction table
+
+404
+00:21:32,070 --> 00:21:34,320
+to represent that kind of relationship.
+
+405
+00:21:34,320 --> 00:21:38,250
+If though you have a one to
+many relationship that is a book
+
+406
+00:21:38,250 --> 00:21:41,190
+is only ever written
+by one author, it could
+
+407
+00:21:41,190 --> 00:21:45,300
+make sense to have this
+kind of design here,
+
+408
+00:21:45,300 --> 00:21:48,340
+with the author id column
+inside the books table.
+
+409
+00:21:48,340 --> 00:21:51,480
+So it does depend on
+the kind of relationship
+
+410
+00:21:51,480 --> 00:21:55,530
+you are trying to represent between
+your entities, if that makes sense.
+
+411
+00:21:55,530 --> 00:21:59,220
+
+
+412
+00:21:59,220 --> 00:22:00,110
+All right.
+
+413
+00:22:00,110 --> 00:22:03,560
+So I think we've pretty thoroughly
+explored this idea of designing
+
+414
+00:22:03,560 --> 00:22:05,510
+databases, at least for now.
+
+415
+00:22:05,510 --> 00:22:11,330
+And it's worth thinking about how we
+can try to represent this idea in terms
+
+416
+00:22:11,330 --> 00:22:12,910
+of an actual database.
+
+417
+00:22:12,910 --> 00:22:14,660
+So here I have done
+this in Google Sheets.
+
+418
+00:22:14,660 --> 00:22:18,740
+But what could I do to create these
+tables inside of a database management
+
+419
+00:22:18,740 --> 00:22:21,170
+system, perhaps like SQLite?
+
+420
+00:22:21,170 --> 00:22:24,650
+So I'll go now to my terminal here.
+
+421
+00:22:24,650 --> 00:22:26,810
+And I will let it reload.
+
+422
+00:22:26,810 --> 00:22:29,420
+Let me go ahead and confirm those.
+
+423
+00:22:29,420 --> 00:22:33,360
+Actually, OK, it's going
+to reload for me here.
+
+424
+00:22:33,360 --> 00:22:36,150
+And while it does that,
+let me also talk to you
+
+425
+00:22:36,150 --> 00:22:37,920
+a bit about some design
+principles to keep
+
+426
+00:22:37,920 --> 00:22:39,570
+in mind as you design your databases.
+
+427
+00:22:39,570 --> 00:22:41,740
+So I'll go back to my slides here.
+
+428
+00:22:41,740 --> 00:22:44,880
+And as you go off into
+CS50 and beyond, I
+
+429
+00:22:44,880 --> 00:22:47,340
+would keep in mind
+these three ideas, that
+
+430
+00:22:47,340 --> 00:22:52,660
+is best often to have one table
+for each entity in your data set.
+
+431
+00:22:52,660 --> 00:22:56,760
+So an entity could be something like
+a book or an author, for instance.
+
+432
+00:22:56,760 --> 00:22:58,640
+Those are two different entities.
+
+433
+00:22:58,640 --> 00:23:03,390
+, Second every table should often
+have its very own primary key,
+
+434
+00:23:03,390 --> 00:23:07,650
+some unique ID, like a number, that
+identifies it and differentiates it
+
+435
+00:23:07,650 --> 00:23:10,590
+from every other row in that table.
+
+436
+00:23:10,590 --> 00:23:14,640
+And then like we discussed here,
+the information in that table
+
+437
+00:23:14,640 --> 00:23:17,550
+should depend on the primary key only.
+
+438
+00:23:17,550 --> 00:23:20,520
+Or another way of saying
+this is that every table
+
+439
+00:23:20,520 --> 00:23:23,950
+should have only the information
+on that particular entity,
+
+440
+00:23:23,950 --> 00:23:26,940
+so only information on
+books in the books table
+
+441
+00:23:26,940 --> 00:23:31,590
+and only information on
+authors in the authors table.
+
+442
+00:23:31,590 --> 00:23:32,090
+All right.
+
+443
+00:23:32,090 --> 00:23:34,460
+So let's go back to our code space here.
+
+444
+00:23:34,460 --> 00:23:39,180
+And let me try to set
+up an example here.
+
+445
+00:23:39,180 --> 00:23:42,380
+So why don't we try to make
+this idea into a reality?
+
+446
+00:23:42,380 --> 00:23:46,550
+I will type SQLite3 reads dot dB.
+
+447
+00:23:46,550 --> 00:23:52,520
+And what this will do is create for me
+a new database file called reads.dB.
+
+448
+00:23:52,520 --> 00:23:56,030
+And it'll open with this
+program called SQLite3.
+
+449
+00:23:56,030 --> 00:23:59,930
+So SQLite3 is the software that
+allows us to open up a database
+
+450
+00:23:59,930 --> 00:24:02,220
+and use SQLite with it.
+
+451
+00:24:02,220 --> 00:24:03,590
+So I'll hit Enter here.
+
+452
+00:24:03,590 --> 00:24:05,880
+And it'll ask if I
+want to create read.dB.
+
+453
+00:24:05,880 --> 00:24:06,380
+I do.
+
+454
+00:24:06,380 --> 00:24:07,040
+It's brand new.
+
+455
+00:24:07,040 --> 00:24:08,220
+I'll hit Yes here.
+
+456
+00:24:08,220 --> 00:24:11,210
+And now I'm brought to a new prompt.
+
+457
+00:24:11,210 --> 00:24:15,080
+So notice above I have a dollar
+sign, which is my bash terminal.
+
+458
+00:24:15,080 --> 00:24:19,640
+You often use it for typing LS or
+CD to move around your code space.
+
+459
+00:24:19,640 --> 00:24:23,540
+Now though, I'm in SQLite,
+this brand new software
+
+460
+00:24:23,540 --> 00:24:27,760
+I could use to actually
+access my database.
+
+461
+00:24:27,760 --> 00:24:30,330
+So one of the first
+things I could do is try
+
+462
+00:24:30,330 --> 00:24:33,450
+to create some table
+inside this database.
+
+463
+00:24:33,450 --> 00:24:35,300
+And for that we need some new syntax.
+
+464
+00:24:35,300 --> 00:24:36,730
+So I'll go back to my slides.
+
+465
+00:24:36,730 --> 00:24:42,690
+And here is the SQL syntax
+for creating some new table.
+
+466
+00:24:42,690 --> 00:24:46,860
+Notice how I have create table,
+which is this SQL keyword that says,
+
+467
+00:24:46,860 --> 00:24:49,720
+create me a new table,
+and then table name.
+
+468
+00:24:49,720 --> 00:24:52,590
+So table name is the
+name I give to my table.
+
+469
+00:24:52,590 --> 00:24:55,470
+And then in parentheses,
+I have a variety
+
+470
+00:24:55,470 --> 00:25:00,620
+of columns I could add to this table,
+much like we did in Google Sheets.
+
+471
+00:25:00,620 --> 00:25:04,290
+Here though, I have to
+decide actually two things.
+
+472
+00:25:04,290 --> 00:25:09,020
+First, the column name, so column zero,
+column one, column two, column three.
+
+473
+00:25:09,020 --> 00:25:12,140
+Those are all placeholders
+here for actual column names.
+
+474
+00:25:12,140 --> 00:25:16,860
+And then in caps, the
+type of that column.
+
+475
+00:25:16,860 --> 00:25:19,610
+So there are many
+different kinds of types
+
+476
+00:25:19,610 --> 00:25:22,322
+in SQL, actually not necessarily
+many, there are really
+
+477
+00:25:22,322 --> 00:25:23,280
+only a handful of them.
+
+478
+00:25:23,280 --> 00:25:25,080
+But here are a few.
+
+479
+00:25:25,080 --> 00:25:30,530
+So one is the idea of an integer, having
+a column that stores whole numbers.
+
+480
+00:25:30,530 --> 00:25:34,730
+Another is text, having a
+column that stores text.
+
+481
+00:25:34,730 --> 00:25:39,260
+Another is numeric, numeric could store
+either integers or floating points,
+
+482
+00:25:39,260 --> 00:25:42,350
+like with decimals and so
+on, like 1.2 for instance,
+
+483
+00:25:42,350 --> 00:25:48,200
+and real, which stores just let's
+say floats, just 1.2 or 2.5,
+
+484
+00:25:48,200 --> 00:25:51,050
+any number with a decimal
+point inside of it.
+
+485
+00:25:51,050 --> 00:25:54,930
+Numeric is often used for
+things like dates as well.
+
+486
+00:25:54,930 --> 00:25:58,490
+So it's more flexible than, let's
+say, just integer or just real,
+
+487
+00:25:58,490 --> 00:26:01,620
+which is why people
+might use it in the end.
+
+488
+00:26:01,620 --> 00:26:04,560
+So these are our various
+types at our disposal.
+
+489
+00:26:04,560 --> 00:26:07,190
+So let's go ahead and try to
+actually create this table here.
+
+490
+00:26:07,190 --> 00:26:09,470
+I'll go back to my code space.
+
+491
+00:26:09,470 --> 00:26:14,340
+And I will try to create our very
+own, let's say books table first.
+
+492
+00:26:14,340 --> 00:26:17,690
+So I'll type create table books.
+
+493
+00:26:17,690 --> 00:26:20,780
+And then I'll have parentheses here.
+
+494
+00:26:20,780 --> 00:26:23,090
+And I'll hit Enter,
+just for style's sake.
+
+495
+00:26:23,090 --> 00:26:27,230
+And now indent 4 times, one,
+two, three, four spaces.
+
+496
+00:26:27,230 --> 00:26:30,300
+Now I can give my very
+first column name.
+
+497
+00:26:30,300 --> 00:26:35,150
+So our column name if I go
+back here was, well first ID.
+
+498
+00:26:35,150 --> 00:26:37,250
+So I'll say ID.
+
+499
+00:26:37,250 --> 00:26:41,090
+And what kind of information
+was stored in ID?
+
+500
+00:26:41,090 --> 00:26:45,190
+What type do you think is
+best for this kind of column?
+
+501
+00:26:45,190 --> 00:26:46,010
+Probably integer.
+
+502
+00:26:46,010 --> 00:26:47,385
+So we stored whole numbers there.
+
+503
+00:26:47,385 --> 00:26:50,950
+So I'll say ID space integer,
+and followed by a comma
+
+504
+00:26:50,950 --> 00:26:54,440
+for adding on additional columns here.
+
+505
+00:26:54,440 --> 00:26:59,860
+I'll hit Enter, hit Space four times
+to indent just for style's sake.
+
+506
+00:26:59,860 --> 00:27:02,740
+Now I'll go my next
+column, which was title.
+
+507
+00:27:02,740 --> 00:27:05,020
+Now what information is stored in title?
+
+508
+00:27:05,020 --> 00:27:07,457
+What type might be best?
+
+509
+00:27:07,457 --> 00:27:09,540
+Probably text, we're just
+storing characters here.
+
+510
+00:27:09,540 --> 00:27:13,040
+So I will say title text.
+
+511
+00:27:13,040 --> 00:27:16,370
+And this is idea of storing
+like strings or characters.
+
+512
+00:27:16,370 --> 00:27:19,100
+Often that's good for a text column.
+
+513
+00:27:19,100 --> 00:27:22,730
+Now I'll go ahead and I'll make
+a new one called published.
+
+514
+00:27:22,730 --> 00:27:24,050
+OK, published.
+
+515
+00:27:24,050 --> 00:27:27,250
+And published is a bit tricky.
+
+516
+00:27:27,250 --> 00:27:30,940
+Like we could use text
+because I see dashes in here.
+
+517
+00:27:30,940 --> 00:27:37,730
+But actually SQLite lets us store dates
+like this as a numeric kind of column.
+
+518
+00:27:37,730 --> 00:27:42,140
+So I'll use numeric
+here to store a date.
+
+519
+00:27:42,140 --> 00:27:45,140
+Another comma, because we want
+to keep adding new columns.
+
+520
+00:27:45,140 --> 00:27:47,390
+Our last one is rating.
+
+521
+00:27:47,390 --> 00:27:49,880
+So I'll go ahead and say rating here.
+
+522
+00:27:49,880 --> 00:27:53,310
+And the type is probably
+going to be integer.
+
+523
+00:27:53,310 --> 00:27:55,650
+So I could call this good.
+
+524
+00:27:55,650 --> 00:27:57,470
+I could close this statement.
+
+525
+00:27:57,470 --> 00:27:59,720
+But I don't want to do that just yet.
+
+526
+00:27:59,720 --> 00:28:03,620
+There's one thing I'm
+forgetting which is what?
+
+527
+00:28:03,620 --> 00:28:06,450
+Any ideas?
+
+528
+00:28:06,450 --> 00:28:07,410
+I have all my columns.
+
+529
+00:28:07,410 --> 00:28:10,110
+
+
+530
+00:28:10,110 --> 00:28:14,460
+But I should specify one thing more.
+
+531
+00:28:14,460 --> 00:28:14,960
+Yeah.
+
+532
+00:28:14,960 --> 00:28:16,002
+So I'm seeing some ideas.
+
+533
+00:28:16,002 --> 00:28:20,880
+I need to specify which of
+these columns is my primary key.
+
+534
+00:28:20,880 --> 00:28:25,880
+So in SQLite to do this, I
+can use the following syntax.
+
+535
+00:28:25,880 --> 00:28:28,160
+At the end of all my
+column definitions I
+
+536
+00:28:28,160 --> 00:28:32,090
+can say primary key
+and inside parentheses,
+
+537
+00:28:32,090 --> 00:28:36,810
+tell SQLite which of these
+columns is my primary key.
+
+538
+00:28:36,810 --> 00:28:39,860
+So let me go back and I'll
+have another comma here.
+
+539
+00:28:39,860 --> 00:28:42,620
+I'll indent four times
+again, just for style.
+
+540
+00:28:42,620 --> 00:28:47,360
+I'll say primary key in all caps
+to indicate this is a SQL keyword.
+
+541
+00:28:47,360 --> 00:28:50,240
+And then I'll tell it
+what kind of column
+
+542
+00:28:50,240 --> 00:28:52,370
+I want to include in my primary key.
+
+543
+00:28:52,370 --> 00:28:54,930
+In this case, it's the ID column.
+
+544
+00:28:54,930 --> 00:28:58,730
+So now that I'm done, I
+can hit Enter, no comma,
+
+545
+00:28:58,730 --> 00:29:03,560
+close out this beginning parentheses,
+semicolon, and fingers crossed,
+
+546
+00:29:03,560 --> 00:29:05,300
+hit Enter.
+
+547
+00:29:05,300 --> 00:29:09,030
+I don't see anything which
+is actually a good thing.
+
+548
+00:29:09,030 --> 00:29:10,680
+So now maybe I'll try this.
+
+549
+00:29:10,680 --> 00:29:13,010
+I'll say dot schema.
+
+550
+00:29:13,010 --> 00:29:15,920
+Actually before I do that,
+let me type dot tables.
+
+551
+00:29:15,920 --> 00:29:18,740
+This is not a SQL keyword,
+but a SQLite statement
+
+552
+00:29:18,740 --> 00:29:22,800
+that tells me what tables
+do I have in this database.
+
+553
+00:29:22,800 --> 00:29:23,960
+I'll hit Enter.
+
+554
+00:29:23,960 --> 00:29:26,420
+And I see I have a table called books.
+
+555
+00:29:26,420 --> 00:29:28,520
+If I want to actually
+figure out later on,
+
+556
+00:29:28,520 --> 00:29:30,510
+let's say I clear my screen like this.
+
+557
+00:29:30,510 --> 00:29:35,280
+I could Control L. If I
+want to clear my screen
+
+558
+00:29:35,280 --> 00:29:40,640
+and figure out what the
+columns I had in books were,
+
+559
+00:29:40,640 --> 00:29:45,470
+I could type dot schema, space books.
+
+560
+00:29:45,470 --> 00:29:46,490
+Hit Enter.
+
+561
+00:29:46,490 --> 00:29:49,370
+And that tells me the
+create table statement
+
+562
+00:29:49,370 --> 00:29:53,730
+that was used to create
+this table called books.
+
+563
+00:29:53,730 --> 00:29:57,830
+So I have the very same idea
+that I had in Google Sheets,
+
+564
+00:29:57,830 --> 00:30:01,460
+but now in this database, in SQLite.
+
+565
+00:30:01,460 --> 00:30:07,360
+And we'll see later on how to
+actually add data to this table here.
+
+566
+00:30:07,360 --> 00:30:10,560
+So let's go ahead and now
+create our author's table.
+
+567
+00:30:10,560 --> 00:30:14,100
+I will try to create table here.
+
+568
+00:30:14,100 --> 00:30:16,920
+And I'll call this one authors.
+
+569
+00:30:16,920 --> 00:30:19,170
+Create table authors.
+
+570
+00:30:19,170 --> 00:30:21,330
+And then I'll add in the columns.
+
+571
+00:30:21,330 --> 00:30:25,710
+We had the ID column like
+this, which was an integer.
+
+572
+00:30:25,710 --> 00:30:30,480
+We had the author
+column, which was text.
+
+573
+00:30:30,480 --> 00:30:34,560
+And we had the author birth column.
+
+574
+00:30:34,560 --> 00:30:38,730
+Author birth, which was an
+integer as well for the year.
+
+575
+00:30:38,730 --> 00:30:42,000
+Our primary key, our
+primary key is still
+
+576
+00:30:42,000 --> 00:30:44,320
+the ID column in this particular table.
+
+577
+00:30:44,320 --> 00:30:49,950
+I'll hit Enter, semicolon,
+and then type .tables.
+
+578
+00:30:49,950 --> 00:30:53,310
+I have two tables now, .schema authors.
+
+579
+00:30:53,310 --> 00:30:56,930
+And I'll see that same
+create table statement here.
+
+580
+00:30:56,930 --> 00:30:58,430
+Now a few questions have come up.
+
+581
+00:30:58,430 --> 00:31:01,630
+One is, can you have
+multiple primary keys?
+
+582
+00:31:01,630 --> 00:31:06,190
+In general, you can't have--
+well, how to answer this.
+
+583
+00:31:06,190 --> 00:31:09,640
+You can have a primary
+key that is composed
+
+584
+00:31:09,640 --> 00:31:13,210
+of multiple columns, which
+means that those columns have
+
+585
+00:31:13,210 --> 00:31:15,040
+to be unique across all of them.
+
+586
+00:31:15,040 --> 00:31:17,170
+And they together form your primary key.
+
+587
+00:31:17,170 --> 00:31:21,430
+You can't though have multiple
+different primary keys for your table.
+
+588
+00:31:21,430 --> 00:31:25,840
+The idea of a primary key is that
+it is the single unique identifier
+
+589
+00:31:25,840 --> 00:31:28,280
+in your table.
+
+590
+00:31:28,280 --> 00:31:30,730
+Let's see.
+
+591
+00:31:30,730 --> 00:31:32,590
+A question about the ratings.
+
+592
+00:31:32,590 --> 00:31:38,890
+So we used-- if I go back to .schema
+rating or .schema books here.
+
+593
+00:31:38,890 --> 00:31:42,940
+We chose integer for the rating column.
+
+594
+00:31:42,940 --> 00:31:46,600
+You're asking, could I also
+store like 4.5 in this?
+
+595
+00:31:46,600 --> 00:31:48,050
+An interesting question.
+
+596
+00:31:48,050 --> 00:31:53,020
+So, even though this
+column is an integer,
+
+597
+00:31:53,020 --> 00:31:56,830
+it has what we call an integer
+affinity, I could if I really wanted to,
+
+598
+00:31:56,830 --> 00:31:59,920
+store something like 4.5 in it.
+
+599
+00:31:59,920 --> 00:32:04,600
+In SQLite, these column affinities
+are not so much strict in the sense
+
+600
+00:32:04,600 --> 00:32:07,750
+that it will convert 4.5 to 4 for me.
+
+601
+00:32:07,750 --> 00:32:11,560
+If I inserted the value 4.5, SQLite
+would say, OK, fine, you want to float,
+
+602
+00:32:11,560 --> 00:32:13,660
+I'll give it to you in that column.
+
+603
+00:32:13,660 --> 00:32:18,190
+But it's just generally good practice to
+say what you're going to do in SQLite.
+
+604
+00:32:18,190 --> 00:32:21,460
+So here I'd probably going to
+stick to just whole star ratings.
+
+605
+00:32:21,460 --> 00:32:25,490
+I won't actually include
+let's say 4.5 or 3.2 or so on.
+
+606
+00:32:25,490 --> 00:32:26,560
+But a good question.
+
+607
+00:32:26,560 --> 00:32:28,810
+If you want to learn more
+about that you could look up
+
+608
+00:32:28,810 --> 00:32:33,050
+this idea of type affinities in SQLite.
+
+609
+00:32:33,050 --> 00:32:34,580
+Other questions too.
+
+610
+00:32:34,580 --> 00:32:36,060
+I think that's all for now.
+
+611
+00:32:36,060 --> 00:32:38,935
+So why don't we go ahead and actually
+implement the last bit of this.
+
+612
+00:32:38,935 --> 00:32:41,400
+So we wanted to create
+the authored table too.
+
+613
+00:32:41,400 --> 00:32:45,110
+So I will create a
+table called authored.
+
+614
+00:32:45,110 --> 00:32:47,820
+And this one's a little interesting.
+
+615
+00:32:47,820 --> 00:32:55,010
+So maybe in this
+particular table, it seems
+
+616
+00:32:55,010 --> 00:32:57,230
+like we didn't have a primary key.
+
+617
+00:32:57,230 --> 00:33:03,890
+Like I didn't have a unique identifier
+for every row in this table.
+
+618
+00:33:03,890 --> 00:33:06,560
+But if we think about it, let's
+go back to that question of,
+
+619
+00:33:06,560 --> 00:33:12,460
+could we have multiple primary keys,
+maybe the combinations of these two
+
+620
+00:33:12,460 --> 00:33:15,040
+columns will always be unique.
+
+621
+00:33:15,040 --> 00:33:17,800
+Like I wouldn't want to
+duplicate, let's say,
+
+622
+00:33:17,800 --> 00:33:23,560
+duplicate 1 and 1 because I already
+know that, let's say Fernanda wrote,
+
+623
+00:33:23,560 --> 00:33:26,380
+or let's say Olga wrote Flights.
+
+624
+00:33:26,380 --> 00:33:28,210
+I wouldn't want to duplicate that.
+
+625
+00:33:28,210 --> 00:33:32,980
+So maybe here what I could
+do is have a primary key
+
+626
+00:33:32,980 --> 00:33:35,800
+composed of these two columns.
+
+627
+00:33:35,800 --> 00:33:39,110
+And I'll show you how to do that
+syntactically in just a second.
+
+628
+00:33:39,110 --> 00:33:43,030
+The other thing to keep in mind here is
+that these two columns are themselves
+
+629
+00:33:43,030 --> 00:33:47,000
+foreign keys that reference
+primary keys in other tables.
+
+630
+00:33:47,000 --> 00:33:51,190
+So let's go ahead and first
+create these columns in our table
+
+631
+00:33:51,190 --> 00:33:56,140
+and then decide how to define them
+as primary keys and foreign keys
+
+632
+00:33:56,140 --> 00:33:57,680
+kind of at the same time.
+
+633
+00:33:57,680 --> 00:33:59,830
+So I'll go back to my statement here.
+
+634
+00:33:59,830 --> 00:34:03,830
+And I had at the beginning,
+author id which is an integer.
+
+635
+00:34:03,830 --> 00:34:09,150
+And I also had book id,
+which is an integer as well.
+
+636
+00:34:09,150 --> 00:34:12,199
+So now I get to the tricky part,
+which is, which one of these
+
+637
+00:34:12,199 --> 00:34:13,440
+is my primary key?
+
+638
+00:34:13,440 --> 00:34:16,130
+And the answer kind of
+is, well, they both are.
+
+639
+00:34:16,130 --> 00:34:19,250
+Like together the values
+in both those two columns
+
+640
+00:34:19,250 --> 00:34:22,080
+form something unique about every row.
+
+641
+00:34:22,080 --> 00:34:23,250
+So I could do this.
+
+642
+00:34:23,250 --> 00:34:30,350
+I could say primary key author
+id comma book id like this.
+
+643
+00:34:30,350 --> 00:34:35,360
+And that then says that the combination
+of my author id and the book id
+
+644
+00:34:35,360 --> 00:34:41,489
+should always be unique and can uniquely
+identify every row in this table.
+
+645
+00:34:41,489 --> 00:34:43,250
+This is a design choice.
+
+646
+00:34:43,250 --> 00:34:46,070
+I could very well have a
+separate column called ID,
+
+647
+00:34:46,070 --> 00:34:49,798
+as you will see in the movies problem
+set and make that my primary key.
+
+648
+00:34:49,798 --> 00:34:51,590
+It's kind of up to you
+what you like to do.
+
+649
+00:34:51,590 --> 00:34:54,020
+Each one has slightly different
+effects on the database.
+
+650
+00:34:54,020 --> 00:34:56,103
+And just because you all
+asked, I want to show you
+
+651
+00:34:56,103 --> 00:34:58,310
+this particular way of doing it here.
+
+652
+00:34:58,310 --> 00:35:00,500
+But another way to
+continue on here is, I
+
+653
+00:35:00,500 --> 00:35:02,480
+want to make sure that
+each of these columns
+
+654
+00:35:02,480 --> 00:35:06,830
+has a constraint that says
+they are a foreign key too.
+
+655
+00:35:06,830 --> 00:35:09,620
+So to make sure that
+the author id column is
+
+656
+00:35:09,620 --> 00:35:13,220
+known to be referencing the
+primary key and the authors table,
+
+657
+00:35:13,220 --> 00:35:14,300
+I could say this.
+
+658
+00:35:14,300 --> 00:35:24,410
+Foreign key foreign key author id
+references the authors table and the ID
+
+659
+00:35:24,410 --> 00:35:27,090
+column in it, like this.
+
+660
+00:35:27,090 --> 00:35:29,660
+So this is just a SQL syntax to do so.
+
+661
+00:35:29,660 --> 00:35:32,510
+I'll continue on and I'll
+say that the foreign key
+
+662
+00:35:32,510 --> 00:35:35,780
+of this table, another
+foreign key, is the book
+
+663
+00:35:35,780 --> 00:35:41,730
+id and that references the books
+table and the ID column in it.
+
+664
+00:35:41,730 --> 00:35:47,200
+So now I will hit Enter here, have
+a closing parentheses, semicolon,
+
+665
+00:35:47,200 --> 00:35:49,180
+and fingers crossed.
+
+666
+00:35:49,180 --> 00:35:51,800
+Seems to have worked for me here.
+
+667
+00:35:51,800 --> 00:35:53,360
+A few questions I see.
+
+668
+00:35:53,360 --> 00:35:56,190
+Does the order of the keys matter?
+
+669
+00:35:56,190 --> 00:35:59,060
+So let me answer that from
+a few different angles.
+
+670
+00:35:59,060 --> 00:36:01,640
+I could put these in any order.
+
+671
+00:36:01,640 --> 00:36:03,920
+I could put book id
+first, then author id.
+
+672
+00:36:03,920 --> 00:36:06,080
+It doesn't quite matter
+for my table here.
+
+673
+00:36:06,080 --> 00:36:12,410
+In my primary key column, the
+order here does matter in the sense
+
+674
+00:36:12,410 --> 00:36:15,410
+that if I do it in the
+opposite way, I will
+
+675
+00:36:15,410 --> 00:36:17,960
+get a very slightly different effect.
+
+676
+00:36:17,960 --> 00:36:20,960
+The different effect is going to be
+a little bit too high level for what
+
+677
+00:36:20,960 --> 00:36:22,350
+we're going to talk about today.
+
+678
+00:36:22,350 --> 00:36:23,990
+But if you are curious,
+I have a full class
+
+679
+00:36:23,990 --> 00:36:26,510
+on this called [INAUDIBLE] construction
+database with SQL where you might
+
+680
+00:36:26,510 --> 00:36:28,170
+learn some of those kinds of things.
+
+681
+00:36:28,170 --> 00:36:30,980
+But in general, it doesn't quite
+matter what order you put these in
+
+682
+00:36:30,980 --> 00:36:34,010
+even though it has some slight
+underlying effects on your database,
+
+683
+00:36:34,010 --> 00:36:37,080
+if that makes sense.
+
+684
+00:36:37,080 --> 00:36:37,760
+All right.
+
+685
+00:36:37,760 --> 00:36:39,050
+So I'll clear my screen.
+
+686
+00:36:39,050 --> 00:36:40,040
+I'll type .tables.
+
+687
+00:36:40,040 --> 00:36:42,720
+And I'll see I have
+authored, authors, and books.
+
+688
+00:36:42,720 --> 00:36:47,360
+So all three of these tables
+are now in my database.
+
+689
+00:36:47,360 --> 00:36:48,020
+All right.
+
+690
+00:36:48,020 --> 00:36:50,840
+So we've seen how to
+create these tables.
+
+691
+00:36:50,840 --> 00:36:54,030
+And the next step then is to
+actually try to insert some data.
+
+692
+00:36:54,030 --> 00:36:58,650
+So let's get an idea of what
+syntax we could use there.
+
+693
+00:36:58,650 --> 00:37:02,210
+So if I want to insert
+some values into a table,
+
+694
+00:37:02,210 --> 00:37:04,710
+we saw in lecture that I
+could do the following.
+
+695
+00:37:04,710 --> 00:37:08,000
+I could say insert into
+and then the table name,
+
+696
+00:37:08,000 --> 00:37:10,280
+followed by the columns
+I want to insert into,
+
+697
+00:37:10,280 --> 00:37:14,790
+and then the values I want to insert
+into those particular columns.
+
+698
+00:37:14,790 --> 00:37:17,030
+So let's try adding,
+just for the sake of fun
+
+699
+00:37:17,030 --> 00:37:20,240
+here, a new book into our books table.
+
+700
+00:37:20,240 --> 00:37:23,060
+I can go back to my SQLite prompt.
+
+701
+00:37:23,060 --> 00:37:27,920
+I could say insert, insert
+into the books table.
+
+702
+00:37:27,920 --> 00:37:32,495
+And what column should I maybe include?
+
+703
+00:37:32,495 --> 00:37:33,620
+What should I include here?
+
+704
+00:37:33,620 --> 00:37:39,460
+Maybe the title, the author,
+and what else do we have?
+
+705
+00:37:39,460 --> 00:37:44,750
+We had published and rating,
+published and rating.
+
+706
+00:37:44,750 --> 00:37:49,670
+So now I'll hit Enter, just for style's
+sake, to continue on with my query.
+
+707
+00:37:49,670 --> 00:37:54,020
+And now I can define what
+values should go into--
+
+708
+00:37:54,020 --> 00:37:56,360
+oh, we didn't have author, did we?
+
+709
+00:37:56,360 --> 00:37:57,660
+Books, title, nope.
+
+710
+00:37:57,660 --> 00:37:58,160
+Oh no.
+
+711
+00:37:58,160 --> 00:38:01,243
+OK, so if you get to this point and
+you're like, oh, no, I made a mistake.
+
+712
+00:38:01,243 --> 00:38:02,180
+What should you do?
+
+713
+00:38:02,180 --> 00:38:04,340
+You could, I think, type control--
+
+714
+00:38:04,340 --> 00:38:08,672
+oh, you could hit
+semicolon, Enter, and it
+
+715
+00:38:08,672 --> 00:38:11,130
+will tell you that your query
+was malformed, which is true.
+
+716
+00:38:11,130 --> 00:38:12,213
+I didn't finish the query.
+
+717
+00:38:12,213 --> 00:38:16,240
+But semicolon can get you out of
+a problematic query like that.
+
+718
+00:38:16,240 --> 00:38:17,700
+So let's redo that one.
+
+719
+00:38:17,700 --> 00:38:22,320
+I'll hit up arrow twice to get back
+to that very first thing I typed.
+
+720
+00:38:22,320 --> 00:38:27,610
+And we had title, published, and rating.
+
+721
+00:38:27,610 --> 00:38:31,730
+Notice here, I actually don't
+have to include the ID column.
+
+722
+00:38:31,730 --> 00:38:34,150
+So the ID column, because
+this is a primary key,
+
+723
+00:38:34,150 --> 00:38:36,280
+gets automatically added for me.
+
+724
+00:38:36,280 --> 00:38:40,570
+So I'll now do values and the
+values are let's say, Flights,
+
+725
+00:38:40,570 --> 00:38:43,000
+which is single quoted
+because it's a string,
+
+726
+00:38:43,000 --> 00:38:50,050
+publication which is also
+a string, 2017, 05 17.
+
+727
+00:38:50,050 --> 00:38:56,420
+And then I'll add in the rating, which
+is just the number four here like this.
+
+728
+00:38:56,420 --> 00:39:00,250
+Now I'll close this particular
+statement, hit Enter.
+
+729
+00:39:00,250 --> 00:39:01,150
+Nothing happens.
+
+730
+00:39:01,150 --> 00:39:06,520
+But now if I use that SQL statement
+select star from let's say books,
+
+731
+00:39:06,520 --> 00:39:10,960
+I'll now see I have a single
+book inside of my books table.
+
+732
+00:39:10,960 --> 00:39:16,432
+And it automatically added
+the primary key called ID.
+
+733
+00:39:16,432 --> 00:39:18,390
+Let's say I want to delete
+this what I could do
+
+734
+00:39:18,390 --> 00:39:24,010
+is simply use delete
+from books like this.
+
+735
+00:39:24,010 --> 00:39:26,330
+But why might I not want to do that?
+
+736
+00:39:26,330 --> 00:39:28,580
+Let's say I had more than
+one book in here, what would
+
+737
+00:39:28,580 --> 00:39:32,340
+be wrong with doing delete from books?
+
+738
+00:39:32,340 --> 00:39:33,350
+It'll delete everything.
+
+739
+00:39:33,350 --> 00:39:35,183
+It'll literally delete
+my entire book table.
+
+740
+00:39:35,183 --> 00:39:36,350
+So I don't want to do this.
+
+741
+00:39:36,350 --> 00:39:38,267
+What I should do instead
+is I could say delete
+
+742
+00:39:38,267 --> 00:39:40,880
+from books where some condition
+is true and maybe I'll
+
+743
+00:39:40,880 --> 00:39:44,960
+say I want to delete from books
+where the title equals Flights.
+
+744
+00:39:44,960 --> 00:39:50,180
+To remove Flights in particular, I'll
+hit Enter I'll select star from books.
+
+745
+00:39:50,180 --> 00:39:52,340
+And now I see that it's
+gone from my table.
+
+746
+00:39:52,340 --> 00:39:55,660
+There are no rows inside of it.
+
+747
+00:39:55,660 --> 00:39:56,780
+All right.
+
+748
+00:39:56,780 --> 00:40:01,030
+So what questions do we have
+on creating these tables,
+
+749
+00:40:01,030 --> 00:40:03,160
+inserting data, and deleting data?
+
+750
+00:40:03,160 --> 00:40:12,070
+
+
+751
+00:40:12,070 --> 00:40:16,540
+I think I saw one
+earlier, one about the--
+
+752
+00:40:16,540 --> 00:40:19,300
+I think the junction table we
+had, or that associative entity,
+
+753
+00:40:19,300 --> 00:40:22,360
+that authored table.
+
+754
+00:40:22,360 --> 00:40:25,160
+Do those tables know about each other?
+
+755
+00:40:25,160 --> 00:40:26,540
+They do in some senses.
+
+756
+00:40:26,540 --> 00:40:29,950
+So if I go back and show you the
+schema of the authored table here,
+
+757
+00:40:29,950 --> 00:40:35,710
+when I define for SQLite that
+the foreign key, author id,
+
+758
+00:40:35,710 --> 00:40:39,700
+references the authors table
+and the ID column in it,
+
+759
+00:40:39,700 --> 00:40:43,660
+that then tells SQLite to
+make sure if I ever insert
+
+760
+00:40:43,660 --> 00:40:45,700
+some piece of data to
+this authored table
+
+761
+00:40:45,700 --> 00:40:51,440
+that it is able to reference some value
+of a primary key in the authors table.
+
+762
+00:40:51,440 --> 00:40:56,960
+So this is-- it helps me make sure
+my data is all organized, et cetera.
+
+763
+00:40:56,960 --> 00:40:59,530
+One thing in particular
+though, is that you
+
+764
+00:40:59,530 --> 00:41:03,670
+have to make sure that SQLite is
+doing what we call foreign key checks.
+
+765
+00:41:03,670 --> 00:41:07,510
+So you could disable this check when
+you insert into the author table.
+
+766
+00:41:07,510 --> 00:41:10,210
+Maybe SQLite just doesn't
+check anything at all.
+
+767
+00:41:10,210 --> 00:41:12,890
+You have to make sure you
+enable that check to make sure
+
+768
+00:41:12,890 --> 00:41:14,900
+that it does look in
+the other table to make
+
+769
+00:41:14,900 --> 00:41:19,010
+sure you do have that particular primary
+key it can associate with the author
+
+770
+00:41:19,010 --> 00:41:20,150
+table row.
+
+771
+00:41:20,150 --> 00:41:23,340
+Does that make sense?
+
+772
+00:41:23,340 --> 00:41:24,390
+All right.
+
+773
+00:41:24,390 --> 00:41:26,380
+Can we insert many
+rows at the same time?
+
+774
+00:41:26,380 --> 00:41:27,370
+You absolutely can.
+
+775
+00:41:27,370 --> 00:41:30,300
+So to insert many rows--
+let me go back to my
+
+776
+00:41:30,300 --> 00:41:35,070
+slides --you would simply at
+the end of this statement here,
+
+777
+00:41:35,070 --> 00:41:38,460
+you would not have a semicolon,
+you would have a comma
+
+778
+00:41:38,460 --> 00:41:41,860
+and you keep adding
+parentheses of values.
+
+779
+00:41:41,860 --> 00:41:44,070
+So it's like values, then
+you can imagine values
+
+780
+00:41:44,070 --> 00:41:48,570
+0 comma value one end parentheses
+comma, maybe a next line.
+
+781
+00:41:48,570 --> 00:41:51,960
+And then another parentheses values
+0 comma value one parentheses.
+
+782
+00:41:51,960 --> 00:41:55,022
+And keep going and going and
+going as you would like to.
+
+783
+00:41:55,022 --> 00:41:55,605
+Good question.
+
+784
+00:41:55,605 --> 00:41:58,320
+
+
+785
+00:41:58,320 --> 00:41:58,820
+OK.
+
+786
+00:41:58,820 --> 00:42:01,790
+
+
+787
+00:42:01,790 --> 00:42:04,930
+So we've seen how to design
+some databases, which hopefully
+
+788
+00:42:04,930 --> 00:42:07,630
+will be helpful to you not just
+this week, but in future weeks
+
+789
+00:42:07,630 --> 00:42:09,490
+as you design your
+very own final project.
+
+790
+00:42:09,490 --> 00:42:13,000
+I want to make sure we get to
+actually querying on our database
+
+791
+00:42:13,000 --> 00:42:16,270
+and using some of our SQL syntax
+to ask and answer questions
+
+792
+00:42:16,270 --> 00:42:19,100
+about some pieces of data.
+
+793
+00:42:19,100 --> 00:42:22,840
+So why don't we go ahead and look
+at one of the very first problems
+
+794
+00:42:22,840 --> 00:42:25,390
+in this week's problem
+set, which is called songs.
+
+795
+00:42:25,390 --> 00:42:29,200
+And in songs, you're
+given a list of the 100
+
+796
+00:42:29,200 --> 00:42:34,120
+I believe most popular
+songs in 2018 or so.
+
+797
+00:42:34,120 --> 00:42:39,340
+And your job is to answer some
+questions about those particular songs.
+
+798
+00:42:39,340 --> 00:42:44,380
+So to begin, why don't we actually
+go to the specification page
+
+799
+00:42:44,380 --> 00:42:46,760
+and see what we're trying to do here.
+
+800
+00:42:46,760 --> 00:42:50,930
+So when I download the distribution
+code for this particular problem,
+
+801
+00:42:50,930 --> 00:42:52,880
+I get a few different things.
+
+802
+00:42:52,880 --> 00:42:55,930
+I get a file called songs dot dB.
+
+803
+00:42:55,930 --> 00:42:59,150
+And I also get a bunch of dot SQL files.
+
+804
+00:42:59,150 --> 00:43:03,390
+So I can write some queries
+to use on my database.
+
+805
+00:43:03,390 --> 00:43:05,750
+Now songs dot DB is the database.
+
+806
+00:43:05,750 --> 00:43:08,450
+It has all the information on the songs.
+
+807
+00:43:08,450 --> 00:43:11,930
+And here these dot SQL
+files they allow me
+
+808
+00:43:11,930 --> 00:43:16,980
+to keep track of the queries I'm
+writing to answer these questions here.
+
+809
+00:43:16,980 --> 00:43:21,090
+So let me go ahead and actually get
+my songs dot dB into my code space.
+
+810
+00:43:21,090 --> 00:43:24,090
+And to do that, I need to
+first leave SQLite here.
+
+811
+00:43:24,090 --> 00:43:28,820
+So to leave SQLite, you can
+type dot quit, dot quit,
+
+812
+00:43:28,820 --> 00:43:33,710
+and you'll leave SQLite and be brought
+back to your terminal prompt here.
+
+813
+00:43:33,710 --> 00:43:39,200
+Now if I type LS, I should see
+I already have songs downloaded.
+
+814
+00:43:39,200 --> 00:43:41,430
+You can do the same on
+the problem set page.
+
+815
+00:43:41,430 --> 00:43:45,710
+I'll go CD songs to change
+directory into songs.
+
+816
+00:43:45,710 --> 00:43:50,570
+Now if I type Ls to list my files,
+I should see I have my dot SQL files
+
+817
+00:43:50,570 --> 00:43:54,350
+and my songs dot dB as well
+as this answers dot txt
+
+818
+00:43:54,350 --> 00:43:57,560
+that I'll use at the
+very end if I'd like to.
+
+819
+00:43:57,560 --> 00:44:02,090
+So let's actually open up songs
+dot DB and see what's inside.
+
+820
+00:44:02,090 --> 00:44:08,530
+I'll type SQLite 3 songs dot dB to
+open up this database using SQLite 3.
+
+821
+00:44:08,530 --> 00:44:12,970
+Now I'll clear my screen
+and I will type dot schema.
+
+822
+00:44:12,970 --> 00:44:16,960
+Schema alone tells me
+what kinds of tables
+
+823
+00:44:16,960 --> 00:44:20,920
+are in this database and the
+create table statements that
+
+824
+00:44:20,920 --> 00:44:22,730
+were used to create them.
+
+825
+00:44:22,730 --> 00:44:23,890
+So I'll hit Enter.
+
+826
+00:44:23,890 --> 00:44:27,545
+And here I'll see, how
+many tables do we have?
+
+827
+00:44:27,545 --> 00:44:30,520
+
+
+828
+00:44:30,520 --> 00:44:32,530
+How many tables do we see?
+
+829
+00:44:32,530 --> 00:44:33,030
+We see two.
+
+830
+00:44:33,030 --> 00:44:35,320
+So there are two create
+table statements.
+
+831
+00:44:35,320 --> 00:44:38,790
+It looks like one of these tables
+is called songs and another of these
+
+832
+00:44:38,790 --> 00:44:40,620
+is called artists.
+
+833
+00:44:40,620 --> 00:44:42,480
+The songs table has several columns.
+
+834
+00:44:42,480 --> 00:44:48,990
+It seems to have the ID, the name,
+the artist ID, danceability, energy,
+
+835
+00:44:48,990 --> 00:44:50,433
+loudness, [INAUDIBLE].
+
+836
+00:44:50,433 --> 00:44:52,350
+There's a lot of information
+about these songs
+
+837
+00:44:52,350 --> 00:44:56,400
+here that we could use to ask and
+answer questions about these songs.
+
+838
+00:44:56,400 --> 00:45:03,400
+In the meantime, the artists table does
+have an ID column and a name column.
+
+839
+00:45:03,400 --> 00:45:05,260
+So pretty straightforward here.
+
+840
+00:45:05,260 --> 00:45:07,980
+And notice that for the sake
+of simplicity in this problem,
+
+841
+00:45:07,980 --> 00:45:10,782
+we haven't actually defined the
+primary keys, the foreign keys.
+
+842
+00:45:10,782 --> 00:45:12,990
+Although if you were working
+on your own you probably
+
+843
+00:45:12,990 --> 00:45:17,820
+should define these particular features
+data of your actual database tables.
+
+844
+00:45:17,820 --> 00:45:22,410
+So to get a sense of what we're
+working with here one thing to do
+
+845
+00:45:22,410 --> 00:45:24,910
+is to just select and see
+what we actually have.
+
+846
+00:45:24,910 --> 00:45:26,640
+So I could try this query.
+
+847
+00:45:26,640 --> 00:45:32,170
+Select star from the,
+let's say, the songs table.
+
+848
+00:45:32,170 --> 00:45:34,960
+Remember, select means
+give me some data back.
+
+849
+00:45:34,960 --> 00:45:37,240
+It's a tool for reading some data.
+
+850
+00:45:37,240 --> 00:45:41,288
+Star is this idea that says,
+give me back all the columns.
+
+851
+00:45:41,288 --> 00:45:42,580
+I don't really care which ones.
+
+852
+00:45:42,580 --> 00:45:44,860
+I want all the columns
+from this particular table.
+
+853
+00:45:44,860 --> 00:45:48,220
+And from says, where are we
+actually getting the data from?
+
+854
+00:45:48,220 --> 00:45:49,900
+Which table do you want to query?
+
+855
+00:45:49,900 --> 00:45:51,730
+In this case songs.
+
+856
+00:45:51,730 --> 00:45:58,020
+So I'll hit Enter here and I'll get
+back, if I zoom out, a lot of songs
+
+857
+00:45:58,020 --> 00:45:59,920
+in this particular database.
+
+858
+00:45:59,920 --> 00:46:05,180
+In fact, there are 100 total, because
+we have 100 at the very bottom here.
+
+859
+00:46:05,180 --> 00:46:09,700
+So often though, if you're working
+with much bigger databases,
+
+860
+00:46:09,700 --> 00:46:12,542
+you don't want to just print
+out everything to your screen.
+
+861
+00:46:12,542 --> 00:46:15,250
+A good way to actually get a peek
+at what's inside is to do this.
+
+862
+00:46:15,250 --> 00:46:17,860
+Maybe select a particular column.
+
+863
+00:46:17,860 --> 00:46:19,480
+I'll say select title.
+
+864
+00:46:19,480 --> 00:46:22,810
+Select title from songs.
+
+865
+00:46:22,810 --> 00:46:26,500
+But then I only want the first,
+let's say, five titles just
+
+866
+00:46:26,500 --> 00:46:27,970
+to see what's inside here.
+
+867
+00:46:27,970 --> 00:46:30,100
+Take a literal peek at our data set.
+
+868
+00:46:30,100 --> 00:46:30,910
+Limit five.
+
+869
+00:46:30,910 --> 00:46:31,900
+Hit Enter.
+
+870
+00:46:31,900 --> 00:46:32,860
+Oops.
+
+871
+00:46:32,860 --> 00:46:34,330
+Is there no column title?
+
+872
+00:46:34,330 --> 00:46:37,380
+Let me do dot schema songs.
+
+873
+00:46:37,380 --> 00:46:39,800
+And it's not called title
+but it is called name.
+
+874
+00:46:39,800 --> 00:46:41,680
+So I will go ahead
+and change this query.
+
+875
+00:46:41,680 --> 00:46:44,800
+I'll say select name from songs.
+
+876
+00:46:44,800 --> 00:46:46,690
+And limit five.
+
+877
+00:46:46,690 --> 00:46:51,490
+So now I see, these are the first five
+songs on this list of the top 100 songs
+
+878
+00:46:51,490 --> 00:46:54,610
+in 2018, at least in the US.
+
+879
+00:46:54,610 --> 00:46:57,400
+So now I can figure
+out, OK, how do I start
+
+880
+00:46:57,400 --> 00:47:02,300
+answering these next particular
+questions in this songs problem?
+
+881
+00:47:02,300 --> 00:47:04,730
+So I'll go back to the specification.
+
+882
+00:47:04,730 --> 00:47:07,160
+And I'll look at this
+very first question here.
+
+883
+00:47:07,160 --> 00:47:10,970
+In one dot SQL, write
+a SQL query to list
+
+884
+00:47:10,970 --> 00:47:14,980
+the names of all songs in the database.
+
+885
+00:47:14,980 --> 00:47:20,480
+So let me ask you all, which
+column should we be querying?
+
+886
+00:47:20,480 --> 00:47:24,380
+If our goal is to list the names
+of all songs in the database,
+
+887
+00:47:24,380 --> 00:47:28,780
+which column should we be selecting?
+
+888
+00:47:28,780 --> 00:47:31,270
+Probably name if you just
+want the names of all songs.
+
+889
+00:47:31,270 --> 00:47:35,260
+So I'll go back and I'll select name.
+
+890
+00:47:35,260 --> 00:47:37,430
+Now this in itself is not quite enough.
+
+891
+00:47:37,430 --> 00:47:40,000
+I need to say, where am
+I selecting name from?
+
+892
+00:47:40,000 --> 00:47:42,230
+Like where does the
+name column come from?
+
+893
+00:47:42,230 --> 00:47:44,450
+Well, it comes from the songs table.
+
+894
+00:47:44,450 --> 00:47:46,660
+So I'll say select name from songs.
+
+895
+00:47:46,660 --> 00:47:47,860
+Hit Enter.
+
+896
+00:47:47,860 --> 00:47:50,080
+And that is our query.
+
+897
+00:47:50,080 --> 00:47:58,420
+Notice how we got back all 100,
+all 100 names from this table.
+
+898
+00:47:58,420 --> 00:48:02,050
+So now that I think I've
+solved this first question,
+
+899
+00:48:02,050 --> 00:48:08,667
+Why don't I go ahead and try to write
+that query inside of one dot SQL.
+
+900
+00:48:08,667 --> 00:48:10,000
+I'll make myself a new terminal.
+
+901
+00:48:10,000 --> 00:48:11,680
+I'll hit this plus button here.
+
+902
+00:48:11,680 --> 00:48:13,417
+Now I'm back at my bash prompt.
+
+903
+00:48:13,417 --> 00:48:14,500
+And this is kind of handy.
+
+904
+00:48:14,500 --> 00:48:18,120
+I can have SQLite open in one and my
+other bash prompt open in the other.
+
+905
+00:48:18,120 --> 00:48:21,330
+I could then type LS CD into songs.
+
+906
+00:48:21,330 --> 00:48:26,130
+And now I could code one
+dot SQL to open it up.
+
+907
+00:48:26,130 --> 00:48:28,680
+And I have a blank SQL file here.
+
+908
+00:48:28,680 --> 00:48:31,320
+But to keep track of this
+query, what I could do
+
+909
+00:48:31,320 --> 00:48:35,970
+is say select name from songs,
+that same query we used before.
+
+910
+00:48:35,970 --> 00:48:41,584
+And now I have it documented for
+myself inside of one dot SQL.
+
+911
+00:48:41,584 --> 00:48:46,710
+Let's say I also want to maybe
+not just keep track of it,
+
+912
+00:48:46,710 --> 00:48:49,820
+but run what I write in one dot SQL.
+
+913
+00:48:49,820 --> 00:48:52,850
+Well, I could use a SQLite keyword.
+
+914
+00:48:52,850 --> 00:48:54,830
+This one called dot read.
+
+915
+00:48:54,830 --> 00:48:58,120
+So I could say dot read one dot SQL.
+
+916
+00:48:58,120 --> 00:49:01,500
+And that will see whatever
+is inside one dot SQL
+
+917
+00:49:01,500 --> 00:49:05,990
+and read it into SQLite, running
+any SQL statements it sees.
+
+918
+00:49:05,990 --> 00:49:07,500
+So I'll hit Enter here.
+
+919
+00:49:07,500 --> 00:49:10,080
+And notice how I got
+the very same results.
+
+920
+00:49:10,080 --> 00:49:17,321
+So dot read one dot SQL simply executes
+the query I wrote in one dot SQL.
+
+921
+00:49:17,321 --> 00:49:23,590
+Enter again just to show you
+I can use dot read as well.
+
+922
+00:49:23,590 --> 00:49:30,070
+So questions on this very first bit
+of querying with our songs database?
+
+923
+00:49:30,070 --> 00:49:32,950
+
+
+924
+00:49:32,950 --> 00:49:33,900
+Any questions?
+
+925
+00:49:33,900 --> 00:49:40,820
+
+
+926
+00:49:40,820 --> 00:49:41,580
+Oh good question.
+
+927
+00:49:41,580 --> 00:49:44,210
+So how would you specify
+what data you want, and how
+
+928
+00:49:44,210 --> 00:49:47,700
+would you get multiple pieces of
+data from multiple different tables?
+
+929
+00:49:47,700 --> 00:49:49,260
+So two questions here.
+
+930
+00:49:49,260 --> 00:49:51,600
+How do you specify what data you want?
+
+931
+00:49:51,600 --> 00:49:55,730
+So for that, you often have to
+use a select keyword in SQL.
+
+932
+00:49:55,730 --> 00:49:59,730
+Select allows you to select certain
+columns from individual tables.
+
+933
+00:49:59,730 --> 00:50:05,060
+So we could say select name or
+select author id or so on, and then
+
+934
+00:50:05,060 --> 00:50:07,170
+from some particular table.
+
+935
+00:50:07,170 --> 00:50:10,730
+If though, you want to query
+multiple tables at once,
+
+936
+00:50:10,730 --> 00:50:13,910
+like look at data in the
+artist table and look
+
+937
+00:50:13,910 --> 00:50:17,420
+at data in the songs table, that
+would require more advanced techniques
+
+938
+00:50:17,420 --> 00:50:21,770
+we'll see a little later, either
+called a subquery or a join so more
+
+939
+00:50:21,770 --> 00:50:24,150
+on that in just a bit.
+
+940
+00:50:24,150 --> 00:50:27,288
+But to more formally introduce
+some of these tools in your toolkit
+
+941
+00:50:27,288 --> 00:50:29,330
+as you answer these
+questions, I want to show you
+
+942
+00:50:29,330 --> 00:50:33,410
+some keywords you might want to be
+familiar with as you work on songs.
+
+943
+00:50:33,410 --> 00:50:39,110
+So, once you open up SQLite3 with
+your database name, you might go ahead
+
+944
+00:50:39,110 --> 00:50:42,260
+and type SQLite3 songs dot dB.
+
+945
+00:50:42,260 --> 00:50:46,460
+You could then type your query here.
+
+946
+00:50:46,460 --> 00:50:49,770
+And then you could do dot tables
+to see the tables involved.
+
+947
+00:50:49,770 --> 00:50:52,560
+And you can kind of visualize
+songs dot dB like this.
+
+948
+00:50:52,560 --> 00:50:55,250
+It's having both songs
+and artist tables.
+
+949
+00:50:55,250 --> 00:50:57,470
+And each of course,
+has different schema,
+
+950
+00:50:57,470 --> 00:51:01,550
+like schema songs as we saw
+before or select star from songs
+
+951
+00:51:01,550 --> 00:51:03,710
+limit 3 to find those top few rows.
+
+952
+00:51:03,710 --> 00:51:05,660
+And you get back something like this.
+
+953
+00:51:05,660 --> 00:51:07,800
+You can do the same for
+artists a bit like that.
+
+954
+00:51:07,800 --> 00:51:10,925
+And as you go ahead and solve some of
+these, like queries one through five,
+
+955
+00:51:10,925 --> 00:51:12,980
+these are the kinds
+of keywords you might
+
+956
+00:51:12,980 --> 00:51:14,960
+want to be familiar with as you work.
+
+957
+00:51:14,960 --> 00:51:19,620
+So select where, like and
+order by to begin with.
+
+958
+00:51:19,620 --> 00:51:22,880
+So select, we saw helps us
+select certain rows from our--
+
+959
+00:51:22,880 --> 00:51:28,220
+or select certain columns from our
+table, where it lets us actually
+
+960
+00:51:28,220 --> 00:51:31,050
+filter to only certain rows.
+
+961
+00:51:31,050 --> 00:51:33,920
+So let's try our next query.
+
+962
+00:51:33,920 --> 00:51:42,050
+This one is listing names of all
+songs in increasing order of tempo.
+
+963
+00:51:42,050 --> 00:51:46,760
+So for that, we might want
+to actually use order by.
+
+964
+00:51:46,760 --> 00:51:52,620
+Order by lets us change the order of
+certain rows as they return to us.
+
+965
+00:51:52,620 --> 00:51:55,940
+So let me go ahead and go
+back to my SQLite prompt.
+
+966
+00:51:55,940 --> 00:52:02,180
+And now I want to list the names of
+all songs in increasing order of tempo.
+
+967
+00:52:02,180 --> 00:52:06,230
+So to begin, all SQL
+statements begin with a select.
+
+968
+00:52:06,230 --> 00:52:09,185
+Let me ask you, what should we
+be selecting here, which column?
+
+969
+00:52:09,185 --> 00:52:13,030
+
+
+970
+00:52:13,030 --> 00:52:14,680
+Probably selecting the names of songs.
+
+971
+00:52:14,680 --> 00:52:17,890
+We could say select name to begin with.
+
+972
+00:52:17,890 --> 00:52:20,950
+And then of course from the songs table.
+
+973
+00:52:20,950 --> 00:52:23,770
+Now, as my queries
+get longer, it's often
+
+974
+00:52:23,770 --> 00:52:26,230
+good to not include them
+all on the same line,
+
+975
+00:52:26,230 --> 00:52:28,640
+but to break them up
+into individual lines.
+
+976
+00:52:28,640 --> 00:52:29,920
+So I'll select name.
+
+977
+00:52:29,920 --> 00:52:32,260
+Hit Enter from songs.
+
+978
+00:52:32,260 --> 00:52:33,680
+Hit Enter again.
+
+979
+00:52:33,680 --> 00:52:36,460
+And there's one final
+piece of this query.
+
+980
+00:52:36,460 --> 00:52:40,240
+I've selected the name
+column from the table,
+
+981
+00:52:40,240 --> 00:52:44,890
+but now I want the songs in
+increasing order of tempo.
+
+982
+00:52:44,890 --> 00:52:47,170
+So to do that, I could use order by.
+
+983
+00:52:47,170 --> 00:52:49,780
+Order by often comes at
+the end of a statement
+
+984
+00:52:49,780 --> 00:52:52,700
+to tell me what order my
+results are given back to me.
+
+985
+00:52:52,700 --> 00:52:57,310
+So I'll say order by, order
+by tempo, in this case.
+
+986
+00:52:57,310 --> 00:52:59,950
+Semicolon and Enter.
+
+987
+00:52:59,950 --> 00:53:04,480
+So now I should see that I have these
+songs in a slightly different order,
+
+988
+00:53:04,480 --> 00:53:05,530
+in this case by tempo.
+
+989
+00:53:05,530 --> 00:53:08,080
+And to prove it, why don't I
+go ahead and modify this query.
+
+990
+00:53:08,080 --> 00:53:12,530
+I'll say select name, not
+just name, but tempo as well.
+
+991
+00:53:12,530 --> 00:53:16,570
+So now I'm selecting two columns
+name comma tempo from songs.
+
+992
+00:53:16,570 --> 00:53:18,520
+I'll order by tempo.
+
+993
+00:53:18,520 --> 00:53:19,450
+Hit Enter.
+
+994
+00:53:19,450 --> 00:53:24,250
+And now I should see that
+I have these songs ordered
+
+995
+00:53:24,250 --> 00:53:32,000
+by tempo in increasing order, so
+smallest to largest, just like that.
+
+996
+00:53:32,000 --> 00:53:35,270
+Now once this particular
+query is done, why don't I
+
+997
+00:53:35,270 --> 00:53:37,070
+go ahead and add it into two dot SQL.
+
+998
+00:53:37,070 --> 00:53:38,960
+I'll say code two dot SQL.
+
+999
+00:53:38,960 --> 00:53:42,770
+And I will then say
+select name from songs.
+
+1000
+00:53:42,770 --> 00:53:45,990
+Order by tempo like this.
+
+1001
+00:53:45,990 --> 00:53:47,923
+So now I've used order by.
+
+1002
+00:53:47,923 --> 00:53:49,340
+Let's take a look at our next one.
+
+1003
+00:53:49,340 --> 00:53:51,710
+So three dot SQL.
+
+1004
+00:53:51,710 --> 00:53:56,120
+The names of the top five
+longest songs in descending order
+
+1005
+00:53:56,120 --> 00:54:01,260
+of length, the top five longest
+songs in descending order of length.
+
+1006
+00:54:01,260 --> 00:54:05,060
+So here, I think we can
+reuse this idea of order by.
+
+1007
+00:54:05,060 --> 00:54:08,750
+We're trying to figure out
+the top five longest songs.
+
+1008
+00:54:08,750 --> 00:54:12,200
+And they should be in some particular
+order, descending order of length.
+
+1009
+00:54:12,200 --> 00:54:16,790
+So maybe I'll go back
+to my SQLite prompt.
+
+1010
+00:54:16,790 --> 00:54:19,910
+And I want to again select names.
+
+1011
+00:54:19,910 --> 00:54:23,510
+Select name from songs.
+
+1012
+00:54:23,510 --> 00:54:27,410
+But which column should
+I be ordering on?
+
+1013
+00:54:27,410 --> 00:54:29,540
+Any ideas?
+
+1014
+00:54:29,540 --> 00:54:31,530
+The top five longest songs.
+
+1015
+00:54:31,530 --> 00:54:39,050
+Let's go ahead and type dot
+schema, dot schema songs.
+
+1016
+00:54:39,050 --> 00:54:46,400
+Do any of these columns seem to
+specify the length of a song?
+
+1017
+00:54:46,400 --> 00:54:49,320
+So I'm seeing duration, so
+duration in milliseconds.
+
+1018
+00:54:49,320 --> 00:54:52,260
+So this is like, how long
+that song actually is.
+
+1019
+00:54:52,260 --> 00:54:54,960
+So I could order by that
+particular column there.
+
+1020
+00:54:54,960 --> 00:55:02,420
+So I'll try select name from
+songs and order by duration ms.
+
+1021
+00:55:02,420 --> 00:55:08,900
+Now the problem here is I want the
+songs in decreasing order of length,
+
+1022
+00:55:08,900 --> 00:55:10,670
+descending order of length.
+
+1023
+00:55:10,670 --> 00:55:13,280
+Notice how before,
+when we used order by,
+
+1024
+00:55:13,280 --> 00:55:16,880
+we went in increasing order
+from lowest to highest.
+
+1025
+00:55:16,880 --> 00:55:19,650
+But here I want highest to lowest.
+
+1026
+00:55:19,650 --> 00:55:23,150
+So to change this, I
+could modify order by.
+
+1027
+00:55:23,150 --> 00:55:29,240
+And I could say desc or asc
+for ascending or descending.
+
+1028
+00:55:29,240 --> 00:55:35,480
+So descending or desc means give
+me the largest values first,
+
+1029
+00:55:35,480 --> 00:55:40,440
+and then give me the smaller ones
+as you go down this particular list.
+
+1030
+00:55:40,440 --> 00:55:43,250
+So once I have that, I'll hit Enter.
+
+1031
+00:55:43,250 --> 00:55:47,840
+And I've gotten the songs, I think
+in decreasing order of duration.
+
+1032
+00:55:47,840 --> 00:55:53,270
+I could say select name
+duration ms from songs, order
+
+1033
+00:55:53,270 --> 00:55:57,950
+by duration ms in descending order.
+
+1034
+00:55:57,950 --> 00:56:01,880
+I think I've ordered them
+properly, based on what I see here.
+
+1035
+00:56:01,880 --> 00:56:06,360
+But how could I find only the top five?
+
+1036
+00:56:06,360 --> 00:56:09,600
+What can I add on to my query?
+
+1037
+00:56:09,600 --> 00:56:11,050
+A limit 5 is what I'm seeing.
+
+1038
+00:56:11,050 --> 00:56:12,300
+So I'll go ahead and try that.
+
+1039
+00:56:12,300 --> 00:56:15,210
+I will go here, scroll
+down, and I'll say,
+
+1040
+00:56:15,210 --> 00:56:18,660
+let's select name
+again from songs, order
+
+1041
+00:56:18,660 --> 00:56:21,760
+by duration ms in descending order.
+
+1042
+00:56:21,760 --> 00:56:26,010
+And now, limit myself
+to the top five results.
+
+1043
+00:56:26,010 --> 00:56:30,270
+Now in general, as you're working
+with SQL syntax like this,
+
+1044
+00:56:30,270 --> 00:56:34,030
+knowing the ordering that these
+statements go in is often helpful.
+
+1045
+00:56:34,030 --> 00:56:39,570
+So to give you a guide, often select
+goes first, followed by an order
+
+1046
+00:56:39,570 --> 00:56:42,360
+by, trying to order the result
+in some particular order.
+
+1047
+00:56:42,360 --> 00:56:45,870
+Then at the very end of your
+query, do you have limit.
+
+1048
+00:56:45,870 --> 00:56:48,810
+So limit tells me, give me
+back all of the results,
+
+1049
+00:56:48,810 --> 00:56:51,420
+but only take those top five.
+
+1050
+00:56:51,420 --> 00:56:52,630
+I'll hit Enter here.
+
+1051
+00:56:52,630 --> 00:56:55,410
+And now I'll see these are
+the top five songs in terms
+
+1052
+00:56:55,410 --> 00:56:59,050
+of duration, the longest
+five songs to be exact.
+
+1053
+00:56:59,050 --> 00:57:04,428
+So I'll go back to my other
+terminal, type code three dot SQL.
+
+1054
+00:57:04,428 --> 00:57:05,970
+Let me just document this query here.
+
+1055
+00:57:05,970 --> 00:57:12,290
+I'll say select name from songs, order
+by duration ms in descending order.
+
+1056
+00:57:12,290 --> 00:57:16,040
+And then I'll limit myself
+to the top five songs.
+
+1057
+00:57:16,040 --> 00:57:20,410
+So this is that particular
+query now done for me here.
+
+1058
+00:57:20,410 --> 00:57:21,180
+Let's keep going.
+
+1059
+00:57:21,180 --> 00:57:22,690
+Let's see four dot SQL.
+
+1060
+00:57:22,690 --> 00:57:27,810
+So four dot SQL lists the names of any
+songs that have a danceability energy
+
+1061
+00:57:27,810 --> 00:57:32,753
+and valence greater than 0.75.
+
+1062
+00:57:32,753 --> 00:57:34,920
+Well, let's take a peek at
+what that actually means.
+
+1063
+00:57:34,920 --> 00:57:40,960
+So, I'll go back to my database.
+
+1064
+00:57:40,960 --> 00:57:45,580
+And why don't I just select the
+title or the name of a song.
+
+1065
+00:57:45,580 --> 00:57:50,350
+And then why don't I also select the
+danceability, energy, and valence,
+
+1066
+00:57:50,350 --> 00:57:51,670
+see what those numbers are.
+
+1067
+00:57:51,670 --> 00:57:59,050
+Select name, danceability, energy,
+and valence, all in one go from songs.
+
+1068
+00:57:59,050 --> 00:58:01,690
+And I'll just take the top
+song here to see what it is.
+
+1069
+00:58:01,690 --> 00:58:02,770
+Hit Enter.
+
+1070
+00:58:02,770 --> 00:58:05,950
+So it seems like the very
+first song is called God's Plan
+
+1071
+00:58:05,950 --> 00:58:09,490
+and the danceability of it is 0.754.
+
+1072
+00:58:09,490 --> 00:58:11,950
+The energy is 0.449.
+
+1073
+00:58:11,950 --> 00:58:14,890
+And the valence is 0.357.
+
+1074
+00:58:14,890 --> 00:58:18,730
+So if you're not familiar, this
+data actually comes from Spotify.
+
+1075
+00:58:18,730 --> 00:58:22,000
+And Spotify has various metrics
+they make to help characterize
+
+1076
+00:58:22,000 --> 00:58:24,580
+certain songs on a zero to one scale.
+
+1077
+00:58:24,580 --> 00:58:27,610
+So danceability is how danceable
+that song is, how much you
+
+1078
+00:58:27,610 --> 00:58:29,950
+can kind of jive to the beat.
+
+1079
+00:58:29,950 --> 00:58:33,220
+Energy here is like how
+much intensity it has.
+
+1080
+00:58:33,220 --> 00:58:36,190
+Is it something you kind of mellow
+out to or like play at a club?
+
+1081
+00:58:36,190 --> 00:58:39,920
+And then valence is like how
+happy is this song, where one is
+
+1082
+00:58:39,920 --> 00:58:41,900
+like it's a happy, very positive song.
+
+1083
+00:58:41,900 --> 00:58:46,340
+Zero is kind of like a minor
+key, kind of dark kind of song.
+
+1084
+00:58:46,340 --> 00:58:50,700
+So it's like a way of characterizing the
+song in terms of actual numeric output,
+
+1085
+00:58:50,700 --> 00:58:51,660
+which is kind of cool.
+
+1086
+00:58:51,660 --> 00:58:55,040
+So our goal here is to find
+generally, those songs that
+
+1087
+00:58:55,040 --> 00:59:00,410
+are pretty danceable, pretty energetic,
+and pretty happy, it seems like.
+
+1088
+00:59:00,410 --> 00:59:04,370
+So we're going to try to find the
+titles of those particular songs.
+
+1089
+00:59:04,370 --> 00:59:07,790
+So I again want to list
+the names of songs.
+
+1090
+00:59:07,790 --> 00:59:09,800
+Maybe I'll go back to my SQLite prompt.
+
+1091
+00:59:09,800 --> 00:59:13,310
+I'll say select name from songs.
+
+1092
+00:59:13,310 --> 00:59:15,620
+But here's where I get into trouble.
+
+1093
+00:59:15,620 --> 00:59:19,850
+How do I exclude certain
+songs and only include
+
+1094
+00:59:19,850 --> 00:59:27,210
+those that have a danceability,
+energy, and valence greater than 0.75?
+
+1095
+00:59:27,210 --> 00:59:29,615
+Which keyword do you think
+we should probably use here?
+
+1096
+00:59:29,615 --> 00:59:32,170
+
+
+1097
+00:59:32,170 --> 00:59:33,040
+I'm seeing where.
+
+1098
+00:59:33,040 --> 00:59:37,810
+So often, when you want to filter
+the rows, you're going to use where.
+
+1099
+00:59:37,810 --> 00:59:42,830
+Where often comes immediately
+after you use a select and a from.
+
+1100
+00:59:42,830 --> 00:59:45,130
+So I'll say select name from songs.
+
+1101
+00:59:45,130 --> 00:59:47,770
+And now I'll have my condition.
+
+1102
+00:59:47,770 --> 00:59:52,150
+Well, where, first part of my
+condition is the danceability
+
+1103
+00:59:52,150 --> 00:59:54,200
+should be greater than 0.75.
+
+1104
+00:59:54,200 --> 00:59:56,350
+So it should be a pretty danceable song.
+
+1105
+00:59:56,350 --> 01:00:02,560
+I'll go and say where,
+danceability is greater than 0.75.
+
+1106
+01:00:02,560 --> 01:00:05,260
+But that's not the only condition here.
+
+1107
+01:00:05,260 --> 01:00:09,070
+I also want to make sure that
+the energy and the valence
+
+1108
+01:00:09,070 --> 01:00:11,530
+are similarly at least that big.
+
+1109
+01:00:11,530 --> 01:00:15,490
+So if I want to add on more
+conditions, I can use and.
+
+1110
+01:00:15,490 --> 01:00:19,720
+I could say and the energy
+is greater than 0.75.
+
+1111
+01:00:19,720 --> 01:00:24,290
+And let's say, the valence
+is greater than 0.75.
+
+1112
+01:00:24,290 --> 01:00:30,800
+I could also use or, capital O, capital
+R to say either this or that as well.
+
+1113
+01:00:30,800 --> 01:00:31,880
+But I'll take this.
+
+1114
+01:00:31,880 --> 01:00:34,160
+And I think this should
+satisfy my query.
+
+1115
+01:00:34,160 --> 01:00:38,930
+Any songs that danceability, energy,
+and valence greater than 0.75.
+
+1116
+01:00:38,930 --> 01:00:40,100
+I'll hit Enter.
+
+1117
+01:00:40,100 --> 01:00:43,310
+And I should see that
+there are about, let's see,
+
+1118
+01:00:43,310 --> 01:00:48,230
+five songs that are pretty danceable,
+pretty energetic, and pretty happy,
+
+1119
+01:00:48,230 --> 01:00:50,210
+according to Spotify at least.
+
+1120
+01:00:50,210 --> 01:00:53,360
+So I'll go back to my other terminal.
+
+1121
+01:00:53,360 --> 01:00:55,115
+And I'll say code, what was this?
+
+1122
+01:00:55,115 --> 01:00:57,410
+This was four dot SQL.
+
+1123
+01:00:57,410 --> 01:00:59,240
+Code four dot SQL.
+
+1124
+01:00:59,240 --> 01:01:03,710
+And now I'll type in that very same
+query, which was selecting names
+
+1125
+01:01:03,710 --> 01:01:11,930
+from songs where the danceability
+was greater than 0.75 and the energy
+
+1126
+01:01:11,930 --> 01:01:16,160
+was greater than 0.75 and the
+valence was greater than 0.75.
+
+1127
+01:01:16,160 --> 01:01:20,310
+And that was my entire query.
+
+1128
+01:01:20,310 --> 01:01:22,300
+All right.
+
+1129
+01:01:22,300 --> 01:01:25,300
+Questions, then, on
+what we've seen so far?
+
+1130
+01:01:25,300 --> 01:01:30,600
+
+
+1131
+01:01:30,600 --> 01:01:31,725
+What questions do you have?
+
+1132
+01:01:31,725 --> 01:01:38,760
+
+
+1133
+01:01:38,760 --> 01:01:41,740
+All right, seeing none for right now.
+
+1134
+01:01:41,740 --> 01:01:44,700
+So let's keep going and do
+something a little more interesting.
+
+1135
+01:01:44,700 --> 01:01:48,990
+Our next question asks us
+to return the average energy
+
+1136
+01:01:48,990 --> 01:01:51,867
+of all the songs, the average energy.
+
+1137
+01:01:51,867 --> 01:01:53,700
+So this is a little bit
+different, because I
+
+1138
+01:01:53,700 --> 01:02:00,060
+don't think I can select any particular
+row and get back the average energy.
+
+1139
+01:02:00,060 --> 01:02:08,740
+Because if I go ahead and I do
+something like select energy from songs,
+
+1140
+01:02:08,740 --> 01:02:14,150
+like this, I get back all the
+values in the energy column.
+
+1141
+01:02:14,150 --> 01:02:17,900
+So I need something a little
+special to answer this question.
+
+1142
+01:02:17,900 --> 01:02:21,920
+That is what we call in SQLite,
+this idea of an aggregate function.
+
+1143
+01:02:21,920 --> 01:02:25,240
+So an aggregate function
+takes in something.
+
+1144
+01:02:25,240 --> 01:02:27,190
+Let me try to find this slide here.
+
+1145
+01:02:27,190 --> 01:02:31,990
+An aggregate function takes
+in lots of data and spits
+
+1146
+01:02:31,990 --> 01:02:34,150
+out one particular number.
+
+1147
+01:02:34,150 --> 01:02:37,270
+So you can take a whole
+column of data and give you
+
+1148
+01:02:37,270 --> 01:02:39,950
+one summary number, if you will.
+
+1149
+01:02:39,950 --> 01:02:41,350
+Now there are a few of these.
+
+1150
+01:02:41,350 --> 01:02:43,430
+And you could use them like this.
+
+1151
+01:02:43,430 --> 01:02:46,930
+Where you often have a query, it looks
+a bit like select column from name
+
+1152
+01:02:46,930 --> 01:02:51,730
+or some condition is true, you could
+say select count of the values there.
+
+1153
+01:02:51,730 --> 01:02:54,460
+How many values do we
+have that are not null?
+
+1154
+01:02:54,460 --> 01:02:57,970
+You could select the
+average of those numbers,
+
+1155
+01:02:57,970 --> 01:03:01,810
+like what is the average number across
+all these in a particular column?
+
+1156
+01:03:01,810 --> 01:03:05,300
+You could select the minimum,
+the maximum, and so on.
+
+1157
+01:03:05,300 --> 01:03:07,420
+So we'll actually use
+these for queries, five
+
+1158
+01:03:07,420 --> 01:03:10,840
+through seven in the songs problem.
+
+1159
+01:03:10,840 --> 01:03:14,270
+But often you simply use them
+by taking your column name
+
+1160
+01:03:14,270 --> 01:03:19,220
+and sticking it inside some parentheses
+after your aggregate function
+
+1161
+01:03:19,220 --> 01:03:19,880
+in particular.
+
+1162
+01:03:19,880 --> 01:03:22,680
+So like average count min or so on.
+
+1163
+01:03:22,680 --> 01:03:24,680
+So why don't I try average.
+
+1164
+01:03:24,680 --> 01:03:27,500
+Select AVG for average.
+
+1165
+01:03:27,500 --> 01:03:30,290
+Select average energy from songs.
+
+1166
+01:03:30,290 --> 01:03:31,430
+Hit Enter.
+
+1167
+01:03:31,430 --> 01:03:38,660
+And now I see that the average
+energy is about a 0.65906 out of one.
+
+1168
+01:03:38,660 --> 01:03:40,670
+Now there's a bit of a bonus here.
+
+1169
+01:03:40,670 --> 01:03:44,060
+I don't quite care if
+it's like 906 at the end.
+
+1170
+01:03:44,060 --> 01:03:45,650
+It could be 0.65.
+
+1171
+01:03:45,650 --> 01:03:50,390
+So to adjust this, I could try
+select but say the rounded average.
+
+1172
+01:03:50,390 --> 01:03:56,570
+I could around the average energy
+to two decimal places from songs.
+
+1173
+01:03:56,570 --> 01:03:57,830
+From songs.
+
+1174
+01:03:57,830 --> 01:04:02,040
+And now I get back just the rounded
+version to two decimal places
+
+1175
+01:04:02,040 --> 01:04:02,720
+if I'd like.
+
+1176
+01:04:02,720 --> 01:04:07,220
+So round is one other function you
+can use, not an aggregate function,
+
+1177
+01:04:07,220 --> 01:04:11,010
+but it does let you round your
+results from a particular column.
+
+1178
+01:04:11,010 --> 01:04:14,070
+In this case though, we want
+the non-rounded version.
+
+1179
+01:04:14,070 --> 01:04:16,270
+So I'll go to my terminal.
+
+1180
+01:04:16,270 --> 01:04:18,450
+I'll type code five dot SQL.
+
+1181
+01:04:18,450 --> 01:04:22,680
+And now I'll say select the
+average energy from songs.
+
+1182
+01:04:22,680 --> 01:04:27,410
+And that should answer the
+question for five dot SQL.
+
+1183
+01:04:27,410 --> 01:04:28,165
+All right.
+
+1184
+01:04:28,165 --> 01:04:30,750
+
+
+1185
+01:04:30,750 --> 01:04:33,185
+Questions on aggregate functions here?
+
+1186
+01:04:33,185 --> 01:04:40,550
+
+
+1187
+01:04:40,550 --> 01:04:42,340
+All right.
+
+1188
+01:04:42,340 --> 01:04:44,190
+Not seeing any.
+
+1189
+01:04:44,190 --> 01:04:47,620
+Now I think we'll go back to
+another question, which said,
+
+1190
+01:04:47,620 --> 01:04:49,950
+how do we get data from multiple tables.
+
+1191
+01:04:49,950 --> 01:04:52,300
+And we'll see a few approaches
+actually here today.
+
+1192
+01:04:52,300 --> 01:04:55,590
+So in six dot SQL,
+it's asking us to write
+
+1193
+01:04:55,590 --> 01:05:00,450
+a SQL query that lists the names
+of songs that are by Post Malone.
+
+1194
+01:05:00,450 --> 01:05:04,290
+So Post Malone in the US
+is an artist and a rapper.
+
+1195
+01:05:04,290 --> 01:05:07,950
+So how could we find the
+songs by Post Malone?
+
+1196
+01:05:07,950 --> 01:05:10,450
+Well, if I type dot schema songs.
+
+1197
+01:05:10,450 --> 01:05:10,950
+Oops.
+
+1198
+01:05:10,950 --> 01:05:13,110
+This is my SQLite prompt.
+
+1199
+01:05:13,110 --> 01:05:16,460
+If I type dot schema songs.
+
+1200
+01:05:16,460 --> 01:05:19,640
+Do I see any information
+about the authors here
+
+1201
+01:05:19,640 --> 01:05:21,455
+or the artists of this song?
+
+1202
+01:05:21,455 --> 01:05:24,110
+
+
+1203
+01:05:24,110 --> 01:05:26,810
+What information do I have to work with?
+
+1204
+01:05:26,810 --> 01:05:27,860
+I see artist ID.
+
+1205
+01:05:27,860 --> 01:05:35,400
+So I could probably filter these songs
+using where to a particular artist ID.
+
+1206
+01:05:35,400 --> 01:05:40,050
+But then the next question is,
+well, which ID should I be using?
+
+1207
+01:05:40,050 --> 01:05:42,850
+Like I don't quite know
+right now Post Malone's ID.
+
+1208
+01:05:42,850 --> 01:05:47,880
+So how could I filter the songs to
+those that have Post Malone's ID?
+
+1209
+01:05:47,880 --> 01:05:50,280
+Well, there's probably a few
+ways I could go about this.
+
+1210
+01:05:50,280 --> 01:05:54,000
+And I want to show you one visualization
+and one example of how you can actually
+
+1211
+01:05:54,000 --> 01:05:59,770
+use this technique not just for this
+scenario, but for other ones too.
+
+1212
+01:05:59,770 --> 01:06:01,050
+So go back to some slides.
+
+1213
+01:06:01,050 --> 01:06:07,770
+And let's go ahead and take a
+look at how we can solve ways to--
+
+1214
+01:06:07,770 --> 01:06:12,430
+queries that ask us to combine tables
+and gather data from multiple sources.
+
+1215
+01:06:12,430 --> 01:06:15,370
+So in general, there
+are two ways to do this.
+
+1216
+01:06:15,370 --> 01:06:17,610
+One is to use subqueries.
+
+1217
+01:06:17,610 --> 01:06:21,210
+And one is to actually
+join those tables together.
+
+1218
+01:06:21,210 --> 01:06:26,230
+We'll focus here first on
+using this idea of a subquery.
+
+1219
+01:06:26,230 --> 01:06:31,900
+So to motivate them, I think it's worth
+going through a particular example,
+
+1220
+01:06:31,900 --> 01:06:38,470
+where maybe I now have two tables,
+one for movies and one for ratings.
+
+1221
+01:06:38,470 --> 01:06:43,030
+And let's say I want to
+find the rating of Cars
+
+1222
+01:06:43,030 --> 01:06:45,190
+3, my own personal favorite movie.
+
+1223
+01:06:45,190 --> 01:06:47,950
+Where could I find the rating of Cars 3?
+
+1224
+01:06:47,950 --> 01:06:50,930
+Well, it seems like it's
+in the ratings table.
+
+1225
+01:06:50,930 --> 01:06:55,380
+But if I were to just query movies, I
+wouldn't actually see the rating there.
+
+1226
+01:06:55,380 --> 01:06:58,180
+So you need to reference
+both tables to figure out
+
+1227
+01:06:58,180 --> 01:07:01,510
+what is the rating of Cars 3?
+
+1228
+01:07:01,510 --> 01:07:06,010
+Now let me ask you, what do you
+notice about these two tables?
+
+1229
+01:07:06,010 --> 01:07:12,100
+What allows me to reference
+data between them?
+
+1230
+01:07:12,100 --> 01:07:14,080
+What could I do?
+
+1231
+01:07:14,080 --> 01:07:18,820
+So the ID column in movies and the
+movie ID column and ratings, those
+
+1232
+01:07:18,820 --> 01:07:19,960
+seem to correspond.
+
+1233
+01:07:19,960 --> 01:07:25,060
+In fact, the movie ID column seems
+to be a foreign key referencing
+
+1234
+01:07:25,060 --> 01:07:28,310
+the primary key ID in movies.
+
+1235
+01:07:28,310 --> 01:07:30,970
+So notice here, these two kind of align.
+
+1236
+01:07:30,970 --> 01:07:32,510
+They reference each other.
+
+1237
+01:07:32,510 --> 01:07:35,110
+So I could use this to my advantage.
+
+1238
+01:07:35,110 --> 01:07:37,580
+Maybe I could do in
+SQLite, I could do this.
+
+1239
+01:07:37,580 --> 01:07:43,810
+I could say, why don't I find the ID
+for Cars 3, where the title is Cars 3.
+
+1240
+01:07:43,810 --> 01:07:48,930
+And that would give me back 3606752.
+
+1241
+01:07:48,930 --> 01:07:49,430
+OK.
+
+1242
+01:07:49,430 --> 01:07:50,900
+That's helpful for me.
+
+1243
+01:07:50,900 --> 01:07:54,680
+Maybe my next query then could be this.
+
+1244
+01:07:54,680 --> 01:07:59,960
+Select rating from ratings where
+the movie ID equals 3606752.
+
+1245
+01:07:59,960 --> 01:08:03,260
+And that would give me
+back the rating for Cars 3.
+
+1246
+01:08:03,260 --> 01:08:09,130
+But what could I be doing better, or at
+least what seems annoying about this?
+
+1247
+01:08:09,130 --> 01:08:14,440
+
+
+1248
+01:08:14,440 --> 01:08:15,045
+Any ideas?
+
+1249
+01:08:15,045 --> 01:08:18,189
+
+
+1250
+01:08:18,189 --> 01:08:21,243
+I would just think about, would
+you want to type this query?
+
+1251
+01:08:21,243 --> 01:08:23,910
+I mean it's kind of like, the
+idea is just kind of long to type.
+
+1252
+01:08:23,910 --> 01:08:26,279
+I don't want to have to do
+that really multiple times.
+
+1253
+01:08:26,279 --> 01:08:28,410
+And let's say the ID of Cars changes.
+
+1254
+01:08:28,410 --> 01:08:31,080
+Like that is not something I
+want to actually keep track of.
+
+1255
+01:08:31,080 --> 01:08:33,720
+So there's probably a
+better way to do this
+
+1256
+01:08:33,720 --> 01:08:37,350
+that actually allows me to
+abstract away or not even
+
+1257
+01:08:37,350 --> 01:08:42,399
+think about the ID of what
+Cars 3-- of Cars 3 at all.
+
+1258
+01:08:42,399 --> 01:08:44,880
+So why don't I reformulate my query.
+
+1259
+01:08:44,880 --> 01:08:46,439
+And why don't I try this.
+
+1260
+01:08:46,439 --> 01:08:52,229
+Select rating from ratings where
+the movie ID equals something,
+
+1261
+01:08:52,229 --> 01:08:53,420
+but I don't know what yet.
+
+1262
+01:08:53,420 --> 01:08:54,670
+There's a question mark there.
+
+1263
+01:08:54,670 --> 01:08:58,200
+I need to figure out, well,
+what is the ID of Cars 3?
+
+1264
+01:08:58,200 --> 01:09:03,300
+And to fill in that question mark,
+I could use some other SQL query.
+
+1265
+01:09:03,300 --> 01:09:05,890
+I could organize it like this.
+
+1266
+01:09:05,890 --> 01:09:09,689
+And now I could say, why don't I
+put in this query that finds me
+
+1267
+01:09:09,689 --> 01:09:12,000
+that ID for Cars 3.
+
+1268
+01:09:12,000 --> 01:09:17,870
+In this case, I'll say select ID from
+movies where the title equals Cars 3.
+
+1269
+01:09:17,870 --> 01:09:18,410
+OK.
+
+1270
+01:09:18,410 --> 01:09:22,700
+So now I'm trying to build up a
+single query that doesn't even
+
+1271
+01:09:22,700 --> 01:09:24,649
+care what the ID of Cars is.
+
+1272
+01:09:24,649 --> 01:09:28,160
+I'm now able to just
+find the rating from it.
+
+1273
+01:09:28,160 --> 01:09:32,310
+And as a bit of a side note
+here, I think, let me check.
+
+1274
+01:09:32,310 --> 01:09:32,810
+Yes.
+
+1275
+01:09:32,810 --> 01:09:36,620
+So this particular quote, these
+quotes here, double quotes.
+
+1276
+01:09:36,620 --> 01:09:37,550
+Don't do what I did.
+
+1277
+01:09:37,550 --> 01:09:38,390
+That's not good.
+
+1278
+01:09:38,390 --> 01:09:39,705
+Only use single quotes.
+
+1279
+01:09:39,705 --> 01:09:42,080
+So this is often hard to keep
+track of as evidenced here.
+
+1280
+01:09:42,080 --> 01:09:44,060
+But you should only
+be using single quotes
+
+1281
+01:09:44,060 --> 01:09:46,140
+when you actually use strings in SQL.
+
+1282
+01:09:46,140 --> 01:09:47,240
+So my bad.
+
+1283
+01:09:47,240 --> 01:09:48,620
+But don't use double quotes.
+
+1284
+01:09:48,620 --> 01:09:50,870
+All right, so let's say we
+have this inner query here.
+
+1285
+01:09:50,870 --> 01:09:54,740
+Select ID from movies
+where title equals Cars 3.
+
+1286
+01:09:54,740 --> 01:09:59,570
+First, that query will run and
+return to us the ID of Cars 3.
+
+1287
+01:09:59,570 --> 01:10:03,260
+So whatever is the innermost query
+in parentheses will run first.
+
+1288
+01:10:03,260 --> 01:10:08,030
+And in that case we'll get
+back, let's say, 3606752.
+
+1289
+01:10:08,030 --> 01:10:11,360
+And our query kind of
+becomes this query here.
+
+1290
+01:10:11,360 --> 01:10:15,500
+Select rating from ratings where the
+movie ID equals that ID for Cars.
+
+1291
+01:10:15,500 --> 01:10:19,960
+And of course, we can then get back
+the rating we're looking for all along.
+
+1292
+01:10:19,960 --> 01:10:24,630
+So let's try this with, let's
+say, this idea of Post Malone.
+
+1293
+01:10:24,630 --> 01:10:29,520
+So I want to find the
+songs by Post Malone.
+
+1294
+01:10:29,520 --> 01:10:36,600
+Well I know first I want to
+select, select names from songs.
+
+1295
+01:10:36,600 --> 01:10:42,830
+And I want to do so where the
+artist ID equals, equals something.
+
+1296
+01:10:42,830 --> 01:10:44,250
+I don't quite know what yet.
+
+1297
+01:10:44,250 --> 01:10:47,270
+So I might write a subquery.
+
+1298
+01:10:47,270 --> 01:10:49,670
+I could say, let's
+have some parentheses.
+
+1299
+01:10:49,670 --> 01:10:53,780
+And I'll hit Enter and indent
+four times for style's sake.
+
+1300
+01:10:53,780 --> 01:10:58,670
+Now I'm trying to answer that question,
+like what is Post Malone's artist ID?
+
+1301
+01:10:58,670 --> 01:11:04,460
+Any ideas for how I could get
+access to that particular ID?
+
+1302
+01:11:04,460 --> 01:11:07,445
+What kind of query could I use
+here to find the ID of Post Malone?
+
+1303
+01:11:07,445 --> 01:11:12,750
+
+
+1304
+01:11:12,750 --> 01:11:14,770
+Probably want to select.
+
+1305
+01:11:14,770 --> 01:11:18,560
+I want to select the ID column,
+probably from the artist table.
+
+1306
+01:11:18,560 --> 01:11:22,420
+So I'll say select ID from
+artists and you could probably
+
+1307
+01:11:22,420 --> 01:11:26,020
+find this if you went back and checked
+the schema of the artist table too.
+
+1308
+01:11:26,020 --> 01:11:27,500
+Select ID from artists.
+
+1309
+01:11:27,500 --> 01:11:31,180
+And now I want to only
+get one ID, which is
+
+1310
+01:11:31,180 --> 01:11:37,420
+the ID of the artist where
+their name equals Post
+
+1311
+01:11:37,420 --> 01:11:40,000
+Malone with single quotes importantly.
+
+1312
+01:11:40,000 --> 01:11:41,830
+Now I'll hit Enter.
+
+1313
+01:11:41,830 --> 01:11:44,840
+And that is my entire subquery.
+
+1314
+01:11:44,840 --> 01:11:47,690
+And parentheses, semicolon, hit Enter.
+
+1315
+01:11:47,690 --> 01:11:52,070
+And now I see these are the
+six songs Post Malone had
+
+1316
+01:11:52,070 --> 01:11:56,930
+in the top 100 list in 2018.
+
+1317
+01:11:56,930 --> 01:12:00,720
+So questions then on subqueries.
+
+1318
+01:12:00,720 --> 01:12:04,440
+And now we're using them here.
+
+1319
+01:12:04,440 --> 01:12:05,710
+Why single quotes?
+
+1320
+01:12:05,710 --> 01:12:07,710
+So you could use double
+quotes if you wanted to.
+
+1321
+01:12:07,710 --> 01:12:09,210
+I think it would still work.
+
+1322
+01:12:09,210 --> 01:12:15,360
+Technically in SQLite, single quotes
+are used for strings like Post Malone.
+
+1323
+01:12:15,360 --> 01:12:18,600
+And double quotes are
+used for identifiers,
+
+1324
+01:12:18,600 --> 01:12:21,600
+like table names and column names.
+
+1325
+01:12:21,600 --> 01:12:23,040
+You don't have to use them.
+
+1326
+01:12:23,040 --> 01:12:25,300
+Here I'm not using them as you'll see.
+
+1327
+01:12:25,300 --> 01:12:27,160
+But it's good not to mix those up.
+
+1328
+01:12:27,160 --> 01:12:31,878
+So in general, strings like Post
+Malone, single quotes, column names,
+
+1329
+01:12:31,878 --> 01:12:34,170
+table names, double quotes
+are what you would use there
+
+1330
+01:12:34,170 --> 01:12:37,970
+if you are using quotes at all.
+
+1331
+01:12:37,970 --> 01:12:41,190
+Good questions.
+
+1332
+01:12:41,190 --> 01:12:44,725
+Can you show data from both
+tables with the queries?
+
+1333
+01:12:44,725 --> 01:12:45,850
+What an excellent question.
+
+1334
+01:12:45,850 --> 01:12:48,267
+So can you show data
+with both tables from--
+
+1335
+01:12:48,267 --> 01:12:50,100
+show data from both
+tables with the queries?
+
+1336
+01:12:50,100 --> 01:12:51,180
+You absolutely can.
+
+1337
+01:12:51,180 --> 01:12:54,150
+That would require you,
+though, to use a join.
+
+1338
+01:12:54,150 --> 01:12:57,660
+So subqueries are great when you
+want to filter your data based
+
+1339
+01:12:57,660 --> 01:12:58,920
+on something in another table.
+
+1340
+01:12:58,920 --> 01:13:03,000
+If you want to actually see column from
+multiple tables all together in one,
+
+1341
+01:13:03,000 --> 01:13:05,860
+you want to join those tables together.
+
+1342
+01:13:05,860 --> 01:13:08,075
+So more on that in just a bit.
+
+1343
+01:13:08,075 --> 01:13:10,450
+Actually, why don't we go
+ahead and turn to it right now?
+
+1344
+01:13:10,450 --> 01:13:13,350
+So our next query is seven dot SQL.
+
+1345
+01:13:13,350 --> 01:13:17,910
+And here, we're trying to return
+the average energy of songs
+
+1346
+01:13:17,910 --> 01:13:20,160
+that are by Drake.
+
+1347
+01:13:20,160 --> 01:13:22,620
+Average energy of songs
+that are by Drake.
+
+1348
+01:13:22,620 --> 01:13:24,580
+Well, what could we do?
+
+1349
+01:13:24,580 --> 01:13:27,270
+Well first we probably have
+to find what is Drake's ID.
+
+1350
+01:13:27,270 --> 01:13:30,030
+And we could simply
+use our subquery again.
+
+1351
+01:13:30,030 --> 01:13:31,780
+That would work perfectly fine.
+
+1352
+01:13:31,780 --> 01:13:37,260
+But let's say we want to see, not
+just the average energy of songs
+
+1353
+01:13:37,260 --> 01:13:42,320
+that are by Drake, but also maybe
+Drake's name somewhere in there too.
+
+1354
+01:13:42,320 --> 01:13:45,217
+So I want to kind of join my
+tables together a bit like this.
+
+1355
+01:13:45,217 --> 01:13:47,050
+And let me actually
+give you a visualization
+
+1356
+01:13:47,050 --> 01:13:48,580
+for what that could look like.
+
+1357
+01:13:48,580 --> 01:13:50,720
+Go back to my slides here.
+
+1358
+01:13:50,720 --> 01:13:53,680
+Let's focus now on joining
+up our tables and trying
+
+1359
+01:13:53,680 --> 01:13:56,290
+to answer that same question
+we did earlier about what
+
+1360
+01:13:56,290 --> 01:13:59,600
+is the rating of Cars 3, the movie.
+
+1361
+01:13:59,600 --> 01:14:03,310
+So here again I have my
+movies and ratings tables.
+
+1362
+01:14:03,310 --> 01:14:07,810
+And we noticed earlier that these
+two columns had a relationship.
+
+1363
+01:14:07,810 --> 01:14:12,340
+That is the movie ID column
+was the foreign key referencing
+
+1364
+01:14:12,340 --> 01:14:16,070
+the primary key called ID in movies.
+
+1365
+01:14:16,070 --> 01:14:19,090
+So now I could answer
+this question the same way
+
+1366
+01:14:19,090 --> 01:14:22,570
+I did before, or maybe
+even more simply, I
+
+1367
+01:14:22,570 --> 01:14:27,670
+could try to push these tables
+together so that I align the movie's ID
+
+1368
+01:14:27,670 --> 01:14:31,700
+column with the values of
+the ratings movie ID column.
+
+1369
+01:14:31,700 --> 01:14:34,180
+So I could visually do this.
+
+1370
+01:14:34,180 --> 01:14:38,020
+And notice here how I'm
+matching up rows based
+
+1371
+01:14:38,020 --> 01:14:43,240
+on where the ID column in movies
+and the movie ID column in ratings
+
+1372
+01:14:43,240 --> 01:14:45,620
+are the same value.
+
+1373
+01:14:45,620 --> 01:14:53,360
+To visualize again, I know I should put
+this rating 8.3, 8.3, next to Toy Story
+
+1374
+01:14:53,360 --> 01:15:02,340
+because movie ID 114709 matches
+the ID column movies 114709.
+
+1375
+01:15:02,340 --> 01:15:06,510
+So when I join these tables,
+those will be the rows I match up.
+
+1376
+01:15:06,510 --> 01:15:07,880
+Same thing for Cars.
+
+1377
+01:15:07,880 --> 01:15:10,550
+And now I have a single
+table here that shows
+
+1378
+01:15:10,550 --> 01:15:15,210
+me the title, Cars 3, and the rating.
+
+1379
+01:15:15,210 --> 01:15:18,630
+So I could abstract away
+this movie ID column.
+
+1380
+01:15:18,630 --> 01:15:23,500
+And now I'm left with basically a
+single table that has IDs for movies
+
+1381
+01:15:23,500 --> 01:15:28,420
+but now also has some additional
+data like the ratings piece as well.
+
+1382
+01:15:28,420 --> 01:15:31,830
+So this is how we could solve
+this problem using join.
+
+1383
+01:15:31,830 --> 01:15:35,070
+Let's try it now to figure
+out, what is the average energy
+
+1384
+01:15:35,070 --> 01:15:37,530
+of songs that are by Drake?
+
+1385
+01:15:37,530 --> 01:15:41,280
+Well, to actually
+implement a join, I need
+
+1386
+01:15:41,280 --> 01:15:44,040
+to actually type this join keyword.
+
+1387
+01:15:44,040 --> 01:15:45,100
+So why don't I try this?
+
+1388
+01:15:45,100 --> 01:15:54,130
+I'll say select, the name
+energy and let's say artist.
+
+1389
+01:15:54,130 --> 01:15:56,820
+Let's see, actually let
+me see what is the--
+
+1390
+01:15:56,820 --> 01:16:00,860
+if I use dot schema artist, the name.
+
+1391
+01:16:00,860 --> 01:16:03,910
+So notice how artists has a name column.
+
+1392
+01:16:03,910 --> 01:16:07,420
+I want to, let's say get
+back the name of Drake
+
+1393
+01:16:07,420 --> 01:16:13,570
+songs, the energy associated
+with them, and the name of Drake.
+
+1394
+01:16:13,570 --> 01:16:16,780
+So I can actually see in
+one table, like, whatever
+
+1395
+01:16:16,780 --> 01:16:19,720
+Drake's song name is the energy
+of that song and then the name
+
+1396
+01:16:19,720 --> 01:16:21,620
+Drake right next to it.
+
+1397
+01:16:21,620 --> 01:16:30,220
+So I could say select name
+from, let's say, the song table.
+
+1398
+01:16:30,220 --> 01:16:32,750
+Select energy as well.
+
+1399
+01:16:32,750 --> 01:16:37,060
+And now select well, the
+name column from artist.
+
+1400
+01:16:37,060 --> 01:16:42,680
+So why might this be a little confusing?
+
+1401
+01:16:42,680 --> 01:16:46,550
+I have two columns named
+name in two different tables.
+
+1402
+01:16:46,550 --> 01:16:50,610
+So, I probably want to specify
+where I'm getting which one.
+
+1403
+01:16:50,610 --> 01:16:53,980
+And to do this, if you have this
+problem, you could do the following.
+
+1404
+01:16:53,980 --> 01:16:58,350
+I could say, not just
+name, but songs dot name,
+
+1405
+01:16:58,350 --> 01:17:01,470
+or for instance, artists dot name.
+
+1406
+01:17:01,470 --> 01:17:04,830
+This allows me to say,
+I want in particular
+
+1407
+01:17:04,830 --> 01:17:09,880
+the name column from songs and
+the name column from artists.
+
+1408
+01:17:09,880 --> 01:17:16,230
+And now, why don't I say from, let's
+go ahead and say from the songs table.
+
+1409
+01:17:16,230 --> 01:17:20,940
+But the songs table, of course, doesn't
+have the name column in artists.
+
+1410
+01:17:20,940 --> 01:17:22,860
+So I need to join that table in.
+
+1411
+01:17:22,860 --> 01:17:26,610
+I'll say from songs join artists.
+
+1412
+01:17:26,610 --> 01:17:30,810
+And now I have to specify which
+two columns should SQLite use
+
+1413
+01:17:30,810 --> 01:17:34,720
+to know which rows to put
+together across these two tables.
+
+1414
+01:17:34,720 --> 01:17:38,610
+So I'll say join artists
+on, in this case,
+
+1415
+01:17:38,610 --> 01:17:43,920
+I know I should use
+the artists.id column
+
+1416
+01:17:43,920 --> 01:17:49,440
+and set that, that should be the
+same as the songs dot artist,
+
+1417
+01:17:49,440 --> 01:17:51,730
+ID column, like this.
+
+1418
+01:17:51,730 --> 01:17:54,420
+So I'm telling SQLite,
+when you join these tables,
+
+1419
+01:17:54,420 --> 01:18:01,770
+make sure that the ID column in artists
+matches the artist ID column in songs.
+
+1420
+01:18:01,770 --> 01:18:03,000
+Now I'll hit Enter.
+
+1421
+01:18:03,000 --> 01:18:10,073
+And why don't I try specify, where
+artists dot name equals Drake.
+
+1422
+01:18:10,073 --> 01:18:12,240
+And hopefully, fingers
+crossed, I'll hit Enter here.
+
+1423
+01:18:12,240 --> 01:18:13,770
+This is all improvised.
+
+1424
+01:18:13,770 --> 01:18:21,900
+I should see that the I have the names
+of Drake songs and the energy of them,
+
+1425
+01:18:21,900 --> 01:18:25,710
+and of course, Drake's
+name right next to them.
+
+1426
+01:18:25,710 --> 01:18:28,265
+So questions on these joins then?
+
+1427
+01:18:28,265 --> 01:18:32,100
+
+
+1428
+01:18:32,100 --> 01:18:33,345
+What questions do we have?
+
+1429
+01:18:33,345 --> 01:18:41,970
+
+
+1430
+01:18:41,970 --> 01:18:44,690
+So we saw in lecture that
+joins can be pretty slow.
+
+1431
+01:18:44,690 --> 01:18:47,070
+Why is that the case?
+
+1432
+01:18:47,070 --> 01:18:55,360
+Let's see, in general, joins don't
+need to be any slower than subqueries.
+
+1433
+01:18:55,360 --> 01:18:59,830
+What can seem slow off the bat is
+when you have many joins all together,
+
+1434
+01:18:59,830 --> 01:19:03,250
+because it takes a lot of work for
+SQLite to go through and figure out,
+
+1435
+01:19:03,250 --> 01:19:06,700
+how do these rows match up across
+all these different tables.
+
+1436
+01:19:06,700 --> 01:19:10,690
+It can speed up joins if you
+have the right kinds of indexes.
+
+1437
+01:19:10,690 --> 01:19:13,450
+In lecture, we saw this idea
+of an index that speeds up
+
+1438
+01:19:13,450 --> 01:19:15,620
+queries on a particular column.
+
+1439
+01:19:15,620 --> 01:19:19,480
+So if you have the right
+indexes, joins aren't necessarily
+
+1440
+01:19:19,480 --> 01:19:21,970
+any slower than subqueries.
+
+1441
+01:19:21,970 --> 01:19:25,180
+It just turns out in lecture, we
+didn't have the right kinds of indexes
+
+1442
+01:19:25,180 --> 01:19:29,813
+to make that particular query
+very fast with those joins.
+
+1443
+01:19:29,813 --> 01:19:31,230
+Can you join more than two tables?
+
+1444
+01:19:31,230 --> 01:19:32,100
+You certainly can.
+
+1445
+01:19:32,100 --> 01:19:35,190
+You can join as many tables to your
+heart's content as you would like.
+
+1446
+01:19:35,190 --> 01:19:37,167
+Just keep in mind performance as well.
+
+1447
+01:19:37,167 --> 01:19:39,000
+And if you're doing
+more than three or four,
+
+1448
+01:19:39,000 --> 01:19:41,710
+I'd question why you're doing
+that in the first place.
+
+1449
+01:19:41,710 --> 01:19:44,310
+You need to, if you need to.
+
+1450
+01:19:44,310 --> 01:19:48,090
+When joining tables, does order matter?
+
+1451
+01:19:48,090 --> 01:19:49,380
+It can.
+
+1452
+01:19:49,380 --> 01:19:53,140
+Very unlikely that it
+would in particular.
+
+1453
+01:19:53,140 --> 01:20:00,380
+If you have a particular
+ordering, you want the rows in,
+
+1454
+01:20:00,380 --> 01:20:02,660
+it might vary that order.
+
+1455
+01:20:02,660 --> 01:20:04,670
+But that's why, at the
+very end of your query,
+
+1456
+01:20:04,670 --> 01:20:08,960
+you can use order by to set the
+order you get those things back in.
+
+1457
+01:20:08,960 --> 01:20:12,020
+And if you are feeling more
+comfortable with these kinds of things,
+
+1458
+01:20:12,020 --> 01:20:16,490
+I want to propose that you could learn
+a bit more about how SQLite is doing
+
+1459
+01:20:16,490 --> 01:20:21,630
+or learn more about what SQLite is doing
+underneath the hood, by typing this.
+
+1460
+01:20:21,630 --> 01:20:24,560
+Let's say, explain query plan.
+
+1461
+01:20:24,560 --> 01:20:25,520
+Hit Enter.
+
+1462
+01:20:25,520 --> 01:20:27,200
+And now I'll try joining again.
+
+1463
+01:20:27,200 --> 01:20:34,040
+I'll say I want to select, lets go for
+songs dot name, and artists dot name.
+
+1464
+01:20:34,040 --> 01:20:41,630
+And then I'll join, or from
+songs join artists on artists
+
+1465
+01:20:41,630 --> 01:20:44,660
+dot ID equals songs dot artist ID.
+
+1466
+01:20:44,660 --> 01:20:48,620
+So I'm basically telling SQLite, I
+want you to join these two tables.
+
+1467
+01:20:48,620 --> 01:20:51,470
+But the very first thing
+I said is, explain to me
+
+1468
+01:20:51,470 --> 01:20:52,820
+how you're going to do this.
+
+1469
+01:20:52,820 --> 01:20:55,528
+Explain to me how you're going to
+join these two tables together.
+
+1470
+01:20:55,528 --> 01:20:57,960
+I'll hit semicolon Enter here.
+
+1471
+01:20:57,960 --> 01:21:01,773
+And this tells me exactly how it is
+planning to join these tables together.
+
+1472
+01:21:01,773 --> 01:21:03,690
+If you want to, you can
+learn more about this.
+
+1473
+01:21:03,690 --> 01:21:05,340
+If you don't want to, totally OK.
+
+1474
+01:21:05,340 --> 01:21:07,173
+But if you are feeling
+more comfortable, you
+
+1475
+01:21:07,173 --> 01:21:09,900
+could learn about what SQULite
+is doing underneath the hood,
+
+1476
+01:21:09,900 --> 01:21:11,990
+if that makes sense.
+
+1477
+01:21:11,990 --> 01:21:12,700
+All right.
+
+1478
+01:21:12,700 --> 01:21:15,400
+So let's finish up our Drake query here.
+
+1479
+01:21:15,400 --> 01:21:20,770
+We said we would select the average
+energy of songs that are by Drake.
+
+1480
+01:21:20,770 --> 01:21:25,390
+So to finish this out, I could say
+select average energy from songs.
+
+1481
+01:21:25,390 --> 01:21:31,600
+And maybe I'll join, join,
+the artists table on artist
+
+1482
+01:21:31,600 --> 01:21:35,380
+dot ID equals songs dot artist ID.
+
+1483
+01:21:35,380 --> 01:21:44,140
+And then I could say where the artist
+or the name well, or the artist name,
+
+1484
+01:21:44,140 --> 01:21:46,060
+artist dot name is Drake.
+
+1485
+01:21:46,060 --> 01:21:46,840
+Like this.
+
+1486
+01:21:46,840 --> 01:21:47,980
+Hit Enter.
+
+1487
+01:21:47,980 --> 01:21:48,480
+Oh.
+
+1488
+01:21:48,480 --> 01:21:51,753
+
+
+1489
+01:21:51,753 --> 01:21:52,670
+It's artist, isn't it?
+
+1490
+01:21:52,670 --> 01:21:53,170
+OK.
+
+1491
+01:21:53,170 --> 01:21:56,870
+So, case in point, it's
+not artist, it's artists.
+
+1492
+01:21:56,870 --> 01:22:01,340
+So I'll say select
+average energy from songs.
+
+1493
+01:22:01,340 --> 01:22:02,660
+Join.
+
+1494
+01:22:02,660 --> 01:22:07,260
+And then where artists
+dot name is Drake.
+
+1495
+01:22:07,260 --> 01:22:14,480
+And we find that Drake's songs
+have an average energy of 0.599.
+
+1496
+01:22:14,480 --> 01:22:16,270
+All right.
+
+1497
+01:22:16,270 --> 01:22:18,670
+Now our one final query
+here before we wrap up.
+
+1498
+01:22:18,670 --> 01:22:21,385
+This is going to ask us to
+find all the names of songs
+
+1499
+01:22:21,385 --> 01:22:22,510
+that feature other artists.
+
+1500
+01:22:22,510 --> 01:22:27,700
+So notice how songs feature others will
+include the word feet in the title.
+
+1501
+01:22:27,700 --> 01:22:31,610
+So to figure out this one, we
+should introduce this idea of like.
+
+1502
+01:22:31,610 --> 01:22:35,170
+And like, as we saw in lecture
+allows us to specify a pattern
+
+1503
+01:22:35,170 --> 01:22:37,490
+to match in our text.
+
+1504
+01:22:37,490 --> 01:22:42,880
+So I want to figure out if feet is
+anywhere in some particular song title.
+
+1505
+01:22:42,880 --> 01:22:46,270
+I can use like similar to where.
+
+1506
+01:22:46,270 --> 01:22:50,560
+But it allows me to specify something
+like, not just particularly equal to,
+
+1507
+01:22:50,560 --> 01:22:53,090
+but matching some particular pattern.
+
+1508
+01:22:53,090 --> 01:22:56,950
+So I will find the names of
+songs to feature other artists.
+
+1509
+01:22:56,950 --> 01:23:05,880
+I'll say select name from songs
+and then where, let's say,
+
+1510
+01:23:05,880 --> 01:23:13,310
+let's say where the name is not equal
+to something, but is like some pattern.
+
+1511
+01:23:13,310 --> 01:23:18,050
+And in this case, I could say
+percent feet percent to say,
+
+1512
+01:23:18,050 --> 01:23:23,720
+I want to match any name that
+has feet somewhere in its name.
+
+1513
+01:23:23,720 --> 01:23:27,980
+If I wanted to say feet only at the
+end, I could omit this percent sign
+
+1514
+01:23:27,980 --> 01:23:29,722
+and say percent feet.
+
+1515
+01:23:29,722 --> 01:23:31,680
+If I wanted to find feet
+at the very beginning,
+
+1516
+01:23:31,680 --> 01:23:36,080
+I could say feet and then
+percent at the end here.
+
+1517
+01:23:36,080 --> 01:23:41,330
+Basically, this percent sign allows me
+to say, you can match any characters,
+
+1518
+01:23:41,330 --> 01:23:45,350
+any characters at all,
+but make sure it has feet
+
+1519
+01:23:45,350 --> 01:23:47,810
+somewhere in this particular title.
+
+1520
+01:23:47,810 --> 01:23:49,070
+So I'll hit Enter here.
+
+1521
+01:23:49,070 --> 01:23:53,390
+And I should see, I get back all
+the names of songs that in this case
+
+1522
+01:23:53,390 --> 01:23:57,590
+have feet in the title.
+
+1523
+01:23:57,590 --> 01:23:59,920
+All right.
+
+1524
+01:23:59,920 --> 01:24:02,305
+The questions then on
+these past few queries.
+
+1525
+01:24:02,305 --> 01:24:06,370
+
+
+1526
+01:24:06,370 --> 01:24:07,210
+A good question.
+
+1527
+01:24:07,210 --> 01:24:11,410
+Is all the syntax and keywords common
+to all of SQL software or do they only
+
+1528
+01:24:11,410 --> 01:24:12,730
+work in SQLite?
+
+1529
+01:24:12,730 --> 01:24:15,550
+So there are a few things
+that only work in SQLite.
+
+1530
+01:24:15,550 --> 01:24:17,050
+I don't know off the top of my head.
+
+1531
+01:24:17,050 --> 01:24:19,270
+In general, SQLite is
+very cross compatible.
+
+1532
+01:24:19,270 --> 01:24:21,790
+So you could use the same
+kinds of things in SQLite
+
+1533
+01:24:21,790 --> 01:24:26,440
+that you would be able to use in
+things like MySQL or PostgreSQL.
+
+1534
+01:24:26,440 --> 01:24:28,690
+A question about, how
+do you find the mode
+
+1535
+01:24:28,690 --> 01:24:32,560
+of artists, such the top artists
+that appears in the table?
+
+1536
+01:24:32,560 --> 01:24:34,310
+We didn't see this here today.
+
+1537
+01:24:34,310 --> 01:24:35,950
+We did see it briefly in lecture.
+
+1538
+01:24:35,950 --> 01:24:37,900
+There's this idea of group by.
+
+1539
+01:24:37,900 --> 01:24:41,380
+Let's say you want to figure out
+how many times some artist appears
+
+1540
+01:24:41,380 --> 01:24:42,230
+in the table.
+
+1541
+01:24:42,230 --> 01:24:44,350
+Well, I could try to
+find that out for you.
+
+1542
+01:24:44,350 --> 01:24:52,030
+I could say, let's try
+to find the artist name.
+
+1543
+01:24:52,030 --> 01:24:54,380
+Well, how should I do this?
+
+1544
+01:24:54,380 --> 01:24:57,490
+I want to find artists dot name.
+
+1545
+01:24:57,490 --> 01:25:04,840
+And I also want to select the count
+of times that artist dot name appears.
+
+1546
+01:25:04,840 --> 01:25:10,250
+I want to select that from the
+songs table, but joining let's say,
+
+1547
+01:25:10,250 --> 01:25:20,730
+the artist table on artists dot
+id equals songs dot artist id
+
+1548
+01:25:20,730 --> 01:25:25,310
+And I want to in the end,
+do what we call a group by.
+
+1549
+01:25:25,310 --> 01:25:29,040
+So I'll group by artist dot name.
+
+1550
+01:25:29,040 --> 01:25:30,590
+And what this will do for me is this.
+
+1551
+01:25:30,590 --> 01:25:35,000
+So we saw earlier that this join
+allows me to think of my two tables
+
+1552
+01:25:35,000 --> 01:25:36,170
+as one table.
+
+1553
+01:25:36,170 --> 01:25:40,670
+Basically I'm now able to see
+songs and their artist names.
+
+1554
+01:25:40,670 --> 01:25:45,020
+Once I have that, I want to select the
+name column from the artists table.
+
+1555
+01:25:45,020 --> 01:25:47,990
+And then I want to
+select the count of times
+
+1556
+01:25:47,990 --> 01:25:50,900
+that artist name appears in the table.
+
+1557
+01:25:50,900 --> 01:25:55,980
+But in order to make this work, I
+want to group by artist dot name.
+
+1558
+01:25:55,980 --> 01:25:58,460
+So when I type count here,
+I'm going to figure out
+
+1559
+01:25:58,460 --> 01:26:01,250
+how many times does
+each artist name appear,
+
+1560
+01:26:01,250 --> 01:26:05,090
+and not just how many times this artist
+name happened in general, if that makes
+
+1561
+01:26:05,090 --> 01:26:05,660
+sense.
+
+1562
+01:26:05,660 --> 01:26:07,430
+I'll hit Enter and see what I get.
+
+1563
+01:26:07,430 --> 01:26:10,120
+I'll see here.
+
+1564
+01:26:10,120 --> 01:26:12,730
+That seems to have worked.
+
+1565
+01:26:12,730 --> 01:26:16,950
+Five Seconds of Summer appears one time.
+
+1566
+01:26:16,950 --> 01:26:18,405
+Ed Sheeran appears three times.
+
+1567
+01:26:18,405 --> 01:26:21,700
+
+
+1568
+01:26:21,700 --> 01:26:23,707
+And so on.
+
+1569
+01:26:23,707 --> 01:26:25,540
+So if you want to learn
+more about group by,
+
+1570
+01:26:25,540 --> 01:26:29,260
+I'd encourage you to try to just
+do a bit of googling around,
+
+1571
+01:26:29,260 --> 01:26:30,400
+see some visualizations.
+
+1572
+01:26:30,400 --> 01:26:33,820
+Or actually rewatch part of lecture
+you can see David talk more about group
+
+1573
+01:26:33,820 --> 01:26:35,670
+by too.
+
+1574
+01:26:35,670 --> 01:26:37,680
+Let's see.
+
+1575
+01:26:37,680 --> 01:26:42,150
+How would you find all the songs
+that have a specific word for them?
+
+1576
+01:26:42,150 --> 01:26:43,660
+You could use like for that.
+
+1577
+01:26:43,660 --> 01:26:47,310
+So like is good for often trying
+to match patterns of text.
+
+1578
+01:26:47,310 --> 01:26:50,790
+And the question, so join
+joins artists to songs.
+
+1579
+01:26:50,790 --> 01:26:51,300
+It does.
+
+1580
+01:26:51,300 --> 01:26:54,810
+In this case, we could specify,
+we are starting with songs
+
+1581
+01:26:54,810 --> 01:26:56,160
+and joining in artists.
+
+1582
+01:26:56,160 --> 01:26:59,130
+And then question about
+SQLite type of entities.
+
+1583
+01:26:59,130 --> 01:27:02,220
+We use text here because you use
+char or varchar instead of text.
+
+1584
+01:27:02,220 --> 01:27:05,610
+So char and varchar are
+particular to MySQL or Postgres.
+
+1585
+01:27:05,610 --> 01:27:08,475
+They aren't part of SQLite in
+this case, but good question.
+
+1586
+01:27:08,475 --> 01:27:11,140
+
+
+1587
+01:27:11,140 --> 01:27:14,670
+All right, so I think what we'll do
+is go ahead and wrap officially here.
+
+1588
+01:27:14,670 --> 01:27:17,100
+We've gone through how
+to design our databases,
+
+1589
+01:27:17,100 --> 01:27:21,308
+how to solve particular songs problem,
+and if any of this interested you,
+
+1590
+01:27:21,308 --> 01:27:23,100
+I'd encourage you to
+go ahead and check out
+
+1591
+01:27:23,100 --> 01:27:26,550
+one of our very own
+courses, Our Introduction
+
+1592
+01:27:26,550 --> 01:27:30,963
+to Databases with SQL, which you can
+find more about at this URL down here.
+
+1593
+01:27:30,963 --> 01:27:32,880
+Let's take you into a
+deep dive with databases
+
+1594
+01:27:32,880 --> 01:27:34,630
+and designing your
+very own final project,
+
+1595
+01:27:34,630 --> 01:27:37,810
+focused on databases in particular.
+
+1596
+01:27:37,810 --> 01:27:40,800
+So with that, we'll end
+our week seven section.
+
+1597
+01:27:40,800 --> 01:27:43,670
+And I hope to see you next time.
+
+1598
+01:27:43,670 --> 01:27:46,000

@@ -1,0 +1,5404 @@
+1
+00:00:00,000 --> 00:00:02,450
+
+
+2
+00:00:02,450 --> 00:00:05,000
+YULIIA: Welcome to
+week five supersection.
+
+3
+00:00:05,000 --> 00:00:06,020
+This is CS50.
+
+4
+00:00:06,020 --> 00:00:07,430
+And my name is Yuliia.
+
+5
+00:00:07,430 --> 00:00:11,480
+I'm one of the preceptors
+at Harvard for CS50,
+
+6
+00:00:11,480 --> 00:00:16,098
+and Charlie is joining
+me today from Yale.
+
+7
+00:00:16,098 --> 00:00:18,390
+CHARLIE: Yes, and my name is
+Charlie, like Yuliia said.
+
+8
+00:00:18,390 --> 00:00:21,070
+I'm one of the head teaching
+assistants for CS50 at Yale.
+
+9
+00:00:21,070 --> 00:00:23,340
+And it is great to be
+with all of you today.
+
+10
+00:00:23,340 --> 00:00:27,130
+YULIIA: Great, so why don't
+we go ahead and get started?
+
+11
+00:00:27,130 --> 00:00:31,330
+So today we're going to be
+talking about data structures.
+
+12
+00:00:31,330 --> 00:00:34,180
+So a lot of the things that David
+talked about in the lecture.
+
+13
+00:00:34,180 --> 00:00:37,170
+We're going to cover linked
+lists and hash tables.
+
+14
+00:00:37,170 --> 00:00:40,080
+Very briefly talk about
+tries, and then we're
+
+15
+00:00:40,080 --> 00:00:44,100
+going to go into the
+inheritance problem set or lab
+
+16
+00:00:44,100 --> 00:00:45,600
+if you are joining from Yale.
+
+17
+00:00:45,600 --> 00:00:50,790
+So just to give a quick
+overview of different operations
+
+18
+00:00:50,790 --> 00:00:52,890
+you can do with these
+data structures, there
+
+19
+00:00:52,890 --> 00:00:55,230
+is deletion, insertion, and search.
+
+20
+00:00:55,230 --> 00:00:58,020
+And they can go in various priorities.
+
+21
+00:00:58,020 --> 00:01:02,850
+You can search first and then maybe
+insert delete, or do something
+
+22
+00:01:02,850 --> 00:01:05,370
+like insertion, search, deletion then.
+
+23
+00:01:05,370 --> 00:01:09,300
+We're going to cover insertion
+and deletion in section today
+
+24
+00:01:09,300 --> 00:01:13,060
+but feel free to play around with the
+search operations a little bit more.
+
+25
+00:01:13,060 --> 00:01:17,800
+So as in lectures, there
+are a few data structures
+
+26
+00:01:17,800 --> 00:01:20,150
+that we're going to be
+talking about today.
+
+27
+00:01:20,150 --> 00:01:23,350
+First one is linked
+list, which essentially
+
+28
+00:01:23,350 --> 00:01:26,710
+is kind of like a chain
+of nodes, something
+
+29
+00:01:26,710 --> 00:01:30,700
+that David illustrated with
+balloons in lecture on Wednesday.
+
+30
+00:01:30,700 --> 00:01:34,570
+And Charlie's going to
+talk a little bit more
+
+31
+00:01:34,570 --> 00:01:37,090
+about the structure of linked nodes.
+
+32
+00:01:37,090 --> 00:01:39,910
+How we insert and how we delete it
+and all the different operations
+
+33
+00:01:39,910 --> 00:01:41,270
+you can do with them.
+
+34
+00:01:41,270 --> 00:01:46,180
+And next one on is hash tables,
+which actually are really fun.
+
+35
+00:01:46,180 --> 00:01:50,000
+And essentially, a hash table is
+just an array of linked lists.
+
+36
+00:01:50,000 --> 00:01:55,210
+So on the left side, you can see that it
+is just an array with different buckets
+
+37
+00:01:55,210 --> 00:01:56,650
+corresponding to letters.
+
+38
+00:01:56,650 --> 00:02:01,570
+And on the right side, they kind of
+expand into these bigger linked lists.
+
+39
+00:02:01,570 --> 00:02:07,390
+Next one is a trie, which we actually
+don't really talk about a lot in CS50,
+
+40
+00:02:07,390 --> 00:02:11,170
+but it's one of the other
+data structures that makes
+
+41
+00:02:11,170 --> 00:02:14,350
+it really easy to look for things.
+
+42
+00:02:14,350 --> 00:02:21,910
+And kind of on the similar note of
+looking for things and doing searches,
+
+43
+00:02:21,910 --> 00:02:25,010
+are trade-offs between memory and time.
+
+44
+00:02:25,010 --> 00:02:29,770
+So this is something that you might see
+when you will start working in Speller.
+
+45
+00:02:29,770 --> 00:02:34,900
+This is our board for
+the Speller problem
+
+46
+00:02:34,900 --> 00:02:38,920
+set, where your job will
+be to load the dictionary
+
+47
+00:02:38,920 --> 00:02:42,980
+and then find if the words
+are spelled correctly.
+
+48
+00:02:42,980 --> 00:02:48,460
+So here you can see that Thomas
+implemented Speller in such a way
+
+49
+00:02:48,460 --> 00:02:54,220
+that it takes one less second to
+implement than, for example, Karger's
+
+50
+00:02:54,220 --> 00:03:00,310
+solution, but you can also see that it
+takes up almost twice as much memory
+
+51
+00:03:00,310 --> 00:03:01,520
+than Curtis solution.
+
+52
+00:03:01,520 --> 00:03:05,950
+So while we do want to
+emphasize the efficiency
+
+53
+00:03:05,950 --> 00:03:11,230
+and how quick the program
+can be, memory is some kind
+
+54
+00:03:11,230 --> 00:03:13,360
+of is the other trade-off
+that we want to keep
+
+55
+00:03:13,360 --> 00:03:18,290
+in mind while we are coding our program
+and talking about data structures
+
+56
+00:03:18,290 --> 00:03:19,250
+this week.
+
+57
+00:03:19,250 --> 00:03:22,900
+So with that being said,
+I'm going to pass it
+
+58
+00:03:22,900 --> 00:03:27,380
+on to Charlie, who is really going
+to jump into nodes, the linked list,
+
+59
+00:03:27,380 --> 00:03:31,510
+and explain all the good stuff about it.
+
+60
+00:03:31,510 --> 00:03:36,380
+CHARLIE: Absolutely, so let's go
+ahead and jump into nodes here.
+
+61
+00:03:36,380 --> 00:03:39,560
+And we're going to get started by
+taking a look at some of the base code
+
+62
+00:03:39,560 --> 00:03:43,400
+that we'll use to define
+exactly what a node is in C.
+
+63
+00:03:43,400 --> 00:03:45,362
+So we take a look at
+this slide right here.
+
+64
+00:03:45,362 --> 00:03:47,570
+We have a little bit of code
+on our screen right now,
+
+65
+00:03:47,570 --> 00:03:50,900
+and we're going to break down exactly
+what each component inside this code
+
+66
+00:03:50,900 --> 00:03:51,590
+is.
+
+67
+00:03:51,590 --> 00:03:54,990
+We're going to start off with
+this struct node definition.
+
+68
+00:03:54,990 --> 00:03:59,300
+So this tells C that we're going to
+create a custom structure, or struct
+
+69
+00:03:59,300 --> 00:04:02,330
+and we're going to call it a node.
+
+70
+00:04:02,330 --> 00:04:06,060
+Then we're going to define what's
+contained inside of this custom data
+
+71
+00:04:06,060 --> 00:04:06,560
+structure.
+
+72
+00:04:06,560 --> 00:04:08,120
+This node that we're defining.
+
+73
+00:04:08,120 --> 00:04:12,922
+So the first thing that we want is a box
+that represents a string called phrase.
+
+74
+00:04:12,922 --> 00:04:15,380
+So if we take a look on the
+right side of your screen here,
+
+75
+00:04:15,380 --> 00:04:22,060
+we have this new box to store a
+phrase which is of data type string.
+
+76
+00:04:22,060 --> 00:04:26,690
+Then we can store any string value that
+we want, such as "Hi," for example,
+
+77
+00:04:26,690 --> 00:04:28,690
+inside this box.
+
+78
+00:04:28,690 --> 00:04:32,290
+We can also store "Bye" and
+any other valid string value
+
+79
+00:04:32,290 --> 00:04:36,520
+as long as we enclose it within the
+double quotes as seen on the screen
+
+80
+00:04:36,520 --> 00:04:38,540
+here.
+
+81
+00:04:38,540 --> 00:04:42,400
+Now let's move on to the second part of
+what's contained inside of this node.
+
+82
+00:04:42,400 --> 00:04:46,510
+Notice how on this line,
+we have node *next.
+
+83
+00:04:46,510 --> 00:04:50,980
+This is what we're going to use to
+link this node to the rest of our nodes
+
+84
+00:04:50,980 --> 00:04:52,630
+inside of a linked list.
+
+85
+00:04:52,630 --> 00:04:56,110
+We use node * because we want
+to have a pointer pointing
+
+86
+00:04:56,110 --> 00:04:58,775
+to the next node in our linked list.
+
+87
+00:04:58,775 --> 00:05:01,150
+If you take a look on your
+screen over here to the right,
+
+88
+00:05:01,150 --> 00:05:04,990
+you can now see a new box, below
+phrase, that we are calling "next"
+
+89
+00:05:04,990 --> 00:05:08,890
+to store the pointer to the next node.
+
+90
+00:05:08,890 --> 00:05:12,010
+You can see that we fill in the
+value here with a pointer address.
+
+91
+00:05:12,010 --> 00:05:14,660
+And this pointer address is
+represented in hexadecimal.
+
+92
+00:05:14,660 --> 00:05:18,760
+So that's why you have the 0x
+in front as the prefix denoting
+
+93
+00:05:18,760 --> 00:05:19,750
+this as hexadecimal.
+
+94
+00:05:19,750 --> 00:05:24,860
+And then we have a random address value,
+in this case, an example value of 123.
+
+95
+00:05:24,860 --> 00:05:26,450
+This value could be anything.
+
+96
+00:05:26,450 --> 00:05:27,680
+It could be 1, 2, 3.
+
+97
+00:05:27,680 --> 00:05:30,410
+It could be 4, 5, 6 or
+it could be anything else
+
+98
+00:05:30,410 --> 00:05:35,790
+wherever that next node is located
+within the memory of your computer.
+
+99
+00:05:35,790 --> 00:05:38,600
+So now let's jump back out to
+the definition of this as a whole
+
+100
+00:05:38,600 --> 00:05:42,290
+and take a look at what this
+extra typedef part is over here.
+
+101
+00:05:42,290 --> 00:05:45,890
+As you can see, we already said
+struct node earlier at the top,
+
+102
+00:05:45,890 --> 00:05:50,250
+but we also have typedef node
+surrounding this entire definition.
+
+103
+00:05:50,250 --> 00:05:53,420
+And the reason why we have
+this here is because if I
+
+104
+00:05:53,420 --> 00:05:56,870
+wanted to use this node data
+structure throughout my code,
+
+105
+00:05:56,870 --> 00:06:01,820
+I would constantly have to type struct
+node and then the rest of my code
+
+106
+00:06:01,820 --> 00:06:04,610
+without this typedef part
+if I didn't have it here.
+
+107
+00:06:04,610 --> 00:06:08,930
+But by including typedef
+node in this definition,
+
+108
+00:06:08,930 --> 00:06:11,090
+I can simply refer to
+this data structure
+
+109
+00:06:11,090 --> 00:06:13,500
+just as node throughout my code.
+
+110
+00:06:13,500 --> 00:06:15,500
+And we'll see here in a
+second how this actually
+
+111
+00:06:15,500 --> 00:06:19,310
+works as we start building
+our very own linked list.
+
+112
+00:06:19,310 --> 00:06:22,160
+Now, before I move on,
+do we have any questions
+
+113
+00:06:22,160 --> 00:06:27,920
+on how this node is structured,
+quite literally, as a struct in C?
+
+114
+00:06:27,920 --> 00:06:31,190
+Feel free to put your questions in
+the chat, and I'll wait a second here.
+
+115
+00:06:31,190 --> 00:06:35,480
+If not, we'll move on to building
+our very own linked list.
+
+116
+00:06:35,480 --> 00:06:38,970
+OK, great, no questions, so let's go
+ahead and move on to the next part now.
+
+117
+00:06:38,970 --> 00:06:44,640
+So with this struct node in place, we
+can now start building our linked list.
+
+118
+00:06:44,640 --> 00:06:47,150
+And the very first thing that
+we're going to want to do,
+
+119
+00:06:47,150 --> 00:06:51,457
+is we want to define our
+list as a pointer to a node.
+
+120
+00:06:51,457 --> 00:06:53,540
+And the reason for this
+is because our linked list
+
+121
+00:06:53,540 --> 00:06:56,490
+is a chain of nodes that are
+all linked with each other.
+
+122
+00:06:56,490 --> 00:07:02,120
+So we want to define this node *
+list, so this is a list variable that
+
+123
+00:07:02,120 --> 00:07:04,460
+represents a pointer to a node.
+
+124
+00:07:04,460 --> 00:07:06,590
+And we're going to start off with null.
+
+125
+00:07:06,590 --> 00:07:09,680
+Or in other words, right now, we
+don't really have a linked list.
+
+126
+00:07:09,680 --> 00:07:12,000
+It's just empty at the moment.
+
+127
+00:07:12,000 --> 00:07:14,760
+And if you look below, at the
+bottom half of this slide,
+
+128
+00:07:14,760 --> 00:07:18,170
+you'll see that we have this
+arrow called list representing
+
+129
+00:07:18,170 --> 00:07:20,940
+a pointer to nothing at the moment.
+
+130
+00:07:20,940 --> 00:07:25,740
+But now let's go ahead and create our
+very first node for this linked list.
+
+131
+00:07:25,740 --> 00:07:28,730
+So notice how we've went ahead
+and changed our variable name
+
+132
+00:07:28,730 --> 00:07:31,790
+to "n" now to represent a new node.
+
+133
+00:07:31,790 --> 00:07:35,570
+And we're going to now allocate
+memory within our computer
+
+134
+00:07:35,570 --> 00:07:36,740
+to create this node.
+
+135
+00:07:36,740 --> 00:07:39,890
+We're going to use the malloc
+function, and with the malloc function,
+
+136
+00:07:39,890 --> 00:07:42,440
+you have to tell it
+exactly how much space you
+
+137
+00:07:42,440 --> 00:07:44,190
+want it to allocate within memory.
+
+138
+00:07:44,190 --> 00:07:47,940
+So what we're going to do
+is called sizeof(node).
+
+139
+00:07:47,940 --> 00:07:50,030
+So that allows us to
+tell the computer we
+
+140
+00:07:50,030 --> 00:07:54,350
+want exactly just enough space
+to allocate one node struct
+
+141
+00:07:54,350 --> 00:07:56,300
+and from there, we're all good.
+
+142
+00:07:56,300 --> 00:07:58,850
+So if we go to the
+next slide here, you'll
+
+143
+00:07:58,850 --> 00:08:02,600
+see now that we have this
+familiar two-box structure that we
+
+144
+00:08:02,600 --> 00:08:06,300
+defined earlier in this presentation.
+
+145
+00:08:06,300 --> 00:08:09,200
+And then if you take a
+look on this slide here,
+
+146
+00:08:09,200 --> 00:08:12,960
+we're now going to define what
+phrase is within this node.
+
+147
+00:08:12,960 --> 00:08:17,120
+So we're going to call the phrase
+attribute of n, which is our node,
+
+148
+00:08:17,120 --> 00:08:20,690
+and we're going to set it equal to Hi!
+
+149
+00:08:20,690 --> 00:08:24,290
+So now if you take a look at that first
+box at the bottom, you see that Hi!
+
+150
+00:08:24,290 --> 00:08:29,330
+Is now populated within the
+phrase box of our node n.
+
+151
+00:08:29,330 --> 00:08:32,252
+We then want to make sure we
+have something set for next
+
+152
+00:08:32,252 --> 00:08:33,419
+since this is a linked list.
+
+153
+00:08:33,419 --> 00:08:35,336
+So we want to make sure
+we have a chain going.
+
+154
+00:08:35,336 --> 00:08:38,760
+And so far, we only have one
+node within our linked list.
+
+155
+00:08:38,760 --> 00:08:42,950
+So I'm going to go ahead and set
+next to null for the time being.
+
+156
+00:08:42,950 --> 00:08:45,573
+But foreshadowing for
+later on, you'll see
+
+157
+00:08:45,573 --> 00:08:48,740
+that we'll want to modify this value
+so that we can chain all of these nodes
+
+158
+00:08:48,740 --> 00:08:51,740
+together to form our linked list.
+
+159
+00:08:51,740 --> 00:08:55,380
+Now, there's one more thing that we
+have to do, and it's really important.
+
+160
+00:08:55,380 --> 00:08:58,100
+Notice how so far, we've been
+working with the variable
+
+161
+00:08:58,100 --> 00:09:00,590
+n to represent this new
+node that we created.
+
+162
+00:09:00,590 --> 00:09:06,200
+We want to make sure that we also
+point our list towards this n node
+
+163
+00:09:06,200 --> 00:09:10,610
+because without doing that, our
+list value wouldn't actually
+
+164
+00:09:10,610 --> 00:09:11,815
+point towards anything.
+
+165
+00:09:11,815 --> 00:09:14,940
+It would still be pointing to null if
+you remember from the slides earlier.
+
+166
+00:09:14,940 --> 00:09:18,920
+So by saying list = n we
+have successfully one,
+
+167
+00:09:18,920 --> 00:09:21,670
+created this new node
+object and two, we've
+
+168
+00:09:21,670 --> 00:09:26,530
+then pointed this list that we're
+creating to this first node.
+
+169
+00:09:26,530 --> 00:09:30,010
+And you might be wondering, why
+do we need these two variables n
+
+170
+00:09:30,010 --> 00:09:33,765
+and list to create this
+node struct if they're all
+
+171
+00:09:33,765 --> 00:09:35,140
+going to point to the same thing?
+
+172
+00:09:35,140 --> 00:09:37,120
+Well, you'll see here
+in a second, when we
+
+173
+00:09:37,120 --> 00:09:40,630
+create our second node,
+why it's important to have
+
+174
+00:09:40,630 --> 00:09:44,940
+two variables separating
+these from each other.
+
+175
+00:09:44,940 --> 00:09:49,070
+So now let's go and talk about how we're
+going to insert nodes into this linked
+
+176
+00:09:49,070 --> 00:09:51,450
+list that we just created.
+
+177
+00:09:51,450 --> 00:09:54,680
+We're going to start off
+by creating another node,
+
+178
+00:09:54,680 --> 00:09:58,370
+and this is where the importance
+of having two variables n and list
+
+179
+00:09:58,370 --> 00:09:59,430
+comes into play.
+
+180
+00:09:59,430 --> 00:10:03,320
+We want our list variable to still
+point towards that first node
+
+181
+00:10:03,320 --> 00:10:07,740
+that we just created earlier, but now,
+we want to create a brand new node.
+
+182
+00:10:07,740 --> 00:10:10,160
+So we're going to, once
+again, call malloc.
+
+183
+00:10:10,160 --> 00:10:13,130
+And the parameter or argument
+that we want to give to it
+
+184
+00:10:13,130 --> 00:10:16,160
+is sizeof(node) because
+we want to, again,
+
+185
+00:10:16,160 --> 00:10:21,690
+allocate exactly just enough space to
+create another node within our memory.
+
+186
+00:10:21,690 --> 00:10:25,850
+So once we do that, n is now pointing
+to this brand new node struct
+
+187
+00:10:25,850 --> 00:10:29,790
+with these two empty boxes down
+there at the bottom of your screen.
+
+188
+00:10:29,790 --> 00:10:32,750
+And we're going to now
+fill in the phrase box.
+
+189
+00:10:32,750 --> 00:10:35,840
+So we're going to assign the value Hey!
+
+190
+00:10:35,840 --> 00:10:37,280
+to this box.
+
+191
+00:10:37,280 --> 00:10:44,850
+And now, for next, you'll see that we're
+going to point to list instead of null.
+
+192
+00:10:44,850 --> 00:10:47,580
+And the reason for that is
+because we're creating a linked
+
+193
+00:10:47,580 --> 00:10:50,080
+list, emphasis on the linked component.
+
+194
+00:10:50,080 --> 00:10:53,280
+So we want to make sure
+that this node is pointing
+
+195
+00:10:53,280 --> 00:10:56,070
+to the one that's supposed to
+be after it, which in this case,
+
+196
+00:10:56,070 --> 00:10:58,050
+is the one with Hi!
+
+197
+00:10:58,050 --> 00:10:59,650
+as its phrase value.
+
+198
+00:10:59,650 --> 00:11:02,880
+So if we take a look at
+what we have here now,
+
+199
+00:11:02,880 --> 00:11:04,900
+there's one more thing
+that we have to do.
+
+200
+00:11:04,900 --> 00:11:10,060
+And it's that we have to go back
+and update list to be n again.
+
+201
+00:11:10,060 --> 00:11:13,980
+And that's because a linked list
+is tracked by its head value,
+
+202
+00:11:13,980 --> 00:11:16,840
+or the first node within the list.
+
+203
+00:11:16,840 --> 00:11:22,780
+So by doing list = n, we move that list
+pointer back to the start of our list,
+
+204
+00:11:22,780 --> 00:11:27,285
+and then we have successfully
+inserted a value into our linked list.
+
+205
+00:11:27,285 --> 00:11:29,840
+
+
+206
+00:11:29,840 --> 00:11:33,360
+Now, let's go ahead and start
+cleaning up what we have here.
+
+207
+00:11:33,360 --> 00:11:36,410
+Let's say, after I've used
+this linked list in my code,
+
+208
+00:11:36,410 --> 00:11:41,420
+I want to go ahead and safely
+deallocate or remove all the memory
+
+209
+00:11:41,420 --> 00:11:44,810
+that I've allocated for this before
+ending my program because as you
+
+210
+00:11:44,810 --> 00:11:47,300
+remember from lecture, it's
+always important to make sure
+
+211
+00:11:47,300 --> 00:11:49,550
+you free any memory that you malloc.
+
+212
+00:11:49,550 --> 00:11:52,440
+Every time you malloc
+something, you must free it.
+
+213
+00:11:52,440 --> 00:11:54,990
+So let's try out one
+thing here, for now.
+
+214
+00:11:54,990 --> 00:11:58,760
+Let's go ahead and try
+free(list) because list
+
+215
+00:11:58,760 --> 00:12:00,410
+represents my linked list, right?
+
+216
+00:12:00,410 --> 00:12:03,300
+So why not just free the list?
+
+217
+00:12:03,300 --> 00:12:06,380
+So as you see down here, we
+have that first box blacked
+
+218
+00:12:06,380 --> 00:12:09,510
+out representing that is
+now removed from memory.
+
+219
+00:12:09,510 --> 00:12:14,780
+But you might notice that we still
+have that second node with Hi!
+
+220
+00:12:14,780 --> 00:12:17,270
+floating around in our memory.
+
+221
+00:12:17,270 --> 00:12:20,348
+And this is a common mistake
+that some people might make when
+
+222
+00:12:20,348 --> 00:12:21,890
+they're trying to free a linked list.
+
+223
+00:12:21,890 --> 00:12:25,220
+If you only free the
+variable that represents
+
+224
+00:12:25,220 --> 00:12:27,800
+the head or the start
+of your linked list,
+
+225
+00:12:27,800 --> 00:12:29,910
+in our case that
+variable is called list,
+
+226
+00:12:29,910 --> 00:12:32,610
+you will only free the first node.
+
+227
+00:12:32,610 --> 00:12:35,490
+And by doing that, you
+will miss all the nodes
+
+228
+00:12:35,490 --> 00:12:38,410
+connected after that first
+node in your linked list.
+
+229
+00:12:38,410 --> 00:12:41,310
+So you'll have memory floating
+around on your computer,
+
+230
+00:12:41,310 --> 00:12:44,170
+and your computer will not
+be very happy with that.
+
+231
+00:12:44,170 --> 00:12:48,390
+So in order to correctly
+free this linked list,
+
+232
+00:12:48,390 --> 00:12:50,170
+we're going to go back
+to the start here.
+
+233
+00:12:50,170 --> 00:12:54,900
+And what we're going to do now, is we're
+going to create this temporary pointer
+
+234
+00:12:54,900 --> 00:12:59,440
+variable to represent the next
+element in this linked list.
+
+235
+00:12:59,440 --> 00:13:03,940
+So that way, if I go
+ahead and free the list,
+
+236
+00:13:03,940 --> 00:13:07,020
+so we gotta black out
+that first node box,
+
+237
+00:13:07,020 --> 00:13:13,000
+we can still see that we have a pointer
+called ptr pointing to the second node.
+
+238
+00:13:13,000 --> 00:13:19,860
+So this allows us to then reference ptr
+and free that so that last box is not
+
+239
+00:13:19,860 --> 00:13:22,590
+floating around in memory space lost.
+
+240
+00:13:22,590 --> 00:13:27,270
+What we're going to do
+now, is say list = ptr
+
+241
+00:13:27,270 --> 00:13:32,440
+so that we can then reference
+that second box again.
+
+242
+00:13:32,440 --> 00:13:37,290
+And then, once we say
+pointer = list next,
+
+243
+00:13:37,290 --> 00:13:41,440
+that ensures that before we
+free what we currently have,
+
+244
+00:13:41,440 --> 00:13:43,710
+we're referencing whatever's after this.
+
+245
+00:13:43,710 --> 00:13:46,170
+Now in this case, it's
+important to note that there
+
+246
+00:13:46,170 --> 00:13:48,700
+is nothing after this second node.
+
+247
+00:13:48,700 --> 00:13:54,150
+So in our case, when we run ptr
+= list next, we end up with null.
+
+248
+00:13:54,150 --> 00:13:58,350
+But that's OK because that's how we can
+tell our program later on that, hey,
+
+249
+00:13:58,350 --> 00:14:02,710
+once you reach null, that means you
+reach the end of your linked list.
+
+250
+00:14:02,710 --> 00:14:05,640
+So there's nothing else
+to free in this case.
+
+251
+00:14:05,640 --> 00:14:11,100
+Now, let's go ahead and
+free(list) because list is now
+
+252
+00:14:11,100 --> 00:14:13,480
+pointing to this second node.
+
+253
+00:14:13,480 --> 00:14:17,520
+And once you've done
+that, you can do list
+
+254
+00:14:17,520 --> 00:14:20,310
+equals ptr again because
+we want to make sure
+
+255
+00:14:20,310 --> 00:14:22,410
+that we freed everything in this list.
+
+256
+00:14:22,410 --> 00:14:25,170
+But you will see that
+there is nothing left
+
+257
+00:14:25,170 --> 00:14:30,030
+because ptr is currently equal to null.
+
+258
+00:14:30,030 --> 00:14:32,840
+So now I'm going to go ahead
+and hand it back to Yuliia
+
+259
+00:14:32,840 --> 00:14:37,490
+for a quick interactive
+activity involving linked lists.
+
+260
+00:14:37,490 --> 00:14:38,960
+YULIIA: Great, Thank you, Charlie.
+
+261
+00:14:38,960 --> 00:14:44,660
+So yeah, this was, hopefully, a
+very clear visual representation
+
+262
+00:14:44,660 --> 00:14:46,250
+of how linked lists works.
+
+263
+00:14:46,250 --> 00:14:49,190
+We went through
+insertion, deletion, there
+
+264
+00:14:49,190 --> 00:14:52,760
+is also search that I mentioned in
+the very beginning of the slides.
+
+265
+00:14:52,760 --> 00:14:55,940
+Today, we're only going to
+focus on inserting and unloading
+
+266
+00:14:55,940 --> 00:14:56,730
+and linked lists.
+
+267
+00:14:56,730 --> 00:15:02,210
+So hopefully, you're able
+to download and open list.c
+
+268
+00:15:02,210 --> 00:15:06,830
+at cs50.ly/supersection1.
+
+269
+00:15:06,830 --> 00:15:11,370
+Feel free to download it, open
+in your VS code and follow along.
+
+270
+00:15:11,370 --> 00:15:15,650
+But I'm going to go ahead and
+do the same thing on my end.
+
+271
+00:15:15,650 --> 00:15:23,150
+So here, I have the CS50 ID, where
+I had pre-downloaded the list.c file
+
+272
+00:15:23,150 --> 00:15:24,960
+that we will work with today.
+
+273
+00:15:24,960 --> 00:15:30,500
+So to go back and look
+through our to-dos for today,
+
+274
+00:15:30,500 --> 00:15:33,110
+first thing we're going
+to do is implement code
+
+275
+00:15:33,110 --> 00:15:35,720
+to add a node to the
+linked list, something
+
+276
+00:15:35,720 --> 00:15:37,460
+that Charlie just talked about.
+
+277
+00:15:37,460 --> 00:15:40,670
+We're going to ensure
+that the list always
+
+278
+00:15:40,670 --> 00:15:42,540
+points to the head of the linked list.
+
+279
+00:15:42,540 --> 00:15:46,220
+And we also need to ensure that
+our new node contains the phrase.
+
+280
+00:15:46,220 --> 00:15:50,990
+And our second to-do is implementing
+the unload function such
+
+281
+00:15:50,990 --> 00:15:54,590
+that all nodes in the linked list are
+freed when the function is called.
+
+282
+00:15:54,590 --> 00:15:59,030
+As always, remember, if you use malloc,
+you want to use free in the end.
+
+283
+00:15:59,030 --> 00:16:03,920
+And then once the function successfully
+freed, all the memory malloced,
+
+284
+00:16:03,920 --> 00:16:06,500
+we want to return true
+to indicate our main
+
+285
+00:16:06,500 --> 00:16:08,990
+that the memory was successfully freed.
+
+286
+00:16:08,990 --> 00:16:14,390
+So going back to our code here,
+should be very familiar structure.
+
+287
+00:16:14,390 --> 00:16:16,640
+On very top, we have our headers.
+
+288
+00:16:16,640 --> 00:16:19,760
+Then we define our
+nodes struct that we're
+
+289
+00:16:19,760 --> 00:16:23,150
+going to use to create
+our linked list, write
+
+290
+00:16:23,150 --> 00:16:28,400
+the typedef struct node and the string
+phrase struct node pointer next.
+
+291
+00:16:28,400 --> 00:16:30,870
+The structure that
+Charlie just talked about,
+
+292
+00:16:30,870 --> 00:16:34,580
+which is really just a box
+that where the first half is
+
+293
+00:16:34,580 --> 00:16:38,570
+some word and the second half is
+kind of like a block of memory
+
+294
+00:16:38,570 --> 00:16:40,970
+that stores the address
+that we're pointing to.
+
+295
+00:16:40,970 --> 00:16:46,880
+And going ahead, we have prototypes for
+two functions onload and visualizer.
+
+296
+00:16:46,880 --> 00:16:50,060
+Something that Carter already
+implemented for us, just
+
+297
+00:16:50,060 --> 00:16:53,000
+a nice representation of
+how everything looks like.
+
+298
+00:16:53,000 --> 00:16:58,070
+And jumping right into the
+first to-do, so here in main, we
+
+299
+00:16:58,070 --> 00:17:02,260
+have already created a pointer list.
+
+300
+00:17:02,260 --> 00:17:05,510
+Right now it's pointing to null because
+we haven't implemented our linked list
+
+301
+00:17:05,510 --> 00:17:06,109
+yet.
+
+302
+00:17:06,109 --> 00:17:12,740
+And one of our first to-dos is adding
+phrases to new nodes in the list.
+
+303
+00:17:12,740 --> 00:17:18,410
+Namely, we're going to add two nodes per
+the definition of list size to above.
+
+304
+00:17:18,410 --> 00:17:23,660
+So going off what Charlie
+just talked about,
+
+305
+00:17:23,660 --> 00:17:29,370
+does anyone want to help me out was the
+first thing that we need to do here.
+
+306
+00:17:29,370 --> 00:17:32,270
+So if we want to add a
+new node to the list,
+
+307
+00:17:32,270 --> 00:17:36,170
+we already have a pointer list
+null, what do people think
+
+308
+00:17:36,170 --> 00:17:39,260
+is kind of like the first action here?
+
+309
+00:17:39,260 --> 00:17:45,320
+Feel free to drop it in the chat any
+guesses of what our first line of code
+
+310
+00:17:45,320 --> 00:17:45,890
+might be.
+
+311
+00:17:45,890 --> 00:17:54,840
+
+
+312
+00:17:54,840 --> 00:17:59,880
+So first we want to create that node.
+
+313
+00:17:59,880 --> 00:18:03,690
+And let's call it n
+to keep it consistent.
+
+314
+00:18:03,690 --> 00:18:08,100
+So we can just create a node.
+
+315
+00:18:08,100 --> 00:18:10,630
+We want to allocate some memory to it.
+
+316
+00:18:10,630 --> 00:18:14,910
+And for that, we want to
+use the malloc function.
+
+317
+00:18:14,910 --> 00:18:17,640
+And I can use malloc(1).
+
+318
+00:18:17,640 --> 00:18:19,665
+Would that be right?
+
+319
+00:18:19,665 --> 00:18:24,030
+
+
+320
+00:18:24,030 --> 00:18:25,920
+Probably not, right,
+because I want to keep
+
+321
+00:18:25,920 --> 00:18:29,350
+my size consistent with the kind
+of variables I want to create.
+
+322
+00:18:29,350 --> 00:18:35,020
+So I probably want to use sizeof(node),
+since that's what I'm interested in.
+
+323
+00:18:35,020 --> 00:18:37,890
+And once I malloc my
+memory, it is always
+
+324
+00:18:37,890 --> 00:18:41,170
+important to double check
+if the memory exists.
+
+325
+00:18:41,170 --> 00:18:44,460
+So for that, I'm going to
+create an if statement where
+
+326
+00:18:44,460 --> 00:18:49,140
+I'm going to say, well, if
+n is actually equal to null,
+
+327
+00:18:49,140 --> 00:18:54,330
+I just want to return 1 and
+quit this program altogether.
+
+328
+00:18:54,330 --> 00:18:56,130
+The memory was not allocated properly.
+
+329
+00:18:56,130 --> 00:18:57,640
+There is nothing I can do about it.
+
+330
+00:18:57,640 --> 00:19:00,000
+So I'm just going to quit.
+
+331
+00:19:00,000 --> 00:19:02,980
+If that is not true,
+we want to continue on.
+
+332
+00:19:02,980 --> 00:19:09,630
+So now that we have our box, our
+node, we want to start populating it.
+
+333
+00:19:09,630 --> 00:19:12,660
+And the first thing that we
+want to add is our phrase
+
+334
+00:19:12,660 --> 00:19:15,750
+that we get_string on line 25.
+
+335
+00:19:15,750 --> 00:19:19,890
+So to do that, I'm actually
+going to go back to check, OK,
+
+336
+00:19:19,890 --> 00:19:22,500
+what are my attributes in this struct?
+
+337
+00:19:22,500 --> 00:19:27,280
+I see that I have string
+phrase and struct node *next,
+
+338
+00:19:27,280 --> 00:19:32,350
+so I probably want to store my
+word in the attribute phrase.
+
+339
+00:19:32,350 --> 00:19:41,390
+To do that, remember that
+you have the arrow operator.
+
+340
+00:19:41,390 --> 00:19:45,680
+And I'm going to do n phrase = phrase.
+
+341
+00:19:45,680 --> 00:19:51,410
+And that way I'm going to store whatever
+word I got from the user earlier.
+
+342
+00:19:51,410 --> 00:19:56,660
+And I'm going to set my
+next = to null because there
+
+343
+00:19:56,660 --> 00:19:58,860
+is nothing to store there yet.
+
+344
+00:19:58,860 --> 00:20:03,830
+So this is our basic setup
+for one of the first nodes.
+
+345
+00:20:03,830 --> 00:20:07,880
+Now we actually want to connect
+them in one linked list.
+
+346
+00:20:07,880 --> 00:20:10,610
+So far it's just one node, but
+we're going to add one more.
+
+347
+00:20:10,610 --> 00:20:15,470
+You can add 5, 10, 20 more, so we just
+want to keep those links together.
+
+348
+00:20:15,470 --> 00:20:18,740
+To do that, what I'm
+going to do now, is I'm
+
+349
+00:20:18,740 --> 00:20:26,790
+going to set n next
+equal to list because I
+
+350
+00:20:26,790 --> 00:20:32,190
+want to point my next
+chunk to whatever is list
+
+351
+00:20:32,190 --> 00:20:34,260
+pointing to to keep the links together.
+
+352
+00:20:34,260 --> 00:20:39,630
+And because list is always pointing
+to the first node in the linked list,
+
+353
+00:20:39,630 --> 00:20:43,530
+I'm going to set list equal to n.
+
+354
+00:20:43,530 --> 00:20:49,800
+So now whatever n was pointing to
+when we created the node on line 28,
+
+355
+00:20:49,800 --> 00:20:54,550
+I'm going to reset for
+list to point to it.
+
+356
+00:20:54,550 --> 00:20:56,640
+I think that should look good.
+
+357
+00:20:56,640 --> 00:20:59,110
+So let's test it out.
+
+358
+00:20:59,110 --> 00:21:01,350
+So I'm going to cd into supersection.
+
+359
+00:21:01,350 --> 00:21:04,680
+I'm going to make my file, make list.
+
+360
+00:21:04,680 --> 00:21:07,110
+It compiles, which is
+always a great sign.
+
+361
+00:21:07,110 --> 00:21:09,040
+And let's run it.
+
+362
+00:21:09,040 --> 00:21:14,280
+So enter a new phrase
+can be Julia, good.
+
+363
+00:21:14,280 --> 00:21:23,440
+So now you can see that I created
+a node at location 0x557 et cetera.
+
+364
+00:21:23,440 --> 00:21:25,180
+It's choice phrase Yuliia.
+
+365
+00:21:25,180 --> 00:21:29,440
+And max is pointing
+to null or nil, which
+
+366
+00:21:29,440 --> 00:21:33,190
+is the same thing, because there's only
+one node in the linked list right now.
+
+367
+00:21:33,190 --> 00:21:37,540
+Well, I can go ahead and enter
+the second phrase, Charlie,
+
+368
+00:21:37,540 --> 00:21:42,470
+and let's take a guess in the chat here.
+
+369
+00:21:42,470 --> 00:21:47,260
+What do we think is going to be first
+in our linked list, the node Charlie
+
+370
+00:21:47,260 --> 00:21:50,343
+or the node Yuliia?
+
+371
+00:21:50,343 --> 00:21:52,885
+I'm going to give you guys just
+a second to think about that.
+
+372
+00:21:52,885 --> 00:22:00,240
+
+
+373
+00:22:00,240 --> 00:22:07,180
+So just based on the way that
+I set up my connections here,
+
+374
+00:22:07,180 --> 00:22:10,240
+does anyone want to take a guess?
+
+375
+00:22:10,240 --> 00:22:13,690
+Yeah, Dani, that's a great answer.
+
+376
+00:22:13,690 --> 00:22:16,650
+So when I entered the
+next phase Charlie,
+
+377
+00:22:16,650 --> 00:22:21,270
+we can actually see that node
+Charlie is allocated some memory.
+
+378
+00:22:21,270 --> 00:22:22,980
+It contains phrase Charlie.
+
+379
+00:22:22,980 --> 00:22:27,240
+And now it's actually pointing
+to the location in memory
+
+380
+00:22:27,240 --> 00:22:33,850
+where Yuliia node is stored, and
+node Yuliia is now pointing to null.
+
+381
+00:22:33,850 --> 00:22:39,480
+So do we have any questions about
+the code part of how we insert
+
+382
+00:22:39,480 --> 00:22:43,725
+or add a new phrase to a linked list?
+
+383
+00:22:43,725 --> 00:22:50,390
+
+
+384
+00:22:50,390 --> 00:22:53,980
+And I see just one
+question in the chat here.
+
+385
+00:22:53,980 --> 00:22:58,390
+Do you set n next to null to ensure
+it's no longer garbage value?
+
+386
+00:22:58,390 --> 00:22:59,440
+That's a great question.
+
+387
+00:22:59,440 --> 00:23:03,640
+Yeah, so we really just
+want to make sure we pre-set
+
+388
+00:23:03,640 --> 00:23:06,290
+our nodes with a phrase that is given.
+
+389
+00:23:06,290 --> 00:23:10,630
+But since we don't really know what
+we're going to store in that next,
+
+390
+00:23:10,630 --> 00:23:14,530
+it's always good to just error check
+it, make sure we set it to null,
+
+391
+00:23:14,530 --> 00:23:16,160
+that we occupy that memory.
+
+392
+00:23:16,160 --> 00:23:19,570
+And then we can reassign
+it to be pointing
+
+393
+00:23:19,570 --> 00:23:21,145
+to whatever list is pointing to.
+
+394
+00:23:21,145 --> 00:23:24,140
+
+
+395
+00:23:24,140 --> 00:23:27,530
+OK, seems like there
+are no more questions.
+
+396
+00:23:27,530 --> 00:23:33,720
+So we can go ahead and move to the
+implementation of the onload function.
+
+397
+00:23:33,720 --> 00:23:36,500
+So as you can see here
+in the terminal we're
+
+398
+00:23:36,500 --> 00:23:40,790
+still getting error in freeing
+our list because we're not really
+
+399
+00:23:40,790 --> 00:23:42,090
+freeing it right now.
+
+400
+00:23:42,090 --> 00:23:45,140
+So what we're going to do,
+we're going to go ahead
+
+401
+00:23:45,140 --> 00:23:48,380
+into our bool unload
+function where we want
+
+402
+00:23:48,380 --> 00:23:50,760
+to free all of the allocated nodes.
+
+403
+00:23:50,760 --> 00:23:56,780
+So as you can see here, onload
+takes in list as a pointer
+
+404
+00:23:56,780 --> 00:24:02,390
+to a node as an argument and returns
+a Boolean, which is true or false.
+
+405
+00:24:02,390 --> 00:24:05,000
+Currently we are returning
+false because we haven't really
+
+406
+00:24:05,000 --> 00:24:07,470
+implemented the onload of the list.
+
+407
+00:24:07,470 --> 00:24:12,560
+So what we're going to do next, is
+we're going to work through the freeing
+
+408
+00:24:12,560 --> 00:24:14,450
+the memory of all the allocated nodes.
+
+409
+00:24:14,450 --> 00:24:20,210
+So first I want to do is
+create a temporary variable,
+
+410
+00:24:20,210 --> 00:24:22,370
+I like calling them a
+helper variable, that
+
+411
+00:24:22,370 --> 00:24:25,050
+is going to help us
+traverse through that list
+
+412
+00:24:25,050 --> 00:24:28,410
+making sure that we're keeping
+track of all of our nodes.
+
+413
+00:24:28,410 --> 00:24:33,210
+So once I do that, I want to
+set some kind of a condition
+
+414
+00:24:33,210 --> 00:24:36,480
+to make sure I traverse
+through the whole list,
+
+415
+00:24:36,480 --> 00:24:38,700
+and I'm freeing all of my nodes.
+
+416
+00:24:38,700 --> 00:24:50,070
+To do that, I'm going to set a
+condition while pointer is != to null,
+
+417
+00:24:50,070 --> 00:24:55,140
+I want to keep going and
+freeing all of my nodes.
+
+418
+00:24:55,140 --> 00:25:01,260
+I could do free(list) list
+and just be done with it,
+
+419
+00:25:01,260 --> 00:25:10,360
+but is that a right solution,
+or am I making a mistake here
+
+420
+00:25:10,360 --> 00:25:12,370
+if anyone wants to chime in the chat?
+
+421
+00:25:12,370 --> 00:25:18,820
+
+
+422
+00:25:18,820 --> 00:25:22,780
+Right, yeah, it's a mistake because
+as Charlie mentioned earlier,
+
+423
+00:25:22,780 --> 00:25:27,070
+if we just call free(list) we will
+free the first node in our chain,
+
+424
+00:25:27,070 --> 00:25:30,860
+but we will lose access to
+all of the nodes in the end.
+
+425
+00:25:30,860 --> 00:25:36,140
+So I'm just going to delete
+this and start over, OK.
+
+426
+00:25:36,140 --> 00:25:41,090
+So what I'm going to do is, I'm going
+to make use of my pointer variable.
+
+427
+00:25:41,090 --> 00:25:46,250
+I'm going to set pointer
+= list next, just so
+
+428
+00:25:46,250 --> 00:25:50,630
+that I can keep track of whatever
+node is coming after the node
+
+429
+00:25:50,630 --> 00:25:52,460
+that list is pointing to.
+
+430
+00:25:52,460 --> 00:25:56,660
+I'm going to go ahead and free the
+list, just like I tried doing before,
+
+431
+00:25:56,660 --> 00:26:00,920
+but now I'm safe because
+I pre-saved the location
+
+432
+00:26:00,920 --> 00:26:03,050
+of the next node I'm interested in.
+
+433
+00:26:03,050 --> 00:26:06,230
+And then what I'm going
+to do, I'm going to reset
+
+434
+00:26:06,230 --> 00:26:10,070
+what list is pointing to
+because list is always pointing
+
+435
+00:26:10,070 --> 00:26:12,180
+to the first node in the linked list.
+
+436
+00:26:12,180 --> 00:26:14,435
+And I just always want
+to keep track of that.
+
+437
+00:26:14,435 --> 00:26:17,270
+
+
+438
+00:26:17,270 --> 00:26:20,720
+So I think we should be all set here.
+
+439
+00:26:20,720 --> 00:26:24,245
+Assuming everything runs
+correct, we can just return true.
+
+440
+00:26:24,245 --> 00:26:28,310
+
+
+441
+00:26:28,310 --> 00:26:32,180
+So let's compile it.
+
+442
+00:26:32,180 --> 00:26:33,080
+It compiles.
+
+443
+00:26:33,080 --> 00:26:34,550
+Let's run it.
+
+444
+00:26:34,550 --> 00:26:40,340
+Yuliia, Charlie, it's
+freed the list. well I
+
+445
+00:26:40,340 --> 00:26:42,240
+told it that we freed it correctly.
+
+446
+00:26:42,240 --> 00:26:48,380
+But now actually let's run valgrind
+to see if there are any memory leaks
+
+447
+00:26:48,380 --> 00:26:50,630
+so I'll enter Yuliia.
+
+448
+00:26:50,630 --> 00:26:52,190
+I'll enter Charlie.
+
+449
+00:26:52,190 --> 00:26:54,830
+And all used blocks were freed.
+
+450
+00:26:54,830 --> 00:26:55,920
+No leaks are possible.
+
+451
+00:26:55,920 --> 00:27:01,700
+So we indeed ensure to free all
+the memory that we malloced before.
+
+452
+00:27:01,700 --> 00:27:03,210
+We freed our linked list.
+
+453
+00:27:03,210 --> 00:27:08,850
+So we successfully unloaded
+the nodes we created earlier.
+
+454
+00:27:08,850 --> 00:27:11,460
+
+
+455
+00:27:11,460 --> 00:27:18,380
+Do we have any questions about
+inserting the node, any of the syntax?
+
+456
+00:27:18,380 --> 00:27:20,930
+I guess I should mention
+valgrind a little bit more.
+
+457
+00:27:20,930 --> 00:27:23,360
+It's a really great tool,
+especially now that we're
+
+458
+00:27:23,360 --> 00:27:27,410
+entering the mysterious land
+of memory this week, where
+
+459
+00:27:27,410 --> 00:27:31,290
+you're playing with a lot of linked
+lists and mallocing a lot of stuff.
+
+460
+00:27:31,290 --> 00:27:36,360
+So it's always useful to
+quickly run valgrind to make
+
+461
+00:27:36,360 --> 00:27:40,050
+sure there are no memory leaks
+because if you're running into some,
+
+462
+00:27:40,050 --> 00:27:43,320
+it's very likely that
+check50 is going to stop you
+
+463
+00:27:43,320 --> 00:27:45,495
+and indicate that
+something's going wrong.
+
+464
+00:27:45,495 --> 00:27:48,220
+
+
+465
+00:27:48,220 --> 00:27:53,320
+But if there are no more
+questions in the chat,
+
+466
+00:27:53,320 --> 00:28:00,070
+we can go back to our slides, where
+Charlie will talk more about--
+
+467
+00:28:00,070 --> 00:28:02,120
+oh, I see a question in the chat.
+
+468
+00:28:02,120 --> 00:28:06,160
+So I'm just going to
+go back really quickly.
+
+469
+00:28:06,160 --> 00:28:10,990
+OK, so can you explain list next?
+
+470
+00:28:10,990 --> 00:28:16,640
+Yeah, so in the very
+beginning, we create
+
+471
+00:28:16,640 --> 00:28:19,850
+pointer list to just be equal to null.
+
+472
+00:28:19,850 --> 00:28:21,380
+It's pointing to something.
+
+473
+00:28:21,380 --> 00:28:24,680
+But as we're creating our
+nodes, we want to make sure
+
+474
+00:28:24,680 --> 00:28:27,770
+that we're always reassigning
+lists to be pointing
+
+475
+00:28:27,770 --> 00:28:31,110
+to the first node in our chain.
+
+476
+00:28:31,110 --> 00:28:36,710
+So here, after I set up my
+node n that I just malloced,
+
+477
+00:28:36,710 --> 00:28:44,290
+I want to change list to be
+equal to n in the sense that--
+
+478
+00:28:44,290 --> 00:28:48,980
+if maybe I go back to the
+slides, it will be easier, sorry.
+
+479
+00:28:48,980 --> 00:28:54,080
+So yeah, so for example here, I have
+list pointing to null, right, nothing.
+
+480
+00:28:54,080 --> 00:28:56,480
+I created n that's pointing to my node.
+
+481
+00:28:56,480 --> 00:29:00,590
+And I want to reassign list
+to be equal to n to make sure
+
+482
+00:29:00,590 --> 00:29:07,670
+that list is now the
+pointer that is keeping
+
+483
+00:29:07,670 --> 00:29:09,690
+track of the beginning of my list.
+
+484
+00:29:09,690 --> 00:29:14,270
+And then as I go through the
+rest of the insertion process
+
+485
+00:29:14,270 --> 00:29:18,620
+where I'm inserting more nodes,
+I want to keep reassigning list
+
+486
+00:29:18,620 --> 00:29:25,380
+to be pointing to whatever new
+node was inserted into my chain.
+
+487
+00:29:25,380 --> 00:29:26,820
+Does that answer the question?
+
+488
+00:29:26,820 --> 00:29:30,350
+Do we have anything else
+we'd like to talk about
+
+489
+00:29:30,350 --> 00:29:32,195
+before we jump into hash tables?
+
+490
+00:29:32,195 --> 00:29:37,200
+
+
+491
+00:29:37,200 --> 00:29:39,000
+OK, sounds great.
+
+492
+00:29:39,000 --> 00:29:41,790
+I'm going to pass it back
+to Charlie where he's going
+
+493
+00:29:41,790 --> 00:29:45,450
+to talk more about the hash tables.
+
+494
+00:29:45,450 --> 00:29:47,380
+CHARLIE: Let's go and
+jump into hash tables.
+
+495
+00:29:47,380 --> 00:29:49,930
+So let me go and share
+the slides here again.
+
+496
+00:29:49,930 --> 00:29:53,490
+But before we go into hash tables,
+I want to start off with a structure
+
+497
+00:29:53,490 --> 00:29:55,142
+that we are very familiar with so far.
+
+498
+00:29:55,142 --> 00:29:56,850
+So we've been talking
+about linked lists.
+
+499
+00:29:56,850 --> 00:29:59,880
+And let's go and take a look at this
+linked list that we have on the screen
+
+500
+00:29:59,880 --> 00:30:00,390
+here.
+
+501
+00:30:00,390 --> 00:30:01,950
+It contains three nodes.
+
+502
+00:30:01,950 --> 00:30:03,120
+It has Hey!
+
+503
+00:30:03,120 --> 00:30:03,720
+Hello!
+
+504
+00:30:03,720 --> 00:30:04,590
+And Lo there!
+
+505
+00:30:04,590 --> 00:30:08,130
+And that's about it, just three
+nodes inside this linked list.
+
+506
+00:30:08,130 --> 00:30:11,435
+Now, let's go ahead and do
+a virtual exercise here.
+
+507
+00:30:11,435 --> 00:30:13,560
+And I have the chat pulled
+up this time on my iPad,
+
+508
+00:30:13,560 --> 00:30:16,110
+so I will not miss your
+questions in case you have any.
+
+509
+00:30:16,110 --> 00:30:19,890
+But let's go ahead and
+try finding where is Hey!
+
+510
+00:30:19,890 --> 00:30:22,930
+In this list, knowing
+that it is a linked list.
+
+511
+00:30:22,930 --> 00:30:25,890
+Well, it's pretty simple
+because with this linked list,
+
+512
+00:30:25,890 --> 00:30:31,690
+we'll have a pointer pointing to the
+head or the first node of this list.
+
+513
+00:30:31,690 --> 00:30:35,040
+So we can immediately find
+Hey! because it's at the start,
+
+514
+00:30:35,040 --> 00:30:37,180
+so easy one and done.
+
+515
+00:30:37,180 --> 00:30:41,130
+But now let's try something a little
+bit further down this chain of nodes
+
+516
+00:30:41,130 --> 00:30:42,150
+in this linked list.
+
+517
+00:30:42,150 --> 00:30:45,230
+Let's say I wanted to find Lo there!
+
+518
+00:30:45,230 --> 00:30:47,890
+Well, it's really easy
+for you and I, as humans,
+
+519
+00:30:47,890 --> 00:30:50,320
+because we can see on the
+screen here, well, Lo there!
+
+520
+00:30:50,320 --> 00:30:52,060
+is just in the third position.
+
+521
+00:30:52,060 --> 00:30:55,060
+But from the computer
+point of view, it can't
+
+522
+00:30:55,060 --> 00:31:00,610
+see anything past what its
+head, or the start of the list,
+
+523
+00:31:00,610 --> 00:31:03,490
+is looking at because that's where
+the pointer for this linked list
+
+524
+00:31:03,490 --> 00:31:04,970
+is currently looking at.
+
+525
+00:31:04,970 --> 00:31:06,850
+So all we can see is Hey!
+
+526
+00:31:06,850 --> 00:31:09,520
+And then what it will
+have to do is traverse
+
+527
+00:31:09,520 --> 00:31:12,220
+this linked list by going to
+the next element, and then
+
+528
+00:31:12,220 --> 00:31:15,490
+the next, and then the next, and so on
+and so forth until it reaches the end.
+
+529
+00:31:15,490 --> 00:31:18,580
+Each time looking at one
+node one by one trying
+
+530
+00:31:18,580 --> 00:31:21,170
+to figure out if that one is Lo there!
+
+531
+00:31:21,170 --> 00:31:23,950
+So let's go and pretend like
+we're going to walk through this
+
+532
+00:31:23,950 --> 00:31:25,250
+and try to find Lo there!
+
+533
+00:31:25,250 --> 00:31:26,740
+So I'm going to look at Hey!
+
+534
+00:31:26,740 --> 00:31:30,290
+and pretend you can't see
+the rest of this linked list.
+
+535
+00:31:30,290 --> 00:31:34,420
+And let's go and check if
+Hey! is equal to Lo there!
+
+536
+00:31:34,420 --> 00:31:35,710
+We obviously know that Hey!
+
+537
+00:31:35,710 --> 00:31:37,250
+Is not equal to Lo there!
+
+538
+00:31:37,250 --> 00:31:39,340
+So let's go to the next one.
+
+539
+00:31:39,340 --> 00:31:40,930
+Now let's take a look at Hello!
+
+540
+00:31:40,930 --> 00:31:43,100
+Is this equal to Lo there?
+
+541
+00:31:43,100 --> 00:31:46,990
+Well, of course not, so let's
+then go to the next one.
+
+542
+00:31:46,990 --> 00:31:48,760
+Now, is Lo there!
+
+543
+00:31:48,760 --> 00:31:50,060
+Equal to Lo there?
+
+544
+00:31:50,060 --> 00:31:51,100
+And the answer is yes.
+
+545
+00:31:51,100 --> 00:31:54,440
+So we successfully found Lo
+there! inside this linked list,
+
+546
+00:31:54,440 --> 00:31:58,720
+But notice how we had to go through
+so many elements beforehand,
+
+547
+00:31:58,720 --> 00:32:02,050
+we practically had to go through
+the entire linked list in this case
+
+548
+00:32:02,050 --> 00:32:04,180
+to find Lo there!
+
+549
+00:32:04,180 --> 00:32:07,390
+Now, imagine if we had a
+much longer linked list.
+
+550
+00:32:07,390 --> 00:32:11,800
+Let's say with thousands of
+phrases inside this linked list.
+
+551
+00:32:11,800 --> 00:32:14,680
+If we wanted to find
+one specific phrase,
+
+552
+00:32:14,680 --> 00:32:16,600
+whether or not it's in
+that linked list, we
+
+553
+00:32:16,600 --> 00:32:20,890
+would have to go through every
+single element in this linked list
+
+554
+00:32:20,890 --> 00:32:23,860
+until we either find
+it, or we don't find it.
+
+555
+00:32:23,860 --> 00:32:25,660
+And you can quickly
+see how this might be
+
+556
+00:32:25,660 --> 00:32:31,150
+very time inefficient if we're working
+with very, very large linked lists.
+
+557
+00:32:31,150 --> 00:32:33,820
+Now, some of you might be
+thinking, well, Charlie,
+
+558
+00:32:33,820 --> 00:32:37,090
+I know that with an
+array, I can immediately
+
+559
+00:32:37,090 --> 00:32:41,080
+access specific elements
+with an index if you happen
+
+560
+00:32:41,080 --> 00:32:44,080
+to know what index you want to go to.
+
+561
+00:32:44,080 --> 00:32:46,458
+And you're exactly correct
+with that thinking.
+
+562
+00:32:46,458 --> 00:32:49,000
+But in this case, we're working
+with a linked list currently.
+
+563
+00:32:49,000 --> 00:32:51,880
+However, pause on that
+thought for now because we're
+
+564
+00:32:51,880 --> 00:32:56,020
+going to use the concept of indexing
+with arrays, a little bit later
+
+565
+00:32:56,020 --> 00:32:59,360
+on, once we start talking
+about hash tables.
+
+566
+00:32:59,360 --> 00:33:02,410
+So let's go and jump
+into hash tables now.
+
+567
+00:33:02,410 --> 00:33:07,120
+Taking a look over here, I went ahead
+and deconstructed that linked list
+
+568
+00:33:07,120 --> 00:33:10,360
+that we had and sort it
+based on the starting letter
+
+569
+00:33:10,360 --> 00:33:13,180
+of each word, or phrase, rather.
+
+570
+00:33:13,180 --> 00:33:16,000
+So in this case, I put Hey! and
+Hello! together because they both
+
+571
+00:33:16,000 --> 00:33:21,580
+start with H. And then I put Lo there!
+next to L because it starts with an L.
+
+572
+00:33:21,580 --> 00:33:26,290
+Now another word or term that you might
+have heard to refer to hash tables
+
+573
+00:33:26,290 --> 00:33:28,180
+is a dictionary.
+
+574
+00:33:28,180 --> 00:33:32,380
+And that word has quite a
+resemblance here because we basically
+
+575
+00:33:32,380 --> 00:33:35,230
+sorted this linked list
+into a literal dictionary,
+
+576
+00:33:35,230 --> 00:33:38,140
+where we have the first
+letter of each phrase,
+
+577
+00:33:38,140 --> 00:33:41,930
+and we're sorting based
+on that first letter.
+
+578
+00:33:41,930 --> 00:33:44,320
+So let's go and pause
+here for a quick second
+
+579
+00:33:44,320 --> 00:33:49,240
+and think about what data structure
+this might actually resemble now.
+
+580
+00:33:49,240 --> 00:33:50,450
+Does anyone have any ideas?
+
+581
+00:33:50,450 --> 00:33:51,867
+Feel free to put them in the chat.
+
+582
+00:33:51,867 --> 00:34:00,590
+
+
+583
+00:34:00,590 --> 00:34:02,120
+Yeah, so you're absolutely right.
+
+584
+00:34:02,120 --> 00:34:05,650
+This is starting to look
+somewhat like an array.
+
+585
+00:34:05,650 --> 00:34:07,400
+And what I'm going to
+do now, is I'm going
+
+586
+00:34:07,400 --> 00:34:11,840
+to put a list of indices over
+here to the left of my letters
+
+587
+00:34:11,840 --> 00:34:14,929
+to represent an "array" quote unquote.
+
+588
+00:34:14,929 --> 00:34:18,440
+But notice how this array
+happens to have linked
+
+589
+00:34:18,440 --> 00:34:21,920
+lists located at each index position.
+
+590
+00:34:21,920 --> 00:34:24,949
+So for example, we
+take a look at H here.
+
+591
+00:34:24,949 --> 00:34:29,060
+At index 7, I have a linked
+list of, Hey! and Hello!
+
+592
+00:34:29,060 --> 00:34:32,570
+and then if I go down to
+index 11 with the letter L,
+
+593
+00:34:32,570 --> 00:34:35,659
+I also have another linked
+list that just happens
+
+594
+00:34:35,659 --> 00:34:38,340
+to have only one node in it Lo there!
+
+595
+00:34:38,340 --> 00:34:40,969
+And notice how now this
+can be a lot faster
+
+596
+00:34:40,969 --> 00:34:44,810
+in terms of trying to find what I want
+to look for inside this linked list.
+
+597
+00:34:44,810 --> 00:34:49,730
+Say, for instance, I wanted to look
+for Yuliia in this new structure.
+
+598
+00:34:49,730 --> 00:34:53,090
+Well, what I can do, is I can
+jump immediately to the letter Y,
+
+599
+00:34:53,090 --> 00:34:56,570
+skipping everything else, and
+that immediately narrows down
+
+600
+00:34:56,570 --> 00:34:59,240
+the size of the area that
+I need to look through
+
+601
+00:34:59,240 --> 00:35:04,560
+before I can find Yuliia in that
+linked list, whether or not it's there.
+
+602
+00:35:04,560 --> 00:35:09,720
+Now, going back to the other term
+that we use to define this structure,
+
+603
+00:35:09,720 --> 00:35:13,260
+I call this a dictionary just now, but
+now let's go back to the other term
+
+604
+00:35:13,260 --> 00:35:17,440
+that we also use that is synonymous
+with dictionary, a hash table.
+
+605
+00:35:17,440 --> 00:35:21,060
+We call it a hash table because
+we use this thing called
+
+606
+00:35:21,060 --> 00:35:25,440
+a hash function to generate those
+index values that you saw earlier
+
+607
+00:35:25,440 --> 00:35:26,310
+on the screen.
+
+608
+00:35:26,310 --> 00:35:30,240
+Basically, by giving you any
+value, in this case, Hey!
+
+609
+00:35:30,240 --> 00:35:33,120
+we feed it into this
+black box. this hash
+
+610
+00:35:33,120 --> 00:35:36,210
+function that will then give
+us a number representing
+
+611
+00:35:36,210 --> 00:35:41,670
+the index of where in the hash table
+we should store this new element.
+
+612
+00:35:41,670 --> 00:35:45,510
+And a good hash function is the
+difference between a good dictionary
+
+613
+00:35:45,510 --> 00:35:48,300
+or a good hash table
+or an inefficient one.
+
+614
+00:35:48,300 --> 00:35:51,120
+And what I'm going to do now,
+is pass it back to Yuliia
+
+615
+00:35:51,120 --> 00:35:58,125
+here to give you a quick walkthrough of
+how to define your own hash function.
+
+616
+00:35:58,125 --> 00:35:59,250
+YULIIA: Thank you, Charlie.
+
+617
+00:35:59,250 --> 00:36:04,390
+Yeah, so now we're going to
+jump into hash functions.
+
+618
+00:36:04,390 --> 00:36:11,280
+So as Charlie mentioned, we have
+hash functions that take some input
+
+619
+00:36:11,280 --> 00:36:12,970
+and then produce an output.
+
+620
+00:36:12,970 --> 00:36:17,160
+So right now, I want you guys
+to download and open table.c
+
+621
+00:36:17,160 --> 00:36:21,180
+at cs50.ly/supersection2.
+
+622
+00:36:21,180 --> 00:36:23,250
+What we're going to do
+here, is we're going
+
+623
+00:36:23,250 --> 00:36:28,290
+to complete function hash to
+return a number 0 to 25 depending
+
+624
+00:36:28,290 --> 00:36:29,850
+on the first character in the word.
+
+625
+00:36:29,850 --> 00:36:32,560
+We've already pre-made the solution.
+
+626
+00:36:32,560 --> 00:36:37,180
+So we're just going to
+walk through it together.
+
+627
+00:36:37,180 --> 00:36:41,190
+So to just give a quick overview
+of what's going on here,
+
+628
+00:36:41,190 --> 00:36:46,110
+we can see our familiar
+struct node with phrase
+
+629
+00:36:46,110 --> 00:36:49,530
+and node next, which is very similar
+to our nodes and linked lists.
+
+630
+00:36:49,530 --> 00:36:54,300
+But now, the addition
+is the table of size 26,
+
+631
+00:36:54,300 --> 00:36:57,960
+aka 26 letters of the
+alphabet, where we're actually
+
+632
+00:36:57,960 --> 00:37:04,795
+going to store all of our words in a
+linked list inside of an array fashion.
+
+633
+00:37:04,795 --> 00:37:07,170
+There's a lot of stuff that's
+already implemented for us.
+
+634
+00:37:07,170 --> 00:37:11,160
+For example, it's
+already adding the items
+
+635
+00:37:11,160 --> 00:37:13,840
+through the for loop
+get_string function.
+
+636
+00:37:13,840 --> 00:37:18,010
+But what we actually have to
+implement is the hash function itself.
+
+637
+00:37:18,010 --> 00:37:22,680
+So I'm going to jump into
+the table solution tab, where
+
+638
+00:37:22,680 --> 00:37:25,380
+we've pre-made our hash functions.
+
+639
+00:37:25,380 --> 00:37:30,000
+Since our implementation spec
+called for a hash function that
+
+640
+00:37:30,000 --> 00:37:34,980
+would output the number based on the
+first letter in the word, what we've
+
+641
+00:37:34,980 --> 00:37:40,650
+done is we said, OK, we're
+going to take phrase 0, which
+
+642
+00:37:40,650 --> 00:37:45,240
+is the first letter in the word
+that we're storing in string phrase,
+
+643
+00:37:45,240 --> 00:37:51,480
+we're going to toupper it because we
+want to make sure that we're keeping
+
+644
+00:37:51,480 --> 00:37:55,770
+all the inputs uniform no matter
+how a user is inputting it,
+
+645
+00:37:55,770 --> 00:38:04,028
+and then we're going to subtract capital
+A to actually be able to bucket in
+
+646
+00:38:04,028 --> 00:38:06,900
+within indexes 0 to 25.
+
+647
+00:38:06,900 --> 00:38:18,210
+So for example, if I run make
+table_solution, I'm going to compiles
+
+648
+00:38:18,210 --> 00:38:23,790
+and then I'm going to
+run table_solution.
+
+649
+00:38:23,790 --> 00:38:31,050
+OK, so for example, I can enter
+Apple, and it should have a bucket 0
+
+650
+00:38:31,050 --> 00:38:37,320
+because the first letter is A, and
+even if it's lowercase or uppercase,
+
+651
+00:38:37,320 --> 00:38:42,390
+it should still return
+the same hashed output.
+
+652
+00:38:42,390 --> 00:38:45,382
+Same with banana, it
+should just return 1
+
+653
+00:38:45,382 --> 00:38:47,340
+because it's the second
+letter of the alphabet.
+
+654
+00:38:47,340 --> 00:38:50,190
+And the reason why it works
+that way, is because we're
+
+655
+00:38:50,190 --> 00:38:56,550
+returning an int in our hash
+function that takes in a string.
+
+656
+00:38:56,550 --> 00:39:00,790
+And by subtracting a
+capital A in this case,
+
+657
+00:39:00,790 --> 00:39:06,360
+we're just resetting it on the
+spectrum of 0 to 25 versus--
+
+658
+00:39:06,360 --> 00:39:09,340
+
+
+659
+00:39:09,340 --> 00:39:12,550
+I don't remember exactly
+where the ASCII for capital A
+
+660
+00:39:12,550 --> 00:39:14,437
+stands, but somewhere in the 60s, right?
+
+661
+00:39:14,437 --> 00:39:15,520
+We don't really want that.
+
+662
+00:39:15,520 --> 00:39:17,920
+We want to reset it back to 0.
+
+663
+00:39:17,920 --> 00:39:20,060
+However, I have a question for you all.
+
+664
+00:39:20,060 --> 00:39:24,700
+So on the bottom here, I have another
+implementation of this function--
+
+665
+00:39:24,700 --> 00:39:26,740
+65, thank you, Carter.
+
+666
+00:39:26,740 --> 00:39:30,520
+I have another implementation
+of this function using a tolower
+
+667
+00:39:30,520 --> 00:39:34,540
+function instead of a toupper.
+
+668
+00:39:34,540 --> 00:39:39,370
+Do we think it's going
+to give the same output?
+
+669
+00:39:39,370 --> 00:39:43,285
+Or is it going to be different from the
+first implementation that we just saw?
+
+670
+00:39:43,285 --> 00:39:47,760
+
+
+671
+00:39:47,760 --> 00:39:50,040
+Feel free to chime in the chat.
+
+672
+00:39:50,040 --> 00:39:52,975
+Send your suggestions.
+
+673
+00:39:52,975 --> 00:39:54,100
+Is it going to be the same?
+
+674
+00:39:54,100 --> 00:39:56,230
+Is it going to be different?
+
+675
+00:39:56,230 --> 00:39:58,950
+I'm seeing some answers
+in my direct messages.
+
+676
+00:39:58,950 --> 00:40:03,920
+
+
+677
+00:40:03,920 --> 00:40:08,150
+Right, it's going to be the same
+because, essentially, it doesn't
+
+678
+00:40:08,150 --> 00:40:10,340
+matter as long as we keep it uniform.
+
+679
+00:40:10,340 --> 00:40:13,400
+If I'm bringing my first
+letter to the uppercase
+
+680
+00:40:13,400 --> 00:40:16,610
+and I'm subtracting uppercase
+A, it's resetting it
+
+681
+00:40:16,610 --> 00:40:19,730
+on the same scale in the
+same way that bringing
+
+682
+00:40:19,730 --> 00:40:23,720
+the first letter to the lowercase
+and subtracting lowercase a does.
+
+683
+00:40:23,720 --> 00:40:26,580
+So I'm just going to recompile it.
+
+684
+00:40:26,580 --> 00:40:29,100
+I'm going to go ahead and run it again.
+
+685
+00:40:29,100 --> 00:40:32,570
+So if I say Apple, it hashes to A again.
+
+686
+00:40:32,570 --> 00:40:36,080
+If I say Yuliia, hashes to 24.
+
+687
+00:40:36,080 --> 00:40:41,720
+Even if I use uppercase Apple
+again, it still hashes to 0.
+
+688
+00:40:41,720 --> 00:40:49,670
+So going off of that, we want to
+talk what a good hash function is.
+
+689
+00:40:49,670 --> 00:40:53,280
+As you noticed, it gives the
+same value for the same inputs.
+
+690
+00:40:53,280 --> 00:40:55,580
+So for example, in this
+case, we didn't really
+
+691
+00:40:55,580 --> 00:40:59,490
+want to distinguish between
+uppercase or lowercase words.
+
+692
+00:40:59,490 --> 00:41:03,050
+We want to treat them in the same way.
+
+693
+00:41:03,050 --> 00:41:05,930
+Therefore, it was a good hash function.
+
+694
+00:41:05,930 --> 00:41:08,750
+You might start asking
+yourself questions like, OK,
+
+695
+00:41:08,750 --> 00:41:12,170
+but what if I have 100 words
+that start with letter H
+
+696
+00:41:12,170 --> 00:41:14,478
+and then it just becomes
+a really big linked list?
+
+697
+00:41:14,478 --> 00:41:16,520
+Well, then you can start
+thinking about something
+
+698
+00:41:16,520 --> 00:41:19,880
+like, maybe I want to separate
+it by the first two letters.
+
+699
+00:41:19,880 --> 00:41:24,110
+Or maybe I want to come up with
+a formula that would spread them
+
+700
+00:41:24,110 --> 00:41:26,030
+evenly across all buckets.
+
+701
+00:41:26,030 --> 00:41:31,040
+And you'll get to explore that in this
+[INAUDIBLE] set yourself this weekend.
+
+702
+00:41:31,040 --> 00:41:35,480
+But a few other attributes that
+a good hash function has is,
+
+703
+00:41:35,480 --> 00:41:38,570
+it produces an even
+distribution across all buckets.
+
+704
+00:41:38,570 --> 00:41:44,390
+We don't want to see a case where,
+for example, we have in the index 2,
+
+705
+00:41:44,390 --> 00:41:49,020
+we have a linked list of 100 words
+and index 5 there's only one word.
+
+706
+00:41:49,020 --> 00:41:51,750
+Then the hash function
+is doing something wrong,
+
+707
+00:41:51,750 --> 00:41:55,320
+and we want to revisit
+our implementation of that
+
+708
+00:41:55,320 --> 00:42:02,100
+and make sure it provides output so that
+it's evenly distributed across buckets.
+
+709
+00:42:02,100 --> 00:42:07,800
+So with that being said, before we
+jump into the inheritance problem set,
+
+710
+00:42:07,800 --> 00:42:14,430
+does anyone have questions about
+a hash function, a hash table,
+
+711
+00:42:14,430 --> 00:42:18,390
+going back to nodes and linked
+lists, anything of the content
+
+712
+00:42:18,390 --> 00:42:20,040
+that we've talked about so far?
+
+713
+00:42:20,040 --> 00:42:24,210
+
+
+714
+00:42:24,210 --> 00:42:26,520
+OK, seems like there are no questions.
+
+715
+00:42:26,520 --> 00:42:27,930
+So we're going to go ahead.
+
+716
+00:42:27,930 --> 00:42:31,110
+I'm going to get started
+with problem set inheritance.
+
+717
+00:42:31,110 --> 00:42:35,130
+So we're just going to give
+a quick overview of what you
+
+718
+00:42:35,130 --> 00:42:37,840
+have to implement in this problem set.
+
+719
+00:42:37,840 --> 00:42:42,210
+So to do that, I'm just going
+to go ahead and share my iPad.
+
+720
+00:42:42,210 --> 00:42:46,290
+So in the inheritance lab,
+essentially what you want to do
+
+721
+00:42:46,290 --> 00:42:50,190
+is create a family of three generations.
+
+722
+00:42:50,190 --> 00:43:03,930
+And to do that, we have set up a struct
+called person that has two components.
+
+723
+00:43:03,930 --> 00:43:08,200
+
+
+724
+00:43:08,200 --> 00:43:14,450
+It has an array of two characters
+called alleles that are produced
+
+725
+00:43:14,450 --> 00:43:17,510
+based on the parents of a given person.
+
+726
+00:43:17,510 --> 00:43:23,240
+And then next, it has
+an array called parents
+
+727
+00:43:23,240 --> 00:43:30,657
+that are actually pointers to a struct
+person of the given person's parents.
+
+728
+00:43:30,657 --> 00:43:32,490
+It's a little bit
+confusing, so we're really
+
+729
+00:43:32,490 --> 00:43:35,940
+going to break it down to make sure you
+understand the structure of the nodes,
+
+730
+00:43:35,940 --> 00:43:37,510
+and what's going on.
+
+731
+00:43:37,510 --> 00:43:41,730
+So I have my pointers for parents here.
+
+732
+00:43:41,730 --> 00:43:42,960
+I have my alleles.
+
+733
+00:43:42,960 --> 00:43:50,950
+You can imagine it can be like A, B,
+or whatever the parent's alleles have.
+
+734
+00:43:50,950 --> 00:44:02,310
+And so what's on here is I have a
+pointer to another person node called
+
+735
+00:44:02,310 --> 00:44:07,440
+person that has the same
+structure where we have alleles
+
+736
+00:44:07,440 --> 00:44:10,560
+being an array of two characters.
+
+737
+00:44:10,560 --> 00:44:15,600
+And then in the same way,
+we have our array parents
+
+738
+00:44:15,600 --> 00:44:20,770
+that are pointers to the
+following parents again.
+
+739
+00:44:20,770 --> 00:44:27,120
+So I actually draw out a much better
+representation of this before section.
+
+740
+00:44:27,120 --> 00:44:28,480
+There's a lot going on.
+
+741
+00:44:28,480 --> 00:44:31,930
+So I'm just going to
+walk through it again.
+
+742
+00:44:31,930 --> 00:44:38,410
+So essentially, what we have is
+our main generation one person.
+
+743
+00:44:38,410 --> 00:44:42,760
+And then based on that,
+we have our parent zero,
+
+744
+00:44:42,760 --> 00:44:49,720
+and we have our parent one that in turn
+have their own parent one and parent
+
+745
+00:44:49,720 --> 00:44:54,310
+zero and parent one, which
+are now in generation three.
+
+746
+00:44:54,310 --> 00:45:00,610
+So this is the ultimate final
+product you want to create.
+
+747
+00:45:00,610 --> 00:45:06,010
+And to point out a few
+tweaks in this problem set,
+
+748
+00:45:06,010 --> 00:45:09,760
+is that the alleles of
+second and first generations
+
+749
+00:45:09,760 --> 00:45:12,550
+are going to be based on the
+alleles of their parents.
+
+750
+00:45:12,550 --> 00:45:16,570
+The alleles of the third generation
+are going to be picked randomly.
+
+751
+00:45:16,570 --> 00:45:24,430
+In this case, I've pre-populated them
+with some random values either A, O,
+
+752
+00:45:24,430 --> 00:45:25,270
+or B.
+
+753
+00:45:25,270 --> 00:45:29,350
+But the caveat is that the
+parents of the third generation
+
+754
+00:45:29,350 --> 00:45:33,860
+actually pointing to null because
+it's the last generation that we're
+
+755
+00:45:33,860 --> 00:45:36,080
+interested in.
+
+756
+00:45:36,080 --> 00:45:40,850
+And given that this is
+the final product, what
+
+757
+00:45:40,850 --> 00:45:45,020
+do you need to implement in the
+function itself is create_family
+
+758
+00:45:45,020 --> 00:45:48,090
+that will create this whole structure.
+
+759
+00:45:48,090 --> 00:45:52,070
+So what I'm actually going to do is
+I'm going to switch back to my code
+
+760
+00:45:52,070 --> 00:45:57,230
+and walk through the overall
+structure of create_family,
+
+761
+00:45:57,230 --> 00:45:59,730
+and what's going on here.
+
+762
+00:45:59,730 --> 00:46:03,020
+So here we have a
+setup for create_family
+
+763
+00:46:03,020 --> 00:46:08,150
+that takes in generations and returns
+a pointer to a node person, which
+
+764
+00:46:08,150 --> 00:46:12,650
+is going to be our first person
+in the generation generation one.
+
+765
+00:46:12,650 --> 00:46:16,790
+So essentially, what the
+code is doing is like, OK,
+
+766
+00:46:16,790 --> 00:46:22,340
+if there are more than one generation
+left, I want to keep creating families.
+
+767
+00:46:22,340 --> 00:46:28,440
+Notice that it's a recursive function,
+which is a function that calls itself.
+
+768
+00:46:28,440 --> 00:46:33,140
+So within create_family, we're
+calling create_family again.
+
+769
+00:46:33,140 --> 00:46:36,840
+And here you can see that it's
+subtracting one generation every time.
+
+770
+00:46:36,840 --> 00:46:41,160
+So when I call create_family for
+the first time, I'm passing in 3,
+
+771
+00:46:41,160 --> 00:46:46,890
+but on line 48 and 49, I'll be
+passing in 2 because we want
+
+772
+00:46:46,890 --> 00:46:49,990
+to subtract one generation at a time.
+
+773
+00:46:49,990 --> 00:46:53,700
+So with that in mind,
+I'm just going to go back
+
+774
+00:46:53,700 --> 00:46:59,020
+to my iPad to really illustrate how this
+recursive function is going to work.
+
+775
+00:46:59,020 --> 00:47:01,440
+So at first we're going to create--
+
+776
+00:47:01,440 --> 00:47:05,920
+and I'm going to get rid of these
+because these don't exist yet.
+
+777
+00:47:05,920 --> 00:47:13,290
+So what's going on, is
+that we pre-populate
+
+778
+00:47:13,290 --> 00:47:16,140
+kind of like we malloc
+our first node person,
+
+779
+00:47:16,140 --> 00:47:19,870
+and then we're looking at
+parent zero right here.
+
+780
+00:47:19,870 --> 00:47:24,350
+And so as you remember
+from the previous slide,
+
+781
+00:47:24,350 --> 00:47:26,540
+we want to call create_family again.
+
+782
+00:47:26,540 --> 00:47:31,440
+So it doesn't really populate
+the allele array just yet.
+
+783
+00:47:31,440 --> 00:47:35,660
+So it looks at parent zero, and
+so it calls create_family again,
+
+784
+00:47:35,660 --> 00:47:39,620
+which in turn creates
+this node called person.
+
+785
+00:47:39,620 --> 00:47:43,730
+It still has the empty alleles, and
+so following the same structure,
+
+786
+00:47:43,730 --> 00:47:48,770
+it goes into parent zero
+again, so following it
+
+787
+00:47:48,770 --> 00:47:51,840
+in a binary tree sort of fashion.
+
+788
+00:47:51,840 --> 00:47:56,190
+And so it gets to parent zero and
+generation three, at which point
+
+789
+00:47:56,190 --> 00:47:58,980
+we know that we've reached
+our last generation.
+
+790
+00:47:58,980 --> 00:48:02,100
+So now we don't want to
+create parents anymore.
+
+791
+00:48:02,100 --> 00:48:04,070
+We just want to set them to null.
+
+792
+00:48:04,070 --> 00:48:09,530
+Pick random alleles, as this
+is our third generation,
+
+793
+00:48:09,530 --> 00:48:14,480
+and go back to our parent zero here.
+
+794
+00:48:14,480 --> 00:48:18,800
+Now go into creating
+parent one for this person.
+
+795
+00:48:18,800 --> 00:48:22,470
+In the same fashion, we see that
+this is our third generation.
+
+796
+00:48:22,470 --> 00:48:25,500
+We set parent pointers to null.
+
+797
+00:48:25,500 --> 00:48:32,010
+We pick the alleles randomly,
+and we go back to this person.
+
+798
+00:48:32,010 --> 00:48:37,740
+Now that we've had parent zero,
+parent one allocated and populated,
+
+799
+00:48:37,740 --> 00:48:42,000
+we can pick alleles based on
+parent zero and parent one.
+
+800
+00:48:42,000 --> 00:48:48,210
+For example, I'm going to call it
+A and O. If you're a biology major,
+
+801
+00:48:48,210 --> 00:48:50,700
+and I'm doing this entirely
+wrong, please forgive me.
+
+802
+00:48:50,700 --> 00:48:52,510
+I majored in data science.
+
+803
+00:48:52,510 --> 00:49:00,120
+So now that we have our parent
+zero for our gen 1 person,
+
+804
+00:49:00,120 --> 00:49:02,250
+we're done with this branch.
+
+805
+00:49:02,250 --> 00:49:03,930
+We've already created it.
+
+806
+00:49:03,930 --> 00:49:04,930
+It's all set.
+
+807
+00:49:04,930 --> 00:49:07,800
+So now we're kind of
+moving back up again.
+
+808
+00:49:07,800 --> 00:49:11,550
+We're going to do the same process
+of creating the right branch by going
+
+809
+00:49:11,550 --> 00:49:17,190
+into parent one first, then
+parent zero, parent one again,
+
+810
+00:49:17,190 --> 00:49:23,730
+going back to generation two and then
+finally wrapping it up in our gen one
+
+811
+00:49:23,730 --> 00:49:29,670
+person where it already has all
+the parents populated and now based
+
+812
+00:49:29,670 --> 00:49:36,150
+on the alleles that we picked
+for them before, say B0,
+
+813
+00:49:36,150 --> 00:49:40,080
+it will now populate its alleles.
+
+814
+00:49:40,080 --> 00:49:46,960
+And in the end, create_family is
+going to return a pointer that's
+
+815
+00:49:46,960 --> 00:49:50,690
+pointing to our gen one person.
+
+816
+00:49:50,690 --> 00:49:54,160
+So this was a very quick
+run through of what
+
+817
+00:49:54,160 --> 00:49:58,180
+you have to implement in inheritance.
+
+818
+00:49:58,180 --> 00:50:02,770
+There's also a unload function that
+Charlie's going to talk more about,
+
+819
+00:50:02,770 --> 00:50:07,570
+as well as actually coding out how
+the create_family implementation will
+
+820
+00:50:07,570 --> 00:50:08,510
+look like.
+
+821
+00:50:08,510 --> 00:50:14,740
+So with that being said, I'm
+going to switch back to my slides
+
+822
+00:50:14,740 --> 00:50:16,360
+and give it to Charlie.
+
+823
+00:50:16,360 --> 00:50:19,550
+
+
+824
+00:50:19,550 --> 00:50:20,550
+CHARLIE: Thanks, Yuliia.
+
+825
+00:50:20,550 --> 00:50:25,080
+So let's go ahead and work through
+this inheritance lab or problem set
+
+826
+00:50:25,080 --> 00:50:25,870
+together.
+
+827
+00:50:25,870 --> 00:50:28,540
+So I'm going to go ahead
+and share my screen here.
+
+828
+00:50:28,540 --> 00:50:30,430
+Can everyone see my code screen?
+
+829
+00:50:30,430 --> 00:50:31,590
+Yes, it does look like so.
+
+830
+00:50:31,590 --> 00:50:35,370
+So if you haven't already, make
+sure that you have this code file
+
+831
+00:50:35,370 --> 00:50:41,382
+inheritance.c downloaded and opened
+on your CS50 VS Code space as well.
+
+832
+00:50:41,382 --> 00:50:43,590
+So I'm going to go and pause
+here for a quick minute,
+
+833
+00:50:43,590 --> 00:50:46,680
+actually, to let you go to the link
+that Carter dropped in the chat
+
+834
+00:50:46,680 --> 00:50:50,490
+and make sure you follow the
+setup instructions in that page
+
+835
+00:50:50,490 --> 00:50:53,610
+to successfully download,
+unzip, and then open up
+
+836
+00:50:53,610 --> 00:50:57,210
+this file in your own editor.
+
+837
+00:50:57,210 --> 00:50:58,960
+All right, let's go
+ahead and jump in now.
+
+838
+00:50:58,960 --> 00:51:01,020
+So what I'm going to do,
+is I'm going to scroll
+
+839
+00:51:01,020 --> 00:51:03,930
+to the very top of
+inheritance.c, this code file,
+
+840
+00:51:03,930 --> 00:51:07,860
+and let's start reading through what
+code we've actually been given first.
+
+841
+00:51:07,860 --> 00:51:09,707
+Because oftentimes, the
+most important thing
+
+842
+00:51:09,707 --> 00:51:11,790
+with understanding a problem
+that you're tackling,
+
+843
+00:51:11,790 --> 00:51:13,590
+is figuring out what you've
+been given in the first place
+
+844
+00:51:13,590 --> 00:51:16,300
+and what you have to do with
+that code that you were given.
+
+845
+00:51:16,300 --> 00:51:18,900
+So like Yuliia mentioned,
+we are starting off
+
+846
+00:51:18,900 --> 00:51:21,940
+with this person struct over here.
+
+847
+00:51:21,940 --> 00:51:24,430
+And like Yuliia draw
+on her iPad, there's
+
+848
+00:51:24,430 --> 00:51:26,380
+two things inside this person struct.
+
+849
+00:51:26,380 --> 00:51:29,260
+There's going to be a list
+of two parents, both of which
+
+850
+00:51:29,260 --> 00:51:31,510
+are also person structs.
+
+851
+00:51:31,510 --> 00:51:36,220
+And then over here, I have
+an array with two alleles.
+
+852
+00:51:36,220 --> 00:51:39,040
+Both of which are represented as
+chars because like Yuliia drew out
+
+853
+00:51:39,040 --> 00:51:43,870
+on her iPad, these are just
+single letters A, B, O.
+
+854
+00:51:43,870 --> 00:51:48,340
+So once we understood that, we now
+recognize what this part over here is.
+
+855
+00:51:48,340 --> 00:51:50,322
+Let's go and take a look
+at what we have next.
+
+856
+00:51:50,322 --> 00:51:53,530
+We have a couple constant values that
+we'll have to use throughout this code,
+
+857
+00:51:53,530 --> 00:51:54,347
+but don't worry.
+
+858
+00:51:54,347 --> 00:51:56,180
+You don't have to worry
+about these for now.
+
+859
+00:51:56,180 --> 00:51:59,080
+And we also have a couple
+of function prototypes,
+
+860
+00:51:59,080 --> 00:52:02,470
+essentially we're saying
+to see, hey, expect for us
+
+861
+00:52:02,470 --> 00:52:04,335
+to define these functions later on.
+
+862
+00:52:04,335 --> 00:52:06,710
+Well, we're going to define
+all of these at the top here,
+
+863
+00:52:06,710 --> 00:52:11,260
+so we can reference them within
+each other later on in our file.
+
+864
+00:52:11,260 --> 00:52:13,930
+Now we're going to take a look
+at our main function real quick.
+
+865
+00:52:13,930 --> 00:52:17,590
+All we're doing is getting this
+random number generator ready
+
+866
+00:52:17,590 --> 00:52:20,860
+before we get going because we'll need
+this later to generate our alleles.
+
+867
+00:52:20,860 --> 00:52:24,790
+We're going to call this function
+that we're going to define in a second
+
+868
+00:52:24,790 --> 00:52:28,120
+here to create this family
+tree with three generations,
+
+869
+00:52:28,120 --> 00:52:29,860
+like Yuliia drew on her iPad.
+
+870
+00:52:29,860 --> 00:52:32,800
+And then, we're just going
+to print out this family,
+
+871
+00:52:32,800 --> 00:52:35,620
+and of course, free this
+family once we're done with it,
+
+872
+00:52:35,620 --> 00:52:37,810
+because every time we
+malloc something in memory,
+
+873
+00:52:37,810 --> 00:52:40,220
+we have to make sure we free it.
+
+874
+00:52:40,220 --> 00:52:42,790
+So let's go and take a
+look at what we have here.
+
+875
+00:52:42,790 --> 00:52:47,660
+Looking at the create_family
+function, I see a couple to do items.
+
+876
+00:52:47,660 --> 00:52:50,020
+So let's go ahead and start
+off with the first one.
+
+877
+00:52:50,020 --> 00:52:53,920
+We want to allocate
+memory for a new person.
+
+878
+00:52:53,920 --> 00:52:56,530
+So the very first thing that
+should come to mind, hopefully,
+
+879
+00:52:56,530 --> 00:52:58,730
+is the malloc function.
+
+880
+00:52:58,730 --> 00:53:05,290
+So I'm going to go ahead and
+do, is just write down malloc.
+
+881
+00:53:05,290 --> 00:53:10,570
+But first, what has to
+go inside of malloc?
+
+882
+00:53:10,570 --> 00:53:12,385
+Anyone got any ideas in the chat here?
+
+883
+00:53:12,385 --> 00:53:17,980
+
+
+884
+00:53:17,980 --> 00:53:19,430
+Yes, exactly, thank you.
+
+885
+00:53:19,430 --> 00:53:22,360
+We want to have the
+size of how much memory
+
+886
+00:53:22,360 --> 00:53:24,110
+we want to allocate
+inside of here, right?
+
+887
+00:53:24,110 --> 00:53:26,900
+So I can put in any number.
+
+888
+00:53:26,900 --> 00:53:30,920
+I can eyeball it roughly
+and say, maybe 1,000.
+
+889
+00:53:30,920 --> 00:53:33,140
+But this wouldn't be
+appropriate because we
+
+890
+00:53:33,140 --> 00:53:36,200
+might be allocating too much
+memory in this case, most likely.
+
+891
+00:53:36,200 --> 00:53:38,750
+Or if you put a number
+that's too small, like 1,
+
+892
+00:53:38,750 --> 00:53:41,150
+we'd be allocating too little memory.
+
+893
+00:53:41,150 --> 00:53:44,960
+So the easiest way to make sure you
+allocate just exactly the right amount
+
+894
+00:53:44,960 --> 00:53:46,203
+of memory is use sizeof.
+
+895
+00:53:46,203 --> 00:53:48,620
+And thank you, Todd, for the
+suggestion there in the chat.
+
+896
+00:53:48,620 --> 00:53:52,070
+If I go in and type in
+sizeof, this is a function
+
+897
+00:53:52,070 --> 00:53:54,770
+that we can use to determine
+the size of something.
+
+898
+00:53:54,770 --> 00:53:56,780
+And how much memory do
+we want to allocate?
+
+899
+00:53:56,780 --> 00:53:58,970
+Well, I'm creating a new person.
+
+900
+00:53:58,970 --> 00:54:03,480
+So probably makes sense to say
+sizeof(person) inside of here.
+
+901
+00:54:03,480 --> 00:54:05,750
+Now there's one more thing
+we have to do, though.
+
+902
+00:54:05,750 --> 00:54:08,120
+Malloc does return something.
+
+903
+00:54:08,120 --> 00:54:09,740
+And what will return?
+
+904
+00:54:09,740 --> 00:54:14,460
+Well, in our case, it's going to be
+returning a pointer to a new person.
+
+905
+00:54:14,460 --> 00:54:18,090
+So let's go ahead and create a variable
+to store the return value of malloc.
+
+906
+00:54:18,090 --> 00:54:22,320
+I'm going to go ahead and
+define a new person pointer.
+
+907
+00:54:22,320 --> 00:54:24,240
+So that's why I have person *.
+
+908
+00:54:24,240 --> 00:54:28,440
+I'm going to call it new_person.
+
+909
+00:54:28,440 --> 00:54:32,400
+Set a equal sign, and now on
+this line, what we're doing
+
+910
+00:54:32,400 --> 00:54:36,910
+is allocating a person's
+size space inside our memory.
+
+911
+00:54:36,910 --> 00:54:40,410
+And then we're storing it
+inside this new person variable.
+
+912
+00:54:40,410 --> 00:54:41,955
+Any questions before we move on?
+
+913
+00:54:41,955 --> 00:54:47,090
+
+
+914
+00:54:47,090 --> 00:54:51,043
+And if not, let's go ahead
+and move on to the next to-do.
+
+915
+00:54:51,043 --> 00:54:53,710
+Before I do that, though, let's
+take a look at this if statement
+
+916
+00:54:53,710 --> 00:54:54,670
+that we have here.
+
+917
+00:54:54,670 --> 00:54:58,390
+I see that we have if
+generations greater than 1.
+
+918
+00:54:58,390 --> 00:55:01,060
+We're doing something by
+creating two new parents
+
+919
+00:55:01,060 --> 00:55:03,070
+by using a recursive
+function call so that just
+
+920
+00:55:03,070 --> 00:55:07,780
+means we're calling this function
+in itself but with a different value
+
+921
+00:55:07,780 --> 00:55:09,610
+for generations this time.
+
+922
+00:55:09,610 --> 00:55:13,360
+And then if generations
+is not greater than 1,
+
+923
+00:55:13,360 --> 00:55:18,350
+so there's no generations left to
+create, we'll do something else.
+
+924
+00:55:18,350 --> 00:55:20,860
+So let's go and actually
+start with the bottom part
+
+925
+00:55:20,860 --> 00:55:23,652
+here because it actually might be
+a little bit easier to understand
+
+926
+00:55:23,652 --> 00:55:26,000
+the top part once we complete
+the bottom part here.
+
+927
+00:55:26,000 --> 00:55:28,840
+So let's take a look
+at this else clause.
+
+928
+00:55:28,840 --> 00:55:30,730
+And let's start off
+with this first to-do.
+
+929
+00:55:30,730 --> 00:55:35,260
+It says here, set
+parent pointers to null.
+
+930
+00:55:35,260 --> 00:55:37,730
+So how might we want to do that?
+
+931
+00:55:37,730 --> 00:55:40,660
+Well, we know by
+looking at the top here,
+
+932
+00:55:40,660 --> 00:55:45,310
+that parents is an
+array of size 2 persons.
+
+933
+00:55:45,310 --> 00:55:49,790
+And we want to go ahead and assign
+each one of those persons to null.
+
+934
+00:55:49,790 --> 00:55:54,500
+So what I'm going to do,
+as I go back down here,
+
+935
+00:55:54,500 --> 00:55:58,850
+your first instinct might be, well,
+let's go ahead and call parents.
+
+936
+00:55:58,850 --> 00:56:02,150
+I know I want to access
+that first index.
+
+937
+00:56:02,150 --> 00:56:06,620
+So that would be index 0
+because we index by 0 in arrays.
+
+938
+00:56:06,620 --> 00:56:10,340
+And I'm going to just
+set that equal to null.
+
+939
+00:56:10,340 --> 00:56:13,370
+And I'm going to go ahead and
+just do the exact same thing
+
+940
+00:56:13,370 --> 00:56:19,980
+for that second parent at index
+1 and set it equal to null.
+
+941
+00:56:19,980 --> 00:56:25,220
+But if I were to go ahead and run this
+program, something wouldn't be working.
+
+942
+00:56:25,220 --> 00:56:26,780
+There's a bug in this code currently.
+
+943
+00:56:26,780 --> 00:56:28,697
+There's two of them
+actually, which is a hint.
+
+944
+00:56:28,697 --> 00:56:31,805
+What might be wrong with this code
+that we have here at this moment?
+
+945
+00:56:31,805 --> 00:56:38,460
+
+
+946
+00:56:38,460 --> 00:56:39,940
+Yeah, you're exactly correct.
+
+947
+00:56:39,940 --> 00:56:43,380
+We haven't specified which
+parents we're modifying.
+
+948
+00:56:43,380 --> 00:56:47,580
+Right now, we're just
+referencing a parents variable,
+
+949
+00:56:47,580 --> 00:56:51,450
+but this parents variable actually
+doesn't exist inside of this function.
+
+950
+00:56:51,450 --> 00:56:54,450
+If you take a look up here,
+we're within a function,
+
+951
+00:56:54,450 --> 00:56:57,870
+so we have to check to see inside
+this function if this variable exists.
+
+952
+00:56:57,870 --> 00:57:00,430
+There is no parents variable.
+
+953
+00:57:00,430 --> 00:57:03,960
+And if you look up in global scope,
+so inside the entire program,
+
+954
+00:57:03,960 --> 00:57:06,298
+there's also no parents variable.
+
+955
+00:57:06,298 --> 00:57:08,340
+Now, you might say, well,
+Charlie, wait a second.
+
+956
+00:57:08,340 --> 00:57:13,480
+We just defined parents here, but
+this is inside our person struct.
+
+957
+00:57:13,480 --> 00:57:16,830
+So what you have to do is
+you have to go back down
+
+958
+00:57:16,830 --> 00:57:21,610
+and reference a specific person's
+parents that you want to set to null.
+
+959
+00:57:21,610 --> 00:57:24,340
+So you're absolutely correct,
+Isaac, thank you very much.
+
+960
+00:57:24,340 --> 00:57:27,900
+And what we're going to
+do now is say new person.
+
+961
+00:57:27,900 --> 00:57:31,410
+New person's parents should be null.
+
+962
+00:57:31,410 --> 00:57:36,210
+I'm going to go ahead and do
+the exact same thing down here.
+
+963
+00:57:36,210 --> 00:57:42,360
+
+
+964
+00:57:42,360 --> 00:57:44,790
+Now, let's go ahead and
+move on to the next to-do.
+
+965
+00:57:44,790 --> 00:57:50,140
+I want you to go ahead and randomly
+assign alleles for this new person.
+
+966
+00:57:50,140 --> 00:57:51,940
+So how can we do that?
+
+967
+00:57:51,940 --> 00:57:54,690
+Well, if I go back to the
+top of my struct here,
+
+968
+00:57:54,690 --> 00:57:59,050
+I can see that we have this
+alleles attribute of our person.
+
+969
+00:57:59,050 --> 00:58:03,060
+So just like how I access this
+specific new person's parents,
+
+970
+00:58:03,060 --> 00:58:08,290
+I'm going to use the same arrow syntax
+to access this new person's alleles.
+
+971
+00:58:08,290 --> 00:58:12,570
+So I'm going to go
+ahead and say new person
+
+972
+00:58:12,570 --> 00:58:14,350
+alleles if I can spell that correctly.
+
+973
+00:58:14,350 --> 00:58:16,350
+And we're going to start
+off with 0 because this
+
+974
+00:58:16,350 --> 00:58:18,780
+is the first allele out of two.
+
+975
+00:58:18,780 --> 00:58:22,620
+And what do I want to set this equal to?
+
+976
+00:58:22,620 --> 00:58:28,890
+Well, I know I want to set this to a
+random allele, but how do I do that?
+
+977
+00:58:28,890 --> 00:58:31,920
+Anyone have any suggestions on that?
+
+978
+00:58:31,920 --> 00:58:36,670
+Yeah, exactly, you're exactly
+correct, we can use random_allele.
+
+979
+00:58:36,670 --> 00:58:41,070
+So if you scroll down here, actually,
+to the very bottom of this file,
+
+980
+00:58:41,070 --> 00:58:44,260
+you can see that there's already
+a helper function defined
+
+981
+00:58:44,260 --> 00:58:49,930
+for us called random_allele That will
+return a random allele A, B, or 0 based
+
+982
+00:58:49,930 --> 00:58:52,690
+on a random number that will
+be generated and use some math
+
+983
+00:58:52,690 --> 00:58:55,490
+to then convert that into a letter.
+
+984
+00:58:55,490 --> 00:59:01,120
+So if I go back up here, I can
+say, new person's first allele
+
+985
+00:59:01,120 --> 00:59:05,380
+should be equal to a random
+allele generated by this function
+
+986
+00:59:05,380 --> 00:59:06,730
+that we have.
+
+987
+00:59:06,730 --> 00:59:13,270
+And I'm also going to do the
+exact same thing but for index 1.
+
+988
+00:59:13,270 --> 00:59:17,328
+So I can also assign that second allele.
+
+989
+00:59:17,328 --> 00:59:19,120
+I'm going to pause here
+for a quick second.
+
+990
+00:59:19,120 --> 00:59:20,900
+See if there's any questions.
+
+991
+00:59:20,900 --> 00:59:23,170
+And if not, let's go
+ahead and move back up
+
+992
+00:59:23,170 --> 00:59:26,810
+to the top part of this function,
+which is the if statement.
+
+993
+00:59:26,810 --> 00:59:30,490
+Now, before we do that, there's
+actually one very important thing
+
+994
+00:59:30,490 --> 00:59:31,460
+that we have to do.
+
+995
+00:59:31,460 --> 00:59:34,377
+And thank you very much to the person
+in the chat who brought this up.
+
+996
+00:59:34,377 --> 00:59:38,740
+We have to check to see if we
+actually successfully malloced
+
+997
+00:59:38,740 --> 00:59:41,210
+memory for this new person.
+
+998
+00:59:41,210 --> 00:59:44,560
+So just like what Yuliia did in
+one of the earlier exercises,
+
+999
+00:59:44,560 --> 00:59:48,520
+we're going to use a conditional
+statement or an if statement to say
+
+1000
+00:59:48,520 --> 00:59:54,460
+if new person == null.
+
+1001
+00:59:54,460 --> 00:59:57,700
+And what this means is,
+if new person equal null,
+
+1002
+00:59:57,700 --> 00:59:59,690
+we didn't allocate that memory.
+
+1003
+00:59:59,690 --> 01:00:01,640
+So what should we do?
+
+1004
+01:00:01,640 --> 01:00:05,600
+Well, we can go ahead and maybe
+print out a helpful message.
+
+1005
+01:00:05,600 --> 01:00:15,490
+So let's say, we had an error
+allocating memory for our new person.
+
+1006
+01:00:15,490 --> 01:00:18,860
+I'm going to add a new
+line at the end of this.
+
+1007
+01:00:18,860 --> 01:00:24,560
+And then what we want to do
+after that is just return null.
+
+1008
+01:00:24,560 --> 01:00:27,400
+So that way whoever's
+calling this function
+
+1009
+01:00:27,400 --> 01:00:30,667
+create_family will see
+null as the return value,
+
+1010
+01:00:30,667 --> 01:00:32,500
+and then they can
+appropriately do what they
+
+1011
+01:00:32,500 --> 01:00:36,050
+might want to do from that
+point onwards in the program.
+
+1012
+01:00:36,050 --> 01:00:39,340
+So now let's go and jump back
+into this if clause over here.
+
+1013
+01:00:39,340 --> 01:00:43,630
+Our first to-do is to set parent
+pointers for the current person.
+
+1014
+01:00:43,630 --> 01:00:48,220
+And this is very similar to
+what we did in the else clause,
+
+1015
+01:00:48,220 --> 01:00:49,780
+but there's something different.
+
+1016
+01:00:49,780 --> 01:00:53,180
+This time we actually have
+parents that we want to set.
+
+1017
+01:00:53,180 --> 01:00:59,020
+So just like last time, I'm going
+to go ahead and call or reference
+
+1018
+01:00:59,020 --> 01:01:03,580
+the parents, the first parent,
+specifically, of my new person.
+
+1019
+01:01:03,580 --> 01:01:06,650
+Sorry, my voice is currently
+dying out a little bit.
+
+1020
+01:01:06,650 --> 01:01:11,110
+What I want to do, is
+now assign a parent
+
+1021
+01:01:11,110 --> 01:01:13,000
+to this new person's first parent.
+
+1022
+01:01:13,000 --> 01:01:15,590
+What parent might I want to assign here?
+
+1023
+01:01:15,590 --> 01:01:18,460
+Do we have a variable by chance
+that we want to assign to this?
+
+1024
+01:01:18,460 --> 01:01:26,837
+
+
+1025
+01:01:26,837 --> 01:01:28,170
+Yeah, you're absolutely correct.
+
+1026
+01:01:28,170 --> 01:01:31,720
+So if we actually take a
+look at this code up here,
+
+1027
+01:01:31,720 --> 01:01:36,180
+we see that we just created
+two new parents by recursively
+
+1028
+01:01:36,180 --> 01:01:38,370
+calling the create_family function.
+
+1029
+01:01:38,370 --> 01:01:41,520
+Now I know recurse is a little bit
+tricky, but what you can do here,
+
+1030
+01:01:41,520 --> 01:01:46,080
+essentially, is trust that by the
+time this call of create_family
+
+1031
+01:01:46,080 --> 01:01:50,130
+returns a value, it will
+be a new parent represented
+
+1032
+01:01:50,130 --> 01:01:53,620
+as a person object for us to use.
+
+1033
+01:01:53,620 --> 01:01:57,820
+So what I'm going to do, is
+just put down parent 0 here.
+
+1034
+01:01:57,820 --> 01:02:01,920
+So we're saying that this new person's
+first parent should be parent 0.
+
+1035
+01:02:01,920 --> 01:02:07,320
+And I'm going to do the exact same thing
+for this new person's second parent.
+
+1036
+01:02:07,320 --> 01:02:11,445
+So this is going to
+be equal to parent 1.
+
+1037
+01:02:11,445 --> 01:02:19,330
+
+
+1038
+01:02:19,330 --> 01:02:24,460
+And now let's go and create the code
+for the second and final to-do inside
+
+1039
+01:02:24,460 --> 01:02:25,810
+of create_family.
+
+1040
+01:02:25,810 --> 01:02:29,470
+We now need to randomly assign
+a current person's alleles
+
+1041
+01:02:29,470 --> 01:02:31,700
+based on the alleles of their parents.
+
+1042
+01:02:31,700 --> 01:02:35,890
+So I'm going to go ahead and
+reference my new person's alleles,
+
+1043
+01:02:35,890 --> 01:02:37,070
+just like how we did below.
+
+1044
+01:02:37,070 --> 01:02:39,820
+And I'll put that on the screen,
+so you can take a look at it too.
+
+1045
+01:02:39,820 --> 01:02:44,740
+We're going to say new
+person's alleles, and we're
+
+1046
+01:02:44,740 --> 01:02:47,560
+going to access that first one.
+
+1047
+01:02:47,560 --> 01:02:51,790
+And now the question
+is, how do I randomly
+
+1048
+01:02:51,790 --> 01:02:56,890
+assign this current person's alleles
+based on the alleles of their parents?
+
+1049
+01:02:56,890 --> 01:03:00,190
+Well, let's break down this
+problem into smaller components.
+
+1050
+01:03:00,190 --> 01:03:05,140
+First, let's start off by just getting
+parent 0's or the first parent's
+
+1051
+01:03:05,140 --> 01:03:05,890
+alleles.
+
+1052
+01:03:05,890 --> 01:03:12,790
+So I can say, parent
+0, get their alleles.
+
+1053
+01:03:12,790 --> 01:03:15,550
+But then we have a little
+bit of a tricky problem here.
+
+1054
+01:03:15,550 --> 01:03:19,730
+How do I randomly pick one
+of this parent's alleles,
+
+1055
+01:03:19,730 --> 01:03:24,410
+either the one at index
+0 or the one at index 1?
+
+1056
+01:03:24,410 --> 01:03:26,615
+Anyone have any ideas
+on how I might do that?
+
+1057
+01:03:26,615 --> 01:03:32,360
+
+
+1058
+01:03:32,360 --> 01:03:33,960
+yeah you're exactly correct.
+
+1059
+01:03:33,960 --> 01:03:37,670
+We can use a random number generator
+to generate a random number,
+
+1060
+01:03:37,670 --> 01:03:40,730
+and then use the modulus
+operator, that percentage sign,
+
+1061
+01:03:40,730 --> 01:03:45,235
+to determine a number
+between 0 and 1 randomly.
+
+1062
+01:03:45,235 --> 01:03:46,610
+So let me go and write this down.
+
+1063
+01:03:46,610 --> 01:03:48,652
+And then I'll explain in
+a little bit more detail
+
+1064
+01:03:48,652 --> 01:03:50,760
+what exactly we're doing here.
+
+1065
+01:03:50,760 --> 01:03:54,930
+So we're going to use rand() to generate
+a random number and this is a function
+
+1066
+01:03:54,930 --> 01:03:57,440
+so make sure you have those
+two parentheses right after it.
+
+1067
+01:03:57,440 --> 01:04:04,460
+And then we're going to use the modulo
+operator with the %2 to generate a 0
+
+1068
+01:04:04,460 --> 01:04:05,360
+or 1.
+
+1069
+01:04:05,360 --> 01:04:08,480
+And if you think back to when we
+used the modulo operator previously
+
+1070
+01:04:08,480 --> 01:04:11,990
+in the past lecture or
+problem set, modulo means
+
+1071
+01:04:11,990 --> 01:04:16,700
+get the remainder after dividing by
+the number after the percentage sign.
+
+1072
+01:04:16,700 --> 01:04:20,330
+So if you think about any
+number, and you divide by 2,
+
+1073
+01:04:20,330 --> 01:04:22,880
+there's only two possibilities.
+
+1074
+01:04:22,880 --> 01:04:26,990
+It's either an even number, which
+in that case your remainder is 0,
+
+1075
+01:04:26,990 --> 01:04:31,710
+or you have an odd number, which
+in that case, your remainder is 1.
+
+1076
+01:04:31,710 --> 01:04:35,470
+Those are the only two
+possibilities with any number.
+
+1077
+01:04:35,470 --> 01:04:39,090
+So in that case, if we
+go ahead and do rand().
+
+1078
+01:04:39,090 --> 01:04:42,270
+Get a random number modulo
+2 will always end up
+
+1079
+01:04:42,270 --> 01:04:48,030
+with either 0 or 1, which is
+exactly what we need in this case.
+
+1080
+01:04:48,030 --> 01:04:51,510
+Then what I'm going to do here,
+is do the exact same thing
+
+1081
+01:04:51,510 --> 01:04:57,510
+that we did above before the second
+allele for this new person, so index 1.
+
+1082
+01:04:57,510 --> 01:05:01,350
+I'm going to get parent 1 this
+time because there's two parents.
+
+1083
+01:05:01,350 --> 01:05:04,880
+I want to make sure I get a
+random allele from both of them.
+
+1084
+01:05:04,880 --> 01:05:09,930
+I'm going to say, alleles
+and use the exact same trick
+
+1085
+01:05:09,930 --> 01:05:14,310
+that we used earlier to get a random
+allele from this second parent.
+
+1086
+01:05:14,310 --> 01:05:17,175
+So rand() % 2.
+
+1087
+01:05:17,175 --> 01:05:20,060
+
+
+1088
+01:05:20,060 --> 01:05:23,058
+I'm going to go ahead and
+pause here for a quick second.
+
+1089
+01:05:23,058 --> 01:05:24,350
+There's a question in the chat.
+
+1090
+01:05:24,350 --> 01:05:30,680
+Is the whitespace in between the
+new person variable, the arrow,
+
+1091
+01:05:30,680 --> 01:05:34,490
+and the parents attribute matter?
+
+1092
+01:05:34,490 --> 01:05:36,590
+The spaces do not
+matter, to my knowledge.
+
+1093
+01:05:36,590 --> 01:05:37,820
+See, we'll ignore those.
+
+1094
+01:05:37,820 --> 01:05:40,970
+Although, for style
+purposes, in CS50, we
+
+1095
+01:05:40,970 --> 01:05:44,780
+prefer that you don't have the spaces
+in between the variables and the arrows.
+
+1096
+01:05:44,780 --> 01:05:49,610
+So notice how here, for example, I
+just have the variable new person
+
+1097
+01:05:49,610 --> 01:05:51,125
+arrow parents, no spaces.
+
+1098
+01:05:51,125 --> 01:05:54,563
+
+
+1099
+01:05:54,563 --> 01:05:56,730
+All right, I'm going to
+pause here to see if there's
+
+1100
+01:05:56,730 --> 01:05:59,040
+any questions with create_family.
+
+1101
+01:05:59,040 --> 01:06:01,740
+And if not, I'm then
+going to introduce to
+
+1102
+01:06:01,740 --> 01:06:05,475
+you one more function that you
+have to implement free_family,
+
+1103
+01:06:05,475 --> 01:06:07,350
+but we're actually going
+to leave this one up
+
+1104
+01:06:07,350 --> 01:06:12,760
+to you to implement based on what
+you've learned from supersection today.
+
+1105
+01:06:12,760 --> 01:06:15,340
+So there are no questions
+in the chat here.
+
+1106
+01:06:15,340 --> 01:06:18,570
+Let's go ahead and take a look at
+what you'll have to do on your own
+
+1107
+01:06:18,570 --> 01:06:20,100
+with free_family.
+
+1108
+01:06:20,100 --> 01:06:24,690
+So free_family is a function that
+we call after creating the family
+
+1109
+01:06:24,690 --> 01:06:29,070
+and printing out that family so that
+we can then deallocate or remove
+
+1110
+01:06:29,070 --> 01:06:31,950
+the memory that we allocated
+earlier for this family.
+
+1111
+01:06:31,950 --> 01:06:34,680
+And there's three things
+that you have to do.
+
+1112
+01:06:34,680 --> 01:06:37,600
+You have to first, handle the base case.
+
+1113
+01:06:37,600 --> 01:06:39,870
+So this means you have to
+figure out what should I
+
+1114
+01:06:39,870 --> 01:06:43,995
+do when I've reached the end
+of this recursive staircase.
+
+1115
+01:06:43,995 --> 01:06:45,870
+And I call it a staircase
+because if you were
+
+1116
+01:06:45,870 --> 01:06:50,460
+to draw out the recursive calls
+of this free_family function,
+
+1117
+01:06:50,460 --> 01:06:53,010
+it would probably resemble
+a staircase if you
+
+1118
+01:06:53,010 --> 01:06:58,900
+were to draw it 1 and then after
+another below, and then so on, so forth.
+
+1119
+01:06:58,900 --> 01:07:03,220
+Then you want to write some code
+to free the actual parents that you
+
+1120
+01:07:03,220 --> 01:07:04,860
+have recursively.
+
+1121
+01:07:04,860 --> 01:07:06,610
+And what we mean by
+recursive, is that you
+
+1122
+01:07:06,610 --> 01:07:09,370
+want to call the
+free_family function again,
+
+1123
+01:07:09,370 --> 01:07:12,640
+but with a different set of arguments.
+
+1124
+01:07:12,640 --> 01:07:17,380
+And then the last thing you want
+to do is free the current person
+
+1125
+01:07:17,380 --> 01:07:19,130
+that you're looking at.
+
+1126
+01:07:19,130 --> 01:07:22,360
+So with that, I'm going to go
+ahead and hand it back to Yuliia
+
+1127
+01:07:22,360 --> 01:07:24,320
+to cap off this session.
+
+1128
+01:07:24,320 --> 01:07:29,150
+And if you have any questions,
+feel free to put them in the chat.
+
+1129
+01:07:29,150 --> 01:07:30,820
+YULIIA: Thank you, Charlie.
+
+1130
+01:07:30,820 --> 01:07:33,070
+So this was inheritance.
+
+1131
+01:07:33,070 --> 01:07:36,070
+And hopefully, this was
+a helpful walkthrough
+
+1132
+01:07:36,070 --> 01:07:41,890
+through an overall logic of the final
+product that you need to implement.
+
+1133
+01:07:41,890 --> 01:07:43,640
+It kind of looks like a binary tree.
+
+1134
+01:07:43,640 --> 01:07:45,290
+It has a recursive function to it.
+
+1135
+01:07:45,290 --> 01:07:47,090
+So it's a little complicated.
+
+1136
+01:07:47,090 --> 01:07:49,570
+So if you really want to
+figure out how it works,
+
+1137
+01:07:49,570 --> 01:07:53,020
+feel free to check out the
+solutions on the CS50 website
+
+1138
+01:07:53,020 --> 01:07:56,560
+and walk through it by
+yourself in the VS Code.
+
+1139
+01:07:56,560 --> 01:08:01,220
+This was inheritance, and
+this was CS50 super section.
+
+1140
+01:08:01,220 --> 01:08:01,990
+My name is Yuliia.
+
+1141
+01:08:01,990 --> 01:08:06,020
+I'm one of the preceptors at Harvard,
+and I'll pass it back to Charlie
+
+1142
+01:08:06,020 --> 01:08:08,527
+to wrap it up on his end, as well.
+
+1143
+01:08:08,527 --> 01:08:10,110
+CHARLIE: Yeah, and my name is Charlie.
+
+1144
+01:08:10,110 --> 01:08:12,110
+I'm one of the head
+teaching assistants at CS50.
+
+1145
+01:08:12,110 --> 01:08:15,510
+And it was great joining all of you
+today for week five super section.
+
+1146
+01:08:15,510 --> 01:08:17,220
+This was CS50.
+
+1147
+01:08:17,220 --> 01:08:18,569
+YULIIA: Thank you all.
+
+1148
+01:08:18,569 --> 01:08:21,650
+Good luck on the problem set five.
+
+1149
+01:08:21,650 --> 01:08:23,000

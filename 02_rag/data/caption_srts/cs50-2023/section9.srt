@@ -1,0 +1,4614 @@
+1
+00:00:00,000 --> 00:00:03,357
+
+
+2
+00:00:03,357 --> 00:00:03,940
+SPEAKER 1: OK.
+
+3
+00:00:03,940 --> 00:00:08,050
+Well hello, one and all, and
+welcome to CS50's Week 9 section.
+
+4
+00:00:08,050 --> 00:00:12,100
+This one on this framework called
+Flask, where you can actually build
+
+5
+00:00:12,100 --> 00:00:15,220
+your very own dynamic web applications.
+
+6
+00:00:15,220 --> 00:00:17,470
+And there are many topics
+we'll get through today,
+
+7
+00:00:17,470 --> 00:00:20,600
+but the goal is that you're able to
+ask the questions you want to ask,
+
+8
+00:00:20,600 --> 00:00:24,800
+so we can bridge that gap between
+lecture and this week's problem set.
+
+9
+00:00:24,800 --> 00:00:27,310
+So, among the topics
+for today are these.
+
+10
+00:00:27,310 --> 00:00:29,980
+We have this idea of
+Flask, this framework
+
+11
+00:00:29,980 --> 00:00:34,420
+we could use to write web
+applications more dynamic than those
+
+12
+00:00:34,420 --> 00:00:36,170
+we wrote last week.
+
+13
+00:00:36,170 --> 00:00:39,250
+We also have this new,
+kind of templating language
+
+14
+00:00:39,250 --> 00:00:41,320
+we're going to work with called Jinja.
+
+15
+00:00:41,320 --> 00:00:45,370
+And along the way, we'll learn all
+the more about forms and databases,
+
+16
+00:00:45,370 --> 00:00:49,510
+where we can actually store user
+data in our web applications.
+
+17
+00:00:49,510 --> 00:00:51,310
+And what I find so
+exciting is we're going
+
+18
+00:00:51,310 --> 00:00:53,320
+to be tying together
+a lot of the material
+
+19
+00:00:53,320 --> 00:00:56,860
+from these past few weeks of
+CS50 now to build our very
+
+20
+00:00:56,860 --> 00:00:59,030
+own application on the web.
+
+21
+00:00:59,030 --> 00:01:03,500
+So, let's begin by jumping
+into this idea of Flask.
+
+22
+00:01:03,500 --> 00:01:06,740
+So Flask is, again, what
+we call a framework.
+
+23
+00:01:06,740 --> 00:01:10,520
+Flask is a bit like being
+handed some tool kit,
+
+24
+00:01:10,520 --> 00:01:13,370
+and inside that tool kit
+are all kinds of tools
+
+25
+00:01:13,370 --> 00:01:16,920
+you can use to more easily
+build some web application.
+
+26
+00:01:16,920 --> 00:01:20,180
+And as you get more familiar
+with the tools of Flask,
+
+27
+00:01:20,180 --> 00:01:24,230
+I think you'll find you're able to build
+applications more quickly, and even
+
+28
+00:01:24,230 --> 00:01:28,790
+more securely than you could do without
+having those tools at your disposal.
+
+29
+00:01:28,790 --> 00:01:31,070
+That's exactly why people
+make things like Flask,
+
+30
+00:01:31,070 --> 00:01:34,230
+to help you as a programmer
+get started with things faster
+
+31
+00:01:34,230 --> 00:01:35,960
+and do things more securely.
+
+32
+00:01:35,960 --> 00:01:39,590
+Kind of standing on the shoulders
+of people who came before you.
+
+33
+00:01:39,590 --> 00:01:46,260
+So, Flask, at its core, is a way
+of handling interaction on the web.
+
+34
+00:01:46,260 --> 00:01:50,730
+And we saw in lecture that often when
+you're using the web application,
+
+35
+00:01:50,730 --> 00:01:53,990
+you're interacting with
+a site using its routes,
+
+36
+00:01:53,990 --> 00:01:57,290
+and using what we call HTTP requests.
+
+37
+00:01:57,290 --> 00:02:00,050
+So let's do a bit of a
+refresher here and look
+
+38
+00:02:00,050 --> 00:02:05,040
+at what you might see in the browser
+bar as you go to some web application.
+
+39
+00:02:05,040 --> 00:02:07,760
+So let's say we go to
+birthdays.com, which is
+
+40
+00:02:07,760 --> 00:02:09,410
+a hint as to what we'll be doing today.
+
+41
+00:02:09,410 --> 00:02:14,540
+And this very first part that you
+will see, https, colon, slash, slash,
+
+42
+00:02:14,540 --> 00:02:20,360
+is the protocol you're using to talk
+to this server called birthdays.com,
+
+43
+00:02:20,360 --> 00:02:21,500
+let's say.
+
+44
+00:02:21,500 --> 00:02:25,070
+Now, HTTPS stands for
+Hypertext Transfer Protocol,
+
+45
+00:02:25,070 --> 00:02:27,330
+and the secure version of that.
+
+46
+00:02:27,330 --> 00:02:29,810
+So this is kind of like a
+way of us extending our hand,
+
+47
+00:02:29,810 --> 00:02:32,360
+and the server then saying
+I'm going to shake that hand
+
+48
+00:02:32,360 --> 00:02:35,660
+and together, we'll know how to
+communicate with each other securely.
+
+49
+00:02:35,660 --> 00:02:38,420
+So this first part is saying,
+how are we going to talk?
+
+50
+00:02:38,420 --> 00:02:42,420
+What is the common language we're going
+to use to talk about what you want,
+
+51
+00:02:42,420 --> 00:02:44,540
+and how I can give it to you.
+
+52
+00:02:44,540 --> 00:02:49,620
+There's the next part though,
+birthdays.com, that we call our domain.
+
+53
+00:02:49,620 --> 00:02:51,740
+So maybe if you go on
+the web, and you try
+
+54
+00:02:51,740 --> 00:02:55,940
+to get your very own domain like
+cartersinc.com, or yourname.com,
+
+55
+00:02:55,940 --> 00:02:58,730
+you could actually do that
+from several providers online.
+
+56
+00:02:58,730 --> 00:03:01,910
+But this idea of a domain
+is kind of like the user
+
+57
+00:03:01,910 --> 00:03:03,870
+friendly name for our site.
+
+58
+00:03:03,870 --> 00:03:08,330
+How does a user get to the server
+that has all these files on it
+
+59
+00:03:08,330 --> 00:03:10,858
+that other people can access?
+
+60
+00:03:10,858 --> 00:03:13,900
+And then the most important piece
+here, at least the most important piece
+
+61
+00:03:13,900 --> 00:03:17,620
+for today, is going to be what
+follows this domain, which
+
+62
+00:03:17,620 --> 00:03:21,230
+is called our route, where
+we're accessing the application.
+
+63
+00:03:21,230 --> 00:03:25,480
+So by default, the basic route
+is just a slash at the end.
+
+64
+00:03:25,480 --> 00:03:29,680
+And means give me, let's say,
+the home page of this site.
+
+65
+00:03:29,680 --> 00:03:34,870
+Whatever is the default page, I want
+that page when I go to the slash route.
+
+66
+00:03:34,870 --> 00:03:38,200
+But we can make all kinds of
+different routes on our applications.
+
+67
+00:03:38,200 --> 00:03:39,640
+Some of them might look like this.
+
+68
+00:03:39,640 --> 00:03:43,100
+Maybe you've seen websites
+that have an about us page.
+
+69
+00:03:43,100 --> 00:03:46,990
+So the route for that might be
+something like slash about dash us.
+
+70
+00:03:46,990 --> 00:03:49,670
+Or if you're trying to
+register for an account,
+
+71
+00:03:49,670 --> 00:03:51,760
+the route might be slash register.
+
+72
+00:03:51,760 --> 00:03:54,760
+Or if you're trying to submit some
+form, it could be slash submit.
+
+73
+00:03:54,760 --> 00:03:57,220
+The idea here is that
+the application could
+
+74
+00:03:57,220 --> 00:04:00,730
+come up with their own
+names for routes, and then
+
+75
+00:04:00,730 --> 00:04:06,780
+define what happens when the user goes
+to an application at that particular--
+
+76
+00:04:06,780 --> 00:04:10,550
+or goes to that particular
+route on the application.
+
+77
+00:04:10,550 --> 00:04:12,070
+If that makes sense.
+
+78
+00:04:12,070 --> 00:04:15,960
+So let me pause here and ask,
+what questions we have so far
+
+79
+00:04:15,960 --> 00:04:19,980
+on this idea of interacting
+with a web application
+
+80
+00:04:19,980 --> 00:04:23,000
+through the routes it might offer us.
+
+81
+00:04:23,000 --> 00:04:24,695
+What questions do we have so far?
+
+82
+00:04:24,695 --> 00:04:29,760
+
+
+83
+00:04:29,760 --> 00:04:30,510
+OK.
+
+84
+00:04:30,510 --> 00:04:35,250
+So not seeing any yet, but feel free
+to chime in the chat if you'd like.
+
+85
+00:04:35,250 --> 00:04:39,720
+What we'll do to explore this idea of
+how to build applications with Flask,
+
+86
+00:04:39,720 --> 00:04:42,730
+is I really jump into
+this week's problem set.
+
+87
+00:04:42,730 --> 00:04:45,810
+And in particular, we'll work
+together on the very first problem
+
+88
+00:04:45,810 --> 00:04:49,890
+in problem set 9, which is this idea
+of keep track of our friends birthdays
+
+89
+00:04:49,890 --> 00:04:52,090
+through a web application.
+
+90
+00:04:52,090 --> 00:04:57,060
+So I will go to this very particular
+problem here called Birthdays.
+
+91
+00:04:57,060 --> 00:05:00,780
+And as you can see
+down below, our goal is
+
+92
+00:05:00,780 --> 00:05:05,460
+to have this application that allows
+us to have a form, like this, where
+
+93
+00:05:05,460 --> 00:05:08,850
+I could submit somebody's name,
+the month of their birthday,
+
+94
+00:05:08,850 --> 00:05:10,680
+and the day of their birthday.
+
+95
+00:05:10,680 --> 00:05:16,110
+So if me, Carter, if my birthday is on
+January 1st, I would type in Carter.
+
+96
+00:05:16,110 --> 00:05:19,410
+And the month would be one
+for January, and the day
+
+97
+00:05:19,410 --> 00:05:22,440
+would be one for the
+first day of January.
+
+98
+00:05:22,440 --> 00:05:25,590
+And then down below, we keep track
+of all of our friends birthdays.
+
+99
+00:05:25,590 --> 00:05:29,230
+So it seems like Harry was
+born on 7/31, for instance.
+
+100
+00:05:29,230 --> 00:05:32,360
+We generate this table of birthdays
+so we can actually visit this site
+
+101
+00:05:32,360 --> 00:05:36,250
+and remember whose birthday is when.
+
+102
+00:05:36,250 --> 00:05:38,050
+So a few things going on here.
+
+103
+00:05:38,050 --> 00:05:42,280
+We're able to submit a form
+to store data persistently
+
+104
+00:05:42,280 --> 00:05:45,040
+across multiple instances of the site.
+
+105
+00:05:45,040 --> 00:05:48,760
+And we're also able to
+dynamically add things to our site
+
+106
+00:05:48,760 --> 00:05:50,860
+when we click that Add Birthday button.
+
+107
+00:05:50,860 --> 00:05:54,610
+So, Flask can help us with
+all of these kinds of problems
+
+108
+00:05:54,610 --> 00:05:56,440
+we're seeing here today.
+
+109
+00:05:56,440 --> 00:05:59,560
+Now, to get started with
+birthdays, I will scroll down,
+
+110
+00:05:59,560 --> 00:06:02,290
+and I'll go to Getting
+Started, and I'll then
+
+111
+00:06:02,290 --> 00:06:07,000
+click here to download what we call
+the distribution code for birthdays.
+
+112
+00:06:07,000 --> 00:06:10,540
+So I'll go to my code space, and I
+will just simply copy paste this in.
+
+113
+00:06:10,540 --> 00:06:14,740
+And I'll download that birthdays.zip
+file containing all the distribution
+
+114
+00:06:14,740 --> 00:06:16,210
+code for birthdays.
+
+115
+00:06:16,210 --> 00:06:19,150
+I'll then unzip birthdays.zip.
+
+116
+00:06:19,150 --> 00:06:21,910
+And then I will type CD birthdays.
+
+117
+00:06:21,910 --> 00:06:26,900
+And now, if I type ls to list
+all the files in this folder,
+
+118
+00:06:26,900 --> 00:06:30,100
+I should see a few here that are
+hopefully familiar from lecture.
+
+119
+00:06:30,100 --> 00:06:33,310
+So we saw in lecture,
+this idea of app.py.
+
+120
+00:06:33,310 --> 00:06:38,440
+We saw its idea of databases a few
+weeks ago, I have birthdays.db.
+
+121
+00:06:38,440 --> 00:06:42,100
+And we have these two new folders
+we learned about briefly in lecture,
+
+122
+00:06:42,100 --> 00:06:45,910
+static and templates,
+where static stores, let's
+
+123
+00:06:45,910 --> 00:06:48,190
+say, images that don't often change.
+
+124
+00:06:48,190 --> 00:06:50,260
+Maybe our CSS for instance.
+
+125
+00:06:50,260 --> 00:06:54,340
+And template stores our
+HTML that is rendered
+
+126
+00:06:54,340 --> 00:06:57,400
+every time the user visits some site.
+
+127
+00:06:57,400 --> 00:06:59,380
+So let's see what
+questions we have here.
+
+128
+00:06:59,380 --> 00:07:01,300
+I see a few coming in.
+
+129
+00:07:01,300 --> 00:07:04,870
+One question is about,
+we saw this route called
+
+130
+00:07:04,870 --> 00:07:08,320
+slash submit earlier, which is
+one example of some kind of route.
+
+131
+00:07:08,320 --> 00:07:13,300
+And the question then is, do we have
+to have some underlying HTML file
+
+132
+00:07:13,300 --> 00:07:16,060
+called, let's say, submit.html?
+
+133
+00:07:16,060 --> 00:07:19,330
+So if the user goes to
+slash submit, does the HTML
+
+134
+00:07:19,330 --> 00:07:22,510
+file they get have to
+be called submit.html?
+
+135
+00:07:22,510 --> 00:07:25,780
+In this case, in the world
+of Flask, it does not.
+
+136
+00:07:25,780 --> 00:07:30,280
+So Flask helps us by allowing
+us to have more flexibility
+
+137
+00:07:30,280 --> 00:07:32,290
+with the naming of our
+files, and actually
+
+138
+00:07:32,290 --> 00:07:35,770
+with generating our files before
+they even get sent to the user.
+
+139
+00:07:35,770 --> 00:07:41,360
+What we call rendering our files,
+like we'll see in just a bit.
+
+140
+00:07:41,360 --> 00:07:42,650
+All right.
+
+141
+00:07:42,650 --> 00:07:45,350
+So let's keep going.
+
+142
+00:07:45,350 --> 00:07:51,080
+And one thing in particular, that we
+saw in a week prior in week eight,
+
+143
+00:07:51,080 --> 00:07:54,150
+was this idea of http-server.
+
+144
+00:07:54,150 --> 00:07:58,040
+So here, I could still use http-serve.
+
+145
+00:07:58,040 --> 00:08:01,160
+If everything in here
+is my Flask application,
+
+146
+00:08:01,160 --> 00:08:07,540
+I mean, I could still use http-server,
+and let me see what happens here.
+
+147
+00:08:07,540 --> 00:08:11,900
+I'll get this URL where I can
+actually access these files.
+
+148
+00:08:11,900 --> 00:08:14,770
+So I'll connect to this
+forwarded port and I'll
+
+149
+00:08:14,770 --> 00:08:20,930
+see all of those same files now
+accessible to me on my own HTTP server.
+
+150
+00:08:20,930 --> 00:08:23,320
+So let's try going into templates.
+
+151
+00:08:23,320 --> 00:08:26,290
+And I see index.html,
+so I'll click on that.
+
+152
+00:08:26,290 --> 00:08:28,750
+And I'll see, All Birthdays.
+
+153
+00:08:28,750 --> 00:08:33,010
+Kind of not complete all the
+way yet, but we'll get there,
+
+154
+00:08:33,010 --> 00:08:34,929
+and we'll work on this together.
+
+155
+00:08:34,929 --> 00:08:38,440
+I could also go through and let's say
+I want to see what's inside static,
+
+156
+00:08:38,440 --> 00:08:39,549
+I could click on that.
+
+157
+00:08:39,549 --> 00:08:45,550
+And I see I have this CSS file that
+seems to be styling index.html.
+
+158
+00:08:45,550 --> 00:08:47,840
+We won't focus too much on this today.
+
+159
+00:08:47,840 --> 00:08:54,400
+But the idea here is that HTTP server
+allows us to access these files,
+
+160
+00:08:54,400 --> 00:08:58,250
+but what it doesn't allow us to do
+is actually have interactivity here.
+
+161
+00:08:58,250 --> 00:09:02,590
+So if I wanted to use HTTP
+server to submit a birthday
+
+162
+00:09:02,590 --> 00:09:06,130
+to store in a database to show
+it to my user, at the end,
+
+163
+00:09:06,130 --> 00:09:08,270
+I couldn't do that with a HTTP server.
+
+164
+00:09:08,270 --> 00:09:12,050
+I have to use Flask, as we'll
+see, to be able to actually
+
+165
+00:09:12,050 --> 00:09:16,400
+get form data to store it
+in a database, and to return
+
+166
+00:09:16,400 --> 00:09:18,150
+that information to the user.
+
+167
+00:09:18,150 --> 00:09:21,290
+So if you want to build a
+more dynamic application,
+
+168
+00:09:21,290 --> 00:09:26,600
+you need to use some framework like
+Flask, as opposed to a simple HTTP
+
+169
+00:09:26,600 --> 00:09:27,990
+server here.
+
+170
+00:09:27,990 --> 00:09:32,390
+So I will hit Control C to
+get outside of my HTTP server,
+
+171
+00:09:32,390 --> 00:09:36,680
+and why don't I try running
+my Flask application.
+
+172
+00:09:36,680 --> 00:09:42,280
+Does anyone remember how we run
+a Flask application from lecture?
+
+173
+00:09:42,280 --> 00:09:45,150
+How do we run a Flask application?
+
+174
+00:09:45,150 --> 00:09:49,930
+Yeah, so I'm seeing an answer here,
+which is by default, we type flask run.
+
+175
+00:09:49,930 --> 00:09:52,930
+And this is just what the
+developers of Flask decided.
+
+176
+00:09:52,930 --> 00:09:58,870
+They say, when you have your very own
+Flask application denoted by app.py,
+
+177
+00:09:58,870 --> 00:10:02,440
+with your own static folder, and a
+templates folder, maybe a database,
+
+178
+00:10:02,440 --> 00:10:06,370
+you can then run that application
+with flask, space, run.
+
+179
+00:10:06,370 --> 00:10:08,180
+So I will hit Enter here.
+
+180
+00:10:08,180 --> 00:10:11,150
+Let's see what happens now.
+
+181
+00:10:11,150 --> 00:10:14,950
+So I'm again given this
+URL that seems to be
+
+182
+00:10:14,950 --> 00:10:17,710
+a server I could access to see my site.
+
+183
+00:10:17,710 --> 00:10:19,030
+I'll click on that.
+
+184
+00:10:19,030 --> 00:10:23,560
+And now, I'll see something
+pretty familiar from HTTP server.
+
+185
+00:10:23,560 --> 00:10:27,640
+I'm able to see our Birthdays site,
+kind of half finished right now.
+
+186
+00:10:27,640 --> 00:10:28,480
+There's no form.
+
+187
+00:10:28,480 --> 00:10:29,200
+No birthdays.
+
+188
+00:10:29,200 --> 00:10:35,150
+But at least I can see this
+index.html page being rendered for me.
+
+189
+00:10:35,150 --> 00:10:38,320
+So we'll see, as we actually
+add more functionality,
+
+190
+00:10:38,320 --> 00:10:40,040
+what Flask can do for us.
+
+191
+00:10:40,040 --> 00:10:45,700
+But for right now, Flask seems to just
+be giving us that very basic HTML file
+
+192
+00:10:45,700 --> 00:10:49,740
+inside of our templates folder.
+
+193
+00:10:49,740 --> 00:10:50,520
+A question here.
+
+194
+00:10:50,520 --> 00:10:52,980
+What is the base file it runs?
+
+195
+00:10:52,980 --> 00:10:54,090
+Like what is the runner?
+
+196
+00:10:54,090 --> 00:10:55,470
+What is the application here?
+
+197
+00:10:55,470 --> 00:10:56,740
+A very good question.
+
+198
+00:10:56,740 --> 00:10:59,100
+So let me open up a
+new terminal, and let
+
+199
+00:10:59,100 --> 00:11:02,310
+me go back into our birthdays
+folder, and let me show
+
+200
+00:11:02,310 --> 00:11:04,830
+you the structure of this site again.
+
+201
+00:11:04,830 --> 00:11:06,990
+So, here we have a few different files.
+
+202
+00:11:06,990 --> 00:11:11,610
+The main one, when you're talking
+about a Flask application, is app.py.
+
+203
+00:11:11,610 --> 00:11:14,190
+This is what you might call
+the brains of the operation.
+
+204
+00:11:14,190 --> 00:11:20,800
+It is what listens for requests to our
+server, and decides how to handle them.
+
+205
+00:11:20,800 --> 00:11:25,020
+For instance, if I, a user,
+accessed the slash route,
+
+206
+00:11:25,020 --> 00:11:28,710
+app.py will decide what
+kind of content I should
+
+207
+00:11:28,710 --> 00:11:31,590
+get when I access the slash route.
+
+208
+00:11:31,590 --> 00:11:36,030
+We call this framework like a
+model-view-controller framework.
+
+209
+00:11:36,030 --> 00:11:39,810
+So app.py is the controller
+deciding what we actually
+
+210
+00:11:39,810 --> 00:11:42,790
+see at the end of the day.
+
+211
+00:11:42,790 --> 00:11:43,570
+All right.
+
+212
+00:11:43,570 --> 00:11:46,900
+And just to formalize this a
+little bit, let me go to this slide
+
+213
+00:11:46,900 --> 00:11:50,030
+here and show you what
+Flask can really do for us.
+
+214
+00:11:50,030 --> 00:11:53,200
+So really, the reason
+you might use Flask
+
+215
+00:11:53,200 --> 00:11:56,110
+is, again, to listen for
+requests to a certain route.
+
+216
+00:11:56,110 --> 00:11:58,120
+That is what app.py is doing.
+
+217
+00:11:58,120 --> 00:12:00,460
+Maybe a user goes to
+the slash route, then
+
+218
+00:12:00,460 --> 00:12:03,040
+they should be sent some
+particular HTML file.
+
+219
+00:12:03,040 --> 00:12:05,020
+Flask is what can do that for us.
+
+220
+00:12:05,020 --> 00:12:08,860
+Importantly though, it can also
+execute Python code, depending
+
+221
+00:12:08,860 --> 00:12:10,390
+on the route that gets requested.
+
+222
+00:12:10,390 --> 00:12:14,350
+And it can also render HTML files,
+depending on the route requested,
+
+223
+00:12:14,350 --> 00:12:16,210
+which makes it very
+powerful because we're
+
+224
+00:12:16,210 --> 00:12:23,030
+able to build up HTML files as the
+user requests them from our server.
+
+225
+00:12:23,030 --> 00:12:28,210
+So as we saw in lecture, one
+of the most basic applications
+
+226
+00:12:28,210 --> 00:12:30,380
+we can build in Flask
+looks a bit like this.
+
+227
+00:12:30,380 --> 00:12:31,930
+So we have app.py.
+
+228
+00:12:31,930 --> 00:12:36,490
+And we then might add in some starter
+code, some boilerplate template
+
+229
+00:12:36,490 --> 00:12:37,520
+code like this.
+
+230
+00:12:37,520 --> 00:12:40,360
+And this is simply just
+how the developers of Flask
+
+231
+00:12:40,360 --> 00:12:45,380
+decided we would indicate that
+this is a Flask application.
+
+232
+00:12:45,380 --> 00:12:48,920
+We're going to first
+import this idea of Flask,
+
+233
+00:12:48,920 --> 00:12:52,850
+this class called Flask,
+from the Flask library.
+
+234
+00:12:52,850 --> 00:12:56,480
+And we're then going to
+say, in that very same file,
+
+235
+00:12:56,480 --> 00:12:58,700
+that we're going to create some app.
+
+236
+00:12:58,700 --> 00:13:03,110
+App equals Flask, and then
+parentheses we call dunder name, which
+
+237
+00:13:03,110 --> 00:13:04,910
+is the name of this file we have here.
+
+238
+00:13:04,910 --> 00:13:07,760
+All that line of code
+does is say, this file
+
+239
+00:13:07,760 --> 00:13:10,850
+is going to be our Flask application.
+
+240
+00:13:10,850 --> 00:13:13,970
+And then, really the heart of
+things come in a little bit
+
+241
+00:13:13,970 --> 00:13:16,430
+later, where we can
+actually specify what
+
+242
+00:13:16,430 --> 00:13:19,940
+we want to have happen when a
+user requests a certain route.
+
+243
+00:13:19,940 --> 00:13:22,610
+So here, at app.route.
+
+244
+00:13:22,610 --> 00:13:26,690
+And then in the middle means
+that this function index
+
+245
+00:13:26,690 --> 00:13:31,400
+will be run every time the
+user tries to access that slash
+
+246
+00:13:31,400 --> 00:13:33,800
+route on our application.
+
+247
+00:13:33,800 --> 00:13:35,140
+And what could we do?
+
+248
+00:13:35,140 --> 00:13:38,390
+Well, we could return to the user, like
+we saw in lecture, something as simple
+
+249
+00:13:38,390 --> 00:13:42,320
+as Hello, world, where they would
+just see Hello, world in their browser
+
+250
+00:13:42,320 --> 00:13:44,780
+if they go to the slash
+route of our application.
+
+251
+00:13:44,780 --> 00:13:50,030
+But really, the power of Flask comes in
+by not just returning regular old text,
+
+252
+00:13:50,030 --> 00:13:53,310
+but by returning templates
+that get rendered as we go.
+
+253
+00:13:53,310 --> 00:13:55,550
+So what we tend to use
+instead is this function
+
+254
+00:13:55,550 --> 00:13:59,240
+called render template,
+where Flask will take an HTML
+
+255
+00:13:59,240 --> 00:14:04,850
+file that we give it, like index.html,
+will render it, add in some data,
+
+256
+00:14:04,850 --> 00:14:10,780
+and then show that data back to us
+as we go on our own application.
+
+257
+00:14:10,780 --> 00:14:13,120
+So let's see what this looks
+like in birthdays here.
+
+258
+00:14:13,120 --> 00:14:17,490
+So why don't I go back
+to our application.
+
+259
+00:14:17,490 --> 00:14:18,720
+Go back to our application.
+
+260
+00:14:18,720 --> 00:14:25,040
+And I will now code app.py to
+see what is going on inside.
+
+261
+00:14:25,040 --> 00:14:29,040
+So it looks like we have a
+few things going on here,
+
+262
+00:14:29,040 --> 00:14:32,330
+but let's focus on what's
+familiar at least at first.
+
+263
+00:14:32,330 --> 00:14:35,780
+Up top, I see we're still
+importing from Flask.
+
+264
+00:14:35,780 --> 00:14:38,300
+Import Flask, that seems
+familiar from before.
+
+265
+00:14:38,300 --> 00:14:41,280
+We're still configuring our application.
+
+266
+00:14:41,280 --> 00:14:44,240
+And if I scroll down
+some more, I should see
+
+267
+00:14:44,240 --> 00:14:50,270
+that we do have a function to run when
+the user requests this slash route.
+
+268
+00:14:50,270 --> 00:14:52,410
+And this is called index here.
+
+269
+00:14:52,410 --> 00:14:56,660
+Doesn't have to be called index, but
+at least for our purposes, it is.
+
+270
+00:14:56,660 --> 00:15:00,020
+Now on the inside, we
+have to make a choice did
+
+271
+00:15:00,020 --> 00:15:02,810
+the user make a request
+with POST or with GET,
+
+272
+00:15:02,810 --> 00:15:07,520
+and it seems like we need to maybe
+fill in these TODOs as to how we
+
+273
+00:15:07,520 --> 00:15:09,750
+can make our application actually work.
+
+274
+00:15:09,750 --> 00:15:14,010
+But notice here, at the
+very base, if I simply
+
+275
+00:15:14,010 --> 00:15:16,890
+make a GET request to this
+website using the slash route,
+
+276
+00:15:16,890 --> 00:15:20,215
+I should get the rendered
+version of index.html,
+
+277
+00:15:20,215 --> 00:15:21,840
+which is exactly what's happening here.
+
+278
+00:15:21,840 --> 00:15:25,500
+If I go to my application, go
+to the simple slash route here,
+
+279
+00:15:25,500 --> 00:15:30,320
+I'm simply rendered index.html here.
+
+280
+00:15:30,320 --> 00:15:33,220
+So let's see what
+questions we have so far.
+
+281
+00:15:33,220 --> 00:15:39,340
+I see one, which is, is the at Flask
+syntax or is that Python syntax?
+
+282
+00:15:39,340 --> 00:15:40,340
+That's a great question.
+
+283
+00:15:40,340 --> 00:15:44,050
+So here we see at, the
+at sign, app.route.
+
+284
+00:15:44,050 --> 00:15:49,480
+So this at sign is a character
+that we use in Python
+
+285
+00:15:49,480 --> 00:15:51,980
+to denote what we call a decorator.
+
+286
+00:15:51,980 --> 00:15:56,410
+So a decorator is a
+function, in this case
+
+287
+00:15:56,410 --> 00:15:59,860
+app.route, that we
+extend the functionality
+
+288
+00:15:59,860 --> 00:16:02,630
+of with our very own function here.
+
+289
+00:16:02,630 --> 00:16:08,390
+So you can use decorators to extend the
+functionality of some base function.
+
+290
+00:16:08,390 --> 00:16:11,800
+In this case, the authors
+of Flask, they wrote
+
+291
+00:16:11,800 --> 00:16:15,310
+this function called route that
+handles a lot of things for us.
+
+292
+00:16:15,310 --> 00:16:17,620
+When the user asks for
+a route, there's a lot
+
+293
+00:16:17,620 --> 00:16:20,470
+that goes on between the
+server and the client, that
+
+294
+00:16:20,470 --> 00:16:21,820
+is their very own computer.
+
+295
+00:16:21,820 --> 00:16:25,630
+And by making this a decorator,
+what Flask allowed us to do
+
+296
+00:16:25,630 --> 00:16:28,780
+is not worry about all these
+kinds of low level details,
+
+297
+00:16:28,780 --> 00:16:31,460
+it allows us to specify
+just what we want
+
+298
+00:16:31,460 --> 00:16:35,460
+to have happen as the user
+asks for this particular page.
+
+299
+00:16:35,460 --> 00:16:38,570
+So Flask will handle all
+the underlying details.
+
+300
+00:16:38,570 --> 00:16:42,770
+All we have to do is specify,
+through our very own function
+
+301
+00:16:42,770 --> 00:16:47,100
+here, what we want the user
+to see at the end of the day.
+
+302
+00:16:47,100 --> 00:16:49,910
+And so here, we do that
+by specifying the return
+
+303
+00:16:49,910 --> 00:16:52,345
+value of this particular function.
+
+304
+00:16:52,345 --> 00:16:54,470
+Do we want to redirect the
+user to the slash trail,
+
+305
+00:16:54,470 --> 00:16:57,410
+basically send them back there
+again with a GET request,
+
+306
+00:16:57,410 --> 00:17:02,570
+or do we want to simply render
+this template called index.html.
+
+307
+00:17:02,570 --> 00:17:04,079
+A good question.
+
+308
+00:17:04,079 --> 00:17:06,800
+Let's see what other ones we have.
+
+309
+00:17:06,800 --> 00:17:08,930
+What is GET and what is POST?
+
+310
+00:17:08,930 --> 00:17:09,630
+A great one.
+
+311
+00:17:09,630 --> 00:17:11,869
+So we learned about this
+very briefly in lecture,
+
+312
+00:17:11,869 --> 00:17:14,869
+and I think it's an important
+one here because we're seeing
+
+313
+00:17:14,869 --> 00:17:18,089
+GET and POST come up in various ways.
+
+314
+00:17:18,089 --> 00:17:21,109
+So let's take a look at these
+different request methods
+
+315
+00:17:21,109 --> 00:17:23,480
+and how they can actually
+influence our application,
+
+316
+00:17:23,480 --> 00:17:28,730
+before we dive into working on this
+birthdays application ourselves.
+
+317
+00:17:28,730 --> 00:17:33,740
+So, when we're working with
+applications on the web,
+
+318
+00:17:33,740 --> 00:17:35,810
+there are a few ways
+to interact with them.
+
+319
+00:17:35,810 --> 00:17:38,990
+They all involve requests,
+but among these requests
+
+320
+00:17:38,990 --> 00:17:43,610
+are two methods with which we can
+actually access our application, which
+
+321
+00:17:43,610 --> 00:17:45,410
+we can request a route.
+
+322
+00:17:45,410 --> 00:17:49,100
+So on the one hand, we have
+a very simple GET request,
+
+323
+00:17:49,100 --> 00:17:52,700
+where let's say we have a server
+on the right hand side here,
+
+324
+00:17:52,700 --> 00:17:56,610
+and a client or a computer
+on the left hand side here.
+
+325
+00:17:56,610 --> 00:18:01,520
+And if this client, this computer,
+wants to access some web page,
+
+326
+00:18:01,520 --> 00:18:04,670
+they might make what
+we call a GET request.
+
+327
+00:18:04,670 --> 00:18:09,230
+Maybe they say, I want to see what's
+on that slash route of this page.
+
+328
+00:18:09,230 --> 00:18:12,170
+They would send a GET
+request to get whatever
+
+329
+00:18:12,170 --> 00:18:14,780
+is available at that slash route.
+
+330
+00:18:14,780 --> 00:18:17,030
+So here is them sending that request.
+
+331
+00:18:17,030 --> 00:18:21,380
+The server, meanwhile,
+then says, OK, I understand
+
+332
+00:18:21,380 --> 00:18:24,080
+you want to get whatever
+is at the slash route.
+
+333
+00:18:24,080 --> 00:18:28,460
+Why don't I give you this file, which
+is right there at that slash route.
+
+334
+00:18:28,460 --> 00:18:33,380
+Maybe in terms of Flask, it says,
+let me render this file for you,
+
+335
+00:18:33,380 --> 00:18:38,630
+and let me give it back to you so you
+can see it on your own computer here.
+
+336
+00:18:38,630 --> 00:18:41,320
+Now one other kind of
+request exists as well.
+
+337
+00:18:41,320 --> 00:18:45,230
+Maybe the user is also
+sending the server some data.
+
+338
+00:18:45,230 --> 00:18:49,460
+Maybe, for instance, it's sending a
+birthday for that server to store.
+
+339
+00:18:49,460 --> 00:18:52,750
+So that's when we would
+use a POST request.
+
+340
+00:18:52,750 --> 00:18:57,550
+A POST request generally allows
+us to send data to a server,
+
+341
+00:18:57,550 --> 00:19:01,790
+and generally implies the server
+will do something with that data.
+
+342
+00:19:01,790 --> 00:19:04,060
+So maybe the user fills out some form.
+
+343
+00:19:04,060 --> 00:19:08,140
+They say I want you to store Carter's
+birthday, which is supposedly
+
+344
+00:19:08,140 --> 00:19:09,490
+on January 1st.
+
+345
+00:19:09,490 --> 00:19:13,340
+Then it will be able to send
+that data to the server,
+
+346
+00:19:13,340 --> 00:19:17,480
+and then that data will
+be stored by the server.
+
+347
+00:19:17,480 --> 00:19:22,750
+So GET is more about trying to get
+some file from the particular server,
+
+348
+00:19:22,750 --> 00:19:26,380
+whereas POST involves posting
+some information to that server,
+
+349
+00:19:26,380 --> 00:19:28,600
+in the hopes that it will
+store it or do something
+
+350
+00:19:28,600 --> 00:19:31,920
+with it at the end of the day.
+
+351
+00:19:31,920 --> 00:19:34,230
+And I asked you a few questions here.
+
+352
+00:19:34,230 --> 00:19:38,680
+One is that, is POST
+encrypted by default?
+
+353
+00:19:38,680 --> 00:19:43,080
+And is it better to POST
+sensitive data versus using GET?
+
+354
+00:19:43,080 --> 00:19:46,830
+So whether or not POST
+and GET are encrypted
+
+355
+00:19:46,830 --> 00:19:49,630
+depends on the underlying
+protocol you're using.
+
+356
+00:19:49,630 --> 00:19:53,250
+So we saw before, HTTP versus HTTPS.
+
+357
+00:19:53,250 --> 00:19:59,980
+You could have both of these methods
+under HTTP or HTTPS, in either case.
+
+358
+00:19:59,980 --> 00:20:01,830
+So that has nothing
+to do with encryption.
+
+359
+00:20:01,830 --> 00:20:04,620
+What is different though, is that POST--
+
+360
+00:20:04,620 --> 00:20:09,450
+when you use POST, it doesn't put
+your data in the URL parameter.
+
+361
+00:20:09,450 --> 00:20:12,480
+So recall in lecture,
+when we use GET and we
+
+362
+00:20:12,480 --> 00:20:16,890
+had the greet application,
+when we used GET,
+
+363
+00:20:16,890 --> 00:20:21,220
+we saw that the name ended
+up in the URL address bar.
+
+364
+00:20:21,220 --> 00:20:23,400
+But when we used POST, it did not.
+
+365
+00:20:23,400 --> 00:20:27,180
+So POST is better for keeping
+information secret because it
+
+366
+00:20:27,180 --> 00:20:32,500
+doesn't end up in your URL itself,
+and thus, in your browser history,
+
+367
+00:20:32,500 --> 00:20:33,230
+for instance.
+
+368
+00:20:33,230 --> 00:20:38,630
+So POST is better for things
+like credit cards, et cetera.
+
+369
+00:20:38,630 --> 00:20:40,020
+All right.
+
+370
+00:20:40,020 --> 00:20:44,900
+So now that we have an
+idea of GET and POST,
+
+371
+00:20:44,900 --> 00:20:49,110
+it seems like we can better understand
+how to build up this application.
+
+372
+00:20:49,110 --> 00:20:51,260
+So let's go back to our code space here.
+
+373
+00:20:51,260 --> 00:20:55,100
+And let us try this.
+
+374
+00:20:55,100 --> 00:20:59,710
+We know we want to be able
+to submit a birthday here,
+
+375
+00:20:59,710 --> 00:21:03,520
+but what do we need to do first to
+allow the user to submit a birthday?
+
+376
+00:21:03,520 --> 00:21:08,420
+Just thinking visually, what might
+we want a user to be able to do?
+
+377
+00:21:08,420 --> 00:21:11,240
+
+
+378
+00:21:11,240 --> 00:21:14,360
+Maybe have some kind of like
+input box, like a way for them
+
+379
+00:21:14,360 --> 00:21:16,153
+to type in some information.
+
+380
+00:21:16,153 --> 00:21:17,570
+Maybe they could click a calendar.
+
+381
+00:21:17,570 --> 00:21:20,360
+I like what you're thinking there.
+
+382
+00:21:20,360 --> 00:21:25,040
+But I think we'll stick today with
+this idea of a basic form, where they
+
+383
+00:21:25,040 --> 00:21:27,870
+could submit and type in that data.
+
+384
+00:21:27,870 --> 00:21:33,260
+So let's go ahead and try to add a
+form to our birthdays application.
+
+385
+00:21:33,260 --> 00:21:34,900
+Well, what could we do there?
+
+386
+00:21:34,900 --> 00:21:38,900
+Let me go back to some slides and
+visualize what we could do with forms.
+
+387
+00:21:38,900 --> 00:21:43,440
+So with forms, there's
+a few things to note.
+
+388
+00:21:43,440 --> 00:21:49,260
+One, is that a form generally comes
+from this form HTML element here.
+
+389
+00:21:49,260 --> 00:21:51,990
+So if my application is
+on the right hand side,
+
+390
+00:21:51,990 --> 00:21:55,852
+and my code is on the
+left hand side, my HTML.
+
+391
+00:21:55,852 --> 00:21:58,310
+Generally, it could look like
+this, where I have an opening
+
+392
+00:21:58,310 --> 00:22:00,260
+tag and a closing tag for a form.
+
+393
+00:22:00,260 --> 00:22:04,130
+But now it's up to me to
+decide what kinds of text boxes
+
+394
+00:22:04,130 --> 00:22:05,540
+we'll give to the user.
+
+395
+00:22:05,540 --> 00:22:09,930
+And as people have been saying, maybe
+we can have our very own input box.
+
+396
+00:22:09,930 --> 00:22:13,390
+So here, I might make
+two kinds of inputs.
+
+397
+00:22:13,390 --> 00:22:15,630
+One, is simply of type text.
+
+398
+00:22:15,630 --> 00:22:19,170
+And one is actually a
+button of type submit,
+
+399
+00:22:19,170 --> 00:22:22,432
+and maybe I would say submit as the
+kind of text the user would see there.
+
+400
+00:22:22,432 --> 00:22:24,640
+And this would show up on
+our application as follows.
+
+401
+00:22:24,640 --> 00:22:29,730
+I would see this blank text box
+for user to type in their text.
+
+402
+00:22:29,730 --> 00:22:33,910
+And I would then see down below a
+button for them to click Submit on.
+
+403
+00:22:33,910 --> 00:22:38,340
+And because this button has type
+submit when they click this form,
+
+404
+00:22:38,340 --> 00:22:42,340
+that data will then be
+submitted to our application.
+
+405
+00:22:42,340 --> 00:22:46,500
+But for those of you who are feeling
+a little more comfortable with forms,
+
+406
+00:22:46,500 --> 00:22:50,080
+what is this form still missing?
+
+407
+00:22:50,080 --> 00:22:53,770
+Let's say we have everything
+we need in terms of data.
+
+408
+00:22:53,770 --> 00:22:56,470
+What is it missing?
+
+409
+00:22:56,470 --> 00:23:01,750
+So giving a few ideas, well, we need
+to have a place to submit this data to.
+
+410
+00:23:01,750 --> 00:23:07,990
+So, as we saw before, it's important
+to think about routes and the request
+
+411
+00:23:07,990 --> 00:23:09,290
+method we're going to use.
+
+412
+00:23:09,290 --> 00:23:13,820
+So when the user clicks submit, we want
+this data to be submitted to the site.
+
+413
+00:23:13,820 --> 00:23:15,740
+But we need to specify that in our form.
+
+414
+00:23:15,740 --> 00:23:22,000
+So in the form itself up above, we
+could specify two attributes, the action
+
+415
+00:23:22,000 --> 00:23:24,550
+attribute and the method attribute.
+
+416
+00:23:24,550 --> 00:23:29,590
+So action says, here is where I want
+you to request after you click Submit.
+
+417
+00:23:29,590 --> 00:23:32,320
+When the user clicks
+submit, the next thing we do
+
+418
+00:23:32,320 --> 00:23:34,540
+is request the particular route.
+
+419
+00:23:34,540 --> 00:23:38,230
+And then the method attribute
+says, which method should
+
+420
+00:23:38,230 --> 00:23:40,780
+we use to actually access that route.
+
+421
+00:23:40,780 --> 00:23:43,750
+Should we POST or should it be GET?
+
+422
+00:23:43,750 --> 00:23:47,470
+Most often for sensitive information,
+or really most information in general,
+
+423
+00:23:47,470 --> 00:23:50,080
+we would use POST for
+our form, because POST
+
+424
+00:23:50,080 --> 00:23:52,690
+is most often about
+sending data to our site
+
+425
+00:23:52,690 --> 00:23:57,270
+and having the site do something
+with it at the end of the day.
+
+426
+00:23:57,270 --> 00:23:58,970
+So, let's see here.
+
+427
+00:23:58,970 --> 00:24:06,050
+Let's go ahead and try to actually
+implement this in our own application
+
+428
+00:24:06,050 --> 00:24:06,660
+here.
+
+429
+00:24:06,660 --> 00:24:09,600
+So I currently see nothing
+in terms of a form.
+
+430
+00:24:09,600 --> 00:24:16,040
+But if I go to, not app.py, if I
+instead go to my templates, CD--
+
+431
+00:24:16,040 --> 00:24:20,960
+let's say, templates, and then
+type ls, I'll see index.html.
+
+432
+00:24:20,960 --> 00:24:24,620
+So let me code index.html
+to open that file.
+
+433
+00:24:24,620 --> 00:24:27,500
+And I should see a
+little, bit down below,
+
+434
+00:24:27,500 --> 00:24:33,510
+a TODO that says Create a form for users
+to submit a name, a month, and a day.
+
+435
+00:24:33,510 --> 00:24:36,890
+So, maybe we'll fill in this form here.
+
+436
+00:24:36,890 --> 00:24:38,200
+As we saw-- whoops.
+
+437
+00:24:38,200 --> 00:24:39,950
+Defining something I
+don't mean to define.
+
+438
+00:24:39,950 --> 00:24:44,030
+Let me go back to line 17 here and
+let me try to actually add this form.
+
+439
+00:24:44,030 --> 00:24:48,110
+I'll say, have an opening tag
+and a closing tag for our form.
+
+440
+00:24:48,110 --> 00:24:51,980
+And now let me ask you, what
+kinds of input should we have,
+
+441
+00:24:51,980 --> 00:24:55,210
+or input boxes, for our form?
+
+442
+00:24:55,210 --> 00:24:59,680
+We want to keep track of names, and
+months, and days for birthdays, so
+
+443
+00:24:59,680 --> 00:25:00,715
+what might we need?
+
+444
+00:25:00,715 --> 00:25:06,290
+
+
+445
+00:25:06,290 --> 00:25:09,470
+Yeah, so one thing we might want to
+have is an input box for the name.
+
+446
+00:25:09,470 --> 00:25:14,180
+And to add an input box, we
+simply go within our form element
+
+447
+00:25:14,180 --> 00:25:18,420
+and add a child, a child input element.
+
+448
+00:25:18,420 --> 00:25:21,230
+And here, we don't need a
+closing tag for an input element
+
+449
+00:25:21,230 --> 00:25:24,840
+just by convention, but I
+should specify a few attributes.
+
+450
+00:25:24,840 --> 00:25:28,760
+So one of these attributes is,
+what kind of data it will accept?
+
+451
+00:25:28,760 --> 00:25:29,990
+In this case, the type.
+
+452
+00:25:29,990 --> 00:25:33,570
+So the type will be text
+for a name like this.
+
+453
+00:25:33,570 --> 00:25:38,220
+And one more thing we should
+specify is the name for this input.
+
+454
+00:25:38,220 --> 00:25:41,750
+So that is how do we identify
+this particular input
+
+455
+00:25:41,750 --> 00:25:44,970
+box among the other input
+boxes we might have?
+
+456
+00:25:44,970 --> 00:25:49,760
+So maybe we could call this input box
+name itself because we're actually
+
+457
+00:25:49,760 --> 00:25:52,400
+accepting some person's name.
+
+458
+00:25:52,400 --> 00:25:53,120
+OK.
+
+459
+00:25:53,120 --> 00:25:53,970
+What else?
+
+460
+00:25:53,970 --> 00:25:56,660
+Well, we know we want
+an input for the month
+
+461
+00:25:56,660 --> 00:26:00,390
+that the user is actually able
+to have their birthday in.
+
+462
+00:26:00,390 --> 00:26:03,830
+So I'll say the name
+equals here, maybe month.
+
+463
+00:26:03,830 --> 00:26:07,560
+And the type, well the type
+is, in this case, a number.
+
+464
+00:26:07,560 --> 00:26:11,750
+We want to be able to have the
+user type in their input as one
+
+465
+00:26:11,750 --> 00:26:13,810
+through 12 for the month.
+
+466
+00:26:13,810 --> 00:26:16,260
+And we also, of course,
+want them to be able to type
+
+467
+00:26:16,260 --> 00:26:22,840
+in the day of their birthday, and the
+type of that will be number as well.
+
+468
+00:26:22,840 --> 00:26:24,100
+Now are we done here?
+
+469
+00:26:24,100 --> 00:26:25,390
+What else are we missing?
+
+470
+00:26:25,390 --> 00:26:29,580
+We have three input boxes, but
+we're still missing a few things.
+
+471
+00:26:29,580 --> 00:26:31,160
+What are they?
+
+472
+00:26:31,160 --> 00:26:32,820
+One of them is a Submit button.
+
+473
+00:26:32,820 --> 00:26:37,790
+So we saw before, we could make our very
+own button element, and make it of type
+
+474
+00:26:37,790 --> 00:26:38,360
+submit.
+
+475
+00:26:38,360 --> 00:26:40,490
+That is one approach we could take here.
+
+476
+00:26:40,490 --> 00:26:47,300
+We could also make an input element
+and have that be simply, type submit.
+
+477
+00:26:47,300 --> 00:26:52,940
+And then have the value be
+whatever we want the text to be.
+
+478
+00:26:52,940 --> 00:26:56,400
+So a few ways here, I'll
+show you one new way
+
+479
+00:26:56,400 --> 00:26:57,800
+that's different from the slides.
+
+480
+00:26:57,800 --> 00:27:02,120
+This will allow us to have a
+button that says Add Birthday,
+
+481
+00:27:02,120 --> 00:27:06,430
+because the type is submit
+and we specified a value here.
+
+482
+00:27:06,430 --> 00:27:11,890
+Now, when the user clicks that button,
+it should allow us to submit this form.
+
+483
+00:27:11,890 --> 00:27:16,310
+But we're still missing one more thing,
+and I have seen people say it already.
+
+484
+00:27:16,310 --> 00:27:18,470
+We need an action and a method.
+
+485
+00:27:18,470 --> 00:27:23,860
+So if I say, the action here is, I want
+to submit all this data to the slash
+
+486
+00:27:23,860 --> 00:27:24,850
+route.
+
+487
+00:27:24,850 --> 00:27:30,670
+As we saw in our app.py, we can accept
+both POST and GET request to slash.
+
+488
+00:27:30,670 --> 00:27:35,200
+So I'll make this method,
+the method here, POST.
+
+489
+00:27:35,200 --> 00:27:39,310
+So now when the user clicks submit,
+I should be posting that data
+
+490
+00:27:39,310 --> 00:27:42,920
+to the actual slash route.
+
+491
+00:27:42,920 --> 00:27:46,240
+So let's go ahead and go back to our
+application here and refresh the page.
+
+492
+00:27:46,240 --> 00:27:51,260
+I'll use Command R. And I'll see a
+place where me to type in some data.
+
+493
+00:27:51,260 --> 00:27:53,660
+So why don't I try Carter here.
+
+494
+00:27:53,660 --> 00:27:56,830
+And maybe my birthday is
+on January 1st, and I'll
+
+495
+00:27:56,830 --> 00:28:00,040
+go ahead and add that birthday.
+
+496
+00:28:00,040 --> 00:28:02,980
+And maybe it's working, maybe it's not.
+
+497
+00:28:02,980 --> 00:28:08,500
+But it seemed to, at least allow
+me to, type in a birthday here
+
+498
+00:28:08,500 --> 00:28:12,480
+and submit this form, which
+is making some progress.
+
+499
+00:28:12,480 --> 00:28:13,530
+All right.
+
+500
+00:28:13,530 --> 00:28:16,290
+What questions do we have on this form?
+
+501
+00:28:16,290 --> 00:28:19,250
+
+
+502
+00:28:19,250 --> 00:28:21,640
+What do we have here?
+
+503
+00:28:21,640 --> 00:28:22,340
+A good question.
+
+504
+00:28:22,340 --> 00:28:25,540
+So one is, don't we need
+like placeholders for this?
+
+505
+00:28:25,540 --> 00:28:26,810
+And that's a good idea.
+
+506
+00:28:26,810 --> 00:28:29,410
+So if I go and look at this,
+it's kind of confusing what
+
+507
+00:28:29,410 --> 00:28:30,910
+I want the user to actually type in.
+
+508
+00:28:30,910 --> 00:28:32,350
+So I could use placeholder.
+
+509
+00:28:32,350 --> 00:28:37,030
+I could go in and say the placeholder
+for this element is, let's say, name.
+
+510
+00:28:37,030 --> 00:28:40,160
+The placeholder here is month.
+
+511
+00:28:40,160 --> 00:28:44,750
+And the placeholder
+here is, let's say, day.
+
+512
+00:28:44,750 --> 00:28:45,787
+Just like this.
+
+513
+00:28:45,787 --> 00:28:47,870
+So let me go back and
+refresh the page, and now we
+
+514
+00:28:47,870 --> 00:28:54,130
+see some placeholders inside
+of our text, which is good.
+
+515
+00:28:54,130 --> 00:28:57,470
+Question, does this automatically
+post to the database?
+
+516
+00:28:57,470 --> 00:28:58,630
+So, no, it does not.
+
+517
+00:28:58,630 --> 00:29:02,290
+That'll be up to us, as we
+actually implement the dynamic part
+
+518
+00:29:02,290 --> 00:29:04,865
+of this application inside of app.py.
+
+519
+00:29:04,865 --> 00:29:07,760
+
+
+520
+00:29:07,760 --> 00:29:09,490
+OK.
+
+521
+00:29:09,490 --> 00:29:12,740
+So, let's keep going, and this is going
+to be a little more exciting than what
+
+522
+00:29:12,740 --> 00:29:15,532
+we did last week, because I imagine
+this is kind of similar to what
+
+523
+00:29:15,532 --> 00:29:18,110
+we did last week in terms of HTML.
+
+524
+00:29:18,110 --> 00:29:21,140
+But now that we're using
+Flask, we can actually
+
+525
+00:29:21,140 --> 00:29:23,580
+do things that are a bit more exciting.
+
+526
+00:29:23,580 --> 00:29:26,120
+So one of these things
+we can do, is actually
+
+527
+00:29:26,120 --> 00:29:31,800
+have an application see whatever
+we submitted to our form.
+
+528
+00:29:31,800 --> 00:29:37,730
+Now we saw in lecture, we can use a
+special Flask method, request.form.get,
+
+529
+00:29:37,730 --> 00:29:41,540
+to actually access whatever
+data is inside our form
+
+530
+00:29:41,540 --> 00:29:44,010
+as it's submitted to a particular route.
+
+531
+00:29:44,010 --> 00:29:48,140
+So the catch here is that simply,
+when we use request.form.get,
+
+532
+00:29:48,140 --> 00:29:53,420
+we need to make sure that the name we're
+requesting, like in this case an email,
+
+533
+00:29:53,420 --> 00:29:57,090
+matches up with the
+name we give our input.
+
+534
+00:29:57,090 --> 00:29:59,360
+So if the name of this
+input is email, then we
+
+535
+00:29:59,360 --> 00:30:03,140
+have to use request.form.get,
+and give as an argument
+
+536
+00:30:03,140 --> 00:30:06,650
+that very same name,
+email, case-sensitive.
+
+537
+00:30:06,650 --> 00:30:08,100
+Just like that.
+
+538
+00:30:08,100 --> 00:30:11,640
+So let's try it on our own
+application and see what we can see.
+
+539
+00:30:11,640 --> 00:30:15,180
+I'll go back to my app.py now.
+
+540
+00:30:15,180 --> 00:30:17,520
+Our code app.py over here.
+
+541
+00:30:17,520 --> 00:30:19,260
+And-- oops.
+
+542
+00:30:19,260 --> 00:30:20,010
+Wrong place.
+
+543
+00:30:20,010 --> 00:30:24,370
+Let me go back up one level
+to the birthdays folder.
+
+544
+00:30:24,370 --> 00:30:26,970
+And now let me code app.py.
+
+545
+00:30:26,970 --> 00:30:29,050
+And let's see in this.
+
+546
+00:30:29,050 --> 00:30:32,010
+So here is our route for
+this application slash.
+
+547
+00:30:32,010 --> 00:30:38,340
+And now, we're using the request
+method POST because, notice our form,
+
+548
+00:30:38,340 --> 00:30:41,580
+the method is POST, and
+the action is slash.
+
+549
+00:30:41,580 --> 00:30:45,750
+So, inside of this conditional,
+if the request method is POST,
+
+550
+00:30:45,750 --> 00:30:49,702
+we want to perhaps first
+see what the user submitted.
+
+551
+00:30:49,702 --> 00:30:51,160
+So I could try something like this.
+
+552
+00:30:51,160 --> 00:30:56,640
+I could maybe say, name
+equals request.form.get, name.
+
+553
+00:30:56,640 --> 00:30:58,860
+And that should hopefully
+give me the name
+
+554
+00:30:58,860 --> 00:31:01,470
+the user entered when
+they submitted this form.
+
+555
+00:31:01,470 --> 00:31:04,530
+I could say, maybe
+month, and we'll do month
+
+556
+00:31:04,530 --> 00:31:08,670
+equals request.form.get,
+and now month here.
+
+557
+00:31:08,670 --> 00:31:09,750
+And then day.
+
+558
+00:31:09,750 --> 00:31:13,660
+Day equals request.form.get,
+and finally day.
+
+559
+00:31:13,660 --> 00:31:18,720
+So notice how these, name, month,
+and day correspond to the names
+
+560
+00:31:18,720 --> 00:31:21,840
+we gave to these three inputs here.
+
+561
+00:31:21,840 --> 00:31:24,540
+And then just to be sure,
+to a question earlier
+
+562
+00:31:24,540 --> 00:31:28,440
+about how to debug a Flask
+application, one thing I could do
+
+563
+00:31:28,440 --> 00:31:29,820
+is use print statements.
+
+564
+00:31:29,820 --> 00:31:32,400
+And I could print out the following.
+
+565
+00:31:32,400 --> 00:31:35,790
+Name is, and then we
+have a f string here.
+
+566
+00:31:35,790 --> 00:31:39,150
+Name is, and I will interpolate name.
+
+567
+00:31:39,150 --> 00:31:44,190
+And I'll also maybe print, just for the
+sake of knowing whether it's working,
+
+568
+00:31:44,190 --> 00:31:46,710
+month is month.
+
+569
+00:31:46,710 --> 00:31:53,160
+And then down below, I'll
+also print day is day.
+
+570
+00:31:53,160 --> 00:31:54,100
+Just like this.
+
+571
+00:31:54,100 --> 00:31:58,170
+And now hopefully we should
+see the very same information
+
+572
+00:31:58,170 --> 00:32:02,190
+the user entered in the
+form, but now in our terminal
+
+573
+00:32:02,190 --> 00:32:05,280
+helping us know that
+at least in this case,
+
+574
+00:32:05,280 --> 00:32:10,080
+Flask will be able to grab that
+form data from our submission.
+
+575
+00:32:10,080 --> 00:32:16,470
+So I'll open up my terminal, and why
+don't I go back to our server here.
+
+576
+00:32:16,470 --> 00:32:19,210
+Let me refresh the page.
+
+577
+00:32:19,210 --> 00:32:24,480
+And now I'll type my name
+Carter, month one, and day one.
+
+578
+00:32:24,480 --> 00:32:26,790
+I'll type Add Birthday.
+
+579
+00:32:26,790 --> 00:32:29,310
+And now let's see.
+
+580
+00:32:29,310 --> 00:32:30,300
+Seems to have worked.
+
+581
+00:32:30,300 --> 00:32:33,090
+So Flask is telling me
+here, in my terminal,
+
+582
+00:32:33,090 --> 00:32:36,420
+that it does see that the name
+is Carter, the month is one,
+
+583
+00:32:36,420 --> 00:32:37,890
+and the day is one.
+
+584
+00:32:37,890 --> 00:32:46,227
+So we've been able to now submit some
+data from our form into our app.py.
+
+585
+00:32:46,227 --> 00:32:47,935
+So let's see what
+questions we have here.
+
+586
+00:32:47,935 --> 00:32:52,550
+
+
+587
+00:32:52,550 --> 00:32:56,680
+One is, how do you specify the form
+you are interested in if you have more
+
+588
+00:32:56,680 --> 00:32:57,180
+than one?
+
+589
+00:32:57,180 --> 00:32:58,200
+A great question.
+
+590
+00:32:58,200 --> 00:33:04,300
+So let's say I'm on my
+index.html, over here.
+
+591
+00:33:04,300 --> 00:33:08,850
+And here is kind of easy because
+I only have one form, right?
+
+592
+00:33:08,850 --> 00:33:12,600
+It would be harder though, it would
+be harder if I had multiple forms.
+
+593
+00:33:12,600 --> 00:33:14,370
+And there are a few ways to handle this.
+
+594
+00:33:14,370 --> 00:33:19,380
+One, is to have those different
+forms submit to different routes,
+
+595
+00:33:19,380 --> 00:33:22,230
+and that would allow me to have
+different functions to handle
+
+596
+00:33:22,230 --> 00:33:24,490
+these different form submissions.
+
+597
+00:33:24,490 --> 00:33:28,090
+Another way to do this is to
+make sure that every input
+
+598
+00:33:28,090 --> 00:33:31,250
+box has some unique name to it.
+
+599
+00:33:31,250 --> 00:33:35,980
+So if I have two different forms, it
+might be helpful for me to make sure
+
+600
+00:33:35,980 --> 00:33:39,520
+that those forms have different
+names in the input boxes.
+
+601
+00:33:39,520 --> 00:33:44,530
+So when I go to my app.py, if both these
+forms are submitting to the same route,
+
+602
+00:33:44,530 --> 00:33:48,640
+I can use the name attribute
+to only get data from one form
+
+603
+00:33:48,640 --> 00:33:50,650
+and not from another.
+
+604
+00:33:50,650 --> 00:33:53,290
+There are probably other ways
+to solve this problem too,
+
+605
+00:33:53,290 --> 00:33:57,820
+but I think the most common way
+is to have different forms submit
+
+606
+00:33:57,820 --> 00:33:59,720
+to different routes.
+
+607
+00:33:59,720 --> 00:34:03,620
+So, good question there.
+
+608
+00:34:03,620 --> 00:34:04,250
+Let's see.
+
+609
+00:34:04,250 --> 00:34:07,640
+Can you store all values in
+an array from multiple forms?
+
+610
+00:34:07,640 --> 00:34:11,270
+So the nice thing about Flask
+being a Python framework
+
+611
+00:34:11,270 --> 00:34:13,639
+is that you can really use
+any Python data structure
+
+612
+00:34:13,639 --> 00:34:15,739
+you'd like to work with form data.
+
+613
+00:34:15,739 --> 00:34:18,080
+If I wanted to, I could make
+a list of all these things.
+
+614
+00:34:18,080 --> 00:34:23,239
+I could say data is now a list, and
+it involves name, month, and day.
+
+615
+00:34:23,239 --> 00:34:27,290
+And now we'd have a list of these very
+variables inside my Python program.
+
+616
+00:34:27,290 --> 00:34:31,929
+So you can be creative
+with these as you'd like.
+
+617
+00:34:31,929 --> 00:34:33,190
+OK.
+
+618
+00:34:33,190 --> 00:34:36,699
+So I think we're making
+some progress here.
+
+619
+00:34:36,699 --> 00:34:41,409
+We're able to actually
+access, in this case,
+
+620
+00:34:41,409 --> 00:34:44,420
+the form data from our
+submission, which is great.
+
+621
+00:34:44,420 --> 00:34:46,100
+But the next step--
+
+622
+00:34:46,100 --> 00:34:48,159
+the next step is going
+to be to figure out
+
+623
+00:34:48,159 --> 00:34:53,360
+how we can store this data
+inside of our database.
+
+624
+00:34:53,360 --> 00:34:56,739
+So currently, it's just all
+inside Python, which is fine,
+
+625
+00:34:56,739 --> 00:34:59,590
+but I want to persist this information.
+
+626
+00:34:59,590 --> 00:35:03,020
+Have it recognized in my
+database, kind of long term.
+
+627
+00:35:03,020 --> 00:35:06,430
+So if I show you what's
+currently inside my database,
+
+628
+00:35:06,430 --> 00:35:12,790
+I will open up a new terminal here
+and I will do sqlite3 birthdays.db.
+
+629
+00:35:12,790 --> 00:35:14,060
+Just like this.
+
+630
+00:35:14,060 --> 00:35:18,850
+I can type .schema, And I'll see
+that this is the table inside
+
+631
+00:35:18,850 --> 00:35:20,470
+of birthdays.db.
+
+632
+00:35:20,470 --> 00:35:25,970
+We have a column for name, a column
+for month, and a column for day.
+
+633
+00:35:25,970 --> 00:35:30,460
+So now I'll SELECT star
+FROM birthdays, semicolon,
+
+634
+00:35:30,460 --> 00:35:33,620
+and I'll see I actually already
+have three birthdays in there.
+
+635
+00:35:33,620 --> 00:35:37,190
+But now I want to be able
+to add in my own birthday,
+
+636
+00:35:37,190 --> 00:35:40,770
+and see some more birthdays
+inside this database.
+
+637
+00:35:40,770 --> 00:35:44,960
+So, one way to do this is
+to take advantage of the way
+
+638
+00:35:44,960 --> 00:35:50,550
+that Flask can communicate with
+our very own database here.
+
+639
+00:35:50,550 --> 00:35:54,560
+So if I scroll up, I should
+see this line on line 13.
+
+640
+00:35:54,560 --> 00:35:58,040
+And this-- thanks to the
+CS50 library --allows us
+
+641
+00:35:58,040 --> 00:36:03,020
+to talk to birthdays.db using Python.
+
+642
+00:36:03,020 --> 00:36:10,610
+And in particular, if I scroll down, I
+can use this method called db.execute.
+
+643
+00:36:10,610 --> 00:36:12,290
+Db.execute.
+
+644
+00:36:12,290 --> 00:36:18,470
+And the way db.execute works is, I can
+type in a SQL query as an argument,
+
+645
+00:36:18,470 --> 00:36:23,390
+and then run that SQL query,
+in this case, on birthdays.db.
+
+646
+00:36:23,390 --> 00:36:26,060
+So if I wanted to
+select all birthdays, I
+
+647
+00:36:26,060 --> 00:36:29,280
+could simply say SELECT
+star FROM birthdays.
+
+648
+00:36:29,280 --> 00:36:30,860
+And then that would be it.
+
+649
+00:36:30,860 --> 00:36:35,580
+I would get back a list of dictionaries
+of all the birthdays in that database.
+
+650
+00:36:35,580 --> 00:36:39,470
+But in this case, we
+want to insert some data.
+
+651
+00:36:39,470 --> 00:36:42,980
+And let me ask now,
+what kind of SQL query
+
+652
+00:36:42,980 --> 00:36:48,350
+could we write to insert some
+birthday into our database?
+
+653
+00:36:48,350 --> 00:36:51,240
+We could focus just on SQLite here.
+
+654
+00:36:51,240 --> 00:36:58,850
+What could I type to add in a new
+birthday to this table of birthdays
+
+655
+00:36:58,850 --> 00:37:00,340
+here?
+
+656
+00:37:00,340 --> 00:37:02,270
+Seeing insert into is a good start.
+
+657
+00:37:02,270 --> 00:37:07,850
+So I'll insert into, in this case some
+particular table, birthdays, like this.
+
+658
+00:37:07,850 --> 00:37:11,860
+And now I'll specify the
+columns I want to add data to.
+
+659
+00:37:11,860 --> 00:37:13,930
+So if you're familiar,
+I want to add data
+
+660
+00:37:13,930 --> 00:37:18,260
+to the name, month, and day
+columns, just like this.
+
+661
+00:37:18,260 --> 00:37:22,020
+And now add a new line
+here, just for style sake.
+
+662
+00:37:22,020 --> 00:37:25,700
+Now, what should I do?
+
+663
+00:37:25,700 --> 00:37:29,490
+Let's say we're trying to
+add my own birthday here,
+
+664
+00:37:29,490 --> 00:37:30,750
+I need to say the values.
+
+665
+00:37:30,750 --> 00:37:35,180
+So I'll say the values, and then let's
+say, I'll go with a different one.
+
+666
+00:37:35,180 --> 00:37:39,620
+I'll go with-- let's
+just choose Charlie.
+
+667
+00:37:39,620 --> 00:37:45,500
+Charlie, and their birthday
+is on February 1st, like this.
+
+668
+00:37:45,500 --> 00:37:47,300
+Semicolon, Enter.
+
+669
+00:37:47,300 --> 00:37:51,140
+And now if I SELECT
+star FROM birthdays, I
+
+670
+00:37:51,140 --> 00:37:54,330
+see that Charlie has been
+added to this database.
+
+671
+00:37:54,330 --> 00:37:58,550
+So I can do this same
+thing, but now in app.py.
+
+672
+00:37:58,550 --> 00:38:03,620
+Why don't I go to db.execute
+again and type in that same query.
+
+673
+00:38:03,620 --> 00:38:09,320
+INSERT INTO birthdays, the name,
+the month, and the day columns.
+
+674
+00:38:09,320 --> 00:38:11,390
+The values are going to be---
+
+675
+00:38:11,390 --> 00:38:14,040
+
+
+676
+00:38:14,040 --> 00:38:16,900
+what are the value is going to be?
+
+677
+00:38:16,900 --> 00:38:18,265
+I don't quite know yet.
+
+678
+00:38:18,265 --> 00:38:20,900
+
+
+679
+00:38:20,900 --> 00:38:25,370
+I'm seeing some question marks, which I
+think is less indicative of a question
+
+680
+00:38:25,370 --> 00:38:27,300
+and more so what we
+should actually use here.
+
+681
+00:38:27,300 --> 00:38:31,440
+So a question mark is our way of
+having a placeholder in this query.
+
+682
+00:38:31,440 --> 00:38:35,570
+So similar to what we've seen
+with print F, earlier in C,
+
+683
+00:38:35,570 --> 00:38:39,680
+we're able to specify a
+special kind of character
+
+684
+00:38:39,680 --> 00:38:41,780
+to indicate a placeholder in our query.
+
+685
+00:38:41,780 --> 00:38:44,010
+And that in this case,
+is a question mark.
+
+686
+00:38:44,010 --> 00:38:48,050
+So I'll say values, question
+mark, comma, question mark, comma,
+
+687
+00:38:48,050 --> 00:38:49,100
+question mark.
+
+688
+00:38:49,100 --> 00:38:53,280
+So three placeholders for
+three different values.
+
+689
+00:38:53,280 --> 00:38:54,860
+Now what are those three values?
+
+690
+00:38:54,860 --> 00:38:59,790
+Well, they're whatever we get in
+name, month, and day from the user.
+
+691
+00:38:59,790 --> 00:39:04,340
+So the first one is name, then
+month, then day, just like this.
+
+692
+00:39:04,340 --> 00:39:09,260
+And that hopefully should allow
+us to actually take this form data
+
+693
+00:39:09,260 --> 00:39:16,190
+and then run this SQL query to
+add it into our birthdays.db.
+
+694
+00:39:16,190 --> 00:39:21,300
+So, let's try it and see if we see
+anything pop up in our database.
+
+695
+00:39:21,300 --> 00:39:26,960
+I will clear my SQLite prompt, and
+I will SELECT star FROM birthdays.
+
+696
+00:39:26,960 --> 00:39:28,700
+So this is what we currently have here.
+
+697
+00:39:28,700 --> 00:39:32,490
+Why don't I now go back to my
+application, refresh the page.
+
+698
+00:39:32,490 --> 00:39:37,640
+And now I'll choose Carter,
+January 1st, Add Birthday.
+
+699
+00:39:37,640 --> 00:39:41,510
+And now, if I SELECT
+star FROM birthdays,
+
+700
+00:39:41,510 --> 00:39:46,940
+I should see that now Carter is added
+into our list of birthdays, all thanks
+
+701
+00:39:46,940 --> 00:39:49,460
+to db.execute.
+
+702
+00:39:49,460 --> 00:39:54,770
+So what questions do we have here
+on how we added data to our database
+
+703
+00:39:54,770 --> 00:39:57,395
+using Flask and the CS50 library?
+
+704
+00:39:57,395 --> 00:40:00,950
+
+
+705
+00:40:00,950 --> 00:40:04,700
+Is there another SQLite
+library to use similar to CS50?
+
+706
+00:40:04,700 --> 00:40:08,960
+So I think our own library is based
+on a library called SQLAlchemy,
+
+707
+00:40:08,960 --> 00:40:09,830
+if you're familiar.
+
+708
+00:40:09,830 --> 00:40:12,497
+If you want to learn more about
+that, you can look it up online.
+
+709
+00:40:12,497 --> 00:40:15,140
+
+
+710
+00:40:15,140 --> 00:40:18,590
+Question, if you have a long
+query, how should you properly
+
+711
+00:40:18,590 --> 00:40:20,090
+format on multiple lines?
+
+712
+00:40:20,090 --> 00:40:23,390
+That will depend on your own style.
+
+713
+00:40:23,390 --> 00:40:28,080
+I think generally, one way
+to do that is as follows.
+
+714
+00:40:28,080 --> 00:40:30,080
+If you have a long query,
+I tend to do something
+
+715
+00:40:30,080 --> 00:40:34,880
+like this, where you have three
+quotes, and then hit Tab or Enter.
+
+716
+00:40:34,880 --> 00:40:36,380
+Here it is on multiple lines.
+
+717
+00:40:36,380 --> 00:40:40,920
+And then close again with three
+quotes down below like this.
+
+718
+00:40:40,920 --> 00:40:44,070
+Some people would say,
+looks a little messier.
+
+719
+00:40:44,070 --> 00:40:46,940
+Let me see if I can make
+it any better, actually.
+
+720
+00:40:46,940 --> 00:40:49,460
+Something like this.
+
+721
+00:40:49,460 --> 00:40:53,320
+And then, name, month, and the--
+
+722
+00:40:53,320 --> 00:40:55,950
+there are formatters that
+will actually do this for you,
+
+723
+00:40:55,950 --> 00:40:58,735
+so you don't need to specify
+exactly how this needs to look.
+
+724
+00:40:58,735 --> 00:41:00,860
+But you can do things like
+this if you want to make
+
+725
+00:41:00,860 --> 00:41:04,250
+it a little more readable, overall.
+
+726
+00:41:04,250 --> 00:41:05,930
+Other questions too.
+
+727
+00:41:05,930 --> 00:41:07,715
+I'll leave it all as one line for now.
+
+728
+00:41:07,715 --> 00:41:10,830
+
+
+729
+00:41:10,830 --> 00:41:15,270
+Can we use an F-string
+instead of question mark?
+
+730
+00:41:15,270 --> 00:41:17,490
+You could, but you really
+shouldn't, and that's
+
+731
+00:41:17,490 --> 00:41:21,070
+because of SQL injection attacks,
+which you learned about a little bit,
+
+732
+00:41:21,070 --> 00:41:23,940
+I think two weeks prior
+in our week seven.
+
+733
+00:41:23,940 --> 00:41:27,720
+SQL injection attacks allow the
+user to add in any kind of SQL code
+
+734
+00:41:27,720 --> 00:41:28,710
+they want to.
+
+735
+00:41:28,710 --> 00:41:30,870
+When you use these question marks here--
+
+736
+00:41:30,870 --> 00:41:33,930
+these question marks, they
+take care of guarding you
+
+737
+00:41:33,930 --> 00:41:35,970
+against SQL injection attacks.
+
+738
+00:41:35,970 --> 00:41:39,000
+Whereas an F-string, a
+regular F-string, does not.
+
+739
+00:41:39,000 --> 00:41:43,830
+So you could use them,
+but you really should not.
+
+740
+00:41:43,830 --> 00:41:44,820
+OK.
+
+741
+00:41:44,820 --> 00:41:49,590
+I think that just about covers
+most of our questions here.
+
+742
+00:41:49,590 --> 00:41:53,300
+So let's keep going.
+
+743
+00:41:53,300 --> 00:41:55,800
+Now one thing before we move on--
+
+744
+00:41:55,800 --> 00:41:59,480
+I'll only touch on this briefly
+--is that what we've done here
+
+745
+00:41:59,480 --> 00:42:03,290
+is we've kind of trusted that
+the user will give us some data.
+
+746
+00:42:03,290 --> 00:42:07,100
+And let's see what could
+go wrong if for instance, I
+
+747
+00:42:07,100 --> 00:42:08,870
+don't follow that assumption.
+
+748
+00:42:08,870 --> 00:42:10,580
+I'll SELECT star FROM birthdays.
+
+749
+00:42:10,580 --> 00:42:14,120
+Why don't I then go and just not--
+
+750
+00:42:14,120 --> 00:42:17,030
+I'll click Add Birthday,
+but I won't type anything
+
+751
+00:42:17,030 --> 00:42:18,740
+in to this particular form.
+
+752
+00:42:18,740 --> 00:42:24,580
+I'll Add Birthday, and now, let me
+try selecting star from birthdays,
+
+753
+00:42:24,580 --> 00:42:27,880
+and I don't know if I want
+this row in my database.
+
+754
+00:42:27,880 --> 00:42:30,470
+This is kind of not
+what I expected here.
+
+755
+00:42:30,470 --> 00:42:34,060
+So, I think what happened
+is, when I clicked Submit,
+
+756
+00:42:34,060 --> 00:42:37,240
+I simply trusted the user
+would have some data to insert.
+
+757
+00:42:37,240 --> 00:42:39,130
+In this case though, they didn't.
+
+758
+00:42:39,130 --> 00:42:42,760
+They just sent me some empty
+strings, and then my application
+
+759
+00:42:42,760 --> 00:42:46,280
+added those empty
+strings to my database.
+
+760
+00:42:46,280 --> 00:42:47,960
+So, why don't I just delete this.
+
+761
+00:42:47,960 --> 00:42:55,390
+I'll DELETE FROM birthdays
+WHERE id equals 6.
+
+762
+00:42:55,390 --> 00:42:58,450
+And then I'll SELECT star
+again, so that is gone.
+
+763
+00:42:58,450 --> 00:43:02,260
+But I could guard against
+this by being a little more
+
+764
+00:43:02,260 --> 00:43:05,030
+smart about when I request user input.
+
+765
+00:43:05,030 --> 00:43:09,160
+So when I get user
+input, it's a good habit
+
+766
+00:43:09,160 --> 00:43:12,260
+to actually check if it
+matches my expectations.
+
+767
+00:43:12,260 --> 00:43:14,020
+So I could say something like this.
+
+768
+00:43:14,020 --> 00:43:19,750
+If not name-- if I don't get back
+a name, maybe it's an empty string,
+
+769
+00:43:19,750 --> 00:43:22,240
+maybe it's a special
+keyword called none,
+
+770
+00:43:22,240 --> 00:43:26,240
+I should just redirect the
+user back to the slash route.
+
+771
+00:43:26,240 --> 00:43:30,170
+So here, I won't actually
+get down to the portion
+
+772
+00:43:30,170 --> 00:43:32,540
+where I execute the SQL statement.
+
+773
+00:43:32,540 --> 00:43:37,650
+I will instead, just prematurely
+redirect them to the slash route.
+
+774
+00:43:37,650 --> 00:43:38,900
+I could do the same for month.
+
+775
+00:43:38,900 --> 00:43:42,980
+I could say if not month, that
+is if month is an empty string,
+
+776
+00:43:42,980 --> 00:43:46,020
+then redirect to the slash route.
+
+777
+00:43:46,020 --> 00:43:52,290
+And if not day, then redirect
+to the slash route as well.
+
+778
+00:43:52,290 --> 00:43:56,783
+This will simply return the user
+back to that slash route overall.
+
+779
+00:43:56,783 --> 00:43:58,700
+I could maybe make this
+a little more shorter,
+
+780
+00:43:58,700 --> 00:44:03,210
+I could say if not name or
+not month, and et cetera.
+
+781
+00:44:03,210 --> 00:44:04,918
+But for now, I'll leave it as this.
+
+782
+00:44:04,918 --> 00:44:06,710
+The main thing though,
+is that you're often
+
+783
+00:44:06,710 --> 00:44:10,080
+testing for things you
+don't want to have happen,
+
+784
+00:44:10,080 --> 00:44:14,900
+and handling them before you do what you
+think you want to do with the user data
+
+785
+00:44:14,900 --> 00:44:15,590
+down below.
+
+786
+00:44:15,590 --> 00:44:19,060
+
+
+787
+00:44:19,060 --> 00:44:20,190
+All right.
+
+788
+00:44:20,190 --> 00:44:22,110
+So now that we've seen
+some validation, I
+
+789
+00:44:22,110 --> 00:44:25,800
+think our last step is to see these
+birthdays actually printed out
+
+790
+00:44:25,800 --> 00:44:26,770
+on the screen.
+
+791
+00:44:26,770 --> 00:44:27,720
+So let's try that.
+
+792
+00:44:27,720 --> 00:44:32,860
+And to start, let's go down to
+this else here in this final TODO.
+
+793
+00:44:32,860 --> 00:44:37,470
+Which is display the entries
+in the database on index.html.
+
+794
+00:44:37,470 --> 00:44:38,650
+Display the entries.
+
+795
+00:44:38,650 --> 00:44:44,580
+So here, we've handled the case
+where the user submits data via POST.
+
+796
+00:44:44,580 --> 00:44:48,450
+But when they simply go to this
+page, perhaps for the first time,
+
+797
+00:44:48,450 --> 00:44:50,760
+or they just refresh it
+without submitting the form,
+
+798
+00:44:50,760 --> 00:44:55,100
+we want them to see some
+birthdays down below here.
+
+799
+00:44:55,100 --> 00:45:02,480
+But the question first is, well, what
+data should we show in index.html?
+
+800
+00:45:02,480 --> 00:45:04,550
+Seems like the data in our database.
+
+801
+00:45:04,550 --> 00:45:07,280
+What ideas do you have
+for how we can actually
+
+802
+00:45:07,280 --> 00:45:10,640
+pull all that data from our database?
+
+803
+00:45:10,640 --> 00:45:14,630
+We've seen a tool we could use before.
+
+804
+00:45:14,630 --> 00:45:18,075
+What could we use to get that
+database information now?
+
+805
+00:45:18,075 --> 00:45:21,800
+
+
+806
+00:45:21,800 --> 00:45:23,390
+So I see some suggestions.
+
+807
+00:45:23,390 --> 00:45:25,420
+We could maybe use request.form.
+
+808
+00:45:25,420 --> 00:45:29,410
+That is good for getting
+data from the form itself
+
+809
+00:45:29,410 --> 00:45:33,220
+when the user submits
+that data via POST.
+
+810
+00:45:33,220 --> 00:45:37,180
+In this case, we want to actually
+get data from our database,
+
+811
+00:45:37,180 --> 00:45:42,650
+and we could use db.execute to
+execute some query on our database.
+
+812
+00:45:42,650 --> 00:45:46,780
+So I could choose db.execute,
+and then maybe whatever query
+
+813
+00:45:46,780 --> 00:45:50,500
+would give me back all entries
+in the database on index.html.
+
+814
+00:45:50,500 --> 00:45:53,980
+So why don't I say SELECT
+star FROM birthdays,
+
+815
+00:45:53,980 --> 00:45:57,100
+which would give me back
+every row inside of birthdays
+
+816
+00:45:57,100 --> 00:46:00,640
+and every column, which
+seems good enough for me.
+
+817
+00:46:00,640 --> 00:46:02,470
+Why don't I then give that a name.
+
+818
+00:46:02,470 --> 00:46:05,680
+I could say, maybe I'll call this rows.
+
+819
+00:46:05,680 --> 00:46:08,350
+These are the rows
+returned by my database.
+
+820
+00:46:08,350 --> 00:46:11,110
+And then I'll print
+out rows to my terminal
+
+821
+00:46:11,110 --> 00:46:13,520
+to see if this is working so far.
+
+822
+00:46:13,520 --> 00:46:16,900
+So I'll go to Birthdays,
+and I will refresh the page.
+
+823
+00:46:16,900 --> 00:46:19,060
+You're making a GET request there.
+
+824
+00:46:19,060 --> 00:46:24,310
+Now I'll go back to my Flask
+server running in my terminal,
+
+825
+00:46:24,310 --> 00:46:26,140
+and I'll see some data.
+
+826
+00:46:26,140 --> 00:46:28,120
+You can see this down below here.
+
+827
+00:46:28,120 --> 00:46:34,480
+This is what db.execute returned
+to me, and notice that it
+
+828
+00:46:34,480 --> 00:46:38,140
+seems to be a list of dictionaries.
+
+829
+00:46:38,140 --> 00:46:42,350
+It's a list because, notice on the
+outside it has these square brackets.
+
+830
+00:46:42,350 --> 00:46:45,610
+And it's a list of dictionaries
+because on the inside, notice
+
+831
+00:46:45,610 --> 00:46:51,310
+how we have curly braces, and in the
+middle, lots of key and value pairs.
+
+832
+00:46:51,310 --> 00:46:53,020
+So the id is a key.
+
+833
+00:46:53,020 --> 00:46:54,250
+The value is 1.
+
+834
+00:46:54,250 --> 00:46:55,390
+The name is the key.
+
+835
+00:46:55,390 --> 00:46:56,620
+The value is Harry.
+
+836
+00:46:56,620 --> 00:46:58,330
+Same for month and day.
+
+837
+00:46:58,330 --> 00:47:05,110
+And notice how for each row, we have
+our very own dictionary and some data
+
+838
+00:47:05,110 --> 00:47:07,640
+in terms of keys and values.
+
+839
+00:47:07,640 --> 00:47:12,700
+So this is what we could use to
+render our birthdays in index.html.
+
+840
+00:47:12,700 --> 00:47:18,280
+But first we need to pass this
+information into index.html in order
+
+841
+00:47:18,280 --> 00:47:19,150
+to render it.
+
+842
+00:47:19,150 --> 00:47:24,130
+And as we saw in lecture, we can do this
+by adding in a special keyword argument
+
+843
+00:47:24,130 --> 00:47:25,210
+to render template.
+
+844
+00:47:25,210 --> 00:47:32,110
+So in index.html, if I want to be able
+to access this particular data, rows,
+
+845
+00:47:32,110 --> 00:47:37,100
+under some name in index.html, I
+could say something like as follows.
+
+846
+00:47:37,100 --> 00:47:40,640
+Maybe birthdays equals
+rows, and that will
+
+847
+00:47:40,640 --> 00:47:45,890
+allow me to access the same data
+that's in rows, but now under the name
+
+848
+00:47:45,890 --> 00:47:49,010
+birthdays in index.html.
+
+849
+00:47:49,010 --> 00:47:50,340
+So let's try that.
+
+850
+00:47:50,340 --> 00:47:52,280
+I'll go to index.html.
+
+851
+00:47:52,280 --> 00:47:56,030
+And I will scroll down, and
+I'll go down to my table body.
+
+852
+00:47:56,030 --> 00:48:00,680
+And let's say I want to show
+whatever's inside birthdays.
+
+853
+00:48:00,680 --> 00:48:07,250
+Because remember, I told render template
+that inside of this variable birthdays,
+
+854
+00:48:07,250 --> 00:48:10,740
+they would have the data
+that's inside of rows.
+
+855
+00:48:10,740 --> 00:48:13,640
+So now I'll make the
+special placeholder syntax.
+
+856
+00:48:13,640 --> 00:48:16,970
+This comes from Jinja, our
+templating syntax, that says,
+
+857
+00:48:16,970 --> 00:48:22,800
+whatever is inside of birthdays, show
+it to me right here on this page.
+
+858
+00:48:22,800 --> 00:48:25,370
+So now let me go back
+to our application.
+
+859
+00:48:25,370 --> 00:48:28,210
+I will refresh the page.
+
+860
+00:48:28,210 --> 00:48:32,500
+And I see some data, but it
+doesn't look properly formatted.
+
+861
+00:48:32,500 --> 00:48:34,360
+So I think things are
+happening, which is
+
+862
+00:48:34,360 --> 00:48:40,890
+that I'm able to pass in that same
+data from Rose to my application,
+
+863
+00:48:40,890 --> 00:48:42,670
+it just doesn't look very pretty.
+
+864
+00:48:42,670 --> 00:48:46,270
+So what I could do is use
+some other features of Jinja
+
+865
+00:48:46,270 --> 00:48:48,760
+that are very similar in
+spirit to Python to print
+
+866
+00:48:48,760 --> 00:48:51,740
+this information out row by row by row.
+
+867
+00:48:51,740 --> 00:48:58,090
+And for this, what I find very handy
+is that Jinja has a special kind
+
+868
+00:48:58,090 --> 00:49:00,460
+of for loop similar to Python.
+
+869
+00:49:00,460 --> 00:49:04,190
+If I want to make a for loop in
+Jinja by convention, I do this.
+
+870
+00:49:04,190 --> 00:49:08,500
+I could have this denoted inside of
+this bracket percent sign, and then
+
+871
+00:49:08,500 --> 00:49:09,820
+percent sign bracket.
+
+872
+00:49:09,820 --> 00:49:12,430
+I could say for, and
+then similar to Python,
+
+873
+00:49:12,430 --> 00:49:16,390
+let's maybe do for
+birthday in birthdays.
+
+874
+00:49:16,390 --> 00:49:19,810
+This could be anything, it
+could be for a row in birthdays,
+
+875
+00:49:19,810 --> 00:49:22,930
+but I'll stick with birthday
+here, kind of by convention.
+
+876
+00:49:22,930 --> 00:49:27,100
+And now I need to close this
+for loop, endfor down below.
+
+877
+00:49:27,100 --> 00:49:31,520
+This is just syntax you would learn
+by using Jinja more frequently.
+
+878
+00:49:31,520 --> 00:49:37,130
+Now in the inside, I could do the very
+same thing I would do in a Python loop.
+
+879
+00:49:37,130 --> 00:49:45,420
+I could, for instance, say, give me,
+let's say, birthday.name, which means,
+
+880
+00:49:45,420 --> 00:49:49,220
+on this particular dictionary,
+for this particular row
+
+881
+00:49:49,220 --> 00:49:56,010
+in my list of dictionaries, access
+the value with the key, name.
+
+882
+00:49:56,010 --> 00:49:58,970
+So birthday.name says,
+in this dictionary,
+
+883
+00:49:58,970 --> 00:50:03,740
+give me the value for
+the name, the name key.
+
+884
+00:50:03,740 --> 00:50:07,890
+And to make sure this is actually
+being added properly to my table,
+
+885
+00:50:07,890 --> 00:50:12,620
+let me try inside this
+for loop, to add a td--
+
+886
+00:50:12,620 --> 00:50:14,030
+or a tr element.
+
+887
+00:50:14,030 --> 00:50:16,130
+Sorry, a tr means table row.
+
+888
+00:50:16,130 --> 00:50:20,300
+And then inside of this, I'll add a td
+element, which stands for table data,
+
+889
+00:50:20,300 --> 00:50:22,470
+or kind of like a table column.
+
+890
+00:50:22,470 --> 00:50:27,020
+So here I have the name
+associated with the birthdays.
+
+891
+00:50:27,020 --> 00:50:31,580
+I'll go back to my page, refresh it.
+
+892
+00:50:31,580 --> 00:50:35,930
+And now I actually see the names
+more nicely formatted for me.
+
+893
+00:50:35,930 --> 00:50:40,700
+And if I choose to go to Developer
+Tools, if I Zoom in a little bit
+
+894
+00:50:40,700 --> 00:50:48,060
+over here, notice how if I go to
+container, this table, tbodyy--
+
+895
+00:50:48,060 --> 00:50:52,430
+notice how for every birthday
+in my list of birthdays,
+
+896
+00:50:52,430 --> 00:50:56,330
+I now have a tr element here.
+
+897
+00:50:56,330 --> 00:50:59,790
+All thanks to Jinja and the
+templating syntax there.
+
+898
+00:50:59,790 --> 00:51:01,280
+So let's clean this up.
+
+899
+00:51:01,280 --> 00:51:08,180
+I'll make sure I have not just
+birthday.name, but also birthday.month,
+
+900
+00:51:08,180 --> 00:51:14,440
+and then slash birthday.day, like this.
+
+901
+00:51:14,440 --> 00:51:17,150
+And that should complete my for loop.
+
+902
+00:51:17,150 --> 00:51:19,480
+So if I refresh the
+page again, now I should
+
+903
+00:51:19,480 --> 00:51:22,780
+see that I have all my
+birthdays very nicely listed out
+
+904
+00:51:22,780 --> 00:51:26,580
+in terms of this table down below.
+
+905
+00:51:26,580 --> 00:51:32,120
+So let me ask now, what questions we
+have on our templating for Jinja here?
+
+906
+00:51:32,120 --> 00:51:37,770
+
+
+907
+00:51:37,770 --> 00:51:40,750
+A good question I see, who
+plugs in these values for us?
+
+908
+00:51:40,750 --> 00:51:43,860
+So, here, I'm using this
+placeholder notation,
+
+909
+00:51:43,860 --> 00:51:45,570
+with these double curly braces.
+
+910
+00:51:45,570 --> 00:51:49,060
+But who is actually in charge
+of substituting these values?
+
+911
+00:51:49,060 --> 00:51:53,920
+Well, Flask actually is, in particular,
+the render template function is.
+
+912
+00:51:53,920 --> 00:51:57,780
+So notice how when I make a
+GET request to the slash route,
+
+913
+00:51:57,780 --> 00:52:00,240
+if it's not a POST
+request, we'll go down here
+
+914
+00:52:00,240 --> 00:52:03,990
+and we will select all birthdays
+from the birthdays table.
+
+915
+00:52:03,990 --> 00:52:08,640
+Then I will render the
+template index.html,
+
+916
+00:52:08,640 --> 00:52:12,060
+passing in data for
+this birthdays variable
+
+917
+00:52:12,060 --> 00:52:15,030
+that we're having to use in index.html.
+
+918
+00:52:15,030 --> 00:52:19,620
+So what render template does is
+it takes this HTML file, exactly
+
+919
+00:52:19,620 --> 00:52:23,490
+as you see it here, it looks
+through it and it says something
+
+920
+00:52:23,490 --> 00:52:27,570
+like, I see this variable
+called birthdays,
+
+921
+00:52:27,570 --> 00:52:30,240
+but what data should
+go inside of birthdays?
+
+922
+00:52:30,240 --> 00:52:33,270
+Well hopefully, I was told
+what data should go in there.
+
+923
+00:52:33,270 --> 00:52:36,330
+It will then look and
+see, OK, I was told
+
+924
+00:52:36,330 --> 00:52:38,020
+which information should go in there.
+
+925
+00:52:38,020 --> 00:52:42,610
+I will render that for me, and I will
+actually substitute in these values
+
+926
+00:52:42,610 --> 00:52:46,100
+and return it to you
+as this version here.
+
+927
+00:52:46,100 --> 00:52:49,030
+So notice how in this
+version, its render template
+
+928
+00:52:49,030 --> 00:52:53,420
+has replaced all of the placeholders
+with actual pieces of data.
+
+929
+00:52:53,420 --> 00:52:57,400
+So you don't see the placeholder syntax
+anymore, but you see the actual data.
+
+930
+00:52:57,400 --> 00:53:00,350
+
+
+931
+00:53:00,350 --> 00:53:04,400
+Let's see, would each user get a
+new table for their saved birthdays?
+
+932
+00:53:04,400 --> 00:53:08,970
+In fact, every user would get a
+new row, because in for loop here,
+
+933
+00:53:08,970 --> 00:53:14,100
+we said for every birthday in birthdays,
+add some new table row to our table.
+
+934
+00:53:14,100 --> 00:53:15,500
+So let's try this out.
+
+935
+00:53:15,500 --> 00:53:17,480
+Maybe I'll add in another birthday.
+
+936
+00:53:17,480 --> 00:53:19,610
+I'll add one for--
+
+937
+00:53:19,610 --> 00:53:22,010
+let's go ahead and add
+Amy's Birthday, which
+
+938
+00:53:22,010 --> 00:53:27,710
+is the fifth month and the fifth day.
+
+939
+00:53:27,710 --> 00:53:31,560
+I'll add the birthday and we
+should see that Amy pops up
+
+940
+00:53:31,560 --> 00:53:33,980
+down below, with the birthday on 5/5.
+
+941
+00:53:33,980 --> 00:53:36,730
+
+
+942
+00:53:36,730 --> 00:53:39,280
+All right.
+
+943
+00:53:39,280 --> 00:53:40,810
+How did these get their formatting?
+
+944
+00:53:40,810 --> 00:53:46,270
+So we saw here, this is a number, and
+then a slash, and then a number again.
+
+945
+00:53:46,270 --> 00:53:47,900
+We simply specify that in our HTML.
+
+946
+00:53:47,900 --> 00:53:51,760
+So if I go to index.html
+here, notice how in this td,
+
+947
+00:53:51,760 --> 00:53:55,000
+I have a placeholder for the
+month, followed by a slash.
+
+948
+00:53:55,000 --> 00:53:57,950
+This slash, which is like
+literally, I want to show up there.
+
+949
+00:53:57,950 --> 00:54:00,770
+And then afterwards, I
+have the birthday.day.
+
+950
+00:54:00,770 --> 00:54:04,630
+So this is how it renders, where
+I see the birthday.month, and then
+
+951
+00:54:04,630 --> 00:54:07,780
+a literal slash, and
+the day afterwards too.
+
+952
+00:54:07,780 --> 00:54:08,890
+Good question.
+
+953
+00:54:08,890 --> 00:54:10,580
+Let me actually let you see it.
+
+954
+00:54:10,580 --> 00:54:14,440
+So here we have the two, and
+the slash, and then the one.
+
+955
+00:54:14,440 --> 00:54:16,496
+Like that.
+
+956
+00:54:16,496 --> 00:54:18,725
+Cool.
+
+957
+00:54:18,725 --> 00:54:19,225
+OK.
+
+958
+00:54:19,225 --> 00:54:22,850
+
+
+959
+00:54:22,850 --> 00:54:25,955
+Other questions on Flask in general?
+
+960
+00:54:25,955 --> 00:54:34,720
+
+
+961
+00:54:34,720 --> 00:54:35,220
+OK.
+
+962
+00:54:35,220 --> 00:54:38,310
+So suffice to say for now,
+there are a few improvements
+
+963
+00:54:38,310 --> 00:54:41,220
+still to be made to this application.
+
+964
+00:54:41,220 --> 00:54:48,190
+One, is this idea of trying to
+add more validation to user input.
+
+965
+00:54:48,190 --> 00:54:52,200
+So notice how on app.py,
+all we did was simply
+
+966
+00:54:52,200 --> 00:54:54,960
+ask if the user didn't
+give us information.
+
+967
+00:54:54,960 --> 00:54:57,360
+But it could be useful,
+maybe on your own,
+
+968
+00:54:57,360 --> 00:55:00,038
+to try to check if the
+user gave us a month.
+
+969
+00:55:00,038 --> 00:55:01,830
+That's great, but we
+also want to make sure
+
+970
+00:55:01,830 --> 00:55:04,920
+that that number is between one and 12.
+
+971
+00:55:04,920 --> 00:55:09,300
+Or for the day, we want to make sure
+that the day is between one and 31.
+
+972
+00:55:09,300 --> 00:55:12,660
+So always try to not
+trust your user input,
+
+973
+00:55:12,660 --> 00:55:15,030
+and try to have those
+validations in place.
+
+974
+00:55:15,030 --> 00:55:20,310
+Similarly, in our index.html,
+if I scroll up, let's see this.
+
+975
+00:55:20,310 --> 00:55:23,220
+I can also specify other attributes.
+
+976
+00:55:23,220 --> 00:55:29,790
+I could maybe specify for this
+input of type number, a minimum.
+
+977
+00:55:29,790 --> 00:55:33,780
+The minimum the user could type
+in is one, and the max is 12.
+
+978
+00:55:33,780 --> 00:55:37,150
+That allows me to have some
+client-side validation.
+
+979
+00:55:37,150 --> 00:55:38,560
+And same for day.
+
+980
+00:55:38,560 --> 00:55:41,440
+Maybe it's minimum one and maximum 31.
+
+981
+00:55:41,440 --> 00:55:43,930
+But that's all fine and
+good, we just also want
+
+982
+00:55:43,930 --> 00:55:47,720
+to have that validation as
+well on the server side too.
+
+983
+00:55:47,720 --> 00:55:50,180
+So I'll leave that part up to you.
+
+984
+00:55:50,180 --> 00:55:55,240
+And I think with that, we have really
+seen a lot of what Flask can offer us.
+
+985
+00:55:55,240 --> 00:55:57,850
+We're able to build our very
+own birthdays application.
+
+986
+00:55:57,850 --> 00:56:02,830
+And I think with that, we'll go ahead
+and conclude our last CS50 section
+
+987
+00:56:02,830 --> 00:56:05,000
+for this week.
+
+988
+00:56:05,000 --> 00:56:10,440
+This was CS50'S Week 9 section,
+and we'll see you all next time.
+
+989
+00:56:10,440 --> 00:56:12,000

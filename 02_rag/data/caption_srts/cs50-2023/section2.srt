@@ -1,0 +1,5471 @@
+1
+00:00:00,000 --> 00:00:02,102
+
+
+2
+00:00:02,102 --> 00:00:03,810
+CARTER ZENKE: OK,
+well, hello one and all
+
+3
+00:00:03,810 --> 00:00:06,990
+and welcome to CS50's week two section.
+
+4
+00:00:06,990 --> 00:00:09,210
+This week we learned about arrays.
+
+5
+00:00:09,210 --> 00:00:13,890
+That is how to store data inside of
+a computer using our very first data
+
+6
+00:00:13,890 --> 00:00:16,170
+structure, if you will,
+this way of storing data
+
+7
+00:00:16,170 --> 00:00:18,790
+back to back in a computer's memory.
+
+8
+00:00:18,790 --> 00:00:23,640
+So the goal of these sections here is to
+help you bridge the gap between lecture
+
+9
+00:00:23,640 --> 00:00:25,300
+and this week's problem set.
+
+10
+00:00:25,300 --> 00:00:27,420
+So we'll go through a few
+of the lecture topics,
+
+11
+00:00:27,420 --> 00:00:29,760
+have you all ask the
+questions you want to ask,
+
+12
+00:00:29,760 --> 00:00:32,340
+and get some practice that
+might help you as you go off
+
+13
+00:00:32,340 --> 00:00:35,800
+and work on the problem set
+individually on your own.
+
+14
+00:00:35,800 --> 00:00:37,800
+So to begin, my, name is Carter Zenke.
+
+15
+00:00:37,800 --> 00:00:40,150
+I'm one of the course's
+preceptors here on campus.
+
+16
+00:00:40,150 --> 00:00:43,358
+If you want to be in touch with me, feel
+free to email me at this email right
+
+17
+00:00:43,358 --> 00:00:47,250
+here, carter@cs50.harvard.edu.
+
+18
+00:00:47,250 --> 00:00:49,020
+But a brief overview of today.
+
+19
+00:00:49,020 --> 00:00:50,580
+Today will look a bit like this.
+
+20
+00:00:50,580 --> 00:00:53,970
+We'll begin focusing on
+this idea of compilation.
+
+21
+00:00:53,970 --> 00:00:58,230
+How do we take the code that
+we write in C, for instance,
+
+22
+00:00:58,230 --> 00:01:01,320
+that source code we write
+in a file, and how do we
+
+23
+00:01:01,320 --> 00:01:04,900
+convert that to the zeros and
+ones that a computer actually
+
+24
+00:01:04,900 --> 00:01:07,120
+understands and can run?
+
+25
+00:01:07,120 --> 00:01:09,340
+We'll then focus on this idea of arrays.
+
+26
+00:01:09,340 --> 00:01:13,280
+How do we store data more
+efficiently than we've seen before?
+
+27
+00:01:13,280 --> 00:01:16,690
+And then we'll focus in particular
+on this idea of a string.
+
+28
+00:01:16,690 --> 00:01:19,270
+How do we store characters
+that then themselves
+
+29
+00:01:19,270 --> 00:01:22,510
+form entire words or sentences
+inside of our computers?
+
+30
+00:01:22,510 --> 00:01:24,760
+And finally, towards
+the end, we'll focus
+
+31
+00:01:24,760 --> 00:01:27,440
+on this idea of command line arguments.
+
+32
+00:01:27,440 --> 00:01:32,380
+So you've already been using programs
+that use command line arguments in CS50
+
+33
+00:01:32,380 --> 00:01:32,980
+already.
+
+34
+00:01:32,980 --> 00:01:35,050
+But now you get to see
+exactly what they are
+
+35
+00:01:35,050 --> 00:01:39,080
+and how you could write programs
+that actually use them yourself.
+
+36
+00:01:39,080 --> 00:01:42,070
+So let's dive right
+into compilation then.
+
+37
+00:01:42,070 --> 00:01:44,860
+So in lecture, we
+learned that compilation
+
+38
+00:01:44,860 --> 00:01:49,510
+was a way of taking the source code
+we write, let's say some code in C,
+
+39
+00:01:49,510 --> 00:01:54,160
+and converting it into the actual
+binary a computer understands.
+
+40
+00:01:54,160 --> 00:01:56,660
+And our computer, as much as
+we might like to think so,
+
+41
+00:01:56,660 --> 00:01:59,680
+it doesn't understand
+C as a language itself.
+
+42
+00:01:59,680 --> 00:02:03,390
+There's an extra step that we have
+to follow called compilation that
+
+43
+00:02:03,390 --> 00:02:07,080
+takes that source code and
+converts it to the binary
+
+44
+00:02:07,080 --> 00:02:10,960
+that our computer actually
+understands at the end of the day.
+
+45
+00:02:10,960 --> 00:02:14,370
+So here, for example, is some
+piece of source code in C.
+
+46
+00:02:14,370 --> 00:02:16,560
+And I'm curious, for
+those of you who are here,
+
+47
+00:02:16,560 --> 00:02:20,320
+can you spot the bug
+in this source code?
+
+48
+00:02:20,320 --> 00:02:22,450
+This is some C code here.
+
+49
+00:02:22,450 --> 00:02:27,400
+If I were to run, make to compile
+this code, I might get some error.
+
+50
+00:02:27,400 --> 00:02:31,280
+And I'm curious if you can
+spot what that error might be.
+
+51
+00:02:31,280 --> 00:02:35,030
+So I'm seeing a few people saying
+that we're missing the F in printf.
+
+52
+00:02:35,030 --> 00:02:37,910
+There is no function in C
+called just print, at least
+
+53
+00:02:37,910 --> 00:02:39,450
+in the standard library.
+
+54
+00:02:39,450 --> 00:02:41,960
+So we have to say this is printf.
+
+55
+00:02:41,960 --> 00:02:46,070
+And the point here is that when you're
+using source code, these kinds of bugs
+
+56
+00:02:46,070 --> 00:02:48,890
+are, well, they're
+more obvious to catch.
+
+57
+00:02:48,890 --> 00:02:51,770
+If you're writing source code, it's
+kind of obvious, at least more so
+
+58
+00:02:51,770 --> 00:02:54,590
+in other cases, what
+bugs you might have.
+
+59
+00:02:54,590 --> 00:02:57,230
+But now let's consider, like
+we learned from lecture,
+
+60
+00:02:57,230 --> 00:03:00,890
+that the next step in compilation
+is taking this source code
+
+61
+00:03:00,890 --> 00:03:04,940
+and converting it into this middle
+language called assembly code.
+
+62
+00:03:04,940 --> 00:03:08,010
+And this is an example
+of assembly code here.
+
+63
+00:03:08,010 --> 00:03:10,850
+And I'm curious, for
+those of you in this room,
+
+64
+00:03:10,850 --> 00:03:12,947
+can you spot the bug in this program?
+
+65
+00:03:12,947 --> 00:03:15,530
+Or could you tell me if there
+is a bug in this program at all?
+
+66
+00:03:15,530 --> 00:03:18,080
+
+
+67
+00:03:18,080 --> 00:03:20,278
+Feel free to take a
+look at this code, even
+
+68
+00:03:20,278 --> 00:03:21,820
+if you're not familiar with assembly.
+
+69
+00:03:21,820 --> 00:03:25,600
+
+
+70
+00:03:25,600 --> 00:03:27,200
+I'm seeing some shaking heads here.
+
+71
+00:03:27,200 --> 00:03:30,070
+So the point here is that
+you get this lower level
+
+72
+00:03:30,070 --> 00:03:35,200
+language, going beyond C, which is our
+source code, moving to assembly code,
+
+73
+00:03:35,200 --> 00:03:37,480
+it gets a little harder
+to spot the kinds of bugs
+
+74
+00:03:37,480 --> 00:03:39,100
+that arise in our programs.
+
+75
+00:03:39,100 --> 00:03:41,030
+And now let's take it one step further.
+
+76
+00:03:41,030 --> 00:03:43,900
+Let's go from assembly code
+down to the binary itself.
+
+77
+00:03:43,900 --> 00:03:45,940
+And I'll ask the same question.
+
+78
+00:03:45,940 --> 00:03:49,930
+Could you spot the bug in this code?
+
+79
+00:03:49,930 --> 00:03:53,460
+Feel free to chime in if
+you think you have it.
+
+80
+00:03:53,460 --> 00:03:56,400
+I'm hearing some folks
+say, not a chance.
+
+81
+00:03:56,400 --> 00:03:57,940
+You can't find the bug in this code.
+
+82
+00:03:57,940 --> 00:04:00,060
+That's to be expected, right?
+
+83
+00:04:00,060 --> 00:04:02,490
+Nobody among us is going to
+be an expert in binary that
+
+84
+00:04:02,490 --> 00:04:05,760
+can kind of parse through
+each individual 0 and 1
+
+85
+00:04:05,760 --> 00:04:09,250
+and find the bug in this code.
+
+86
+00:04:09,250 --> 00:04:14,790
+So there's this idea of
+trust in computer science,
+
+87
+00:04:14,790 --> 00:04:18,959
+that when you run this program,
+called Make at least in cs50,
+
+88
+00:04:18,959 --> 00:04:21,870
+or other programs, like
+compile other source code,
+
+89
+00:04:21,870 --> 00:04:26,550
+you're kind of trusting that it's going
+to take your source code as you have it
+
+90
+00:04:26,550 --> 00:04:30,960
+and compile it exactly
+as is down in to binary.
+
+91
+00:04:30,960 --> 00:04:34,920
+But you might not know if somebody
+were to be a bit of like a hacker
+
+92
+00:04:34,920 --> 00:04:37,170
+and try to maliciously
+alter your compile
+
+93
+00:04:37,170 --> 00:04:40,710
+to introduce a bug on the way of
+converting your source code down
+
+94
+00:04:40,710 --> 00:04:42,850
+to machine code, like 0s and 1s.
+
+95
+00:04:42,850 --> 00:04:45,510
+So it goes to show you that
+often in computer science
+
+96
+00:04:45,510 --> 00:04:47,442
+we use programs that we need to--
+
+97
+00:04:47,442 --> 00:04:50,400
+we use programs that we aren't quite
+sure whether we should trust or we
+
+98
+00:04:50,400 --> 00:04:50,900
+shouldn't.
+
+99
+00:04:50,900 --> 00:04:54,698
+And the only way to find out is to
+actually be trustworthy individuals.
+
+100
+00:04:54,698 --> 00:04:56,740
+So as you go off in the
+world of computer science
+
+101
+00:04:56,740 --> 00:04:59,290
+and you write your own
+programs, write your own source
+
+102
+00:04:59,290 --> 00:05:02,828
+code that converts things perhaps
+from source code to machine code,
+
+103
+00:05:02,828 --> 00:05:05,620
+you have to kind of trust yourself
+to be trustworthy in these cases
+
+104
+00:05:05,620 --> 00:05:09,410
+to help us make the programs we
+want to make at the end of the day.
+
+105
+00:05:09,410 --> 00:05:13,540
+So we'll focus not so much on technical
+parts of compiling here, but more so
+
+106
+00:05:13,540 --> 00:05:17,060
+on the actual ethical aspects of it too.
+
+107
+00:05:17,060 --> 00:05:20,880
+So questions then on
+compilation, this idea
+
+108
+00:05:20,880 --> 00:05:23,820
+of converting source
+code to machine code?
+
+109
+00:05:23,820 --> 00:05:27,430
+
+
+110
+00:05:27,430 --> 00:05:28,545
+Any questions so far?
+
+111
+00:05:28,545 --> 00:05:31,848
+
+
+112
+00:05:31,848 --> 00:05:35,140
+All right, so the key thing to take away
+here is just that when you are in CS50
+
+113
+00:05:35,140 --> 00:05:38,650
+and you're working on compiling your
+code, you'll use this program called
+
+114
+00:05:38,650 --> 00:05:43,120
+Make that converts your source
+code in C down to machine code.
+
+115
+00:05:43,120 --> 00:05:45,250
+As you go off and learn
+more computer science,
+
+116
+00:05:45,250 --> 00:05:48,822
+you'll see just how up in
+the air these things can be
+
+117
+00:05:48,822 --> 00:05:51,280
+and how much you have to actually
+trust the programs you're
+
+118
+00:05:51,280 --> 00:05:54,270
+using along the way.
+
+119
+00:05:54,270 --> 00:05:55,650
+All right, and a question here.
+
+120
+00:05:55,650 --> 00:05:58,960
+What will we be using in the
+real world to compile our C code?
+
+121
+00:05:58,960 --> 00:06:01,140
+So in the real world,
+just like in CS50, you'll
+
+122
+00:06:01,140 --> 00:06:03,210
+likely use a program called Make.
+
+123
+00:06:03,210 --> 00:06:07,270
+And there are various
+options that Make can have.
+
+124
+00:06:07,270 --> 00:06:10,140
+In this case, in CS50 we've
+kind of specified those for you.
+
+125
+00:06:10,140 --> 00:06:12,100
+As you go off in the
+world of computer science
+
+126
+00:06:12,100 --> 00:06:16,440
+and you try to expand your horizons,
+you might yourself set the options
+
+127
+00:06:16,440 --> 00:06:20,070
+for Make to more
+clearly specify what you
+
+128
+00:06:20,070 --> 00:06:24,150
+want the end result to be when you
+convert that source code to machine
+
+129
+00:06:24,150 --> 00:06:25,700
+code.
+
+130
+00:06:25,700 --> 00:06:27,810
+All right, so let's keep going here.
+
+131
+00:06:27,810 --> 00:06:29,770
+And our next topic from
+this week's lecture
+
+132
+00:06:29,770 --> 00:06:35,820
+was this idea of arrays that is a way
+of storing data in a computer's memory.
+
+133
+00:06:35,820 --> 00:06:38,420
+So in this week's
+problem set, you'll also
+
+134
+00:06:38,420 --> 00:06:41,660
+get to see a bit of a game that's
+popular I believe kind of around
+
+135
+00:06:41,660 --> 00:06:44,330
+the world, one called Scrabble.
+
+136
+00:06:44,330 --> 00:06:47,450
+And if you're not
+familiar, in Scrabble you
+
+137
+00:06:47,450 --> 00:06:53,060
+get these individual letter pieces,
+like ones for W, or ones for H,
+
+138
+00:06:53,060 --> 00:06:55,490
+or ones for D, for instance.
+
+139
+00:06:55,490 --> 00:07:00,270
+And each of those letters has
+on it a certain point value.
+
+140
+00:07:00,270 --> 00:07:01,710
+So let's see.
+
+141
+00:07:01,710 --> 00:07:04,310
+Letter H, that little square
+that has H on it, that
+
+142
+00:07:04,310 --> 00:07:07,670
+has four points that has been awarded.
+
+143
+00:07:07,670 --> 00:07:12,630
+D, that little square that has D on it,
+that has two points associated with it.
+
+144
+00:07:12,630 --> 00:07:16,970
+And as you play this game, the
+goal is to take these letters
+
+145
+00:07:16,970 --> 00:07:19,950
+and convert them into entire words.
+
+146
+00:07:19,950 --> 00:07:22,800
+So if you had, for instance,
+something that looked a bit like this,
+
+147
+00:07:22,800 --> 00:07:27,885
+you had these five letters, what word
+could you make from these five letters?
+
+148
+00:07:27,885 --> 00:07:30,580
+
+
+149
+00:07:30,580 --> 00:07:31,830
+You could probably make hello.
+
+150
+00:07:31,830 --> 00:07:36,780
+So you can take all these five letters,
+convert them into this word, hello.
+
+151
+00:07:36,780 --> 00:07:40,480
+And in Scrabble you'll play a
+word that looks a bit like this.
+
+152
+00:07:40,480 --> 00:07:43,920
+So notice here that H
+is worth four points.
+
+153
+00:07:43,920 --> 00:07:45,540
+E is worth one point.
+
+154
+00:07:45,540 --> 00:07:46,890
+L is worth one point.
+
+155
+00:07:46,890 --> 00:07:48,910
+And O is worth one point.
+
+156
+00:07:48,910 --> 00:07:53,910
+And if you add all of these points up,
+4 plus 1, plus 1, plus 1, plus 1, well,
+
+157
+00:07:53,910 --> 00:07:59,120
+you get a total of 8 points
+for playing this word.
+
+158
+00:07:59,120 --> 00:08:03,020
+Now there's actually a
+correspondence conceptually
+
+159
+00:08:03,020 --> 00:08:06,900
+between this idea of Scrabble
+and this idea of arrays.
+
+160
+00:08:06,900 --> 00:08:11,150
+So in the same way that we're
+taking individual pieces of data
+
+161
+00:08:11,150 --> 00:08:14,630
+or individual squares of
+letters and convert them
+
+162
+00:08:14,630 --> 00:08:18,770
+into one long word or one
+long space in computer memory,
+
+163
+00:08:18,770 --> 00:08:20,930
+we're doing the same thing with arrays.
+
+164
+00:08:20,930 --> 00:08:23,000
+We're taking these
+individual pieces of data
+
+165
+00:08:23,000 --> 00:08:26,720
+and lining them up back to back
+to back in a computer's memory
+
+166
+00:08:26,720 --> 00:08:31,980
+to store that data even better as
+we go and work on our programs.
+
+167
+00:08:31,980 --> 00:08:33,530
+So let's think ahead.
+
+168
+00:08:33,530 --> 00:08:37,140
+And in CS50 you'll actually get to
+make your very own final project.
+
+169
+00:08:37,140 --> 00:08:40,460
+And here is, for example, one
+student's final project in CS50.
+
+170
+00:08:40,460 --> 00:08:45,470
+They wrote a website that allowed you
+to keep track of your hours of sleep
+
+171
+00:08:45,470 --> 00:08:46,000
+each night.
+
+172
+00:08:46,000 --> 00:08:47,750
+So maybe you yourself
+could make something
+
+173
+00:08:47,750 --> 00:08:49,458
+similar to this by
+the end of the course.
+
+174
+00:08:49,458 --> 00:08:53,060
+But they allowed you to go to their
+website, type in the number of hours
+
+175
+00:08:53,060 --> 00:08:54,560
+you slept that previous night.
+
+176
+00:08:54,560 --> 00:08:58,410
+And they would store it for you and keep
+track of that day after day after day,
+
+177
+00:08:58,410 --> 00:09:03,100
+so you could look back and see how
+many hours you've slept over time.
+
+178
+00:09:03,100 --> 00:09:09,630
+Now, if we only had things
+like variables and not arrays,
+
+179
+00:09:09,630 --> 00:09:12,310
+we might be for something
+a bit like this.
+
+180
+00:09:12,310 --> 00:09:16,260
+We might have to store this
+data in individual pieces
+
+181
+00:09:16,260 --> 00:09:18,630
+kind of around our computer's memory.
+
+182
+00:09:18,630 --> 00:09:20,670
+And we might even give
+them individual name,
+
+183
+00:09:20,670 --> 00:09:24,600
+something like, well, on night
+one, we slept seven hours.
+
+184
+00:09:24,600 --> 00:09:27,450
+On night two we slept eight hours.
+
+185
+00:09:27,450 --> 00:09:30,060
+On night three we slept six hours.
+
+186
+00:09:30,060 --> 00:09:32,250
+And now I'm going to ask
+you this question here.
+
+187
+00:09:32,250 --> 00:09:35,370
+Why might this not be
+very well designed?
+
+188
+00:09:35,370 --> 00:09:40,020
+If we had to create one variable
+for every single night of sleep,
+
+189
+00:09:40,020 --> 00:09:44,210
+why might that program
+not be very well designed?
+
+190
+00:09:44,210 --> 00:09:47,870
+And what can we do better perhaps?
+
+191
+00:09:47,870 --> 00:09:48,545
+Any ideas?
+
+192
+00:09:48,545 --> 00:09:52,664
+
+
+193
+00:09:52,664 --> 00:09:55,930
+If we wanted to add more
+nights, that might not work.
+
+194
+00:09:55,930 --> 00:10:00,635
+In this case, I would say if we're using
+one variable for every night, I mean,
+
+195
+00:10:00,635 --> 00:10:01,510
+I think you're right.
+
+196
+00:10:01,510 --> 00:10:03,760
+So if we wanted to later
+on edit our program,
+
+197
+00:10:03,760 --> 00:10:06,640
+we generally specify all
+the variables that are
+
+198
+00:10:06,640 --> 00:10:08,510
+part of that program at the beginning.
+
+199
+00:10:08,510 --> 00:10:13,140
+So if we wanted to add more,
+I couldn't quite do that.
+
+200
+00:10:13,140 --> 00:10:16,860
+We'd have to find them all over
+again if we wanted to add them up.
+
+201
+00:10:16,860 --> 00:10:18,430
+That's a nice idea.
+
+202
+00:10:18,430 --> 00:10:21,780
+So we'd have to think
+back and be like, OK,
+
+203
+00:10:21,780 --> 00:10:25,530
+did I use the variable night1
+for this, or night2, or night3.
+
+204
+00:10:25,530 --> 00:10:28,900
+Which one belongs to
+this particular number?
+
+205
+00:10:28,900 --> 00:10:31,830
+So I would say that
+this isn't the best way
+
+206
+00:10:31,830 --> 00:10:35,490
+to store our data using all these
+individual variables because it
+
+207
+00:10:35,490 --> 00:10:38,200
+can get very hard to keep track of.
+
+208
+00:10:38,200 --> 00:10:41,670
+And so arrays here actually
+help us solve this problem.
+
+209
+00:10:41,670 --> 00:10:44,430
+They let us take our
+individual pieces of data
+
+210
+00:10:44,430 --> 00:10:48,930
+and put them all in a metaphorical
+and actually kind of physical line
+
+211
+00:10:48,930 --> 00:10:53,020
+inside of our computer back to back
+to back in our computer's memory.
+
+212
+00:10:53,020 --> 00:10:55,050
+So for instance, here's
+what it might look
+
+213
+00:10:55,050 --> 00:10:59,110
+like to have each of these
+hours inside of an array.
+
+214
+00:10:59,110 --> 00:11:03,000
+We'd again, just put them back to
+back to back in our computer's memory.
+
+215
+00:11:03,000 --> 00:11:07,770
+And we would then give this
+entire collection a single name,
+
+216
+00:11:07,770 --> 00:11:09,330
+let's say nights.
+
+217
+00:11:09,330 --> 00:11:12,615
+And so now we could see,
+well, on this first night,
+
+218
+00:11:12,615 --> 00:11:15,330
+it looks like we slept
+about seven hours.
+
+219
+00:11:15,330 --> 00:11:18,450
+On that next night, the
+next integer here, we
+
+220
+00:11:18,450 --> 00:11:23,130
+slept eight hours, and then six, and
+then seven, and then eight, again,
+
+221
+00:11:23,130 --> 00:11:26,370
+for a total of five nights of data.
+
+222
+00:11:26,370 --> 00:11:31,450
+Now, if we wanted to access not
+just this entire list of values,
+
+223
+00:11:31,450 --> 00:11:34,720
+but some in particular, well,
+we have some special syntax
+
+224
+00:11:34,720 --> 00:11:36,910
+we can use that C gives us.
+
+225
+00:11:36,910 --> 00:11:41,110
+We could say something
+like this, night[0].
+
+226
+00:11:41,110 --> 00:11:44,770
+And that will return to us, that
+will give us that very first value
+
+227
+00:11:44,770 --> 00:11:47,500
+in our array, so in this case, 7.
+
+228
+00:11:47,500 --> 00:11:52,225
+And you might be asking
+here, why not nights[1]?
+
+229
+00:11:52,225 --> 00:11:54,900
+
+
+230
+00:11:54,900 --> 00:11:57,240
+Well, in computer science,
+it's kind of a convention
+
+231
+00:11:57,240 --> 00:11:59,550
+that we start counting from 0.
+
+232
+00:11:59,550 --> 00:12:02,160
+As you saw when we wrote
+our very own for loops,
+
+233
+00:12:02,160 --> 00:12:06,810
+we began them by saying often
+that i equals 0 or j equals 0.
+
+234
+00:12:06,810 --> 00:12:08,940
+We start counting from 0.
+
+235
+00:12:08,940 --> 00:12:12,690
+And in this case, I would argue
+it actually kind of makes sense.
+
+236
+00:12:12,690 --> 00:12:19,350
+Like nights[0], 0 means start at the
+beginning of this array called nights
+
+237
+00:12:19,350 --> 00:12:22,200
+and don't move any
+further, move 0 places.
+
+238
+00:12:22,200 --> 00:12:25,110
+If we're looking at the beginning
+of our array called nights
+
+239
+00:12:25,110 --> 00:12:30,270
+and we move 0 places, well, we
+get back this number called seven.
+
+240
+00:12:30,270 --> 00:12:33,360
+But what if we did
+this, we said night[1]?
+
+241
+00:12:33,360 --> 00:12:34,390
+Well, we begin.
+
+242
+00:12:34,390 --> 00:12:37,050
+We'd look at the first
+place in our nights array.
+
+243
+00:12:37,050 --> 00:12:39,150
+And we'd say let's move one step over.
+
+244
+00:12:39,150 --> 00:12:41,560
+OK, now we found that second value.
+
+245
+00:12:41,560 --> 00:12:43,440
+In this case, it was 8.
+
+246
+00:12:43,440 --> 00:12:46,033
+And in the same way,
+we could say nights[2].
+
+247
+00:12:46,033 --> 00:12:47,700
+Well, let's begin at the very beginning.
+
+248
+00:12:47,700 --> 00:12:50,310
+And let's find 7 here.
+
+249
+00:12:50,310 --> 00:12:52,320
+But then we're moving two spaces over.
+
+250
+00:12:52,320 --> 00:12:54,310
+So we go 8, and then 6.
+
+251
+00:12:54,310 --> 00:12:57,770
+And now we have that very
+third value in our array.
+
+252
+00:12:57,770 --> 00:13:02,650
+So key idea here, we start counting
+from 0 as we're working with arrays.
+
+253
+00:13:02,650 --> 00:13:06,910
+And there's a technical name for this,
+which is that arrays are 0 indexed.
+
+254
+00:13:06,910 --> 00:13:10,820
+And what we're doing here is
+using this index, or this number,
+
+255
+00:13:10,820 --> 00:13:15,890
+to find the value of the array
+that we're actually looking for.
+
+256
+00:13:15,890 --> 00:13:20,800
+So to make this a little more apparent
+too, you might often draw out an array.
+
+257
+00:13:20,800 --> 00:13:25,900
+And you might try to assign an
+index to each of its elements.
+
+258
+00:13:25,900 --> 00:13:28,600
+For instance here, we have
+this same nights array.
+
+259
+00:13:28,600 --> 00:13:32,030
+But down at the bottom, we've
+indexed each of the elements.
+
+260
+00:13:32,030 --> 00:13:37,360
+So the very first one is assigned the
+0 index, the next one the 1 index,
+
+261
+00:13:37,360 --> 00:13:39,770
+the next one the 2 index, and so on.
+
+262
+00:13:39,770 --> 00:13:43,210
+So we could use nights bracket
+any of these numbers on the bottom
+
+263
+00:13:43,210 --> 00:13:46,890
+to get whatever number
+we're looking for.
+
+264
+00:13:46,890 --> 00:13:52,907
+Now, questions here on arrays,
+this indexing process here?
+
+265
+00:13:52,907 --> 00:13:53,990
+What questions do we have?
+
+266
+00:13:53,990 --> 00:14:02,510
+
+
+267
+00:14:02,510 --> 00:14:04,520
+OK, seeing none for now.
+
+268
+00:14:04,520 --> 00:14:07,230
+But feel free to keep
+chiming in if you'd like.
+
+269
+00:14:07,230 --> 00:14:13,430
+Now, one common question we get is, how
+can we then actually create an array?
+
+270
+00:14:13,430 --> 00:14:17,930
+We've seen the structure of an
+array, visually what they look like.
+
+271
+00:14:17,930 --> 00:14:21,440
+But how do we actually
+create a structure for one?
+
+272
+00:14:21,440 --> 00:14:23,450
+And for that we actually
+need to keep in mind
+
+273
+00:14:23,450 --> 00:14:26,330
+three different aspects of an array.
+
+274
+00:14:26,330 --> 00:14:30,805
+If we want to create an array, C needs
+to know three things about that array.
+
+275
+00:14:30,805 --> 00:14:32,930
+So for instance, one of
+the things it needs to know
+
+276
+00:14:32,930 --> 00:14:35,240
+is, what is the name of the array?
+
+277
+00:14:35,240 --> 00:14:39,500
+What should we call this collection
+of data in our computer's memory?
+
+278
+00:14:39,500 --> 00:14:43,820
+The next thing it needs to know
+is, what is the size of this array?
+
+279
+00:14:43,820 --> 00:14:45,980
+How many elements are we storing?
+
+280
+00:14:45,980 --> 00:14:49,360
+In this case, our size is five.
+
+281
+00:14:49,360 --> 00:14:53,470
+It also needs to know though
+what kind of data we're storing
+
+282
+00:14:53,470 --> 00:14:56,180
+or what type of data
+is inside this array.
+
+283
+00:14:56,180 --> 00:14:59,230
+So we also tell it what
+type it will store.
+
+284
+00:14:59,230 --> 00:15:03,380
+And in C arrays only store
+a single type of data.
+
+285
+00:15:03,380 --> 00:15:06,730
+So in this case, what
+type might we be storing?
+
+286
+00:15:06,730 --> 00:15:10,220
+It seems like we were storing integers.
+
+287
+00:15:10,220 --> 00:15:14,140
+So to combine these three
+ideas of the name, the type,
+
+288
+00:15:14,140 --> 00:15:18,130
+and the size of the array, we put all
+this together in C syntax that looks
+
+289
+00:15:18,130 --> 00:15:23,350
+a bit like this int nights[5].
+
+290
+00:15:23,350 --> 00:15:26,020
+And so to break this down,
+we first say the type
+
+291
+00:15:26,020 --> 00:15:30,520
+of whatever we're storing in the
+array, in this case, an integer.
+
+292
+00:15:30,520 --> 00:15:34,460
+Then we say the name of the
+array, nights like that.
+
+293
+00:15:34,460 --> 00:15:38,290
+And then in brackets we put
+the maximum size of that array,
+
+294
+00:15:38,290 --> 00:15:41,090
+how many elements are
+going to be inside of it.
+
+295
+00:15:41,090 --> 00:15:42,670
+In this case, we had five.
+
+296
+00:15:42,670 --> 00:15:45,640
+And note that this counting
+is not zero indexed.
+
+297
+00:15:45,640 --> 00:15:51,730
+If I said int nights[0] here, I would
+be saying I have an array of 0 elements,
+
+298
+00:15:51,730 --> 00:15:52,960
+which doesn't make sense.
+
+299
+00:15:52,960 --> 00:15:56,002
+If I'm going to have an array, I need
+to have at least one element in it.
+
+300
+00:15:56,002 --> 00:15:59,200
+So make sure that you keep in mind
+this is not zero indexed, even
+
+301
+00:15:59,200 --> 00:16:02,830
+though later on when you actually
+try to access values in your array,
+
+302
+00:16:02,830 --> 00:16:06,590
+that will be zero indexed at the end.
+
+303
+00:16:06,590 --> 00:16:09,640
+Now, if we wanted to add items
+to this array off the bat,
+
+304
+00:16:09,640 --> 00:16:14,130
+let's say we wanted to create the
+array, declare it like we did here,
+
+305
+00:16:14,130 --> 00:16:18,620
+tell C what type it is, what its
+name is, how many elements it had,
+
+306
+00:16:18,620 --> 00:16:21,590
+and also initialize it
+with some values, we
+
+307
+00:16:21,590 --> 00:16:25,100
+could do it with this syntax
+right here, using braces
+
+308
+00:16:25,100 --> 00:16:30,230
+and then followed by the values we're
+going to input into that array spaced
+
+309
+00:16:30,230 --> 00:16:37,630
+out by commas here, So 7 comma
+8 comma six comma 7 comma 8.
+
+310
+00:16:37,630 --> 00:16:42,080
+Now, one question I see coming up is,
+can we change the size of an array?
+
+311
+00:16:42,080 --> 00:16:46,780
+So notice here we declared that
+this array had a size of five.
+
+312
+00:16:46,780 --> 00:16:50,050
+And in C you cannot change
+the size of an array.
+
+313
+00:16:50,050 --> 00:16:54,610
+If I say it's five at the beginning,
+it has to be exactly five.
+
+314
+00:16:54,610 --> 00:16:57,640
+We'll see ways later on in the
+course that you can actually
+
+315
+00:16:57,640 --> 00:17:00,880
+try to allocate more memory and
+change the size of an array.
+
+316
+00:17:00,880 --> 00:17:03,640
+But a lot of it just involves
+copying what you currently
+
+317
+00:17:03,640 --> 00:17:07,930
+have in one space of memory
+into a new space overall.
+
+318
+00:17:07,930 --> 00:17:09,460
+More on that in week four.
+
+319
+00:17:09,460 --> 00:17:11,440
+But for now, you can
+say that there's really
+
+320
+00:17:11,440 --> 00:17:13,760
+no way to change the size of an array.
+
+321
+00:17:13,760 --> 00:17:16,300
+So if you think you might
+need a lot of values,
+
+322
+00:17:16,300 --> 00:17:22,246
+you might need to make a lot of spaces
+to have those values in your array.
+
+323
+00:17:22,246 --> 00:17:24,079
+Let's see what other
+questions we have here.
+
+324
+00:17:24,079 --> 00:17:29,220
+So let me find a few.
+
+325
+00:17:29,220 --> 00:17:33,400
+Can an array exist on multiple
+planes, like a 3D array for instance?
+
+326
+00:17:33,400 --> 00:17:36,210
+So you could think-- this is
+getting a little advanced here--
+
+327
+00:17:36,210 --> 00:17:40,170
+of an array that actually
+contains arrays inside of itself.
+
+328
+00:17:40,170 --> 00:17:43,410
+And that is a perfectly
+valid thing to do in C.
+
+329
+00:17:43,410 --> 00:17:46,500
+You could have an array, where
+each element of that array
+
+330
+00:17:46,500 --> 00:17:47,700
+is an array in itself.
+
+331
+00:17:47,700 --> 00:17:51,120
+And that way you have kind of like
+a 2D array, a bit like a grid.
+
+332
+00:17:51,120 --> 00:17:53,250
+And then if you think
+even further, well, you
+
+333
+00:17:53,250 --> 00:17:57,690
+could have an array where each
+element is itself an array.
+
+334
+00:17:57,690 --> 00:18:03,180
+And each of those elements then
+have arrays as their elements too.
+
+335
+00:18:03,180 --> 00:18:05,820
+And that gets you to this
+like 3D kind of structure.
+
+336
+00:18:05,820 --> 00:18:08,070
+No need to worry if that
+made no sense to you.
+
+337
+00:18:08,070 --> 00:18:13,260
+But generally, you can take arrays
+and put other arrays inside of them
+
+338
+00:18:13,260 --> 00:18:16,890
+at whatever level you'd
+like to do that at.
+
+339
+00:18:16,890 --> 00:18:20,290
+Other questions here too.
+
+340
+00:18:20,290 --> 00:18:20,890
+Let's see.
+
+341
+00:18:20,890 --> 00:18:24,650
+
+
+342
+00:18:24,650 --> 00:18:27,720
+A question here about
+negative one indexes.
+
+343
+00:18:27,720 --> 00:18:30,260
+So if you've programmed
+in Python, you may
+
+344
+00:18:30,260 --> 00:18:35,580
+have seen this kind of similar syntax
+of writing the name of some list,
+
+345
+00:18:35,580 --> 00:18:41,070
+and then typing bracket negative some
+value, like negative 1 for instance.
+
+346
+00:18:41,070 --> 00:18:43,650
+I believe in C this is not possible.
+
+347
+00:18:43,650 --> 00:18:46,220
+So that's a feature of
+Python, which gives you,
+
+348
+00:18:46,220 --> 00:18:48,230
+I believe, the last
+element in your list.
+
+349
+00:18:48,230 --> 00:18:52,070
+But in C there's no such
+thing as a negative one index.
+
+350
+00:18:52,070 --> 00:18:53,720
+Indexes must be positive.
+
+351
+00:18:53,720 --> 00:18:56,402
+
+
+352
+00:18:56,402 --> 00:18:58,420
+I have a question here.
+
+353
+00:18:58,420 --> 00:19:01,720
+Let's say we have this
+array of five elements here.
+
+354
+00:19:01,720 --> 00:19:07,510
+Could we add maybe only three
+and later on add the other two?
+
+355
+00:19:07,510 --> 00:19:08,510
+You certainly could.
+
+356
+00:19:08,510 --> 00:19:13,930
+So if you were to go back to this
+model of declaring your array,
+
+357
+00:19:13,930 --> 00:19:19,690
+you could specify values for
+the first three in this array
+
+358
+00:19:19,690 --> 00:19:21,970
+and later on add the other two.
+
+359
+00:19:21,970 --> 00:19:24,790
+Now, you have to be careful,
+though, because if you don't specify
+
+360
+00:19:24,790 --> 00:19:27,730
+what those values should
+be, those final two values,
+
+361
+00:19:27,730 --> 00:19:29,870
+they could probably
+be literally anything.
+
+362
+00:19:29,870 --> 00:19:32,740
+So you don't want to touch them
+unless you're sure you've already
+
+363
+00:19:32,740 --> 00:19:34,420
+set them from the beginning.
+
+364
+00:19:34,420 --> 00:19:37,480
+Now, if you follow this
+kind of syntax here,
+
+365
+00:19:37,480 --> 00:19:41,110
+you have to specify every
+single element of your array.
+
+366
+00:19:41,110 --> 00:19:45,030
+You can't leave any out.
+
+367
+00:19:45,030 --> 00:19:49,510
+All right, so I think that covers most
+of our questions here about arrays.
+
+368
+00:19:49,510 --> 00:19:50,640
+So let's keep going.
+
+369
+00:19:50,640 --> 00:19:53,230
+Let's actually get some
+practice using arrays here.
+
+370
+00:19:53,230 --> 00:19:55,320
+So we have a brief
+exercise in which you're
+
+371
+00:19:55,320 --> 00:19:59,850
+going to write a program that
+takes an array of integers
+
+372
+00:19:59,850 --> 00:20:02,190
+or actually builds an array of integers.
+
+373
+00:20:02,190 --> 00:20:07,560
+And we want it to be the case that
+each integer is 2 times the value
+
+374
+00:20:07,560 --> 00:20:09,700
+of the previous integer.
+
+375
+00:20:09,700 --> 00:20:14,850
+So for instance, you could think
+of a list like 1 and then 2.
+
+376
+00:20:14,850 --> 00:20:16,410
+And then what's 2 times 2?
+
+377
+00:20:16,410 --> 00:20:17,520
+Well, 4.
+
+378
+00:20:17,520 --> 00:20:19,140
+And then what's 2 times 4?
+
+379
+00:20:19,140 --> 00:20:20,490
+Well, 8.
+
+380
+00:20:20,490 --> 00:20:22,360
+And then 2 times 8 is 16.
+
+381
+00:20:22,360 --> 00:20:27,760
+So the entire list is 1, 2, 4, 8, 16.
+
+382
+00:20:27,760 --> 00:20:33,310
+And we want to in this program print
+the entire array integer by integer.
+
+383
+00:20:33,310 --> 00:20:34,770
+So let's try this out.
+
+384
+00:20:34,770 --> 00:20:36,930
+I'll go over to my code space here.
+
+385
+00:20:36,930 --> 00:20:38,920
+And I'll write up this program.
+
+386
+00:20:38,920 --> 00:20:42,120
+I'll call it, let's say,
+just double.c, meaning
+
+387
+00:20:42,120 --> 00:20:44,810
+I'm going to double each
+element of this array.
+
+388
+00:20:44,810 --> 00:20:50,300
+And now I can see here that I
+have a file called double.c.
+
+389
+00:20:50,300 --> 00:20:54,580
+Now, what's the first thing I should
+do if I'm writing a new program in C?
+
+390
+00:20:54,580 --> 00:20:58,950
+Any ideas what should I usually do?
+
+391
+00:20:58,950 --> 00:21:00,570
+I want to include the header file.
+
+392
+00:21:00,570 --> 00:21:05,060
+So I'll say I want to include the CS50
+header file, which gives me access
+
+393
+00:21:05,060 --> 00:21:07,530
+to things like strings and so on.
+
+394
+00:21:07,530 --> 00:21:12,320
+And I also want to include stdio.h,
+which will allow me to print things out
+
+395
+00:21:12,320 --> 00:21:13,020
+to the screen.
+
+396
+00:21:13,020 --> 00:21:16,400
+Notice that the standard io
+library, or stdio library,
+
+397
+00:21:16,400 --> 00:21:18,650
+contains functions like printf.
+
+398
+00:21:18,650 --> 00:21:20,240
+So I'll include that here.
+
+399
+00:21:20,240 --> 00:21:23,570
+And I'll write the beginning
+of my program int main void
+
+400
+00:21:23,570 --> 00:21:26,750
+and follow it up with what?
+
+401
+00:21:26,750 --> 00:21:31,160
+Well, I probably first want
+to declare this array, that
+
+402
+00:21:31,160 --> 00:21:34,940
+is to tell C exactly the
+important features of it,
+
+403
+00:21:34,940 --> 00:21:36,680
+like what type will it be storing?
+
+404
+00:21:36,680 --> 00:21:38,120
+What name will it have?
+
+405
+00:21:38,120 --> 00:21:39,690
+What size will it be?
+
+406
+00:21:39,690 --> 00:21:41,930
+And so on this very
+first line I'll do that.
+
+407
+00:21:41,930 --> 00:21:45,680
+We're probably going to be
+storing what type of data here?
+
+408
+00:21:45,680 --> 00:21:49,550
+We want to be doubling numbers,
+and whole numbers in particular.
+
+409
+00:21:49,550 --> 00:21:51,620
+So we're going to be storing integers.
+
+410
+00:21:51,620 --> 00:21:53,330
+So I'll say int here.
+
+411
+00:21:53,330 --> 00:21:56,368
+Now what should the
+name of this array be?
+
+412
+00:21:56,368 --> 00:21:57,660
+It could be generally anything.
+
+413
+00:21:57,660 --> 00:21:59,760
+But I think for me I'll
+just call it something
+
+414
+00:21:59,760 --> 00:22:05,370
+like sequence, that is some sequence
+of values that will double every time.
+
+415
+00:22:05,370 --> 00:22:08,130
+And then how many
+elements should we store?
+
+416
+00:22:08,130 --> 00:22:11,400
+I might just say let's go ahead
+and store five off the bat.
+
+417
+00:22:11,400 --> 00:22:13,920
+We could change this
+later if we want to.
+
+418
+00:22:13,920 --> 00:22:19,800
+So here I have an array called
+sequence that stores five values.
+
+419
+00:22:19,800 --> 00:22:21,310
+And what type are those values?
+
+420
+00:22:21,310 --> 00:22:24,190
+Well, they're integers here.
+
+421
+00:22:24,190 --> 00:22:26,580
+So if we go back to
+our problem statement,
+
+422
+00:22:26,580 --> 00:22:30,640
+we saw that the first
+element of this array is 1.
+
+423
+00:22:30,640 --> 00:22:36,320
+Now my question for you, how do I access
+the first element of this array using
+
+424
+00:22:36,320 --> 00:22:39,590
+the syntax we saw earlier?
+
+425
+00:22:39,590 --> 00:22:45,488
+What could I write to find
+the first element of sequence?
+
+426
+00:22:45,488 --> 00:22:47,280
+You could probably try
+something like this.
+
+427
+00:22:47,280 --> 00:22:52,400
+I could write the name of
+sequence and then bracket 0.
+
+428
+00:22:52,400 --> 00:22:57,080
+So bracket 0 means start at the
+beginning of sequence and move 0 steps,
+
+429
+00:22:57,080 --> 00:23:00,030
+find that very first
+element in this array.
+
+430
+00:23:00,030 --> 00:23:03,440
+And if I want to assign it some value,
+well, I could do that here in C.
+
+431
+00:23:03,440 --> 00:23:07,620
+I could say sequence[0]
+equals some value.
+
+432
+00:23:07,620 --> 00:23:10,760
+In this case, I'll say it equals 1.
+
+433
+00:23:10,760 --> 00:23:13,937
+So now I set the very
+first value of sequence.
+
+434
+00:23:13,937 --> 00:23:15,770
+And why don't I print
+it out while I'm here?
+
+435
+00:23:15,770 --> 00:23:22,850
+I'll say printf % i for that
+integer format code, backslash n.
+
+436
+00:23:22,850 --> 00:23:27,640
+And now I'll say sequence[0].
+
+437
+00:23:27,640 --> 00:23:32,350
+So to be clear here, what I'm doing is
+holding a placeholder for an integer.
+
+438
+00:23:32,350 --> 00:23:36,820
+I'm going to put inside that
+placeholder the value of sequence[0],
+
+439
+00:23:36,820 --> 00:23:40,960
+which according to line
+8 we just set to be 1.
+
+440
+00:23:40,960 --> 00:23:43,660
+So now here comes the trickier part.
+
+441
+00:23:43,660 --> 00:23:49,060
+How do I try to go through this
+array and update each of its values
+
+442
+00:23:49,060 --> 00:23:49,900
+over time?
+
+443
+00:23:49,900 --> 00:23:51,820
+Well, I set the very first one.
+
+444
+00:23:51,820 --> 00:23:55,330
+But now I want to more
+dynamically set the rest of them.
+
+445
+00:23:55,330 --> 00:23:56,330
+I don't want to do this.
+
+446
+00:23:56,330 --> 00:24:02,668
+I don't want to say sequence[1]
+equals 2, sequence[2] equals 4.
+
+447
+00:24:02,668 --> 00:24:04,210
+That's getting a little in the weeds.
+
+448
+00:24:04,210 --> 00:24:07,000
+I want to automate this process for me.
+
+449
+00:24:07,000 --> 00:24:10,915
+What kind of structure that
+we've already seen could we use?
+
+450
+00:24:10,915 --> 00:24:13,540
+
+
+451
+00:24:13,540 --> 00:24:16,000
+I'm seeing this idea of
+maybe some kind of loop.
+
+452
+00:24:16,000 --> 00:24:20,710
+And we learned in our last
+section that a for loop
+
+453
+00:24:20,710 --> 00:24:25,220
+is good when we know how many
+times we want to loop over all.
+
+454
+00:24:25,220 --> 00:24:29,950
+So here we saw our sequence
+had a total of five values.
+
+455
+00:24:29,950 --> 00:24:31,940
+We already set the first one.
+
+456
+00:24:31,940 --> 00:24:35,470
+So I think we want to
+loop a total of four times
+
+457
+00:24:35,470 --> 00:24:39,370
+to set the second value, the
+third value, the fourth value,
+
+458
+00:24:39,370 --> 00:24:40,850
+and the fifth value.
+
+459
+00:24:40,850 --> 00:24:43,060
+So I could write a for loop like that.
+
+460
+00:24:43,060 --> 00:24:47,560
+I could say for int i equals.
+
+461
+00:24:47,560 --> 00:24:48,790
+And now here's a question.
+
+462
+00:24:48,790 --> 00:24:50,830
+What should i be equal to?
+
+463
+00:24:50,830 --> 00:24:53,680
+Well, i in this case,
+let's say it refers
+
+464
+00:24:53,680 --> 00:24:56,510
+to the index of the array
+we're trying to set.
+
+465
+00:24:56,510 --> 00:25:00,160
+So what's the very first
+index we want to set?
+
+466
+00:25:00,160 --> 00:25:01,930
+We already did 0.
+
+467
+00:25:01,930 --> 00:25:03,250
+But now we should do 1.
+
+468
+00:25:03,250 --> 00:25:04,990
+So int i equals 1.
+
+469
+00:25:04,990 --> 00:25:07,690
+Now, how long do we want to iterate for?
+
+470
+00:25:07,690 --> 00:25:12,950
+Well, at least until we get
+to i is still less than 5.
+
+471
+00:25:12,950 --> 00:25:16,550
+So I'll say i less than 5 and then i++.
+
+472
+00:25:16,550 --> 00:25:22,340
+So now we have i going
+from 1 to 2 to 3 to 4.
+
+473
+00:25:22,340 --> 00:25:24,320
+And that will update
+our next four values.
+
+474
+00:25:24,320 --> 00:25:30,170
+It will not go to 5 because, again, in
+this array, there is no sequence[5].
+
+475
+00:25:30,170 --> 00:25:33,110
+That would be going beyond
+the bounds of our array.
+
+476
+00:25:33,110 --> 00:25:36,710
+Even though there are five
+elements, again, we index from 0.
+
+477
+00:25:36,710 --> 00:25:41,280
+We can't move five spaces total.
+
+478
+00:25:41,280 --> 00:25:45,870
+We can't move forward five spaces
+from the beginning of our array.
+
+479
+00:25:45,870 --> 00:25:48,270
+OK, so now we have this.
+
+480
+00:25:48,270 --> 00:25:52,030
+And the question becomes, how
+would I set this value of sequence?
+
+481
+00:25:52,030 --> 00:25:56,920
+Well, I know I want to set
+sequence[i] in the first iteration.
+
+482
+00:25:56,920 --> 00:25:58,290
+This will be sequence one.
+
+483
+00:25:58,290 --> 00:26:01,580
+And the next iteration
+it'll be sequence two.
+
+484
+00:26:01,580 --> 00:26:04,940
+But how should I configure this value?
+
+485
+00:26:04,940 --> 00:26:07,325
+I know I want it to be 2
+times the previous one.
+
+486
+00:26:07,325 --> 00:26:10,033
+
+
+487
+00:26:10,033 --> 00:26:11,200
+I'm seeing a few ideas here.
+
+488
+00:26:11,200 --> 00:26:14,810
+Some of them involve actually doing
+a bit of math inside of the brackets
+
+489
+00:26:14,810 --> 00:26:15,310
+here.
+
+490
+00:26:15,310 --> 00:26:17,260
+And that's something you
+can actually do in C.
+
+491
+00:26:17,260 --> 00:26:21,208
+So I could say maybe let
+me get the previous value.
+
+492
+00:26:21,208 --> 00:26:22,000
+What is that value?
+
+493
+00:26:22,000 --> 00:26:24,250
+I'll say sequence[i].
+
+494
+00:26:24,250 --> 00:26:28,630
+And then to look behind this
+value, I'll say minus 1.
+
+495
+00:26:28,630 --> 00:26:36,430
+So if I'm currently at i equals 1, I'll
+be saying sequence[i] sequence one,
+
+496
+00:26:36,430 --> 00:26:42,550
+equals sequence bracket i
+minus 1 or 0, sequence[0],
+
+497
+00:26:42,550 --> 00:26:44,450
+so the previous value here.
+
+498
+00:26:44,450 --> 00:26:47,680
+Now, if I want to multiply
+that by 2, I could
+
+499
+00:26:47,680 --> 00:26:50,110
+do the very same thing
+I've done before in C. I
+
+500
+00:26:50,110 --> 00:26:55,150
+could say star 2, which means
+multiply this particular value by 2.
+
+501
+00:26:55,150 --> 00:27:00,670
+So again, if i is 1 here, I'll say
+sequence[1] equals sequence bracket--
+
+502
+00:27:00,670 --> 00:27:03,340
+well, 1 minus 1 is 0.
+
+503
+00:27:03,340 --> 00:27:08,120
+sequence[0] times 2, well, that
+will set the next value of sequence,
+
+504
+00:27:08,120 --> 00:27:09,900
+and so on and so forth.
+
+505
+00:27:09,900 --> 00:27:14,120
+So once I do that, I can say
+maybe I'll print out this value.
+
+506
+00:27:14,120 --> 00:27:18,830
+What is the new value of sequence[i]?
+
+507
+00:27:18,830 --> 00:27:21,290
+And then I will go ahead here.
+
+508
+00:27:21,290 --> 00:27:23,610
+And I'll say printf backslash n.
+
+509
+00:27:23,610 --> 00:27:25,610
+Actually, I don't think
+I need backslash n here.
+
+510
+00:27:25,610 --> 00:27:26,735
+I already have it up there.
+
+511
+00:27:26,735 --> 00:27:28,190
+So I'll leave things as is.
+
+512
+00:27:28,190 --> 00:27:31,050
+And this is our entire program.
+
+513
+00:27:31,050 --> 00:27:32,630
+So let's see if we can run it.
+
+514
+00:27:32,630 --> 00:27:33,890
+I'll go back to my terminal.
+
+515
+00:27:33,890 --> 00:27:38,390
+And I will say make double,
+make double to compile it.
+
+516
+00:27:38,390 --> 00:27:39,770
+I see no errors.
+
+517
+00:27:39,770 --> 00:27:40,890
+I'll now try this.
+
+518
+00:27:40,890 --> 00:27:43,232
+I'll say ./double.
+
+519
+00:27:43,232 --> 00:27:44,690
+And I seem to be getting somewhere.
+
+520
+00:27:44,690 --> 00:27:49,950
+I have 1, 2, 4, 8, and 16.
+
+521
+00:27:49,950 --> 00:27:51,560
+So I'll go back to my code here.
+
+522
+00:27:51,560 --> 00:27:58,270
+Let me ask, what questions do
+we have on creating an array,
+
+523
+00:27:58,270 --> 00:28:03,830
+cycling through its values with a
+for loop, setting them as we go?
+
+524
+00:28:03,830 --> 00:28:10,510
+
+
+525
+00:28:10,510 --> 00:28:14,260
+For those of you who are feeling
+a little more comfortable,
+
+526
+00:28:14,260 --> 00:28:18,090
+there's another way to do this too
+that doesn't involve separately setting
+
+527
+00:28:18,090 --> 00:28:19,510
+a sequence[0].
+
+528
+00:28:19,510 --> 00:28:24,190
+You could simply declare your
+array and have a single for loop
+
+529
+00:28:24,190 --> 00:28:25,350
+that sets things for you.
+
+530
+00:28:25,350 --> 00:28:29,730
+I'll leave that piece up to
+you, though, to do on your own.
+
+531
+00:28:29,730 --> 00:28:32,490
+Now a question I see here
+about this program's design,
+
+532
+00:28:32,490 --> 00:28:39,000
+wouldn't it be better designed
+to have a variable that
+
+533
+00:28:39,000 --> 00:28:43,210
+says what the size of this array is?
+
+534
+00:28:43,210 --> 00:28:48,700
+For instance, let's say I'll set
+int size equals 5, like this.
+
+535
+00:28:48,700 --> 00:28:56,150
+And now, maybe I'll replace this
+with size and replace this with size.
+
+536
+00:28:56,150 --> 00:28:59,030
+And now I could change
+this it seems in one place.
+
+537
+00:28:59,030 --> 00:29:00,620
+I could make this 10.
+
+538
+00:29:00,620 --> 00:29:03,570
+I can make it 7, or 6, or so on.
+
+539
+00:29:03,570 --> 00:29:05,390
+So I'll leave it at 5 for now.
+
+540
+00:29:05,390 --> 00:29:08,190
+And let's see if that
+actually works here.
+
+541
+00:29:08,190 --> 00:29:09,950
+So I'll go back to my terminal.
+
+542
+00:29:09,950 --> 00:29:13,220
+And I will do this.
+
+543
+00:29:13,220 --> 00:29:15,540
+I'll type make double.
+
+544
+00:29:15,540 --> 00:29:18,500
+And I'll run it again, ./double.
+
+545
+00:29:18,500 --> 00:29:19,710
+And that seems to work.
+
+546
+00:29:19,710 --> 00:29:21,320
+So I'll go back to my program.
+
+547
+00:29:21,320 --> 00:29:23,400
+Maybe I now want--
+
+548
+00:29:23,400 --> 00:29:25,730
+let's go with eight numbers overall.
+
+549
+00:29:25,730 --> 00:29:27,150
+I'll go back to my terminal.
+
+550
+00:29:27,150 --> 00:29:32,360
+And now I'll say make
+double again, ./double.
+
+551
+00:29:32,360 --> 00:29:35,510
+And I seem to have allowed
+myself to pretty quickly change
+
+552
+00:29:35,510 --> 00:29:40,070
+the size of this array and print
+out a longer sequence as I go just
+
+553
+00:29:40,070 --> 00:29:43,040
+now by changing one particular value.
+
+554
+00:29:43,040 --> 00:29:48,080
+And this is actually a
+common, let's say, pattern
+
+555
+00:29:48,080 --> 00:29:50,630
+you'll see in writing
+well-designed programs.
+
+556
+00:29:50,630 --> 00:29:53,570
+It's not really a good
+practice to specify
+
+557
+00:29:53,570 --> 00:29:56,720
+what we call a magic number,
+that is a number in here
+
+558
+00:29:56,720 --> 00:29:59,780
+that we're not quite sure
+what it is, what it refers to.
+
+559
+00:29:59,780 --> 00:30:02,030
+And it might repeat
+throughout our program.
+
+560
+00:30:02,030 --> 00:30:05,270
+If you have a number like
+that, best to create a variable
+
+561
+00:30:05,270 --> 00:30:09,620
+and change it in one place, so you don't
+have to go through later and update
+
+562
+00:30:09,620 --> 00:30:13,800
+all the places we had, for instance, 5.
+
+563
+00:30:13,800 --> 00:30:16,650
+Now, another question I see
+here is, could we use getint?
+
+564
+00:30:16,650 --> 00:30:18,840
+Well, we know in the
+CS50 library we have
+
+565
+00:30:18,840 --> 00:30:23,040
+this function called getint
+lets the user type in what value
+
+566
+00:30:23,040 --> 00:30:23,850
+they want to give.
+
+567
+00:30:23,850 --> 00:30:24,700
+I'll try that.
+
+568
+00:30:24,700 --> 00:30:26,880
+I'll say size is getint.
+
+569
+00:30:26,880 --> 00:30:30,460
+And I'll say enter a size, like this.
+
+570
+00:30:30,460 --> 00:30:33,480
+And now I'll go back to my terminal.
+
+571
+00:30:33,480 --> 00:30:36,010
+And I'll say make double.
+
+572
+00:30:36,010 --> 00:30:38,370
+And I'll run ./double.
+
+573
+00:30:38,370 --> 00:30:43,120
+Now I'll say, let's go back
+to-- maybe let's go back to 6.
+
+574
+00:30:43,120 --> 00:30:46,120
+That seems to be right, one,
+two, three, four, five, six.
+
+575
+00:30:46,120 --> 00:30:50,450
+Now I'll type make double
+and then ./double again.
+
+576
+00:30:50,450 --> 00:30:52,120
+And now I'll type 9.
+
+577
+00:30:52,120 --> 00:30:54,050
+And I'll see I have an even longer list.
+
+578
+00:30:54,050 --> 00:30:56,380
+So it seems like we could
+even take user input
+
+579
+00:30:56,380 --> 00:31:01,970
+and then decide the size
+of our array after that.
+
+580
+00:31:01,970 --> 00:31:05,345
+All right, other questions
+here on this program?
+
+581
+00:31:05,345 --> 00:31:15,790
+
+
+582
+00:31:15,790 --> 00:31:18,070
+All right, so let's keep moving on.
+
+583
+00:31:18,070 --> 00:31:20,840
+And let's focus now on
+this idea of strings.
+
+584
+00:31:20,840 --> 00:31:23,950
+So we've seen this idea
+of arrays, which is
+
+585
+00:31:23,950 --> 00:31:27,340
+this structure we have to
+store data back to back
+
+586
+00:31:27,340 --> 00:31:29,140
+to back in a computer's memory.
+
+587
+00:31:29,140 --> 00:31:32,080
+And it turns out that
+strings are actually not
+
+588
+00:31:32,080 --> 00:31:34,420
+all that dissimilar from arrays.
+
+589
+00:31:34,420 --> 00:31:39,200
+In fact, strings themselves
+are a special kind of array.
+
+590
+00:31:39,200 --> 00:31:42,920
+So consider here, again,
+our Scrabble example.
+
+591
+00:31:42,920 --> 00:31:50,110
+We had these individual pieces of
+letters, like H, E, L, L, and O.
+
+592
+00:31:50,110 --> 00:31:53,830
+And they all formed
+together this word hello
+
+593
+00:31:53,830 --> 00:31:55,910
+when we put them all
+together back to back.
+
+594
+00:31:55,910 --> 00:31:59,410
+Well, in the same way do
+strings actually work.
+
+595
+00:31:59,410 --> 00:32:03,970
+We can take individual
+letters like these.
+
+596
+00:32:03,970 --> 00:32:06,530
+And we can then do
+something a bit like this.
+
+597
+00:32:06,530 --> 00:32:11,170
+We can put them all together and make
+entire what we might call in this case
+
+598
+00:32:11,170 --> 00:32:12,380
+a phrase.
+
+599
+00:32:12,380 --> 00:32:18,380
+So strings are nothing more than arrays,
+where the elements are characters.
+
+600
+00:32:18,380 --> 00:32:22,120
+So here we're now seeing that
+we have this array called phrase
+
+601
+00:32:22,120 --> 00:32:28,120
+with the letters H, E, L, L, and O. And
+we can use the very same syntax that we
+
+602
+00:32:28,120 --> 00:32:28,940
+saw earlier.
+
+603
+00:32:28,940 --> 00:32:34,000
+I could say phrase[0], which gives
+me the very first element of phrase.
+
+604
+00:32:34,000 --> 00:32:39,100
+I could use phrase[1], which gives
+me the E here, and then phrase[2],
+
+605
+00:32:39,100 --> 00:32:44,140
+which gives me the L. So I'm able to
+do the very same things I could do with
+
+606
+00:32:44,140 --> 00:32:46,840
+arrays, but now with strings.
+
+607
+00:32:46,840 --> 00:32:50,540
+One fancy feature though that
+you should pay attention to,
+
+608
+00:32:50,540 --> 00:32:52,390
+particularly for this
+week's problem set,
+
+609
+00:32:52,390 --> 00:32:57,610
+is that we represent characters
+in C underneath the hood using
+
+610
+00:32:57,610 --> 00:32:59,620
+integers or numbers.
+
+611
+00:32:59,620 --> 00:33:03,460
+Remember from an earlier lecture we
+learned about this idea of ASCII,
+
+612
+00:33:03,460 --> 00:33:07,060
+or the American Standard Code
+for Information Interchange.
+
+613
+00:33:07,060 --> 00:33:15,150
+And we saw a mapping a bit like this,
+where A maps to this integer 65.
+
+614
+00:33:15,150 --> 00:33:19,115
+B maps to this integer 66.
+
+615
+00:33:19,115 --> 00:33:22,040
+C maps to this integer 67.
+
+616
+00:33:22,040 --> 00:33:26,930
+And so when we see these
+numbers, 65, 66, 67,
+
+617
+00:33:26,930 --> 00:33:29,570
+and they're the type
+of character, we then
+
+618
+00:33:29,570 --> 00:33:31,190
+actually convert that to a character.
+
+619
+00:33:31,190 --> 00:33:33,840
+We print it out as a character overall.
+
+620
+00:33:33,840 --> 00:33:38,390
+So consider then that this phrase
+that we see here, hello, well, it
+
+621
+00:33:38,390 --> 00:33:47,150
+could also be a set of numbers,
+72, 69, 76, 76, and 79.
+
+622
+00:33:47,150 --> 00:33:50,940
+These are the ASCII codes that
+correspond to those letters
+
+623
+00:33:50,940 --> 00:33:52,920
+we saw a little earlier.
+
+624
+00:33:52,920 --> 00:33:56,810
+So with that in mind, let's think
+about writing a new program, one
+
+625
+00:33:56,810 --> 00:34:01,190
+that actually tells us if
+a string has characters
+
+626
+00:34:01,190 --> 00:34:04,610
+that are in alphabetical order or not.
+
+627
+00:34:04,610 --> 00:34:08,850
+Now, we can assume here that all
+the characters are uppercase.
+
+628
+00:34:08,850 --> 00:34:10,070
+So let's begin.
+
+629
+00:34:10,070 --> 00:34:12,650
+I'll go back to my code space.
+
+630
+00:34:12,650 --> 00:34:14,480
+And I'll now create a new program.
+
+631
+00:34:14,480 --> 00:34:17,330
+I'll call this one alphabetical.c.
+
+632
+00:34:17,330 --> 00:34:20,080
+And I'll do the very same
+things I did with double.c.
+
+633
+00:34:20,080 --> 00:34:23,449
+I'll make sure to include CS50.h.
+
+634
+00:34:23,449 --> 00:34:31,280
+I'll make sure to include
+stdio as well, include stdio.
+
+635
+00:34:31,280 --> 00:34:35,540
+And then I'll also say int main void.
+
+636
+00:34:35,540 --> 00:34:39,600
+And now I can write
+the rest of my program.
+
+637
+00:34:39,600 --> 00:34:42,870
+So maybe the first thing I want to
+do is get a string from the user.
+
+638
+00:34:42,870 --> 00:34:49,199
+So I could say, string phrase
+equals get string enter a phrase.
+
+639
+00:34:49,199 --> 00:34:53,070
+So I'm using the CS50
+libraries get string function.
+
+640
+00:34:53,070 --> 00:34:57,260
+And now I'm able to ask
+the user for some phrase.
+
+641
+00:34:57,260 --> 00:35:03,560
+But now I want to ask that question,
+is this phrase in alphabetical order
+
+642
+00:35:03,560 --> 00:35:05,610
+or is it not?
+
+643
+00:35:05,610 --> 00:35:08,390
+And it seems to me like
+the very first step
+
+644
+00:35:08,390 --> 00:35:13,230
+there would be to go through every
+individual character in our string.
+
+645
+00:35:13,230 --> 00:35:15,740
+We have to have a way of looking
+at every character to test,
+
+646
+00:35:15,740 --> 00:35:19,920
+is every character in
+alphabetical order or is it not?
+
+647
+00:35:19,920 --> 00:35:24,200
+So what can we do to
+loop through this string
+
+648
+00:35:24,200 --> 00:35:29,140
+or really this array of characters?
+
+649
+00:35:29,140 --> 00:35:32,080
+I'm seeing this idea
+of a for loop again.
+
+650
+00:35:32,080 --> 00:35:34,050
+So we used it for our array of numbers.
+
+651
+00:35:34,050 --> 00:35:37,140
+And there's no reason that
+same approach can't work now
+
+652
+00:35:37,140 --> 00:35:39,630
+when working with a string
+because, again, a string is just
+
+653
+00:35:39,630 --> 00:35:42,250
+an array, but an array of characters.
+
+654
+00:35:42,250 --> 00:35:42,960
+So I'll say this.
+
+655
+00:35:42,960 --> 00:35:45,660
+For int i equals 0.
+
+656
+00:35:45,660 --> 00:35:50,175
+We'll begin at the very first character
+in our phrase, i is less than.
+
+657
+00:35:50,175 --> 00:35:52,950
+
+
+658
+00:35:52,950 --> 00:35:54,900
+What should i be less than?
+
+659
+00:35:54,900 --> 00:35:59,353
+I mean, I don't know quite
+how long this string is.
+
+660
+00:35:59,353 --> 00:36:01,395
+If I typed in hello, it
+would be five characters.
+
+661
+00:36:01,395 --> 00:36:06,700
+If I typed in goodbye,
+it would be longer.
+
+662
+00:36:06,700 --> 00:36:12,310
+What could I do to find
+the length of this phrase?
+
+663
+00:36:12,310 --> 00:36:14,870
+So I'm seeing a few folks
+who are catching on to this,
+
+664
+00:36:14,870 --> 00:36:19,930
+which is that in lecture I believe
+we saw this function called strlen,
+
+665
+00:36:19,930 --> 00:36:26,350
+S-T-R-L-E-N. And strlen actually can
+tell us the length of a string if we
+
+666
+00:36:26,350 --> 00:36:29,480
+call it and give it our string as input.
+
+667
+00:36:29,480 --> 00:36:35,920
+So strlen lives in this library called
+string.h, or our string in general.
+
+668
+00:36:35,920 --> 00:36:38,380
+And the header file is string.h.
+
+669
+00:36:38,380 --> 00:36:42,370
+Now, if I want to test
+how long this string is,
+
+670
+00:36:42,370 --> 00:36:49,510
+I could say int length equals
+strlen, and then pass in my string,
+
+671
+00:36:49,510 --> 00:36:51,800
+in this case, the one called phrase.
+
+672
+00:36:51,800 --> 00:36:56,690
+So now I have this variable called
+length that I could use in for loop,
+
+673
+00:36:56,690 --> 00:36:58,900
+i is less than length i++.
+
+674
+00:36:58,900 --> 00:37:04,060
+So whatever the length is, I'll make
+sure to first calculate that and then
+
+675
+00:37:04,060 --> 00:37:08,530
+will I test every individual
+character in my string making sure
+
+676
+00:37:08,530 --> 00:37:12,110
+not to go past the
+length of that string.
+
+677
+00:37:12,110 --> 00:37:13,820
+Now, a few other ways to do this too.
+
+678
+00:37:13,820 --> 00:37:23,050
+I could also say int i equals 0
+comma length equals strlen of phrase,
+
+679
+00:37:23,050 --> 00:37:23,550
+like this.
+
+680
+00:37:23,550 --> 00:37:24,967
+And this is getting a little long.
+
+681
+00:37:24,967 --> 00:37:26,380
+And I have to zoom out for this.
+
+682
+00:37:26,380 --> 00:37:30,220
+But this allows me to put
+everything on a single line.
+
+683
+00:37:30,220 --> 00:37:35,320
+And it's implied here that if the very
+first variable i type is of type int,
+
+684
+00:37:35,320 --> 00:37:40,120
+if I type a comma, the next
+variable will be that same type,
+
+685
+00:37:40,120 --> 00:37:41,290
+in this case, an integer.
+
+686
+00:37:41,290 --> 00:37:44,830
+And I can assign it some value,
+like the length of phrase.
+
+687
+00:37:44,830 --> 00:37:46,930
+This puts everything in one for loop.
+
+688
+00:37:46,930 --> 00:37:49,940
+What I probably wouldn't
+want to do is this.
+
+689
+00:37:49,940 --> 00:37:55,510
+I might not want to say i
+less than strlen of phrase.
+
+690
+00:37:55,510 --> 00:37:58,570
+But why might I not want to do that?
+
+691
+00:37:58,570 --> 00:38:01,330
+Let me show you the full line here.
+
+692
+00:38:01,330 --> 00:38:06,000
+Why would it be better
+to define length here
+
+693
+00:38:06,000 --> 00:38:09,540
+in this initialization
+step than here, which is
+
+694
+00:38:09,540 --> 00:38:13,750
+my condition that's checked every loop?
+
+695
+00:38:13,750 --> 00:38:15,500
+So I'm seeing a few
+good answers, which is
+
+696
+00:38:15,500 --> 00:38:22,620
+that if I know I'm going to be checking
+this condition every single loop, well,
+
+697
+00:38:22,620 --> 00:38:26,300
+why do I have to run
+strlen every single time?
+
+698
+00:38:26,300 --> 00:38:28,830
+The length of the string
+isn't really going to change.
+
+699
+00:38:28,830 --> 00:38:31,520
+And in fact, we'll just
+add more time to my program
+
+700
+00:38:31,520 --> 00:38:34,820
+as it runs, probably
+not a whole ton of time
+
+701
+00:38:34,820 --> 00:38:36,830
+if computers are so fast these days.
+
+702
+00:38:36,830 --> 00:38:38,990
+But it still adds some time.
+
+703
+00:38:38,990 --> 00:38:42,740
+So best to put it elsewhere
+to calculate it once and then
+
+704
+00:38:42,740 --> 00:38:45,540
+use that variable throughout your code.
+
+705
+00:38:45,540 --> 00:38:50,780
+So I'll say int length is the result
+of calling strlen with phrase.
+
+706
+00:38:50,780 --> 00:38:53,330
+And I'll do it this way,
+keeping things separate just
+
+707
+00:38:53,330 --> 00:38:56,410
+for line length sake at this point.
+
+708
+00:38:56,410 --> 00:39:02,020
+OK, so now I'm able to access every
+individual character in my phrase.
+
+709
+00:39:02,020 --> 00:39:06,850
+And to kind of make this a reality, I
+could say printf %c for an individual
+
+710
+00:39:06,850 --> 00:39:07,660
+character.
+
+711
+00:39:07,660 --> 00:39:11,890
+And now, I'll print out,
+let's say, phrase[i].
+
+712
+00:39:11,890 --> 00:39:14,590
+And now I'll open up my terminal.
+
+713
+00:39:14,590 --> 00:39:16,780
+And I'll see if my
+code actually compiles.
+
+714
+00:39:16,780 --> 00:39:20,355
+I'll say make alphabetical.
+
+715
+00:39:20,355 --> 00:39:21,700
+Seems to compile.
+
+716
+00:39:21,700 --> 00:39:28,090
+I'll run ./alphabetical, type in my
+phrase, which is hello, hit Enter.
+
+717
+00:39:28,090 --> 00:39:29,950
+And I see it printed back to me.
+
+718
+00:39:29,950 --> 00:39:32,260
+I probably need a
+backslash n at the end here
+
+719
+00:39:32,260 --> 00:39:35,350
+to make sure that I'm actually
+returning my prompt down
+
+720
+00:39:35,350 --> 00:39:36,850
+below the result of my program.
+
+721
+00:39:36,850 --> 00:39:38,260
+But I can fix that here.
+
+722
+00:39:38,260 --> 00:39:39,370
+I'll go back in.
+
+723
+00:39:39,370 --> 00:39:40,540
+And I'll scroll down.
+
+724
+00:39:40,540 --> 00:39:47,600
+And at the very end, I'll
+include a backslash n, like this.
+
+725
+00:39:47,600 --> 00:39:53,270
+Now, though, I think we should take
+kind of a broader look at this.
+
+726
+00:39:53,270 --> 00:40:00,590
+If I type make alphabetical
+and I say ./alphabetical hello,
+
+727
+00:40:00,590 --> 00:40:07,370
+I know I'm able to access the
+H, the E, the L, the L, the O.
+
+728
+00:40:07,370 --> 00:40:12,230
+But now there's a question of, how do
+I know if something is in alphabetical
+
+729
+00:40:12,230 --> 00:40:13,780
+order?
+
+730
+00:40:13,780 --> 00:40:16,925
+I can't really say--
+
+731
+00:40:16,925 --> 00:40:19,300
+there's no function I believe
+in C, at least that I know,
+
+732
+00:40:19,300 --> 00:40:24,940
+that tells me does A come before
+B or does B come before A.
+
+733
+00:40:24,940 --> 00:40:29,810
+What could I pay attention to instead?
+
+734
+00:40:29,810 --> 00:40:37,090
+If we look back at this mapping
+here, what pattern do you see?
+
+735
+00:40:37,090 --> 00:40:43,780
+
+
+736
+00:40:43,780 --> 00:40:49,840
+So one thing I notice here is that as
+we go forward in the alphabet from A
+
+737
+00:40:49,840 --> 00:40:56,100
+to B to C, we notice that the
+integer representation is actually
+
+738
+00:40:56,100 --> 00:40:57,910
+increasing as we go.
+
+739
+00:40:57,910 --> 00:41:02,280
+So first 65, then 66, then 67.
+
+740
+00:41:02,280 --> 00:41:05,910
+So maybe we could use that
+pattern in our own code here.
+
+741
+00:41:05,910 --> 00:41:07,300
+I could go back to it.
+
+742
+00:41:07,300 --> 00:41:12,690
+And let me change the
+format code from %c to %i.
+
+743
+00:41:12,690 --> 00:41:17,860
+That means I want to print whatever
+data is stored at phrase[i],
+
+744
+00:41:17,860 --> 00:41:20,190
+whatever index of phrase.
+
+745
+00:41:20,190 --> 00:41:24,630
+But I want to print it not as
+a character, but as an integer.
+
+746
+00:41:24,630 --> 00:41:28,360
+I want to see what underlying
+number is being represented.
+
+747
+00:41:28,360 --> 00:41:30,000
+So I'll try this now.
+
+748
+00:41:30,000 --> 00:41:33,090
+I'll recompile alphabetical.
+
+749
+00:41:33,090 --> 00:41:35,970
+Then I'll say ./alphabetical.
+
+750
+00:41:35,970 --> 00:41:38,010
+And I'll give it hello.
+
+751
+00:41:38,010 --> 00:41:40,263
+And now I see a lot of numbers.
+
+752
+00:41:40,263 --> 00:41:41,430
+So I mean, that makes sense.
+
+753
+00:41:41,430 --> 00:41:46,870
+I told it to print out now the numeric
+representation of the characters
+
+754
+00:41:46,870 --> 00:41:47,497
+it's storing.
+
+755
+00:41:47,497 --> 00:41:48,580
+But let me try this again.
+
+756
+00:41:48,580 --> 00:41:50,050
+I'll make it a little clearer.
+
+757
+00:41:50,050 --> 00:41:52,540
+I'll go back to my program.
+
+758
+00:41:52,540 --> 00:41:54,610
+And I'll add a space
+between every character
+
+759
+00:41:54,610 --> 00:41:56,350
+to separate these numbers apart.
+
+760
+00:41:56,350 --> 00:41:57,730
+And now I'll recompile.
+
+761
+00:41:57,730 --> 00:42:05,320
+I will say make alphabetical,
+make alphabetical, ./alphabetical.
+
+762
+00:42:05,320 --> 00:42:07,640
+I'll say hello, in this case.
+
+763
+00:42:07,640 --> 00:42:13,210
+And I see 104, 101, 108, 108, and 111.
+
+764
+00:42:13,210 --> 00:42:15,460
+Now these don't seem to match.
+
+765
+00:42:15,460 --> 00:42:21,070
+If I go back here I see A
+for 65, B for 66, C for 67.
+
+766
+00:42:21,070 --> 00:42:23,380
+Why might they not match do you think?
+
+767
+00:42:23,380 --> 00:42:26,690
+
+
+768
+00:42:26,690 --> 00:42:31,280
+Yeah, so notice how in here I've been
+actually typing things in lowercase.
+
+769
+00:42:31,280 --> 00:42:35,832
+And lowercase letters have
+different numeric representations.
+
+770
+00:42:35,832 --> 00:42:37,040
+Let me try this with capital.
+
+771
+00:42:37,040 --> 00:42:40,880
+I'll say ./alphabetical
+HELLO in all caps, hit Enter.
+
+772
+00:42:40,880 --> 00:42:48,540
+And now I see those familiar
+numbers, 72, 69, 76, 76, and 79.
+
+773
+00:42:48,540 --> 00:42:51,170
+So we can assume at
+least in this that all
+
+774
+00:42:51,170 --> 00:42:56,300
+of our words to check for alphabetical
+order will be all in capitals.
+
+775
+00:42:56,300 --> 00:42:58,460
+So let's keep going now.
+
+776
+00:42:58,460 --> 00:43:03,710
+So I'm able to access each phrase
+or each character in this phrase.
+
+777
+00:43:03,710 --> 00:43:09,130
+But now, what questions
+should I be asking?
+
+778
+00:43:09,130 --> 00:43:15,120
+What should I ask maybe if something
+is not in alphabetical order?
+
+779
+00:43:15,120 --> 00:43:18,340
+Or should I ask if something
+is in alphabetical order?
+
+780
+00:43:18,340 --> 00:43:22,800
+And how would I convert that
+here to an actual condition?
+
+781
+00:43:22,800 --> 00:43:23,385
+Any ideas?
+
+782
+00:43:23,385 --> 00:43:27,840
+
+
+783
+00:43:27,840 --> 00:43:31,770
+Yeah, so I'm seeing we
+could maybe compare letters
+
+784
+00:43:31,770 --> 00:43:35,380
+as we loop through our phrase here.
+
+785
+00:43:35,380 --> 00:43:38,110
+So maybe we could do
+something a bit like this.
+
+786
+00:43:38,110 --> 00:43:41,440
+I could say if there's
+some condition here.
+
+787
+00:43:41,440 --> 00:43:47,760
+And maybe this condition is we'll check
+if characters are not alphabetical,
+
+788
+00:43:47,760 --> 00:43:54,330
+like this because we know that if
+the characters are not alphabetical,
+
+789
+00:43:54,330 --> 00:43:57,340
+if any two characters are
+not in alphabetical order,
+
+790
+00:43:57,340 --> 00:44:00,790
+well, then the entire thing
+is in alphabetical order.
+
+791
+00:44:00,790 --> 00:44:01,920
+So what should I check?
+
+792
+00:44:01,920 --> 00:44:05,730
+What should my condition be to
+determine if two characters are not
+
+793
+00:44:05,730 --> 00:44:07,275
+in alphabetical order?
+
+794
+00:44:07,275 --> 00:44:09,150
+Well, I could probably
+look at the first one.
+
+795
+00:44:09,150 --> 00:44:11,840
+I could say phrase[i].
+
+796
+00:44:11,840 --> 00:44:14,770
+That gives me this very first letter.
+
+797
+00:44:14,770 --> 00:44:20,528
+But now, what condition would be true
+if the following character is not
+
+798
+00:44:20,528 --> 00:44:21,445
+in alphabetical order?
+
+799
+00:44:21,445 --> 00:44:24,850
+
+
+800
+00:44:24,850 --> 00:44:31,300
+Maybe I could say if this current
+letter is greater than, let's say,
+
+801
+00:44:31,300 --> 00:44:35,840
+phrase i plus 1, that
+is the next letter.
+
+802
+00:44:35,840 --> 00:44:37,000
+So here's what we have.
+
+803
+00:44:37,000 --> 00:44:42,070
+If this current letter has a
+numeric representation that
+
+804
+00:44:42,070 --> 00:44:45,190
+is greater than the
+previous one, well, that
+
+805
+00:44:45,190 --> 00:44:46,970
+means it's not in alphabetical order.
+
+806
+00:44:46,970 --> 00:44:49,840
+And to this more concrete,
+let's go back to our slides.
+
+807
+00:44:49,840 --> 00:44:53,530
+Let's say we had B
+followed by A. Well, we'd
+
+808
+00:44:53,530 --> 00:44:58,990
+first look at B. We'd
+say the B integer is 66.
+
+809
+00:44:58,990 --> 00:45:02,650
+Then we look at the
+next one, A. That's 65.
+
+810
+00:45:02,650 --> 00:45:07,390
+So we're seeing now that B has a
+greater value than A. That means
+
+811
+00:45:07,390 --> 00:45:09,130
+they're not in alphabetical order.
+
+812
+00:45:09,130 --> 00:45:14,070
+We can do the same thing for C
+and B, for C and A, and so on.
+
+813
+00:45:14,070 --> 00:45:15,880
+So I think we're on to something here.
+
+814
+00:45:15,880 --> 00:45:21,828
+Now, what should we do in this case if
+these are not in alphabetical order?
+
+815
+00:45:21,828 --> 00:45:23,620
+Well, we could probably
+print out something
+
+816
+00:45:23,620 --> 00:45:28,380
+like not in alphabetical order.
+
+817
+00:45:28,380 --> 00:45:30,470
+And now logically, what could we do?
+
+818
+00:45:30,470 --> 00:45:33,330
+We know that our program is done.
+
+819
+00:45:33,330 --> 00:45:35,240
+We don't need to check any more letters.
+
+820
+00:45:35,240 --> 00:45:37,380
+If something is not
+in alphabetical order,
+
+821
+00:45:37,380 --> 00:45:39,560
+if any two characters are
+not in alphabetical order,
+
+822
+00:45:39,560 --> 00:45:41,940
+we can return and call it good.
+
+823
+00:45:41,940 --> 00:45:43,500
+So I'll return 0 here.
+
+824
+00:45:43,500 --> 00:45:45,740
+And if you're not familiar,
+as we saw in lecture,
+
+825
+00:45:45,740 --> 00:45:49,010
+return 0 basically means
+end my program here.
+
+826
+00:45:49,010 --> 00:45:50,300
+Don't do anything else.
+
+827
+00:45:50,300 --> 00:45:55,340
+As soon as you see this line,
+just quit and end my program.
+
+828
+00:45:55,340 --> 00:45:57,290
+Now, though, let's try this.
+
+829
+00:45:57,290 --> 00:46:02,808
+So I will say go back to my terminal.
+
+830
+00:46:02,808 --> 00:46:03,350
+I'll compile.
+
+831
+00:46:03,350 --> 00:46:05,180
+I'll say make alphabetical.
+
+832
+00:46:05,180 --> 00:46:07,610
+And I'll type in ./alphabetical.
+
+833
+00:46:07,610 --> 00:46:12,800
+And now I'll type in
+something like CBA, which
+
+834
+00:46:12,800 --> 00:46:14,990
+we know is not in alphabetical order.
+
+835
+00:46:14,990 --> 00:46:16,130
+I'll hit Enter.
+
+836
+00:46:16,130 --> 00:46:19,200
+And we see not in alphabetical order.
+
+837
+00:46:19,200 --> 00:46:20,250
+So what if I did this?
+
+838
+00:46:20,250 --> 00:46:21,920
+I could say ./alphabetical.
+
+839
+00:46:21,920 --> 00:46:24,620
+Now I'll try ABC.
+
+840
+00:46:24,620 --> 00:46:25,940
+Hmm.
+
+841
+00:46:25,940 --> 00:46:29,330
+And I get not in alphabetical order.
+
+842
+00:46:29,330 --> 00:46:33,230
+What might be wrong here?
+
+843
+00:46:33,230 --> 00:46:37,560
+Go back to my program.
+
+844
+00:46:37,560 --> 00:46:38,495
+What do we see?
+
+845
+00:46:38,495 --> 00:46:43,910
+
+
+846
+00:46:43,910 --> 00:46:44,570
+Any ideas?
+
+847
+00:46:44,570 --> 00:46:47,910
+
+
+848
+00:46:47,910 --> 00:46:49,355
+Here's the full screen code again.
+
+849
+00:46:49,355 --> 00:46:55,540
+
+
+850
+00:46:55,540 --> 00:46:59,450
+So I did remove the
+correct line down here.
+
+851
+00:46:59,450 --> 00:47:04,398
+So I haven't actually said when these
+things are in alphabetical order.
+
+852
+00:47:04,398 --> 00:47:06,190
+So maybe that's something
+to consider here.
+
+853
+00:47:06,190 --> 00:47:10,370
+
+
+854
+00:47:10,370 --> 00:47:13,910
+There's a slightly
+more subtle bug though.
+
+855
+00:47:13,910 --> 00:47:23,490
+And that is let's consider what happens
+if we go back to our alphabetical order
+
+856
+00:47:23,490 --> 00:47:24,850
+array here.
+
+857
+00:47:24,850 --> 00:47:28,980
+So let's say we checked A and B. Those
+seem to be in alphabetical order,
+
+858
+00:47:28,980 --> 00:47:29,580
+right?
+
+859
+00:47:29,580 --> 00:47:32,560
+We did that when i was equal to 0.
+
+860
+00:47:32,560 --> 00:47:37,810
+Now, when i was equal to 1, we
+checked B and C. That seems fair.
+
+861
+00:47:37,810 --> 00:47:40,580
+OK, so those are in
+alphabetical order as well.
+
+862
+00:47:40,580 --> 00:47:45,625
+Now, when i was 2, we
+checked C. And what?
+
+863
+00:47:45,625 --> 00:47:47,500
+I mean, what comes after C?
+
+864
+00:47:47,500 --> 00:47:51,070
+I don't think there's really
+anything out there past C.
+
+865
+00:47:51,070 --> 00:47:53,450
+So I think we made a mistake here.
+
+866
+00:47:53,450 --> 00:47:56,930
+We don't want to be checking against
+values that are outside of our array.
+
+867
+00:47:56,930 --> 00:48:01,660
+And in fact, that's kind of a common
+bug, but also a very dangerous one.
+
+868
+00:48:01,660 --> 00:48:04,000
+We don't want to be
+looking at places in memory
+
+869
+00:48:04,000 --> 00:48:08,230
+that we actually shouldn't be looking
+because one, we'll get bugs and two,
+
+870
+00:48:08,230 --> 00:48:10,990
+we might touch things we're not
+supposed to touch in our computer.
+
+871
+00:48:10,990 --> 00:48:12,620
+So let me fix this.
+
+872
+00:48:12,620 --> 00:48:14,410
+I'll go back to our code.
+
+873
+00:48:14,410 --> 00:48:16,390
+And how should we adjust this?
+
+874
+00:48:16,390 --> 00:48:22,840
+Maybe we go from i equals
+0 up to length but minus 1.
+
+875
+00:48:22,840 --> 00:48:25,660
+So we get the very end of our phrase.
+
+876
+00:48:25,660 --> 00:48:27,460
+Let's go back to our example here.
+
+877
+00:48:27,460 --> 00:48:32,390
+We check A and B. We check B and C.
+And if those are in alphabetical order,
+
+878
+00:48:32,390 --> 00:48:34,390
+well, we know the rest
+is in alphabetical order.
+
+879
+00:48:34,390 --> 00:48:37,540
+We don't need to check C and
+whatever else comes after it,
+
+880
+00:48:37,540 --> 00:48:40,130
+in this case, some empty value.
+
+881
+00:48:40,130 --> 00:48:43,210
+So let's go and try this again.
+
+882
+00:48:43,210 --> 00:48:45,640
+I will now go back to my terminal.
+
+883
+00:48:45,640 --> 00:48:51,280
+And I'll say make
+alphabetical ./alphabetical.
+
+884
+00:48:51,280 --> 00:48:53,560
+And I'll run hello.
+
+885
+00:48:53,560 --> 00:48:55,910
+And I see well, that's
+not in alphabetical order.
+
+886
+00:48:55,910 --> 00:48:59,260
+Now I'll do ./alphabetical again.
+
+887
+00:48:59,260 --> 00:49:02,230
+And I'll type ABC, hit Enter.
+
+888
+00:49:02,230 --> 00:49:03,940
+I don't see anything.
+
+889
+00:49:03,940 --> 00:49:05,480
+Now there's two options here.
+
+890
+00:49:05,480 --> 00:49:08,500
+I could say if this.
+
+891
+00:49:08,500 --> 00:49:10,550
+And I know they're not alphabetical.
+
+892
+00:49:10,550 --> 00:49:18,150
+I could try else maybe print
+alphabetical order, like this,
+
+893
+00:49:18,150 --> 00:49:20,140
+and then return zero.
+
+894
+00:49:20,140 --> 00:49:22,660
+But I would argue that
+might not be wise.
+
+895
+00:49:22,660 --> 00:49:24,550
+And why do you think
+that wouldn't be wise?
+
+896
+00:49:24,550 --> 00:49:30,950
+
+
+897
+00:49:30,950 --> 00:49:33,650
+Yeah, so I'm seeing that
+we'll probably only check
+
+898
+00:49:33,650 --> 00:49:36,240
+the very first two characters.
+
+899
+00:49:36,240 --> 00:49:40,280
+So notice here, we
+begin with i equals 0.
+
+900
+00:49:40,280 --> 00:49:41,900
+So i equals 0.
+
+901
+00:49:41,900 --> 00:49:43,400
+We check.
+
+902
+00:49:43,400 --> 00:49:46,130
+Are the characters in alphabetical
+order or are they not?
+
+903
+00:49:46,130 --> 00:49:48,320
+If they're not, we'll
+break out our program.
+
+904
+00:49:48,320 --> 00:49:49,490
+That seems fine.
+
+905
+00:49:49,490 --> 00:49:53,190
+If they are though, we'll say
+everything's in alphabetical order
+
+906
+00:49:53,190 --> 00:49:54,740
+and return 0.
+
+907
+00:49:54,740 --> 00:49:58,100
+But we didn't yet check the rest
+of our phrase, which we really
+
+908
+00:49:58,100 --> 00:49:59,040
+should be doing.
+
+909
+00:49:59,040 --> 00:50:02,690
+And then further return zero
+again means exit the program
+
+910
+00:50:02,690 --> 00:50:04,140
+at this particular moment.
+
+911
+00:50:04,140 --> 00:50:07,292
+So we're going to exit and never
+look at the rest of our code.
+
+912
+00:50:07,292 --> 00:50:08,750
+So this should be really elsewhere.
+
+913
+00:50:08,750 --> 00:50:11,167
+And in fact, it should be
+probably at the end of our loop.
+
+914
+00:50:11,167 --> 00:50:15,200
+We can only say for sure that this
+is an alphabetical order after we've
+
+915
+00:50:15,200 --> 00:50:18,320
+gone through every pair
+of letters and checked
+
+916
+00:50:18,320 --> 00:50:21,590
+that they are, let's say,
+not not in alphabetical order
+
+917
+00:50:21,590 --> 00:50:23,670
+or that they are, in fact,
+in alphabetical order.
+
+918
+00:50:23,670 --> 00:50:28,700
+So I'll say printf these
+are in alphabetical order,
+
+919
+00:50:28,700 --> 00:50:35,270
+like this, backslash n semicolon
+and return 0 down below.
+
+920
+00:50:35,270 --> 00:50:37,300
+So this then is our entire program.
+
+921
+00:50:37,300 --> 00:50:39,190
+And I'll run it now to test it out.
+
+922
+00:50:39,190 --> 00:50:44,590
+I'll say make alphabetical
+./alphabetical.
+
+923
+00:50:44,590 --> 00:50:46,780
+And now I'll type in ABC.
+
+924
+00:50:46,780 --> 00:50:48,670
+I see that's in alphabetical order.
+
+925
+00:50:48,670 --> 00:50:50,920
+I'll do it again with CBA.
+
+926
+00:50:50,920 --> 00:50:55,000
+And those are not in alphabetical order.
+
+927
+00:50:55,000 --> 00:51:02,900
+So questions then on this
+implementation of our program,
+
+928
+00:51:02,900 --> 00:51:05,810
+or on strings or arrays more generally?
+
+929
+00:51:05,810 --> 00:51:17,090
+
+
+930
+00:51:17,090 --> 00:51:21,012
+OK, so seeing none right now.
+
+931
+00:51:21,012 --> 00:51:22,970
+But feel free to keep
+chiming in if you'd like.
+
+932
+00:51:22,970 --> 00:51:28,520
+Let's continue on then and focus on
+this new idea of command line arguments.
+
+933
+00:51:28,520 --> 00:51:31,900
+So our final topic
+for today is this idea
+
+934
+00:51:31,900 --> 00:51:37,840
+of running programs and giving them
+input not necessarily while they run,
+
+935
+00:51:37,840 --> 00:51:40,390
+but even before they run.
+
+936
+00:51:40,390 --> 00:51:43,910
+And now you've probably seen
+similar kinds of programs.
+
+937
+00:51:43,910 --> 00:51:47,380
+In fact, every time
+I went to my terminal
+
+938
+00:51:47,380 --> 00:51:54,700
+and I typed make alphabetical, until
+I hit Enter, Make has not yet run.
+
+939
+00:51:54,700 --> 00:51:57,370
+But notice how I'm not
+just typing Make, the name
+
+940
+00:51:57,370 --> 00:52:01,600
+of the program, I'm giving Make some
+input or some argument, telling it
+
+941
+00:52:01,600 --> 00:52:02,650
+what to make.
+
+942
+00:52:02,650 --> 00:52:06,520
+I'm telling it here to make
+the program alphabetical.
+
+943
+00:52:06,520 --> 00:52:10,060
+Now, you've also probably
+seen something like check50.
+
+944
+00:52:10,060 --> 00:52:11,650
+I can run check50.
+
+945
+00:52:11,650 --> 00:52:13,960
+And this is the program itself, check50.
+
+946
+00:52:13,960 --> 00:52:15,100
+I can hit Enter.
+
+947
+00:52:15,100 --> 00:52:17,720
+And I'll see I get a bit
+of a help message here.
+
+948
+00:52:17,720 --> 00:52:21,730
+But I also see the following
+arguments or inputs
+
+949
+00:52:21,730 --> 00:52:24,670
+are required when I run check50.
+
+950
+00:52:24,670 --> 00:52:26,440
+The slug in this case is required.
+
+951
+00:52:26,440 --> 00:52:29,080
+And the slug refers to the
+problem I'm going to check,
+
+952
+00:52:29,080 --> 00:52:32,960
+something like cs50/problems/ and so on.
+
+953
+00:52:32,960 --> 00:52:36,190
+But notice here how
+before I even run check50
+
+954
+00:52:36,190 --> 00:52:40,150
+I'm giving it some input,
+some additional context
+
+955
+00:52:40,150 --> 00:52:42,910
+to go off of to run as a program.
+
+956
+00:52:42,910 --> 00:52:45,830
+And we can do the very same
+thing for our own programs.
+
+957
+00:52:45,830 --> 00:52:49,960
+So for instance, in mario,
+when you first wrote it,
+
+958
+00:52:49,960 --> 00:52:51,960
+you might have done
+something a bit like this.
+
+959
+00:52:51,960 --> 00:52:57,410
+You might have run ./mario and then
+while the program was running prompted
+
+960
+00:52:57,410 --> 00:53:01,970
+the user for a height, in this case
+H. And maybe you typed in eight.
+
+961
+00:53:01,970 --> 00:53:06,560
+Well, in your actual C code you
+probably had something like this.
+
+962
+00:53:06,560 --> 00:53:11,000
+You had your int main void, your
+main function in your program.
+
+963
+00:53:11,000 --> 00:53:13,880
+And you had some variable
+perhaps named height
+
+964
+00:53:13,880 --> 00:53:20,410
+that received the value of
+getint after we finished running.
+
+965
+00:53:20,410 --> 00:53:24,370
+Now, we're going to
+transition here and make sure
+
+966
+00:53:24,370 --> 00:53:28,900
+that we allow the user
+to actually give input
+
+967
+00:53:28,900 --> 00:53:31,400
+before the program is even running.
+
+968
+00:53:31,400 --> 00:53:37,720
+So you can imagine Mario being
+run like this, ./mario space 8.
+
+969
+00:53:37,720 --> 00:53:40,510
+So before Mario even
+runs, the user can tell us
+
+970
+00:53:40,510 --> 00:53:42,850
+how high they want that pyramid to be.
+
+971
+00:53:42,850 --> 00:53:46,900
+And if you do something like this
+and you want to capture this input,
+
+972
+00:53:46,900 --> 00:53:49,390
+well, you need to change your C code.
+
+973
+00:53:49,390 --> 00:53:53,160
+And it turns out you have to
+change it a little bit like this.
+
+974
+00:53:53,160 --> 00:53:55,760
+What do you notice that's different now?
+
+975
+00:53:55,760 --> 00:54:00,150
+We still have int and main.
+
+976
+00:54:00,150 --> 00:54:02,985
+But what looks different now?
+
+977
+00:54:02,985 --> 00:54:05,900
+
+
+978
+00:54:05,900 --> 00:54:08,040
+Yes, I'm seeing that void is replaced.
+
+979
+00:54:08,040 --> 00:54:11,060
+So before we had void
+inside parentheses.
+
+980
+00:54:11,060 --> 00:54:14,480
+But now we have what seems
+to be two different things,
+
+981
+00:54:14,480 --> 00:54:19,620
+int argc and string
+argv with some braces.
+
+982
+00:54:19,620 --> 00:54:22,350
+So let's go through first
+conceptually what's happening here.
+
+983
+00:54:22,350 --> 00:54:27,680
+So in our prior version of Mario,
+notice that when the user ran it,
+
+984
+00:54:27,680 --> 00:54:30,680
+they only ran ./mario.
+
+985
+00:54:30,680 --> 00:54:33,060
+They didn't give any other input.
+
+986
+00:54:33,060 --> 00:54:37,610
+And that's actually reflected
+in our main function here.
+
+987
+00:54:37,610 --> 00:54:41,000
+You can think of the main function
+as being the function that
+
+988
+00:54:41,000 --> 00:54:43,040
+represents our entire program.
+
+989
+00:54:43,040 --> 00:54:46,460
+The int tells us the exit status code.
+
+990
+00:54:46,460 --> 00:54:48,800
+If it's 0, that means all was OK.
+
+991
+00:54:48,800 --> 00:54:51,440
+If it's non-zero,
+something bad happened.
+
+992
+00:54:51,440 --> 00:54:55,800
+But either way, our program
+will return an integer.
+
+993
+00:54:55,800 --> 00:55:00,140
+Now, main is the name of this
+function kind of by convention.
+
+994
+00:55:00,140 --> 00:55:03,950
+And here inside parentheses we see void.
+
+995
+00:55:03,950 --> 00:55:07,500
+Our program or this
+function takes no arguments.
+
+996
+00:55:07,500 --> 00:55:08,430
+And we saw this above.
+
+997
+00:55:08,430 --> 00:55:10,530
+The user just typed ./mario.
+
+998
+00:55:10,530 --> 00:55:13,930
+But they didn't add any arguments.
+
+999
+00:55:13,930 --> 00:55:17,890
+But now if we change this, if
+the user actually types in an 8,
+
+1000
+00:55:17,890 --> 00:55:21,620
+we have to change our C
+code to take some input now.
+
+1001
+00:55:21,620 --> 00:55:25,330
+So our entire program
+now takes what seems
+
+1002
+00:55:25,330 --> 00:55:29,300
+to be a total of two
+arguments or two inputs.
+
+1003
+00:55:29,300 --> 00:55:33,400
+One is called argc, which
+is of the type integer.
+
+1004
+00:55:33,400 --> 00:55:38,590
+The other is called argv, which is
+itself a string, but actually not
+
+1005
+00:55:38,590 --> 00:55:41,520
+just a string, an array of strings.
+
+1006
+00:55:41,520 --> 00:55:43,930
+So notice here we see that
+array syntax coming back?
+
+1007
+00:55:43,930 --> 00:55:51,670
+Argv with the braces here, that
+means argv is an array of strings.
+
+1008
+00:55:51,670 --> 00:55:54,460
+And in fact, we'll see it
+holds the arguments we actually
+
+1009
+00:55:54,460 --> 00:55:56,360
+give to our program.
+
+1010
+00:55:56,360 --> 00:55:59,560
+So here let's take a look.
+
+1011
+00:55:59,560 --> 00:56:04,000
+We're going to write a program here that
+prints each command line argument given
+
+1012
+00:56:04,000 --> 00:56:06,760
+to our program just to
+kind of practice and get
+
+1013
+00:56:06,760 --> 00:56:09,850
+a feel for what argc and argv can do.
+
+1014
+00:56:09,850 --> 00:56:11,950
+So I'll go back to my terminal.
+
+1015
+00:56:11,950 --> 00:56:15,290
+And I'll type code argv.
+
+1016
+00:56:15,290 --> 00:56:16,550
+Actually, I'll just type--
+
+1017
+00:56:16,550 --> 00:56:18,560
+yeah, code argv.c.
+
+1018
+00:56:18,560 --> 00:56:23,810
+And now inside of this we're going to
+get a sense for what these command line
+
+1019
+00:56:23,810 --> 00:56:25,350
+arguments are doing for us.
+
+1020
+00:56:25,350 --> 00:56:29,960
+So I'll include, let's say, cs50.h.
+
+1021
+00:56:29,960 --> 00:56:33,440
+I'll include stdio.h.
+
+1022
+00:56:33,440 --> 00:56:37,750
+And now I'll type int main
+and not int main void.
+
+1023
+00:56:37,750 --> 00:56:40,850
+I now want my program to take
+some input at the command line.
+
+1024
+00:56:40,850 --> 00:56:45,410
+I could say int argc and string
+argv to say my program now
+
+1025
+00:56:45,410 --> 00:56:48,890
+has access to something called
+argc, which is a number,
+
+1026
+00:56:48,890 --> 00:56:53,280
+and something called argv, which is,
+in this case, an array of strings.
+
+1027
+00:56:53,280 --> 00:56:59,300
+So now in particular argc is the number
+of arguments that my program received,
+
+1028
+00:56:59,300 --> 00:57:03,530
+the number of inputs
+it received, including
+
+1029
+00:57:03,530 --> 00:57:06,570
+the actual name of the program itself.
+
+1030
+00:57:06,570 --> 00:57:12,440
+So for instance, if I go back to
+that mario example, I type ./mario 8.
+
+1031
+00:57:12,440 --> 00:57:15,980
+In that case, argc would be equal to 2.
+
+1032
+00:57:15,980 --> 00:57:20,060
+I'm giving two inputs, the name of
+my program and the number eight.
+
+1033
+00:57:20,060 --> 00:57:24,650
+Now, argv would itself
+have two strings inside.
+
+1034
+00:57:24,650 --> 00:57:27,650
+One would be the name of my program.
+
+1035
+00:57:27,650 --> 00:57:32,120
+And the other would be the input
+that I gave, in this case, eight.
+
+1036
+00:57:32,120 --> 00:57:33,090
+So let's try this.
+
+1037
+00:57:33,090 --> 00:57:36,060
+I'll go back to my code here.
+
+1038
+00:57:36,060 --> 00:57:40,820
+And I will try to loop through
+all the values in argv.
+
+1039
+00:57:40,820 --> 00:57:44,360
+I'll say for int i equals 0.
+
+1040
+00:57:44,360 --> 00:57:46,220
+i is less than--
+
+1041
+00:57:46,220 --> 00:57:48,140
+how do I know how long argv is?
+
+1042
+00:57:48,140 --> 00:57:49,490
+I can rely on argc.
+
+1043
+00:57:49,490 --> 00:57:52,860
+I'll say argc then i++.
+
+1044
+00:57:52,860 --> 00:58:01,980
+And now I'll print out something
+like this, argv %i is %s backslash n.
+
+1045
+00:58:01,980 --> 00:58:05,460
+And I'll fill this in
+with a few variables here.
+
+1046
+00:58:05,460 --> 00:58:08,970
+I'm going to refer to argv bracket i.
+
+1047
+00:58:08,970 --> 00:58:10,870
+So I'll substitute i in there.
+
+1048
+00:58:10,870 --> 00:58:14,380
+And then I'll also substitute
+argv bracket i here.
+
+1049
+00:58:14,380 --> 00:58:17,830
+So now I can see when
+I run this program,
+
+1050
+00:58:17,830 --> 00:58:22,800
+I should be able to
+print out argv bracket 0
+
+1051
+00:58:22,800 --> 00:58:24,900
+is whatever argv bracket 0 is.
+
+1052
+00:58:24,900 --> 00:58:28,530
+Argv bracket 1 is whatever
+argv bracket 1 is.
+
+1053
+00:58:28,530 --> 00:58:29,910
+So now I'll go back.
+
+1054
+00:58:29,910 --> 00:58:32,080
+And I'll try to compile this program.
+
+1055
+00:58:32,080 --> 00:58:37,330
+I'll say, in this case, make argv.
+
+1056
+00:58:37,330 --> 00:58:39,430
+I'll type ./argv.
+
+1057
+00:58:39,430 --> 00:58:44,080
+And give it some input, let's say,
+1, 2, and 3 separated by spaces.
+
+1058
+00:58:44,080 --> 00:58:45,610
+Now I hit Enter.
+
+1059
+00:58:45,610 --> 00:58:49,310
+And I see my program had
+a total of four inputs.
+
+1060
+00:58:49,310 --> 00:58:52,340
+The first was the actual
+name of my program.
+
+1061
+00:58:52,340 --> 00:58:56,770
+So argv bracket 0 is equal to ./argv.
+
+1062
+00:58:56,770 --> 00:59:00,160
+argv bracket 1 is 1, as we saw up here.
+
+1063
+00:59:00,160 --> 00:59:02,050
+2 is 2.
+
+1064
+00:59:02,050 --> 00:59:03,418
+And 3 is 3.
+
+1065
+00:59:03,418 --> 00:59:04,210
+So let me try this.
+
+1066
+00:59:04,210 --> 00:59:06,430
+I can say ./argv.
+
+1067
+00:59:06,430 --> 00:59:09,730
+I could even type in something
+like my name, Carter.
+
+1068
+00:59:09,730 --> 00:59:13,600
+And now I see argv bracket
+1, name of my program.
+
+1069
+00:59:13,600 --> 00:59:15,580
+argv bracket 1 is Carter.
+
+1070
+00:59:15,580 --> 00:59:18,590
+Argv bracket 0 is the
+name of my program here.
+
+1071
+00:59:18,590 --> 00:59:23,740
+So to be clear, argc then is the
+total number of arguments we get.
+
+1072
+00:59:23,740 --> 00:59:27,350
+We can use it to figure
+out how long argv will be.
+
+1073
+00:59:27,350 --> 00:59:31,210
+But all the interesting stuff, all
+the actual input to our program
+
+1074
+00:59:31,210 --> 00:59:37,150
+will be stored in argv
+as a set of strings.
+
+1075
+00:59:37,150 --> 00:59:40,800
+So questions then on argc and argv?
+
+1076
+00:59:40,800 --> 00:59:47,820
+
+
+1077
+00:59:47,820 --> 00:59:49,005
+What questions do we have?
+
+1078
+00:59:49,005 --> 00:59:56,490
+
+
+1079
+00:59:56,490 --> 01:00:04,160
+OK, so while we're here, I actually
+see a good question, which is asking,
+
+1080
+01:00:04,160 --> 01:00:08,990
+we noticed that argv is storing
+a collection of strings.
+
+1081
+01:00:08,990 --> 01:00:12,830
+But what if we wanted to get a
+number and use it in our program,
+
+1082
+01:00:12,830 --> 01:00:15,150
+like in that Mario
+example, for instance?
+
+1083
+01:00:15,150 --> 01:00:19,460
+So let's consider trying
+to re-implement Mario,
+
+1084
+01:00:19,460 --> 01:00:22,230
+but now using command line arguments.
+
+1085
+01:00:22,230 --> 01:00:23,610
+So what if I did this?
+
+1086
+01:00:23,610 --> 01:00:25,100
+I can go back to my terminal.
+
+1087
+01:00:25,100 --> 01:00:28,610
+And I'll type code mario.c.
+
+1088
+01:00:28,610 --> 01:00:30,330
+I'm not going to write the whole thing.
+
+1089
+01:00:30,330 --> 01:00:37,520
+But I will try to make it so that I'm
+able to run Mario using command line
+
+1090
+01:00:37,520 --> 01:00:38,490
+arguments.
+
+1091
+01:00:38,490 --> 01:00:43,130
+So instead of, in this
+case, running int main void,
+
+1092
+01:00:43,130 --> 01:00:48,560
+I'll start off with int
+main int argc string argv.
+
+1093
+01:00:48,560 --> 01:00:52,230
+And again, this is allowing my program
+to take inputs at the command line.
+
+1094
+01:00:52,230 --> 01:00:56,570
+And it will store them for
+me in this array called argv.
+
+1095
+01:00:56,570 --> 01:01:00,430
+And it will tell me how
+many there are using argc.
+
+1096
+01:01:00,430 --> 01:01:01,420
+So let's try this.
+
+1097
+01:01:01,420 --> 01:01:04,240
+I know I want to get the--
+
+1098
+01:01:04,240 --> 01:01:11,590
+I know I want to allow the user to do
+this, to say ./mario followed by 8,
+
+1099
+01:01:11,590 --> 01:01:13,100
+for instance.
+
+1100
+01:01:13,100 --> 01:01:14,770
+And now I'm curious.
+
+1101
+01:01:14,770 --> 01:01:22,610
+To get this value of 8,
+in which index of argv
+
+1102
+01:01:22,610 --> 01:01:28,660
+should I look, based
+on what we saw earlier?
+
+1103
+01:01:28,660 --> 01:01:30,460
+Seems like argv bracket 1.
+
+1104
+01:01:30,460 --> 01:01:35,770
+So keep in mind that ./mario, that
+will be the value for argv bracket 0.
+
+1105
+01:01:35,770 --> 01:01:39,970
+This value though will be
+the value for argv bracket 1.
+
+1106
+01:01:39,970 --> 01:01:41,240
+So now I'll try that.
+
+1107
+01:01:41,240 --> 01:01:45,370
+I'll say, well, why don't I
+make a variable called height
+
+1108
+01:01:45,370 --> 01:01:50,990
+and say that it gets whatever
+is stored in argv bracket 1?
+
+1109
+01:01:50,990 --> 01:01:51,490
+Try it.
+
+1110
+01:01:51,490 --> 01:01:53,200
+Now I'll compile my program.
+
+1111
+01:01:53,200 --> 01:01:54,250
+I'll go up top.
+
+1112
+01:01:54,250 --> 01:01:57,520
+I'll say make Mario.
+
+1113
+01:01:57,520 --> 01:01:58,850
+I get an error.
+
+1114
+01:01:58,850 --> 01:02:00,970
+And this isn't a
+particularly helpful error.
+
+1115
+01:02:00,970 --> 01:02:03,450
+But I do see this.
+
+1116
+01:02:03,450 --> 01:02:08,260
+Initializing int with an
+expression of type string.
+
+1117
+01:02:08,260 --> 01:02:16,140
+So it seems like I'm not able to store
+a string inside of this variable I
+
+1118
+01:02:16,140 --> 01:02:17,950
+said was an integer.
+
+1119
+01:02:17,950 --> 01:02:18,690
+So what can I do?
+
+1120
+01:02:18,690 --> 01:02:22,950
+I have to first convert
+this value to an integer.
+
+1121
+01:02:22,950 --> 01:02:29,040
+And it turns out there is a function for
+that, one included in the not string.h,
+
+1122
+01:02:29,040 --> 01:02:32,550
+included in the standard library.
+
+1123
+01:02:32,550 --> 01:02:35,310
+stdlib.h gives me access
+to those functions.
+
+1124
+01:02:35,310 --> 01:02:39,960
+And this function is called a to i.
+
+1125
+01:02:39,960 --> 01:02:45,480
+a to i effectively converts any string
+to an integer, assuming it's able to.
+
+1126
+01:02:45,480 --> 01:02:50,070
+If you give it one, like the string one,
+it will convert that to the integer 1
+
+1127
+01:02:50,070 --> 01:02:51,430
+overall.
+
+1128
+01:02:51,430 --> 01:02:52,240
+So I'll try this.
+
+1129
+01:02:52,240 --> 01:02:56,250
+I'll say, make Mario.
+
+1130
+01:02:56,250 --> 01:02:58,120
+And now I don't get any errors.
+
+1131
+01:02:58,120 --> 01:03:03,490
+So it seems like using a to i I'm
+able to convert this argument, which
+
+1132
+01:03:03,490 --> 01:03:06,550
+was previously a string
+into an integer and now
+
+1133
+01:03:06,550 --> 01:03:10,730
+assign it to this value of height.
+
+1134
+01:03:10,730 --> 01:03:12,800
+But now, what if I do this?
+
+1135
+01:03:12,800 --> 01:03:20,305
+What if I say make Mario ./mario and I
+don't give any input, I just hit Enter?
+
+1136
+01:03:20,305 --> 01:03:25,460
+
+
+1137
+01:03:25,460 --> 01:03:27,080
+Why would I have gotten this error?
+
+1138
+01:03:27,080 --> 01:03:34,910
+Segmentation faults often occur when
+I look beyond the bounds of my array.
+
+1139
+01:03:34,910 --> 01:03:42,560
+Why would typing just ./mario make me
+look beyond the bounds of my array,
+
+1140
+01:03:42,560 --> 01:03:43,820
+in this case argv?
+
+1141
+01:03:43,820 --> 01:03:49,380
+
+
+1142
+01:03:49,380 --> 01:03:56,290
+If I only type ./mario, I think I
+really only have a value for argv.
+
+1143
+01:03:56,290 --> 01:04:02,160
+Let's see. argc will be one, which means
+that argv will only have one element.
+
+1144
+01:04:02,160 --> 01:04:05,790
+And I can't look beyond
+the bounds of argv.
+
+1145
+01:04:05,790 --> 01:04:10,290
+So if I had only one element,
+I could use argv bracket 0.
+
+1146
+01:04:10,290 --> 01:04:13,740
+But argv bracket 1 assumes
+I have two elements.
+
+1147
+01:04:13,740 --> 01:04:16,170
+So here's another use case for argc.
+
+1148
+01:04:16,170 --> 01:04:17,730
+I could first check.
+
+1149
+01:04:17,730 --> 01:04:24,240
+Before I do anything, let me first
+check if argc does not equal 2.
+
+1150
+01:04:24,240 --> 01:04:29,190
+If there are any fewer or any more
+than two arguments to my program,
+
+1151
+01:04:29,190 --> 01:04:30,660
+I want to do something.
+
+1152
+01:04:30,660 --> 01:04:36,420
+I want to tell the user that the usage
+of this program is ./mario followed
+
+1153
+01:04:36,420 --> 01:04:40,320
+by some number, like this, backslash n.
+
+1154
+01:04:40,320 --> 01:04:45,150
+And then I'll return 1, meaning
+something went wrong, not 0.
+
+1155
+01:04:45,150 --> 01:04:48,430
+You actually use this
+program incorrectly.
+
+1156
+01:04:48,430 --> 01:04:53,350
+So that actually assures me that
+if I recompile my program now,
+
+1157
+01:04:53,350 --> 01:05:01,930
+I do make Mario ./mario, I get this
+error instead of a segmentation fault.
+
+1158
+01:05:01,930 --> 01:05:08,520
+I'm able to catch this error before
+my program actually runs as a whole.
+
+1159
+01:05:08,520 --> 01:05:11,540
+So here, again, is our program.
+
+1160
+01:05:11,540 --> 01:05:18,200
+What questions do we
+have on argc and argv?
+
+1161
+01:05:18,200 --> 01:05:22,310
+A question here for, again, the
+summary of what argc and argv are.
+
+1162
+01:05:22,310 --> 01:05:26,540
+In a single sentence argc
+is the number of inputs
+
+1163
+01:05:26,540 --> 01:05:28,910
+to our program at the command line.
+
+1164
+01:05:28,910 --> 01:05:33,050
+And in a single sentence
+argv is the array
+
+1165
+01:05:33,050 --> 01:05:39,850
+of strings, the array of inputs to
+our program at the command line.
+
+1166
+01:05:39,850 --> 01:05:40,915
+Other questions too.
+
+1167
+01:05:40,915 --> 01:05:52,532
+
+
+1168
+01:05:52,532 --> 01:05:53,240
+Another question.
+
+1169
+01:05:53,240 --> 01:05:54,282
+Yeah, good question here.
+
+1170
+01:05:54,282 --> 01:05:58,310
+So the question is, what counts
+as being at the command line?
+
+1171
+01:05:58,310 --> 01:06:00,320
+And in general, when
+we say command line,
+
+1172
+01:06:00,320 --> 01:06:02,340
+we're also referring
+to this terminal here.
+
+1173
+01:06:02,340 --> 01:06:08,930
+So when I type ./mario and include
+any options outside of this, like 8,
+
+1174
+01:06:08,930 --> 01:06:12,170
+or my own name, or so on,
+that's at the command line.
+
+1175
+01:06:12,170 --> 01:06:15,250
+And in lecture, we saw this
+other program called cowsay
+
+1176
+01:06:15,250 --> 01:06:18,320
+that lets me actually
+specify what kind of animal.
+
+1177
+01:06:18,320 --> 01:06:20,510
+I want to say some kind of text.
+
+1178
+01:06:20,510 --> 01:06:24,823
+I could say, give me a dragon
+that says roar, like this.
+
+1179
+01:06:24,823 --> 01:06:26,240
+Let me zoom out so you can see it.
+
+1180
+01:06:26,240 --> 01:06:27,800
+Here is that dragon.
+
+1181
+01:06:27,800 --> 01:06:35,420
+So notice here in one single command
+I ran cowsay, but gave it some input.
+
+1182
+01:06:35,420 --> 01:06:41,540
+Dash f dragon means configure
+the animal I show to be a dragon.
+
+1183
+01:06:41,540 --> 01:06:44,300
+And then roar is the other
+input that says what should
+
+1184
+01:06:44,300 --> 01:06:46,955
+the dragon be saying here down below?
+
+1185
+01:06:46,955 --> 01:06:49,870
+
+
+1186
+01:06:49,870 --> 01:06:51,840
+All right, other questions too?
+
+1187
+01:06:51,840 --> 01:06:59,100
+
+
+1188
+01:06:59,100 --> 01:07:02,340
+All right, so seeing no
+additional questions here.
+
+1189
+01:07:02,340 --> 01:07:05,860
+I think we'll go ahead and
+call this section a wrap.
+
+1190
+01:07:05,860 --> 01:07:08,170
+Thank you all so much for
+coming and joining us here.
+
+1191
+01:07:08,170 --> 01:07:10,820
+We'll see you all next week.
+
+1192
+01:07:10,820 --> 01:07:12,000

@@ -9,7 +9,7 @@ import os
 from chromadb.config import Settings
 
 # path to our caption text embeddings
-embeddings_data = "../data/processed_data/lectures_2022_embeddings.jsonl"
+embeddings_data = "../data/processed_data/lectures_2023_embeddings.jsonl"
 
 
 # open JSONL file and store data in-memory
@@ -37,7 +37,7 @@ client = chromadb.PersistentClient(path="../vector_db")
 
 # https://docs.trychroma.com/getting-started#3-create-a-collection
 print("Creating chroma db collection...")
-collection = client.create_collection("cs50_lectures_2022")
+collection = client.create_collection("cs50_lectures_2023")
 
 # Add docs to the collection. Can also update and delete. Row-based API coming soon!
 # https://docs.trychroma.com/getting-started#4-add-some-text-documents-to-the-collection
