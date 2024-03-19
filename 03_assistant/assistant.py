@@ -16,8 +16,13 @@ Avoid discussions unrelated to SIGCSE 2024 or the broader field of computer scie
 
 # Upload a file with an "assistants" purpose
 # https://platform.openai.com/docs/assistants/tools/supported-files
-file_path = "./data/sigcse24_agenda.pdf"
-file = client.files.create(file=open(file_path, "rb"), purpose="assistants")
+file_path = "./data/"
+
+# Create file for each file in the data directory
+files = []
+for file in os.listdir(file_path):
+    file = client.files.create(file=open(file_path + file, "rb"), purpose="assistants")
+    files.append(file)
 
 # Create an assistant if it doesn't exist
 current_assistant = f"sigcse24-workshop105-{os.getenv('GITHUB_USER')}"
@@ -27,7 +32,7 @@ if current_assistant not in all_assistants:
         name=f"sigcse24-workshop105-{os.getenv('GITHUB_USER')}",
         instructions=instructions,
         tools=[{"type": "retrieval"}],
-        file_ids=[file.id],
+        file_ids=[file.id for file in files],
         model="gpt-4-turbo-preview",
     )
 else:
