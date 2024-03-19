@@ -13,7 +13,9 @@
             ]
         },
         "settings": {
-            "git.enabled": false
+            "git.enabled": false,
+            "workbench.colorTheme": "GitHub Dark Default",
+            "workbench.preferredDarkColorTheme": "GitHub Dark Default"
         }
     }
 }
