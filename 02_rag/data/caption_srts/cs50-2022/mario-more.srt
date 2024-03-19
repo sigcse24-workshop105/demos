@@ -1,0 +1,451 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:02,220
+BRIAN: In Mario, your
+task is going to be
+
+3
+00:00:02,220 --> 00:00:05,460
+to re-implement some pyramids
+from the game Super Mario Brothers
+
+4
+00:00:05,460 --> 00:00:07,690
+in code in a C program.
+
+5
+00:00:07,690 --> 00:00:10,650
+So we're going to take this
+stage in Super Mario Brothers
+
+6
+00:00:10,650 --> 00:00:12,990
+and take those two
+pyramids and represent
+
+7
+00:00:12,990 --> 00:00:14,785
+them using hash marks on the screen.
+
+8
+00:00:14,785 --> 00:00:17,910
+So you'll want to create a pyramid that
+looks a little something like this,
+
+9
+00:00:17,910 --> 00:00:22,420
+with a left pyramid and a right
+pyramid and a gap in between them.
+
+10
+00:00:22,420 --> 00:00:24,080
+How should your program work?
+
+11
+00:00:24,080 --> 00:00:28,330
+Well, if the user runs a ./Mario, they
+should be prompted to type in a height,
+
+12
+00:00:28,330 --> 00:00:31,120
+any number between 1 and 8 inclusive.
+
+13
+00:00:31,120 --> 00:00:33,313
+If they type in the
+number 8, for example,
+
+14
+00:00:33,313 --> 00:00:35,230
+this is what should be
+printed to the screen--
+
+15
+00:00:35,230 --> 00:00:38,170
+two pyramids-- one right
+aligned, one left aligned--
+
+16
+00:00:38,170 --> 00:00:42,207
+separated by two spaces in
+the middle with a height of 8.
+
+17
+00:00:42,207 --> 00:00:44,540
+And of course, if the user
+typed in a different number--
+
+18
+00:00:44,540 --> 00:00:47,260
+for example, if the user
+typed in a height of 3,
+
+19
+00:00:47,260 --> 00:00:49,600
+then you should display two
+pyramids with a height of 3,
+
+20
+00:00:49,600 --> 00:00:52,670
+for example, also with the
+two-space gap in between.
+
+21
+00:00:52,670 --> 00:00:55,130
+But if the user types an invalid input--
+
+22
+00:00:55,130 --> 00:00:58,060
+for example, they give you a negative
+number, or they give you zero,
+
+23
+00:00:58,060 --> 00:01:00,040
+or they give you a
+number that's too big--
+
+24
+00:01:00,040 --> 00:01:02,050
+then you should continue
+to reject that input
+
+25
+00:01:02,050 --> 00:01:04,390
+and re-prompt the user
+to type in a number
+
+26
+00:01:04,390 --> 00:01:08,200
+until the user gives you a
+number between 1 and 8 inclusive.
+
+27
+00:01:08,200 --> 00:01:10,690
+Once they do, then your
+program should display
+
+28
+00:01:10,690 --> 00:01:13,100
+the pyramids of the appropriate height.
+
+29
+00:01:13,100 --> 00:01:14,850
+So how are you going to do this?
+
+30
+00:01:14,850 --> 00:01:16,600
+The first step of your
+program is probably
+
+31
+00:01:16,600 --> 00:01:19,480
+going to be prompting the
+user for input, asking them
+
+32
+00:01:19,480 --> 00:01:23,710
+to type in how tall or short
+they want their pyramid to be.
+
+33
+00:01:23,710 --> 00:01:26,680
+In order to do this, you
+can use the GetInt function,
+
+34
+00:01:26,680 --> 00:01:28,620
+defined in the CS50 library.
+
+35
+00:01:28,620 --> 00:01:33,190
+The GetInt function is going to ask
+the user to type in an Int as input.
+
+36
+00:01:33,190 --> 00:01:36,580
+And it's automatically going to handle
+dealing with users that type in input
+
+37
+00:01:36,580 --> 00:01:38,150
+that are not integers.
+
+38
+00:01:38,150 --> 00:01:41,110
+So if the user types in a
+character or a word, for example,
+
+39
+00:01:41,110 --> 00:01:44,020
+GetInt will automatically take
+care of rejecting that input
+
+40
+00:01:44,020 --> 00:01:47,050
+and re-prompting the user
+to type in another number.
+
+41
+00:01:47,050 --> 00:01:49,720
+However, it's up to you
+to check to make sure
+
+42
+00:01:49,720 --> 00:01:51,880
+that the integer that
+the user does type in
+
+43
+00:01:51,880 --> 00:01:55,630
+is inside the valid range
+of 1 to 8 inclusive.
+
+44
+00:01:55,630 --> 00:01:58,600
+If the user types in a number
+that's outside of that range,
+
+45
+00:01:58,600 --> 00:02:00,790
+then it's up to you
+to re-prompt the user,
+
+46
+00:02:00,790 --> 00:02:03,700
+to ask them to type in another integer.
+
+47
+00:02:03,700 --> 00:02:04,940
+How might you do that?
+
+48
+00:02:04,940 --> 00:02:07,600
+Well, you might consider
+using a do while loop,
+
+49
+00:02:07,600 --> 00:02:11,500
+which is a loop that runs at least
+once and might continue to repeat
+
+50
+00:02:11,500 --> 00:02:13,780
+if some particular condition is true.
+
+51
+00:02:13,780 --> 00:02:16,510
+You might imagine inside the
+body of the do while loop,
+
+52
+00:02:16,510 --> 00:02:19,000
+prompting the user to
+type in a number, and then
+
+53
+00:02:19,000 --> 00:02:22,630
+having some condition that checks to
+see whether or not you should re-prompt
+
+54
+00:02:22,630 --> 00:02:24,860
+the user to type in another integer.
+
+55
+00:02:24,860 --> 00:02:28,870
+I leave it up to you to figure out
+what that condition should actually be.
+
+56
+00:02:28,870 --> 00:02:32,950
+Once the user has typed in some valid
+height between 1 and 8 inclusive,
+
+57
+00:02:32,950 --> 00:02:36,610
+the next step is going to be
+actually building that pyramid.
+
+58
+00:02:36,610 --> 00:02:39,370
+Ultimately, this is what a sample
+pyramid is going to look like.
+
+59
+00:02:39,370 --> 00:02:41,680
+In this case, we have
+a pyramid of height 7.
+
+60
+00:02:41,680 --> 00:02:44,680
+But I'll go ahead and
+replace the spaces with dots
+
+61
+00:02:44,680 --> 00:02:47,770
+so that we can visually see every
+character that you're going to be
+
+62
+00:02:47,770 --> 00:02:50,510
+responsible for printing to the screen.
+
+63
+00:02:50,510 --> 00:02:52,900
+Notice that on every
+row, we have some number
+
+64
+00:02:52,900 --> 00:02:56,290
+of dots representing the
+space before the left pyramid.
+
+65
+00:02:56,290 --> 00:03:00,730
+Then, we have some number of hashes
+representing the left pyramid itself.
+
+66
+00:03:00,730 --> 00:03:05,110
+Then, on every row, we have two
+spaces or two dots represented here
+
+67
+00:03:05,110 --> 00:03:08,620
+to separate the left half of the pyramid
+from the right half of the pyramid.
+
+68
+00:03:08,620 --> 00:03:12,057
+And then, we have some number of
+hashes representing the right pyramid.
+
+69
+00:03:12,057 --> 00:03:14,890
+You don't need to worry about adding
+spaces after the right pyramid,
+
+70
+00:03:14,890 --> 00:03:16,900
+because nobody will see those.
+
+71
+00:03:16,900 --> 00:03:19,960
+So what does that mean in
+terms of what you need to do?
+
+72
+00:03:19,960 --> 00:03:23,680
+Well, for each row, you'll want
+to print some number of spaces.
+
+73
+00:03:23,680 --> 00:03:26,410
+Then, print the appropriate
+number of left hashes.
+
+74
+00:03:26,410 --> 00:03:28,600
+Then, print a gap of two spaces.
+
+75
+00:03:28,600 --> 00:03:31,600
+And then, print all the hashes
+to make up the right pyramid.
+
+76
+00:03:31,600 --> 00:03:35,380
+But how do you know how many
+spaces or hashes you should print?
+
+77
+00:03:35,380 --> 00:03:38,320
+Well, you'll want to think about,
+given the height of the pyramid
+
+78
+00:03:38,320 --> 00:03:40,690
+and given what row number
+you're currently on,
+
+79
+00:03:40,690 --> 00:03:44,003
+how can you calculate the number of
+spaces that should be on that row,
+
+80
+00:03:44,003 --> 00:03:46,420
+how many hashes should be on
+the left side of the pyramid,
+
+81
+00:03:46,420 --> 00:03:48,940
+and how many hashes should be on
+the right side of the pyramid?
+
+82
+00:03:48,940 --> 00:03:51,310
+And for this, it might be
+helpful to draw some examples.
+
+83
+00:03:51,310 --> 00:03:54,070
+Draw a pyramid of height 3 or 4 or 8.
+
+84
+00:03:54,070 --> 00:03:56,920
+And see if you can come up with
+some sort of pattern or formula
+
+85
+00:03:56,920 --> 00:04:00,490
+that will let you calculate how
+many spaces and hashes you'll need.
+
+86
+00:04:00,490 --> 00:04:02,420
+After you implement
+that in code, the result
+
+87
+00:04:02,420 --> 00:04:05,170
+should be that you have a pyramid
+that looks something like this--
+
+88
+00:04:05,170 --> 00:04:09,020
+a left pyramid and a right
+pyramid separated by two spaces.
+
+89
+00:04:09,020 --> 00:04:12,790
+And you can test your code by first
+compiling it by running Make Mario,
+
+90
+00:04:12,790 --> 00:04:18,620
+and then running ./Mario, typing in
+some height between 1 and 8 inclusive,
+
+91
+00:04:18,620 --> 00:04:21,790
+and then seeing whether the resulting
+pyramid matches what you expect it
+
+92
+00:04:21,790 --> 00:04:23,230
+to look like.
+
+93
+00:04:23,230 --> 00:04:24,340
+My name is Brian.
+
+94
+00:04:24,340 --> 00:04:27,300
+And this was Mario.
+
+95
+00:04:27,300 --> 00:04:27,816

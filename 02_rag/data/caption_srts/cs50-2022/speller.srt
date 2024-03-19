@@ -1,0 +1,216 @@
+1
+00:00:00,000 --> 00:00:00,560
+
+
+2
+00:00:00,560 --> 00:00:02,510
+SPEAKER: In speller,
+your task is going to be
+
+3
+00:00:02,510 --> 00:00:06,560
+to write a spell checker that can take
+a text and take every word in that text
+
+4
+00:00:06,560 --> 00:00:09,810
+and check to see if the word
+is spelled correctly or not
+
+5
+00:00:09,810 --> 00:00:12,800
+and, importantly, to do
+so as quickly as possible.
+
+6
+00:00:12,800 --> 00:00:14,040
+How are you going to do that?
+
+7
+00:00:14,040 --> 00:00:16,290
+Well, let's first take a
+look at the distribution code
+
+8
+00:00:16,290 --> 00:00:18,110
+that you'll be given in this problem.
+
+9
+00:00:18,110 --> 00:00:20,240
+We're going to give you
+a file called speller.c,
+
+10
+00:00:20,240 --> 00:00:22,730
+which contains the code that
+will do the spell checking
+
+11
+00:00:22,730 --> 00:00:27,140
+calling upon some functions that are
+going to be declared in dictionary.h.
+
+12
+00:00:27,140 --> 00:00:30,860
+So if you open up dictionary.h,
+you'll see the function prototypes
+
+13
+00:00:30,860 --> 00:00:34,160
+for five functions that you're
+going to implement in this problem.
+
+14
+00:00:34,160 --> 00:00:37,190
+In dictionary.c is where you
+are actually going to write
+
+15
+00:00:37,190 --> 00:00:39,342
+the implementations of these functions.
+
+16
+00:00:39,342 --> 00:00:41,300
+Makefile is going to
+contain some commands that
+
+17
+00:00:41,300 --> 00:00:44,720
+will compile all our files
+together into a finished program.
+
+18
+00:00:44,720 --> 00:00:47,430
+And then we've given you three
+directories, or folders--
+
+19
+00:00:47,430 --> 00:00:51,170
+a dictionaries/ directory, which
+will contain both a large and small
+
+20
+00:00:51,170 --> 00:00:55,790
+dictionary of words, a text/ directory
+that will contain some sample files,
+
+21
+00:00:55,790 --> 00:00:58,010
+so you can run your
+spell checker against,
+
+22
+00:00:58,010 --> 00:01:01,550
+and we'll give you a keys/ directory,
+which will contain the solutions,
+
+23
+00:01:01,550 --> 00:01:05,600
+the list of words that are misspelled
+in each of the sample texts that we
+
+24
+00:01:05,600 --> 00:01:06,860
+provide to you.
+
+25
+00:01:06,860 --> 00:01:09,410
+So let's take a closer
+look at dictionary.c
+
+26
+00:01:09,410 --> 00:01:12,920
+because dictionary.c is the file that
+you'll have to edit in this problem
+
+27
+00:01:12,920 --> 00:01:14,900
+in order to make this
+spell checker work.
+
+28
+00:01:14,900 --> 00:01:18,380
+What are the five functions that you'll
+need to implement in dictionary.c?
+
+29
+00:01:18,380 --> 00:01:21,350
+Well, the first is called load,
+which is responsible for loading
+
+30
+00:01:21,350 --> 00:01:24,680
+all of the words in the dictionary
+into some sort of data structure,
+
+31
+00:01:24,680 --> 00:01:25,970
+like a hash table.
+
+32
+00:01:25,970 --> 00:01:29,240
+Next up is a function called hash,
+which is going to take a word
+
+33
+00:01:29,240 --> 00:01:32,120
+and run a hash function on
+it, returning some number that
+
+34
+00:01:32,120 --> 00:01:33,680
+corresponds to that word.
+
+35
+00:01:33,680 --> 00:01:35,840
+Next up is size, which
+is just going to return
+
+36
+00:01:35,840 --> 00:01:37,970
+how many words are in your dictionary.
+
+37
+00:01:37,970 --> 00:01:41,760
+Next is check, which will take a
+word and answer the question of,
+
+38
+00:01:41,760 --> 00:01:44,070
+is this word in the dictionary or not?
+
+39
+00:01:44,070 --> 00:01:46,260
+In other words, is it
+correctly spelled or not?
+
+40
+00:01:46,260 --> 00:01:49,100
+And finally, we'll be unload,
+where any of the memory that you've
+
+41
+00:01:49,100 --> 00:01:52,580
+had to allocate in order to store
+data inside of your data structure,
+
+42
+00:01:52,580 --> 00:01:55,910
+you'll now need to free up
+and give back to the computer.
+
+43
+00:01:55,910 --> 00:01:57,590
+So these are the five steps for speller.
+
+44
+00:01:57,590 --> 00:02:00,960
+And we'll take a look at each of them
+one at a time so that by the end of it,
+
+45
+00:02:00,960 --> 00:02:03,550
+you'll have a working spell checker.
+
+46
+00:02:03,550 --> 00:02:04,527

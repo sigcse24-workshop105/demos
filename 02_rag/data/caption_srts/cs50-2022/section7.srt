@@ -1,0 +1,6547 @@
+1
+00:00:00,000 --> 00:00:02,622
+
+
+2
+00:00:02,622 --> 00:00:06,640
+CARTER ZENKE: Well, welcome everyone
+to our week seven, CS50 section.
+
+3
+00:00:06,640 --> 00:00:07,680
+My name is Carter Zenke.
+
+4
+00:00:07,680 --> 00:00:09,780
+I'm the Course Preceptor here on campus.
+
+5
+00:00:09,780 --> 00:00:13,410
+And the goal of these sections is really
+to help bridge the gap between lecture
+
+6
+00:00:13,410 --> 00:00:14,890
+and this week's problem set.
+
+7
+00:00:14,890 --> 00:00:17,790
+So the goal of the day
+is to dive into more SQL
+
+8
+00:00:17,790 --> 00:00:21,120
+to give you more practice writing
+queries, working with databases,
+
+9
+00:00:21,120 --> 00:00:22,912
+and hopefully, at the
+very end, you'll feel
+
+10
+00:00:22,912 --> 00:00:25,740
+prepared to tackle this
+week's problem set.
+
+11
+00:00:25,740 --> 00:00:28,870
+Now actually, this week seven, is one
+of my favorite weeks in the course.
+
+12
+00:00:28,870 --> 00:00:31,920
+And I like this week so much
+because it's all about data,
+
+13
+00:00:31,920 --> 00:00:36,140
+and data is often about real people,
+real things in the real world.
+
+14
+00:00:36,140 --> 00:00:38,640
+So it's like really good
+connection between computer science
+
+15
+00:00:38,640 --> 00:00:40,800
+and how things actually
+work in the real world.
+
+16
+00:00:40,800 --> 00:00:43,343
+It kind of brings these questions
+about how we design things,
+
+17
+00:00:43,343 --> 00:00:44,760
+makes them all the more important.
+
+18
+00:00:44,760 --> 00:00:46,570
+Because we're actually going
+to talk about real people,
+
+19
+00:00:46,570 --> 00:00:48,570
+real students, real
+things in this world,
+
+20
+00:00:48,570 --> 00:00:51,960
+and we're going to represent
+inside of our own programs now.
+
+21
+00:00:51,960 --> 00:00:55,200
+So thinking about data and
+representing real people,
+
+22
+00:00:55,200 --> 00:00:58,232
+let's actually take a look into a
+fantasy world, one in Harry Potter.
+
+23
+00:00:58,232 --> 00:00:59,940
+And if you're familiar
+with Harry Potter,
+
+24
+00:00:59,940 --> 00:01:03,150
+maybe you're familiar
+with the Hall of Prophecy,
+
+25
+00:01:03,150 --> 00:01:06,912
+which is this place where all of the
+prophecies go to, live, and reside.
+
+26
+00:01:06,912 --> 00:01:09,870
+The place of we're they're going to
+store lots of different prophecies.
+
+27
+00:01:09,870 --> 00:01:13,260
+And maybe be one of these
+prophecies is this place of where
+
+28
+00:01:13,260 --> 00:01:17,310
+Hogwarts students, people who go to
+the Hogwarts School of Magic, will be
+
+29
+00:01:17,310 --> 00:01:20,730
+could have housed, where they're going
+to actually live during their time
+
+30
+00:01:20,730 --> 00:01:21,450
+at Hogwarts.
+
+31
+00:01:21,450 --> 00:01:25,620
+So, let's think about how we might
+store a database of Hogwarts students
+
+32
+00:01:25,620 --> 00:01:27,882
+inside of the different
+houses of Hogwarts.
+
+33
+00:01:27,882 --> 00:01:30,840
+And if you're familiar, there's like
+Slytherin, Gryffindor, Hufflepuff,
+
+34
+00:01:30,840 --> 00:01:31,800
+and Ravenclaw.
+
+35
+00:01:31,800 --> 00:01:34,390
+And all these students live
+in these various houses here.
+
+36
+00:01:34,390 --> 00:01:36,690
+So if we think of a database,
+we think of this space
+
+37
+00:01:36,690 --> 00:01:40,570
+that is maybe currently empty, we
+could fill it with some things.
+
+38
+00:01:40,570 --> 00:01:43,500
+So let's go ahead and call this
+space, for the sake of our discussion
+
+39
+00:01:43,500 --> 00:01:45,330
+here, as roster.db.
+
+40
+00:01:45,330 --> 00:01:47,380
+We're going to have
+some students in here,
+
+41
+00:01:47,380 --> 00:01:51,370
+and they're going to go into different
+houses inside of this database.
+
+42
+00:01:51,370 --> 00:01:55,410
+So all databases have some
+tables, some places that we're
+
+43
+00:01:55,410 --> 00:01:57,220
+going to store data inside of them.
+
+44
+00:01:57,220 --> 00:02:00,320
+And in this case, let's say we have
+this table that looks a bit like this.
+
+45
+00:02:00,320 --> 00:02:03,150
+And if you can see that, we see
+we have Adelaide Murton, who's
+
+46
+00:02:03,150 --> 00:02:04,680
+in the house for Slytherin.
+
+47
+00:02:04,680 --> 00:02:08,699
+And the head of the Slytherin house
+is a professor named Severus Snape.
+
+48
+00:02:08,699 --> 00:02:10,620
+And down below and
+kind of row three here,
+
+49
+00:02:10,620 --> 00:02:13,080
+we have Anthony Goldstein,
+who's in Ravenclaw.
+
+50
+00:02:13,080 --> 00:02:17,010
+And the leader, the head of Ravenclaw,
+is Filius Flitwick, a professor
+
+51
+00:02:17,010 --> 00:02:18,780
+at Hogwarts School of Magic.
+
+52
+00:02:18,780 --> 00:02:20,580
+So here, we have a table.
+
+53
+00:02:20,580 --> 00:02:23,150
+And often, in our
+databases, tables are named.
+
+54
+00:02:23,150 --> 00:02:25,320
+So let's maybe call this one students.
+
+55
+00:02:25,320 --> 00:02:27,210
+And now, we have our full database.
+
+56
+00:02:27,210 --> 00:02:29,970
+We have a name for our
+database, roster.db,
+
+57
+00:02:29,970 --> 00:02:33,460
+and we have a table inside of
+it, this one called students.
+
+58
+00:02:33,460 --> 00:02:36,210
+But what we might want
+to do with this table?
+
+59
+00:02:36,210 --> 00:02:39,130
+What are some things we might
+want to actually do to this data.
+
+60
+00:02:39,130 --> 00:02:42,930
+If want to chime in and chat, what's
+the point of storing data in this way?
+
+61
+00:02:42,930 --> 00:02:44,040
+What could we do with it?
+
+62
+00:02:44,040 --> 00:02:48,270
+
+
+63
+00:02:48,270 --> 00:02:48,770
+Yeah.
+
+64
+00:02:48,770 --> 00:02:49,910
+So I'm seeing somebody messaging me.
+
+65
+00:02:49,910 --> 00:02:51,785
+So you could maybe
+actually try to figure out
+
+66
+00:02:51,785 --> 00:02:53,500
+what else is inside of this table.
+
+67
+00:02:53,500 --> 00:02:54,620
+You query the database.
+
+68
+00:02:54,620 --> 00:02:57,005
+We could try to ask what's inside of it.
+
+69
+00:02:57,005 --> 00:02:58,880
+And to do that, we can
+actually use these SQL
+
+70
+00:02:58,880 --> 00:03:00,560
+keywords that begins with a select.
+
+71
+00:03:00,560 --> 00:03:02,940
+How do we select data from this table?
+
+72
+00:03:02,940 --> 00:03:06,420
+So let's dive into selecting data
+from tables as we saw in lecture.
+
+73
+00:03:06,420 --> 00:03:08,700
+Let's go a bit more
+deeply into it this time.
+
+74
+00:03:08,700 --> 00:03:13,700
+So if I wanted to select all the
+data from this particular table,
+
+75
+00:03:13,700 --> 00:03:17,642
+does anyone know what kind of
+query I could use for this?
+
+76
+00:03:17,642 --> 00:03:18,600
+I'm seeing in the chat.
+
+77
+00:03:18,600 --> 00:03:20,183
+I'm seeing some select, which is good.
+
+78
+00:03:20,183 --> 00:03:22,382
+I'm seeing some stars,
+which is also good.
+
+79
+00:03:22,382 --> 00:03:24,090
+And now, let's go
+ahead and try this out.
+
+80
+00:03:24,090 --> 00:03:31,280
+So if I go to my own VS code over here,
+I can see that I have my own roster.db.
+
+81
+00:03:31,280 --> 00:03:34,550
+So I'll go ahead and open this up with
+SQLite, this kind of database engine
+
+82
+00:03:34,550 --> 00:03:37,060
+we can use to execute SQL
+queries on this database,
+
+83
+00:03:37,060 --> 00:03:39,710
+so I'll do SQLite3 roster.db.
+
+84
+00:03:39,710 --> 00:03:42,290
+And now, just to show
+you, if I type dot schema
+
+85
+00:03:42,290 --> 00:03:44,840
+to see the kinds of tables
+I have inside the database,
+
+86
+00:03:44,840 --> 00:03:47,120
+I see I have this table called students.
+
+87
+00:03:47,120 --> 00:03:49,580
+It has the very same
+attributes or columns
+
+88
+00:03:49,580 --> 00:03:53,040
+we saw earlier in our visual back here.
+
+89
+00:03:53,040 --> 00:03:56,660
+So, the hypothesis right now is
+we could kind of select everything
+
+90
+00:03:56,660 --> 00:03:59,600
+in this table using this
+syntax I see from the chat.
+
+91
+00:03:59,600 --> 00:04:02,060
+We could say SELECT star.
+
+92
+00:04:02,060 --> 00:04:05,560
+We can select everything
+from this students table.
+
+93
+00:04:05,560 --> 00:04:06,810
+So let's go ahead and do that.
+
+94
+00:04:06,810 --> 00:04:10,393
+And we end all of our queries
+in SQL with a semicolon.
+
+95
+00:04:10,393 --> 00:04:11,810
+So this is the end of our thought.
+
+96
+00:04:11,810 --> 00:04:12,920
+This is our entire query.
+
+97
+00:04:12,920 --> 00:04:15,410
+Select everything from
+this students table.
+
+98
+00:04:15,410 --> 00:04:16,850
+I'll hit Enter now.
+
+99
+00:04:16,850 --> 00:04:19,640
+And now, I can see kind
+of, if I zoom back out,
+
+100
+00:04:19,640 --> 00:04:22,530
+all of the students who
+are inside of this roster.
+
+101
+00:04:22,530 --> 00:04:24,950
+So if you scroll through, we
+have about 40 students here,
+
+102
+00:04:24,950 --> 00:04:26,580
+and we see some of that very same data.
+
+103
+00:04:26,580 --> 00:04:30,350
+So we see that Anthony Goldstein is
+in Ravenclaw, led by Filius Flitwick.
+
+104
+00:04:30,350 --> 00:04:34,558
+We've got in all data from inside
+this table, so that's pretty good.
+
+105
+00:04:34,558 --> 00:04:35,850
+Let's create a visual for this.
+
+106
+00:04:35,850 --> 00:04:38,840
+So if you said we had this
+roster here with a table
+
+107
+00:04:38,840 --> 00:04:41,930
+called students, if we do SELECT
+star FROM students, what we'll see
+
+108
+00:04:41,930 --> 00:04:44,660
+is the entire table
+will select everything
+
+109
+00:04:44,660 --> 00:04:48,090
+in this kind of yellow highlight here.
+
+110
+00:04:48,090 --> 00:04:51,410
+But we could also get more
+specific, because it's often not
+
+111
+00:04:51,410 --> 00:04:52,700
+good to select everything.
+
+112
+00:04:52,700 --> 00:04:54,825
+Often we care about some
+particular set of students
+
+113
+00:04:54,825 --> 00:04:56,670
+or particular column in general.
+
+114
+00:04:56,670 --> 00:05:00,350
+So let's say I just wanted the
+student names, like how can I
+
+115
+00:05:00,350 --> 00:05:03,920
+get student names from this list,
+disregarding the house and the head
+
+116
+00:05:03,920 --> 00:05:06,290
+and whoever else is in this database?
+
+117
+00:05:06,290 --> 00:05:08,180
+How could I just get student names?
+
+118
+00:05:08,180 --> 00:05:11,250
+
+
+119
+00:05:11,250 --> 00:05:14,130
+I'm seeing some WHERE, and that is true.
+
+120
+00:05:14,130 --> 00:05:15,970
+We could use WHERE for other cases.
+
+121
+00:05:15,970 --> 00:05:21,410
+But here, I just want to get all of
+the student names from this roster.
+
+122
+00:05:21,410 --> 00:05:21,910
+Nice.
+
+123
+00:05:21,910 --> 00:05:24,327
+So I'm seeing some syntax here
+that looks a bit like this.
+
+124
+00:05:24,327 --> 00:05:27,530
+We could say SELECT
+student_name FROM students.
+
+125
+00:05:27,530 --> 00:05:29,900
+So often, we use select.
+
+126
+00:05:29,900 --> 00:05:32,623
+After we say SELECT,
+we have a column name,
+
+127
+00:05:32,623 --> 00:05:35,040
+like the column we want to
+actually select from our table.
+
+128
+00:05:35,040 --> 00:05:37,730
+So in this case, if we looked
+at student's table here,
+
+129
+00:05:37,730 --> 00:05:40,410
+we have a column called student_name.
+
+130
+00:05:40,410 --> 00:05:44,120
+So if you want to select that column,
+we could say SELECT student_name FROM
+
+131
+00:05:44,120 --> 00:05:45,600
+this table called student.
+
+132
+00:05:45,600 --> 00:05:50,090
+So if we go back to our SQLite prompt
+here, we actually type in SQL commands.
+
+133
+00:05:50,090 --> 00:05:55,670
+Only we now type SELECT
+student_name FROM students.
+
+134
+00:05:55,670 --> 00:05:59,910
+And what should I end this with
+now, because it's a SQL query?
+
+135
+00:05:59,910 --> 00:06:00,460
+A semicolon.
+
+136
+00:06:00,460 --> 00:06:00,960
+Good.
+
+137
+00:06:00,960 --> 00:06:03,180
+So I'll hit semicolon
+here, and I'll hit Enter.
+
+138
+00:06:03,180 --> 00:06:06,690
+And now, notice how my table
+just has that single column.
+
+139
+00:06:06,690 --> 00:06:10,500
+It doesn't have every column now,
+but just that student_name column.
+
+140
+00:06:10,500 --> 00:06:11,970
+So often, we're using SELECT.
+
+141
+00:06:11,970 --> 00:06:16,120
+If we want to include the column
+name, we're selecting from our table.
+
+142
+00:06:16,120 --> 00:06:18,810
+And if we just want
+everything, we can say star.
+
+143
+00:06:18,810 --> 00:06:24,010
+SELECT star, meaning select
+everything from our given table.
+
+144
+00:06:24,010 --> 00:06:28,660
+Now, to kind of focus in on
+getting particular students,
+
+145
+00:06:28,660 --> 00:06:31,780
+let's say we cared not just
+about every student's name,
+
+146
+00:06:31,780 --> 00:06:34,570
+but only those who are
+in a particular house.
+
+147
+00:06:34,570 --> 00:06:38,530
+If you go back to our table here, we
+have student names, houses, and heads.
+
+148
+00:06:38,530 --> 00:06:41,590
+So maybe we care about the students
+who are in Slytherin house.
+
+149
+00:06:41,590 --> 00:06:44,800
+How could we find the students
+who are in that house?
+
+150
+00:06:44,800 --> 00:06:45,430
+Any ideas?
+
+151
+00:06:45,430 --> 00:06:49,870
+
+
+152
+00:06:49,870 --> 00:06:54,560
+We just care now about
+students who are in Slytherin.
+
+153
+00:06:54,560 --> 00:06:55,060
+Yeah.
+
+154
+00:06:55,060 --> 00:06:58,100
+So here, we can bring back that
+WHERE clause that we saw before.
+
+155
+00:06:58,100 --> 00:07:01,240
+So, if we want not just an
+entire column of students
+
+156
+00:07:01,240 --> 00:07:05,320
+as we see here but some rows,
+depending on a certain condition
+
+157
+00:07:05,320 --> 00:07:07,540
+in another column, we can use WHERE.
+
+158
+00:07:07,540 --> 00:07:12,110
+So WHERE will give us back only
+certain rows from our table.
+
+159
+00:07:12,110 --> 00:07:12,860
+So let's try this.
+
+160
+00:07:12,860 --> 00:07:15,460
+We could say, let's
+SELECT student_names.
+
+161
+00:07:15,460 --> 00:07:19,180
+Let's get that student name column
+from the student's table now,
+
+162
+00:07:19,180 --> 00:07:21,610
+but let's go ahead and get
+only those students where
+
+163
+00:07:21,610 --> 00:07:26,330
+the house is equal to what we're
+going to call Slytherin in this case.
+
+164
+00:07:26,330 --> 00:07:29,210
+So if we go back to our table
+now and I type this query,
+
+165
+00:07:29,210 --> 00:07:33,640
+I could say SELECT student_name,
+and I can type this all in one line.
+
+166
+00:07:33,640 --> 00:07:37,120
+For the sake of argument here,
+I could say FROM students.
+
+167
+00:07:37,120 --> 00:07:42,280
+And let's do WHERE house is Slytherin.
+
+168
+00:07:42,280 --> 00:07:43,880
+OK, my query will wrap here.
+
+169
+00:07:43,880 --> 00:07:46,840
+So we kind of go around the edge,
+but it's all one line, theoretically.
+
+170
+00:07:46,840 --> 00:07:47,770
+Semicolon here.
+
+171
+00:07:47,770 --> 00:07:49,380
+What do we see?
+
+172
+00:07:49,380 --> 00:07:53,470
+We see only the students
+who are inside of Slytherin.
+
+173
+00:07:53,470 --> 00:07:56,410
+And just to prove this, let's go
+ahead and actually update our query
+
+174
+00:07:56,410 --> 00:07:58,800
+and let's show you how could
+do it on multiple lines.
+
+175
+00:07:58,800 --> 00:08:03,570
+So we can say SELECT
+student_name and house.
+
+176
+00:08:03,570 --> 00:08:05,640
+We could say student_name and house.
+
+177
+00:08:05,640 --> 00:08:08,670
+We want this in the same
+query here separated by comma.
+
+178
+00:08:08,670 --> 00:08:12,840
+Well, let's get this
+FROM our students table.
+
+179
+00:08:12,840 --> 00:08:17,490
+And let's say we only want the
+rows where that house column is
+
+180
+00:08:17,490 --> 00:08:19,720
+going to be Slytherin in this case.
+
+181
+00:08:19,720 --> 00:08:22,020
+So I'll do a semicolon
+here and I'll hit Enter.
+
+182
+00:08:22,020 --> 00:08:26,550
+And now, I do see that these same
+student names do belong to Slytherin.
+
+183
+00:08:26,550 --> 00:08:29,010
+So with SELECT, we can
+always try to select
+
+184
+00:08:29,010 --> 00:08:32,159
+not just a single column, but
+also multiple columns separated
+
+185
+00:08:32,159 --> 00:08:35,789
+by commas here.
+
+186
+00:08:35,789 --> 00:08:39,030
+Now, what questions are there
+so far on these SELECT, or does
+
+187
+00:08:39,030 --> 00:08:41,669
+it seem pretty straightforward so far?
+
+188
+00:08:41,669 --> 00:08:42,960
+Any questions in the chat?
+
+189
+00:08:42,960 --> 00:08:47,760
+
+
+190
+00:08:47,760 --> 00:08:49,830
+OK, not seeing any right now.
+
+191
+00:08:49,830 --> 00:08:52,090
+But let's try to go a
+little more advanced now.
+
+192
+00:08:52,090 --> 00:08:54,000
+So we've seen how we
+can select some data.
+
+193
+00:08:54,000 --> 00:08:58,510
+We've seen how we can get
+different rows back from our table.
+
+194
+00:08:58,510 --> 00:09:00,690
+But what if we're not kind
+of sure exactly what we
+
+195
+00:09:00,690 --> 00:09:02,470
+want to look for in our table?
+
+196
+00:09:02,470 --> 00:09:06,180
+Maybe we want to get just the
+students whose last name is Potter.
+
+197
+00:09:06,180 --> 00:09:09,380
+Well, how could we do that?
+
+198
+00:09:09,380 --> 00:09:11,490
+Any ideas what kind of
+clause we could use,
+
+199
+00:09:11,490 --> 00:09:13,995
+if you want to find the students
+whose name end with Potter?
+
+200
+00:09:13,995 --> 00:09:17,100
+
+
+201
+00:09:17,100 --> 00:09:18,660
+Somebody said we should use LIKE.
+
+202
+00:09:18,660 --> 00:09:21,420
+And as we saw in lecture,
+LIKE is this query
+
+203
+00:09:21,420 --> 00:09:23,700
+that kind of lets us do
+a fuzzy match, meaning
+
+204
+00:09:23,700 --> 00:09:26,550
+that we get all the rows
+that kind of roughly
+
+205
+00:09:26,550 --> 00:09:31,750
+match some clause or some string
+we might give to our query here.
+
+206
+00:09:31,750 --> 00:09:36,508
+So to do this, let's go ahead
+and look at our table again.
+
+207
+00:09:36,508 --> 00:09:38,550
+For Slytherin, we got kind
+of a result like this.
+
+208
+00:09:38,550 --> 00:09:40,775
+But now, let's look at
+how we could use it, LIKE.
+
+209
+00:09:40,775 --> 00:09:43,650
+So if we're interested in students
+whose name ends with Harry Potter,
+
+210
+00:09:43,650 --> 00:09:45,240
+well, we could do a query like this.
+
+211
+00:09:45,240 --> 00:09:49,020
+We could say, SELECT student_names,
+obviously, FROM our student table.
+
+212
+00:09:49,020 --> 00:09:51,540
+And now, we're only
+going to take the student
+
+213
+00:09:51,540 --> 00:09:58,350
+names that are like Potter with
+this kind of percent sign in front.
+
+214
+00:09:58,350 --> 00:10:01,170
+And I want to recall what that
+percent sign is doing for us here,
+
+215
+00:10:01,170 --> 00:10:03,940
+if you want to chime in the chat.
+
+216
+00:10:03,940 --> 00:10:07,480
+Why can we not just say
+LIKE Potter, and why do I
+
+217
+00:10:07,480 --> 00:10:09,340
+have to say LIKE percent Potter?
+
+218
+00:10:09,340 --> 00:10:12,550
+
+
+219
+00:10:12,550 --> 00:10:16,300
+Yes, I'm seeing that people are
+calling this a wild card character.
+
+220
+00:10:16,300 --> 00:10:19,660
+And basically, this
+percent sign says that I
+
+221
+00:10:19,660 --> 00:10:24,040
+can match any character
+ahead of this string Potter.
+
+222
+00:10:24,040 --> 00:10:25,720
+It could be Harry Potter.
+
+223
+00:10:25,720 --> 00:10:26,950
+It could be Lily Potter.
+
+224
+00:10:26,950 --> 00:10:30,092
+It could be, really, any name
+as long as it ends with Potter.
+
+225
+00:10:30,092 --> 00:10:32,050
+And putting that percent
+sign at the beginning,
+
+226
+00:10:32,050 --> 00:10:36,310
+well, that says that I can have any
+characters I want before Potter.
+
+227
+00:10:36,310 --> 00:10:40,900
+And someone can maybe just have Harry
+and then percent sign after Harry,
+
+228
+00:10:40,900 --> 00:10:44,290
+and that would give me all of the names
+that begin with Harry in this case.
+
+229
+00:10:44,290 --> 00:10:46,040
+So let's go ahead and
+take a look at this.
+
+230
+00:10:46,040 --> 00:10:49,990
+We can say SELECT
+student_name now, and we
+
+231
+00:10:49,990 --> 00:10:54,130
+want to take student name
+FROM our students table.
+
+232
+00:10:54,130 --> 00:10:56,110
+And then after this,
+let's say, OK, we want
+
+233
+00:10:56,110 --> 00:11:01,270
+to get the student names that
+are LIKE, not equal to but LIKE,
+
+234
+00:11:01,270 --> 00:11:05,500
+this string we're going to give
+called Potter, percent Potter.
+
+235
+00:11:05,500 --> 00:11:09,160
+Meaning, we can get any character
+before Potter as long as at the end,
+
+236
+00:11:09,160 --> 00:11:12,370
+we see Potter exactly,
+so I'll hit Enter now.
+
+237
+00:11:12,370 --> 00:11:15,733
+And we see that there's really only one
+student whose name ends with Potter,
+
+238
+00:11:15,733 --> 00:11:16,900
+which is Harry James Potter.
+
+239
+00:11:16,900 --> 00:11:19,733
+But you might also see other
+characters in the Harry Potter universe
+
+240
+00:11:19,733 --> 00:11:22,600
+whose names also end in Potter too.
+
+241
+00:11:22,600 --> 00:11:26,110
+Now, maybe a better question here,
+to get more students in this query,
+
+242
+00:11:26,110 --> 00:11:26,800
+is this one.
+
+243
+00:11:26,800 --> 00:11:30,370
+So we could say, find
+the names and houses
+
+244
+00:11:30,370 --> 00:11:34,510
+of students whose names begin
+with H. So let's try this one.
+
+245
+00:11:34,510 --> 00:11:37,870
+We're trying to find students
+whose names begin with H.
+
+246
+00:11:37,870 --> 00:11:42,040
+So we want to select again names.
+
+247
+00:11:42,040 --> 00:11:44,460
+So I'll say, OK, I want
+to SELECT a student_name
+
+248
+00:11:44,460 --> 00:11:48,510
+from my student_name column, and
+I also want to select the house.
+
+249
+00:11:48,510 --> 00:11:51,060
+So I'll say comma house,
+and I'll get back now
+
+250
+00:11:51,060 --> 00:11:54,390
+in this query student_name and house.
+
+251
+00:11:54,390 --> 00:11:57,440
+Where am I going to get
+this data from though?
+
+252
+00:11:57,440 --> 00:11:58,580
+Any ideas?
+
+253
+00:11:58,580 --> 00:12:00,830
+Where am I selecting from in this case?
+
+254
+00:12:00,830 --> 00:12:01,610
+In the chat?
+
+255
+00:12:01,610 --> 00:12:02,360
+From students.
+
+256
+00:12:02,360 --> 00:12:05,160
+So I'll say FROM, students here.
+
+257
+00:12:05,160 --> 00:12:10,490
+Now to finish this off, I only want
+the students whose names begin with H.
+
+258
+00:12:10,490 --> 00:12:14,630
+So I could say WHERE to
+kind of subset my rows,
+
+259
+00:12:14,630 --> 00:12:18,030
+get a certain number of rows who
+only meet a certain condition.
+
+260
+00:12:18,030 --> 00:12:20,880
+And now, the column I care
+about, the student_name.
+
+261
+00:12:20,880 --> 00:12:24,980
+And I'm seeing in the chat, I could
+say, not equals, not particular H here.
+
+262
+00:12:24,980 --> 00:12:26,730
+I don't want students
+whose name literally
+
+263
+00:12:26,730 --> 00:12:33,360
+is H. I want students whose name is LIKE
+H and then any other characters that
+
+264
+00:12:33,360 --> 00:12:34,680
+come after it.
+
+265
+00:12:34,680 --> 00:12:36,180
+So I could hit Enter here.
+
+266
+00:12:36,180 --> 00:12:38,780
+And now, I'll do this.
+
+267
+00:12:38,780 --> 00:12:41,340
+Now, we see we have Hannah
+Abbott, whose name begins
+
+268
+00:12:41,340 --> 00:12:44,160
+with H, Harry, and Hermione
+also begins with H.
+
+269
+00:12:44,160 --> 00:12:47,310
+And they're H in Hufflepuff for
+Hannah, and Harry and Hermione
+
+270
+00:12:47,310 --> 00:12:49,470
+are in Gryffindor.
+
+271
+00:12:49,470 --> 00:12:51,060
+A question, is this case sensitive?
+
+272
+00:12:51,060 --> 00:12:52,117
+It's a good question.
+
+273
+00:12:52,117 --> 00:12:53,200
+Let's go ahead and try it.
+
+274
+00:12:53,200 --> 00:12:57,060
+So we could say, SELECT
+student_name, and we're
+
+275
+00:12:57,060 --> 00:13:02,340
+going to select also the houses FROM
+the students table, where the student
+
+276
+00:13:02,340 --> 00:13:06,510
+name is LIKE, and we saw
+capital H beforehand, like this.
+
+277
+00:13:06,510 --> 00:13:09,060
+But now, let's try a
+lowercase h and see if we
+
+278
+00:13:09,060 --> 00:13:12,060
+get any students here or any different
+results, now that it's lowercase.
+
+279
+00:13:12,060 --> 00:13:15,220
+So let's hit Enter now, and we
+still get the very same results.
+
+280
+00:13:15,220 --> 00:13:16,530
+So what do you think?
+
+281
+00:13:16,530 --> 00:13:18,570
+Is LIKE case sensitive?
+
+282
+00:13:18,570 --> 00:13:21,600
+Does it matter what case I use?
+
+283
+00:13:21,600 --> 00:13:22,620
+No, it doesn't seem to.
+
+284
+00:13:22,620 --> 00:13:25,620
+I could use the capital H.
+I could say the lowercase h
+
+285
+00:13:25,620 --> 00:13:28,120
+and I get the very same results here.
+
+286
+00:13:28,120 --> 00:13:30,350
+So that's a great question.
+
+287
+00:13:30,350 --> 00:13:32,720
+And now, I'm seeing another question.
+
+288
+00:13:32,720 --> 00:13:36,170
+We need to use keywords like
+SELECT, like WHERE in all caps,
+
+289
+00:13:36,170 --> 00:13:37,080
+and why is that so?
+
+290
+00:13:37,080 --> 00:13:40,130
+So here, you'll see that I'm
+using SELECT in all caps,
+
+291
+00:13:40,130 --> 00:13:43,160
+I'm using FROM in all caps,
+and using WHERE in all caps,
+
+292
+00:13:43,160 --> 00:13:44,240
+and LIKE in all caps.
+
+293
+00:13:44,240 --> 00:13:47,510
+And the convention here
+is, is that if you're
+
+294
+00:13:47,510 --> 00:13:52,880
+typing in a SQL keyword, some kind of
+command to SQL, like SELECT or FROM
+
+295
+00:13:52,880 --> 00:13:55,610
+or WHERE or LIKE, well,
+you should capitalize
+
+296
+00:13:55,610 --> 00:13:58,560
+that to denote it as a SQL keyword.
+
+297
+00:13:58,560 --> 00:14:02,840
+I can keep my column names
+though or my strings in lowercase
+
+298
+00:14:02,840 --> 00:14:04,580
+because if I look at
+my table here, well,
+
+299
+00:14:04,580 --> 00:14:08,490
+these literally are in lowercase,
+student_name, house is lowercase.
+
+300
+00:14:08,490 --> 00:14:11,330
+So I want to make sure
+that casing matches there.
+
+301
+00:14:11,330 --> 00:14:14,120
+But for a SQL query, I
+should, by convention, sort of
+
+302
+00:14:14,120 --> 00:14:16,407
+capitalize these keywords.
+
+303
+00:14:16,407 --> 00:14:17,490
+I could very much do this.
+
+304
+00:14:17,490 --> 00:14:20,790
+I could say SELECT star
+FROM students and I
+
+305
+00:14:20,790 --> 00:14:23,030
+would get the very same
+results if I zoom out a bit,
+
+306
+00:14:23,030 --> 00:14:24,500
+but it's just not quite as clean.
+
+307
+00:14:24,500 --> 00:14:25,620
+It's hard to tell.
+
+308
+00:14:25,620 --> 00:14:30,650
+Let's say, if I do this, select
+student_name, house from students.
+
+309
+00:14:30,650 --> 00:14:33,110
+It's kind of hard to tell
+where my keywords begin
+
+310
+00:14:33,110 --> 00:14:36,060
+and where my column
+names actually join in,
+
+311
+00:14:36,060 --> 00:14:38,310
+like it's hard to tell which
+what thing is which here.
+
+312
+00:14:38,310 --> 00:14:41,720
+So always capitalize your SQL
+keywords as you go through.
+
+313
+00:14:41,720 --> 00:14:44,160
+
+
+314
+00:14:44,160 --> 00:14:44,660
+Great.
+
+315
+00:14:44,660 --> 00:14:46,243
+Another question, when do we use LIKE?
+
+316
+00:14:46,243 --> 00:14:48,778
+So as we've seen before
+here, we use LIKE--
+
+317
+00:14:48,778 --> 00:14:50,570
+let me actually just
+finish the query here.
+
+318
+00:14:50,570 --> 00:14:54,140
+We use LIKE when we want to
+actually fuzzy match something, kind
+
+319
+00:14:54,140 --> 00:14:55,650
+of roughly match something.
+
+320
+00:14:55,650 --> 00:14:59,750
+So if I know that I want students whose
+name begins with H but isn't exactly H,
+
+321
+00:14:59,750 --> 00:15:03,700
+LIKE is a good use case for that here.
+
+322
+00:15:03,700 --> 00:15:06,955
+Other questions on selecting then?
+
+323
+00:15:06,955 --> 00:15:13,565
+
+
+324
+00:15:13,565 --> 00:15:15,565
+I'm just going through
+the chat here to be sure.
+
+325
+00:15:15,565 --> 00:15:21,520
+
+
+326
+00:15:21,520 --> 00:15:26,340
+All right, so I think that's
+most of our questions on this.
+
+327
+00:15:26,340 --> 00:15:28,090
+So there's a main
+question about, is there
+
+328
+00:15:28,090 --> 00:15:29,950
+a way to make search case sensitive?
+
+329
+00:15:29,950 --> 00:15:30,520
+There is.
+
+330
+00:15:30,520 --> 00:15:35,710
+So we saw before that LIKE is generally
+not case sensitive, but let's try this.
+
+331
+00:15:35,710 --> 00:15:39,850
+If I do a search for Harry James
+Potter, who we know is in our database,
+
+332
+00:15:39,850 --> 00:15:45,690
+I could do SELECT, the
+student_name, FROM students,
+
+333
+00:15:45,690 --> 00:15:51,360
+WHERE the student_name is
+exactly Harry James Potter,
+
+334
+00:15:51,360 --> 00:15:53,670
+and I'll hit semicolon here.
+
+335
+00:15:53,670 --> 00:15:56,400
+And I should get, well, none
+other than Harry James Potter.
+
+336
+00:15:56,400 --> 00:16:02,250
+But what if I did this, what if I said
+SELECT student_name, FROM students,
+
+337
+00:16:02,250 --> 00:16:07,530
+WHERE the student_name is now
+all lowercase harry james potter,
+
+338
+00:16:07,530 --> 00:16:11,310
+hit Enter now, and no one
+seems to match that exactly.
+
+339
+00:16:11,310 --> 00:16:14,520
+So equals, when you're using
+that, is case sensitive,
+
+340
+00:16:14,520 --> 00:16:16,875
+but LIKE, by definition, is not.
+
+341
+00:16:16,875 --> 00:16:21,380
+
+
+342
+00:16:21,380 --> 00:16:24,800
+So that seems to be most of what you
+might want to use our selecting for.
+
+343
+00:16:24,800 --> 00:16:27,590
+We can use WHERE and we can
+use LIKE to kind of narrow
+
+344
+00:16:27,590 --> 00:16:29,840
+our matches from our table.
+
+345
+00:16:29,840 --> 00:16:31,980
+But what else could we
+do with these queries?
+
+346
+00:16:31,980 --> 00:16:35,360
+So one thing I want to do, as we
+saw in lecture, is kind of order
+
+347
+00:16:35,360 --> 00:16:37,610
+our students, put them in
+like alphabetical order
+
+348
+00:16:37,610 --> 00:16:40,020
+or kind of roster order and so on.
+
+349
+00:16:40,020 --> 00:16:42,860
+And we can use some new school
+keywords for that exactly.
+
+350
+00:16:42,860 --> 00:16:47,100
+So we can not just select,
+we can also order our data.
+
+351
+00:16:47,100 --> 00:16:49,940
+So we saw before, we can just kind
+of get every student we want to.
+
+352
+00:16:49,940 --> 00:16:53,570
+I guess by SELECT star FROM students
+give us all the students here.
+
+353
+00:16:53,570 --> 00:16:56,480
+But at very end of this
+query, once it's complete,
+
+354
+00:16:56,480 --> 00:16:59,150
+we could have tacked on
+this other keyword called
+
+355
+00:16:59,150 --> 00:17:04,369
+ORDER BY to tell SQL what column
+I want to sort this data by.
+
+356
+00:17:04,369 --> 00:17:08,180
+So I'll get every column, but if I want
+to sort the data by particular column,
+
+357
+00:17:08,180 --> 00:17:11,760
+I could say ORDER BY that
+particular column name.
+
+358
+00:17:11,760 --> 00:17:15,530
+So here, if I do this,
+ORDER BY student_name, well,
+
+359
+00:17:15,530 --> 00:17:19,260
+I should get the names
+in alphabetical order.
+
+360
+00:17:19,260 --> 00:17:25,400
+So, I think if I select everything,
+SELECT star FROM students,
+
+361
+00:17:25,400 --> 00:17:28,850
+I might already have these names in
+alphabetical order by virtue of how
+
+362
+00:17:28,850 --> 00:17:30,860
+they were added to this data set.
+
+363
+00:17:30,860 --> 00:17:34,400
+But if I were to do this,
+SELECT star FROM students,
+
+364
+00:17:34,400 --> 00:17:37,060
+I'll zoom in down below here.
+
+365
+00:17:37,060 --> 00:17:44,910
+Zoom in here, SELECT star FROM students,
+and then ORDER BY student_name,
+
+366
+00:17:44,910 --> 00:17:47,337
+well, I kind of get the very same thing.
+
+367
+00:17:47,337 --> 00:17:49,170
+But it's important to
+keep in mind, you keep
+
+368
+00:17:49,170 --> 00:17:53,670
+in mind that when you use ORDER
+BY by without kind of anything
+
+369
+00:17:53,670 --> 00:17:57,360
+after it, like this here, we're
+getting the names in what's
+
+370
+00:17:57,360 --> 00:17:59,290
+called ascending order.
+
+371
+00:17:59,290 --> 00:18:04,350
+So ascending, in SQL, means from kind
+of the lower Ascii value, like A,
+
+372
+00:18:04,350 --> 00:18:08,890
+to the higher Ascii value,
+like Z, so A to Z in this case.
+
+373
+00:18:08,890 --> 00:18:13,710
+But if I wanted to flip it,
+not having A to Z, but Z to A,
+
+374
+00:18:13,710 --> 00:18:16,350
+well, I could change this,
+not to order by ascending,
+
+375
+00:18:16,350 --> 00:18:19,420
+but to order by descending, like this.
+
+376
+00:18:19,420 --> 00:18:24,368
+So by default, SQL always order
+by the ascending order like this.
+
+377
+00:18:24,368 --> 00:18:26,160
+But if you want to
+order by descending, you
+
+378
+00:18:26,160 --> 00:18:30,000
+could simply say descending at
+the end or DESC for descending.
+
+379
+00:18:30,000 --> 00:18:32,590
+So let's try that now so I
+can actually see the results.
+
+380
+00:18:32,590 --> 00:18:37,170
+So I'll go, clear my terminal,
+zoom in a bit, and I'll say SELECT.
+
+381
+00:18:37,170 --> 00:18:42,660
+I'll say SELECT star FROM
+students, and then I will say,
+
+382
+00:18:42,660 --> 00:18:49,440
+ORDER BY student_name, now descending,
+so from Z to A. Now, let's try this.
+
+383
+00:18:49,440 --> 00:18:50,580
+I'll hit Enter.
+
+384
+00:18:50,580 --> 00:18:53,340
+And now, if I zoom out, you should see.
+
+385
+00:18:53,340 --> 00:18:57,300
+I start with Vincent now, whose name
+is towards the end of the alphabet,
+
+386
+00:18:57,300 --> 00:19:00,940
+and I go up to Adelaide, whose
+name is at the top of the alphabet.
+
+387
+00:19:00,940 --> 00:19:02,980
+In this case.
+
+388
+00:19:02,980 --> 00:19:06,160
+And I mean there are other things
+we could sort of sort by here.
+
+389
+00:19:06,160 --> 00:19:09,665
+So we don't have to just sort by student
+name, we could also sort by house.
+
+390
+00:19:09,665 --> 00:19:11,040
+So maybe we want to sort by this.
+
+391
+00:19:11,040 --> 00:19:15,980
+We could say SELECT student_name,
+or sorry, SELECT-- let's
+
+392
+00:19:15,980 --> 00:19:19,850
+just select everything here,
+SELECT everything FROM students.
+
+393
+00:19:19,850 --> 00:19:24,080
+Whoops, my internet's
+a little wonky here.
+
+394
+00:19:24,080 --> 00:19:27,251
+I'll SELECT star FROM--
+
+395
+00:19:27,251 --> 00:19:30,970
+I'm going to give my code
+space a minute to breathe here.
+
+396
+00:19:30,970 --> 00:19:32,920
+I'm going too quickly
+through these SELECT.
+
+397
+00:19:32,920 --> 00:19:35,408
+
+
+398
+00:19:35,408 --> 00:19:36,200
+I think we're back.
+
+399
+00:19:36,200 --> 00:19:39,280
+So we'll do SELECT star FROM students.
+
+400
+00:19:39,280 --> 00:19:42,760
+And now I'm going to order by,
+not student name, but by house.
+
+401
+00:19:42,760 --> 00:19:47,340
+And so now, I should see, if I zoom
+out, my data organized by house.
+
+402
+00:19:47,340 --> 00:19:50,580
+I have all the students in Gryffindor,
+all students in Hufflepuff,
+
+403
+00:19:50,580 --> 00:19:54,600
+and all the students in Ravenclaw,
+and all the students in Slytherin.
+
+404
+00:19:54,600 --> 00:19:57,660
+So a question now is, let's say
+we wanted to sort the student
+
+405
+00:19:57,660 --> 00:20:02,970
+data in alphabetical order, but have
+it first sorted by house, and then
+
+406
+00:20:02,970 --> 00:20:04,740
+by student name.
+
+407
+00:20:04,740 --> 00:20:08,550
+So ideally, we should have
+all of our data from our table
+
+408
+00:20:08,550 --> 00:20:13,180
+viewed now, but sorted first
+by house, alphabetical order.
+
+409
+00:20:13,180 --> 00:20:17,170
+And then, inside of each
+house, sorted by name.
+
+410
+00:20:17,170 --> 00:20:19,050
+So how could we do this, do you think?
+
+411
+00:20:19,050 --> 00:20:20,970
+Do you want to chime in the chat?
+
+412
+00:20:20,970 --> 00:20:25,760
+How could we have this kind of
+multiple, multi-layered sort going on?
+
+413
+00:20:25,760 --> 00:20:29,700
+
+
+414
+00:20:29,700 --> 00:20:32,855
+I've seen a few options, and one
+that I like here is this comma.
+
+415
+00:20:32,855 --> 00:20:34,980
+We could use a comma,
+something that we did before.
+
+416
+00:20:34,980 --> 00:20:37,680
+We could say, if we
+start off in SELECT, we
+
+417
+00:20:37,680 --> 00:20:42,030
+could do SELECT student_name,
+and house, or we could
+
+418
+00:20:42,030 --> 00:20:43,680
+do the very same thing for ORDER BY.
+
+419
+00:20:43,680 --> 00:20:47,790
+We could ORDER BY multiple things at
+the very same time, so let's do this.
+
+420
+00:20:47,790 --> 00:20:52,710
+We could do SELECT everything
+FROM students, and let's ORDER BY
+
+421
+00:20:52,710 --> 00:20:58,300
+first house, and then by student_name.
+
+422
+00:20:58,300 --> 00:21:03,180
+So with the comma here is saying is that
+the very first thing before the comma
+
+423
+00:21:03,180 --> 00:21:05,640
+is the first thing I will sort by.
+
+424
+00:21:05,640 --> 00:21:09,330
+Then afterwards, student name is
+the next thing I will sort by.
+
+425
+00:21:09,330 --> 00:21:15,550
+So inside of my sorted list of houses,
+I will then sort student names,
+
+426
+00:21:15,550 --> 00:21:16,860
+so let's try this.
+
+427
+00:21:16,860 --> 00:21:21,510
+And now, we can see, if I zoom out,
+well, we have Gryffindor all sorted.
+
+428
+00:21:21,510 --> 00:21:24,390
+And inside of the students
+who are in Gryffindor, well,
+
+429
+00:21:24,390 --> 00:21:31,450
+we have those students in
+alphabetical order, CDGHHLN and so on.
+
+430
+00:21:31,450 --> 00:21:35,250
+So let's try it maybe with
+a more advanced technique.
+
+431
+00:21:35,250 --> 00:21:39,910
+We could go in and say SELECT
+everything FROM students.
+
+432
+00:21:39,910 --> 00:21:44,100
+But now, we just want to
+get the houses as they are,
+
+433
+00:21:44,100 --> 00:21:46,770
+SELECT ORDER BY house,
+and then the student_name,
+
+434
+00:21:46,770 --> 00:21:48,268
+but in reverse alphabetical order.
+
+435
+00:21:48,268 --> 00:21:50,310
+And how can I get reverse
+alphabetical order now?
+
+436
+00:21:50,310 --> 00:21:53,540
+
+
+437
+00:21:53,540 --> 00:21:54,320
+Descending, right.
+
+438
+00:21:54,320 --> 00:21:56,030
+So I could say DESC here.
+
+439
+00:21:56,030 --> 00:21:57,860
+And now, I'll hit Enter.
+
+440
+00:21:57,860 --> 00:22:04,070
+And now I see, I'm still sorting by
+house alphabetically, G, H, R, and S.
+
+441
+00:22:04,070 --> 00:22:06,620
+But now, inside of
+each house, notice how
+
+442
+00:22:06,620 --> 00:22:13,350
+I'm going from the bottom of
+the alphabet to the very top.
+
+443
+00:22:13,350 --> 00:22:15,560
+So questions on these sorts?
+
+444
+00:22:15,560 --> 00:22:18,590
+
+
+445
+00:22:18,590 --> 00:22:19,750
+What do you wonder about?
+
+446
+00:22:19,750 --> 00:22:28,700
+
+
+447
+00:22:28,700 --> 00:22:31,033
+I could write this sort case sensitive.
+
+448
+00:22:31,033 --> 00:22:32,450
+Let's check that one out actually.
+
+449
+00:22:32,450 --> 00:22:38,900
+So we see-- we can do SELECT star FROM
+students, and now, I'll do ORDER BY.
+
+450
+00:22:38,900 --> 00:22:43,640
+And because we said house before,
+why don't we just try capital H house
+
+451
+00:22:43,640 --> 00:22:45,860
+and I'll hit semicolon and Enter again?
+
+452
+00:22:45,860 --> 00:22:47,730
+And that still seems to work.
+
+453
+00:22:47,730 --> 00:22:50,150
+So when you're talking
+about SQL column names,
+
+454
+00:22:50,150 --> 00:22:53,230
+those also are not going to
+be case sensitive for you.
+
+455
+00:22:53,230 --> 00:22:57,485
+
+
+456
+00:22:57,485 --> 00:23:00,850
+And the question, what will happen if
+I switch between house and student_name
+
+457
+00:23:00,850 --> 00:23:01,433
+in that query?
+
+458
+00:23:01,433 --> 00:23:02,540
+That's a great question.
+
+459
+00:23:02,540 --> 00:23:05,590
+So before, we had a query like
+this, SELECT star FROM students,
+
+460
+00:23:05,590 --> 00:23:10,790
+and then we did ORDER BY first
+house and then student_name?
+
+461
+00:23:10,790 --> 00:23:19,080
+But what if we did this, what if we
+did, first, student_name and then house?
+
+462
+00:23:19,080 --> 00:23:21,540
+So what do you think
+will happen in this case?
+
+463
+00:23:21,540 --> 00:23:25,650
+In the chat, if you want to
+chime in, what do you think?
+
+464
+00:23:25,650 --> 00:23:27,590
+What will happen if we
+flip this order now?
+
+465
+00:23:27,590 --> 00:23:35,780
+
+
+466
+00:23:35,780 --> 00:23:39,560
+Yes, so somebody says it'll first
+sort by name and then by house,
+
+467
+00:23:39,560 --> 00:23:40,940
+so let's try running this.
+
+468
+00:23:40,940 --> 00:23:43,460
+We'll hit Enter here and I'll zoom out.
+
+469
+00:23:43,460 --> 00:23:49,280
+And notice how my student names
+are in alphabetical order.
+
+470
+00:23:49,280 --> 00:23:55,810
+But within the C's, for example, I now
+have my houses in alphabetical order,
+
+471
+00:23:55,810 --> 00:23:58,330
+so Hufflepuff, Ravenclaw,
+and Gryffindor.
+
+472
+00:23:58,330 --> 00:24:00,115
+Or let's see, we have a lot of M's.
+
+473
+00:24:00,115 --> 00:24:03,170
+
+
+474
+00:24:03,170 --> 00:24:05,990
+So here, we have Ravenclaw, Slytherin.
+
+475
+00:24:05,990 --> 00:24:10,758
+Well, that didn't seem to quite
+work in this case actually.
+
+476
+00:24:10,758 --> 00:24:11,675
+Why did that not work?
+
+477
+00:24:11,675 --> 00:24:16,900
+
+
+478
+00:24:16,900 --> 00:24:21,640
+MRR, interesting.
+
+479
+00:24:21,640 --> 00:24:23,710
+Oh, yeah, so somebody--
+
+480
+00:24:23,710 --> 00:24:24,460
+it's a good point.
+
+481
+00:24:24,460 --> 00:24:27,710
+So somebody asked, there's
+no two identical names.
+
+482
+00:24:27,710 --> 00:24:30,412
+So what happened here is, this
+isn't quite useful for us,
+
+483
+00:24:30,412 --> 00:24:31,870
+and I'll see if I can explain this.
+
+484
+00:24:31,870 --> 00:24:38,200
+Because what SQL will do is not sort by
+the very first letter of student_name,
+
+485
+00:24:38,200 --> 00:24:39,880
+but sort by the entire string.
+
+486
+00:24:39,880 --> 00:24:44,455
+And so, in order for the houses
+that we see in alphabetical order,
+
+487
+00:24:44,455 --> 00:24:46,330
+we have to think the
+exact same student name.
+
+488
+00:24:46,330 --> 00:24:48,872
+So not just the same first
+letter, but the same student name.
+
+489
+00:24:48,872 --> 00:24:52,160
+And because no two student
+names are exactly alike,
+
+490
+00:24:52,160 --> 00:24:54,890
+we probably won't actually
+see the results in this case.
+
+491
+00:24:54,890 --> 00:24:57,640
+So good catch from
+somebody in the chat here.
+
+492
+00:24:57,640 --> 00:25:08,280
+
+
+493
+00:25:08,280 --> 00:25:10,200
+Other questions on ordering then?
+
+494
+00:25:10,200 --> 00:25:17,735
+
+
+495
+00:25:17,735 --> 00:25:18,610
+A good question here.
+
+496
+00:25:18,610 --> 00:25:21,720
+So what if a name starts with
+a number, kind of unlikely,
+
+497
+00:25:21,720 --> 00:25:23,427
+but a good case to consider.
+
+498
+00:25:23,427 --> 00:25:25,385
+So if we had a name search
+with a number, well,
+
+499
+00:25:25,385 --> 00:25:28,860
+it's going to go by the Ascii
+value for that number, I believe.
+
+500
+00:25:28,860 --> 00:25:32,670
+So in this case, numbers
+would likely come before A
+
+501
+00:25:32,670 --> 00:25:36,070
+or come before, certainly
+before Z, and so on.
+
+502
+00:25:36,070 --> 00:25:39,900
+So first, numbers and symbols,
+and then the alphabet.
+
+503
+00:25:39,900 --> 00:25:42,330
+
+
+504
+00:25:42,330 --> 00:25:43,080
+Any question here?
+
+505
+00:25:43,080 --> 00:25:45,980
+Can we order one column by ascending
+and the second by descending?
+
+506
+00:25:45,980 --> 00:25:46,820
+You absolutely can.
+
+507
+00:25:46,820 --> 00:25:47,695
+So we could say this.
+
+508
+00:25:47,695 --> 00:25:49,980
+We can say SELECT star FROM students.
+
+509
+00:25:49,980 --> 00:25:55,010
+Let's go ahead and ORDER BY
+house, descending, and then
+
+510
+00:25:55,010 --> 00:25:59,030
+we could ORDER BY student_name
+ascending, like this.
+
+511
+00:25:59,030 --> 00:26:00,920
+So certainly, if you're
+free to apply your
+
+512
+00:26:00,920 --> 00:26:07,320
+own ascending or descending to each of
+these multiple arguments to ORDER BY
+
+513
+00:26:07,320 --> 00:26:07,820
+here.
+
+514
+00:26:07,820 --> 00:26:14,000
+
+
+515
+00:26:14,000 --> 00:26:19,890
+And another question before
+we move on, so one is, how
+
+516
+00:26:19,890 --> 00:26:23,400
+are lower or uppercase letters sorted?
+
+517
+00:26:23,400 --> 00:26:30,420
+So I think, in this case, it would
+be uppercase would come first
+
+518
+00:26:30,420 --> 00:26:34,560
+because I think uppercase is
+lower in the Ascii alphabet.
+
+519
+00:26:34,560 --> 00:26:37,140
+If you remember how letters
+correspond to Ascii numbers,
+
+520
+00:26:37,140 --> 00:26:39,780
+I think uppercase is lower
+there, so it would come first
+
+521
+00:26:39,780 --> 00:26:43,960
+in the default ascending
+order of these characters.
+
+522
+00:26:43,960 --> 00:26:46,320
+So let's move on from
+ordering, and let's think
+
+523
+00:26:46,320 --> 00:26:49,650
+about one keyword that's actually
+kind of useful along with ordering.
+
+524
+00:26:49,650 --> 00:26:51,430
+That's the use case of a limit.
+
+525
+00:26:51,430 --> 00:26:55,230
+So if we have some query, and we won't
+get back just a certain number of rows
+
+526
+00:26:55,230 --> 00:26:58,920
+from that query, all we could do
+is simply apply this limit one
+
+527
+00:26:58,920 --> 00:27:00,750
+or limit five or limit
+10, whatever number
+
+528
+00:27:00,750 --> 00:27:02,860
+you want to limit at the
+very end of that query.
+
+529
+00:27:02,860 --> 00:27:05,730
+This is helpful for finding the
+top 10 of something, for example,
+
+530
+00:27:05,730 --> 00:27:08,160
+because you can order
+by a certain column
+
+531
+00:27:08,160 --> 00:27:10,240
+and then take the top 10 that show up.
+
+532
+00:27:10,240 --> 00:27:11,940
+So, let's go back to our query here.
+
+533
+00:27:11,940 --> 00:27:16,290
+We can maybe say, let's
+want the first 10 students
+
+534
+00:27:16,290 --> 00:27:20,760
+whose name is first in the alphabet, the
+first 10 students from the very first,
+
+535
+00:27:20,760 --> 00:27:21,520
+alphabetically.
+
+536
+00:27:21,520 --> 00:27:24,510
+So we say SELECT star FROM students.
+
+537
+00:27:24,510 --> 00:27:27,510
+I'm going to order by
+student_name, and then we'll
+
+538
+00:27:27,510 --> 00:27:29,820
+limit our query to only 10 students.
+
+539
+00:27:29,820 --> 00:27:30,840
+I'll hit Enter here.
+
+540
+00:27:30,840 --> 00:27:33,900
+And now, I should see only 10
+students, those whose names
+
+541
+00:27:33,900 --> 00:27:36,195
+are the very first 10 in the alphabet.
+
+542
+00:27:36,195 --> 00:27:37,570
+And somewhat I could change this.
+
+543
+00:27:37,570 --> 00:27:40,860
+I could say, let's not get
+the first 10 alphabetically,
+
+544
+00:27:40,860 --> 00:27:43,200
+let's get the last 10 alphabetically.
+
+545
+00:27:43,200 --> 00:27:46,860
+So I could do SELECT star FROM students.
+
+546
+00:27:46,860 --> 00:27:51,000
+Now, let's order by student_name,
+but in descending order.
+
+547
+00:27:51,000 --> 00:27:54,120
+And then let's go ahead and
+limit 10, and we should see,
+
+548
+00:27:54,120 --> 00:27:58,650
+we get the very last 10 students
+in our alphabetical order.
+
+549
+00:27:58,650 --> 00:28:01,680
+So limiting is helpful
+along with ORDER BY
+
+550
+00:28:01,680 --> 00:28:04,920
+to kind of at the top or the bottom
+sort of segments of your data
+
+551
+00:28:04,920 --> 00:28:11,010
+set, as long as you order by a certain
+column that you care about here.
+
+552
+00:28:11,010 --> 00:28:15,390
+Question in the chat is,
+what if you don't have an ID
+
+553
+00:28:15,390 --> 00:28:17,920
+and you select 10 queries, but
+you want to see the number,
+
+554
+00:28:17,920 --> 00:28:20,843
+is there a way to do this?
+
+555
+00:28:20,843 --> 00:28:24,010
+Just so I can understand the question,
+I think we're talking about these IDs
+
+556
+00:28:24,010 --> 00:28:25,700
+here on the left hand side.
+
+557
+00:28:25,700 --> 00:28:28,060
+And as we'll see later
+in section, these IDs
+
+558
+00:28:28,060 --> 00:28:31,690
+are the primary keys, the unique
+identifiers for each of these students.
+
+559
+00:28:31,690 --> 00:28:36,940
+And generally speaking, every student
+should have their own unique ID.
+
+560
+00:28:36,940 --> 00:28:40,642
+If they don't have an
+ID, well, you might have
+
+561
+00:28:40,642 --> 00:28:42,100
+some problems with database design.
+
+562
+00:28:42,100 --> 00:28:47,540
+But if we're talking about ordering
+by here, ORDER BY student_name,
+
+563
+00:28:47,540 --> 00:28:50,990
+for example, we're not really
+caring about the student ID
+
+564
+00:28:50,990 --> 00:28:52,560
+just the student name, in this case.
+
+565
+00:28:52,560 --> 00:28:56,150
+We could certainly ORDER BY ID if
+we like to, ORDER BY ID descending,
+
+566
+00:28:56,150 --> 00:28:57,950
+ORDER BY ID ascending.
+
+567
+00:28:57,950 --> 00:29:01,070
+But in this case, it so
+happens to be that the student
+
+568
+00:29:01,070 --> 00:29:04,670
+ID corresponds to the student name
+kind of alphabetically sorted.
+
+569
+00:29:04,670 --> 00:29:08,053
+
+
+570
+00:29:08,053 --> 00:29:10,720
+All right, and I'm seeing a
+question about the last 10 students.
+
+571
+00:29:10,720 --> 00:29:13,440
+So this actually is going
+to work somewhat similarly.
+
+572
+00:29:13,440 --> 00:29:16,690
+So if I wanted the last 10 students
+alphabetically, I could do this.
+
+573
+00:29:16,690 --> 00:29:20,400
+I could sort SELECT star FROM
+students, and then go ahead
+
+574
+00:29:20,400 --> 00:29:24,360
+and say I want to ORDER BY
+student_name in descending order
+
+575
+00:29:24,360 --> 00:29:27,300
+to get those bottom 10
+students, and then whoops,
+
+576
+00:29:27,300 --> 00:29:29,820
+and then I could limit
+10 at the very end.
+
+577
+00:29:29,820 --> 00:29:33,720
+
+
+578
+00:29:33,720 --> 00:29:35,205
+Other questions too on limiting?
+
+579
+00:29:35,205 --> 00:29:39,630
+
+
+580
+00:29:39,630 --> 00:29:41,100
+Let's keep moving then.
+
+581
+00:29:41,100 --> 00:29:43,860
+And what we could do here is we often--
+
+582
+00:29:43,860 --> 00:29:46,080
+it's nice to get the
+individual student names,
+
+583
+00:29:46,080 --> 00:29:49,583
+but one thing we often care about
+is how many students are there?
+
+584
+00:29:49,583 --> 00:29:51,000
+What's like an average test score?
+
+585
+00:29:51,000 --> 00:29:54,660
+Trying to aggregate our data,
+not just take individual rows,
+
+586
+00:29:54,660 --> 00:29:57,460
+but see kind of the bigger
+picture from our data.
+
+587
+00:29:57,460 --> 00:30:01,770
+And for that, SQL has a variety of
+keywords you can use to get that data,
+
+588
+00:30:01,770 --> 00:30:03,760
+get that aggregate data, so to speak.
+
+589
+00:30:03,760 --> 00:30:07,020
+So here, we'll talk about
+aggregating, where aggregating
+
+590
+00:30:07,020 --> 00:30:09,630
+means taking those individual
+rows, as I said before,
+
+591
+00:30:09,630 --> 00:30:12,030
+but kind of summing things
+up or averaging them
+
+592
+00:30:12,030 --> 00:30:14,500
+or kind of seeing the
+whole larger picture.
+
+593
+00:30:14,500 --> 00:30:17,350
+So if I wanted to count the rows I
+get back, well, we could do this.
+
+594
+00:30:17,350 --> 00:30:21,150
+I could say SELECT COUNT
+star FROM students.
+
+595
+00:30:21,150 --> 00:30:24,450
+And this will take everything in our
+table, force selecting everything,
+
+596
+00:30:24,450 --> 00:30:27,130
+and return the count of it,
+the number of rows that I have.
+
+597
+00:30:27,130 --> 00:30:29,880
+So for example, to figure out how
+many students are in this table,
+
+598
+00:30:29,880 --> 00:30:35,280
+I can say SELECT COUNT star FROM
+students, semicolon, hit Enter.
+
+599
+00:30:35,280 --> 00:30:38,560
+And now, I see, I get 40 in this case.
+
+600
+00:30:38,560 --> 00:30:40,170
+There are 40 total students.
+
+601
+00:30:40,170 --> 00:30:43,290
+And this is kind of not very
+pretty, like the COUNT star.
+
+602
+00:30:43,290 --> 00:30:46,600
+I'd love to just say like
+number of students, for example.
+
+603
+00:30:46,600 --> 00:30:52,530
+So how could I change this column
+names, anyone know in the chat?
+
+604
+00:30:52,530 --> 00:30:53,500
+Yeah, I could use AS.
+
+605
+00:30:53,500 --> 00:31:02,090
+So I can say SELECT COUNT star AS in
+this case, maybe number_of_students,
+
+606
+00:31:02,090 --> 00:31:05,790
+and then I could say we want to
+select that from the student's table.
+
+607
+00:31:05,790 --> 00:31:07,730
+So now, I see I get
+the very same answer,
+
+608
+00:31:07,730 --> 00:31:10,680
+but now my column is
+called number_of_students.
+
+609
+00:31:10,680 --> 00:31:13,070
+So again, what we're doing
+here is selecting everything
+
+610
+00:31:13,070 --> 00:31:18,780
+from our students table, counting it
+up, and returning that as a column named
+
+611
+00:31:18,780 --> 00:31:22,670
+number_of_students, in this case.
+
+612
+00:31:22,670 --> 00:31:25,880
+So what if we only wanted
+particular students,
+
+613
+00:31:25,880 --> 00:31:28,580
+like let's say we just wanted to
+count students from Gryffindor?
+
+614
+00:31:28,580 --> 00:31:30,380
+Well, how could I do that?
+
+615
+00:31:30,380 --> 00:31:35,680
+In the chat, if you want to chime in,
+counting just students from Gryffindor.
+
+616
+00:31:35,680 --> 00:31:38,640
+
+
+617
+00:31:38,640 --> 00:31:41,460
+So I'm seeing the use of
+WHERE, which is helpful.
+
+618
+00:31:41,460 --> 00:31:42,420
+Other ideas too?
+
+619
+00:31:42,420 --> 00:31:45,360
+
+
+620
+00:31:45,360 --> 00:31:45,860
+Yeah.
+
+621
+00:31:45,860 --> 00:31:47,710
+So I'm seeing-- I want to use COUNT.
+
+622
+00:31:47,710 --> 00:31:51,080
+I probably use WHERE here
+too, and we'll get to what
+
+623
+00:31:51,080 --> 00:31:52,650
+we call GROUP BY in just a moment.
+
+624
+00:31:52,650 --> 00:31:54,480
+But let's try WHERE first.
+
+625
+00:31:54,480 --> 00:31:57,292
+So normally, to get all
+the things in Gryffindor,
+
+626
+00:31:57,292 --> 00:31:58,500
+I would do a query like this.
+
+627
+00:31:58,500 --> 00:32:03,500
+I could say SELECT star FROM
+students WHERE, in this case,
+
+628
+00:32:03,500 --> 00:32:08,740
+house is Gryffindor, and
+then semicolon Enter.
+
+629
+00:32:08,740 --> 00:32:13,120
+And now, these are all
+students who are in Gryffindor.
+
+630
+00:32:13,120 --> 00:32:16,390
+But if I wanted just the count of
+these, not every individual row,
+
+631
+00:32:16,390 --> 00:32:20,470
+what could modify my query, and to
+not SELECT star but SELECT COUNT star,
+
+632
+00:32:20,470 --> 00:32:22,480
+so like the count of everything here.
+
+633
+00:32:22,480 --> 00:32:28,090
+SELECT COUNT star FROM students,
+and then I'll say WHERE.
+
+634
+00:32:28,090 --> 00:32:33,070
+In this case, the house is
+Gryffindor, semicolon, Enter.
+
+635
+00:32:33,070 --> 00:32:38,710
+And now, I see I have 11 students
+who are in Gryffindor here,
+
+636
+00:32:38,710 --> 00:32:42,940
+and that's all pretty good, but we
+also have to care about Slytherin.
+
+637
+00:32:42,940 --> 00:32:46,300
+So let's say we want to
+SELECT the COUNT star FROM
+
+638
+00:32:46,300 --> 00:32:54,770
+students where the house is Slytherin,
+and that would give us also 11.
+
+639
+00:32:54,770 --> 00:32:59,347
+But how could I get all of
+the houses in one place,
+
+640
+00:32:59,347 --> 00:33:02,180
+like not just individual areas for
+each house, for how many students
+
+641
+00:33:02,180 --> 00:33:05,090
+are in them, but actually
+have it all in one query
+
+642
+00:33:05,090 --> 00:33:08,022
+and have a table that says
+Slytherin has this many students,
+
+643
+00:33:08,022 --> 00:33:09,230
+Gryffindor has many students?
+
+644
+00:33:09,230 --> 00:33:11,360
+And I'm seeing, in the
+chat, this GROUP BY
+
+645
+00:33:11,360 --> 00:33:13,710
+keyword that we're going
+to explore now here.
+
+646
+00:33:13,710 --> 00:33:17,180
+So GROUP BY is helpful if you
+want to get the number of students
+
+647
+00:33:17,180 --> 00:33:18,710
+by a certain attribute.
+
+648
+00:33:18,710 --> 00:33:22,770
+So we want to kind of group our
+data by house and figure out, well,
+
+649
+00:33:22,770 --> 00:33:25,350
+how many students are in each house?
+
+650
+00:33:25,350 --> 00:33:26,610
+So let's try this.
+
+651
+00:33:26,610 --> 00:33:28,560
+We can use GROUP BY as follows.
+
+652
+00:33:28,560 --> 00:33:35,030
+I can say SELECT star FROM our
+students table, and let's go ahead
+
+653
+00:33:35,030 --> 00:33:38,870
+and GROUP BY, in this case, house.
+
+654
+00:33:38,870 --> 00:33:42,200
+We want to group our data
+by house, and I think
+
+655
+00:33:42,200 --> 00:33:43,970
+we might have messed up slightly here.
+
+656
+00:33:43,970 --> 00:33:45,137
+Let's go ahead to the query.
+
+657
+00:33:45,137 --> 00:33:47,130
+We'll just hit Enter here.
+
+658
+00:33:47,130 --> 00:33:51,050
+And now we can see where
+we have individual houses,
+
+659
+00:33:51,050 --> 00:33:54,470
+but there's something weird going
+on with this student_name over here.
+
+660
+00:33:54,470 --> 00:33:56,703
+We have much fewer pieces
+of data, but I'm just not
+
+661
+00:33:56,703 --> 00:33:58,620
+sure why we're getting
+student_name over here.
+
+662
+00:33:58,620 --> 00:34:03,140
+Well, instead of searching everything,
+why don't we select the count
+
+663
+00:34:03,140 --> 00:34:04,535
+from each of our houses?
+
+664
+00:34:04,535 --> 00:34:14,659
+So SELECT COUNT again FROM our students
+table, and then we'll GROUP BY house.
+
+665
+00:34:14,659 --> 00:34:16,190
+I'll hit Enter here.
+
+666
+00:34:16,190 --> 00:34:20,469
+And so I get back 11, 5, 13, and 11.
+
+667
+00:34:20,469 --> 00:34:23,229
+What do you think this
+means, in this case?
+
+668
+00:34:23,229 --> 00:34:26,090
+
+
+669
+00:34:26,090 --> 00:34:27,050
+Any ideas in the chat?
+
+670
+00:34:27,050 --> 00:34:30,985
+
+
+671
+00:34:30,985 --> 00:34:33,610
+It's the number of students in
+each house, but it's hard for us
+
+672
+00:34:33,610 --> 00:34:35,290
+to tell which house is which.
+
+673
+00:34:35,290 --> 00:34:39,010
+Lets include the house name in our
+query, so let's not just select
+
+674
+00:34:39,010 --> 00:34:40,420
+the count of everything.
+
+675
+00:34:40,420 --> 00:34:42,688
+Let's select the house in our query too.
+
+676
+00:34:42,688 --> 00:34:43,730
+Let's order it like this.
+
+677
+00:34:43,730 --> 00:34:46,090
+Let's first select the
+house, and then select
+
+678
+00:34:46,090 --> 00:34:52,540
+the COUNT of everything FROM students,
+as long as we're grouping by house.
+
+679
+00:34:52,540 --> 00:34:53,560
+I'll Enter here.
+
+680
+00:34:53,560 --> 00:34:57,490
+And now, I get Gryffindor,
+Hufflepuff, Ravenclaw, and Slytherin,
+
+681
+00:34:57,490 --> 00:35:02,410
+where each one has a count next
+to it, like 11, 5, 13, and 11.
+
+682
+00:35:02,410 --> 00:35:05,800
+So this is the total number of students
+in each group, as somebody in the chat
+
+683
+00:35:05,800 --> 00:35:08,560
+is saying, that we're going
+to first group by house
+
+684
+00:35:08,560 --> 00:35:13,020
+and then take the count by every house.
+
+685
+00:35:13,020 --> 00:35:16,845
+Other questions on these GROUP
+BYs or this aggregation here?
+
+686
+00:35:16,845 --> 00:35:29,840
+
+
+687
+00:35:29,840 --> 00:35:32,330
+So it seems like we have most
+questions answered there.
+
+688
+00:35:32,330 --> 00:35:35,480
+And now that we've kind of
+seen a variety of SQL keywords,
+
+689
+00:35:35,480 --> 00:35:37,850
+we've kind of reviewed them
+from lecture, let's dive
+
+690
+00:35:37,850 --> 00:35:40,940
+into something about database
+that probably isn't great for us.
+
+691
+00:35:40,940 --> 00:35:44,960
+Like if we select everything
+here, SELECT star FROM students,
+
+692
+00:35:44,960 --> 00:35:48,620
+let's just zoom out a
+bit and think about what
+
+693
+00:35:48,620 --> 00:35:54,190
+isn't very well designed about this
+database if you take a look at it.
+
+694
+00:35:54,190 --> 00:36:03,820
+What could be better designed about
+it, or where do you see some repetition
+
+695
+00:36:03,820 --> 00:36:05,290
+that we maybe can get rid of?
+
+696
+00:36:05,290 --> 00:36:13,415
+
+
+697
+00:36:13,415 --> 00:36:15,540
+Yeah, so I'm seeing some
+people saying that there's
+
+698
+00:36:15,540 --> 00:36:16,910
+some repetition in the houses.
+
+699
+00:36:16,910 --> 00:36:21,650
+We have Slytherin here, Slytherin
+again, Ravenclaw, Slytherin, Hufflepuff,
+
+700
+00:36:21,650 --> 00:36:24,230
+like a lot of these names are repeating.
+
+701
+00:36:24,230 --> 00:36:27,950
+And similarly for the heads, notice
+how we have all the heads kind of
+
+702
+00:36:27,950 --> 00:36:29,510
+repeated throughout this data set.
+
+703
+00:36:29,510 --> 00:36:32,420
+And maybe, ideally, we
+wouldn't actually have
+
+704
+00:36:32,420 --> 00:36:37,160
+to repeat Severus Snape, Severus Snape,
+all the way through our data set.
+
+705
+00:36:37,160 --> 00:36:40,490
+We could just put Severus
+Snape in one place
+
+706
+00:36:40,490 --> 00:36:43,400
+and reference Severus
+Snape from other places.
+
+707
+00:36:43,400 --> 00:36:45,680
+And maybe for the house,
+we could say, well,
+
+708
+00:36:45,680 --> 00:36:47,360
+Slytherin shows up a lot of times.
+
+709
+00:36:47,360 --> 00:36:50,030
+What if we just had
+Slytherin in one table,
+
+710
+00:36:50,030 --> 00:36:52,860
+and we reference
+Slytherin in this table?
+
+711
+00:36:52,860 --> 00:36:56,600
+So the goal is to avoid repeating
+ourselves over and over again
+
+712
+00:36:56,600 --> 00:36:59,240
+in this data set, like having
+Slytherin so many times
+
+713
+00:36:59,240 --> 00:37:01,220
+or Hufflepuff so many times.
+
+714
+00:37:01,220 --> 00:37:06,740
+I just want to make our own tables for
+individual pieces of our data sets.
+
+715
+00:37:06,740 --> 00:37:10,740
+So if we're thinking about how we
+could better design this table,
+
+716
+00:37:10,740 --> 00:37:13,160
+let's look at a few design
+principles we could use
+
+717
+00:37:13,160 --> 00:37:15,510
+to actually improve this table here.
+
+718
+00:37:15,510 --> 00:37:16,730
+So go back to our slides.
+
+719
+00:37:16,730 --> 00:37:18,950
+Let's think about database design.
+
+720
+00:37:18,950 --> 00:37:23,540
+So one principle for a
+database is that every table
+
+721
+00:37:23,540 --> 00:37:29,368
+you have inside of your database
+should only represent a single entity,
+
+722
+00:37:29,368 --> 00:37:31,410
+and we've actually kind
+of broken that rule here.
+
+723
+00:37:31,410 --> 00:37:35,600
+So if I go back into my table,
+well, I have students in this table.
+
+724
+00:37:35,600 --> 00:37:37,020
+It's a table of students.
+
+725
+00:37:37,020 --> 00:37:39,860
+But I also have houses, I
+have heads, like there's
+
+726
+00:37:39,860 --> 00:37:44,690
+lots of things going on here that
+don't just belong to students.
+
+727
+00:37:44,690 --> 00:37:48,810
+So ideally, what we could do is
+try to simplify this a little bit.
+
+728
+00:37:48,810 --> 00:37:53,630
+Let's try to have a single table for
+students, a single table for houses,
+
+729
+00:37:53,630 --> 00:37:58,710
+and then a single table for the
+assignments of students between houses.
+
+730
+00:37:58,710 --> 00:38:02,570
+So in this case, students wouldn't
+also have the house assignment.
+
+731
+00:38:02,570 --> 00:38:05,630
+And similarly, houses wouldn't
+have the house assignment.
+
+732
+00:38:05,630 --> 00:38:08,690
+But we have this extra table
+called student-house assignments
+
+733
+00:38:08,690 --> 00:38:13,050
+that sort of tells us how these students
+and houses relate to each other.
+
+734
+00:38:13,050 --> 00:38:15,380
+So as a visual here, let's dive in.
+
+735
+00:38:15,380 --> 00:38:17,390
+Let's say-- this is what
+we currently look like.
+
+736
+00:38:17,390 --> 00:38:21,110
+We have a student's table that
+has student names, houses,
+
+737
+00:38:21,110 --> 00:38:24,620
+and the head of each house,
+but we want to break this up.
+
+738
+00:38:24,620 --> 00:38:28,740
+We only want to have a single
+thing inside of each of our tables.
+
+739
+00:38:28,740 --> 00:38:29,720
+So let's break this up.
+
+740
+00:38:29,720 --> 00:38:31,880
+Let's say get rid of the
+houses and heads here.
+
+741
+00:38:31,880 --> 00:38:32,610
+Those are gone.
+
+742
+00:38:32,610 --> 00:38:38,420
+Let's just have students in this table,
+but where should we put our houses now?
+
+743
+00:38:38,420 --> 00:38:40,700
+Let's make a new table called houses.
+
+744
+00:38:40,700 --> 00:38:43,640
+And this one we'll put
+here, we'll call it houses.
+
+745
+00:38:43,640 --> 00:38:46,760
+And notice how in this
+table called houses,
+
+746
+00:38:46,760 --> 00:38:49,695
+well, we have some new IDs
+for each of these houses.
+
+747
+00:38:49,695 --> 00:38:52,320
+But now, we have, well, in this
+case, it's called student_name.
+
+748
+00:38:52,320 --> 00:38:52,987
+Let me fix that.
+
+749
+00:38:52,987 --> 00:38:58,580
+That should be house in
+this case, house called
+
+750
+00:38:58,580 --> 00:39:01,550
+Gryffindor, Hufflepuff,
+Ravenclaw, and Slytherin, and then
+
+751
+00:39:01,550 --> 00:39:04,730
+the head of that house in this
+case, like Minerva, Pomona, Filius,
+
+752
+00:39:04,730 --> 00:39:06,230
+and Severus.
+
+753
+00:39:06,230 --> 00:39:10,490
+So, we now have our own
+separate table for houses.
+
+754
+00:39:10,490 --> 00:39:13,230
+And we could even go one
+step further and say, well,
+
+755
+00:39:13,230 --> 00:39:16,760
+how do we now know where
+students are assigned.
+
+756
+00:39:16,760 --> 00:39:18,980
+And for that, we could
+make our new table,
+
+757
+00:39:18,980 --> 00:39:22,380
+this one called assignments, down below.
+
+758
+00:39:22,380 --> 00:39:29,930
+So you can see that I have assignment
+1 to 4, where student ID is 1
+
+759
+00:39:29,930 --> 00:39:32,030
+and house ID is 4.
+
+760
+00:39:32,030 --> 00:39:35,780
+So what do you think this table
+now is telling us down below?
+
+761
+00:39:35,780 --> 00:39:40,540
+If I give you the full screen below
+here, if you type in the chat,
+
+762
+00:39:40,540 --> 00:39:46,570
+what is this table telling
+us, only this first row?
+
+763
+00:39:46,570 --> 00:39:50,950
+It's telling us that Adelaide,
+Adelaide Murton, belongs to Slytherin.
+
+764
+00:39:50,950 --> 00:39:52,795
+And how do you know that in this case?
+
+765
+00:39:52,795 --> 00:39:56,870
+
+
+766
+00:39:56,870 --> 00:39:59,870
+How do you know that Adelaide
+belongs to Slytherin now?
+
+767
+00:39:59,870 --> 00:40:01,100
+Because of the IDs.
+
+768
+00:40:01,100 --> 00:40:03,620
+So we saw before that here, we have ID.
+
+769
+00:40:03,620 --> 00:40:06,230
+Student ID is one, but which
+student has the ID one?
+
+770
+00:40:06,230 --> 00:40:08,750
+Well, it seems like it's Adelaide
+if you look at that table.
+
+771
+00:40:08,750 --> 00:40:12,442
+And I look at the 4 here for the
+house ID, in which house is 4.
+
+772
+00:40:12,442 --> 00:40:13,400
+Well, that's Slytherin.
+
+773
+00:40:13,400 --> 00:40:18,440
+So we know that Adelaide has a
+belonging to Slytherin in this case.
+
+774
+00:40:18,440 --> 00:40:21,395
+Adelaide is assigned to Slytherin house.
+
+775
+00:40:21,395 --> 00:40:23,270
+So this brings us to
+another design principle
+
+776
+00:40:23,270 --> 00:40:25,940
+here, which is that,
+ideally, we only want
+
+777
+00:40:25,940 --> 00:40:29,490
+to have every piece of
+data stored in one place.
+
+778
+00:40:29,490 --> 00:40:33,860
+And then from thereafter, refers
+that piece of data by its ID.
+
+779
+00:40:33,860 --> 00:40:37,980
+So notice how we have, in the students
+table, an ID for every student.
+
+780
+00:40:37,980 --> 00:40:40,400
+In the houses table,
+an ID for every house.
+
+781
+00:40:40,400 --> 00:40:44,120
+And now, in our other tables, we
+just have to reference that ID.
+
+782
+00:40:44,120 --> 00:40:47,810
+We don't have to actually reference
+Slytherin or the student name anymore.
+
+783
+00:40:47,810 --> 00:40:50,420
+If those things change, we
+change them in one place.
+
+784
+00:40:50,420 --> 00:40:52,295
+And now, the relationship,
+we can sort of
+
+785
+00:40:52,295 --> 00:40:56,130
+define elsewhere and
+update that as we need to.
+
+786
+00:40:56,130 --> 00:40:58,410
+And this is a good
+segue into what people
+
+787
+00:40:58,410 --> 00:41:01,630
+are saying in the chat, which is
+primary keys and foreign keys.
+
+788
+00:41:01,630 --> 00:41:05,850
+So what is the primary key
+now in each of these tables?
+
+789
+00:41:05,850 --> 00:41:07,425
+Where do you see a primary key?
+
+790
+00:41:07,425 --> 00:41:10,760
+
+
+791
+00:41:10,760 --> 00:41:13,350
+Yes, so you're seeing in the
+ID columns for every table.
+
+792
+00:41:13,350 --> 00:41:16,950
+So here in students,
+students is primary key.
+
+793
+00:41:16,950 --> 00:41:19,940
+The unique ID for every
+student is just that ID column.
+
+794
+00:41:19,940 --> 00:41:23,810
+And for houses, the primary key is
+that ID column as well, and similarly,
+
+795
+00:41:23,810 --> 00:41:25,220
+for assignments.
+
+796
+00:41:25,220 --> 00:41:29,700
+But now, student_id
+is not a primary key.
+
+797
+00:41:29,700 --> 00:41:32,990
+It's not a unique identifier
+for every student here.
+
+798
+00:41:32,990 --> 00:41:36,010
+What is it instead?
+
+799
+00:41:36,010 --> 00:41:37,190
+It's a foreign key.
+
+800
+00:41:37,190 --> 00:41:41,500
+So it's saying that this references
+a primary key in another table.
+
+801
+00:41:41,500 --> 00:41:44,260
+It's references the
+unique ID in students now.
+
+802
+00:41:44,260 --> 00:41:48,130
+And similarly, this house ID 4,
+well, that reference the primary key
+
+803
+00:41:48,130 --> 00:41:49,030
+in houses.
+
+804
+00:41:49,030 --> 00:41:52,630
+So we're going to say is that
+the primary key is that unique ID
+
+805
+00:41:52,630 --> 00:41:55,870
+inside of the table,
+and a foreign key is
+
+806
+00:41:55,870 --> 00:41:59,260
+a reference to that primary key
+from another table, a separate table
+
+807
+00:41:59,260 --> 00:42:01,030
+in this case.
+
+808
+00:42:01,030 --> 00:42:06,100
+So if we wanted to update this
+table, we could do it as follows.
+
+809
+00:42:06,100 --> 00:42:08,850
+Let's actually go through the work
+of trying to update this table.
+
+810
+00:42:08,850 --> 00:42:10,150
+Currently, looks like this.
+
+811
+00:42:10,150 --> 00:42:12,270
+We have just a single table here.
+
+812
+00:42:12,270 --> 00:42:14,550
+But we ideally want to
+make a different table
+
+813
+00:42:14,550 --> 00:42:16,480
+for houses, a different
+table for assignments,
+
+814
+00:42:16,480 --> 00:42:19,710
+so let's explore some syntax to
+actually make that happen for us.
+
+815
+00:42:19,710 --> 00:42:23,290
+Now, we could create a table a bit like
+this, and something's missing here.
+
+816
+00:42:23,290 --> 00:42:25,540
+But the general consensus
+is it looks a bit like this.
+
+817
+00:42:25,540 --> 00:42:28,590
+We could say CREATE
+TABLE, call it houses,
+
+818
+00:42:28,590 --> 00:42:31,860
+that has four, actually
+three different columns now,
+
+819
+00:42:31,860 --> 00:42:36,480
+one called ID, one called
+house, and one called head.
+
+820
+00:42:36,480 --> 00:42:41,310
+So the table called houses
+will have a column called ID,
+
+821
+00:42:41,310 --> 00:42:44,070
+a column called house,
+and a column called head.
+
+822
+00:42:44,070 --> 00:42:47,280
+And what is this last
+bit doing for us here?
+
+823
+00:42:47,280 --> 00:42:48,600
+Any ideas?
+
+824
+00:42:48,600 --> 00:42:55,030
+What is that specifying about our
+table, at fourth kind of row here?
+
+825
+00:42:55,030 --> 00:42:59,300
+
+
+826
+00:42:59,300 --> 00:43:01,620
+Yeah, so it's going to say
+this will be a primary key.
+
+827
+00:43:01,620 --> 00:43:05,240
+This is going to be our unique
+ID inside of this house's table.
+
+828
+00:43:05,240 --> 00:43:07,760
+So ID should be always
+unique for every row.
+
+829
+00:43:07,760 --> 00:43:11,430
+It should never change for every row.
+
+830
+00:43:11,430 --> 00:43:16,050
+So, if you want to do this, we could try
+this, but it won't quite work for us.
+
+831
+00:43:16,050 --> 00:43:19,440
+That's because in SQL,
+there are also data types.
+
+832
+00:43:19,440 --> 00:43:22,310
+So if we kind of table if
+we say, what kind of type
+
+833
+00:43:22,310 --> 00:43:24,300
+we're storing in each of our columns?
+
+834
+00:43:24,300 --> 00:43:28,130
+So here, we might say not just
+ID, but that ID is an integer,
+
+835
+00:43:28,130 --> 00:43:31,910
+or not just house, but that house is
+a piece of text, and so it's head.
+
+836
+00:43:31,910 --> 00:43:35,330
+So now, we're saying that we're going
+to have these three columns, ID, house,
+
+837
+00:43:35,330 --> 00:43:39,290
+and head, and that ID is
+an integer, house is text,
+
+838
+00:43:39,290 --> 00:43:42,090
+and head is text as well.
+
+839
+00:43:42,090 --> 00:43:44,000
+And we could even get
+more fancy with this
+
+840
+00:43:44,000 --> 00:43:47,420
+and apply some constraints, which
+means we could kind of make sure
+
+841
+00:43:47,420 --> 00:43:51,350
+that as we insert data to this
+table, we adhere to some rules
+
+842
+00:43:51,350 --> 00:43:52,610
+that we set beforehand.
+
+843
+00:43:52,610 --> 00:43:55,820
+And maybe one of these rules
+is that each of these columns
+
+844
+00:43:55,820 --> 00:43:57,350
+should never be null.
+
+845
+00:43:57,350 --> 00:44:02,360
+No meaning empty, meaning that
+every column or every time we
+
+846
+00:44:02,360 --> 00:44:05,690
+add a new row, no column can be blank.
+
+847
+00:44:05,690 --> 00:44:09,578
+We can't have a house without a name,
+and we can't have a house out ahead.
+
+848
+00:44:09,578 --> 00:44:10,620
+That wouldn't make sense.
+
+849
+00:44:10,620 --> 00:44:15,620
+So every row has to have each of
+these three columns in order for us
+
+850
+00:44:15,620 --> 00:44:17,150
+to insert it.
+
+851
+00:44:17,150 --> 00:44:22,940
+And so, kind of a translation here is
+that not null is similar to required.
+
+852
+00:44:22,940 --> 00:44:26,270
+We have to make sure this
+column name is required
+
+853
+00:44:26,270 --> 00:44:29,210
+when we insert some new data here.
+
+854
+00:44:29,210 --> 00:44:31,780
+So let's try this soon,
+but what questions do you
+
+855
+00:44:31,780 --> 00:44:34,750
+have so far on this great table syntax?
+
+856
+00:44:34,750 --> 00:44:38,360
+
+
+857
+00:44:38,360 --> 00:44:38,900
+Let me see.
+
+858
+00:44:38,900 --> 00:44:43,440
+
+
+859
+00:44:43,440 --> 00:44:44,380
+A good question here.
+
+860
+00:44:44,380 --> 00:44:48,420
+So if we update the particular
+house's ID in the house table,
+
+861
+00:44:48,420 --> 00:44:51,550
+can that update the ID
+and the assignments table?
+
+862
+00:44:51,550 --> 00:44:53,713
+So let's go back to our visual here.
+
+863
+00:44:53,713 --> 00:44:54,630
+It's a great question.
+
+864
+00:44:54,630 --> 00:44:58,350
+If we looked at the ID
+for Slytherin, that is 4.
+
+865
+00:44:58,350 --> 00:45:02,370
+And in the assignments
+table, we have the ID 4.
+
+866
+00:45:02,370 --> 00:45:07,410
+Now, if I changed Slytherin
+ID to be 5, well, this
+
+867
+00:45:07,410 --> 00:45:09,600
+is assignments table would
+not automatically update
+
+868
+00:45:09,600 --> 00:45:11,520
+for me, at least if I do it naively.
+
+869
+00:45:11,520 --> 00:45:15,210
+If I just go in here and I say that
+this row here, Slytherin, should now
+
+870
+00:45:15,210 --> 00:45:18,690
+have the ID 5, that will
+mess this reference up.
+
+871
+00:45:18,690 --> 00:45:21,420
+We'll now actually know
+what to point to anymore.
+
+872
+00:45:21,420 --> 00:45:25,722
+What I could do perhaps is better is
+let's say, OK, Slytherin-- perhaps it's
+
+873
+00:45:25,722 --> 00:45:27,180
+no longer called Slytherin anymore.
+
+874
+00:45:27,180 --> 00:45:28,972
+Maybe it's called a
+different kind of name.
+
+875
+00:45:28,972 --> 00:45:32,340
+I could change this,
+well, this house now.
+
+876
+00:45:32,340 --> 00:45:35,210
+Let me fix that typo here.
+
+877
+00:45:35,210 --> 00:45:41,160
+Fix this house, and I could
+call it something else.
+
+878
+00:45:41,160 --> 00:45:43,820
+And now, if I reference
+that same ID, I'll
+
+879
+00:45:43,820 --> 00:45:46,400
+get a different name
+for the student house,
+
+880
+00:45:46,400 --> 00:45:49,250
+but I should never change
+the primary key in general.
+
+881
+00:45:49,250 --> 00:45:52,130
+
+
+882
+00:45:52,130 --> 00:45:53,840
+And I see a question
+to our primary keys.
+
+883
+00:45:53,840 --> 00:45:57,940
+So is it good practice to have an
+auto increment for the primary key?
+
+884
+00:45:57,940 --> 00:46:00,880
+Meaning that if I add a
+new row, like let's say
+
+885
+00:46:00,880 --> 00:46:05,290
+if I add a new student over here,
+that the ID automatically increases.
+
+886
+00:46:05,290 --> 00:46:06,060
+It's a great idea.
+
+887
+00:46:06,060 --> 00:46:08,740
+We always want to make
+sure that our ID is unique.
+
+888
+00:46:08,740 --> 00:46:13,030
+And so as we add new rows, we'll make
+sure they're always increasing our ID,
+
+889
+00:46:13,030 --> 00:46:14,820
+and SQL will handle that for you.
+
+890
+00:46:14,820 --> 00:46:16,760
+If I go back to my
+create table statement
+
+891
+00:46:16,760 --> 00:46:20,710
+and if I have this primary key
+ID constraint down the bottom,
+
+892
+00:46:20,710 --> 00:46:24,640
+that will mean that this ID column
+will always auto increment for me,
+
+893
+00:46:24,640 --> 00:46:27,470
+and often it actually
+won't ever be null.
+
+894
+00:46:27,470 --> 00:46:30,760
+So primary key handles some
+of these constraints for me
+
+895
+00:46:30,760 --> 00:46:33,650
+by saying that, look, this
+column should never be null.
+
+896
+00:46:33,650 --> 00:46:37,450
+It should also never be a random
+value, which always auto increment as I
+
+897
+00:46:37,450 --> 00:46:39,420
+add new rows.
+
+898
+00:46:39,420 --> 00:46:41,430
+Great questions here.
+
+899
+00:46:41,430 --> 00:46:42,225
+Other ones too?
+
+900
+00:46:42,225 --> 00:46:47,815
+
+
+901
+00:46:47,815 --> 00:46:48,690
+A good question here.
+
+902
+00:46:48,690 --> 00:46:51,410
+So when we chose to
+introduce, to distribute
+
+903
+00:46:51,410 --> 00:46:55,380
+the database into three tables,
+why is this the best distribution?
+
+904
+00:46:55,380 --> 00:46:59,468
+So if you go back to our visual
+again here, why is this the best?
+
+905
+00:46:59,468 --> 00:47:01,760
+I actually won't say this is
+the very best we could do.
+
+906
+00:47:01,760 --> 00:47:04,010
+There's probably some more
+updates we could make here,
+
+907
+00:47:04,010 --> 00:47:05,570
+but this is simply better.
+
+908
+00:47:05,570 --> 00:47:08,720
+Because in this case, we're
+reducing some of our redundancies,
+
+909
+00:47:08,720 --> 00:47:11,750
+and I could more easily change
+my data set if I'd like to.
+
+910
+00:47:11,750 --> 00:47:15,210
+So notice how, here,
+going back to our example
+
+911
+00:47:15,210 --> 00:47:19,730
+of changing some names of houses, well,
+if I change the name of Ravenclaw,
+
+912
+00:47:19,730 --> 00:47:22,837
+in my prior data set
+like this one, I would
+
+913
+00:47:22,837 --> 00:47:25,670
+have to go through and update all
+of these names, like individually,
+
+914
+00:47:25,670 --> 00:47:30,530
+to find Ravenclaw, Ravenclaw,
+Ravenclaw, update that every time.
+
+915
+00:47:30,530 --> 00:47:33,020
+But if I have this kind
+of arrangement, well, I
+
+916
+00:47:33,020 --> 00:47:35,060
+can just change Ravenclaw in one table.
+
+917
+00:47:35,060 --> 00:47:38,840
+And now, that name has changed on
+my entire database as I go through.
+
+918
+00:47:38,840 --> 00:47:42,560
+So it's helpful to not repeat
+ourselves while we're having
+
+919
+00:47:42,560 --> 00:47:45,380
+these databases design questions here.
+
+920
+00:47:45,380 --> 00:47:49,220
+
+
+921
+00:47:49,220 --> 00:47:51,710
+So let's try actually
+creating this table now,
+
+922
+00:47:51,710 --> 00:47:54,350
+and our goal was to create
+a table called houses that
+
+923
+00:47:54,350 --> 00:47:55,920
+had some of these constraints here.
+
+924
+00:47:55,920 --> 00:47:59,480
+So let's go ahead and go back to our
+SQLite database, and let's try it.
+
+925
+00:47:59,480 --> 00:48:04,460
+Let's go ahead and CREATE
+TABLE, this one called houses.
+
+926
+00:48:04,460 --> 00:48:07,250
+And now, I'll add my
+parentheses to say what
+
+927
+00:48:07,250 --> 00:48:09,020
+columns should be inside of houses.
+
+928
+00:48:09,020 --> 00:48:10,280
+I'll hit Enter here.
+
+929
+00:48:10,280 --> 00:48:13,140
+And now, I'll kind of, by
+convention, indent four spaces.
+
+930
+00:48:13,140 --> 00:48:14,930
+I'll hit 1, 2, 3, 4.
+
+931
+00:48:14,930 --> 00:48:18,920
+And the first column I want to
+have, that one is called ID.
+
+932
+00:48:18,920 --> 00:48:20,930
+That one will be an INTEGER.
+
+933
+00:48:20,930 --> 00:48:23,900
+And ideally, I want it
+to be NOT NULL, never
+
+934
+00:48:23,900 --> 00:48:28,130
+should be able to have a
+blank ID in this table.
+
+935
+00:48:28,130 --> 00:48:31,580
+Next one, I want to have
+a name of the house.
+
+936
+00:48:31,580 --> 00:48:33,872
+This one, some text.
+
+937
+00:48:33,872 --> 00:48:35,580
+And I also want to
+make sure that I can't
+
+938
+00:48:35,580 --> 00:48:37,770
+have this ever be null, never blank.
+
+939
+00:48:37,770 --> 00:48:42,360
+And similarly, I want to
+have a head, head name.
+
+940
+00:48:42,360 --> 00:48:48,330
+This one called, this up type
+TEXT, and also never NULL.
+
+941
+00:48:48,330 --> 00:48:51,360
+And there's one more thing I need
+to add here, and what is that?
+
+942
+00:48:51,360 --> 00:48:54,570
+
+
+943
+00:48:54,570 --> 00:48:55,450
+A primary key.
+
+944
+00:48:55,450 --> 00:48:59,580
+So I can say PRIMARY KEY id, and
+then close this out down below
+
+945
+00:48:59,580 --> 00:49:02,610
+in my parentheses, and hit
+a semicolon, and hit Enter.
+
+946
+00:49:02,610 --> 00:49:05,940
+And now, if I type dot
+schema again, well, I
+
+947
+00:49:05,940 --> 00:49:11,790
+should see I have a table for
+students now and a table for houses.
+
+948
+00:49:11,790 --> 00:49:15,090
+And what we could do
+if we have more time
+
+949
+00:49:15,090 --> 00:49:17,400
+is spend some time actually
+updating this database,
+
+950
+00:49:17,400 --> 00:49:20,520
+like take data from our students
+table, insert into houses,
+
+951
+00:49:20,520 --> 00:49:24,750
+make sure the students table removes
+the house and head columns as well.
+
+952
+00:49:24,750 --> 00:49:27,490
+We won't spend too much
+time on that here today,
+
+953
+00:49:27,490 --> 00:49:30,210
+but the goal is simply to show
+you how we can add more tables
+
+954
+00:49:30,210 --> 00:49:31,830
+and insert some data.
+
+955
+00:49:31,830 --> 00:49:35,520
+But on with inserting some data, how
+could we actually add heads here?
+
+956
+00:49:35,520 --> 00:49:40,410
+Because if I do SELECT star FROM
+houses, well, there's nothing in there,
+
+957
+00:49:40,410 --> 00:49:41,160
+nothing shows up.
+
+958
+00:49:41,160 --> 00:49:43,508
+So how should I add some data here?
+
+959
+00:49:43,508 --> 00:49:46,300
+I'm seeing insert, so let's actually
+see what that could look like.
+
+960
+00:49:46,300 --> 00:49:50,730
+I could go here, and I could say
+our picture right now is like this.
+
+961
+00:49:50,730 --> 00:49:53,880
+We have a blank houses table
+that has the right column names,
+
+962
+00:49:53,880 --> 00:49:56,470
+but no data, so let's
+actually insert some data.
+
+963
+00:49:56,470 --> 00:49:59,130
+So in general, inserting
+looks like a bit like this.
+
+964
+00:49:59,130 --> 00:50:04,170
+Insert into the table name, followed by
+some columns I want to add data into,
+
+965
+00:50:04,170 --> 00:50:07,350
+and then some values want
+to add to those columns.
+
+966
+00:50:07,350 --> 00:50:11,610
+And to add in let's say
+Gryffindor, I could do this.
+
+967
+00:50:11,610 --> 00:50:16,710
+INSERT INTO the houses table on the
+house and head columns Gryffindor
+
+968
+00:50:16,710 --> 00:50:20,250
+for the house and McGonagall
+for the head, so let's try that.
+
+969
+00:50:20,250 --> 00:50:24,660
+I could say, down below,
+INSERT INTO houses.
+
+970
+00:50:24,660 --> 00:50:27,510
+And which columns we want to
+insert into now for houses?
+
+971
+00:50:27,510 --> 00:50:31,460
+
+
+972
+00:50:31,460 --> 00:50:34,540
+Head and house.
+
+973
+00:50:34,540 --> 00:50:35,950
+Let's do it in the right order.
+
+974
+00:50:35,950 --> 00:50:40,350
+Let's first do house and then
+head, let's then do the values.
+
+975
+00:50:40,350 --> 00:50:43,830
+Let's say, OK, what should
+go into the house column?
+
+976
+00:50:43,830 --> 00:50:45,660
+Gryffindor.
+
+977
+00:50:45,660 --> 00:50:47,670
+And what should go into the head column?
+
+978
+00:50:47,670 --> 00:50:50,360
+McGonagall.
+
+979
+00:50:50,360 --> 00:50:52,390
+And then we'll hit
+semicolon, Enter here.
+
+980
+00:50:52,390 --> 00:50:53,560
+And now, let's select.
+
+981
+00:50:53,560 --> 00:50:56,980
+Let's SELECT star FROM
+houses, and now, we
+
+982
+00:50:56,980 --> 00:51:00,955
+see Gryffindor as the house and the
+head is McGonagall, with the ID of 1.
+
+983
+00:51:00,955 --> 00:51:03,940
+That primary key has
+auto incremented for us.
+
+984
+00:51:03,940 --> 00:51:06,850
+Let's maybe add now, whoops--
+
+985
+00:51:06,850 --> 00:51:08,500
+let's maybe add now Slytherin.
+
+986
+00:51:08,500 --> 00:51:19,310
+We could say INSERT INTO houses with
+the VALUES Slytherin and Severus Snape.
+
+987
+00:51:19,310 --> 00:51:23,060
+And now, if we SELECT
+star FROM houses, we
+
+988
+00:51:23,060 --> 00:51:26,240
+should see our ID has auto
+incremented, and we now
+
+989
+00:51:26,240 --> 00:51:30,110
+have Slytherin with
+Severus Snape as the head.
+
+990
+00:51:30,110 --> 00:51:32,495
+So questions on these inserts
+or these creating tables?
+
+991
+00:51:32,495 --> 00:51:38,500
+
+
+992
+00:51:38,500 --> 00:51:41,620
+Question, what if one insert
+more than one row at once?
+
+993
+00:51:41,620 --> 00:51:44,920
+I believe that that is a good use
+case for something like Python.
+
+994
+00:51:44,920 --> 00:51:48,520
+So we saw in lecture, not so much today,
+but in lecture, how we can use Python
+
+995
+00:51:48,520 --> 00:51:50,350
+to kind of automate SQL queries.
+
+996
+00:51:50,350 --> 00:51:53,050
+You could imagine, for
+example, having a Python loop,
+
+997
+00:51:53,050 --> 00:51:55,660
+like a for loop, that
+kind of runs INSERT query
+
+998
+00:51:55,660 --> 00:51:59,580
+command over and over again to add
+multiple rows over and over again
+
+999
+00:51:59,580 --> 00:52:00,080
+there.
+
+1000
+00:52:00,080 --> 00:52:03,577
+So more on that next week,
+when we work on like--
+
+1001
+00:52:03,577 --> 00:52:05,660
+actually in later weeks
+like with Flask and so on.
+
+1002
+00:52:05,660 --> 00:52:08,440
+But for now, I would refer
+back to lecture and look at how
+
+1003
+00:52:08,440 --> 00:52:10,390
+we can use Python along with SQL.
+
+1004
+00:52:10,390 --> 00:52:14,100
+
+
+1005
+00:52:14,100 --> 00:52:17,990
+So to close us out here,
+what we'll do is just
+
+1006
+00:52:17,990 --> 00:52:21,290
+figure out how we can actually
+modify our queries to fit
+
+1007
+00:52:21,290 --> 00:52:24,030
+this kind of more complex database.
+
+1008
+00:52:24,030 --> 00:52:26,910
+Now that we have data in all
+kinds of different tables, well,
+
+1009
+00:52:26,910 --> 00:52:27,870
+how do we query it?
+
+1010
+00:52:27,870 --> 00:52:31,190
+How do we get actually the
+information we want to get out of it?
+
+1011
+00:52:31,190 --> 00:52:32,690
+Something like this in the very end.
+
+1012
+00:52:32,690 --> 00:52:35,520
+How do we get the data
+we want out of this?
+
+1013
+00:52:35,520 --> 00:52:37,520
+And there are a number
+of ways we could do this.
+
+1014
+00:52:37,520 --> 00:52:40,230
+And let's take a look at actually
+an already complete database.
+
+1015
+00:52:40,230 --> 00:52:42,920
+So I'll go ahead and
+I will get a database
+
+1016
+00:52:42,920 --> 00:52:48,170
+that I've already created here for you.
+
+1017
+00:52:48,170 --> 00:52:51,820
+I'll do roster.db, copy it here.
+
+1018
+00:52:51,820 --> 00:52:56,410
+And now, if I do SQLite3
+roster.db, type dot schema,
+
+1019
+00:52:56,410 --> 00:53:00,230
+you should see that now we have
+this brand new schema for our table.
+
+1020
+00:53:00,230 --> 00:53:04,210
+So we have a student's table
+with a student name and an ID,
+
+1021
+00:53:04,210 --> 00:53:08,090
+a houses table with the house
+name and a head name and an ID.
+
+1022
+00:53:08,090 --> 00:53:10,300
+And then finally, it's
+assignments table, where
+
+1023
+00:53:10,300 --> 00:53:13,030
+we say that a foreign
+key, called student_id,
+
+1024
+00:53:13,030 --> 00:53:16,600
+references the ID column in
+the student's table like this,
+
+1025
+00:53:16,600 --> 00:53:22,960
+and then the house_id column here
+references the ID column in houses
+
+1026
+00:53:22,960 --> 00:53:24,260
+just like this.
+
+1027
+00:53:24,260 --> 00:53:29,440
+And if I SELECT star FROM houses,
+notice how we have all of our houses
+
+1028
+00:53:29,440 --> 00:53:30,430
+and heads.
+
+1029
+00:53:30,430 --> 00:53:36,400
+If I SELECT star FROM students, notice
+I have all of my students and their ID.
+
+1030
+00:53:36,400 --> 00:53:41,690
+If I then SELECT star FROM
+the assignments table,
+
+1031
+00:53:41,690 --> 00:53:47,670
+well, I then just see all of the student
+IDs and the house ID they belong to.
+
+1032
+00:53:47,670 --> 00:53:50,270
+So a bit more complex
+now, but the goal was
+
+1033
+00:53:50,270 --> 00:53:55,070
+to reduce our repetition, to make sure
+we have every entity in a single table.
+
+1034
+00:53:55,070 --> 00:53:57,930
+But how do we then get the
+data that we want out of this?
+
+1035
+00:53:57,930 --> 00:53:59,680
+Well, there are a few
+ways we could do it.
+
+1036
+00:53:59,680 --> 00:54:01,763
+One way is to use these
+selects and these joins.
+
+1037
+00:54:01,763 --> 00:54:04,430
+Maybe we would actually try to
+figure out the number of students
+
+1038
+00:54:04,430 --> 00:54:07,070
+in Gryffindor, like how many
+students are in Gryffindor?
+
+1039
+00:54:07,070 --> 00:54:10,340
+We tried it out before, but now we
+have this new schema, this new table
+
+1040
+00:54:10,340 --> 00:54:10,980
+organization.
+
+1041
+00:54:10,980 --> 00:54:12,890
+So how should we change our approach?
+
+1042
+00:54:12,890 --> 00:54:16,310
+Well, we could use these
+selects and we can actually
+
+1043
+00:54:16,310 --> 00:54:19,130
+make sure our select are kind
+of nested inside of each other,
+
+1044
+00:54:19,130 --> 00:54:22,790
+like have one select work first and
+then feed the result to another select
+
+1045
+00:54:22,790 --> 00:54:23,400
+later on.
+
+1046
+00:54:23,400 --> 00:54:24,390
+So let's try this.
+
+1047
+00:54:24,390 --> 00:54:28,430
+Let's say I want to figure out how
+many students are in Gryffindor.
+
+1048
+00:54:28,430 --> 00:54:33,320
+Well, I should probably first
+notice that the ID column in houses
+
+1049
+00:54:33,320 --> 00:54:37,790
+corresponds with the house_id
+column in assignments.
+
+1050
+00:54:37,790 --> 00:54:41,520
+So maybe, what I should
+first do is figure out, well,
+
+1051
+00:54:41,520 --> 00:54:44,570
+what is the ID of Gryffindor?
+
+1052
+00:54:44,570 --> 00:54:47,190
+And to do that--
+
+1053
+00:54:47,190 --> 00:54:54,200
+any ideas for a query to find
+out the ID for Gryffindor?
+
+1054
+00:54:54,200 --> 00:54:56,735
+What query could I use, assuming
+I couldn't see it before?
+
+1055
+00:54:56,735 --> 00:54:59,360
+
+
+1056
+00:54:59,360 --> 00:55:03,560
+Assuming I don't know what that ID is,
+how could I find the ID for Gryffindor?
+
+1057
+00:55:03,560 --> 00:55:06,900
+
+
+1058
+00:55:06,900 --> 00:55:07,980
+Here's our schema again.
+
+1059
+00:55:07,980 --> 00:55:14,287
+
+
+1060
+00:55:14,287 --> 00:55:15,870
+So maybe one thing I could do is I'd--
+
+1061
+00:55:15,870 --> 00:55:19,690
+I don't the ID of Gryffindor off the
+bat, but I could try to select it.
+
+1062
+00:55:19,690 --> 00:55:25,690
+I could say SELECT maybe
+the ID from the houses table
+
+1063
+00:55:25,690 --> 00:55:30,376
+WHERE the house name is Gryffindor.
+
+1064
+00:55:30,376 --> 00:55:33,880
+I'll hit Enter and I get
+back 3 and does that match?
+
+1065
+00:55:33,880 --> 00:55:34,380
+Let's see.
+
+1066
+00:55:34,380 --> 00:55:37,860
+SELECT star FROM, in this case, houses.
+
+1067
+00:55:37,860 --> 00:55:41,230
+And I see Gryffindor in this case is 3,
+although admittedly, over here is one.
+
+1068
+00:55:41,230 --> 00:55:42,313
+That's a little confusing.
+
+1069
+00:55:42,313 --> 00:55:48,100
+But in our actual table,
+it is 3 over here.
+
+1070
+00:55:48,100 --> 00:55:52,030
+And now that I have the idea of
+Gryffindor, well, how could I find
+
+1071
+00:55:52,030 --> 00:55:54,310
+all the students who are in Gryffindor?
+
+1072
+00:55:54,310 --> 00:55:55,280
+I could try to do this.
+
+1073
+00:55:55,280 --> 00:56:00,690
+I can maybe say select the
+count of the student IDs.
+
+1074
+00:56:00,690 --> 00:56:08,110
+That's the count of student_ids
+from the assignments table WHERE
+
+1075
+00:56:08,110 --> 00:56:11,020
+the house_id, in this case, was 3.
+
+1076
+00:56:11,020 --> 00:56:12,830
+Gryffindor in this table here is 3.
+
+1077
+00:56:12,830 --> 00:56:17,360
+I'll hit Enter, and I get 11
+students, which seems right.
+
+1078
+00:56:17,360 --> 00:56:20,420
+So this query could still
+be better designed though,
+
+1079
+00:56:20,420 --> 00:56:23,450
+because here, we're talking
+about this number three,
+
+1080
+00:56:23,450 --> 00:56:25,580
+but what could we do instead?
+
+1081
+00:56:25,580 --> 00:56:29,090
+How could we maybe not hard
+code this number three,
+
+1082
+00:56:29,090 --> 00:56:31,130
+if you recall from lecture?
+
+1083
+00:56:31,130 --> 00:56:33,550
+Any ideas in the chat?
+
+1084
+00:56:33,550 --> 00:56:34,840
+We could use a JOIN.
+
+1085
+00:56:34,840 --> 00:56:37,935
+We'll see those later on,
+but what else could we do?
+
+1086
+00:56:37,935 --> 00:56:43,050
+
+
+1087
+00:56:43,050 --> 00:56:46,510
+I'm seeing some ideas of kind
+of nesting these queries.
+
+1088
+00:56:46,510 --> 00:56:50,700
+So as an example here, let's
+say we first run this query.
+
+1089
+00:56:50,700 --> 00:56:53,580
+SELECT if FROM houses WHERE
+the house is Gryffindor.
+
+1090
+00:56:53,580 --> 00:56:55,470
+Give us the ID of Gryffindor.
+
+1091
+00:56:55,470 --> 00:57:00,780
+Then let's feed the results of
+that query into a larger query.
+
+1092
+00:57:00,780 --> 00:57:02,290
+This one, the above.
+
+1093
+00:57:02,290 --> 00:57:05,790
+So here, notice how we have
+some parentheses saying
+
+1094
+00:57:05,790 --> 00:57:09,840
+that this query first will
+be run at the very beginning.
+
+1095
+00:57:09,840 --> 00:57:11,700
+The result of this
+will then be passed up
+
+1096
+00:57:11,700 --> 00:57:17,460
+to our larger query, our query
+that's kind of nesting this one.
+
+1097
+00:57:17,460 --> 00:57:19,080
+So I'll run this first query.
+
+1098
+00:57:19,080 --> 00:57:21,460
+I'll go back one, at
+least in this table,
+
+1099
+00:57:21,460 --> 00:57:25,800
+and then I'll say that in this case,
+the house_id for Gryffindor is 1.
+
+1100
+00:57:25,800 --> 00:57:27,930
+And now, there's a
+query itself completes.
+
+1101
+00:57:27,930 --> 00:57:30,680
+I could say, it's like COUNT the
+student_id FROM assignments WHERE
+
+1102
+00:57:30,680 --> 00:57:32,500
+house_id is one in this case.
+
+1103
+00:57:32,500 --> 00:57:33,900
+So let's try it out.
+
+1104
+00:57:33,900 --> 00:57:35,670
+I could say SELECT.
+
+1105
+00:57:35,670 --> 00:57:42,660
+I know they're beginning the count of
+student_ids FROM the assignments table.
+
+1106
+00:57:42,660 --> 00:57:47,073
+But now, I need to figure out
+what's the ID of Gryffindor?
+
+1107
+00:57:47,073 --> 00:57:49,740
+Well, I know I want a house ID
+and I want it to equal something,
+
+1108
+00:57:49,740 --> 00:57:51,092
+but what is that something?
+
+1109
+00:57:51,092 --> 00:57:54,300
+What I could do in this case is I could
+say, well, I don't really quite know.
+
+1110
+00:57:54,300 --> 00:57:55,290
+I could instead--
+
+1111
+00:57:55,290 --> 00:57:59,010
+I could say, well, go
+ahead and first find me,
+
+1112
+00:57:59,010 --> 00:58:02,280
+that ID for Gryffindor,
+SELECT id, in this case,
+
+1113
+00:58:02,280 --> 00:58:11,540
+FROM the houses table WHERE the
+name or the house is Gryffindor.
+
+1114
+00:58:11,540 --> 00:58:17,660
+And then I will go ahead and hit Enter
+here, close the query with a semicolon
+
+1115
+00:58:17,660 --> 00:58:20,910
+here, hit Enter, and I
+still get that same result.
+
+1116
+00:58:20,910 --> 00:58:23,900
+This is better now, because if
+the idea of Gryffindor changes,
+
+1117
+00:58:23,900 --> 00:58:27,612
+notice how in this table it's
+three, but in this table it's 1.
+
+1118
+00:58:27,612 --> 00:58:29,570
+If the idea of Gryffindor
+changes, well, now, I
+
+1119
+00:58:29,570 --> 00:58:32,240
+can just figure out what I'm
+looking for without actually caring
+
+1120
+00:58:32,240 --> 00:58:34,920
+what the ID of Gryffindor actually is.
+
+1121
+00:58:34,920 --> 00:58:38,600
+So thoughts or questions
+on these nest and selects?
+
+1122
+00:58:38,600 --> 00:58:39,755
+What questions do you have?
+
+1123
+00:58:39,755 --> 00:58:54,380
+
+
+1124
+00:58:54,380 --> 00:58:56,720
+A question here, can we
+nest without any limit?
+
+1125
+00:58:56,720 --> 00:58:59,550
+You theoretically can have as
+many nestings as you want to have.
+
+1126
+00:58:59,550 --> 00:59:01,910
+So we could maybe have a
+query here, if I look up here.
+
+1127
+00:59:01,910 --> 00:59:04,830
+Like maybe we don't know
+something about this query,
+
+1128
+00:59:04,830 --> 00:59:07,310
+we could say, OK, run
+another query to give me
+
+1129
+00:59:07,310 --> 00:59:10,190
+that result, to kind of nest them
+and nest them over and over again.
+
+1130
+00:59:10,190 --> 00:59:11,570
+You can absolutely do that.
+
+1131
+00:59:11,570 --> 00:59:13,317
+It comes at a cost
+though of performance.
+
+1132
+00:59:13,317 --> 00:59:16,400
+You want to make sure that you're kind
+of limiting your number of nestings
+
+1133
+00:59:16,400 --> 00:59:18,650
+to make sure you're not just
+looking up arbitrary data
+
+1134
+00:59:18,650 --> 00:59:22,020
+that you don't actually
+need in this case.
+
+1135
+00:59:22,020 --> 00:59:25,322
+So, no theoretical limit
+really, but there is a limit
+
+1136
+00:59:25,322 --> 00:59:27,780
+if you're concerned about
+performance, which you should be.
+
+1137
+00:59:27,780 --> 00:59:33,360
+
+
+1138
+00:59:33,360 --> 00:59:35,363
+So this was one way of
+approaching this problem,
+
+1139
+00:59:35,363 --> 00:59:38,030
+counting students of Gryffindor
+with this new table using a nest
+
+1140
+00:59:38,030 --> 00:59:38,750
+and selects.
+
+1141
+00:59:38,750 --> 00:59:42,680
+But another way-- this maybe
+a little more intuitive.
+
+1142
+00:59:42,680 --> 00:59:45,660
+In some ways, it's going to be
+this JOIN that we saw earlier.
+
+1143
+00:59:45,660 --> 00:59:48,290
+So this will bring us almost
+to the very end of our lecture,
+
+1144
+00:59:48,290 --> 00:59:49,790
+to look at JOINs here.
+
+1145
+00:59:49,790 --> 00:59:53,090
+But instead of using SELECT,
+we could use this idea
+
+1146
+00:59:53,090 --> 00:59:55,400
+of putting these tables together.
+
+1147
+00:59:55,400 --> 00:59:58,940
+Here in our select, which we're
+treating them still as separate tables.
+
+1148
+00:59:58,940 --> 01:00:02,090
+But with JOINs, we could say, let's
+actually put our tables together
+
+1149
+01:00:02,090 --> 01:00:04,800
+and think of it as one
+bigger table in this case.
+
+1150
+01:00:04,800 --> 01:00:08,445
+So if we look at our visual again,
+counting students in Gryffindor,
+
+1151
+01:00:08,445 --> 01:00:10,070
+we're going to see something like this.
+
+1152
+01:00:10,070 --> 01:00:13,700
+So we have three different
+tables, but it would be helpful,
+
+1153
+01:00:13,700 --> 01:00:16,340
+like ideally as a human, we could
+just simply take these tables
+
+1154
+01:00:16,340 --> 01:00:19,280
+and put them together, like just
+kind of LEGOs stick them together
+
+1155
+01:00:19,280 --> 01:00:20,870
+so they fit right next each other.
+
+1156
+01:00:20,870 --> 01:00:24,440
+We can see which houses
+align with which IDs.
+
+1157
+01:00:24,440 --> 01:00:29,360
+So let's again notice that in
+this case, the ID column in houses
+
+1158
+01:00:29,360 --> 01:00:32,540
+corresponds to the house_id
+column in assignments,
+
+1159
+01:00:32,540 --> 01:00:35,060
+and we just want to pair them
+up like put them right there
+
+1160
+01:00:35,060 --> 01:00:39,500
+and see that larger, bigger table,
+and that's what join does for you.
+
+1161
+01:00:39,500 --> 01:00:43,580
+So a JOIN, once you run
+it, look a bit like this.
+
+1162
+01:00:43,580 --> 01:00:47,210
+It'll put your two tables
+together and have them online
+
+1163
+01:00:47,210 --> 01:00:49,620
+based on the ID you specify.
+
+1164
+01:00:49,620 --> 01:00:52,310
+So here I'm saying, give
+me the assignments table
+
+1165
+01:00:52,310 --> 01:00:55,050
+and JOIN houses onto it.
+
+1166
+01:00:55,050 --> 01:00:57,350
+So notice how on the
+left hand side here, I
+
+1167
+01:00:57,350 --> 01:00:59,810
+see assignments, that is
+the assignments table,
+
+1168
+01:00:59,810 --> 01:01:02,540
+and I see houses, which
+is the houses table.
+
+1169
+01:01:02,540 --> 01:01:05,330
+But they're corresponding,
+they're now next each other,
+
+1170
+01:01:05,330 --> 01:01:10,040
+based on the fact that house_id in
+the assignment table corresponds
+
+1171
+01:01:10,040 --> 01:01:13,670
+to or references that
+ID column in houses.
+
+1172
+01:01:13,670 --> 01:01:19,700
+So SQL knows which rows to put together
+with which rows in each table based
+
+1173
+01:01:19,700 --> 01:01:21,770
+on this ID we specify.
+
+1174
+01:01:21,770 --> 01:01:23,850
+And the syntax for this
+looks a bit like this.
+
+1175
+01:01:23,850 --> 01:01:28,470
+We could say SELECT everything
+FROM the assignments table.
+
+1176
+01:01:28,470 --> 01:01:34,820
+But first, JOIN on the houses table,
+and make sure we use this column
+
+1177
+01:01:34,820 --> 01:01:38,960
+as the corresponding column in this
+case, like the assignments.house_id,
+
+1178
+01:01:38,960 --> 01:01:42,530
+meaning the house ID column
+in assignments, and houses.id,
+
+1179
+01:01:42,530 --> 01:01:46,700
+meaning the ID column in houses, making
+sure that these correspond to each
+
+1180
+01:01:46,700 --> 01:01:48,260
+other in this case.
+
+1181
+01:01:48,260 --> 01:01:50,390
+So notice how I go back
+to our visual here.
+
+1182
+01:01:50,390 --> 01:01:52,580
+We have the ID column
+with houses corresponding
+
+1183
+01:01:52,580 --> 01:01:55,140
+to the house_id column in assignment.
+
+1184
+01:01:55,140 --> 01:01:57,080
+So let's try this in SQL.
+
+1185
+01:01:57,080 --> 01:02:02,220
+Let's go ahead and SELECT star
+FROM our assignments table.
+
+1186
+01:02:02,220 --> 01:02:06,170
+But first, let's go ahead
+and JOIN on the houses table,
+
+1187
+01:02:06,170 --> 01:02:09,590
+and let's join houses
+on a certain column.
+
+1188
+01:02:09,590 --> 01:02:17,550
+Let's say we want the houses.id
+column to match up with
+
+1189
+01:02:17,550 --> 01:02:20,070
+the assignments.house_id column.
+
+1190
+01:02:20,070 --> 01:02:20,990
+And here, we do this.
+
+1191
+01:02:20,990 --> 01:02:24,170
+And if I zoom out a bit,
+you'll see the very same table.
+
+1192
+01:02:24,170 --> 01:02:30,440
+We have a student_id, the house_id, the
+ID of the house in the house's table,
+
+1193
+01:02:30,440 --> 01:02:33,630
+the house name, and the head.
+
+1194
+01:02:33,630 --> 01:02:39,200
+So what can we do now to figure out how
+many students are inside of Slytherin
+
+1195
+01:02:39,200 --> 01:02:40,340
+or Gryffindor in this case?
+
+1196
+01:02:40,340 --> 01:02:43,950
+
+
+1197
+01:02:43,950 --> 01:02:46,025
+I'm seeing some longer
+queries, which is good.
+
+1198
+01:02:46,025 --> 01:02:50,170
+
+
+1199
+01:02:50,170 --> 01:02:52,060
+We could simply count up student IDs.
+
+1200
+01:02:52,060 --> 01:02:54,060
+I'm sure we can do this,
+but let's try this one.
+
+1201
+01:02:54,060 --> 01:02:58,240
+We could say, I want to SELECT
+the COUNT of the student_ids
+
+1202
+01:02:58,240 --> 01:03:02,950
+that I have from the assignments table.
+
+1203
+01:03:02,950 --> 01:03:04,870
+But I first want to JOIN in.
+
+1204
+01:03:04,870 --> 01:03:11,840
+I want to JOIN in the houses table,
+making sure that, in this case,
+
+1205
+01:03:11,840 --> 01:03:18,760
+the houses.id column matches
+up with the assignments table
+
+1206
+01:03:18,760 --> 01:03:21,730
+with the house_id column.
+
+1207
+01:03:21,730 --> 01:03:24,240
+And now, with that bigger
+table, well, I only
+
+1208
+01:03:24,240 --> 01:03:31,740
+want the rows where it seems
+to be that the houses' house
+
+1209
+01:03:31,740 --> 01:03:37,480
+column, the house column in
+houses is equal to Gryffindor.
+
+1210
+01:03:37,480 --> 01:03:38,890
+Now, hit Enter here.
+
+1211
+01:03:38,890 --> 01:03:41,218
+and now, I get back
+11 still, and I could
+
+1212
+01:03:41,218 --> 01:03:42,760
+do the very same thing for Slytherin.
+
+1213
+01:03:42,760 --> 01:03:45,770
+I could just change Gryffindor for
+Slytherin or Hufflepuff and so on.
+
+1214
+01:03:45,770 --> 01:03:49,180
+But the idea here is that we're
+trying to see our tables not
+
+1215
+01:03:49,180 --> 01:03:52,957
+as individual tables anymore,
+but now as one bigger table,
+
+1216
+01:03:52,957 --> 01:03:55,540
+and we can use that to figure
+out, well, what kinds of columns
+
+1217
+01:03:55,540 --> 01:03:59,040
+can I query to get the
+result that I want now.
+
+1218
+01:03:59,040 --> 01:04:09,520
+So what questions are there on
+these JOINs, either on the syntax
+
+1219
+01:04:09,520 --> 01:04:10,240
+or how they look?
+
+1220
+01:04:10,240 --> 01:04:13,160
+
+
+1221
+01:04:13,160 --> 01:04:18,440
+A good question-- so here
+we say, so it does not
+
+1222
+01:04:18,440 --> 01:04:22,670
+matter when we say JOIN on a
+foreign table in a primary table?
+
+1223
+01:04:22,670 --> 01:04:25,100
+Let me try to parse this question.
+
+1224
+01:04:25,100 --> 01:04:27,260
+What we could do--
+
+1225
+01:04:27,260 --> 01:04:33,800
+notice how in this above query, I said
+houses.id equals assignments.house_id.
+
+1226
+01:04:33,800 --> 01:04:39,230
+And the reason for this was that if
+I have two ID columns in two tables,
+
+1227
+01:04:39,230 --> 01:04:43,190
+well, those columns are
+unambiguous in their own tables.
+
+1228
+01:04:43,190 --> 01:04:46,130
+But when I JOIN them, those
+columns of the same name
+
+1229
+01:04:46,130 --> 01:04:49,310
+are now ambiguous, meaning
+that they have the same name
+
+1230
+01:04:49,310 --> 01:04:52,530
+and there are two columns, so we
+have to differentiate them somehow.
+
+1231
+01:04:52,530 --> 01:04:57,170
+So if we say houses.id and
+assignments.house_id, well,
+
+1232
+01:04:57,170 --> 01:05:01,190
+if I had two columns with the same
+name, maybe it's just ID in assignments,
+
+1233
+01:05:01,190 --> 01:05:05,120
+I could say, houses.id equals
+assignments.id and therefore get
+
+1234
+01:05:05,120 --> 01:05:10,330
+the appropriate column
+name as we go through.
+
+1235
+01:05:10,330 --> 01:05:12,100
+A question, how not
+to show identical IDs,
+
+1236
+01:05:12,100 --> 01:05:14,517
+like the house_id in the house
+table and assignment table.
+
+1237
+01:05:14,517 --> 01:05:21,970
+So if I do this, go back to SELECT star,
+SELECT everything FROM our assignments
+
+1238
+01:05:21,970 --> 01:05:33,760
+table, joining in the houses table on
+houses.id equals assignments.house_id,
+
+1239
+01:05:33,760 --> 01:05:35,970
+notice how we had some repetition here.
+
+1240
+01:05:35,970 --> 01:05:38,850
+We had house_id and we had ID.
+
+1241
+01:05:38,850 --> 01:05:42,000
+In the way that SQLite works, this
+is just the way it adjoins tables.
+
+1242
+01:05:42,000 --> 01:05:45,510
+You're always going to get
+those duplicate columns here,
+
+1243
+01:05:45,510 --> 01:05:48,270
+but maybe helpful if you
+narrow down your SELECT.
+
+1244
+01:05:48,270 --> 01:05:50,070
+You could say maybe
+not select everything,
+
+1245
+01:05:50,070 --> 01:05:52,830
+but maybe SELECT the house_id.
+
+1246
+01:05:52,830 --> 01:05:55,068
+You could SELECT student_name and so on.
+
+1247
+01:05:55,068 --> 01:05:57,360
+So you could narrow your
+SELECT, not select everything.
+
+1248
+01:05:57,360 --> 01:06:00,030
+But in general, when
+you JOIN two tables,
+
+1249
+01:06:00,030 --> 01:06:03,750
+you are going to get those duplicate
+columns because SQL needs know
+
+1250
+01:06:03,750 --> 01:06:07,140
+which columns to JOIN by.
+
+1251
+01:06:07,140 --> 01:06:08,190
+Does that makes sense?
+
+1252
+01:06:08,190 --> 01:06:12,280
+
+
+1253
+01:06:12,280 --> 01:06:17,260
+And a good question, can you give an
+example of a JOIN with a GROUP BY?
+
+1254
+01:06:17,260 --> 01:06:18,670
+So we absolutely could.
+
+1255
+01:06:18,670 --> 01:06:20,870
+So notice how--
+
+1256
+01:06:20,870 --> 01:06:22,870
+I remember how an earlier
+in section, we tried
+
+1257
+01:06:22,870 --> 01:06:25,510
+to have this GROUP BY that
+figured out how many students are
+
+1258
+01:06:25,510 --> 01:06:29,770
+in every house as a whole, like
+Slytherin, Gryffindor all in one table.
+
+1259
+01:06:29,770 --> 01:06:33,040
+We could do the same query now, but
+with a JOIN, with our separate tables.
+
+1260
+01:06:33,040 --> 01:06:37,510
+We could say, to be first,
+SELECT for me the houses,
+
+1261
+01:06:37,510 --> 01:06:40,450
+the house like the actual
+house name, and the COUNT
+
+1262
+01:06:40,450 --> 01:06:46,120
+of the student_ids in that house.
+
+1263
+01:06:46,120 --> 01:06:50,110
+And what I'll do now is I'll say I want
+to SELECT that FROM the assignments
+
+1264
+01:06:50,110 --> 01:06:52,170
+table.
+
+1265
+01:06:52,170 --> 01:06:58,800
+But I want to first JOIN in the houses
+table so long as the house's ID column
+
+1266
+01:06:58,800 --> 01:07:03,700
+corresponds with the
+assignments.house_id column.
+
+1267
+01:07:03,700 --> 01:07:07,980
+And now, what I could do is I
+could just simply GROUP BY house,
+
+1268
+01:07:07,980 --> 01:07:10,440
+or to be more specific, I
+could GROUP BY houses.house,
+
+1269
+01:07:10,440 --> 01:07:12,270
+the house column in houses.
+
+1270
+01:07:12,270 --> 01:07:16,080
+But I'll just say house for now, for
+consistency, and I'll hit Enter now.
+
+1271
+01:07:16,080 --> 01:07:18,090
+And now, I see that very same thing.
+
+1272
+01:07:18,090 --> 01:07:21,930
+Gryffindor has 11 students,
+Hufflepuff has 5, Ravenclaw has 13,
+
+1273
+01:07:21,930 --> 01:07:24,770
+and Slytherin has 11.
+
+1274
+01:07:24,770 --> 01:07:26,420
+So good question there.
+
+1275
+01:07:26,420 --> 01:07:28,940
+If we just treat our JOIN table
+as a regular big old table,
+
+1276
+01:07:28,940 --> 01:07:31,715
+well, we can do the very
+same, arithmetic as before.
+
+1277
+01:07:31,715 --> 01:07:39,778
+
+
+1278
+01:07:39,778 --> 01:07:42,570
+A good question here, so can we
+use AS when we JOIN the two tables?
+
+1279
+01:07:42,570 --> 01:07:43,270
+Let's try it.
+
+1280
+01:07:43,270 --> 01:07:47,340
+So, let's say SELECT house--
+
+1281
+01:07:47,340 --> 01:07:51,210
+SELECT star, sorry, from,
+let's say, assignments.
+
+1282
+01:07:51,210 --> 01:08:00,360
+And then let's go ahead and JOIN on
+the houses table with houses.id equals,
+
+1283
+01:08:00,360 --> 01:08:04,742
+in this case, assignments.house_id.
+
+1284
+01:08:04,742 --> 01:08:06,450
+And the question was,
+can we use AS here?
+
+1285
+01:08:06,450 --> 01:08:07,650
+Can we say AS?
+
+1286
+01:08:07,650 --> 01:08:12,430
+Let's just call all of this
+ID, and let's see what happens.
+
+1287
+01:08:12,430 --> 01:08:13,840
+We'll hit Enter here.
+
+1288
+01:08:13,840 --> 01:08:15,880
+And I don't think we can
+do that, because we're
+
+1289
+01:08:15,880 --> 01:08:18,460
+trying to kind of rename these
+columns out or joining them.
+
+1290
+01:08:18,460 --> 01:08:22,003
+SQL expect the actual column
+names, not the aliases
+
+1291
+01:08:22,003 --> 01:08:24,920
+that we're going to use while we're
+joining, so a good question there.
+
+1292
+01:08:24,920 --> 01:08:27,930
+
+
+1293
+01:08:27,930 --> 01:08:29,685
+Other questions on these joins?
+
+1294
+01:08:29,685 --> 01:08:34,170
+
+
+1295
+01:08:34,170 --> 01:08:37,660
+For a visual for folks, if you are
+still wrapping your mind around this,
+
+1296
+01:08:37,660 --> 01:08:44,069
+it's helpful to see in this case that
+we're trying to simply figure out
+
+1297
+01:08:44,069 --> 01:08:48,479
+which IDs are sort of matching up with
+each other, and this part of our query
+
+1298
+01:08:48,479 --> 01:08:50,134
+is actually doing that matching for us.
+
+1299
+01:08:50,134 --> 01:08:53,135
+
+
+1300
+01:08:53,135 --> 01:08:55,760
+Can you join a table more than
+once, is a question in the chat.
+
+1301
+01:08:55,760 --> 01:08:56,920
+You absolutely can.
+
+1302
+01:08:56,920 --> 01:09:00,979
+So if I wanted to have more
+than one table in my joint,
+
+1303
+01:09:00,979 --> 01:09:02,479
+I can certainly do that.
+
+1304
+01:09:02,479 --> 01:09:05,500
+I could maybe get back my entirety
+of that original table we had before.
+
+1305
+01:09:05,500 --> 01:09:11,979
+I could say SELECT star FROM students,
+originally, but then I want to join,
+
+1306
+01:09:11,979 --> 01:09:18,700
+let's say, the assignments
+table, where the, let's see,
+
+1307
+01:09:18,700 --> 01:09:23,399
+it would be students.id is corresponding
+to the assignments.student_id.
+
+1308
+01:09:23,399 --> 01:09:25,939
+
+
+1309
+01:09:25,939 --> 01:09:30,029
+Let me zoom out a bit,
+so that JOIN is ready.
+
+1310
+01:09:30,029 --> 01:09:33,149
+Now I'll also JOIN to this table.
+
+1311
+01:09:33,149 --> 01:09:38,580
+I'll JOIN on the houses table so long
+as the houses.id column corresponds
+
+1312
+01:09:38,580 --> 01:09:41,740
+to the assignments.house_id column.
+
+1313
+01:09:41,740 --> 01:09:46,109
+And now, I should get back my entire
+table, joining these two back together.
+
+1314
+01:09:46,109 --> 01:09:48,899
+And now, it's kind of big
+and kind of redundant now,
+
+1315
+01:09:48,899 --> 01:09:52,985
+but I do see that very same table we
+had before, everything joined together,
+
+1316
+01:09:52,985 --> 01:09:53,882
+originally.
+
+1317
+01:09:53,882 --> 01:09:57,270
+
+
+1318
+01:09:57,270 --> 01:09:58,470
+Can you alias table name?
+
+1319
+01:09:58,470 --> 01:10:00,350
+I don't believe--
+
+1320
+01:10:00,350 --> 01:10:01,212
+I'm not quite sure.
+
+1321
+01:10:01,212 --> 01:10:02,920
+If you were going to
+try it out yourself,
+
+1322
+01:10:02,920 --> 01:10:05,350
+I don't think you would be
+able to do that in this case,
+
+1323
+01:10:05,350 --> 01:10:09,185
+often because they don't show up in the
+query itself or the result of the query
+
+1324
+01:10:09,185 --> 01:10:09,685
+itself.
+
+1325
+01:10:09,685 --> 01:10:13,330
+
+
+1326
+01:10:13,330 --> 01:10:15,250
+Difference between JOIN and a UNION.
+
+1327
+01:10:15,250 --> 01:10:18,040
+We probably won't dive
+into unions so much here.
+
+1328
+01:10:18,040 --> 01:10:20,645
+But a UNION is good for
+finding out things that
+
+1329
+01:10:20,645 --> 01:10:22,270
+are in common with different data sets.
+
+1330
+01:10:22,270 --> 01:10:24,340
+Let's say you have
+one table and another,
+
+1331
+01:10:24,340 --> 01:10:29,050
+and both tables have some
+intersection, like datas [INAUDIBLE]
+
+1332
+01:10:29,050 --> 01:10:32,350
+a UNION would be good for that, whereas
+a JOIN is just good at simply combining
+
+1333
+01:10:32,350 --> 01:10:34,300
+your tables together as you go through.
+
+1334
+01:10:34,300 --> 01:10:37,040
+
+
+1335
+01:10:37,040 --> 01:10:39,710
+Other questions on
+joins before we wrap up?
+
+1336
+01:10:39,710 --> 01:10:43,400
+
+
+1337
+01:10:43,400 --> 01:10:46,810
+I'm happy to stay after as well.
+
+1338
+01:10:46,810 --> 01:10:48,640
+So, why don't we wrap officially here?
+
+1339
+01:10:48,640 --> 01:10:51,225
+Well, this was the end of our
+section for this week seven.
+
+1340
+01:10:51,225 --> 01:10:52,600
+Thank you all so much for coming.
+
+1341
+01:10:52,600 --> 01:10:54,520
+It was wonderful to see
+you over Zoom this week.
+
+1342
+01:10:54,520 --> 01:10:56,460
+I'm happy to stay on and
+answer questions in the chat,
+
+1343
+01:10:56,460 --> 01:10:58,420
+but otherwise, we'll
+see you in the future.
+
+1344
+01:10:58,420 --> 01:10:59,040
+Thank you all.
+
+1345
+01:10:59,040 --> 01:11:05,670
+
+
+1346
+01:11:05,670 --> 01:11:06,600
+Recording stopped.
+
+1347
+01:11:06,600 --> 01:11:11,957
+
+
+1348
+01:11:11,957 --> 01:11:14,040
+And thank you for all of
+your wonderful questions.
+
+1349
+01:11:14,040 --> 01:11:15,560
+I appreciate them in the chat.
+
+1350
+01:11:15,560 --> 01:11:18,457
+If you'd like to ask any others,
+I'm happy to stick around
+
+1351
+01:11:18,457 --> 01:11:19,415
+for a few more minutes.
+
+1352
+01:11:19,415 --> 01:11:24,955
+
+
+1353
+01:11:24,955 --> 01:11:26,580
+And thank you for that congratulations.
+
+1354
+01:11:26,580 --> 01:11:29,290
+I appreciate that.
+
+1355
+01:11:29,290 --> 01:11:32,560
+A question on GROUP BY,
+let's go back to that.
+
+1356
+01:11:32,560 --> 01:11:34,900
+The question was, how
+does GROUP BY work?
+
+1357
+01:11:34,900 --> 01:11:36,940
+What's the point of GROUP BY?
+
+1358
+01:11:36,940 --> 01:11:43,380
+It's maybe helpful if I show you
+how it would work in this context.
+
+1359
+01:11:43,380 --> 01:11:45,150
+Let's go ahead and join--
+
+1360
+01:11:45,150 --> 01:11:49,510
+back to we have before, let's select
+everything from our students table.
+
+1361
+01:11:49,510 --> 01:11:56,950
+And let's go ahead and also JOIN in
+our assignments table ON assignments
+
+1362
+01:11:56,950 --> 01:12:05,410
+dot, in this case, student_id
+is equal to students_id.
+
+1363
+01:12:05,410 --> 01:12:13,270
+And let's join the, I can't remember,
+the houses table on houses.id equals
+
+1364
+01:12:13,270 --> 01:12:15,940
+assignments.house_id.
+
+1365
+01:12:15,940 --> 01:12:18,220
+So now, we have our big, big table.
+
+1366
+01:12:18,220 --> 01:12:21,670
+But let's say we want to group
+that data or do something
+
+1367
+01:12:21,670 --> 01:12:24,490
+with that data within a certain
+group, so we could say this.
+
+1368
+01:12:24,490 --> 01:12:28,420
+GROUP BY, often this case
+makes sense as GROUP BY house.
+
+1369
+01:12:28,420 --> 01:12:33,400
+And this is saying that if I wanted to
+count up anything or average anything
+
+1370
+01:12:33,400 --> 01:12:37,420
+or figure out how many of
+something I have, well, normally,
+
+1371
+01:12:37,420 --> 01:12:42,640
+if I didn't say GROUP BY, I would just
+get the count of all the students.
+
+1372
+01:12:42,640 --> 01:12:47,305
+But if I instead GROUP
+BY house, what I'll get--
+
+1373
+01:12:47,305 --> 01:12:50,750
+and my code space is kind
+of glitching right now,
+
+1374
+01:12:50,750 --> 01:12:54,410
+but I will get back that
+same count, but only
+
+1375
+01:12:54,410 --> 01:12:57,450
+looking at the smaller subset
+of data within each group,
+
+1376
+01:12:57,450 --> 01:12:59,750
+so looking at how every
+house individually
+
+1377
+01:12:59,750 --> 01:13:03,240
+and counting up within that
+house group, if that makes sense.
+
+1378
+01:13:03,240 --> 01:13:04,980
+And if that doesn't
+quite make sense yet,
+
+1379
+01:13:04,980 --> 01:13:07,940
+I encourage you to experiment with it
+more to figure out how GROUP BY works,
+
+1380
+01:13:07,940 --> 01:13:10,982
+and there's still some resources on
+the web you could learn from as well.
+
+1381
+01:13:10,982 --> 01:13:15,300
+
+
+1382
+01:13:15,300 --> 01:13:15,800
+Yep.
+
+1383
+01:13:15,800 --> 01:13:17,550
+And we will certainly
+share the recordings
+
+1384
+01:13:17,550 --> 01:13:21,915
+for these in [INAUDIBLE] 2023, so it
+will be very early January as well.
+
+1385
+01:13:21,915 --> 01:13:24,880
+
+
+1386
+01:13:24,880 --> 01:13:27,828
+So other questions here?
+
+1387
+01:13:27,828 --> 01:13:29,620
+A question, are commands
+with capital case?
+
+1388
+01:13:29,620 --> 01:13:31,810
+That's by convention,
+so it helps us note
+
+1389
+01:13:31,810 --> 01:13:36,110
+between the capital of SQL
+keywords and our column names here,
+
+1390
+01:13:36,110 --> 01:13:37,570
+so by convention.
+
+1391
+01:13:37,570 --> 01:13:44,060
+
+
+1392
+01:13:44,060 --> 01:13:46,130
+Are sorting and GROUP BY similar?
+
+1393
+01:13:46,130 --> 01:13:50,600
+Sorting is helpful if you like ORDER
+BY, like is that an example of sorting?
+
+1394
+01:13:50,600 --> 01:13:52,940
+I could order my data.
+
+1395
+01:13:52,940 --> 01:13:56,360
+And that is kind of helpful
+for seeing groups in my data,
+
+1396
+01:13:56,360 --> 01:13:58,310
+like seeing what groups there are.
+
+1397
+01:13:58,310 --> 01:14:01,620
+But if I want to count
+something up within each group,
+
+1398
+01:14:01,620 --> 01:14:04,160
+well, I should still use
+GROUP BY in that case.
+
+1399
+01:14:04,160 --> 01:14:07,772
+So GROUP BY is often used with these
+aggregators, like count or average.
+
+1400
+01:14:07,772 --> 01:14:09,980
+Here, I don't have that up
+here, but I would normally
+
+1401
+01:14:09,980 --> 01:14:13,580
+type like COUNT star, AVERAGE star,
+and then a GROUP BY, so good question.
+
+1402
+01:14:13,580 --> 01:14:16,458
+
+
+1403
+01:14:16,458 --> 01:14:18,500
+Well, so glad this is
+helpful, and thank you all.
+
+1404
+01:14:18,500 --> 01:14:19,833
+It's great to see you over Zoom.
+
+1405
+01:14:19,833 --> 01:14:22,300
+I hope to see you next week.
+
+1406
+01:14:22,300 --> 01:14:24,000

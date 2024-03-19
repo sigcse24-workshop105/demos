@@ -1,0 +1,365 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:01,770
+Next up is sepia.
+
+3
+00:00:01,770 --> 00:00:03,780
+In the sepia function,
+your task is going
+
+4
+00:00:03,780 --> 00:00:06,630
+to be to implement a filter
+that takes a bitmap image
+
+5
+00:00:06,630 --> 00:00:08,970
+and converts it to
+sepia, giving everything
+
+6
+00:00:08,970 --> 00:00:11,730
+a reddish brown old-time feel to it.
+
+7
+00:00:11,730 --> 00:00:13,090
+How are you going to do that?
+
+8
+00:00:13,090 --> 00:00:17,610
+Well, you're going to take each pixel
+and convert it to its sepia equivalent.
+
+9
+00:00:17,610 --> 00:00:19,320
+So what does that look like?
+
+10
+00:00:19,320 --> 00:00:21,840
+If we take this green
+pixel, for example, it
+
+11
+00:00:21,840 --> 00:00:27,960
+has a sepia equivalent wear the red
+value is 183, the green value is 163,
+
+12
+00:00:27,960 --> 00:00:30,600
+and the blue value is 127.
+
+13
+00:00:30,600 --> 00:00:33,370
+But where did these
+numbers actually come from?
+
+14
+00:00:33,370 --> 00:00:35,520
+Well, it turns out that
+there's a sepia formula--
+
+15
+00:00:35,520 --> 00:00:38,860
+an algorithm that you can use that
+takes the original red, green,
+
+16
+00:00:38,860 --> 00:00:42,510
+and blue values and determines what
+the new red, green, and blue values
+
+17
+00:00:42,510 --> 00:00:45,540
+should be in the sepia
+version of that pixel.
+
+18
+00:00:45,540 --> 00:00:47,550
+And the algorithm looks like this.
+
+19
+00:00:47,550 --> 00:00:50,790
+We compute the amount of red in
+the sepia version of the pixel
+
+20
+00:00:50,790 --> 00:00:55,260
+by taking the original amount of
+red and multiplying it by 0.393,
+
+21
+00:00:55,260 --> 00:00:59,610
+taking the original amount of
+green and multiplying it by 0.769,
+
+22
+00:00:59,610 --> 00:01:03,630
+and taking the original amount of
+blue and multiplying it by 0.189.
+
+23
+00:01:03,630 --> 00:01:06,060
+And there are similar
+formulas for calculating
+
+24
+00:01:06,060 --> 00:01:08,340
+how much green should be
+in the resulting pixel
+
+25
+00:01:08,340 --> 00:01:10,860
+and how much blue should
+be in the resulting pixel.
+
+26
+00:01:10,860 --> 00:01:13,830
+So given a pixel like our
+green pixel from before,
+
+27
+00:01:13,830 --> 00:01:17,430
+if we take the original color
+values-- the original amount of red,
+
+28
+00:01:17,430 --> 00:01:20,550
+the original amount of green,
+and the original amount of blue--
+
+29
+00:01:20,550 --> 00:01:22,530
+then we can compute what
+the new values should
+
+30
+00:01:22,530 --> 00:01:25,530
+be just by plugging in all
+of those original values
+
+31
+00:01:25,530 --> 00:01:29,340
+into the formula to calculate
+how much red, green, and blue
+
+32
+00:01:29,340 --> 00:01:32,670
+there should be in the sepia
+version of the same pixel.
+
+33
+00:01:32,670 --> 00:01:34,650
+Of course, when you run
+this formula, you'll
+
+34
+00:01:34,650 --> 00:01:38,580
+probably notice that the output you
+get is not going to be an integer.
+
+35
+00:01:38,580 --> 00:01:41,550
+And recall that every channel
+value-- red, green, and blue--
+
+36
+00:01:41,550 --> 00:01:43,193
+needs to be an integer value.
+
+37
+00:01:43,193 --> 00:01:45,360
+So what you'll likely want
+to do is be sure to round
+
+38
+00:01:45,360 --> 00:01:47,880
+that number to the nearest
+whole number to make sure
+
+39
+00:01:47,880 --> 00:01:49,830
+that it is actually an integer.
+
+40
+00:01:49,830 --> 00:01:52,920
+What other corner cases
+might you run into, though?
+
+41
+00:01:52,920 --> 00:01:56,790
+Well, imagine this pixel, where
+the original red value is 200,
+
+42
+00:01:56,790 --> 00:02:02,610
+the original green value is 240,
+and the original blue value is 190.
+
+43
+00:02:02,610 --> 00:02:05,040
+When you run through this
+formula, applying the formula
+
+44
+00:02:05,040 --> 00:02:07,110
+to calculate how much
+red, green, and blue
+
+45
+00:02:07,110 --> 00:02:12,590
+there should be in the sepia pixel,
+what you get is a red value of 299.07,
+
+46
+00:02:12,590 --> 00:02:18,480
+a green value of 266.36,
+and a blue value of 207.45.
+
+47
+00:02:18,480 --> 00:02:21,120
+Of course, we'll want to
+round these as we did before.
+
+48
+00:02:21,120 --> 00:02:22,720
+But there is still a problem.
+
+49
+00:02:22,720 --> 00:02:26,940
+Remember that each of red, green, and
+blue not only need to be integer values
+
+50
+00:02:26,940 --> 00:02:29,670
+but they also need to be
+values in a valid range,
+
+51
+00:02:29,670 --> 00:02:32,320
+representable by eight bits of memory.
+
+52
+00:02:32,320 --> 00:02:34,470
+In other words, the
+minimum value is zero.
+
+53
+00:02:34,470 --> 00:02:37,590
+And the maximum value is 255.
+
+54
+00:02:37,590 --> 00:02:42,870
+But in this case, you'll notice that the
+red and green values both exceed 255.
+
+55
+00:02:42,870 --> 00:02:47,040
+The red value is to 299 and
+the green value is to 266.
+
+56
+00:02:47,040 --> 00:02:51,470
+So in this case, if we ever get
+channel values that exceed 255,
+
+57
+00:02:51,470 --> 00:02:56,820
+we'll want to make sure to cap them
+at 255, setting those values to 255,
+
+58
+00:02:56,820 --> 00:03:02,150
+to make sure that we can still represent
+that color value using only eight bits.
+
+59
+00:03:02,150 --> 00:03:04,940
+So what does this algorithm
+actually look like?
+
+60
+00:03:04,940 --> 00:03:07,450
+Well, for each pixel in
+our two-dimensional array
+
+61
+00:03:07,450 --> 00:03:09,670
+of pixels that represents
+our image, we're
+
+62
+00:03:09,670 --> 00:03:13,450
+going to calculate each new color
+value using the sepia formula,
+
+63
+00:03:13,450 --> 00:03:16,630
+using the original amounts of
+red, green, and blue to figure out
+
+64
+00:03:16,630 --> 00:03:19,640
+what the new amounts of red,
+green, and blue should be.
+
+65
+00:03:19,640 --> 00:03:21,460
+But in particular,
+we'll want to make sure
+
+66
+00:03:21,460 --> 00:03:27,040
+that the result we get for each channel
+value is an integer between 0 and 255,
+
+67
+00:03:27,040 --> 00:03:28,900
+inclusive.
+
+68
+00:03:28,900 --> 00:03:32,050
+Once you've written the sepia
+function, you should be able to test it
+
+69
+00:03:32,050 --> 00:03:35,230
+by running your filter
+program by calling ./filer,
+
+70
+00:03:35,230 --> 00:03:38,890
+passing in the -s command
+line argument, s for sepia,
+
+71
+00:03:38,890 --> 00:03:42,120
+specifying what the input file is
+and what file you'd like to produce
+
+72
+00:03:42,120 --> 00:03:43,030
+as output.
+
+73
+00:03:43,030 --> 00:03:46,870
+And if all goes well, you should
+see your original image converted
+
+74
+00:03:46,870 --> 00:03:49,750
+to the sepia version of the same image.
+
+75
+00:03:49,750 --> 00:03:50,860
+My name is Brian.
+
+76
+00:03:50,860 --> 00:03:53,200
+And this was sepia.
+
+77
+00:03:53,200 --> 00:03:54,149

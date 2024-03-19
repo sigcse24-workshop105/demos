@@ -1,0 +1,434 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:03,480
+BRIAN: Finally, the last filter
+you'll implement is called Blur.
+
+3
+00:00:03,480 --> 00:00:06,120
+In Blur, your task is going
+to be to take an image
+
+4
+00:00:06,120 --> 00:00:08,790
+and create a blurred version
+of the same image, where
+
+5
+00:00:08,790 --> 00:00:10,650
+everything is a little bit softer.
+
+6
+00:00:10,650 --> 00:00:14,230
+Let's zoom into this image a little bit
+to see what this actually looks like.
+
+7
+00:00:14,230 --> 00:00:16,420
+Notice that if this
+is the original image,
+
+8
+00:00:16,420 --> 00:00:18,232
+this is what the blurred
+image looks like.
+
+9
+00:00:18,232 --> 00:00:20,190
+Notice that the details
+are a little bit softer
+
+10
+00:00:20,190 --> 00:00:22,090
+and it's a bit tougher to make out.
+
+11
+00:00:22,090 --> 00:00:24,400
+So what does that algorithm
+actually look like?
+
+12
+00:00:24,400 --> 00:00:27,720
+How do we take an image
+and blur it, so to speak?
+
+13
+00:00:27,720 --> 00:00:30,780
+Well, let's look at this image,
+a simple six by six image,
+
+14
+00:00:30,780 --> 00:00:32,610
+where we have red and blue.
+
+15
+00:00:32,610 --> 00:00:35,310
+And what would it look like
+if we were to blur the image?
+
+16
+00:00:35,310 --> 00:00:37,770
+Well, the blurred image
+might look a little something
+
+17
+00:00:37,770 --> 00:00:40,320
+like this, where the
+details are a bit softer
+
+18
+00:00:40,320 --> 00:00:42,780
+and you can't quite make
+out the lines as crisply
+
+19
+00:00:42,780 --> 00:00:45,240
+or as sharply as you could before.
+
+20
+00:00:45,240 --> 00:00:46,920
+You can look at them side by side here.
+
+21
+00:00:46,920 --> 00:00:49,860
+On the left is the original
+image, and on the right
+
+22
+00:00:49,860 --> 00:00:52,360
+is the blurred version
+of the same image.
+
+23
+00:00:52,360 --> 00:00:55,620
+You'll notice that the pixels have
+changed their color values slightly.
+
+24
+00:00:55,620 --> 00:00:59,970
+The pixels that were originally just
+pure red now look a little more blue,
+
+25
+00:00:59,970 --> 00:01:04,180
+and the pixels that were originally
+blue now look a little more red.
+
+26
+00:01:04,180 --> 00:01:06,340
+So how do we actually do this?
+
+27
+00:01:06,340 --> 00:01:10,080
+Well, the type of blur we're going
+to do is what's called a box blur.
+
+28
+00:01:10,080 --> 00:01:13,380
+And to implement a box blur, we're
+going to compute the new value
+
+29
+00:01:13,380 --> 00:01:18,750
+for a pixel by taking the average of
+the old color values of all of the nine
+
+30
+00:01:18,750 --> 00:01:22,680
+pixels that form a grid
+around that original pixel,
+
+31
+00:01:22,680 --> 00:01:24,960
+in other words, all of the
+pixels that are within one
+
+32
+00:01:24,960 --> 00:01:28,840
+row and one column of
+the original pixel.
+
+33
+00:01:28,840 --> 00:01:31,250
+What does that mean
+for an image like this?
+
+34
+00:01:31,250 --> 00:01:33,550
+Well if we take this
+pixel, for example, and we
+
+35
+00:01:33,550 --> 00:01:36,850
+want to compute its new color
+value in the blurred image,
+
+36
+00:01:36,850 --> 00:01:40,960
+we're going to do that by looking at
+the original color values of these nine
+
+37
+00:01:40,960 --> 00:01:46,030
+pixels, the pixels that are within
+one row and one column of that pixel.
+
+38
+00:01:46,030 --> 00:01:49,630
+Likewise, to determine the
+blurred version of this pixel,
+
+39
+00:01:49,630 --> 00:01:52,780
+we're going to take the average of the
+original color values of these nine
+
+40
+00:01:52,780 --> 00:01:53,950
+pixels.
+
+41
+00:01:53,950 --> 00:01:57,520
+Of course, not every pixel in
+our image has nine pixels that
+
+42
+00:01:57,520 --> 00:01:59,500
+form a three by three grid around it.
+
+43
+00:01:59,500 --> 00:02:02,830
+Let's consider an edge case,
+for example, like this pixel.
+
+44
+00:02:02,830 --> 00:02:04,400
+What happens now?
+
+45
+00:02:04,400 --> 00:02:07,090
+Well, instead of averaging nine
+pixels to get the new color
+
+46
+00:02:07,090 --> 00:02:09,460
+value for this pixel,
+we're instead going
+
+47
+00:02:09,460 --> 00:02:12,430
+to average these six color
+values, because these six
+
+48
+00:02:12,430 --> 00:02:17,890
+pixels are the only ones within one row
+and one column of that original pixel.
+
+49
+00:02:17,890 --> 00:02:21,160
+And likewise, if we look at
+this pixel down in the corner,
+
+50
+00:02:21,160 --> 00:02:24,790
+we're going to compute its new value
+by taking the average of these four
+
+51
+00:02:24,790 --> 00:02:28,330
+pixels, the only pixels that
+are within one row and one
+
+52
+00:02:28,330 --> 00:02:30,860
+column of this particular pixel.
+
+53
+00:02:30,860 --> 00:02:34,450
+So let's take a look at an example in
+a little more detail by calculating
+
+54
+00:02:34,450 --> 00:02:39,070
+the new value for this pixel if we
+were to try and blur this image.
+
+55
+00:02:39,070 --> 00:02:42,130
+In order to do so, we need to
+look not just at this pixel,
+
+56
+00:02:42,130 --> 00:02:45,730
+but at all of the pixels within
+one row and one column of it, which
+
+57
+00:02:45,730 --> 00:02:48,310
+would be this grid of nine pixels.
+
+58
+00:02:48,310 --> 00:02:50,140
+Let's take a look at
+them in more detail.
+
+59
+00:02:50,140 --> 00:02:53,620
+Notice that the blue pixels
+have a blue value of 255
+
+60
+00:02:53,620 --> 00:02:56,980
+and a red and green value of 0,
+and the red pixels, of which there
+
+61
+00:02:56,980 --> 00:03:01,930
+are five of them, have a red value of
+255 and a green and blue value of 0.
+
+62
+00:03:01,930 --> 00:03:05,780
+So what are we going to do to
+filter the pixel in the middle here?
+
+63
+00:03:05,780 --> 00:03:08,650
+Well, what we're going to do is
+calculate the average amount of red,
+
+64
+00:03:08,650 --> 00:03:11,770
+the average amount of green,
+and the average amount of blue.
+
+65
+00:03:11,770 --> 00:03:16,300
+The average amount of red across
+all nine of these pixels is 142.
+
+66
+00:03:16,300 --> 00:03:19,240
+Five of the pixels have the maximum
+amount of red and four of them
+
+67
+00:03:19,240 --> 00:03:20,770
+have no red.
+
+68
+00:03:20,770 --> 00:03:24,010
+As for green, none of these
+pixels have any green at all,
+
+69
+00:03:24,010 --> 00:03:26,260
+so the average amount of green is 0.
+
+70
+00:03:26,260 --> 00:03:29,290
+And the average amount of blue is 113.
+
+71
+00:03:29,290 --> 00:03:32,380
+Again, all of these rounded
+to the nearest integer.
+
+72
+00:03:32,380 --> 00:03:36,310
+So what that means is that the blurred
+version of this new middle pixel
+
+73
+00:03:36,310 --> 00:03:39,700
+is going to be based on the average
+of the original color values
+
+74
+00:03:39,700 --> 00:03:42,100
+for all nine of these
+pixels, which means
+
+75
+00:03:42,100 --> 00:03:46,570
+it's going to now have a red
+value of 142, a green value of 0,
+
+76
+00:03:46,570 --> 00:03:50,040
+and a blue value of 113.
+
+77
+00:03:50,040 --> 00:03:53,850
+If we do that same process for each
+of the pixels in the original image,
+
+78
+00:03:53,850 --> 00:03:56,890
+determining the new color
+values for each of red,
+
+79
+00:03:56,890 --> 00:04:00,030
+green, and blue, by taking the
+average of the original color
+
+80
+00:04:00,030 --> 00:04:02,880
+values for all of the pixels
+that are within one row and one
+
+81
+00:04:02,880 --> 00:04:06,180
+column of that pixel, the
+end result is an image
+
+82
+00:04:06,180 --> 00:04:10,150
+that looks like this, a blurred
+version of that original image.
+
+83
+00:04:10,150 --> 00:04:12,540
+And once you've done that
+for every pixel in the image,
+
+84
+00:04:12,540 --> 00:04:16,620
+you can test this by running dot
+slash filter, passing in dash b
+
+85
+00:04:16,620 --> 00:04:19,410
+to specify that you want
+to run the blurry filter,
+
+86
+00:04:19,410 --> 00:04:22,650
+then specifying the input file
+that you'd like to use as a source,
+
+87
+00:04:22,650 --> 00:04:24,480
+and of course, the output file.
+
+88
+00:04:24,480 --> 00:04:27,390
+Once you've done that, you should
+be able to take the original image
+
+89
+00:04:27,390 --> 00:04:30,510
+and create a blurred
+version of the same thing.
+
+90
+00:04:30,510 --> 00:04:34,010
+My name is Brian and this with Blur.
+
+91
+00:04:34,010 --> 00:04:35,039

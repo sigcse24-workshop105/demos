@@ -1,0 +1,441 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:03,030
+BRIAN YU: The last step to
+completing your spell checker is
+
+3
+00:00:03,030 --> 00:00:06,840
+to implement the unload function,
+which is responsible for freeing up
+
+4
+00:00:06,840 --> 00:00:10,710
+any memory that you've allocated in the
+process of running your spell checker.
+
+5
+00:00:10,710 --> 00:00:11,890
+What does this mean?
+
+6
+00:00:11,890 --> 00:00:13,860
+Well, remember that
+anytime you dynamically
+
+7
+00:00:13,860 --> 00:00:17,250
+allocate memory using malloc,
+it's also your responsibility
+
+8
+00:00:17,250 --> 00:00:20,190
+to call free on that memory,
+to free up that memory
+
+9
+00:00:20,190 --> 00:00:21,970
+and give it back to the computer.
+
+10
+00:00:21,970 --> 00:00:24,330
+So what is your unload
+function going to do?
+
+11
+00:00:24,330 --> 00:00:27,960
+Well, your unload function is
+going to call free on any memory
+
+12
+00:00:27,960 --> 00:00:30,720
+that you've allocated using
+malloc and return true
+
+13
+00:00:30,720 --> 00:00:32,850
+if it's able to do so successfully.
+
+14
+00:00:32,850 --> 00:00:34,170
+How are you going to do that?
+
+15
+00:00:34,170 --> 00:00:36,600
+Well, remember again that
+your hash table is really
+
+16
+00:00:36,600 --> 00:00:39,120
+just an array of
+individual linked lists.
+
+17
+00:00:39,120 --> 00:00:41,370
+Each of those linked
+lists contains nodes
+
+18
+00:00:41,370 --> 00:00:44,340
+that you have allocated memory
+for, likely using malloc.
+
+19
+00:00:44,340 --> 00:00:46,980
+So you'll need to free
+each one of those nodes.
+
+20
+00:00:46,980 --> 00:00:49,320
+So you might imagine iterating
+over your hash table,
+
+21
+00:00:49,320 --> 00:00:51,810
+going over each of those
+individual linked lists,
+
+22
+00:00:51,810 --> 00:00:55,740
+and calling free on all of the
+nodes inside of those linked lists.
+
+23
+00:00:55,740 --> 00:00:58,810
+But how do you free all of
+the nodes in the linked list?
+
+24
+00:00:58,810 --> 00:01:00,720
+Let's take a look at an example.
+
+25
+00:01:00,720 --> 00:01:03,510
+Here again is a linked list
+where we have a variable called
+
+26
+00:01:03,510 --> 00:01:07,680
+head, which is going to be a pointer to
+the first element in the linked list.
+
+27
+00:01:07,680 --> 00:01:10,290
+In this case, a node that
+has the word bat in it,
+
+28
+00:01:10,290 --> 00:01:13,530
+which has a next pointer that points
+to book, which has a next pointer that
+
+29
+00:01:13,530 --> 00:01:15,510
+points to banana, in this case.
+
+30
+00:01:15,510 --> 00:01:18,030
+And let's imagine how we
+might free up these nodes
+
+31
+00:01:18,030 --> 00:01:20,220
+that we've allocated using malloc.
+
+32
+00:01:20,220 --> 00:01:23,460
+You might imagine again that we could
+have a variable called cursor which
+
+33
+00:01:23,460 --> 00:01:25,080
+is set equal to this node here.
+
+34
+00:01:25,080 --> 00:01:27,540
+It's a pointer to this node bat.
+
+35
+00:01:27,540 --> 00:01:30,180
+If I wanted to free this
+node which I originally
+
+36
+00:01:30,180 --> 00:01:32,280
+allocated memory for using malloc.
+
+37
+00:01:32,280 --> 00:01:33,960
+I could use syntax like this--
+
+38
+00:01:33,960 --> 00:01:37,770
+free(cursor): to say, take what
+cursor is pointing to, this node,
+
+39
+00:01:37,770 --> 00:01:40,050
+and go ahead and free up that memory.
+
+40
+00:01:40,050 --> 00:01:42,870
+But if I did that, what
+you'll notice is now suddenly
+
+41
+00:01:42,870 --> 00:01:45,510
+I've freed up that memory,
+which means I've also freed up
+
+42
+00:01:45,510 --> 00:01:49,200
+the memory that was allocated for
+the next pointer that gave me access
+
+43
+00:01:49,200 --> 00:01:52,110
+to book, and banana, and all
+of the remaining elements
+
+44
+00:01:52,110 --> 00:01:53,670
+inside of this linked list.
+
+45
+00:01:53,670 --> 00:01:55,140
+So you'll want to be careful.
+
+46
+00:01:55,140 --> 00:01:57,900
+If you free up some memory
+before you're done using it,
+
+47
+00:01:57,900 --> 00:02:00,720
+you might lose access to the rest
+of the nodes in the linked list
+
+48
+00:02:00,720 --> 00:02:02,760
+that you also need to free.
+
+49
+00:02:02,760 --> 00:02:04,170
+So what's the solution here?
+
+50
+00:02:04,170 --> 00:02:06,720
+We probably need some
+other variable to help
+
+51
+00:02:06,720 --> 00:02:09,180
+us keep track of where we
+are in this linked list
+
+52
+00:02:09,180 --> 00:02:12,210
+and to make sure that we
+don't lose track of any nodes.
+
+53
+00:02:12,210 --> 00:02:14,200
+Let's go ahead and try this again.
+
+54
+00:02:14,200 --> 00:02:17,670
+Here, in addition to a variable
+called cursor, which is currently
+
+55
+00:02:17,670 --> 00:02:20,580
+looking at the very first node
+inside of this linked list,
+
+56
+00:02:20,580 --> 00:02:22,920
+I'll create another
+variable called temp,
+
+57
+00:02:22,920 --> 00:02:24,570
+which is going to be equal to cursor.
+
+58
+00:02:24,570 --> 00:02:26,700
+They're both pointing to the same node.
+
+59
+00:02:26,700 --> 00:02:30,270
+In other words, they both contain
+the address of this first node
+
+60
+00:02:30,270 --> 00:02:32,340
+inside of the linked list.
+
+61
+00:02:32,340 --> 00:02:35,700
+Now what I'd like to do
+is free this temp pointer,
+
+62
+00:02:35,700 --> 00:02:37,380
+which is pointing to this first node.
+
+63
+00:02:37,380 --> 00:02:39,088
+But I want to make
+sure that I don't lose
+
+64
+00:02:39,088 --> 00:02:40,860
+track of the rest of the linked list.
+
+65
+00:02:40,860 --> 00:02:45,300
+So what I can first do is say something
+like cursor equals cursor arrow next
+
+66
+00:02:45,300 --> 00:02:49,410
+to say, go ahead and move the cursor
+to the next element in the linked list
+
+67
+00:02:49,410 --> 00:02:51,930
+before we free the first element.
+
+68
+00:02:51,930 --> 00:02:55,480
+Now cursor is pointing to the
+second element in the linked list.
+
+69
+00:02:55,480 --> 00:02:57,870
+So if I run a line of
+code like free temp,
+
+70
+00:02:57,870 --> 00:03:01,080
+I can free up the bat node
+without worrying about losing
+
+71
+00:03:01,080 --> 00:03:02,400
+the rest of the linked list.
+
+72
+00:03:02,400 --> 00:03:04,560
+Cursor is still pointing to it.
+
+73
+00:03:04,560 --> 00:03:06,420
+And now I can repeat the same process.
+
+74
+00:03:06,420 --> 00:03:08,910
+Go ahead and set temp to be
+the same thing that cursor is.
+
+75
+00:03:08,910 --> 00:03:10,710
+Have temp point to book as well.
+
+76
+00:03:10,710 --> 00:03:13,080
+Then, to make sure we don't
+lose the rest of the list,
+
+77
+00:03:13,080 --> 00:03:14,790
+go ahead and move cursor.
+
+78
+00:03:14,790 --> 00:03:17,340
+And then we can free up
+the space that is allocated
+
+79
+00:03:17,340 --> 00:03:19,560
+to what temp is currently pointing to.
+
+80
+00:03:19,560 --> 00:03:21,960
+Free up that node and
+repeat the process.
+
+81
+00:03:21,960 --> 00:03:24,810
+Have temp be set to the
+same thing cursor is set to.
+
+82
+00:03:24,810 --> 00:03:26,370
+Move the cursor forward.
+
+83
+00:03:26,370 --> 00:03:27,810
+And then free up temp.
+
+84
+00:03:27,810 --> 00:03:31,200
+And eventually, once you get through
+this entire process, what you'll find
+
+85
+00:03:31,200 --> 00:03:33,420
+is that cursor is pointing to null.
+
+86
+00:03:33,420 --> 00:03:36,120
+In other words, you've reached
+the end of the linked list.
+
+87
+00:03:36,120 --> 00:03:38,537
+And at that point, that will
+tell you that you've freed up
+
+88
+00:03:38,537 --> 00:03:40,470
+all of the nodes inside
+of that linked list
+
+89
+00:03:40,470 --> 00:03:43,200
+and you're done freeing up all
+the memory that was originally
+
+90
+00:03:43,200 --> 00:03:45,820
+allocated for those nodes.
+
+91
+00:03:45,820 --> 00:03:48,700
+If you repeat that process for
+every one of the linked lists
+
+92
+00:03:48,700 --> 00:03:50,770
+that's inside of your
+hash table, the result
+
+93
+00:03:50,770 --> 00:03:53,080
+will be that you've freed
+up all of the memory that
+
+94
+00:03:53,080 --> 00:03:55,450
+was allocated for your hash table.
+
+95
+00:03:55,450 --> 00:03:58,830
+My name is Brian, and this was Speller.
+
+96
+00:03:58,830 --> 00:04:00,000

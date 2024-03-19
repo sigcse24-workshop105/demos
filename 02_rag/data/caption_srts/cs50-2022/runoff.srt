@@ -1,0 +1,1689 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:02,400
+BRIAN: Let's now dive into runoff.
+
+3
+00:00:02,400 --> 00:00:06,330
+In runoff, we're going to take
+advantage of ranked preference voting,
+
+4
+00:00:06,330 --> 00:00:10,590
+whereas in plurality, each voter
+only got to vote for one candidate.
+
+5
+00:00:10,590 --> 00:00:13,800
+In runoff, a voter might be able
+to rank all of their candidates
+
+6
+00:00:13,800 --> 00:00:17,520
+in sequence, so the ballot might look a
+little something like this, where they
+
+7
+00:00:17,520 --> 00:00:20,380
+have a space to fill in their first
+preference, second preference,
+
+8
+00:00:20,380 --> 00:00:22,320
+and third preference, for example.
+
+9
+00:00:22,320 --> 00:00:26,380
+One voter, for instance, might want
+Alice as their first preference vote.
+
+10
+00:00:26,380 --> 00:00:29,190
+But if Alice can't win, their
+next choice would be Charlie.
+
+11
+00:00:29,190 --> 00:00:32,070
+And if Charlie can't win,
+their next choice would be Bob.
+
+12
+00:00:32,070 --> 00:00:35,370
+So this is what a ranked
+preference ballot might look like.
+
+13
+00:00:35,370 --> 00:00:38,160
+How then does the runoff
+vote actually work?
+
+14
+00:00:38,160 --> 00:00:40,080
+Well, the runoff vote
+is first going to say
+
+15
+00:00:40,080 --> 00:00:42,720
+that every voter should rank
+all of their preferences,
+
+16
+00:00:42,720 --> 00:00:45,030
+first, second, third,
+up to as many candidates
+
+17
+00:00:45,030 --> 00:00:46,950
+as there are in the election.
+
+18
+00:00:46,950 --> 00:00:50,430
+If any candidate has a majority of
+the vote, meaning more than half
+
+19
+00:00:50,430 --> 00:00:52,470
+of the votes, then
+that candidate is going
+
+20
+00:00:52,470 --> 00:00:54,820
+to be declared the
+winner of the election.
+
+21
+00:00:54,820 --> 00:00:56,760
+But if nobody has a
+majority, we're going
+
+22
+00:00:56,760 --> 00:00:59,670
+to eliminate the candidate
+with the fewest number of votes
+
+23
+00:00:59,670 --> 00:01:02,550
+and rerun the election
+without them, and we're
+
+24
+00:01:02,550 --> 00:01:05,250
+going to keep repeating
+that process until someone
+
+25
+00:01:05,250 --> 00:01:07,740
+has won a majority of the votes.
+
+26
+00:01:07,740 --> 00:01:10,500
+So let's take a look
+at a simple example.
+
+27
+00:01:10,500 --> 00:01:13,350
+In this election, we
+have seven votes, which
+
+28
+00:01:13,350 --> 00:01:16,770
+means that a candidate needs four
+votes, a majority of the seven
+
+29
+00:01:16,770 --> 00:01:18,480
+in order to win the election.
+
+30
+00:01:18,480 --> 00:01:20,640
+The candidates here are
+Alice, Bob, and Charlie.
+
+31
+00:01:20,640 --> 00:01:22,830
+And so we'll look at the
+ballots one at a time.
+
+32
+00:01:22,830 --> 00:01:27,210
+For this first ballot, Alice is this
+voter's top preferred candidate.
+
+33
+00:01:27,210 --> 00:01:29,340
+So Alice is going to get this ballot.
+
+34
+00:01:29,340 --> 00:01:31,950
+This next ballot is also
+going to go to Alice.
+
+35
+00:01:31,950 --> 00:01:35,760
+This ballot has Bob as their top choice,
+so Bob gets this ballot as well as
+
+36
+00:01:35,760 --> 00:01:36,810
+the next one.
+
+37
+00:01:36,810 --> 00:01:38,670
+The next ballot goes to Alice.
+
+38
+00:01:38,670 --> 00:01:40,350
+The next ballot goes to Bob.
+
+39
+00:01:40,350 --> 00:01:44,070
+And the final ballot has Charlie
+as the top preferred candidate.
+
+40
+00:01:44,070 --> 00:01:47,130
+At this point, Alice has three
+votes, Bob has three votes,
+
+41
+00:01:47,130 --> 00:01:48,810
+and Charlie has one vote.
+
+42
+00:01:48,810 --> 00:01:51,090
+But remember, with seven
+votes in this election,
+
+43
+00:01:51,090 --> 00:01:53,880
+a candidate needs four
+votes in order to win.
+
+44
+00:01:53,880 --> 00:01:56,070
+So at this point, we
+need to hold a runoff.
+
+45
+00:01:56,070 --> 00:01:58,410
+Charlie has the fewest number
+of votes in this election
+
+46
+00:01:58,410 --> 00:02:01,950
+so far, so Charlie is going to
+be eliminated from the race.
+
+47
+00:02:01,950 --> 00:02:05,010
+What happens to the voter who
+originally voted for Charlie?
+
+48
+00:02:05,010 --> 00:02:07,030
+Well, that voter had
+a second preference.
+
+49
+00:02:07,030 --> 00:02:09,060
+And their second preference was Alice.
+
+50
+00:02:09,060 --> 00:02:12,090
+So Alice at this point is
+going to get this last ballot.
+
+51
+00:02:12,090 --> 00:02:15,360
+Alice now has four votes
+compared to Bob's three votes,
+
+52
+00:02:15,360 --> 00:02:16,800
+and four is a majority.
+
+53
+00:02:16,800 --> 00:02:20,460
+So Alice is going to be declared
+the winner of this election.
+
+54
+00:02:20,460 --> 00:02:23,100
+That, in short, is how
+a runoff election works.
+
+55
+00:02:23,100 --> 00:02:25,330
+But it could be a
+little more complicated.
+
+56
+00:02:25,330 --> 00:02:27,940
+So let's take a look at a
+more sophisticated example,
+
+57
+00:02:27,940 --> 00:02:32,040
+this time with 10 ballots and four
+different candidates, Alice, Bob,
+
+58
+00:02:32,040 --> 00:02:33,780
+Charlie, and Dave.
+
+59
+00:02:33,780 --> 00:02:36,660
+The first step happens,
+and we give each candidate,
+
+60
+00:02:36,660 --> 00:02:40,320
+all of the voters who chose that
+candidate as their first preference.
+
+61
+00:02:40,320 --> 00:02:44,070
+And at this point, Alice has
+three votes, Bob has four votes,
+
+62
+00:02:44,070 --> 00:02:47,100
+Charlie has one vote,
+and Dave has two votes.
+
+63
+00:02:47,100 --> 00:02:50,250
+In a plurality election, or a
+first past the post election,
+
+64
+00:02:50,250 --> 00:02:54,570
+Bob would win this election now, because
+Bob has more votes than anyone else.
+
+65
+00:02:54,570 --> 00:02:57,840
+But with 10 ballots in the
+election, in a runoff election,
+
+66
+00:02:57,840 --> 00:03:01,200
+a candidate needs a majority,
+or six out of the 10 votes
+
+67
+00:03:01,200 --> 00:03:02,880
+in order to be declared the winner.
+
+68
+00:03:02,880 --> 00:03:06,180
+Since nobody has six votes
+yet, we need to hold a runoff.
+
+69
+00:03:06,180 --> 00:03:09,000
+Charlie, again, is in last
+place in this election,
+
+70
+00:03:09,000 --> 00:03:11,280
+so we're going to eliminate
+Charlie from the election,
+
+71
+00:03:11,280 --> 00:03:15,270
+and their voter is going to now vote
+for Alice, the second preference.
+
+72
+00:03:15,270 --> 00:03:16,770
+Alice now has four votes.
+
+73
+00:03:16,770 --> 00:03:17,940
+Bob has four votes.
+
+74
+00:03:17,940 --> 00:03:20,130
+And Dave has two votes.
+
+75
+00:03:20,130 --> 00:03:22,650
+Still, nobody has a
+majority of six votes,
+
+76
+00:03:22,650 --> 00:03:25,170
+so we need to hold yet another runoff.
+
+77
+00:03:25,170 --> 00:03:28,260
+Dave has the fewest number of votes
+in this election at this point.
+
+78
+00:03:28,260 --> 00:03:30,420
+So Dave is going to be eliminated.
+
+79
+00:03:30,420 --> 00:03:32,820
+What happens to the
+people who voted for Dave?
+
+80
+00:03:32,820 --> 00:03:34,620
+Well, the first person
+who voted for Dave
+
+81
+00:03:34,620 --> 00:03:38,700
+chose Alice as their next preference,
+and the second voter who voted for Dave
+
+82
+00:03:38,700 --> 00:03:40,950
+chose Charlie as their
+second preference.
+
+83
+00:03:40,950 --> 00:03:45,030
+But Charlie has already been eliminated,
+so the vote can't go to Charlie either.
+
+84
+00:03:45,030 --> 00:03:48,150
+So we now look to that voter's third
+preference, which in this case,
+
+85
+00:03:48,150 --> 00:03:50,310
+is also Alice.
+
+86
+00:03:50,310 --> 00:03:53,460
+This means that Alice gets each
+of the two remaining votes,
+
+87
+00:03:53,460 --> 00:03:56,580
+and Alice now has six votes
+compared to Bob's four.
+
+88
+00:03:56,580 --> 00:03:58,830
+Alice has a majority of
+the votes in the election,
+
+89
+00:03:58,830 --> 00:04:01,980
+so Alice is declared the
+winner of this election.
+
+90
+00:04:01,980 --> 00:04:05,580
+Your task in runoff is going to be
+to write a program that simulates
+
+91
+00:04:05,580 --> 00:04:07,770
+this style of runoff election.
+
+92
+00:04:07,770 --> 00:04:09,910
+So how are you going to do that?
+
+93
+00:04:09,910 --> 00:04:13,050
+Well, one thing to think about is how
+you're going to represent this data.
+
+94
+00:04:13,050 --> 00:04:15,420
+And one piece of data you're
+going to need to represent
+
+95
+00:04:15,420 --> 00:04:18,839
+are all of the candidates and the
+information associated with them.
+
+96
+00:04:18,839 --> 00:04:22,260
+In this case, in addition to storing
+the candidate's name and the number
+
+97
+00:04:22,260 --> 00:04:24,240
+of votes they currently
+have, you'll also
+
+98
+00:04:24,240 --> 00:04:27,420
+want to store a Boolean
+flag, true or false,
+
+99
+00:04:27,420 --> 00:04:30,480
+representing whether that candidate
+has been eliminated from the race
+
+100
+00:04:30,480 --> 00:04:31,560
+yet or not.
+
+101
+00:04:31,560 --> 00:04:33,630
+At first, all of these
+values will be false,
+
+102
+00:04:33,630 --> 00:04:35,610
+because nobody will
+have been eliminated,
+
+103
+00:04:35,610 --> 00:04:38,880
+but as candidates are eliminated
+in this runoff process,
+
+104
+00:04:38,880 --> 00:04:42,540
+you might switch those
+values from false to true.
+
+105
+00:04:42,540 --> 00:04:45,750
+You can represent each of these
+candidates using a struct that we'll
+
+106
+00:04:45,750 --> 00:04:49,740
+give you, where this struct representing
+a candidate has three fields,
+
+107
+00:04:49,740 --> 00:04:54,420
+a string field called name, and int
+field, called votes, and a Bool field,
+
+108
+00:04:54,420 --> 00:04:56,760
+called eliminated,
+representing whether or not
+
+109
+00:04:56,760 --> 00:05:00,330
+that candidate has been eliminated
+from the election or not.
+
+110
+00:05:00,330 --> 00:05:02,220
+We can store a sequence
+of these candidates
+
+111
+00:05:02,220 --> 00:05:06,510
+inside an array of candidates, where
+each individual element in that array
+
+112
+00:05:06,510 --> 00:05:08,910
+is one of these candidate's structs.
+
+113
+00:05:08,910 --> 00:05:11,250
+But the candidates aren't
+the only piece of information
+
+114
+00:05:11,250 --> 00:05:14,282
+that we need to keep track of in
+order to run the runoff election.
+
+115
+00:05:14,282 --> 00:05:15,990
+We also need to keep
+track of information
+
+116
+00:05:15,990 --> 00:05:20,280
+about the voters, in particular
+about who their preferences are.
+
+117
+00:05:20,280 --> 00:05:24,090
+And to do that, we're going to represent
+preferences using a two dimensional
+
+118
+00:05:24,090 --> 00:05:26,400
+array called preferences.
+
+119
+00:05:26,400 --> 00:05:28,710
+How do you interpret this
+two dimensional array?
+
+120
+00:05:28,710 --> 00:05:33,270
+Well, preferences IJ,
+meaning row I and column J,
+
+121
+00:05:33,270 --> 00:05:36,720
+is going to be a cell that store
+is the index of the candidate who
+
+122
+00:05:36,720 --> 00:05:41,770
+is voter I's preference number J.
+So what does that actually mean?
+
+123
+00:05:41,770 --> 00:05:43,420
+Let's take a look at an example.
+
+124
+00:05:43,420 --> 00:05:46,590
+In this case, we have three
+candidates, Alice, Bob, and Charlie,
+
+125
+00:05:46,590 --> 00:05:49,650
+where Alice is stored at index
+0 in the candidate's array,
+
+126
+00:05:49,650 --> 00:05:54,000
+Bob is stored at index 1, and
+Charlie is stored at index 2.
+
+127
+00:05:54,000 --> 00:05:58,780
+What happens if we say something
+like preference of 0, 0 equals 2.
+
+128
+00:05:58,780 --> 00:06:01,380
+Well, that means we're going
+to fill into row 0 and column
+
+129
+00:06:01,380 --> 00:06:04,290
+0 of this array, the number 2.
+
+130
+00:06:04,290 --> 00:06:09,030
+And the way to interpret that is that
+row 0 is talking about the first voter
+
+131
+00:06:09,030 --> 00:06:14,100
+, and column 0 is talking about the
+first preference for that voter.
+
+132
+00:06:14,100 --> 00:06:18,990
+And the 2 means candidate at index
+2, which in this case is Charlie.
+
+133
+00:06:18,990 --> 00:06:24,570
+So preference 0, 0 equals true means the
+first voter's top preferred candidate
+
+134
+00:06:24,570 --> 00:06:27,130
+is, in fact, Charlie.
+
+135
+00:06:27,130 --> 00:06:30,030
+What if we then said
+preferences 0, 1 equals 0?
+
+136
+00:06:30,030 --> 00:06:32,950
+Well, that would mean we
+would fill in the number 0
+
+137
+00:06:32,950 --> 00:06:35,530
+into this slot in the
+two dimensional array.
+
+138
+00:06:35,530 --> 00:06:37,900
+We're still on preference
+is 0, this first row
+
+139
+00:06:37,900 --> 00:06:39,850
+talking about the first voter.
+
+140
+00:06:39,850 --> 00:06:43,510
+But now we're on column 1,
+which is here going to represent
+
+141
+00:06:43,510 --> 00:06:45,700
+the voter's second preference.
+
+142
+00:06:45,700 --> 00:06:49,900
+Their second preference is
+zero, and candidate 0 is Alice.
+
+143
+00:06:49,900 --> 00:06:53,980
+So preference is 0, 1 equals
+0 means the first voter's
+
+144
+00:06:53,980 --> 00:06:57,570
+second preferred candidate is Alice.
+
+145
+00:06:57,570 --> 00:07:00,690
+And we can fill in this entire
+preference's two dimensional array
+
+146
+00:07:00,690 --> 00:07:03,990
+to keep track of every single
+voter and every single preference
+
+147
+00:07:03,990 --> 00:07:06,140
+that that voter has.
+
+148
+00:07:06,140 --> 00:07:09,850
+So what do you actually need to do
+to implement the runoff program?
+
+149
+00:07:09,850 --> 00:07:12,520
+Well inside of runoff.c,
+you're going to implement
+
+150
+00:07:12,520 --> 00:07:16,630
+six functions that will perform the
+algorithm of implementing this runoff
+
+151
+00:07:16,630 --> 00:07:17,530
+election.
+
+152
+00:07:17,530 --> 00:07:21,910
+First, you'll implement vote,
+then tabulate, then print winner,
+
+153
+00:07:21,910 --> 00:07:26,260
+then find min, then is tie,
+and then finally, eliminate.
+
+154
+00:07:26,260 --> 00:07:29,770
+And we'll go through each of
+these functions one by one.
+
+155
+00:07:29,770 --> 00:07:31,470
+Let's start with the vote function.
+
+156
+00:07:31,470 --> 00:07:34,320
+The vote function takes
+three arguments, an integer
+
+157
+00:07:34,320 --> 00:07:38,610
+called voter, representing which
+number voter is currently voting.
+
+158
+00:07:38,610 --> 00:07:41,340
+It also takes an integer
+called rank, representing
+
+159
+00:07:41,340 --> 00:07:44,880
+which rank the voter is currently
+trying to indicate a preference for,
+
+160
+00:07:44,880 --> 00:07:48,810
+rank 0 meaning their top preference
+rank 1, meaning their next preference,
+
+161
+00:07:48,810 --> 00:07:50,380
+so on and so forth.
+
+162
+00:07:50,380 --> 00:07:53,430
+And finally, the function
+takes in a string called name,
+
+163
+00:07:53,430 --> 00:07:56,880
+indicating which candidate they're
+currently trying to vote for.
+
+164
+00:07:56,880 --> 00:07:58,740
+So what is vote going to do?
+
+165
+00:07:58,740 --> 00:08:02,370
+Well, your vote function should
+look for a candidate called name.
+
+166
+00:08:02,370 --> 00:08:05,490
+If you find that candidate, you
+should update the two dimensional
+
+167
+00:08:05,490 --> 00:08:09,833
+array of preferences, so that they
+are that voter's rank preference.
+
+168
+00:08:09,833 --> 00:08:12,750
+And then you should return true to
+indicate that you were successfully
+
+169
+00:08:12,750 --> 00:08:14,800
+able to record this preference.
+
+170
+00:08:14,800 --> 00:08:17,760
+But if no candidate was found, you
+shouldn't update any preferences
+
+171
+00:08:17,760 --> 00:08:21,160
+at all, and your function
+should just return false.
+
+172
+00:08:21,160 --> 00:08:22,680
+Let's take a look at it example.
+
+173
+00:08:22,680 --> 00:08:25,320
+Here again, we have
+Alice, Bob, and Charlie.
+
+174
+00:08:25,320 --> 00:08:27,570
+And here again, we have
+a two dimensional array
+
+175
+00:08:27,570 --> 00:08:29,430
+of preferences, which
+is going to be stored
+
+176
+00:08:29,430 --> 00:08:32,320
+as a global variable in your program.
+
+177
+00:08:32,320 --> 00:08:34,380
+Let's imagine that this
+ballot comes along,
+
+178
+00:08:34,380 --> 00:08:39,110
+where the first preference is Alice,
+then comes Charlie, then comes Bob.
+
+179
+00:08:39,110 --> 00:08:43,350
+Well, Alice is the candidate at index
+0 in the candidate's array, which
+
+180
+00:08:43,350 --> 00:08:48,000
+means we're going to fill in 0 in
+to row 0 and column 0 of this array,
+
+181
+00:08:48,000 --> 00:08:51,390
+representing the first
+voter's top preference.
+
+182
+00:08:51,390 --> 00:08:55,470
+This voter's next preference is
+Charlie, who's at index 2 in the array.
+
+183
+00:08:55,470 --> 00:08:59,610
+So 2 gets filled in to the next
+spot in this preferences row.
+
+184
+00:08:59,610 --> 00:09:01,830
+And finally, Bob is
+the third preference.
+
+185
+00:09:01,830 --> 00:09:04,050
+Bob, again, is at index 1 in the array.
+
+186
+00:09:04,050 --> 00:09:06,480
+So 1 gets filled in next.
+
+187
+00:09:06,480 --> 00:09:09,330
+And we're going to do this for each
+of the votes that comes our way.
+
+188
+00:09:09,330 --> 00:09:11,880
+If the next voter votes for
+Charlie as their top preference,
+
+189
+00:09:11,880 --> 00:09:14,940
+and Charlie is at index 2
+in the candidate's array,
+
+190
+00:09:14,940 --> 00:09:18,720
+then we're going to fill in 2 as
+the first preference for this voter.
+
+191
+00:09:18,720 --> 00:09:21,330
+Bob is the second
+preference, who's at index 1,
+
+192
+00:09:21,330 --> 00:09:24,930
+and Alice is the third preference,
+who is the candidate at index 0.
+
+193
+00:09:24,930 --> 00:09:27,810
+And we're going to do the same
+thing for each remaining voter who
+
+194
+00:09:27,810 --> 00:09:30,160
+votes in the election
+until by the end of it,
+
+195
+00:09:30,160 --> 00:09:33,540
+we filled in the entire preferences
+array for each of the voters
+
+196
+00:09:33,540 --> 00:09:35,800
+and for each of their preferences.
+
+197
+00:09:35,800 --> 00:09:39,930
+Next up is the tabulate function,
+and the job of the tabulate function
+
+198
+00:09:39,930 --> 00:09:43,200
+is going to be the update the vote
+counts for each of the candidates
+
+199
+00:09:43,200 --> 00:09:46,200
+to represent how many
+votes they currently have.
+
+200
+00:09:46,200 --> 00:09:47,650
+How are you going to do that?
+
+201
+00:09:47,650 --> 00:09:51,000
+Well, recall that every voter is going
+to ideally vote for their highest
+
+202
+00:09:51,000 --> 00:09:54,690
+preference candidate, but a voter
+can't vote for a candidate who's
+
+203
+00:09:54,690 --> 00:09:56,160
+already been eliminated.
+
+204
+00:09:56,160 --> 00:10:00,210
+So each voter is going to vote for their
+highest preferred candidate who has not
+
+205
+00:10:00,210 --> 00:10:02,830
+yet been eliminated from the race.
+
+206
+00:10:02,830 --> 00:10:06,870
+So what might this tabulate function
+actually do on some sample data?
+
+207
+00:10:06,870 --> 00:10:10,440
+Well, let's take a look at these
+preferences and these candidates.
+
+208
+00:10:10,440 --> 00:10:12,510
+None of the candidates
+have been eliminated yet.
+
+209
+00:10:12,510 --> 00:10:14,850
+Alice's eliminated
+status is set to false,
+
+210
+00:10:14,850 --> 00:10:17,430
+and so is Bob's, and
+so is Charlie's, which
+
+211
+00:10:17,430 --> 00:10:19,650
+means that since nobody
+has been eliminated,
+
+212
+00:10:19,650 --> 00:10:23,010
+every voter gets to vote for
+their top preferred candidate.
+
+213
+00:10:23,010 --> 00:10:27,450
+This first voter, for example, is
+voting for candidate 0, who's Alice.
+
+214
+00:10:27,450 --> 00:10:30,270
+So our tabulate function would
+update Alice's vote total,
+
+215
+00:10:30,270 --> 00:10:32,790
+changing it from 0 to 1.
+
+216
+00:10:32,790 --> 00:10:35,070
+Next up, this voter's
+voting for Charlie.
+
+217
+00:10:35,070 --> 00:10:36,960
+The next voter is voting for Bob.
+
+218
+00:10:36,960 --> 00:10:38,970
+The next voter is voting
+for Charlie again.
+
+219
+00:10:38,970 --> 00:10:41,220
+And the final voter is voting for Alice.
+
+220
+00:10:41,220 --> 00:10:43,230
+So at the end of our
+tabulate function, we
+
+221
+00:10:43,230 --> 00:10:47,040
+should have recorded in our candidates
+array that Alice has two votes,
+
+222
+00:10:47,040 --> 00:10:50,490
+Bob has one vote, and
+Charlie has two votes.
+
+223
+00:10:50,490 --> 00:10:53,910
+But what happens in a more complex
+scenario, where, for example,
+
+224
+00:10:53,910 --> 00:10:57,120
+Bob may have been already
+eliminated from this election,
+
+225
+00:10:57,120 --> 00:10:59,580
+and we want to tabulate
+these votes again.
+
+226
+00:10:59,580 --> 00:11:01,950
+Well, we'd go through the
+array, much as we did before
+
+227
+00:11:01,950 --> 00:11:04,350
+and see that the first
+voter was voting for Alice,
+
+228
+00:11:04,350 --> 00:11:08,040
+and the second voter is voting for
+Charlie, the candidate at index 2,
+
+229
+00:11:08,040 --> 00:11:10,620
+and the third voter is trying
+to vote for the candidate
+
+230
+00:11:10,620 --> 00:11:13,410
+at index 1, who in this case is Bob.
+
+231
+00:11:13,410 --> 00:11:17,070
+But Bob's already been eliminated,
+so the vote can't actually go to Bob.
+
+232
+00:11:17,070 --> 00:11:21,000
+So instead, this voter is going to look
+at their next preference, candidate
+
+233
+00:11:21,000 --> 00:11:23,400
+number 2, who in this case, is Charlie.
+
+234
+00:11:23,400 --> 00:11:26,580
+Charlie's still in the race,
+and so Charlie gets this vote,
+
+235
+00:11:26,580 --> 00:11:29,430
+and his vote total gets
+updated from 1 to 2.
+
+236
+00:11:29,430 --> 00:11:32,160
+The next voter votes for Charlie,
+no problem, and the final voter
+
+237
+00:11:32,160 --> 00:11:35,880
+votes for Alice, so by the end
+of it, Alice has two votes,
+
+238
+00:11:35,880 --> 00:11:37,550
+and Charlie has three.
+
+239
+00:11:37,550 --> 00:11:39,300
+So that's what you're
+tabulate function is
+
+240
+00:11:39,300 --> 00:11:42,750
+going to do, go through each of the
+voters and update the vote counts,
+
+241
+00:11:42,750 --> 00:11:45,630
+making sure to only update
+vote counts for candidates
+
+242
+00:11:45,630 --> 00:11:47,880
+who are still in the race.
+
+243
+00:11:47,880 --> 00:11:50,705
+The next function you're going
+to write is print winner.
+
+244
+00:11:50,705 --> 00:11:53,580
+The print winner function is going
+to be a function that's ultimately
+
+245
+00:11:53,580 --> 00:11:56,400
+going to be tasked with printing
+out who the winner of the election
+
+246
+00:11:56,400 --> 00:11:59,160
+is if there is a winner yet.
+
+247
+00:11:59,160 --> 00:12:00,370
+What does that mean?
+
+248
+00:12:00,370 --> 00:12:03,000
+Well, if any candidate has
+more than half of the vote,
+
+249
+00:12:03,000 --> 00:12:06,600
+in other words, a majority of the
+vote, you should print out their name
+
+250
+00:12:06,600 --> 00:12:09,060
+and return true from this function.
+
+251
+00:12:09,060 --> 00:12:12,870
+But it's possible that no candidate
+has yet won the election because nobody
+
+252
+00:12:12,870 --> 00:12:14,490
+has more than half the vote.
+
+253
+00:12:14,490 --> 00:12:16,470
+In that case, you shouldn't
+print out anything,
+
+254
+00:12:16,470 --> 00:12:19,000
+and your function should
+just return false.
+
+255
+00:12:19,000 --> 00:12:21,250
+So let's take a look at an example.
+
+256
+00:12:21,250 --> 00:12:24,210
+In this case, there are five
+total votes in this election,
+
+257
+00:12:24,210 --> 00:12:27,510
+and because there are five votes, you
+would need three votes, a majority,
+
+258
+00:12:27,510 --> 00:12:28,870
+in order to win.
+
+259
+00:12:28,870 --> 00:12:32,290
+Since nobody has three votes,
+that means there is no winner yet.
+
+260
+00:12:32,290 --> 00:12:35,260
+So your print winner function
+shouldn't print out any names
+
+261
+00:12:35,260 --> 00:12:37,450
+and should just return false.
+
+262
+00:12:37,450 --> 00:12:40,480
+But now, let's take a look
+at these votes, for example.
+
+263
+00:12:40,480 --> 00:12:42,400
+Still, there are five
+total votes, which means
+
+264
+00:12:42,400 --> 00:12:46,520
+you need three votes in order to win,
+but here, Charlie has three votes.
+
+265
+00:12:46,520 --> 00:12:48,730
+So Charlie would be the
+winner of this election.
+
+266
+00:12:48,730 --> 00:12:52,480
+Your print winner function, in this
+case, should print out Charlie's name
+
+267
+00:12:52,480 --> 00:12:55,210
+and then return true to
+indicate that Charlie is,
+
+268
+00:12:55,210 --> 00:12:58,090
+in fact, the winner of this election.
+
+269
+00:12:58,090 --> 00:13:02,530
+The next function you'll implement
+in runoff.c is called find min.
+
+270
+00:13:02,530 --> 00:13:06,910
+In find min, what you'll do is you'll
+return the minimum number of votes
+
+271
+00:13:06,910 --> 00:13:08,870
+of anyone still in the election.
+
+272
+00:13:08,870 --> 00:13:11,380
+And we'll use this to figure
+out, for example, who we need
+
+273
+00:13:11,380 --> 00:13:14,330
+to eliminate in this runoff process.
+
+274
+00:13:14,330 --> 00:13:16,610
+So let's take a look at an example.
+
+275
+00:13:16,610 --> 00:13:19,990
+Here's a sample election with five
+candidates, Alice, Bob, Charlie,
+
+276
+00:13:19,990 --> 00:13:22,270
+Dave, and Emma, and their vote totals.
+
+277
+00:13:22,270 --> 00:13:25,630
+And notice, that based on the fact
+that all of their eliminated flags
+
+278
+00:13:25,630 --> 00:13:29,550
+are all set to false, all five
+candidates are still in the election.
+
+279
+00:13:29,550 --> 00:13:33,010
+Here, your algorithm should
+return the number one from this
+
+280
+00:13:33,010 --> 00:13:36,760
+find min function because Bob is the
+candidate that has the fewest votes out
+
+281
+00:13:36,760 --> 00:13:39,220
+of anyone in the current election.
+
+282
+00:13:39,220 --> 00:13:42,730
+Of course, you may run into a situation
+where some candidates have already
+
+283
+00:13:42,730 --> 00:13:43,820
+been eliminated.
+
+284
+00:13:43,820 --> 00:13:45,880
+Let's take a look at an example of that.
+
+285
+00:13:45,880 --> 00:13:49,050
+Here, for example, Bob has
+already been eliminated.
+
+286
+00:13:49,050 --> 00:13:53,810
+For Bob's candidate struct, his
+eliminated status is set to true.
+
+287
+00:13:53,810 --> 00:13:56,920
+So in this case, we wouldn't
+want to return 0 as the minimum,
+
+288
+00:13:56,920 --> 00:14:01,510
+even though 0 is the smallest vote total
+of any candidate inside of this array,
+
+289
+00:14:01,510 --> 00:14:03,260
+because Bob's already been eliminated.
+
+290
+00:14:03,260 --> 00:14:06,970
+And we only want to consider candidates
+that are still in the election.
+
+291
+00:14:06,970 --> 00:14:10,150
+So in this case, the candidates
+that have the fewest number of votes
+
+292
+00:14:10,150 --> 00:14:13,210
+are Alice and Emma, who
+both have two votes each,
+
+293
+00:14:13,210 --> 00:14:18,190
+and so 2 is the number that we would
+return from find min in this case.
+
+294
+00:14:18,190 --> 00:14:22,450
+The next function you'll implement is
+called is tied, and the job of is tied
+
+295
+00:14:22,450 --> 00:14:25,990
+is to decide whether or not this
+election is tied between all
+
+296
+00:14:25,990 --> 00:14:27,890
+of the remaining candidates.
+
+297
+00:14:27,890 --> 00:14:29,710
+So how does this function work?
+
+298
+00:14:29,710 --> 00:14:32,260
+Well, the function will
+take as input in integer
+
+299
+00:14:32,260 --> 00:14:34,960
+called min, which is that
+minimum number of votes
+
+300
+00:14:34,960 --> 00:14:38,380
+that you calculated inside
+of the find min function.
+
+301
+00:14:38,380 --> 00:14:42,730
+And is tied should return true if
+the election is tied between all
+
+302
+00:14:42,730 --> 00:14:44,290
+of the remaining candidates.
+
+303
+00:14:44,290 --> 00:14:47,200
+If it's not tied between all
+of the remaining candidates,
+
+304
+00:14:47,200 --> 00:14:49,550
+then your function should return false.
+
+305
+00:14:49,550 --> 00:14:53,230
+So for example, if all of the
+candidates are still in the election,
+
+306
+00:14:53,230 --> 00:14:57,430
+and every candidate has two votes,
+then this election is a tie,
+
+307
+00:14:57,430 --> 00:14:59,830
+and your function should return true.
+
+308
+00:14:59,830 --> 00:15:02,950
+Of course, this election is also tied.
+
+309
+00:15:02,950 --> 00:15:05,260
+Even though candidates
+have different vote totals,
+
+310
+00:15:05,260 --> 00:15:08,200
+Bob and Dave have already been
+eliminated from the election,
+
+311
+00:15:08,200 --> 00:15:12,040
+so I'm only looking at the three other
+people that are still in the election.
+
+312
+00:15:12,040 --> 00:15:14,230
+They each have two votes,
+and so because it's
+
+313
+00:15:14,230 --> 00:15:17,520
+a tie between all of the remaining
+candidates in the election,
+
+314
+00:15:17,520 --> 00:15:20,420
+then this function should return true.
+
+315
+00:15:20,420 --> 00:15:24,552
+Finally, the last function that you'll
+write in runoff.c is called eliminate,
+
+316
+00:15:24,552 --> 00:15:27,760
+and this is the function that's going
+to take care of the process of actually
+
+317
+00:15:27,760 --> 00:15:31,060
+eliminating the candidate who's
+in last place in the election,
+
+318
+00:15:31,060 --> 00:15:34,330
+such that the election can run
+again, as if that person had not been
+
+319
+00:15:34,330 --> 00:15:36,740
+in the election in the first place.
+
+320
+00:15:36,740 --> 00:15:39,700
+So your eliminate function
+should eliminate anyone still
+
+321
+00:15:39,700 --> 00:15:43,060
+in the race, who has
+the min number of votes.
+
+322
+00:15:43,060 --> 00:15:46,060
+Recall that min is going to
+be the input to this function,
+
+323
+00:15:46,060 --> 00:15:50,020
+and it's going to be that value that
+you computed in the find min function.
+
+324
+00:15:50,020 --> 00:15:53,230
+So anyone who has the fewest number
+of votes in the election, which
+
+325
+00:15:53,230 --> 00:15:55,990
+might be one candidate, or
+it might be more than one,
+
+326
+00:15:55,990 --> 00:15:58,960
+they should all be
+eliminated from the election.
+
+327
+00:15:58,960 --> 00:16:00,520
+Let's take a look at an example.
+
+328
+00:16:00,520 --> 00:16:03,970
+Here, for example, none of the
+candidates have yet been eliminated,
+
+329
+00:16:03,970 --> 00:16:08,530
+but we can see that Bob is the candidate
+who has the minimum number of votes.
+
+330
+00:16:08,530 --> 00:16:11,650
+He has one vote, and everyone
+else has more than that.
+
+331
+00:16:11,650 --> 00:16:15,670
+So your eliminate function should
+update Bob's candidate struct,
+
+332
+00:16:15,670 --> 00:16:20,620
+changing eliminated from false to true
+to indicate the fact that Bob has now
+
+333
+00:16:20,620 --> 00:16:23,140
+been eliminated from this election.
+
+334
+00:16:23,140 --> 00:16:25,550
+Of course, when we run the
+runoff the next time around
+
+335
+00:16:25,550 --> 00:16:28,030
+and recompute the vote
+totals, we might get something
+
+336
+00:16:28,030 --> 00:16:30,970
+a little like this, where
+Bob has now been eliminated,
+
+337
+00:16:30,970 --> 00:16:33,340
+and now we've decided the
+minimum number of votes
+
+338
+00:16:33,340 --> 00:16:36,490
+that anyone still in
+the election has is 2.
+
+339
+00:16:36,490 --> 00:16:38,470
+What should your
+function do in this case?
+
+340
+00:16:38,470 --> 00:16:40,720
+Well, your function should
+look through the candidates
+
+341
+00:16:40,720 --> 00:16:45,760
+and identify that both Alice and Emma
+each have two votes, the minimum number
+
+342
+00:16:45,760 --> 00:16:47,650
+of votes of anyone in the election.
+
+343
+00:16:47,650 --> 00:16:50,080
+And your function should
+eliminate both of them,
+
+344
+00:16:50,080 --> 00:16:53,650
+taking each of their candidate
+structs and changing eliminated
+
+345
+00:16:53,650 --> 00:16:56,467
+from false to true for each of them.
+
+346
+00:16:56,467 --> 00:16:59,050
+Once you've done that, you'll
+have completed all that you need
+
+347
+00:16:59,050 --> 00:17:03,640
+to implement a runoff election by
+implementing the vote, tabulate,
+
+348
+00:17:03,640 --> 00:17:07,300
+print winner, find min, is
+tied, and eliminate functions,
+
+349
+00:17:07,300 --> 00:17:11,020
+you'll be able to simulate this runoff
+election you can test for yourself
+
+350
+00:17:11,020 --> 00:17:15,310
+by running ./runoff and then passing
+in as command line arguments the names
+
+351
+00:17:15,310 --> 00:17:19,720
+of the candidates in the election,
+and then typing in each voter's ranked
+
+352
+00:17:19,720 --> 00:17:23,410
+preferences, and then seeing whether
+your program computes the correct
+
+353
+00:17:23,410 --> 00:17:25,960
+winner of this runoff election.
+
+354
+00:17:25,960 --> 00:17:29,369
+My name is Brian, and this was runoff.
+
+355
+00:17:29,369 --> 00:17:30,504

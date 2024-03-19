@@ -1,0 +1,422 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:03,960
+BRIAN: In credit, your task is going
+to be to take a credit card number
+
+3
+00:00:03,960 --> 00:00:06,930
+and determine whether that number
+is an American Express credit card
+
+4
+00:00:06,930 --> 00:00:10,950
+number, a MasterCard number, a Visa
+number or maybe, something else
+
+5
+00:00:10,950 --> 00:00:12,210
+entirely.
+
+6
+00:00:12,210 --> 00:00:13,600
+How are you going to do this?
+
+7
+00:00:13,600 --> 00:00:16,320
+Well, credit card numbers
+follow particular patterns.
+
+8
+00:00:16,320 --> 00:00:20,160
+American Express card numbers, for
+example, are generally 15 digits,
+
+9
+00:00:20,160 --> 00:00:23,850
+and start with the digits 3, 4 or 3, 7.
+
+10
+00:00:23,850 --> 00:00:26,610
+MasterCard numbers will
+usually have 16 digits,
+
+11
+00:00:26,610 --> 00:00:30,557
+and often start with
+51, 52, 53, 54, or 55.
+
+12
+00:00:30,557 --> 00:00:33,390
+Of course, there are other MasterCard
+numbers that don't necessarily
+
+13
+00:00:33,390 --> 00:00:36,250
+follow this pattern, but for
+the purposes of this problem,
+
+14
+00:00:36,250 --> 00:00:39,670
+we're just going to look at this
+subset of MasterCard numbers.
+
+15
+00:00:39,670 --> 00:00:43,170
+And finally, Visa numbers
+are 13 or 16 digits,
+
+16
+00:00:43,170 --> 00:00:45,810
+and will start with the digit 4.
+
+17
+00:00:45,810 --> 00:00:49,590
+But not every sequence of 13
+digits that starts with the digit 4
+
+18
+00:00:49,590 --> 00:00:51,630
+is, necessarily, a Visa card number.
+
+19
+00:00:51,630 --> 00:00:55,290
+Every valid credit card number
+also satisfies a checksum,
+
+20
+00:00:55,290 --> 00:00:58,310
+a relationship between the
+digits of that credit card number
+
+21
+00:00:58,310 --> 00:01:00,990
+that determine whether that
+particular sequence of numbers
+
+22
+00:01:00,990 --> 00:01:03,540
+is a valid credit card number or not.
+
+23
+00:01:03,540 --> 00:01:05,550
+How does this checksum algorithm work?
+
+24
+00:01:05,550 --> 00:01:07,450
+Well, it works as follows.
+
+25
+00:01:07,450 --> 00:01:11,400
+We first, multiply every other digit
+of the credit card number by 2,
+
+26
+00:01:11,400 --> 00:01:13,560
+starting with the second to last digit.
+
+27
+00:01:13,560 --> 00:01:17,760
+Then we add those products'
+digits together to get a number,
+
+28
+00:01:17,760 --> 00:01:20,640
+and we add that number to
+the sum of all the digits
+
+29
+00:01:20,640 --> 00:01:22,770
+that we didn't multiply by 2.
+
+30
+00:01:22,770 --> 00:01:26,100
+If we take that final result,
+and the last digit is zero,
+
+31
+00:01:26,100 --> 00:01:27,990
+then the credit card number is valid.
+
+32
+00:01:27,990 --> 00:01:30,490
+And if it's not, then it's invalid.
+
+33
+00:01:30,490 --> 00:01:34,060
+Let's take a look at an example
+to see this algorithm in practice.
+
+34
+00:01:34,060 --> 00:01:36,300
+Here's an example of
+a credit card number.
+
+35
+00:01:36,300 --> 00:01:39,390
+The first thing we're going to
+do is take every other digit,
+
+36
+00:01:39,390 --> 00:01:41,520
+starting with the second to last digit.
+
+37
+00:01:41,520 --> 00:01:47,340
+So we're looking at the 1, the 0, the 0,
+the 0, the 0, the 6, the 0, and the 4.
+
+38
+00:01:47,340 --> 00:01:51,790
+And we're going to take each of
+those digits and multiply them by 2.
+
+39
+00:01:51,790 --> 00:01:56,810
+The next step is going to be to add all
+of these individual digits together.
+
+40
+00:01:56,810 --> 00:02:01,870
+So 8 plus 0 plus 1 plus 2, because
+those are the digits in 12,
+
+41
+00:02:01,870 --> 00:02:07,930
+plus 0 plus 0 plus 0 plus 0 plus 2,
+that's going to give us the sum 13.
+
+42
+00:02:07,930 --> 00:02:11,920
+We're going to take 13 and add
+that to all of the other digits
+
+43
+00:02:11,920 --> 00:02:13,690
+that we didn't multiply by 2.
+
+44
+00:02:13,690 --> 00:02:19,960
+So 13 plus 0 plus 3 plus 0 plus
+0 plus 0 plus 0 plus 0 plus 4,
+
+45
+00:02:19,960 --> 00:02:22,810
+that result is going to
+give us the number 20.
+
+46
+00:02:22,810 --> 00:02:25,510
+This is our final result.
+The last digit is 0,
+
+47
+00:02:25,510 --> 00:02:28,480
+so this credit card number
+satisfies the checksum.
+
+48
+00:02:28,480 --> 00:02:31,120
+It could be a valid credit card number.
+
+49
+00:02:31,120 --> 00:02:33,940
+So one of your tasks in
+this problem is going to be,
+
+50
+00:02:33,940 --> 00:02:38,165
+given the credit card number, figure
+out if it satisfies the checksum or not.
+
+51
+00:02:38,165 --> 00:02:40,540
+And to do that, you're going
+to need to take a big number
+
+52
+00:02:40,540 --> 00:02:43,180
+and get at the individual
+digits of the number.
+
+53
+00:02:43,180 --> 00:02:46,190
+But how do we get the
+digits of the number?
+
+54
+00:02:46,190 --> 00:02:48,550
+Let's take a big number,
+like this credit card number,
+
+55
+00:02:48,550 --> 00:02:52,420
+and consider how would we get the last
+digit of this credit card number, which
+
+56
+00:02:52,420 --> 00:02:54,670
+in this case is the number 4?
+
+57
+00:02:54,670 --> 00:02:58,570
+Well, notice that if you take any
+big number, and take the remainder.
+
+58
+00:02:58,570 --> 00:03:02,470
+When you divide it by 10, what
+you get is the rightmost digit.
+
+59
+00:03:02,470 --> 00:03:05,680
+If we take this big number, divide
+it by 10, and take the remainder,
+
+60
+00:03:05,680 --> 00:03:08,170
+the remainder is 4, the last digit.
+
+61
+00:03:08,170 --> 00:03:12,220
+And in code, we have the modulo
+operator that gets us the remainder
+
+62
+00:03:12,220 --> 00:03:13,750
+when we divide it by something.
+
+63
+00:03:13,750 --> 00:03:16,955
+So if we take this big
+number, and take it modulo 10,
+
+64
+00:03:16,955 --> 00:03:19,330
+that will give us the remainder,
+when we take this number
+
+65
+00:03:19,330 --> 00:03:22,060
+and divide it by 10,
+which in this case is 4.
+
+66
+00:03:22,060 --> 00:03:24,640
+So this gives us a way
+of taking a big number
+
+67
+00:03:24,640 --> 00:03:27,042
+and figuring out what the last digit is.
+
+68
+00:03:27,042 --> 00:03:28,750
+And I'll leave it up
+to you to figure out
+
+69
+00:03:28,750 --> 00:03:32,690
+how to adapt this to get the second to
+last digit, or the third to last digit,
+
+70
+00:03:32,690 --> 00:03:33,640
+for example.
+
+71
+00:03:33,640 --> 00:03:36,100
+What do you need to do
+in this problem, then?
+
+72
+00:03:36,100 --> 00:03:38,680
+Well, you'll first want
+to prompt the user to type
+
+73
+00:03:38,680 --> 00:03:40,870
+in their input, a credit card number.
+
+74
+00:03:40,870 --> 00:03:43,660
+Then, you'll want to calculate
+the checksum to figure out
+
+75
+00:03:43,660 --> 00:03:45,940
+if it could be a valid
+credit card or not,
+
+76
+00:03:45,940 --> 00:03:51,090
+based on if that checksum has a
+final digit that is or isn't a 0.
+
+77
+00:03:51,090 --> 00:03:54,660
+After you do that, you'll want to
+check the credit card's length, as well
+
+78
+00:03:54,660 --> 00:03:58,530
+as the starting digits, to figure out if
+it matches the pattern for an American
+
+79
+00:03:58,530 --> 00:04:01,350
+Express card or a Visa or a MasterCard.
+
+80
+00:04:01,350 --> 00:04:04,080
+And if it matches the
+checksum and also matches
+
+81
+00:04:04,080 --> 00:04:06,420
+the card length and
+starting digit requirements,
+
+82
+00:04:06,420 --> 00:04:09,240
+then your program should print
+out Amex for an American Express
+
+83
+00:04:09,240 --> 00:04:13,020
+card, MasterCard for MasterCard,
+Visa for a Visa card,
+
+84
+00:04:13,020 --> 00:04:15,210
+and if it doesn't
+satisfy any of the three,
+
+85
+00:04:15,210 --> 00:04:17,880
+your program should print out invalid.
+
+86
+00:04:17,880 --> 00:04:20,399
+After you do that, you should
+be able to test your program
+
+87
+00:04:20,399 --> 00:04:23,580
+on some sample valid and
+invalid credit card numbers,
+
+88
+00:04:23,580 --> 00:04:26,100
+and make sure that you
+get the right result.
+
+89
+00:04:26,100 --> 00:04:29,630
+My name is Brian, and this was credit.
+
+90
+00:04:29,630 --> 00:04:30,672

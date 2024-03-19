@@ -1,0 +1,950 @@
+1
+00:00:00,000 --> 00:00:00,165
+
+
+2
+00:00:00,165 --> 00:00:03,030
+BRIAN YU: The next filter that
+you'll implement is called edges.
+
+3
+00:00:03,030 --> 00:00:05,850
+In edges, what you're going
+to do is take an image
+
+4
+00:00:05,850 --> 00:00:09,840
+and apply the Sobel edge
+detection algorithm to this image
+
+5
+00:00:09,840 --> 00:00:13,093
+in order to highlight all of
+the boundaries between objects.
+
+6
+00:00:13,093 --> 00:00:15,510
+Notice that we've highlighted
+the boundaries of the bridge
+
+7
+00:00:15,510 --> 00:00:18,960
+in this case and some of the plants
+that are surrounding the water here.
+
+8
+00:00:18,960 --> 00:00:21,750
+And this is the algorithm that
+you're going to try to create.
+
+9
+00:00:21,750 --> 00:00:23,970
+But how do we take an
+image and figure out
+
+10
+00:00:23,970 --> 00:00:27,150
+where the boundaries between
+objects actually are?
+
+11
+00:00:27,150 --> 00:00:29,580
+Well, let's first look
+at a simplified image
+
+12
+00:00:29,580 --> 00:00:34,750
+to try to get a sense for how we can
+detect boundaries between objects.
+
+13
+00:00:34,750 --> 00:00:38,790
+Here we have two objects, a
+blue rectangle on the left
+
+14
+00:00:38,790 --> 00:00:40,660
+and a red rectangle on the right.
+
+15
+00:00:40,660 --> 00:00:42,870
+And as you might guess,
+this middle purple line you
+
+16
+00:00:42,870 --> 00:00:46,780
+can think of as a boundary
+between these two objects.
+
+17
+00:00:46,780 --> 00:00:48,090
+How do we know it's a boundary?
+
+18
+00:00:48,090 --> 00:00:52,350
+Well, it's a boundary because the
+colors on the left side of the line
+
+19
+00:00:52,350 --> 00:00:55,410
+are different from the colors
+on the right side of the line.
+
+20
+00:00:55,410 --> 00:00:57,570
+And the same thing
+could be generally true
+
+21
+00:00:57,570 --> 00:01:01,140
+when we start to think about edge
+detection in more complex images.
+
+22
+00:01:01,140 --> 00:01:05,420
+If we have a line where, on the left
+side of the line, colors are one value,
+
+23
+00:01:05,420 --> 00:01:08,670
+and on the right side of the line, the
+colors are a very different value, that
+
+24
+00:01:08,670 --> 00:01:11,760
+indicates a major change
+in color across pixels,
+
+25
+00:01:11,760 --> 00:01:16,590
+and therefore, might indicate a
+boundary between objects in that image.
+
+26
+00:01:16,590 --> 00:01:21,160
+So you recall that every pixel is
+composed of color values of red, green,
+
+27
+00:01:21,160 --> 00:01:24,330
+and blue, but let's first
+just look at red values,
+
+28
+00:01:24,330 --> 00:01:26,940
+and look at the red value
+for each of these pixels,
+
+29
+00:01:26,940 --> 00:01:29,460
+and take a look at how
+those values change
+
+30
+00:01:29,460 --> 00:01:33,340
+as we move from left to
+right inside of this image.
+
+31
+00:01:33,340 --> 00:01:35,220
+So if we just look at
+the red values, you'll
+
+32
+00:01:35,220 --> 00:01:38,340
+notice that all the pixels
+on the left, the blue pixels,
+
+33
+00:01:38,340 --> 00:01:40,680
+have a red channel value of zero.
+
+34
+00:01:40,680 --> 00:01:44,920
+All the red pixels on the right-hand
+side have a channel value of 255,
+
+35
+00:01:44,920 --> 00:01:47,670
+and in the middle, they're somewhere
+in between with a red channel
+
+36
+00:01:47,670 --> 00:01:50,850
+value of 128, for example.
+
+37
+00:01:50,850 --> 00:01:53,670
+How are we going to determine
+whether, at any particular point,
+
+38
+00:01:53,670 --> 00:01:58,350
+we're noticing a change in color from
+one red value to another red value?
+
+39
+00:01:58,350 --> 00:02:02,370
+Well, to do that, we're going to use
+what's called a convolutional matrix.
+
+40
+00:02:02,370 --> 00:02:04,920
+Here, for example, is
+the convolutional matrix
+
+41
+00:02:04,920 --> 00:02:08,220
+called gx, which is going
+to determine whether or not
+
+42
+00:02:08,220 --> 00:02:12,180
+there is some sort of change in
+color or boundary between objects
+
+43
+00:02:12,180 --> 00:02:15,030
+as we move in the x
+direction in the image,
+
+44
+00:02:15,030 --> 00:02:17,670
+moving from left to right, for example.
+
+45
+00:02:17,670 --> 00:02:20,640
+And the idea of this is going to
+be very similar to the algorithm
+
+46
+00:02:20,640 --> 00:02:23,400
+that we applied in blur
+where we took a pixel
+
+47
+00:02:23,400 --> 00:02:27,450
+and looked at the nine pixels that
+formed a square around that pixel
+
+48
+00:02:27,450 --> 00:02:30,480
+to compute a new value
+for that same pixel.
+
+49
+00:02:30,480 --> 00:02:33,900
+We're going to do the same thing here,
+except rather than just averaging
+
+50
+00:02:33,900 --> 00:02:36,000
+all of the values
+around the middle pixel,
+
+51
+00:02:36,000 --> 00:02:38,790
+we're instead going to multiply
+each of the surrounding
+
+52
+00:02:38,790 --> 00:02:41,560
+pixels by a different value.
+
+53
+00:02:41,560 --> 00:02:43,240
+Let's take a look at an example.
+
+54
+00:02:43,240 --> 00:02:47,490
+So here, we're going to apply
+this gx convolutional matrix
+
+55
+00:02:47,490 --> 00:02:51,870
+to try to compute what the value
+of gx should be for this red pixel
+
+56
+00:02:51,870 --> 00:02:53,110
+right here.
+
+57
+00:02:53,110 --> 00:02:56,820
+Now, notice that this red pixel
+does not have a whole lot of change
+
+58
+00:02:56,820 --> 00:02:57,660
+happening around it.
+
+59
+00:02:57,660 --> 00:03:01,890
+To the left and to the right of it, it
+still has a lot of red surrounding it,
+
+60
+00:03:01,890 --> 00:03:05,280
+so we should expect that
+this gx value that we compute
+
+61
+00:03:05,280 --> 00:03:09,660
+will be very low, indicating that there
+is not much change in the red color
+
+62
+00:03:09,660 --> 00:03:12,960
+as we move from left to
+right along this pixel.
+
+63
+00:03:12,960 --> 00:03:14,980
+So what does this actually look like?
+
+64
+00:03:14,980 --> 00:03:17,190
+Well, we're first, much
+as with blur, going
+
+65
+00:03:17,190 --> 00:03:21,540
+to form a 3-by-3 grid of pixels
+that surround the center pixel,
+
+66
+00:03:21,540 --> 00:03:24,060
+and then we're going to
+do some calculations.
+
+67
+00:03:24,060 --> 00:03:27,600
+We'll take our gx convolutional
+matrix and first look
+
+68
+00:03:27,600 --> 00:03:29,460
+at the value in the upper left.
+
+69
+00:03:29,460 --> 00:03:33,000
+It's negative 1, and so we're
+going to multiply negative 1
+
+70
+00:03:33,000 --> 00:03:37,440
+by the red value in the upper left
+of this 3-by-3 grid of pixels,
+
+71
+00:03:37,440 --> 00:03:39,840
+in this case 255.
+
+72
+00:03:39,840 --> 00:03:42,090
+Then we'll move on and
+say, all right, let's
+
+73
+00:03:42,090 --> 00:03:45,270
+take the top pixel in this 3-by-3 grid.
+
+74
+00:03:45,270 --> 00:03:50,580
+The matrix says that we should multiply
+its value by 0, so we have 0 times 255.
+
+75
+00:03:50,580 --> 00:03:53,610
+And then we have 1 times 255.
+
+76
+00:03:53,610 --> 00:03:57,060
+And we're going to repeat this
+process of adding up negative 2
+
+77
+00:03:57,060 --> 00:04:00,030
+times the red value of the pixels
+on the left, which in this case
+
+78
+00:04:00,030 --> 00:04:05,160
+is also 255, plus 0 times
+255, the pixel in the middle.
+
+79
+00:04:05,160 --> 00:04:08,670
+Then the right is going
+to be 2 times 255.
+
+80
+00:04:08,670 --> 00:04:14,010
+Then the bottom left is minus
+1 times 255, plus 0 times 255,
+
+81
+00:04:14,010 --> 00:04:16,260
+plus 1 times 255.
+
+82
+00:04:16,260 --> 00:04:18,959
+And if we do the math, performing
+all these multiplications
+
+83
+00:04:18,959 --> 00:04:21,420
+and adding all these numbers
+together, what you'll notice
+
+84
+00:04:21,420 --> 00:04:23,400
+is that everything cancels out.
+
+85
+00:04:23,400 --> 00:04:28,890
+All of the plus 1 times 255s cancel
+out with a minus 1 times 255,
+
+86
+00:04:28,890 --> 00:04:34,320
+and the plus 2 times 255 cancels
+out with a minus 2 times 255.
+
+87
+00:04:34,320 --> 00:04:37,140
+So the result of all this
+after we do all the math
+
+88
+00:04:37,140 --> 00:04:40,050
+is that we get the number
+0, implying that there's
+
+89
+00:04:40,050 --> 00:04:44,733
+no change in the red values
+as we move from left to right.
+
+90
+00:04:44,733 --> 00:04:47,400
+And that's to be expected here,
+because as we look at this grid,
+
+91
+00:04:47,400 --> 00:04:49,950
+we see that all of the pixels are red.
+
+92
+00:04:49,950 --> 00:04:52,500
+What might happen, though,
+if we instead try to apply
+
+93
+00:04:52,500 --> 00:04:54,900
+this matrix to a different pixel--
+
+94
+00:04:54,900 --> 00:04:57,930
+say, for example, this pixel
+here in the middle, where
+
+95
+00:04:57,930 --> 00:05:01,330
+you'll notice if we take a look
+at the 3-by-3 grid of pixels
+
+96
+00:05:01,330 --> 00:05:05,440
+that surround this middle pixel, we
+see that the color values do change?
+
+97
+00:05:05,440 --> 00:05:08,680
+There's an increase in red
+from 0 on the left-hand side
+
+98
+00:05:08,680 --> 00:05:11,710
+to 255 on the right-hand side.
+
+99
+00:05:11,710 --> 00:05:14,300
+That's a big change in
+the red channel value,
+
+100
+00:05:14,300 --> 00:05:18,550
+so we would expect that after we do
+this calculation of the value of gx
+
+101
+00:05:18,550 --> 00:05:20,840
+that we would get a large value.
+
+102
+00:05:20,840 --> 00:05:22,630
+So how do we do the math here?
+
+103
+00:05:22,630 --> 00:05:25,510
+Well, again, we'll do
+negative 1 times the value
+
+104
+00:05:25,510 --> 00:05:30,310
+of the pixel in the upper left, 0, plus
+0 times the value of the pixel on top,
+
+105
+00:05:30,310 --> 00:05:34,960
+128, plus 1 times the value of
+the pixel in the upper right,
+
+106
+00:05:34,960 --> 00:05:39,700
+255, and then repeating this process
+for each of the other pixels--
+
+107
+00:05:39,700 --> 00:05:44,260
+minus 2 times 0, plus 0 times
+128, the pixel in the middle,
+
+108
+00:05:44,260 --> 00:05:46,990
+plus 2 times 255 for
+the pixels on the right,
+
+109
+00:05:46,990 --> 00:05:50,750
+and then repeating the same
+process for the bottom row.
+
+110
+00:05:50,750 --> 00:05:54,500
+After we do all of that math and
+calculate it, the answer that we get
+
+111
+00:05:54,500 --> 00:05:57,800
+is 1,020, a big number
+that's going to represent
+
+112
+00:05:57,800 --> 00:06:01,460
+the fact that as we move from
+left to right along this pixel,
+
+113
+00:06:01,460 --> 00:06:04,527
+we see a large change
+in the value of red.
+
+114
+00:06:04,527 --> 00:06:07,610
+And that's pretty good evidence that
+there is some sort of boundary that's
+
+115
+00:06:07,610 --> 00:06:09,290
+happening here.
+
+116
+00:06:09,290 --> 00:06:12,740
+So how do we take this and
+apply it not just to one pixel,
+
+117
+00:06:12,740 --> 00:06:14,645
+but to all of the pixels in the image?
+
+118
+00:06:14,645 --> 00:06:17,270
+Well there are a couple of things
+that we need to keep in mind.
+
+119
+00:06:17,270 --> 00:06:20,587
+First of all, we've so far only done
+this calculation for red values.
+
+120
+00:06:20,587 --> 00:06:22,420
+And you'll imagine
+you'll probably also want
+
+121
+00:06:22,420 --> 00:06:25,720
+to do the same calculation for
+the values in the green channel
+
+122
+00:06:25,720 --> 00:06:28,030
+as well as for the values
+in the blue channel.
+
+123
+00:06:28,030 --> 00:06:32,350
+But also, thus far, we're only
+looking at changes in the x direction
+
+124
+00:06:32,350 --> 00:06:35,380
+as we move from left to right,
+taking a look at whether there's
+
+125
+00:06:35,380 --> 00:06:39,260
+a big increase or a big
+decrease in the value of red,
+
+126
+00:06:39,260 --> 00:06:41,020
+green, or blue, for example.
+
+127
+00:06:41,020 --> 00:06:43,570
+But you could also imagine
+that there might be boundaries
+
+128
+00:06:43,570 --> 00:06:46,360
+as we look in the y direction,
+from the top of the image
+
+129
+00:06:46,360 --> 00:06:47,680
+to the bottom of the image.
+
+130
+00:06:47,680 --> 00:06:50,290
+We might find places where
+there are horizontal lines where
+
+131
+00:06:50,290 --> 00:06:54,320
+we go from low values to
+high values or vise versa.
+
+132
+00:06:54,320 --> 00:06:57,670
+So in addition to a gx
+convolutional matrix, which
+
+133
+00:06:57,670 --> 00:07:00,700
+is going to look for
+boundaries in the x direction,
+
+134
+00:07:00,700 --> 00:07:04,360
+we're also going to want to
+introduce a gy matrix, which is going
+
+135
+00:07:04,360 --> 00:07:06,880
+to look for changes in the y direction.
+
+136
+00:07:06,880 --> 00:07:09,100
+And the gy matrix is going
+to look very similar.
+
+137
+00:07:09,100 --> 00:07:10,480
+Just rotate it.
+
+138
+00:07:10,480 --> 00:07:13,600
+Here we're going to say, take all
+the values in the three pixels
+
+139
+00:07:13,600 --> 00:07:18,850
+below this middle pixel, and multiply
+them by 1, 2, and 1 respectively,
+
+140
+00:07:18,850 --> 00:07:22,840
+and take all the values in the row of
+three pixels above this middle pixel
+
+141
+00:07:22,840 --> 00:07:26,530
+and multiply those by negative
+1, negative 2, and negative 1
+
+142
+00:07:26,530 --> 00:07:30,100
+respectively, the result of which
+is that we'll compute a value that
+
+143
+00:07:30,100 --> 00:07:34,390
+will approximately represent how
+the value of red or green or blue
+
+144
+00:07:34,390 --> 00:07:38,800
+is changing as we move from the
+pixels above a pixel to the pixels
+
+145
+00:07:38,800 --> 00:07:40,390
+below a pixel.
+
+146
+00:07:40,390 --> 00:07:43,420
+And so we'll use these
+two matrices, gx and gy,
+
+147
+00:07:43,420 --> 00:07:46,250
+to compute how much colors are changing.
+
+148
+00:07:46,250 --> 00:07:48,730
+How do you use these results
+to actually determine what
+
+149
+00:07:48,730 --> 00:07:51,310
+the new value of each pixel should be?
+
+150
+00:07:51,310 --> 00:07:53,410
+Well, for each pixel,
+you're going to want
+
+151
+00:07:53,410 --> 00:07:58,360
+to compute gx and gy for each
+channel of red, green, and blue.
+
+152
+00:07:58,360 --> 00:08:01,390
+So ultimately, you're going to
+be computing six different values
+
+153
+00:08:01,390 --> 00:08:05,290
+by applying the gx matrix
+to all of the red values,
+
+154
+00:08:05,290 --> 00:08:09,940
+then to the green values and the blue
+values, and doing the same for gy.
+
+155
+00:08:09,940 --> 00:08:12,040
+Of course, as in the
+case with blur, there
+
+156
+00:08:12,040 --> 00:08:15,520
+will be situations where we're looking
+at a pixel at the border, in the corner
+
+157
+00:08:15,520 --> 00:08:19,570
+or at the edge of the image where there
+isn't a perfect 3-by-3 grid of pixels
+
+158
+00:08:19,570 --> 00:08:21,500
+that surrounds it, for example.
+
+159
+00:08:21,500 --> 00:08:24,190
+In that case, for any pixels
+that are at the border,
+
+160
+00:08:24,190 --> 00:08:26,170
+you should treat any
+pixel values that are
+
+161
+00:08:26,170 --> 00:08:30,580
+beyond the border as having all
+zero values or being pure black,
+
+162
+00:08:30,580 --> 00:08:31,475
+for example.
+
+163
+00:08:31,475 --> 00:08:33,850
+So for the pixel in the corner,
+in the upper left corner,
+
+164
+00:08:33,850 --> 00:08:37,870
+for example, the pixel immediately
+above it, which doesn't exist,
+
+165
+00:08:37,870 --> 00:08:43,760
+you should just treat as having all zero
+values, as being a solid black pixel.
+
+166
+00:08:43,760 --> 00:08:46,400
+Once you've computed
+these gx and gy values
+
+167
+00:08:46,400 --> 00:08:48,560
+for each of red, green,
+and blue, you need
+
+168
+00:08:48,560 --> 00:08:53,070
+to use those values to somehow compute
+the total amount of red, green,
+
+169
+00:08:53,070 --> 00:08:57,660
+and blue that should be in the
+new pixel in the resulting image.
+
+170
+00:08:57,660 --> 00:09:00,290
+So to do that, we're
+going to use this formula.
+
+171
+00:09:00,290 --> 00:09:04,370
+You're going to compute each new
+channel value as the square root of gx
+
+172
+00:09:04,370 --> 00:09:06,930
+squared plus gy squared.
+
+173
+00:09:06,930 --> 00:09:10,730
+So to compute the new value
+of red for a particular pixel,
+
+174
+00:09:10,730 --> 00:09:15,020
+you're going to compute gx for that
+red pixel based on the original image,
+
+175
+00:09:15,020 --> 00:09:19,130
+and you're going to compute gy for that
+red pixel based on the original image,
+
+176
+00:09:19,130 --> 00:09:22,800
+square them both, add them
+together, and take the square root.
+
+177
+00:09:22,800 --> 00:09:26,390
+We're squaring each of them to make
+sure that the magnitude we end up with
+
+178
+00:09:26,390 --> 00:09:29,300
+is a positive value because
+regardless of whether there's
+
+179
+00:09:29,300 --> 00:09:32,180
+a big increase in red or
+a big decrease in red,
+
+180
+00:09:32,180 --> 00:09:35,780
+we still want to represent that as
+a potential border from a lot of red
+
+181
+00:09:35,780 --> 00:09:37,910
+to a little bit of red or vise versa.
+
+182
+00:09:37,910 --> 00:09:41,390
+And squaring the number makes sure
+we end up with a positive value.
+
+183
+00:09:41,390 --> 00:09:44,120
+And we're taking the
+square root to normalize.
+
+184
+00:09:44,120 --> 00:09:47,990
+Of course, as with the other filters, it
+may be the case that the value you get
+
+185
+00:09:47,990 --> 00:09:51,440
+exceeds the maximum
+channel value of 255.
+
+186
+00:09:51,440 --> 00:09:53,600
+And in that case, you
+should be careful to make
+
+187
+00:09:53,600 --> 00:09:57,740
+sure to cap the value you
+get at the number 255.
+
+188
+00:09:57,740 --> 00:10:01,340
+And you'll repeat the same
+process for red and green and blue
+
+189
+00:10:01,340 --> 00:10:04,820
+for each of the original
+pixels, computing gx and gy
+
+190
+00:10:04,820 --> 00:10:08,930
+based on the original image in order
+to calculate a new channel value
+
+191
+00:10:08,930 --> 00:10:11,750
+for each pixel in the resulting image.
+
+192
+00:10:11,750 --> 00:10:15,230
+After you've done all of that, you
+should be able to test your program
+
+193
+00:10:15,230 --> 00:10:20,480
+by running ./filter, -e for edges, and
+then providing the name of an input
+
+194
+00:10:20,480 --> 00:10:24,830
+bitmap file as well as an output bitmap
+file that you're hoping to generate.
+
+195
+00:10:24,830 --> 00:10:28,010
+And if all goes well, you should
+see that you take the original image
+
+196
+00:10:28,010 --> 00:10:31,730
+and highlight where all of
+the edges in that image are.
+
+197
+00:10:31,730 --> 00:10:35,410
+My name is Brian, and this was edges.
+
+198
+00:10:35,410 --> 00:10:36,458

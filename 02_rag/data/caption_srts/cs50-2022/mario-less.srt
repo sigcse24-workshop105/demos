@@ -1,0 +1,1041 @@
+1
+00:00:00,000 --> 00:00:00,680
+
+
+2
+00:00:00,680 --> 00:00:02,990
+BRIAN: In Mario, your task
+is going to be to recreate
+
+3
+00:00:02,990 --> 00:00:05,060
+a pyramid from Super Mario Brothers.
+
+4
+00:00:05,060 --> 00:00:07,130
+So in the game Super
+Mario Brothers, you might
+
+5
+00:00:07,130 --> 00:00:09,560
+recall a pyramid that looks
+a little something like this.
+
+6
+00:00:09,560 --> 00:00:11,420
+And your task in this
+problem is going to be
+
+7
+00:00:11,420 --> 00:00:15,370
+to recreate that pyramid
+using hashes on the screen.
+
+8
+00:00:15,370 --> 00:00:18,468
+So the pyramid, for example, might
+look a little something like this.
+
+9
+00:00:18,468 --> 00:00:20,510
+And to make things a little
+bit more interesting,
+
+10
+00:00:20,510 --> 00:00:23,840
+we're going to let the user
+choose how tall or short
+
+11
+00:00:23,840 --> 00:00:25,250
+they want the pyramid to be.
+
+12
+00:00:25,250 --> 00:00:29,330
+The user should be allowed to input any
+height between one and eight inclusive
+
+13
+00:00:29,330 --> 00:00:33,210
+and see this pyramid displayed to
+the screen of the appropriate height.
+
+14
+00:00:33,210 --> 00:00:36,680
+So for example, if you run
+the program dot slash Mario,
+
+15
+00:00:36,680 --> 00:00:39,230
+the program should prompt
+the user to type in a height.
+
+16
+00:00:39,230 --> 00:00:41,360
+If they type in height
+of eight, for example,
+
+17
+00:00:41,360 --> 00:00:44,780
+they should see a pyramid of height 8
+just like this appear on the screen.
+
+18
+00:00:44,780 --> 00:00:47,750
+If the user were to
+instead run dot slash Mario
+
+19
+00:00:47,750 --> 00:00:51,080
+and then type and a height of
+three, then this is the pyramid
+
+20
+00:00:51,080 --> 00:00:54,650
+should result, the same pyramid but
+with a height of three instead of eight.
+
+21
+00:00:54,650 --> 00:00:57,590
+But you should make sure to
+only allow heights between one
+
+22
+00:00:57,590 --> 00:01:00,710
+and eight inclusive as
+inputs to the Mario program.
+
+23
+00:01:00,710 --> 00:01:03,430
+If someone were to run dot
+slash Mario, for example,
+
+24
+00:01:03,430 --> 00:01:07,010
+but provided invalid input,
+like negative 1, for example,
+
+25
+00:01:07,010 --> 00:01:10,460
+then your program should reprompt to
+the user to type in another height.
+
+26
+00:01:10,460 --> 00:01:13,430
+If they type in zero, for
+example, also not a valid height,
+
+27
+00:01:13,430 --> 00:01:14,540
+you should reprompt.
+
+28
+00:01:14,540 --> 00:01:17,300
+And if the type a number that's
+too big, you should also reprompt.
+
+29
+00:01:17,300 --> 00:01:19,880
+And only when they give you a
+number between one and eight
+
+30
+00:01:19,880 --> 00:01:24,080
+inclusive, should your program
+then display the resulting pyramid.
+
+31
+00:01:24,080 --> 00:01:26,000
+So the first thing you
+might want to do is
+
+32
+00:01:26,000 --> 00:01:29,930
+try writing some pseudocode to
+describe in English like syntax
+
+33
+00:01:29,930 --> 00:01:34,052
+what your program should do in order
+to implement the desired behavior.
+
+34
+00:01:34,052 --> 00:01:37,010
+The first thing that you might imagine
+that your program is going to do
+
+35
+00:01:37,010 --> 00:01:38,900
+is prompting the user for input.
+
+36
+00:01:38,900 --> 00:01:42,375
+They need to type in the height
+of the pyramid that they want.
+
+37
+00:01:42,375 --> 00:01:44,750
+In order to do that, you can
+take advantage of a function
+
+38
+00:01:44,750 --> 00:01:47,320
+in the CS50 library called Get Int.
+
+39
+00:01:47,320 --> 00:01:51,568
+The Get Int function will prompt the
+user to type in an integer as input.
+
+40
+00:01:51,568 --> 00:01:53,360
+And the Get Int function
+will automatically
+
+41
+00:01:53,360 --> 00:01:57,470
+take care of handling if the user types
+in something that isn't an integer.
+
+42
+00:01:57,470 --> 00:01:59,420
+If the user types in
+a character or a word,
+
+43
+00:01:59,420 --> 00:02:02,630
+for example, Get Int will
+handle rejecting that input
+
+44
+00:02:02,630 --> 00:02:05,210
+and prompting the user to
+type in something again.
+
+45
+00:02:05,210 --> 00:02:07,850
+What you'll need to do is
+add some additional logic
+
+46
+00:02:07,850 --> 00:02:10,759
+to make sure that the height
+is within a valid range.
+
+47
+00:02:10,759 --> 00:02:14,450
+You only want to accept heights
+between one and eight inclusive.
+
+48
+00:02:14,450 --> 00:02:17,480
+And if the height the user types
+in is outside of that range,
+
+49
+00:02:17,480 --> 00:02:21,080
+then you'll want to reprompt the
+user to type in another height.
+
+50
+00:02:21,080 --> 00:02:22,790
+So your task is going to be to check.
+
+51
+00:02:22,790 --> 00:02:26,970
+If the input is invalid, we should
+reprompt the user for another input.
+
+52
+00:02:26,970 --> 00:02:30,230
+And this idea of doing something
+potentially again and again and again,
+
+53
+00:02:30,230 --> 00:02:34,810
+prompting the user one more time, one
+more time, might remind you of a loop.
+
+54
+00:02:34,810 --> 00:02:37,580
+And so we could think about using
+a loop to solve this problem.
+
+55
+00:02:37,580 --> 00:02:40,100
+For example, here is a
+while loop, an example
+
+56
+00:02:40,100 --> 00:02:43,260
+of a loop that will continue
+to repeat a block of code
+
+57
+00:02:43,260 --> 00:02:45,620
+so long as a particular
+condition is true.
+
+58
+00:02:45,620 --> 00:02:46,940
+We check the condition.
+
+59
+00:02:46,940 --> 00:02:48,800
+If it's true, then we run the code.
+
+60
+00:02:48,800 --> 00:02:53,000
+And this will result in repeating
+this block of code zero or more times.
+
+61
+00:02:53,000 --> 00:02:56,780
+Because if the condition is false, then
+we're not going to run the loop at all.
+
+62
+00:02:56,780 --> 00:03:00,860
+But in Mario, we know that we're always
+going to run this loop at least once.
+
+63
+00:03:00,860 --> 00:03:04,140
+We always want to prompt the user
+at least once to type in a height.
+
+64
+00:03:04,140 --> 00:03:07,720
+And if the height is invalid, then we
+might end up prompting the user again.
+
+65
+00:03:07,720 --> 00:03:11,090
+So to do that, we might try to
+use a sister of the while loop,
+
+66
+00:03:11,090 --> 00:03:12,410
+the do while loop.
+
+67
+00:03:12,410 --> 00:03:14,480
+Very similar in spirit,
+the only difference
+
+68
+00:03:14,480 --> 00:03:17,987
+here is that we're always going to
+run this block of code at least once.
+
+69
+00:03:17,987 --> 00:03:19,820
+And then we're going
+to check the condition.
+
+70
+00:03:19,820 --> 00:03:23,390
+And if the condition is true, then we're
+going to run this loop again and again
+
+71
+00:03:23,390 --> 00:03:24,500
+and again.
+
+72
+00:03:24,500 --> 00:03:26,940
+So how could you actually
+use a do while loop?
+
+73
+00:03:26,940 --> 00:03:31,070
+Well, here's an example of a do while
+loop that gets a positive integer.
+
+74
+00:03:31,070 --> 00:03:33,800
+We first declare a variable called n.
+
+75
+00:03:33,800 --> 00:03:35,182
+And here's our do while loop.
+
+76
+00:03:35,182 --> 00:03:36,890
+We're going to repeat
+this block of code,
+
+77
+00:03:36,890 --> 00:03:40,120
+letting n equal Get Int
+positive number, meaning
+
+78
+00:03:40,120 --> 00:03:42,620
+we're going to prompt the user
+to type in a positive number,
+
+79
+00:03:42,620 --> 00:03:46,160
+and save whatever they type
+in inside of the variable n.
+
+80
+00:03:46,160 --> 00:03:50,063
+And we're going to keep repeating
+this while n is less than one.
+
+81
+00:03:50,063 --> 00:03:52,730
+In other words, after we've run
+this code, we're going to check,
+
+82
+00:03:52,730 --> 00:03:54,300
+is n less than one?
+
+83
+00:03:54,300 --> 00:03:58,130
+In other words, is it not a positive
+integer because it's less than one?
+
+84
+00:03:58,130 --> 00:04:01,190
+And if so, then we should
+reprompt the user asking them
+
+85
+00:04:01,190 --> 00:04:03,500
+to type in a positive
+number again and keep
+
+86
+00:04:03,500 --> 00:04:07,550
+doing this over and over and over
+until we get a positive integer.
+
+87
+00:04:07,550 --> 00:04:09,830
+Of course, the case of Mario,
+you don't want a prompt
+
+88
+00:04:09,830 --> 00:04:11,600
+for just a positive integer.
+
+89
+00:04:11,600 --> 00:04:15,170
+You want to prompt for an integer
+in the range of one to eight.
+
+90
+00:04:15,170 --> 00:04:18,529
+So you want to think about what
+you could fill into that condition
+
+91
+00:04:18,529 --> 00:04:22,385
+in order to get this do while loop to
+behave the way you would expect it to.
+
+92
+00:04:22,385 --> 00:04:24,260
+What you're going to
+fill into this condition
+
+93
+00:04:24,260 --> 00:04:27,950
+is what's called a Boolean expression,
+an expression in programming that
+
+94
+00:04:27,950 --> 00:04:30,020
+is either true or false.
+
+95
+00:04:30,020 --> 00:04:32,970
+And Boolean expressions have a
+number of different varieties.
+
+96
+00:04:32,970 --> 00:04:35,450
+You could check if a variable
+is equal to something.
+
+97
+00:04:35,450 --> 00:04:37,660
+Here, for example, is
+a Boolean expression
+
+98
+00:04:37,660 --> 00:04:40,130
+that checks if x is equal to zero.
+
+99
+00:04:40,130 --> 00:04:44,090
+Boolean expressions can also be
+things like, is x less than zero
+
+100
+00:04:44,090 --> 00:04:46,190
+or is x greater than zero?
+
+101
+00:04:46,190 --> 00:04:49,190
+And you can even take two
+or more Boolean expressions
+
+102
+00:04:49,190 --> 00:04:50,870
+and combine them together.
+
+103
+00:04:50,870 --> 00:04:54,320
+Here, for example, these
+two vertical bars mean or.
+
+104
+00:04:54,320 --> 00:04:58,700
+So this expression is true
+if x is zero or x is one.
+
+105
+00:04:58,700 --> 00:05:01,650
+And these two ampersand
+symbols mean and.
+
+106
+00:05:01,650 --> 00:05:03,750
+In other words, this
+last Boolean expression
+
+107
+00:05:03,750 --> 00:05:08,910
+will be true only if x is greater
+than zero and x is less than 10.
+
+108
+00:05:08,910 --> 00:05:12,240
+So think about what Boolean expression
+you might use inside of your
+
+109
+00:05:12,240 --> 00:05:16,350
+do while loop to make sure that
+the input is between one and eight.
+
+110
+00:05:16,350 --> 00:05:20,560
+And if it's not, you should reprompt
+the user to type in another height.
+
+111
+00:05:20,560 --> 00:05:22,980
+Once you've gotten the user
+to input a valid height,
+
+112
+00:05:22,980 --> 00:05:25,890
+the next step is going to be
+actually building this pyramid.
+
+113
+00:05:25,890 --> 00:05:28,950
+And it turns out, it's actually
+easier to build the opposite
+
+114
+00:05:28,950 --> 00:05:30,890
+of the pyramid you're trying to build.
+
+115
+00:05:30,890 --> 00:05:32,790
+So here's the pyramid
+you're trying to build
+
+116
+00:05:32,790 --> 00:05:34,650
+where everything is right aligned.
+
+117
+00:05:34,650 --> 00:05:36,900
+But it turns out, it's
+actually a little bit easier
+
+118
+00:05:36,900 --> 00:05:39,870
+to build a pyramid that
+is left aligned instead.
+
+119
+00:05:39,870 --> 00:05:43,410
+So let's start by trying to
+build this left aligned pyramid.
+
+120
+00:05:43,410 --> 00:05:45,960
+What you might notice is that
+we have a number of rows.
+
+121
+00:05:45,960 --> 00:05:48,510
+And on each row, we have
+some number of hashes.
+
+122
+00:05:48,510 --> 00:05:52,620
+And so we're probably going to repeat
+some code for every row in this pyramid
+
+123
+00:05:52,620 --> 00:05:55,230
+printing out the appropriate
+number of hashes.
+
+124
+00:05:55,230 --> 00:05:58,980
+To do that, we can use a different
+kind of loop called a for loop.
+
+125
+00:05:58,980 --> 00:06:02,520
+A for loop repeats a certain block
+of code some number of times.
+
+126
+00:06:02,520 --> 00:06:07,210
+And how many times that code
+repeats depends upon three parts.
+
+127
+00:06:07,210 --> 00:06:10,260
+The first part of the for loop
+is called the initialization.
+
+128
+00:06:10,260 --> 00:06:14,170
+This is where we initialize or
+create a variable or variables.
+
+129
+00:06:14,170 --> 00:06:16,340
+And in this case, we'll
+initialize a variable
+
+130
+00:06:16,340 --> 00:06:21,240
+that's going to keep track of how
+many times our loop has run so far.
+
+131
+00:06:21,240 --> 00:06:23,780
+The next part of the for
+loop is called the condition.
+
+132
+00:06:23,780 --> 00:06:27,830
+The condition is a Boolean expression
+that answers the question of,
+
+133
+00:06:27,830 --> 00:06:30,620
+should we continue to run this loop?
+
+134
+00:06:30,620 --> 00:06:33,350
+Every time we get to the
+next iteration of the loop,
+
+135
+00:06:33,350 --> 00:06:35,180
+we're first going to
+check the condition.
+
+136
+00:06:35,180 --> 00:06:38,120
+And if the condition is true, then
+we're going to run the loop again.
+
+137
+00:06:38,120 --> 00:06:41,300
+But if the condition is false,
+then we're going to stop.
+
+138
+00:06:41,300 --> 00:06:43,730
+And finally, we have an
+update, which is what
+
+139
+00:06:43,730 --> 00:06:46,930
+code runs at the end of
+every iteration of the loop.
+
+140
+00:06:46,930 --> 00:06:50,300
+And ideally, this is probably going
+to be updating that variable that we
+
+141
+00:06:50,300 --> 00:06:52,860
+set up in the initialization step.
+
+142
+00:06:52,860 --> 00:06:54,180
+So what might this look like?
+
+143
+00:06:54,180 --> 00:06:57,830
+Well, if I wanted some code that
+printed hello 10 times, for example,
+
+144
+00:06:57,830 --> 00:07:00,030
+the code might look a
+little something like this.
+
+145
+00:07:00,030 --> 00:07:02,300
+We first initialize a
+counting variable that we're
+
+146
+00:07:02,300 --> 00:07:05,450
+going to call i and set it
+equal to zero initially.
+
+147
+00:07:05,450 --> 00:07:10,040
+And we're going to keep repeating this
+for loop as long as i is less than 10.
+
+148
+00:07:10,040 --> 00:07:11,280
+And what's the update step?
+
+149
+00:07:11,280 --> 00:07:13,280
+Well, at the end of every
+iteration of the loop,
+
+150
+00:07:13,280 --> 00:07:17,690
+we're running i plus plus, which means
+take the value of i and increment it
+
+151
+00:07:17,690 --> 00:07:19,730
+or increase it by one.
+
+152
+00:07:19,730 --> 00:07:23,155
+So the first time the loop runs, i
+is equal to zero, the second time i
+
+153
+00:07:23,155 --> 00:07:26,720
+is equal to one, so on and so
+forth until i is equal to 10.
+
+154
+00:07:26,720 --> 00:07:30,450
+At which point, the condition fails
+because 10 is not less than 10.
+
+155
+00:07:30,450 --> 00:07:32,070
+And so we exit our for loop.
+
+156
+00:07:32,070 --> 00:07:35,520
+So this code will print hello 10 times.
+
+157
+00:07:35,520 --> 00:07:37,170
+So what do you want to do?
+
+158
+00:07:37,170 --> 00:07:38,930
+Well, you also probably want a for loop.
+
+159
+00:07:38,930 --> 00:07:41,420
+But for each row rather
+than printing hello,
+
+160
+00:07:41,420 --> 00:07:44,240
+you're going to want to print out
+the appropriate number of hashes
+
+161
+00:07:44,240 --> 00:07:46,640
+and then print out a new line.
+
+162
+00:07:46,640 --> 00:07:48,500
+How many hashes do
+you want to print out?
+
+163
+00:07:48,500 --> 00:07:51,590
+Well, on the first row of the
+pyramid, you probably want one hash.
+
+164
+00:07:51,590 --> 00:07:54,770
+On the second row, you want two
+hashes so on and so forth up
+
+165
+00:07:54,770 --> 00:07:57,740
+until the entire height of that pyramid.
+
+166
+00:07:57,740 --> 00:08:01,520
+So once you do that, you should be able
+to compile and run your Mario program
+
+167
+00:08:01,520 --> 00:08:05,290
+and see a left aligned pyramid of a
+height of one, two, three, four, five,
+
+168
+00:08:05,290 --> 00:08:07,880
+six, seven, or eight.
+
+169
+00:08:07,880 --> 00:08:09,330
+But that's a left aligned pyramid.
+
+170
+00:08:09,330 --> 00:08:11,960
+And what we're going for
+is a right aligned pyramid.
+
+171
+00:08:11,960 --> 00:08:16,820
+So the next step is going to be to right
+align this pyramid by adding some dots.
+
+172
+00:08:16,820 --> 00:08:19,160
+And what I mean by that is
+that, right now, our pyramid
+
+173
+00:08:19,160 --> 00:08:20,820
+looks a little something like this.
+
+174
+00:08:20,820 --> 00:08:24,170
+Here's a pyramid of height seven
+that's entirely left aligned.
+
+175
+00:08:24,170 --> 00:08:27,290
+What we're going to do now is
+update our Mario dot see program
+
+176
+00:08:27,290 --> 00:08:31,610
+to right align it by adding some
+dots along the left side of the rows
+
+177
+00:08:31,610 --> 00:08:35,059
+such that the entire pyramid
+is now right aligned.
+
+178
+00:08:35,059 --> 00:08:38,720
+What change does this require inside
+of your Mario dot see program?
+
+179
+00:08:38,720 --> 00:08:42,409
+Well, right now, for every row, you're
+printing out some number of hashes,
+
+180
+00:08:42,409 --> 00:08:44,570
+and then you're printing out a new line.
+
+181
+00:08:44,570 --> 00:08:48,230
+What you'll need to change here is
+that before you print out those hashes,
+
+182
+00:08:48,230 --> 00:08:51,110
+you'll need to print out the
+appropriate number of dots.
+
+183
+00:08:51,110 --> 00:08:54,620
+Of course, the natural question here
+is, how many dots do you print out?
+
+184
+00:08:54,620 --> 00:08:56,570
+And how many hashes do you print out?
+
+185
+00:08:56,570 --> 00:08:59,690
+Well, ultimately, that's going
+to depend upon two things.
+
+186
+00:08:59,690 --> 00:09:02,630
+It's going to depend first
+on the height of the pyramid.
+
+187
+00:09:02,630 --> 00:09:06,450
+And it's going to depend second on
+what row number you're currently on.
+
+188
+00:09:06,450 --> 00:09:07,700
+Let me give you an example.
+
+189
+00:09:07,700 --> 00:09:10,220
+Here, we have a height of seven.
+
+190
+00:09:10,220 --> 00:09:13,010
+And how many dots and
+hashes are in each row?
+
+191
+00:09:13,010 --> 00:09:16,580
+Well, in the first row, which I'll call
+row zero, because in computer science,
+
+192
+00:09:16,580 --> 00:09:20,870
+we often zero index things so that
+the first row is called row zero,
+
+193
+00:09:20,870 --> 00:09:23,960
+we have six dots and then one hash mark.
+
+194
+00:09:23,960 --> 00:09:27,020
+In row one, we have five
+dots and two hash marks.
+
+195
+00:09:27,020 --> 00:09:31,680
+In row two, we have four dots and
+three hash marks, so on and so forth.
+
+196
+00:09:31,680 --> 00:09:35,060
+And you can draw this sort of diagram
+for pyramids of other heights as well.
+
+197
+00:09:35,060 --> 00:09:37,970
+Try one for a height of three,
+for example, or a height of eight
+
+198
+00:09:37,970 --> 00:09:41,660
+and see if you can come up with some
+sort of pattern or some sort of formula
+
+199
+00:09:41,660 --> 00:09:44,990
+where you can take the height of
+the pyramid and the row number
+
+200
+00:09:44,990 --> 00:09:47,540
+to figure out how many
+dots you need in that row
+
+201
+00:09:47,540 --> 00:09:49,613
+and how many hashes
+you need in that row.
+
+202
+00:09:49,613 --> 00:09:51,530
+Once you're able to
+implement that, you should
+
+203
+00:09:51,530 --> 00:09:55,160
+be able to run your Mario program
+and see this right aligned pyramid
+
+204
+00:09:55,160 --> 00:10:00,140
+with dots in order to shift
+all of the rows to the right.
+
+205
+00:10:00,140 --> 00:10:04,112
+Finally, the last step of Mario is
+just going to be removing those dots.
+
+206
+00:10:04,112 --> 00:10:06,320
+That right now, your pyramid
+looks a little something
+
+207
+00:10:06,320 --> 00:10:10,670
+like this with a right aligned hash mark
+pyramid and dots along the left side.
+
+208
+00:10:10,670 --> 00:10:12,590
+And what you'll need
+to do is just modify
+
+209
+00:10:12,590 --> 00:10:15,950
+Mario dot see to replace
+those dots with spaces
+
+210
+00:10:15,950 --> 00:10:18,080
+so that you end up with
+a right aligned pyramid
+
+211
+00:10:18,080 --> 00:10:21,695
+that looks the way the pyramid from
+Super Mario Brothers also looked.
+
+212
+00:10:21,695 --> 00:10:24,320
+Once you've done that, you should
+be able to test your program.
+
+213
+00:10:24,320 --> 00:10:26,330
+Compile your program
+by running make Mario.
+
+214
+00:10:26,330 --> 00:10:30,180
+And then when you run dot slash Mario,
+you should be able to type and a height
+
+215
+00:10:30,180 --> 00:10:33,350
+and see the resulting
+right aligned pyramid.
+
+216
+00:10:33,350 --> 00:10:36,910
+My name is Brian, and this was Mario.
+
+217
+00:10:36,910 --> 00:10:38,160

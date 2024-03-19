@@ -1,0 +1,1297 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:04,140
+SPEAKER: In Caesar, your task is
+going to be to encipher or encrypt
+
+3
+00:00:04,140 --> 00:00:08,760
+some text by shifting all of the letters
+in that text by a certain amount.
+
+4
+00:00:08,760 --> 00:00:13,530
+What your program is ultimately going to
+do is it's first going to get the key--
+
+5
+00:00:13,530 --> 00:00:15,900
+the amount that we should
+shift each character by.
+
+6
+00:00:15,900 --> 00:00:19,620
+Then we're going to prompt the
+user to type in some plain text.
+
+7
+00:00:19,620 --> 00:00:21,900
+Then we're going to
+encipher that plain text
+
+8
+00:00:21,900 --> 00:00:24,630
+by shifting all the letters by the key.
+
+9
+00:00:24,630 --> 00:00:28,620
+And finally, we're going to print
+out the resulting cipher text.
+
+10
+00:00:28,620 --> 00:00:29,980
+What does this look like?
+
+11
+00:00:29,980 --> 00:00:33,720
+Well, if the key is 2, then
+for any plaintext character,
+
+12
+00:00:33,720 --> 00:00:37,480
+we're going to shift that character
+by 2 letters in the alphabet.
+
+13
+00:00:37,480 --> 00:00:40,020
+So if we had a plain
+text capital A, that
+
+14
+00:00:40,020 --> 00:00:43,290
+would become the ciphertext capital
+C, because we're shifting it
+
+15
+00:00:43,290 --> 00:00:44,850
+by 2 letters from the alphabet.
+
+16
+00:00:44,850 --> 00:00:48,540
+B would become D. C would
+become E. So on and so forth up,
+
+17
+00:00:48,540 --> 00:00:50,670
+until X would become Z.
+
+18
+00:00:50,670 --> 00:00:54,090
+And then when we get to Y, if we
+were to shift Y by 2 characters,
+
+19
+00:00:54,090 --> 00:00:56,620
+we would go past the
+boundary of the alphabet.
+
+20
+00:00:56,620 --> 00:01:00,850
+So what we'll instead want to do is wrap
+around to the beginning of the alphabet
+
+21
+00:01:00,850 --> 00:01:04,140
+so that Y becomes A
+when we shift it by 2,
+
+22
+00:01:04,140 --> 00:01:08,010
+and Z becomes B when we shift it by 2.
+
+23
+00:01:08,010 --> 00:01:10,950
+What does this mean for how your
+program should actually work?
+
+24
+00:01:10,950 --> 00:01:15,330
+Well, if we were to run ./caesar and
+then provide, a command line argument,
+
+25
+00:01:15,330 --> 00:01:16,470
+the number 2--
+
+26
+00:01:16,470 --> 00:01:20,160
+meaning we'd want to use 2 as the
+key, shifting everything by 2--
+
+27
+00:01:20,160 --> 00:01:23,310
+and we were to type
+in the plain text ABC,
+
+28
+00:01:23,310 --> 00:01:27,030
+then your program should
+print out the ciphertext CDE--
+
+29
+00:01:27,030 --> 00:01:32,330
+the same as the plain text, but with
+every character shifted by 2 letters.
+
+30
+00:01:32,330 --> 00:01:37,010
+If we were to instead run ./caesar2
+and provide the plain text of "hello,"
+
+31
+00:01:37,010 --> 00:01:38,120
+for example, --
+
+32
+00:01:38,120 --> 00:01:42,410
+then the ciphertext
+should be this J-G-N-N-Q,
+
+33
+00:01:42,410 --> 00:01:46,190
+which is each of the letters in
+"hello" shifted by 2 letters.
+
+34
+00:01:46,190 --> 00:01:48,870
+Let's take a look at one last example.
+
+35
+00:01:48,870 --> 00:01:54,380
+If I were to run ./caesar with a key
+of 2 ans input a plaintext of "This is
+
+36
+00:01:54,380 --> 00:01:57,700
+CS50," then the ciphertext
+should look like this.
+
+37
+00:01:57,700 --> 00:01:59,730
+And there are a couple
+of things to note here.
+
+38
+00:01:59,730 --> 00:02:02,030
+One is that we're preserving case.
+
+39
+00:02:02,030 --> 00:02:05,240
+If a character is an uppercase
+letter in the plaintext,
+
+40
+00:02:05,240 --> 00:02:08,479
+then it's also an uppercase
+letter in the ciphertext.
+
+41
+00:02:08,479 --> 00:02:11,870
+And likewise, a character that's a
+lowercase letter in the plaintext
+
+42
+00:02:11,870 --> 00:02:14,870
+is also a lowercase
+letter in the ciphertext.
+
+43
+00:02:14,870 --> 00:02:18,170
+And any character that's not an
+alphabetical character at all--
+
+44
+00:02:18,170 --> 00:02:22,100
+so things like spaces or
+numbers or punctuation marks--
+
+45
+00:02:22,100 --> 00:02:23,240
+those don't change.
+
+46
+00:02:23,240 --> 00:02:24,770
+The spaces stay spaces.
+
+47
+00:02:24,770 --> 00:02:26,210
+The 50 stays 50.
+
+48
+00:02:26,210 --> 00:02:28,940
+The exclamation point
+stays an exclamation point.
+
+49
+00:02:28,940 --> 00:02:32,220
+Only the alphabetic
+characters are changing.
+
+50
+00:02:32,220 --> 00:02:35,070
+So let's go through each of
+the steps of the caesar program
+
+51
+00:02:35,070 --> 00:02:38,320
+to figure out how you can actually
+write the code to do this.
+
+52
+00:02:38,320 --> 00:02:41,880
+The first thing you'll want your
+program to do is to get the key--
+
+53
+00:02:41,880 --> 00:02:45,840
+get the amount that we should shift
+each of the individual letters by.
+
+54
+00:02:45,840 --> 00:02:47,640
+How is your program going to do that?
+
+55
+00:02:47,640 --> 00:02:51,270
+Well, remember that your program is
+going to take the key as a command line
+
+56
+00:02:51,270 --> 00:02:54,420
+argument, meaning that when the
+user is running your program,
+
+57
+00:02:54,420 --> 00:02:57,810
+they're going to run your program
+as something like ./caesar,
+
+58
+00:02:57,810 --> 00:03:02,610
+followed by a number representing the
+key of how many characters to shift
+
+59
+00:03:02,610 --> 00:03:04,320
+each of the letters by.
+
+60
+00:03:04,320 --> 00:03:06,930
+How do you access those
+command line arguments?
+
+61
+00:03:06,930 --> 00:03:11,520
+Well, recall that in a C program your
+main function can take arguments.
+
+62
+00:03:11,520 --> 00:03:13,950
+It can take an argument
+called argc, which
+
+63
+00:03:13,950 --> 00:03:17,160
+is going to represent the argument
+count-- the number of command line
+
+64
+00:03:17,160 --> 00:03:20,250
+arguments-- and also
+an array of strings,
+
+65
+00:03:20,250 --> 00:03:24,360
+called argv, representing each
+of those command line arguments.
+
+66
+00:03:24,360 --> 00:03:28,710
+So for example, if I were to run
+./caesar2 and then the number 3
+
+67
+00:03:28,710 --> 00:03:31,920
+as the key, argc would be 2.
+
+68
+00:03:31,920 --> 00:03:33,090
+I typed in two things--
+
+69
+00:03:33,090 --> 00:03:35,490
+./caesar2 and 3.
+
+70
+00:03:35,490 --> 00:03:38,760
+And argv is going to be
+the actual array of strings
+
+71
+00:03:38,760 --> 00:03:40,650
+representing those arguments.
+
+72
+00:03:40,650 --> 00:03:42,600
+And recall that when
+you have an array, you
+
+73
+00:03:42,600 --> 00:03:47,310
+can access an individual element of that
+array using square bracket notation.
+
+74
+00:03:47,310 --> 00:03:51,900
+So argv[0] is going to be the
+first string in the argv array--
+
+75
+00:03:51,900 --> 00:03:54,420
+which, in this case, is ./caesar2--
+
+76
+00:03:54,420 --> 00:03:58,650
+and argv[1] is going to be the
+second thing in that argv array--
+
+77
+00:03:58,650 --> 00:04:01,620
+which, in this case, is the string 3.
+
+78
+00:04:01,620 --> 00:04:03,990
+So that's how we might access the key.
+
+79
+00:04:03,990 --> 00:04:08,010
+Now, when we get the key, you'll want to
+ensure that only a single command line
+
+80
+00:04:08,010 --> 00:04:11,760
+argument is provided, and that
+that argument contains only digit
+
+81
+00:04:11,760 --> 00:04:16,110
+characters before you actually take that
+argument and convert it to an integer.
+
+82
+00:04:16,110 --> 00:04:21,510
+What I mean by that is that if the user
+runs ./caesar, and then 2 and then 8,
+
+83
+00:04:21,510 --> 00:04:25,050
+providing more command line arguments
+that's expected, your program,
+
+84
+00:04:25,050 --> 00:04:28,530
+rather than doing anything else,
+should just print out a usage message
+
+85
+00:04:28,530 --> 00:04:31,500
+reminding the user that in
+order to run the Caesar program,
+
+86
+00:04:31,500 --> 00:04:34,470
+they should run ./caesar2,
+followed by a key.
+
+87
+00:04:34,470 --> 00:04:38,100
+And you should do this anytime they
+don't use the correct number of command
+
+88
+00:04:38,100 --> 00:04:39,450
+line arguments.
+
+89
+00:04:39,450 --> 00:04:42,300
+But even if they have the correct
+number of command line arguments,
+
+90
+00:04:42,300 --> 00:04:45,790
+that argument might not
+be entirely numeric.
+
+91
+00:04:45,790 --> 00:04:49,260
+If the user runs something
+like ./caesar20x,
+
+92
+00:04:49,260 --> 00:04:52,360
+where the command line argument
+is not entirely numeric,
+
+93
+00:04:52,360 --> 00:04:55,530
+you should also display a usage message
+reminding the user that they need
+
+94
+00:04:55,530 --> 00:04:59,310
+to run ./caesar,
+followed by a valid key.
+
+95
+00:04:59,310 --> 00:05:01,420
+How do you check if the key is valid?
+
+96
+00:05:01,420 --> 00:05:04,140
+Well, you'll probably want to
+take that command line argument
+
+97
+00:05:04,140 --> 00:05:06,540
+and check each of the
+individual characters
+
+98
+00:05:06,540 --> 00:05:09,490
+in that string to make sure
+the character is a digit.
+
+99
+00:05:09,490 --> 00:05:11,490
+And you might want to
+think about what functions
+
+100
+00:05:11,490 --> 00:05:15,510
+might be helpful for checking if an
+individual character is or is not
+
+101
+00:05:15,510 --> 00:05:16,530
+a digit.
+
+102
+00:05:16,530 --> 00:05:19,980
+Once you've checked to make sure that
+the command line arguments are correct,
+
+103
+00:05:19,980 --> 00:05:23,460
+the last thing you'll need to do here is
+actually take the command line argument
+
+104
+00:05:23,460 --> 00:05:25,590
+and convert it into an integer.
+
+105
+00:05:25,590 --> 00:05:28,890
+Notice that argv[1] right
+now, representing the key,
+
+106
+00:05:28,890 --> 00:05:32,460
+is not the number 3,
+but the string "three."
+
+107
+00:05:32,460 --> 00:05:35,190
+Recall that in C, every
+variable has a type.
+
+108
+00:05:35,190 --> 00:05:39,220
+Some variables are ints, and other
+variables are strings, for example.
+
+109
+00:05:39,220 --> 00:05:44,160
+And here, argv[1] is the string
+"three," rather than the integer 3--
+
+110
+00:05:44,160 --> 00:05:47,430
+which we'll probably want to use in
+case we need to do some math with that
+
+111
+00:05:47,430 --> 00:05:48,880
+number, for example.
+
+112
+00:05:48,880 --> 00:05:52,410
+So what we'll need to do is convert
+the string into an into an integer.
+
+113
+00:05:52,410 --> 00:05:55,170
+To do this, you can
+use the A2I function,
+
+114
+00:05:55,170 --> 00:05:59,220
+declared in standard lib.h, that
+takes a string, like the string 3,
+
+115
+00:05:59,220 --> 00:06:02,250
+and converts it into the
+number 3, for example.
+
+116
+00:06:02,250 --> 00:06:04,740
+So that function might be
+helpful for making sure
+
+117
+00:06:04,740 --> 00:06:07,860
+that your key is in fact an integer.
+
+118
+00:06:07,860 --> 00:06:09,870
+After you've gotten
+the key, the next step
+
+119
+00:06:09,870 --> 00:06:12,780
+is to prompt the user to
+type in the plaintext.
+
+120
+00:06:12,780 --> 00:06:15,330
+To do that, you can use
+a call to get string,
+
+121
+00:06:15,330 --> 00:06:19,890
+asking the user to type in what
+plaintext they want to encrypt.
+
+122
+00:06:19,890 --> 00:06:22,200
+Once you've gotten that
+plaintext, the next step
+
+123
+00:06:22,200 --> 00:06:26,220
+is going to be to encipher that
+plaintext, shifting all of the letters
+
+124
+00:06:26,220 --> 00:06:29,550
+by the key to get the ciphertext result.
+
+125
+00:06:29,550 --> 00:06:32,820
+But before we talk about how to
+encipher the entire plaintext,
+
+126
+00:06:32,820 --> 00:06:37,350
+let's just talk about how to
+encipher one particular character.
+
+127
+00:06:37,350 --> 00:06:38,770
+How are we going to do that?
+
+128
+00:06:38,770 --> 00:06:41,760
+Well, there are a couple of cases
+that we might want to consider.
+
+129
+00:06:41,760 --> 00:06:45,060
+If the character is an alphabetic
+character, like an uppercase letter
+
+130
+00:06:45,060 --> 00:06:47,280
+or a lowercase letter,
+for example, then we'll
+
+131
+00:06:47,280 --> 00:06:50,550
+want to shift that plaintext
+character by the key,
+
+132
+00:06:50,550 --> 00:06:52,350
+making sure to preserve the case.
+
+133
+00:06:52,350 --> 00:06:54,240
+If it was originally
+an uppercase letter,
+
+134
+00:06:54,240 --> 00:06:57,120
+it should stay in uppercase
+letter, for example.
+
+135
+00:06:57,120 --> 00:07:00,520
+Of course, if the character is
+not alphabetic-- for example,
+
+136
+00:07:00,520 --> 00:07:03,120
+if it's a space or a
+punctuation mark or a digit--
+
+137
+00:07:03,120 --> 00:07:05,010
+then you can leave the character as is.
+
+138
+00:07:05,010 --> 00:07:07,500
+Nothing actually needs to change there.
+
+139
+00:07:07,500 --> 00:07:10,590
+But how do you know if a character
+is an alphabetic character
+
+140
+00:07:10,590 --> 00:07:12,950
+or an uppercase character
+or a lowercase character?
+
+141
+00:07:12,950 --> 00:07:15,450
+Well, it turns out, there are
+a number of functions that you
+
+142
+00:07:15,450 --> 00:07:17,310
+can use that might be helpful here.
+
+143
+00:07:17,310 --> 00:07:21,090
+Functions like is alpha,
+is upper, and is lower.
+
+144
+00:07:21,090 --> 00:07:23,520
+Is alpha is a function
+that takes a character
+
+145
+00:07:23,520 --> 00:07:26,130
+and returns a Boolean
+value, true or false,
+
+146
+00:07:26,130 --> 00:07:29,070
+depending on whether or not
+that character is alphabetic.
+
+147
+00:07:29,070 --> 00:07:32,490
+And likewise, is upper checks to
+see if the character is uppercase
+
+148
+00:07:32,490 --> 00:07:35,880
+and is lower checks to see
+if a character is lowercase.
+
+149
+00:07:35,880 --> 00:07:39,360
+If we call is alpha, is upper,
+and is lower on capital A,
+
+150
+00:07:39,360 --> 00:07:42,520
+for example, is alpha
+of capital A is true.
+
+151
+00:07:42,520 --> 00:07:43,770
+It is an alphabetic character.
+
+152
+00:07:43,770 --> 00:07:47,310
+Is upper of capital A is
+also true because capital A
+
+153
+00:07:47,310 --> 00:07:48,870
+is an uppercase letter.
+
+154
+00:07:48,870 --> 00:07:53,310
+And is lower of capital A is
+false because capital A is not
+
+155
+00:07:53,310 --> 00:07:54,870
+a lowercase letter.
+
+156
+00:07:54,870 --> 00:07:57,910
+And so that can help you to figure
+out, given a particular character,
+
+157
+00:07:57,910 --> 00:08:01,500
+is it an uppercase character
+or is it a lowercase character?
+
+158
+00:08:01,500 --> 00:08:06,030
+And every character, uppercase
+and lowercase, has an ASCII value.
+
+159
+00:08:06,030 --> 00:08:09,870
+Recall that ASCII is just a
+mapping from characters to numbers
+
+160
+00:08:09,870 --> 00:08:14,070
+that represent them, where we've
+decided that capital A is represented
+
+161
+00:08:14,070 --> 00:08:18,150
+by the number 65, capital B is
+represented by the number 66,
+
+162
+00:08:18,150 --> 00:08:19,380
+so on and so forth.
+
+163
+00:08:19,380 --> 00:08:21,900
+And lowercase letters
+have a mapping as well.
+
+164
+00:08:21,900 --> 00:08:25,760
+Lowercase a is represented by the
+number 97, lowercase b by the number
+
+165
+00:08:25,760 --> 00:08:29,470
+98, lowercase c by 99,
+so on and so forth.
+
+166
+00:08:29,470 --> 00:08:31,980
+And you can treat any
+individual character
+
+167
+00:08:31,980 --> 00:08:34,860
+as equivalent to the
+number that represents it.
+
+168
+00:08:34,860 --> 00:08:36,760
+So what does that mean in code?
+
+169
+00:08:36,760 --> 00:08:39,450
+Well, it means that if I have a
+character in a variable called
+
+170
+00:08:39,450 --> 00:08:42,450
+c that I set equal to the character A--
+
+171
+00:08:42,450 --> 00:08:47,130
+capital A-- and I print out that
+character using %c to mean I want
+
+172
+00:08:47,130 --> 00:08:51,060
+to substitute a character into this
+string, then what gets printed out,
+
+173
+00:08:51,060 --> 00:08:55,830
+as you might expect, is the character
+A. But this character A is really just
+
+174
+00:08:55,830 --> 00:09:00,300
+the number 65 inside of my computer,
+and I can treat this character like
+
+175
+00:09:00,300 --> 00:09:01,870
+the number 65.
+
+176
+00:09:01,870 --> 00:09:05,040
+And like any number, I can do math
+with it, adding or subtracting
+
+177
+00:09:05,040 --> 00:09:06,780
+numbers from it, for example.
+
+178
+00:09:06,780 --> 00:09:10,650
+So I can take capital A and
+add 1 to it, for example.
+
+179
+00:09:10,650 --> 00:09:12,990
+Capital A is represented by 65.
+
+180
+00:09:12,990 --> 00:09:15,300
+65 plus 1 is 66.
+
+181
+00:09:15,300 --> 00:09:17,550
+So if I print out the
+character corresponding
+
+182
+00:09:17,550 --> 00:09:20,910
+to the number 66, what's
+ultimately going to be printed out
+
+183
+00:09:20,910 --> 00:09:26,610
+is the character B because B in ASCII
+is represented by the number 66.
+
+184
+00:09:26,610 --> 00:09:30,870
+But what happens if I try to take a
+character like the character capital Z
+
+185
+00:09:30,870 --> 00:09:32,820
+and shift that by one?
+
+186
+00:09:32,820 --> 00:09:37,680
+If I take the ASCII value corresponding
+to the letter Z and add 1 to it,
+
+187
+00:09:37,680 --> 00:09:39,840
+I don't get the ASCII
+value corresponding
+
+188
+00:09:39,840 --> 00:09:43,830
+to capital A. I get something
+that's outside of the range of all
+
+189
+00:09:43,830 --> 00:09:45,570
+of the capital letters.
+
+190
+00:09:45,570 --> 00:09:47,940
+What I'd really like to
+happen here is that once I
+
+191
+00:09:47,940 --> 00:09:52,140
+try to shift past the letter
+Z, I want to wrap around back
+
+192
+00:09:52,140 --> 00:09:57,550
+to the beginning of the alphabet, back
+to the letter A. But how do I do that?
+
+193
+00:09:57,550 --> 00:10:00,370
+Well, to do this, we can
+take advantage of a formula.
+
+194
+00:10:00,370 --> 00:10:02,820
+And here's the formula that
+we're going to use to convert
+
+195
+00:10:02,820 --> 00:10:05,280
+the plaintext into the ciphertext.
+
+196
+00:10:05,280 --> 00:10:08,580
+It looks a little bit complicated, but
+we'll break it down piece by piece.
+
+197
+00:10:08,580 --> 00:10:13,590
+c sub i here represents the ith
+character of the ciphertext.
+
+198
+00:10:13,590 --> 00:10:17,010
+How do we determine what the ith
+character of the ciphertext is?
+
+199
+00:10:17,010 --> 00:10:21,420
+Well, we're going to start by taking
+the ith character of the plaintext
+
+200
+00:10:21,420 --> 00:10:25,400
+and we're going to add k
+to it, where k is the key.
+
+201
+00:10:25,400 --> 00:10:30,120
+And we're going to take that whole
+result and take it modulo 26.
+
+202
+00:10:30,120 --> 00:10:35,580
+This %26 means we're going to take the
+remainder when we take this whole value
+
+203
+00:10:35,580 --> 00:10:37,750
+and divide it by 26.
+
+204
+00:10:37,750 --> 00:10:39,160
+Why does this work?
+
+205
+00:10:39,160 --> 00:10:43,800
+Well, for sake of example, let's say
+that a is represented by the number 0,
+
+206
+00:10:43,800 --> 00:10:47,940
+b is represented by the number 1, c is
+represented by 2, so on and so forth,
+
+207
+00:10:47,940 --> 00:10:51,490
+up until z, represented
+by the number 25.
+
+208
+00:10:51,490 --> 00:10:53,970
+So how might I go about
+taking the character z
+
+209
+00:10:53,970 --> 00:10:56,910
+and shifting it by 1,
+using this formula?
+
+210
+00:10:56,910 --> 00:10:58,430
+Well, here is the formula.
+
+211
+00:10:58,430 --> 00:11:00,390
+And the plaintext
+character I want to shift
+
+212
+00:11:00,390 --> 00:11:04,400
+is the character z, which is here
+represented by the number 25.
+
+213
+00:11:04,400 --> 00:11:08,540
+And I want to shift it by the
+key k, which in this case is 1.
+
+214
+00:11:08,540 --> 00:11:13,400
+So I have 25 plus 1, which
+is the number 26, and 26--
+
+215
+00:11:13,400 --> 00:11:18,590
+mod 26-- is what's the remainder
+when I divide 26 by 26?
+
+216
+00:11:18,590 --> 00:11:22,100
+Well, the remainder is just
+0, so I'm left with 0, which
+
+217
+00:11:22,100 --> 00:11:24,950
+corresponds to a in the above chart.
+
+218
+00:11:24,950 --> 00:11:27,520
+The result is that I'm
+able to take a character,
+
+219
+00:11:27,520 --> 00:11:29,210
+shift it by a certain amount.
+
+220
+00:11:29,210 --> 00:11:33,260
+And by using modulo 26, I'm able to
+get the remainder when I divide it
+
+221
+00:11:33,260 --> 00:11:36,260
+by 26, which allows
+me to loop back around
+
+222
+00:11:36,260 --> 00:11:41,045
+effectively to the beginning of the
+alphabet so that z wraps around to a.
+
+223
+00:11:41,045 --> 00:11:45,620
+And this mapping of a to 0,
+b to 1, c to 2, et cetera,
+
+224
+00:11:45,620 --> 00:11:48,080
+you can call an alphabetical index.
+
+225
+00:11:48,080 --> 00:11:51,260
+Where I might say that a's
+alphabetical index is 0,
+
+226
+00:11:51,260 --> 00:11:57,240
+b's alphabetical index is 1, c's
+alphabetical index is 2, and so forth.
+
+227
+00:11:57,240 --> 00:12:00,240
+But of course, in our computer, we
+don't use the alphabetical index
+
+228
+00:12:00,240 --> 00:12:01,870
+to represent each character.
+
+229
+00:12:01,870 --> 00:12:06,720
+We use ASCII, where A is
+65 and B is 66 and C is 67,
+
+230
+00:12:06,720 --> 00:12:09,610
+and so we can't directly
+apply this formula.
+
+231
+00:12:09,610 --> 00:12:13,140
+So what do we need to do in
+order to take an ASCII character
+
+232
+00:12:13,140 --> 00:12:15,600
+and shift it by a certain
+amount, while still preserving
+
+233
+00:12:15,600 --> 00:12:19,080
+this wrap-around effect of going
+from the end of the alphabet back
+
+234
+00:12:19,080 --> 00:12:20,400
+to the beginning?
+
+235
+00:12:20,400 --> 00:12:22,500
+Well, here's what we might try to do.
+
+236
+00:12:22,500 --> 00:12:27,090
+We might first convert an ASCII
+character to its alphabetical index
+
+237
+00:12:27,090 --> 00:12:30,240
+so that capital A becomes
+the number 0, for example,
+
+238
+00:12:30,240 --> 00:12:32,730
+and capital B becomes the number 1.
+
+239
+00:12:32,730 --> 00:12:36,300
+And you might want to think about what
+math you could do to make that work.
+
+240
+00:12:36,300 --> 00:12:40,110
+Once you have an alphabetical index,
+you can shift that alphabetical index
+
+241
+00:12:40,110 --> 00:12:43,750
+using the formula, adding the
+key and taking the result mod
+
+242
+00:12:43,750 --> 00:12:47,800
+26 to get the new character's
+alphabetical index.
+
+243
+00:12:47,800 --> 00:12:51,030
+And finally, you can take the
+resulting alphabetical index
+
+244
+00:12:51,030 --> 00:12:54,180
+and convert that back
+into ASCII, so that 0
+
+245
+00:12:54,180 --> 00:12:57,510
+becomes A, 1 becomes
+B, so on and so forth,
+
+246
+00:12:57,510 --> 00:12:59,400
+being sure to preserve the case--
+
+247
+00:12:59,400 --> 00:13:01,780
+uppercase letters
+should remain uppercase,
+
+248
+00:13:01,780 --> 00:13:05,040
+lowercase letters
+should remain lowercase.
+
+249
+00:13:05,040 --> 00:13:08,100
+And that will allow you to
+encipher one alphabetic character.
+
+250
+00:13:08,100 --> 00:13:11,310
+If it's alphabetic, you'll want to
+shift it to its alphabetic index,
+
+251
+00:13:11,310 --> 00:13:15,810
+then shift it using the formula, then
+convert the result back to ASCII.
+
+252
+00:13:15,810 --> 00:13:19,200
+But how, then, instead of
+enciphering just a single character,
+
+253
+00:13:19,200 --> 00:13:22,590
+do you encipher all of the
+characters that are in the plaintext?
+
+254
+00:13:22,590 --> 00:13:25,980
+Well, recall that the plaintext
+is really just a string.
+
+255
+00:13:25,980 --> 00:13:30,030
+And when you have a string, you can
+access individual characters by using
+
+256
+00:13:30,030 --> 00:13:36,060
+array-like notation, where I can say
+text[0] will get me the first character
+
+257
+00:13:36,060 --> 00:13:39,960
+of the string text, which in
+this case is capital T. Likewise,
+
+258
+00:13:39,960 --> 00:13:46,480
+text[1] is lowercase h, text[2] is
+lowercase i, so on and so forth.
+
+259
+00:13:46,480 --> 00:13:49,440
+And I can use this
+notation to access any
+
+260
+00:13:49,440 --> 00:13:52,200
+of the characters inside of the string.
+
+261
+00:13:52,200 --> 00:13:55,080
+How do I know how many
+characters are in the string?
+
+262
+00:13:55,080 --> 00:13:58,940
+Well, there's another function called
+strlen, short for string length,
+
+263
+00:13:58,940 --> 00:14:02,440
+that will take a string and tell
+you how many characters are in it.
+
+264
+00:14:02,440 --> 00:14:04,140
+In this case, 12.
+
+265
+00:14:04,140 --> 00:14:06,870
+So by combining this, knowing
+the length of the string,
+
+266
+00:14:06,870 --> 00:14:10,110
+knowing how to access an
+individual character in the string,
+
+267
+00:14:10,110 --> 00:14:13,500
+and knowing how to encipher an
+individual character in the string,
+
+268
+00:14:13,500 --> 00:14:17,400
+you should be able to implement this
+Caesar program by first figuring out
+
+269
+00:14:17,400 --> 00:14:20,010
+what the key is, then
+getting the plaintext,
+
+270
+00:14:20,010 --> 00:14:24,030
+then enciphering that plaintext by
+shifting all the alphabetic characters,
+
+271
+00:14:24,030 --> 00:14:29,660
+and printing the result. My name
+is Brian and this was Caesar.
+
+272
+00:14:29,660 --> 00:14:30,696

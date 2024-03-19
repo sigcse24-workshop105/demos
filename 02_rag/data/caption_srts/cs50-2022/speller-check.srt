@@ -1,0 +1,386 @@
+1
+00:00:00,000 --> 00:00:00,150
+
+
+2
+00:00:00,150 --> 00:00:02,730
+BRIAN YU: In the check function,
+your job is to take a word
+
+3
+00:00:02,730 --> 00:00:05,430
+and check to see if the word
+is in the dictionary or not.
+
+4
+00:00:05,430 --> 00:00:07,980
+The check function will
+take a char star or a string
+
+5
+00:00:07,980 --> 00:00:10,530
+representing the word as
+its input, and the output
+
+6
+00:00:10,530 --> 00:00:13,870
+will be a Boolean
+variable, true or false.
+
+7
+00:00:13,870 --> 00:00:16,140
+So what does your check
+function need to do?
+
+8
+00:00:16,140 --> 00:00:19,920
+Well, your function should return true
+if the word is in your dictionary.
+
+9
+00:00:19,920 --> 00:00:22,140
+And it should return false otherwise.
+
+10
+00:00:22,140 --> 00:00:25,975
+And importantly, your check
+function should be case insensitive.
+
+11
+00:00:25,975 --> 00:00:28,350
+It shouldn't matter if some
+of the characters in the word
+
+12
+00:00:28,350 --> 00:00:30,000
+are uppercase or lowercase.
+
+13
+00:00:30,000 --> 00:00:33,780
+Your spell checker should still be able
+to detect whether or not the word is
+
+14
+00:00:33,780 --> 00:00:36,510
+in the dictionary regardless of case.
+
+15
+00:00:36,510 --> 00:00:38,490
+So what are you going to need to do?
+
+16
+00:00:38,490 --> 00:00:40,920
+Well, the first step is
+going to be to take the word
+
+17
+00:00:40,920 --> 00:00:44,700
+and hash the word using the hash
+function that you implemented earlier
+
+18
+00:00:44,700 --> 00:00:47,130
+in order to obtain a hash value.
+
+19
+00:00:47,130 --> 00:00:50,490
+Then, you'll access the
+linked list at that hash value
+
+20
+00:00:50,490 --> 00:00:53,910
+at that particular index in your
+hash table, which, again, is just
+
+21
+00:00:53,910 --> 00:00:56,760
+an array of those
+individual linked lists.
+
+22
+00:00:56,760 --> 00:00:59,280
+Once you've access that
+individual linked list,
+
+23
+00:00:59,280 --> 00:01:01,410
+you know that if the word
+is in the dictionary,
+
+24
+00:01:01,410 --> 00:01:03,340
+it's going to be in that list.
+
+25
+00:01:03,340 --> 00:01:06,820
+And if the word is not in that list,
+then it's not in the dictionary.
+
+26
+00:01:06,820 --> 00:01:09,540
+So you can traverse that linked
+list, looking at one node
+
+27
+00:01:09,540 --> 00:01:11,910
+at a time looking for
+the word in question
+
+28
+00:01:11,910 --> 00:01:16,170
+and using the strcasecmp function,
+which is similar to strcmp, which
+
+29
+00:01:16,170 --> 00:01:20,880
+compares to strings, but strcasecmp will
+compare two strings case insensitively.
+
+30
+00:01:20,880 --> 00:01:24,750
+So it won't matter whether the word
+is uppercase or lowercase for example
+
+31
+00:01:24,750 --> 00:01:26,040
+in order to find the word.
+
+32
+00:01:26,040 --> 00:01:29,710
+If you're able to successfully find the
+word, your function will return true.
+
+33
+00:01:29,710 --> 00:01:31,800
+And otherwise, your
+function will return false.
+
+34
+00:01:31,800 --> 00:01:34,110
+How do you traverse
+a linked list though?
+
+35
+00:01:34,110 --> 00:01:36,020
+Well, let's take a look at an example.
+
+36
+00:01:36,020 --> 00:01:38,820
+Here, let's imagine that
+head is a variable that
+
+37
+00:01:38,820 --> 00:01:42,360
+is a pointer to the first element in
+the linked list, in this case, the word
+
+38
+00:01:42,360 --> 00:01:44,430
+bat, which is inside
+of a node that points
+
+39
+00:01:44,430 --> 00:01:48,180
+to a node that has the word book,
+which points to banana, for example.
+
+40
+00:01:48,180 --> 00:01:50,438
+How might I traverse that linked list?
+
+41
+00:01:50,438 --> 00:01:52,980
+Well, you could imagine that I
+could set up a variable called
+
+42
+00:01:52,980 --> 00:01:57,120
+cursor, for example, which initially
+is a pointer to the first element
+
+43
+00:01:57,120 --> 00:01:58,310
+in the linked list.
+
+44
+00:01:58,310 --> 00:02:00,940
+And I might check, is that
+the word that I'm looking for?
+
+45
+00:02:00,940 --> 00:02:03,780
+And if it's not the word I'm looking
+for, then what I'd like to do
+
+46
+00:02:03,780 --> 00:02:07,731
+is take the cursor and move it to
+the next node in the linked list.
+
+47
+00:02:07,731 --> 00:02:09,870
+Well, where's the next node stored?
+
+48
+00:02:09,870 --> 00:02:13,830
+It's stored inside of the
+next field inside of the node
+
+49
+00:02:13,830 --> 00:02:15,430
+that I'm currently looking at.
+
+50
+00:02:15,430 --> 00:02:19,410
+So if I were to use syntax like
+cursor equals cursor arrow next,
+
+51
+00:02:19,410 --> 00:02:24,770
+that would mean take cursor and set it
+equal to whatever cursor's next pointer
+
+52
+00:02:24,770 --> 00:02:26,220
+is currently pointing to.
+
+53
+00:02:26,220 --> 00:02:29,511
+So that would move cursor to the
+next node in the linked list.
+
+54
+00:02:29,511 --> 00:02:33,180
+And I could check this node to see if
+this is the correct word, again, using
+
+55
+00:02:33,180 --> 00:02:37,800
+the strcasecmp function to compare
+two strings to see case insensitively
+
+56
+00:02:37,800 --> 00:02:40,020
+whether they contain the
+same characters or not.
+
+57
+00:02:40,020 --> 00:02:42,520
+If that's not right, then I
+might repeat the process setting
+
+58
+00:02:42,520 --> 00:02:46,260
+cursor equal to cursor arrow next
+to move the cursor to the next node.
+
+59
+00:02:46,260 --> 00:02:49,650
+If I ever find the word in question,
+I'll go ahead and return true.
+
+60
+00:02:49,650 --> 00:02:50,880
+But when do I stop?
+
+61
+00:02:50,880 --> 00:02:53,550
+You might imagine that this is
+happening in some sort of loop.
+
+62
+00:02:53,550 --> 00:02:57,270
+And eventually, I'll reach the end of
+the linked list, where, at some point,
+
+63
+00:02:57,270 --> 00:02:59,880
+I'll set cursor equal
+to cursor arrow next.
+
+64
+00:02:59,880 --> 00:03:03,460
+And at the end of the linked
+list, what we'll have is null.
+
+65
+00:03:03,460 --> 00:03:06,480
+So if we move forward cursor
+equals cursor arrow next
+
+66
+00:03:06,480 --> 00:03:08,970
+and eventually cursor
+becomes null, that means
+
+67
+00:03:08,970 --> 00:03:11,520
+we've reached the end of
+the linked list and the word
+
+68
+00:03:11,520 --> 00:03:14,730
+wasn't found, which means the
+word isn't in our dictionary
+
+69
+00:03:14,730 --> 00:03:17,620
+and our function should at
+this point return false.
+
+70
+00:03:17,620 --> 00:03:21,030
+So as a brief recap, how are we
+going to traverse this linked list?
+
+71
+00:03:21,030 --> 00:03:25,650
+You'll start with some cursor set to the
+first node inside of your linked list.
+
+72
+00:03:25,650 --> 00:03:28,080
+And then you'll keep
+moving the cursor, setting
+
+73
+00:03:28,080 --> 00:03:31,890
+it equal to cursor arrow next over
+and over again checking each word
+
+74
+00:03:31,890 --> 00:03:34,050
+as you go until you get to null.
+
+75
+00:03:34,050 --> 00:03:36,120
+If you find the word
+along the way, then that
+
+76
+00:03:36,120 --> 00:03:39,930
+means the word is in the dictionary and
+you can return true from this function.
+
+77
+00:03:39,930 --> 00:03:42,250
+And otherwise, if you
+reach the end of the list,
+
+78
+00:03:42,250 --> 00:03:45,510
+then the word is not in the
+dictionary and you can return false.
+
+79
+00:03:45,510 --> 00:03:48,630
+As a result, your check function
+will be able to take any word
+
+80
+00:03:48,630 --> 00:03:53,207
+and determine whether or not
+it's inside of your dictionary.
+
+81
+00:03:53,207 --> 00:03:53,707

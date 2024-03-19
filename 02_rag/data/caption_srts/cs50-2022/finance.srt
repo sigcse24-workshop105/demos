@@ -1,0 +1,1860 @@
+1
+00:00:00,000 --> 00:00:02,340
+SPEAKER 1: In this
+problem, your task is going
+
+2
+00:00:02,340 --> 00:00:04,740
+to be to design a web
+application that allows
+
+3
+00:00:04,740 --> 00:00:07,290
+users to manage a portfolio of stocks.
+
+4
+00:00:07,290 --> 00:00:09,270
+In order to do so,
+you'll need to implement
+
+5
+00:00:09,270 --> 00:00:11,290
+a variety of different features.
+
+6
+00:00:11,290 --> 00:00:15,300
+First, you'll need to make sure that
+every user can register for an account.
+
+7
+00:00:15,300 --> 00:00:17,520
+Once they register
+for an account, a user
+
+8
+00:00:17,520 --> 00:00:19,860
+should have the ability
+to look up a stock quote,
+
+9
+00:00:19,860 --> 00:00:23,340
+buy a stock if they want
+to, see an index page that
+
+10
+00:00:23,340 --> 00:00:26,250
+shows them all of the stocks
+the current user is bought,
+
+11
+00:00:26,250 --> 00:00:30,450
+then the user should be able to sell any
+of the stocks that they currently own,
+
+12
+00:00:30,450 --> 00:00:33,610
+and see a history of all
+of their transactions.
+
+13
+00:00:33,610 --> 00:00:36,270
+And finally, once you've
+implemented all of these features,
+
+14
+00:00:36,270 --> 00:00:40,170
+you'll implement a personal touch of
+your very own to add to this website
+
+15
+00:00:40,170 --> 00:00:41,140
+application.
+
+16
+00:00:41,140 --> 00:00:44,070
+But before we dive into the features
+that you're going to implement,
+
+17
+00:00:44,070 --> 00:00:47,040
+let's start by taking a look at
+the distribution code that will
+
+18
+00:00:47,040 --> 00:00:48,840
+provide to you as a starting point.
+
+19
+00:00:48,840 --> 00:00:51,630
+For this problem, the
+distribution code for this problem
+
+20
+00:00:51,630 --> 00:00:53,520
+comes in a number of different parts.
+
+21
+00:00:53,520 --> 00:00:58,740
+We'll give you a few Python files,
+app.py, and helpers.py, in addition to
+
+22
+00:00:58,740 --> 00:01:01,800
+a SQLite database called finance.db.
+
+23
+00:01:01,800 --> 00:01:04,830
+In addition, we'll also give you
+a folder filled with templates.
+
+24
+00:01:04,830 --> 00:01:07,770
+And we'll walk through each of
+these parts of the distribution code
+
+25
+00:01:07,770 --> 00:01:09,130
+one file at a time.
+
+26
+00:01:09,130 --> 00:01:13,380
+Let's start with app.py, which is where
+you'll write most of your Python code
+
+27
+00:01:13,380 --> 00:01:15,190
+for this web application.
+
+28
+00:01:15,190 --> 00:01:19,590
+App.py defines a Flask web
+application, and also defines
+
+29
+00:01:19,590 --> 00:01:24,600
+a variable called db, which will allow
+you to connect to a SQL database.
+
+30
+00:01:24,600 --> 00:01:28,140
+In particular, you can use
+the function db.execute
+
+31
+00:01:28,140 --> 00:01:31,770
+to execute a SQL statement
+on your SQL database.
+
+32
+00:01:31,770 --> 00:01:34,800
+Later in app.py, you'll
+also see definitions
+
+33
+00:01:34,800 --> 00:01:37,890
+for each of the routes inside
+of your web application.
+
+34
+00:01:37,890 --> 00:01:42,000
+Each of which will start
+with the syntax @app.route.
+
+35
+00:01:42,000 --> 00:01:45,090
+These routes can take a variety
+of different request methods.
+
+36
+00:01:45,090 --> 00:01:49,080
+Most notably for getting the
+contents of a page and post
+
+37
+00:01:49,080 --> 00:01:52,747
+generally used if you're submitting
+data to a particular route.
+
+38
+00:01:52,747 --> 00:01:55,080
+There are some routes that
+have already been implemented
+
+39
+00:01:55,080 --> 00:01:58,020
+for you, such as log in and log out.
+
+40
+00:01:58,020 --> 00:02:01,350
+And let's now take an opportunity to
+look at one of these routes, the login
+
+41
+00:02:01,350 --> 00:02:04,320
+route, just to get a sense
+for how routes in Flask
+
+42
+00:02:04,320 --> 00:02:06,520
+this web framework actually work.
+
+43
+00:02:06,520 --> 00:02:09,180
+So here is the login
+route, and it begins
+
+44
+00:02:09,180 --> 00:02:13,380
+with this syntax, @app.route
+with slash login being the route
+
+45
+00:02:13,380 --> 00:02:17,280
+that users can use to access this
+part of your web application.
+
+46
+00:02:17,280 --> 00:02:22,020
+This particular route accepts two
+different methods, GET and POST.
+
+47
+00:02:22,020 --> 00:02:25,710
+And it's associated with
+this function called login.
+
+48
+00:02:25,710 --> 00:02:29,640
+Because the login route accepts
+to request methods, GET and POST,
+
+49
+00:02:29,640 --> 00:02:33,090
+and we need to make different
+decisions based on that request method,
+
+50
+00:02:33,090 --> 00:02:37,800
+one of the first things we'll need to
+do is check what the request method is.
+
+51
+00:02:37,800 --> 00:02:41,250
+If the request method is POST,
+that means the user has just
+
+52
+00:02:41,250 --> 00:02:43,540
+submitted the login form.
+
+53
+00:02:43,540 --> 00:02:45,870
+And if the user has just
+submitted the login form,
+
+54
+00:02:45,870 --> 00:02:49,890
+then we'll need to access whatever
+data the user typed into that form.
+
+55
+00:02:49,890 --> 00:02:55,680
+In order to do that, we can use this
+syntax here, reques.form.getusername,
+
+56
+00:02:55,680 --> 00:02:59,950
+to get whatever the current username is
+that the user typed in into that form.
+
+57
+00:02:59,950 --> 00:03:02,800
+And if the user didn't
+provide a username,
+
+58
+00:03:02,800 --> 00:03:04,980
+well then we should render an apology.
+
+59
+00:03:04,980 --> 00:03:07,470
+An error message to the
+user to let them know
+
+60
+00:03:07,470 --> 00:03:10,190
+that they need to provide a username.
+
+61
+00:03:10,190 --> 00:03:13,550
+Likewise, just as we make sure that
+the user has typed in a username,
+
+62
+00:03:13,550 --> 00:03:16,730
+we also need to make sure that
+the user has typed in a password.
+
+63
+00:03:16,730 --> 00:03:18,980
+And if the user didn't
+type in a password,
+
+64
+00:03:18,980 --> 00:03:22,550
+then we should render
+an apology as well.
+
+65
+00:03:22,550 --> 00:03:24,890
+After that, once we're
+sure that the user has
+
+66
+00:03:24,890 --> 00:03:27,770
+typed in both a username
+and a password, we
+
+67
+00:03:27,770 --> 00:03:31,220
+need to now look them up inside
+of our finance.db database
+
+68
+00:03:31,220 --> 00:03:35,690
+to make sure that this is a valid
+username and password combination.
+
+69
+00:03:35,690 --> 00:03:40,790
+So we'll use db.execute to run a
+select query on our existing database,
+
+70
+00:03:40,790 --> 00:03:45,980
+and do a SELECT to try and find the
+user whose username is equal to whatever
+
+71
+00:03:45,980 --> 00:03:48,230
+it is the user typed in into the form.
+
+72
+00:03:48,230 --> 00:03:51,800
+We won't know what the user
+name is until the user actually
+
+73
+00:03:51,800 --> 00:03:54,890
+types in their username and clicks
+the button to submit the form.
+
+74
+00:03:54,890 --> 00:03:57,320
+And so here, we're
+using a question mark,
+
+75
+00:03:57,320 --> 00:04:01,130
+where the question mark is acting as a
+placeholder for whatever the user typed
+
+76
+00:04:01,130 --> 00:04:03,470
+into the form, which
+again, we can access
+
+77
+00:04:03,470 --> 00:04:07,430
+via this syntax, request.form.get.
+
+78
+00:04:07,430 --> 00:04:11,720
+Whenever we run the execute
+function on a select query running
+
+79
+00:04:11,720 --> 00:04:15,950
+on our database, what we'll get
+back is a list of all of the rows
+
+80
+00:04:15,950 --> 00:04:18,079
+that matched our SELECT query.
+
+81
+00:04:18,079 --> 00:04:21,740
+So the next thing we should do is
+check to make sure that what we got
+
+82
+00:04:21,740 --> 00:04:26,270
+back is exactly one row
+representing that particular user,
+
+83
+00:04:26,270 --> 00:04:30,210
+and we should check to make sure
+that their password was correct.
+
+84
+00:04:30,210 --> 00:04:33,050
+If either of those isn't true, if
+the user is not in the database,
+
+85
+00:04:33,050 --> 00:04:35,180
+or they typed in their
+password wrong, well then
+
+86
+00:04:35,180 --> 00:04:39,530
+we should return an error back to
+the user using that apology function
+
+87
+00:04:39,530 --> 00:04:43,100
+to let the user know that this was
+an invalid username and password
+
+88
+00:04:43,100 --> 00:04:44,920
+combination.
+
+89
+00:04:44,920 --> 00:04:47,050
+And if we made it
+through all of that, that
+
+90
+00:04:47,050 --> 00:04:50,020
+means the user has typed in
+a username and a password,
+
+91
+00:04:50,020 --> 00:04:54,430
+and we verified that this is a
+valid username password combination.
+
+92
+00:04:54,430 --> 00:04:56,830
+And if that's the case, then
+the next thing we should do
+
+93
+00:04:56,830 --> 00:04:59,260
+is actually log the user in.
+
+94
+00:04:59,260 --> 00:05:01,570
+How do we do that,
+we'll recall that we can
+
+95
+00:05:01,570 --> 00:05:06,530
+use the session variable to keep track
+of information about the current user.
+
+96
+00:05:06,530 --> 00:05:11,740
+So we'll store inside of session
+bracket user ID, the current user's ID
+
+97
+00:05:11,740 --> 00:05:13,420
+that we got from the database.
+
+98
+00:05:13,420 --> 00:05:15,160
+And after we've signed
+the user in, we'll
+
+99
+00:05:15,160 --> 00:05:17,750
+go ahead and redirect the
+user back to the home page.
+
+100
+00:05:17,750 --> 00:05:19,930
+So that they can now go
+ahead and look up stocks
+
+101
+00:05:19,930 --> 00:05:22,870
+buy stocks or sell stocks
+if they would like to.
+
+102
+00:05:22,870 --> 00:05:25,300
+And finally, at the very
+end of the function,
+
+103
+00:05:25,300 --> 00:05:27,970
+we need to take care of
+the other request method.
+
+104
+00:05:27,970 --> 00:05:32,050
+All of that code we just took a look
+at was if the request method was POST.
+
+105
+00:05:32,050 --> 00:05:35,500
+The user actually
+submitted the login form.
+
+106
+00:05:35,500 --> 00:05:37,930
+But if instead the
+request method is GET,
+
+107
+00:05:37,930 --> 00:05:42,230
+that means the user just clicked on
+a button to access the login form.
+
+108
+00:05:42,230 --> 00:05:44,230
+And in order to do
+that, what we'll do is
+
+109
+00:05:44,230 --> 00:05:47,560
+return a template back to
+the user rendering the login
+
+110
+00:05:47,560 --> 00:05:51,490
+form so the user can go ahead and
+type in their username and password.
+
+111
+00:05:51,490 --> 00:05:54,040
+In addition to app.py,
+we also provide you
+
+112
+00:05:54,040 --> 00:05:58,580
+with helpers.py, which is a Python file
+that contains some useful functions
+
+113
+00:05:58,580 --> 00:06:00,340
+that you might take
+advantage of as you're
+
+114
+00:06:00,340 --> 00:06:03,560
+building the various features
+of this web application.
+
+115
+00:06:03,560 --> 00:06:05,680
+We'll give you a function
+called apology that
+
+116
+00:06:05,680 --> 00:06:08,200
+displays an error message to the user.
+
+117
+00:06:08,200 --> 00:06:11,740
+Login required can be used
+above any of your functions
+
+118
+00:06:11,740 --> 00:06:16,060
+to require that a user log in before
+they're able to access a given route.
+
+119
+00:06:16,060 --> 00:06:19,900
+For example, you might want to make sure
+that a user is logged in before they're
+
+120
+00:06:19,900 --> 00:06:22,390
+able to buy or sell stocks.
+
+121
+00:06:22,390 --> 00:06:27,280
+The lookup function, meanwhile, uses
+a stocks API to get the current stock
+
+122
+00:06:27,280 --> 00:06:29,410
+quote for a particular stock symbol.
+
+123
+00:06:29,410 --> 00:06:31,450
+So you can look up a
+stock buy it's symbol
+
+124
+00:06:31,450 --> 00:06:35,260
+and figure out what the current
+quote for that stock is.
+
+125
+00:06:35,260 --> 00:06:39,100
+And finally, we give you a function
+called USD that takes a number
+
+126
+00:06:39,100 --> 00:06:41,020
+and formats it as US dollars.
+
+127
+00:06:41,020 --> 00:06:45,070
+With a dollar sign, some number of
+dollars, and some number of cents.
+
+128
+00:06:45,070 --> 00:06:48,130
+Next in the distribution
+code is finance.db
+
+129
+00:06:48,130 --> 00:06:52,150
+and this is the SQLite database that is
+going to store all of the application
+
+130
+00:06:52,150 --> 00:06:54,950
+data for your web application.
+
+131
+00:06:54,950 --> 00:06:58,690
+So far in financ.db will
+give you a user's table.
+
+132
+00:06:58,690 --> 00:07:01,510
+And inside of this user's
+table, you'll find columns
+
+133
+00:07:01,510 --> 00:07:04,900
+for keeping track of each
+user's ID, their username,
+
+134
+00:07:04,900 --> 00:07:08,920
+a hash of their password, and
+how much cash that user has.
+
+135
+00:07:08,920 --> 00:07:11,980
+But you'll likely need to add
+new tables into this database
+
+136
+00:07:11,980 --> 00:07:15,250
+to finish implementing all of the
+features of the web application.
+
+137
+00:07:15,250 --> 00:07:20,050
+And you can do that using the
+CREATE TABLE syntax in SQL.
+
+138
+00:07:20,050 --> 00:07:22,150
+Finally, in this
+distribution code, we also
+
+139
+00:07:22,150 --> 00:07:26,110
+give you a folder of templates
+that contains HTML templates that
+
+140
+00:07:26,110 --> 00:07:30,100
+can be rendered to the user depending
+on what part of the web application
+
+141
+00:07:30,100 --> 00:07:31,750
+they're trying to access.
+
+142
+00:07:31,750 --> 00:07:35,920
+There's a file inside of your
+templates folder called layout.HTML
+
+143
+00:07:35,920 --> 00:07:39,890
+that defines the general HTML
+structure for all of your pages,
+
+144
+00:07:39,890 --> 00:07:43,270
+and then the rest of your
+HTML pages can use the syntax
+
+145
+00:07:43,270 --> 00:07:47,380
+to extend layout.HTML to
+use that existing layout
+
+146
+00:07:47,380 --> 00:07:51,580
+and add to it a title for the page
+and the main body content of each
+
+147
+00:07:51,580 --> 00:07:53,650
+of your other HTML pages.
+
+148
+00:07:53,650 --> 00:07:56,050
+Now that we've taken a look
+at the distribution code that
+
+149
+00:07:56,050 --> 00:07:59,170
+will provide to you for this
+problem, let's now turn our attention
+
+150
+00:07:59,170 --> 00:08:01,060
+to each of the different
+features that you'll
+
+151
+00:08:01,060 --> 00:08:04,540
+need to implement to make this
+web application fully functional.
+
+152
+00:08:04,540 --> 00:08:06,730
+The first thing you'll
+need to do is make sure
+
+153
+00:08:06,730 --> 00:08:11,600
+that each user has the ability to
+register for your finance application.
+
+154
+00:08:11,600 --> 00:08:15,340
+In order to do that, your register route
+should accept two different request
+
+155
+00:08:15,340 --> 00:08:17,980
+methods, GET and POST.
+
+156
+00:08:17,980 --> 00:08:22,120
+If the user tries to access the register
+route using the GET request method,
+
+157
+00:08:22,120 --> 00:08:25,010
+then you should just
+display a form to the user.
+
+158
+00:08:25,010 --> 00:08:27,640
+So that they can register
+for a new account.
+
+159
+00:08:27,640 --> 00:08:31,240
+Once the user submits that form,
+accessing your register route
+
+160
+00:08:31,240 --> 00:08:35,570
+via the POST request method, what you
+should do is check for possible errors.
+
+161
+00:08:35,570 --> 00:08:39,880
+And if there are no errors, then you
+can insert the new user into the user's
+
+162
+00:08:39,880 --> 00:08:43,190
+table and log the user in after that.
+
+163
+00:08:43,190 --> 00:08:45,310
+So let's start with
+that registration form.
+
+164
+00:08:45,310 --> 00:08:48,340
+How will you display a
+registration form to the user?
+
+165
+00:08:48,340 --> 00:08:50,350
+Well in order to do
+that, you'll likely need
+
+166
+00:08:50,350 --> 00:08:55,660
+to create a new template that contains
+the HTML for that registration form.
+
+167
+00:08:55,660 --> 00:08:58,330
+And recall that you can find
+all of your templates inside
+
+168
+00:08:58,330 --> 00:09:01,810
+of that templates folder
+in your finance directory.
+
+169
+00:09:01,810 --> 00:09:05,230
+You can use the login.HTML
+template that we've already
+
+170
+00:09:05,230 --> 00:09:09,050
+provided to you as inspiration for
+what this new template might look like.
+
+171
+00:09:09,050 --> 00:09:11,710
+And remember, the HTML
+form that you create
+
+172
+00:09:11,710 --> 00:09:15,280
+should contain input fields that
+allow the user to choose a username,
+
+173
+00:09:15,280 --> 00:09:20,580
+choose a password, and then verify that
+they typed in their password correctly.
+
+174
+00:09:20,580 --> 00:09:24,080
+Once the user types in information
+into that registration form
+
+175
+00:09:24,080 --> 00:09:26,150
+and submits it to your
+website application,
+
+176
+00:09:26,150 --> 00:09:30,290
+your Python code is going to need to
+access whatever it is the user typed
+
+177
+00:09:30,290 --> 00:09:32,810
+in to that registration form.
+
+178
+00:09:32,810 --> 00:09:36,020
+In order to do that, you can
+use some syntax like this.
+
+179
+00:09:36,020 --> 00:09:39,440
+If you have an input field
+inside of your HTML code
+
+180
+00:09:39,440 --> 00:09:43,940
+with an attribute that says name
+equals password, for example.
+
+181
+00:09:43,940 --> 00:09:46,340
+Well then inside of
+your Flask application,
+
+182
+00:09:46,340 --> 00:09:49,490
+inside of your Python code,
+you can use this syntax here,
+
+183
+00:09:49,490 --> 00:09:54,560
+request.form.get, and then the name
+of that input field, in this case,
+
+184
+00:09:54,560 --> 00:09:55,250
+password.
+
+185
+00:09:55,250 --> 00:09:57,320
+And that will allow
+you to access whatever
+
+186
+00:09:57,320 --> 00:09:59,750
+it is the user typed
+into the form, and then
+
+187
+00:09:59,750 --> 00:10:02,720
+submitted via the POST request method.
+
+188
+00:10:02,720 --> 00:10:05,090
+You can do that for the
+password, for the confirmation,
+
+189
+00:10:05,090 --> 00:10:07,880
+and for the user's username as well.
+
+190
+00:10:07,880 --> 00:10:11,540
+Inside of your route, you'll also
+want to check for possible errors.
+
+191
+00:10:11,540 --> 00:10:15,420
+What might go wrong when the user is
+trying to register for a new account
+
+192
+00:10:15,420 --> 00:10:19,430
+Well, if any field is left blank, if
+the user didn't type in a username,
+
+193
+00:10:19,430 --> 00:10:22,370
+didn't provide a password, or
+didn't confirm their password,
+
+194
+00:10:22,370 --> 00:10:25,940
+you should return an apology, letting
+the user know that each of those fields
+
+195
+00:10:25,940 --> 00:10:27,230
+was required.
+
+196
+00:10:27,230 --> 00:10:29,570
+If the two passwords don't
+match with each other,
+
+197
+00:10:29,570 --> 00:10:32,310
+you should also let the
+user know that as well.
+
+198
+00:10:32,310 --> 00:10:35,900
+And finally, if the user name is
+already taken by some other user
+
+199
+00:10:35,900 --> 00:10:39,260
+already inside of your database,
+you should apologize to the user
+
+200
+00:10:39,260 --> 00:10:41,690
+and let them know about that as well.
+
+201
+00:10:41,690 --> 00:10:45,290
+Once you've confirmed that there are
+no errors with what the user provided
+
+202
+00:10:45,290 --> 00:10:49,430
+to you, you'll want to add the user
+to the user's table of your database,
+
+203
+00:10:49,430 --> 00:10:52,250
+but you should keep security
+in mind as you do so.
+
+204
+00:10:52,250 --> 00:10:57,530
+In particular, remember the databases
+should never store plaintext passwords.
+
+205
+00:10:57,530 --> 00:11:00,380
+Instead, you should
+first generate a hash
+
+206
+00:11:00,380 --> 00:11:03,530
+of the user's password using
+the Generate password hash
+
+207
+00:11:03,530 --> 00:11:04,850
+function provided to you.
+
+208
+00:11:04,850 --> 00:11:08,750
+And then store the hash of the
+password inside of the database instead
+
+209
+00:11:08,750 --> 00:11:11,530
+of the plaintext password itself.
+
+210
+00:11:11,530 --> 00:11:13,780
+Once you've generated
+a hash of the password,
+
+211
+00:11:13,780 --> 00:11:17,920
+then you can add all of this
+information into the database
+
+212
+00:11:17,920 --> 00:11:21,850
+by using db.execute in order
+to run an insert statement
+
+213
+00:11:21,850 --> 00:11:25,010
+to add a new row into the user's table.
+
+214
+00:11:25,010 --> 00:11:28,150
+And remember again, you can
+use the question mark symbol
+
+215
+00:11:28,150 --> 00:11:32,110
+to stand in as a placeholder for a value
+that you might not know yet at the time
+
+216
+00:11:32,110 --> 00:11:33,640
+that you're writing this code.
+
+217
+00:11:33,640 --> 00:11:36,650
+Once the user has been
+added into the user's table,
+
+218
+00:11:36,650 --> 00:11:38,140
+then you can log the user in.
+
+219
+00:11:38,140 --> 00:11:43,030
+Setting session, bracket user ID,
+equal to the new ID for whatever user
+
+220
+00:11:43,030 --> 00:11:45,170
+you've just added to the database.
+
+221
+00:11:45,170 --> 00:11:48,020
+Once the user has been able
+to register for an account,
+
+222
+00:11:48,020 --> 00:11:51,820
+next, you'll want to allow the
+user to look up stock quotes.
+
+223
+00:11:51,820 --> 00:11:55,510
+In your quote route, you should
+also accept to request methods,
+
+224
+00:11:55,510 --> 00:11:57,280
+GET and POST.
+
+225
+00:11:57,280 --> 00:12:00,370
+If a user tries to access
+your quote route via GET,
+
+226
+00:12:00,370 --> 00:12:03,850
+you should display a form that lets
+the user request a stock that they
+
+227
+00:12:03,850 --> 00:12:05,260
+would like to look up.
+
+228
+00:12:05,260 --> 00:12:08,890
+And when the form is submitted
+via POST, then your application
+
+229
+00:12:08,890 --> 00:12:12,430
+should look up that stock symbol
+by calling the lookup function
+
+230
+00:12:12,430 --> 00:12:15,130
+and display the results
+back to the user.
+
+231
+00:12:15,130 --> 00:12:16,930
+How does the lookup function work?
+
+232
+00:12:16,930 --> 00:12:19,240
+Will recall that lookup
+is a function that we have
+
+233
+00:12:19,240 --> 00:12:21,940
+defined for you inside of helper.py.
+
+234
+00:12:21,940 --> 00:12:26,230
+And it takes a stock symbol
+and returns a stock quote.
+
+235
+00:12:26,230 --> 00:12:29,440
+If lookup was able to successfully
+look up the stock quote,
+
+236
+00:12:29,440 --> 00:12:32,410
+then the function is going to
+return a dictionary back to you
+
+237
+00:12:32,410 --> 00:12:36,730
+with fields to represent the name of
+the stock, the symbol for that stock,
+
+238
+00:12:36,730 --> 00:12:38,860
+and what the stock's current price is.
+
+239
+00:12:38,860 --> 00:12:42,160
+But it's also possible that the
+lookup will not be successful.
+
+240
+00:12:42,160 --> 00:12:46,810
+If for example, the user tries to type
+in a stock symbol that doesn't exist.
+
+241
+00:12:46,810 --> 00:12:49,000
+In that case, you
+should return an apology
+
+242
+00:12:49,000 --> 00:12:54,580
+to the user letting them know that
+particular stock symbol doesn't exist.
+
+243
+00:12:54,580 --> 00:12:56,580
+But if the lookup is
+successful, what you'll
+
+244
+00:12:56,580 --> 00:13:01,140
+want to do is display an HTML page
+to the user that contains information
+
+245
+00:13:01,140 --> 00:13:03,900
+about the stock, the name
+of the stock, and what
+
+246
+00:13:03,900 --> 00:13:06,510
+the current price of that stock is.
+
+247
+00:13:06,510 --> 00:13:11,970
+In order to do so, you'll need to pass
+in values into your HTML template.
+
+248
+00:13:11,970 --> 00:13:13,720
+And how might you do that?
+
+249
+00:13:13,720 --> 00:13:17,580
+Well, in your Python code, you can
+use the render template function
+
+250
+00:13:17,580 --> 00:13:20,580
+to render an HTML
+template, but you can also
+
+251
+00:13:20,580 --> 00:13:25,290
+provide variables into this template
+that's known as a jinja template.
+
+252
+00:13:25,290 --> 00:13:29,310
+For example, in this code
+here, I'm rendering Hello.HTML,
+
+253
+00:13:29,310 --> 00:13:31,740
+but giving this template
+access to a variable
+
+254
+00:13:31,740 --> 00:13:35,280
+called name, which in this
+case is equal to Brian.
+
+255
+00:13:35,280 --> 00:13:39,390
+And then inside of my jinja template,
+I can use double curly braces
+
+256
+00:13:39,390 --> 00:13:40,900
+around the variable name.
+
+257
+00:13:40,900 --> 00:13:43,500
+In this case, name, in
+order to display whatever
+
+258
+00:13:43,500 --> 00:13:49,530
+was passed in from the render template
+function here inside of my HTML.
+
+259
+00:13:49,530 --> 00:13:52,440
+Likewise, you could do something
+like this as well in order
+
+260
+00:13:52,440 --> 00:13:56,910
+to display the current price of whatever
+stock the user has just looked up.
+
+261
+00:13:56,910 --> 00:13:59,940
+In addition to allowing users
+to look up a stock quote,
+
+262
+00:13:59,940 --> 00:14:03,600
+we also want to allow
+users to buy a new stock.
+
+263
+00:14:03,600 --> 00:14:07,770
+In order to do that, your buyer out
+will also accept to request methods GET,
+
+264
+00:14:07,770 --> 00:14:08,550
+and POST.
+
+265
+00:14:08,550 --> 00:14:11,070
+Where when the user gets
+this page they should
+
+266
+00:14:11,070 --> 00:14:13,950
+be shown a form that allows
+the user to buy a stock.
+
+267
+00:14:13,950 --> 00:14:18,300
+And when the user submits that form,
+you should purchase the stock as long
+
+268
+00:14:18,300 --> 00:14:20,640
+as the user can actually afford it.
+
+269
+00:14:20,640 --> 00:14:24,750
+Your HTML form should allow the
+user to type in what stock symbol
+
+270
+00:14:24,750 --> 00:14:29,160
+they would like to buy, in addition to
+how many shares they would like to buy.
+
+271
+00:14:29,160 --> 00:14:32,940
+Once the user submits the form, you'll
+want to check it for valid input.
+
+272
+00:14:32,940 --> 00:14:36,810
+For example, a user shouldn't be allowed
+to by a negative number of shares.
+
+273
+00:14:36,810 --> 00:14:41,580
+And you'll also want to make sure that
+the stock symbol is actually valid.
+
+274
+00:14:41,580 --> 00:14:44,280
+But before you can add this
+data into your database,
+
+275
+00:14:44,280 --> 00:14:47,070
+you'll likely need to create
+one or more new tables
+
+276
+00:14:47,070 --> 00:14:49,170
+to keep track of this new information.
+
+277
+00:14:49,170 --> 00:14:51,930
+Right now the finance.db
+database we provide
+
+278
+00:14:51,930 --> 00:14:54,600
+to you includes a table
+for keeping track of users
+
+279
+00:14:54,600 --> 00:14:56,910
+and how much cash they
+have but doesn't include
+
+280
+00:14:56,910 --> 00:15:00,570
+any tables for keeping track of
+what stocks each of those users
+
+281
+00:15:00,570 --> 00:15:01,900
+actually owns.
+
+282
+00:15:01,900 --> 00:15:04,980
+So you'll first want to give some
+thought as to what new tables
+
+283
+00:15:04,980 --> 00:15:07,230
+you'll want to add to
+this database, and what
+
+284
+00:15:07,230 --> 00:15:10,020
+fields that table or tables will have.
+
+285
+00:15:10,020 --> 00:15:14,430
+You can use the CREATE TABLE statement
+to add a new table to the database,
+
+286
+00:15:14,430 --> 00:15:18,660
+and you'll want to be sure to use
+appropriate SQL types as you do so.
+
+287
+00:15:18,660 --> 00:15:21,280
+There are multiple correct
+ways to implement this.
+
+288
+00:15:21,280 --> 00:15:24,120
+So decide for yourself what
+kind of database design
+
+289
+00:15:24,120 --> 00:15:28,110
+makes the most sense to you and is
+most logical for this particular web
+
+290
+00:15:28,110 --> 00:15:29,190
+application.
+
+291
+00:15:29,190 --> 00:15:32,160
+Once you're happy with the
+tables inside of your database,
+
+292
+00:15:32,160 --> 00:15:36,390
+you'll want to add this new stock
+purchase to the user's portfolio.
+
+293
+00:15:36,390 --> 00:15:39,360
+First, remember that you'll need to
+make sure the user has enough cash
+
+294
+00:15:39,360 --> 00:15:40,620
+to afford the stock.
+
+295
+00:15:40,620 --> 00:15:43,470
+If the user can't afford the
+number of shares of the stock
+
+296
+00:15:43,470 --> 00:15:46,170
+that they're trying to purchase,
+you should return an apology
+
+297
+00:15:46,170 --> 00:15:48,210
+to the user letting them
+know that they don't
+
+298
+00:15:48,210 --> 00:15:50,790
+have enough cash for this purchase.
+
+299
+00:15:50,790 --> 00:15:53,910
+But assuming the user does have
+enough cash for the purchase,
+
+300
+00:15:53,910 --> 00:15:57,270
+you should run whatever SQL
+statement you need on your database
+
+301
+00:15:57,270 --> 00:16:02,460
+to purchase that stock, and also be sure
+to update that user's cash to reflect
+
+302
+00:16:02,460 --> 00:16:04,720
+the purchase that they've just made.
+
+303
+00:16:04,720 --> 00:16:06,870
+Once you've implemented
+this feature, users
+
+304
+00:16:06,870 --> 00:16:11,010
+should be able to log into your
+web application and buy new stocks.
+
+305
+00:16:11,010 --> 00:16:14,250
+But once users have bought those
+new stocks it would be nice
+
+306
+00:16:14,250 --> 00:16:17,220
+if there was a place where users
+could view all of the stocks
+
+307
+00:16:17,220 --> 00:16:20,580
+they've already bought, and that's
+what you'll do in this next feature.
+
+308
+00:16:20,580 --> 00:16:25,230
+The index page of your application
+should display an HTML table
+
+309
+00:16:25,230 --> 00:16:28,110
+with all of the information
+about all of the stocks
+
+310
+00:16:28,110 --> 00:16:31,410
+that the current user owns,
+how many shares of each stock
+
+311
+00:16:31,410 --> 00:16:34,950
+the user owns, the current
+price of each of those stocks,
+
+312
+00:16:34,950 --> 00:16:38,100
+as well as the total value
+for each of those holdings.
+
+313
+00:16:38,100 --> 00:16:41,490
+For example, if the user has
+multiple of a certain stock,
+
+314
+00:16:41,490 --> 00:16:44,400
+their total value for
+that stock will be higher.
+
+315
+00:16:44,400 --> 00:16:48,030
+You should also display the user
+current cash balance on this page,
+
+316
+00:16:48,030 --> 00:16:50,760
+as well as their grand
+total of the combination
+
+317
+00:16:50,760 --> 00:16:53,280
+of the value of all of
+their stocks and whatever
+
+318
+00:16:53,280 --> 00:16:56,510
+cash they happen to have on hand.
+
+319
+00:16:56,510 --> 00:16:59,810
+As you create this HTML table,
+you'll realize that there's
+
+320
+00:16:59,810 --> 00:17:02,000
+some HTML that you're going to repeat.
+
+321
+00:17:02,000 --> 00:17:04,880
+For example, you might
+have one row for one stock,
+
+322
+00:17:04,880 --> 00:17:07,579
+and a very similar
+row for another stock.
+
+323
+00:17:07,579 --> 00:17:12,050
+And again and again for each of the
+stocks that the user currently owns.
+
+324
+00:17:12,050 --> 00:17:14,540
+In order to render
+this as HTML, it might
+
+325
+00:17:14,540 --> 00:17:16,640
+be nice to have some
+kind of a loop where
+
+326
+00:17:16,640 --> 00:17:21,140
+you're looping over all of the stocks,
+adding 1 row of the table for each
+
+327
+00:17:21,140 --> 00:17:23,690
+of the stocks the user currently owns.
+
+328
+00:17:23,690 --> 00:17:28,560
+And it turns out we can use loops
+like this inside of a jinja template.
+
+329
+00:17:28,560 --> 00:17:32,750
+In this example, we return
+render template Hello.HTML,
+
+330
+00:17:32,750 --> 00:17:38,420
+and then also pass into that HTML
+template a list of Python dictionaries.
+
+331
+00:17:38,420 --> 00:17:42,110
+Then inside of our jinja
+template we're able to loop over
+
+332
+00:17:42,110 --> 00:17:45,560
+each one of those dictionaries
+for contact in contacts
+
+333
+00:17:45,560 --> 00:17:49,310
+and then use dot notation
+inside of the template to access
+
+334
+00:17:49,310 --> 00:17:51,380
+any of the fields of that dictionary.
+
+335
+00:17:51,380 --> 00:17:55,860
+Dot name or dot house, in
+this particular example.
+
+336
+00:17:55,860 --> 00:17:59,270
+And you might imagine doing something
+similar in your own index page.
+
+337
+00:17:59,270 --> 00:18:01,940
+First, using the database
+and the lookup function
+
+338
+00:18:01,940 --> 00:18:04,880
+to look up all of the information
+you need about the stocks
+
+339
+00:18:04,880 --> 00:18:08,630
+that the current user has, and
+then looping over all of them
+
+340
+00:18:08,630 --> 00:18:13,640
+inside of your HTML template displaying
+one row of a table for each stock
+
+341
+00:18:13,640 --> 00:18:15,380
+that the user currently owns.
+
+342
+00:18:15,380 --> 00:18:18,080
+Users now have the
+ability to buy new stocks
+
+343
+00:18:18,080 --> 00:18:21,210
+and see an index of all of
+the stocks they currently own.
+
+344
+00:18:21,210 --> 00:18:25,390
+So next, let's give users
+the ability to sell a stock.
+
+345
+00:18:25,390 --> 00:18:28,330
+When the user tries to request
+your cell route via GET,
+
+346
+00:18:28,330 --> 00:18:31,940
+you should display a form that allows
+the user to choose which of the stocks
+
+347
+00:18:31,940 --> 00:18:33,940
+they currently own that
+they would like to sell,
+
+348
+00:18:33,940 --> 00:18:37,390
+and how many shares of that
+stock they would like to sell.
+
+349
+00:18:37,390 --> 00:18:40,390
+And when the user submits
+that form via POST,
+
+350
+00:18:40,390 --> 00:18:43,000
+you should check for
+possible errors, and then
+
+351
+00:18:43,000 --> 00:18:45,910
+sell the specified number
+of shares of that stock,
+
+352
+00:18:45,910 --> 00:18:50,470
+and update the user's cash
+balance to reflect that sale.
+
+353
+00:18:50,470 --> 00:18:52,330
+What kind of errors might come up?
+
+354
+00:18:52,330 --> 00:18:55,330
+Well for example, you want to
+make sure that the user actually
+
+355
+00:18:55,330 --> 00:18:58,270
+has the number of shares of
+stock they're trying to sell,
+
+356
+00:18:58,270 --> 00:19:02,260
+and you want to make sure that the user
+can't sell a negative number of shares.
+
+357
+00:19:02,260 --> 00:19:05,110
+With all of these features,
+users now have the ability
+
+358
+00:19:05,110 --> 00:19:07,000
+to buy and sell stocks.
+
+359
+00:19:07,000 --> 00:19:09,310
+But let's now give
+users the ability to see
+
+360
+00:19:09,310 --> 00:19:14,140
+a history of all of their previous
+transactions on your application.
+
+361
+00:19:14,140 --> 00:19:16,570
+When the user accesses
+the history route,
+
+362
+00:19:16,570 --> 00:19:19,510
+you should display to
+the user in HTML table
+
+363
+00:19:19,510 --> 00:19:23,740
+with all of their previous
+transactions, with one row for every buy
+
+364
+00:19:23,740 --> 00:19:28,090
+or sell including information about
+what stock was bought or sold,
+
+365
+00:19:28,090 --> 00:19:30,790
+how many shares of that
+stock were bought or sold,
+
+366
+00:19:30,790 --> 00:19:33,880
+and when that transaction
+actually took place.
+
+367
+00:19:33,880 --> 00:19:37,480
+How you implement the history
+functionality in your web application
+
+368
+00:19:37,480 --> 00:19:41,410
+will depend on how you've designed
+your database, what tables there are,
+
+369
+00:19:41,410 --> 00:19:43,510
+and what columns each table has.
+
+370
+00:19:43,510 --> 00:19:46,570
+And it's possible that you
+might need to revisit and revise
+
+371
+00:19:46,570 --> 00:19:51,170
+your existing database structure to
+allow for this new history feature.
+
+372
+00:19:51,170 --> 00:19:54,490
+Once you've implemented all of those
+features, the last thing you'll do
+
+373
+00:19:54,490 --> 00:19:57,040
+is add a personal touch to
+your website application
+
+374
+00:19:57,040 --> 00:20:00,160
+by deciding a new feature of your
+own that you'd like to implement
+
+375
+00:20:00,160 --> 00:20:02,680
+and adding it to CS 50 finance.
+
+376
+00:20:02,680 --> 00:20:06,280
+For example, you might allow
+users to change their password,
+
+377
+00:20:06,280 --> 00:20:10,660
+or you might allow users to add new cash
+into their account,m or you can choose
+
+378
+00:20:10,660 --> 00:20:11,890
+something else entirely.
+
+379
+00:20:11,890 --> 00:20:15,040
+Deciding on a feature you would like
+for this web application to have
+
+380
+00:20:15,040 --> 00:20:17,800
+and designing new route,
+templates, or tables as
+
+381
+00:20:17,800 --> 00:20:20,940
+needed to make that
+functionality possible.
+
+382
+00:20:20,940 --> 00:20:23,820
+Once you've completed that you'll
+have a fully functional web
+
+383
+00:20:23,820 --> 00:20:27,690
+application, allowing users to
+register, sign into their account,
+
+384
+00:20:27,690 --> 00:20:31,710
+buy and sell stocks, and see a
+history of all of their transactions.
+
+385
+00:20:31,710 --> 00:20:35,660
+My name is Brian, and
+this was CS 50 finance.
+
+386
+00:20:35,660 --> 00:20:37,000

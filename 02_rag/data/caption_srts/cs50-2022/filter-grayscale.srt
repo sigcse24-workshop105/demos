@@ -1,0 +1,413 @@
+1
+00:00:00,000 --> 00:00:00,120
+
+
+2
+00:00:00,120 --> 00:00:03,090
+BRIAN YU: The first filter you're
+going to implement is grayscale.
+
+3
+00:00:03,090 --> 00:00:05,250
+The grayscale filter
+should take a color photo
+
+4
+00:00:05,250 --> 00:00:08,280
+and convert it into grayscale,
+turning it into black and white.
+
+5
+00:00:08,280 --> 00:00:11,080
+But how exactly are
+you going to do that?
+
+6
+00:00:11,080 --> 00:00:13,590
+Well, let's take a look at a
+pixel, which as you'll recall,
+
+7
+00:00:13,590 --> 00:00:16,710
+has a red value, a green
+value, and a blue value.
+
+8
+00:00:16,710 --> 00:00:20,250
+If all of those values are zero,
+the pixel shows up as black.
+
+9
+00:00:20,250 --> 00:00:24,270
+And remember that if all of the
+values are the maximum of 255,
+
+10
+00:00:24,270 --> 00:00:26,610
+then the pixel shows up as white.
+
+11
+00:00:26,610 --> 00:00:28,950
+The interesting thing to
+note, though, is as long
+
+12
+00:00:28,950 --> 00:00:32,520
+as the red, green, and blue values
+are the same, what you'll get
+
+13
+00:00:32,520 --> 00:00:34,690
+is a different shade of gray.
+
+14
+00:00:34,690 --> 00:00:38,220
+If the red, green, and blue
+values are the same small value,
+
+15
+00:00:38,220 --> 00:00:40,410
+you'll get a darker shade
+of gray, something closer
+
+16
+00:00:40,410 --> 00:00:42,540
+to the black end of the spectrum.
+
+17
+00:00:42,540 --> 00:00:44,920
+And if the red, green, and
+blue values are all the same
+
+18
+00:00:44,920 --> 00:00:48,240
+but are a higher value, then
+you'll get a lighter shade of gray,
+
+19
+00:00:48,240 --> 00:00:50,880
+something closer to the
+white end of the spectrum.
+
+20
+00:00:50,880 --> 00:00:54,180
+So your task in grayscale is
+really just, for each pixel,
+
+21
+00:00:54,180 --> 00:00:58,210
+to make sure that the red, green,
+and blue values are all the same.
+
+22
+00:00:58,210 --> 00:01:00,900
+But what value are you
+going to set them to?
+
+23
+00:01:00,900 --> 00:01:03,570
+Well, you might imagine
+that for a lighter color,
+
+24
+00:01:03,570 --> 00:01:06,810
+you probably want a lighter
+shade of gray to represent it.
+
+25
+00:01:06,810 --> 00:01:09,990
+And for a darker color, you
+probably want a darker shade of gray
+
+26
+00:01:09,990 --> 00:01:11,487
+to represent that.
+
+27
+00:01:11,487 --> 00:01:14,070
+So if we have a color that looks
+a little something like this,
+
+28
+00:01:14,070 --> 00:01:16,410
+you probably want a
+lighter shade of gray
+
+29
+00:01:16,410 --> 00:01:19,410
+to represent it by setting the
+red, green, and blue values
+
+30
+00:01:19,410 --> 00:01:22,130
+all to a relatively high value.
+
+31
+00:01:22,130 --> 00:01:24,280
+But if we have a color
+that's a little bit darker,
+
+32
+00:01:24,280 --> 00:01:26,570
+then you probably want
+a darker shade of gray,
+
+33
+00:01:26,570 --> 00:01:29,980
+where the red, green, and blue
+values are all a little bit lower.
+
+34
+00:01:29,980 --> 00:01:33,880
+And one thing that we can do is just
+take the red, green, and blue values
+
+35
+00:01:33,880 --> 00:01:38,120
+and calculate the average pixel value
+for any of these individual channels
+
+36
+00:01:38,120 --> 00:01:42,478
+and use that as the new value
+for red, green, and blue.
+
+37
+00:01:42,478 --> 00:01:44,020
+What does this look like in practice?
+
+38
+00:01:44,020 --> 00:01:47,350
+Well, let's take this shade of green,
+for example, where the red value is
+
+39
+00:01:47,350 --> 00:01:53,230
+equal to 50, the green value is equal to
+190, and the blue value is equal to 90.
+
+40
+00:01:53,230 --> 00:01:57,250
+If we take these three channel values
+and take the average of the three,
+
+41
+00:01:57,250 --> 00:01:59,980
+the average is 110.
+
+42
+00:01:59,980 --> 00:02:03,280
+So for our new pixel that we're
+going to convert to grayscale,
+
+43
+00:02:03,280 --> 00:02:07,840
+we're going to take the red value, set
+it equal to 110, take the green value,
+
+44
+00:02:07,840 --> 00:02:13,240
+set it equal to 110, and take the blue
+value and set it equal to 110 as well.
+
+45
+00:02:13,240 --> 00:02:17,500
+The result is a shade of gray that
+approximately matches the brightness
+
+46
+00:02:17,500 --> 00:02:20,350
+or darkness of the original pixel.
+
+47
+00:02:20,350 --> 00:02:23,170
+Of course, it's possible that
+depending on the original color
+
+48
+00:02:23,170 --> 00:02:27,010
+values, the average value you
+get might not be a whole number.
+
+49
+00:02:27,010 --> 00:02:30,820
+In this case, the average is 109.67.
+
+50
+00:02:30,820 --> 00:02:33,040
+Remember that each of
+red, green, and blue
+
+51
+00:02:33,040 --> 00:02:37,670
+need to be integer values
+in the range from 0 to 255.
+
+52
+00:02:37,670 --> 00:02:40,390
+So if the average value
+is not an integer,
+
+53
+00:02:40,390 --> 00:02:43,330
+you'll want to make sure to
+round it to the nearest integer
+
+54
+00:02:43,330 --> 00:02:47,410
+in order to determine what the
+new value actually should be.
+
+55
+00:02:47,410 --> 00:02:50,650
+So that's how to take one pixel
+and convert it to grayscale.
+
+56
+00:02:50,650 --> 00:02:53,200
+But how are you going to
+do it for the entire image?
+
+57
+00:02:53,200 --> 00:02:56,360
+Well, you could imagine looping
+through the image one row at a time,
+
+58
+00:02:56,360 --> 00:02:59,900
+starting with the first row, then going
+to the next row, so on and so forth,
+
+59
+00:02:59,900 --> 00:03:02,650
+and converting each row to grayscale.
+
+60
+00:03:02,650 --> 00:03:06,760
+Where for each row, you'd iterate one
+more time, using yet another loop,
+
+61
+00:03:06,760 --> 00:03:10,490
+starting with the first pixel in the
+row, then the second pixel in the row,
+
+62
+00:03:10,490 --> 00:03:11,800
+so on and so forth.
+
+63
+00:03:11,800 --> 00:03:14,650
+And for each pixel, what
+you'll likely want to do
+
+64
+00:03:14,650 --> 00:03:16,870
+is calculate what the
+average pixel value
+
+65
+00:03:16,870 --> 00:03:19,840
+is by taking the red channel
+value, the green channel
+
+66
+00:03:19,840 --> 00:03:23,530
+value, and the blue channel value
+and averaging them together.
+
+67
+00:03:23,530 --> 00:03:25,510
+Then, once you've
+calculated the average,
+
+68
+00:03:25,510 --> 00:03:27,470
+you can set each of the color values--
+
+69
+00:03:27,470 --> 00:03:29,380
+each of red, green, and blue--
+
+70
+00:03:29,380 --> 00:03:31,490
+to whatever that average value is--
+
+71
+00:03:31,490 --> 00:03:34,790
+of course, making sure to round
+it to the nearest integer.
+
+72
+00:03:34,790 --> 00:03:37,280
+After you've implemented
+the grayscale function,
+
+73
+00:03:37,280 --> 00:03:39,410
+you should be able to
+try the filter program.
+
+74
+00:03:39,410 --> 00:03:43,070
+After you make the filter
+program, you can run ./filter,
+
+75
+00:03:43,070 --> 00:03:45,740
+passing in -g as a
+command line argument,
+
+76
+00:03:45,740 --> 00:03:48,800
+indicating that you'd like to
+apply the grayscale filter,
+
+77
+00:03:48,800 --> 00:03:53,270
+passing in an input file as infile.bmp
+or whatever the file name happens
+
+78
+00:03:53,270 --> 00:03:57,410
+to be, and then specifying the name
+of the new file you'd like to produce
+
+79
+00:03:57,410 --> 00:03:58,370
+as output--
+
+80
+00:03:58,370 --> 00:04:00,720
+outfile.bmp, for example.
+
+81
+00:04:00,720 --> 00:04:03,740
+If you do that and pass
+it an input file in color,
+
+82
+00:04:03,740 --> 00:04:06,470
+if you've implemented the
+grayscale function successfully,
+
+83
+00:04:06,470 --> 00:04:09,110
+after you run the program,
+you open up the out file,
+
+84
+00:04:09,110 --> 00:04:12,920
+you should see the same photo,
+but converted to grayscale.
+
+85
+00:04:12,920 --> 00:04:14,060
+My name is Brian.
+
+86
+00:04:14,060 --> 00:04:16,810
+And this was grayscale.
+
+87
+00:04:16,810 --> 00:04:17,624

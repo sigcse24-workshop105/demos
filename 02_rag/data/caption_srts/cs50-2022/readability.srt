@@ -1,0 +1,700 @@
+1
+00:00:00,000 --> 00:00:02,330
+BRIAN YU: Let's take
+a look at readability.
+
+2
+00:00:02,330 --> 00:00:06,350
+In readability, your task is going
+to be to write a program in C that
+
+3
+00:00:06,350 --> 00:00:11,120
+can take some text and assess the
+approximate reading level of that text.
+
+4
+00:00:11,120 --> 00:00:15,050
+So for example, you might run
+your program as ./readability.
+
+5
+00:00:15,050 --> 00:00:18,110
+Your program should then prompt
+the user to type in some text.
+
+6
+00:00:18,110 --> 00:00:20,540
+And after the user
+types in a few sentences
+
+7
+00:00:20,540 --> 00:00:25,100
+maybe, your program is going to produce
+as output the approximate US grade
+
+8
+00:00:25,100 --> 00:00:27,170
+reading level for that particular text.
+
+9
+00:00:27,170 --> 00:00:31,190
+Maybe this text for instance, is most
+appropriate for a third grade reading
+
+10
+00:00:31,190 --> 00:00:32,040
+level.
+
+11
+00:00:32,040 --> 00:00:36,335
+But if instead the user were to type
+in a more sophisticated text, then
+
+12
+00:00:36,335 --> 00:00:38,210
+your program might output
+something like this
+
+13
+00:00:38,210 --> 00:00:41,760
+is more appropriate for a fifth
+grade reading level, for example.
+
+14
+00:00:41,760 --> 00:00:44,000
+But what does it really
+mean for a text to be
+
+15
+00:00:44,000 --> 00:00:47,960
+appropriate for a third grade reading
+level or a fifth grade reading level?
+
+16
+00:00:47,960 --> 00:00:51,920
+Well, taking a look at these examples,
+we might make a couple of observations.
+
+17
+00:00:51,920 --> 00:00:55,100
+We might observe the
+first, longer words tend
+
+18
+00:00:55,100 --> 00:00:58,460
+to mean that a text is more
+appropriate for a higher reading level.
+
+19
+00:00:58,460 --> 00:01:02,220
+We might also observe that if
+there are more words in a sentence,
+
+20
+00:01:02,220 --> 00:01:06,320
+in other words, the longer sentences,
+that too generally tends to correlate
+
+21
+00:01:06,320 --> 00:01:08,070
+with a higher reading level.
+
+22
+00:01:08,070 --> 00:01:10,370
+In fact, there are formulas
+that we can use in order
+
+23
+00:01:10,370 --> 00:01:14,120
+to calculate based on any particular
+text what grade level might
+
+24
+00:01:14,120 --> 00:01:15,950
+be appropriate for that text.
+
+25
+00:01:15,950 --> 00:01:19,880
+One such formula that we'll use
+here is the Coleman-Liau Index,
+
+26
+00:01:19,880 --> 00:01:21,710
+which is calculated as follows.
+
+27
+00:01:21,710 --> 00:01:30,440
+It's calculated as 0.0588 times
+L minus 0.296 times S minus 15.8.
+
+28
+00:01:30,440 --> 00:01:34,460
+Where here L represents the
+average number of letters
+
+29
+00:01:34,460 --> 00:01:38,420
+per 100 words in this
+text, and S represents
+
+30
+00:01:38,420 --> 00:01:42,900
+the average number of sentences
+per 100 words in this text.
+
+31
+00:01:42,900 --> 00:01:46,460
+So in order to determine the
+readability of a particular text, what
+
+32
+00:01:46,460 --> 00:01:50,570
+we need to do is calculate the number
+of letters, words, and sentences
+
+33
+00:01:50,570 --> 00:01:54,110
+in that text and then use
+the commonly index formula
+
+34
+00:01:54,110 --> 00:01:57,148
+to figure out what grade level
+might be most appropriate.
+
+35
+00:01:57,148 --> 00:01:58,940
+So let's take a look
+at each of those three
+
+36
+00:01:58,940 --> 00:02:03,515
+in sequence beginning with figuring
+out how many letters are in the text.
+
+37
+00:02:03,515 --> 00:02:05,390
+In this case, we're
+going to count the number
+
+38
+00:02:05,390 --> 00:02:08,210
+of uppercase and lowercase
+letters in the text
+
+39
+00:02:08,210 --> 00:02:10,729
+to determine the total
+number of letters.
+
+40
+00:02:10,729 --> 00:02:14,550
+And recall that if you have some
+text as a string, for example,
+
+41
+00:02:14,550 --> 00:02:18,510
+we can treat that string
+as an array of characters.
+
+42
+00:02:18,510 --> 00:02:20,390
+So if we have an array
+of characters and we
+
+43
+00:02:20,390 --> 00:02:22,760
+want to find out how
+many letters there are,
+
+44
+00:02:22,760 --> 00:02:25,040
+we might start by
+creating a variable, I'll
+
+45
+00:02:25,040 --> 00:02:28,280
+call it letters, that's going to
+keep track of how many letters
+
+46
+00:02:28,280 --> 00:02:30,680
+we found inside of this string.
+
+47
+00:02:30,680 --> 00:02:33,050
+At first, letters is going to be 0.
+
+48
+00:02:33,050 --> 00:02:35,690
+But we can loop through
+this string one character
+
+49
+00:02:35,690 --> 00:02:39,680
+at a time checking each character
+to see whether or not it's a letter.
+
+50
+00:02:39,680 --> 00:02:41,270
+The first character is a letter.
+
+51
+00:02:41,270 --> 00:02:43,970
+So we can increase
+the count from 0 to 1.
+
+52
+00:02:43,970 --> 00:02:46,950
+The next character is also a
+letter it's a lowercase letter.
+
+53
+00:02:46,950 --> 00:02:49,100
+And so the count increases from 1 to 2.
+
+54
+00:02:49,100 --> 00:02:52,080
+And we can repeat that
+process for every character.
+
+55
+00:02:52,080 --> 00:02:55,880
+Notice though that if we come across
+a character that is not a letter,
+
+56
+00:02:55,880 --> 00:02:58,610
+like a space or a number
+or a punctuation mark,
+
+57
+00:02:58,610 --> 00:03:01,920
+we don't want to count that in
+our total account of letters.
+
+58
+00:03:01,920 --> 00:03:04,080
+So we shouldn't increment letters here.
+
+59
+00:03:04,080 --> 00:03:06,980
+But when we get to the next
+character that is a letter,
+
+60
+00:03:06,980 --> 00:03:08,480
+then we can increment the count.
+
+61
+00:03:08,480 --> 00:03:11,270
+And we'll do that for
+the rest of this string
+
+62
+00:03:11,270 --> 00:03:14,420
+until we end up with a final
+count of the number of letters
+
+63
+00:03:14,420 --> 00:03:16,460
+that are inside of this text.
+
+64
+00:03:16,460 --> 00:03:19,730
+You might find that C has some
+helpful library functions declared
+
+65
+00:03:19,730 --> 00:03:23,600
+in a file called ctype.h that might
+help you for taking a character
+
+66
+00:03:23,600 --> 00:03:27,620
+and assessing whether or
+not it is in fact a letter.
+
+67
+00:03:27,620 --> 00:03:31,310
+Once we figured out how many letters
+there are inside of the text,
+
+68
+00:03:31,310 --> 00:03:34,280
+the next step is going to be to
+calculate how many words there
+
+69
+00:03:34,280 --> 00:03:36,030
+are inside of the text.
+
+70
+00:03:36,030 --> 00:03:38,570
+And this gets a little bit
+trickier because we first
+
+71
+00:03:38,570 --> 00:03:42,200
+need to decide what does it
+mean for something to be a word.
+
+72
+00:03:42,200 --> 00:03:44,600
+And for the purposes
+of this problem, we're
+
+73
+00:03:44,600 --> 00:03:46,880
+going to count the number
+of words in a sentence
+
+74
+00:03:46,880 --> 00:03:50,420
+by assuming that a word is
+any sequence of characters
+
+75
+00:03:50,420 --> 00:03:52,530
+that is separated by a space.
+
+76
+00:03:52,530 --> 00:03:55,280
+So every time you see a space
+appear in the text, that's
+
+77
+00:03:55,280 --> 00:03:58,650
+going to be an indication
+that a new word is coming.
+
+78
+00:03:58,650 --> 00:04:02,840
+And so if we were to take a string
+again, just an array of characters
+
+79
+00:04:02,840 --> 00:04:05,150
+and try and find out how
+many words there are,
+
+80
+00:04:05,150 --> 00:04:08,750
+we might start by looking to see
+how many spaces there are inside
+
+81
+00:04:08,750 --> 00:04:09,840
+of this string.
+
+82
+00:04:09,840 --> 00:04:12,470
+And if we were to loop
+through this string checking
+
+83
+00:04:12,470 --> 00:04:16,610
+for the number of spaces, we might
+find that there are four spaces inside
+
+84
+00:04:16,610 --> 00:04:18,440
+of the string, for example.
+
+85
+00:04:18,440 --> 00:04:20,990
+But we shouldn't jump to then
+saying that there are therefore
+
+86
+00:04:20,990 --> 00:04:23,480
+four words inside of this string.
+
+87
+00:04:23,480 --> 00:04:26,540
+After all, spaces
+appear in between words
+
+88
+00:04:26,540 --> 00:04:29,120
+and there's a space after
+each word, but there's
+
+89
+00:04:29,120 --> 00:04:31,880
+no space after the last
+word in the string.
+
+90
+00:04:31,880 --> 00:04:33,950
+You can assume that the
+string we provide to you
+
+91
+00:04:33,950 --> 00:04:36,900
+won't start or end with a space.
+
+92
+00:04:36,900 --> 00:04:40,370
+So even though there are four
+spaces inside of the string,
+
+93
+00:04:40,370 --> 00:04:43,440
+there are actually five
+words in the string.
+
+94
+00:04:43,440 --> 00:04:45,890
+And in general, we can
+take the number of spaces
+
+95
+00:04:45,890 --> 00:04:49,790
+and add 1 to it to figure out
+how many words there are inside
+
+96
+00:04:49,790 --> 00:04:52,180
+of any given piece of text.
+
+97
+00:04:52,180 --> 00:04:54,400
+After we figured out how
+many words there are,
+
+98
+00:04:54,400 --> 00:04:56,770
+the final step in terms of
+what we need to count up
+
+99
+00:04:56,770 --> 00:05:00,890
+is counting up the number of sentences
+that appear in that text as well.
+
+100
+00:05:00,890 --> 00:05:03,140
+And again, for the
+purposes of this program,
+
+101
+00:05:03,140 --> 00:05:07,630
+we're going to assume that any period,
+exclamation point, or question mark
+
+102
+00:05:07,630 --> 00:05:10,280
+is going to indicate
+the end of a sentence.
+
+103
+00:05:10,280 --> 00:05:13,870
+So figuring out how many sentences
+there are in a particular text
+
+104
+00:05:13,870 --> 00:05:18,280
+is just a matter of counting up how many
+times do we see periods, exclamation
+
+105
+00:05:18,280 --> 00:05:20,360
+points, or question marks.
+
+106
+00:05:20,360 --> 00:05:22,270
+So for example, let's take this text.
+
+107
+00:05:22,270 --> 00:05:24,370
+Congratulations!
+
+108
+00:05:24,370 --> 00:05:26,560
+Today is your day.
+
+109
+00:05:26,560 --> 00:05:30,580
+In this particular string, you'll notice
+that there are two punctuation marks
+
+110
+00:05:30,580 --> 00:05:32,470
+that denote the end of a sentence.
+
+111
+00:05:32,470 --> 00:05:35,510
+We have one exclamation
+point and one period.
+
+112
+00:05:35,510 --> 00:05:39,490
+And so as a result, we could conclude
+that based on this particular string,
+
+113
+00:05:39,490 --> 00:05:43,510
+we're able to find two
+sentences inside of that string.
+
+114
+00:05:43,510 --> 00:05:46,930
+Once we've counted up the number
+of letters, words, and sentences
+
+115
+00:05:46,930 --> 00:05:49,660
+that appear inside a
+given text, the next step
+
+116
+00:05:49,660 --> 00:05:53,560
+is going to be to use those values
+to calculate what the Coleman-Liau
+
+117
+00:05:53,560 --> 00:05:55,390
+Index should actually be.
+
+118
+00:05:55,390 --> 00:05:59,420
+In order to do so, you're going to take
+these three values: letters, words,
+
+119
+00:05:59,420 --> 00:06:03,880
+and sentences and plug them into
+the common layout index formula.
+
+120
+00:06:03,880 --> 00:06:05,650
+Again, that formula is here.
+
+121
+00:06:05,650 --> 00:06:09,400
+That's a result of multiplying the
+average number of letters per 100 words
+
+122
+00:06:09,400 --> 00:06:12,310
+by a particular value and
+subtracting the result
+
+123
+00:06:12,310 --> 00:06:15,700
+of taking the average number of
+sentences per 100 words multiplied
+
+124
+00:06:15,700 --> 00:06:19,450
+by a value as well and
+subtracting 15.8 at the end
+
+125
+00:06:19,450 --> 00:06:22,390
+in order to get an estimate for
+what the approximate reading
+
+126
+00:06:22,390 --> 00:06:25,080
+level of a particular text is.
+
+127
+00:06:25,080 --> 00:06:28,170
+Ultimately, your program should
+output what that grade reading
+
+128
+00:06:28,170 --> 00:06:32,470
+level is but be sure to round your
+score to the nearest whole number.
+
+129
+00:06:32,470 --> 00:06:35,340
+So for example, if your
+index is 2.8, you're
+
+130
+00:06:35,340 --> 00:06:38,830
+going to round that and say that it's
+about a third grade reading level.
+
+131
+00:06:38,830 --> 00:06:42,480
+And your program should output
+squared X, where X corresponds
+
+132
+00:06:42,480 --> 00:06:45,090
+to the reading level of that text.
+
+133
+00:06:45,090 --> 00:06:47,850
+But we do want to set a
+minimum and a maximum here.
+
+134
+00:06:47,850 --> 00:06:50,760
+If it turns out that your output
+would have been less than 1,
+
+135
+00:06:50,760 --> 00:06:54,120
+your program should just
+output before grade 1.
+
+136
+00:06:54,120 --> 00:06:57,150
+And if the output is 16 or
+higher, then your program
+
+137
+00:06:57,150 --> 00:06:59,460
+should output grade 16 plus.
+
+138
+00:06:59,460 --> 00:07:01,950
+But anywhere in between
+grades 2 through 15,
+
+139
+00:07:01,950 --> 00:07:06,240
+your program should output grade 2,
+grade 3, grade 4, et, cetera, as it
+
+140
+00:07:06,240 --> 00:07:09,040
+corresponds to the reading
+level of the program.
+
+141
+00:07:09,040 --> 00:07:12,750
+Once you follow these steps, you should
+have a completed readability program
+
+142
+00:07:12,750 --> 00:07:15,210
+where you can type in some
+text, and your program
+
+143
+00:07:15,210 --> 00:07:18,270
+will calculate what US grade
+reading level would be most
+
+144
+00:07:18,270 --> 00:07:20,890
+appropriate for that particular text.
+
+145
+00:07:20,890 --> 00:07:21,810
+My name is Brian.
+
+146
+00:07:21,810 --> 00:07:24,950
+And this was readability.
+
+147
+00:07:24,950 --> 00:07:26,000

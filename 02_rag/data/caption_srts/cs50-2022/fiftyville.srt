@@ -1,0 +1,639 @@
+1
+00:00:00,000 --> 00:00:02,430
+BRIAN YU: In Fiftyville,
+your task is going
+
+2
+00:00:02,430 --> 00:00:05,370
+to be to use SQL to solve a mystery.
+
+3
+00:00:05,370 --> 00:00:07,380
+In the town of Fiftyville,
+you've been told
+
+4
+00:00:07,380 --> 00:00:10,410
+that the CS50 duck has
+been stolen, and it's
+
+5
+00:00:10,410 --> 00:00:12,700
+going to be your job to
+figure out what happened.
+
+6
+00:00:12,700 --> 00:00:14,700
+Here's the information
+that we'll give to you.
+
+7
+00:00:14,700 --> 00:00:19,110
+What you know is that, first,
+the theft took place on July 28,
+
+8
+00:00:19,110 --> 00:00:23,070
+and second, that the theft took
+place on Chamberlain Street.
+
+9
+00:00:23,070 --> 00:00:26,820
+But beyond those two pieces of
+information, you don't know much else.
+
+10
+00:00:26,820 --> 00:00:31,050
+And in particular, your task is
+going to be to identify three things.
+
+11
+00:00:31,050 --> 00:00:34,590
+Your goal is to determine,
+first, who the thief is,
+
+12
+00:00:34,590 --> 00:00:37,100
+second, where the thief escaped to.
+
+13
+00:00:37,100 --> 00:00:38,850
+You believe the thief
+probably escaped out
+
+14
+00:00:38,850 --> 00:00:41,340
+of town to a different
+city other than Fiftyville,
+
+15
+00:00:41,340 --> 00:00:43,590
+and your goal is to figure
+out where they went.
+
+16
+00:00:43,590 --> 00:00:48,000
+And third, you're supposed to identify
+who the thief's accomplice was
+
+17
+00:00:48,000 --> 00:00:51,080
+who helped them escape out of town.
+
+18
+00:00:51,080 --> 00:00:53,570
+How are you going to figure
+out all of this information?
+
+19
+00:00:53,570 --> 00:00:57,190
+Well, you've been provided
+with a database, fiftyville.db,
+
+20
+00:00:57,190 --> 00:01:01,630
+which is a SQLite database that contains
+a number of tables with data collected
+
+21
+00:01:01,630 --> 00:01:02,890
+from around the town.
+
+22
+00:01:02,890 --> 00:01:05,500
+And what you're going to
+do is query that database
+
+23
+00:01:05,500 --> 00:01:09,160
+in order to access information
+in order to try and figure out
+
+24
+00:01:09,160 --> 00:01:11,950
+who the thief actually is.
+
+25
+00:01:11,950 --> 00:01:13,910
+In order to do that,
+on the command line,
+
+26
+00:01:13,910 --> 00:01:18,640
+you can run sqlite3 followed by
+fiftyville.db, the name of the database
+
+27
+00:01:18,640 --> 00:01:21,160
+file that you'd like to
+open and query, to start
+
+28
+00:01:21,160 --> 00:01:23,350
+running queries on that database.
+
+29
+00:01:23,350 --> 00:01:25,360
+After you run this
+command in the terminal,
+
+30
+00:01:25,360 --> 00:01:27,730
+you'll be presented with
+the SQLite prompt, where
+
+31
+00:01:27,730 --> 00:01:30,790
+you'll see the word "sqlite"
+followed by a greater than sign.
+
+32
+00:01:30,790 --> 00:01:33,760
+And it's here that you can
+start running your SQL queries,
+
+33
+00:01:33,760 --> 00:01:36,260
+like your SELECT queries, for example.
+
+34
+00:01:36,260 --> 00:01:38,530
+But before you do that,
+you'll probably want
+
+35
+00:01:38,530 --> 00:01:41,710
+to know what the structure
+of the data in this database
+
+36
+00:01:41,710 --> 00:01:46,480
+is, for example, what the tables are
+and what columns those tables have.
+
+37
+00:01:46,480 --> 00:01:50,230
+To find out that information, one
+command you might want to run first is
+
+38
+00:01:50,230 --> 00:01:54,610
+.tables, which is a command in
+SQLite that will list for you all
+
+39
+00:01:54,610 --> 00:01:57,530
+of the tables that are
+inside of this database.
+
+40
+00:01:57,530 --> 00:02:00,940
+If you type .tables at the
+sqlite prompt and press Return,
+
+41
+00:02:00,940 --> 00:02:03,340
+you'll be presented with
+something that looks like this,
+
+42
+00:02:03,340 --> 00:02:07,390
+a listing of all of the tables that are
+inside of this database, and therefore,
+
+43
+00:02:07,390 --> 00:02:10,300
+all of the types of data
+you might have access to.
+
+44
+00:02:10,300 --> 00:02:12,470
+Taking a glance at the
+tables you see here,
+
+45
+00:02:12,470 --> 00:02:15,430
+you'll see that we have information
+about airports and bank accounts
+
+46
+00:02:15,430 --> 00:02:19,220
+and crime scene reports and flights
+and interviews, for example.
+
+47
+00:02:19,220 --> 00:02:21,430
+And in particular, the
+crime scene reports
+
+48
+00:02:21,430 --> 00:02:23,690
+one looks potentially interesting.
+
+49
+00:02:23,690 --> 00:02:25,990
+Especially since all
+we know at the outset
+
+50
+00:02:25,990 --> 00:02:29,920
+is that there's been some crime that
+took place on some day in some place,
+
+51
+00:02:29,920 --> 00:02:32,230
+the crime scene reports
+table might offer us
+
+52
+00:02:32,230 --> 00:02:34,720
+some additional information
+that can help us
+
+53
+00:02:34,720 --> 00:02:37,420
+along the way to solving this mystery.
+
+54
+00:02:37,420 --> 00:02:41,620
+But .tables will just tell you what
+the names of all of the tables are,
+
+55
+00:02:41,620 --> 00:02:45,490
+but won't tell you, for example, what
+columns those tables have or what
+
+56
+00:02:45,490 --> 00:02:48,340
+the types of those columns actually are.
+
+57
+00:02:48,340 --> 00:02:51,530
+So if we want to see the
+database schema for a table,
+
+58
+00:02:51,530 --> 00:02:55,240
+in other words, what columns make it
+up, we can use a command like this.
+
+59
+00:02:55,240 --> 00:02:59,380
+I can run a .schema, followed by
+the name of a table, for example,
+
+60
+00:02:59,380 --> 00:03:04,000
+.schema crime scene reports sine the
+crime scene reports table was a table
+
+61
+00:03:04,000 --> 00:03:07,210
+that looked interesting when I was
+looking at that full listing of all
+
+62
+00:03:07,210 --> 00:03:08,590
+of the tables.
+
+63
+00:03:08,590 --> 00:03:11,200
+If I press Enter now, what
+I'll be presented with
+
+64
+00:03:11,200 --> 00:03:15,910
+is the CREATE TABLE command that was
+used in order to create the crime scene
+
+65
+00:03:15,910 --> 00:03:17,050
+reports table.
+
+66
+00:03:17,050 --> 00:03:20,050
+And what we'll notice here is that
+there are some interesting fields
+
+67
+00:03:20,050 --> 00:03:21,400
+that I might find useful.
+
+68
+00:03:21,400 --> 00:03:24,400
+For example, there are columns
+in this table that correspond
+
+69
+00:03:24,400 --> 00:03:27,010
+to the date on which a crime happened.
+
+70
+00:03:27,010 --> 00:03:30,400
+There's a street column that
+corresponds to what street
+
+71
+00:03:30,400 --> 00:03:32,530
+the crime scene report was taken on.
+
+72
+00:03:32,530 --> 00:03:36,820
+And there's a description field, just
+some text describing what happened.
+
+73
+00:03:36,820 --> 00:03:39,670
+And in particular, for this
+crime, one place to start
+
+74
+00:03:39,670 --> 00:03:42,790
+might be trying to figure
+out what the description is
+
+75
+00:03:42,790 --> 00:03:44,560
+for the crime in question.
+
+76
+00:03:44,560 --> 00:03:47,290
+And for the crime in question,
+we know what day it took place,
+
+77
+00:03:47,290 --> 00:03:49,060
+for example, a month and a day.
+
+78
+00:03:49,060 --> 00:03:52,340
+And we also know on what
+street it took place.
+
+79
+00:03:52,340 --> 00:03:55,930
+So in order to query the crime scene
+reports table for this information,
+
+80
+00:03:55,930 --> 00:04:00,040
+I can look at what columns the
+table has and run a SQL query that
+
+81
+00:04:00,040 --> 00:04:02,240
+looks something like this, for example.
+
+82
+00:04:02,240 --> 00:04:06,640
+SELECT description, that's the column
+that I'm interested in, FROM crime
+
+83
+00:04:06,640 --> 00:04:10,060
+scene reports, that's the
+table that I'm querying from,
+
+84
+00:04:10,060 --> 00:04:12,770
+WHERE a particular condition is true.
+
+85
+00:04:12,770 --> 00:04:15,430
+And in this case, the
+condition is that the date
+
+86
+00:04:15,430 --> 00:04:18,760
+is the date on which the crime
+took place and the street
+
+87
+00:04:18,760 --> 00:04:22,390
+is the street where I know that
+the crime took place as well.
+
+88
+00:04:22,390 --> 00:04:25,330
+By executing this query
+within SQLite, I'll
+
+89
+00:04:25,330 --> 00:04:28,870
+be presented with the description
+from the crime scene reports table
+
+90
+00:04:28,870 --> 00:04:30,610
+for this particular crime.
+
+91
+00:04:30,610 --> 00:04:32,425
+As you work through
+solving this mystery,
+
+92
+00:04:32,425 --> 00:04:34,300
+you'll probably find
+that you'll need to look
+
+93
+00:04:34,300 --> 00:04:37,990
+at some other tables other than
+just the crime scene reports table.
+
+94
+00:04:37,990 --> 00:04:40,840
+And recall that if you ever need
+to remember what all of the tables
+
+95
+00:04:40,840 --> 00:04:45,310
+in the database are, you can run .tables
+at the sqlite prompt to see a listing
+
+96
+00:04:45,310 --> 00:04:48,460
+of all of the tables that
+you might want to access.
+
+97
+00:04:48,460 --> 00:04:50,860
+A few suggestions as you
+go about your process
+
+98
+00:04:50,860 --> 00:04:52,780
+of trying to solve this mystery.
+
+99
+00:04:52,780 --> 00:04:56,110
+First, explore the table
+schemas by running .schema,
+
+100
+00:04:56,110 --> 00:04:59,650
+followed by the name of a table,
+to better understand what data is
+
+101
+00:04:59,650 --> 00:05:03,080
+available to you and how those
+tables connect to one another.
+
+102
+00:05:03,080 --> 00:05:05,530
+Oftentimes, one column
+of one table might
+
+103
+00:05:05,530 --> 00:05:08,230
+correspond to another
+column of another table,
+
+104
+00:05:08,230 --> 00:05:11,350
+and getting a sense for how those
+tables interact with each other
+
+105
+00:05:11,350 --> 00:05:13,180
+is going to be a helpful
+way of making sure
+
+106
+00:05:13,180 --> 00:05:16,930
+that you know how to get access to
+the data that you're looking for.
+
+107
+00:05:16,930 --> 00:05:19,450
+Additionally, you might find
+it helpful to run queries
+
+108
+00:05:19,450 --> 00:05:21,790
+across multiple different
+tables if you're
+
+109
+00:05:21,790 --> 00:05:24,100
+trying to access information
+that might be stored
+
+110
+00:05:24,100 --> 00:05:26,440
+across two or more different tables.
+
+111
+00:05:26,440 --> 00:05:28,810
+In order to do that, there
+are multiple strategies
+
+112
+00:05:28,810 --> 00:05:30,610
+you could try to approach
+the problem with.
+
+113
+00:05:30,610 --> 00:05:33,680
+But one approach would be to
+nest queries within each other.
+
+114
+00:05:33,680 --> 00:05:37,660
+And another approach is to use JOIN
+to join multiple tables together
+
+115
+00:05:37,660 --> 00:05:40,900
+in order to access data across
+multiple columns that might
+
+116
+00:05:40,900 --> 00:05:43,960
+be found in multiple different tables.
+
+117
+00:05:43,960 --> 00:05:46,000
+And as you go about
+the process of trying
+
+118
+00:05:46,000 --> 00:05:49,060
+to figure out who the thief
+actually is, where they escaped to,
+
+119
+00:05:49,060 --> 00:05:53,170
+and who their accomplice is, it might be
+helpful to maintain a list of suspects,
+
+120
+00:05:53,170 --> 00:05:55,300
+people that you believe
+might be the thief.
+
+121
+00:05:55,300 --> 00:05:58,180
+And you might narrow down
+that suspect list over time
+
+122
+00:05:58,180 --> 00:06:01,030
+as you discover more evidence
+and look through these tables
+
+123
+00:06:01,030 --> 00:06:03,190
+to find even more
+information to help you
+
+124
+00:06:03,190 --> 00:06:06,400
+along the way to trying
+to solve this mystery.
+
+125
+00:06:06,400 --> 00:06:09,250
+Ultimately, you should be keeping
+track of all of the queries
+
+126
+00:06:09,250 --> 00:06:11,500
+that you run inside of your log file.
+
+127
+00:06:11,500 --> 00:06:15,640
+And you can use this file as well as a
+place to add comments, to take notes,
+
+128
+00:06:15,640 --> 00:06:19,090
+and to describe your thought process
+as you go through the process of trying
+
+129
+00:06:19,090 --> 00:06:20,920
+to solve this mystery.
+
+130
+00:06:20,920 --> 00:06:24,400
+Ultimately, after looking through these
+tables and running these SQL queries,
+
+131
+00:06:24,400 --> 00:06:28,120
+you should be able to identify who
+the thief is, where they left to,
+
+132
+00:06:28,120 --> 00:06:31,840
+and who their accomplice was, and
+ultimately solve this mystery.
+
+133
+00:06:31,840 --> 00:06:36,030
+My name is Brian, and
+this was Fiftyville.

@@ -1,0 +1,50 @@
+1
+00:00:00,000 --> 00:00:01,950
+BRIAN YU: In the Size
+function, you'll need
+
+2
+00:00:01,950 --> 00:00:04,965
+to return the number of words
+that are in your dictionary.
+
+3
+00:00:04,965 --> 00:00:06,840
+There are a number of
+ways you might do that.
+
+4
+00:00:06,840 --> 00:00:09,930
+You might imagine iterating over
+every single one of the linked lists
+
+5
+00:00:09,930 --> 00:00:12,750
+inside of your hash table,
+counting the number of nodes
+
+6
+00:00:12,750 --> 00:00:14,730
+inside of each of the linked lists.
+
+7
+00:00:14,730 --> 00:00:17,790
+Or you could imagine that, as
+you're loading the hash table,
+
+8
+00:00:17,790 --> 00:00:20,310
+you could somehow keep
+track of the number of words
+
+9
+00:00:20,310 --> 00:00:24,240
+you've added to the dictionary so far so
+you can return that value in your Size
+
+10
+00:00:24,240 --> 00:00:25,790
+function.
+
+11
+00:00:25,790 --> 00:00:26,864

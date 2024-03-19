@@ -1,0 +1,688 @@
+1
+00:00:00,000 --> 00:00:00,120
+
+
+2
+00:00:00,120 --> 00:00:02,100
+BRIAN: In substitution,
+your task is going
+
+3
+00:00:02,100 --> 00:00:06,000
+to be to implement a substitution
+cipher where you'll encrypt or encipher
+
+4
+00:00:06,000 --> 00:00:10,020
+some plain text by taking every
+alphabetic character in that plain text
+
+5
+00:00:10,020 --> 00:00:12,510
+and replacing it with another character.
+
+6
+00:00:12,510 --> 00:00:14,170
+What might that actually look like?
+
+7
+00:00:14,170 --> 00:00:16,140
+Well, let's take a look at a sample key.
+
+8
+00:00:16,140 --> 00:00:18,480
+Here, we have the plain
+text letters of the alphabet
+
+9
+00:00:18,480 --> 00:00:22,350
+from A all the way through Z.
+And in a substitution cipher,
+
+10
+00:00:22,350 --> 00:00:25,140
+we're going to replace each
+of those plain text characters
+
+11
+00:00:25,140 --> 00:00:26,950
+with a cipher text character.
+
+12
+00:00:26,950 --> 00:00:30,000
+For example, here is a mapping
+that maps the plain text character
+
+13
+00:00:30,000 --> 00:00:34,710
+A to the letter J, maps the letter
+B to T, maps the letter C to R,
+
+14
+00:00:34,710 --> 00:00:36,400
+so on and so forth.
+
+15
+00:00:36,400 --> 00:00:38,970
+How do we actually use
+this inside of a cipher?
+
+16
+00:00:38,970 --> 00:00:43,110
+Well, if the plain text is the word
+hello, then using this substitution
+
+17
+00:00:43,110 --> 00:00:50,130
+cipher, we would end up with the cipher
+text VKXXN because H in plain text maps
+
+18
+00:00:50,130 --> 00:00:52,170
+to V in the cipher text.
+
+19
+00:00:52,170 --> 00:00:56,940
+E maps to K both of the Ls map
+to the letter X. And of course,
+
+20
+00:00:56,940 --> 00:01:01,650
+O maps to the letter N, which gives
+us that resulting cipher text.
+
+21
+00:01:01,650 --> 00:01:05,519
+Your task is going to be to write a
+program in C that is going to implement
+
+22
+00:01:05,519 --> 00:01:07,380
+such a substitution cipher.
+
+23
+00:01:07,380 --> 00:01:08,890
+How does the program work?
+
+24
+00:01:08,890 --> 00:01:12,870
+Well, you'll run the program by
+calling dot slash substitution followed
+
+25
+00:01:12,870 --> 00:01:16,590
+by a 26-character-long key that's
+going to describe how you're
+
+26
+00:01:16,590 --> 00:01:18,720
+going to map each of the
+alphabetic characters
+
+27
+00:01:18,720 --> 00:01:22,230
+into other alphabetic characters where
+here, the first character is what
+
+28
+00:01:22,230 --> 00:01:27,090
+we map A to, the second character is
+what we might B to, so on and so forth.
+
+29
+00:01:27,090 --> 00:01:30,720
+Your program should then prompt the
+user to type in some plain text.
+
+30
+00:01:30,720 --> 00:01:33,390
+And if the user types
+in ABC, for example,
+
+31
+00:01:33,390 --> 00:01:35,910
+then your program should
+output cipher text
+
+32
+00:01:35,910 --> 00:01:41,010
+followed by the enciphered version of
+that plain text-- in this case, J, T,
+
+33
+00:01:41,010 --> 00:01:43,890
+and then R. So if we were to
+call that same substitution
+
+34
+00:01:43,890 --> 00:01:49,530
+cipher passing in hello as the plain
+text, then the output is VKXXN.
+
+35
+00:01:49,530 --> 00:01:53,430
+Of course, your program should be able
+to support plain text that isn't just
+
+36
+00:01:53,430 --> 00:01:54,930
+uppercase characters.
+
+37
+00:01:54,930 --> 00:01:59,600
+So if we were to instead call dot slash
+substitution followed by the same key
+
+38
+00:01:59,600 --> 00:02:02,790
+and the plain text were hello
+in all lowercase letters,
+
+39
+00:02:02,790 --> 00:02:07,590
+then the output should still be vkxxn
+but the characters should be lowercase.
+
+40
+00:02:07,590 --> 00:02:10,169
+The case of the plain
+text should be preserved.
+
+41
+00:02:10,169 --> 00:02:13,570
+And if our plain text was a little
+more complicated, for example,
+
+42
+00:02:13,570 --> 00:02:16,560
+if we called dot slash
+substitution on the same key
+
+43
+00:02:16,560 --> 00:02:20,130
+but this time the plain
+text were this is CS50,
+
+44
+00:02:20,130 --> 00:02:23,010
+then this is what the
+cipher text would look like.
+
+45
+00:02:23,010 --> 00:02:24,960
+Notice in particular
+that the characters that
+
+46
+00:02:24,960 --> 00:02:27,330
+were originally uppercase
+in the plain text
+
+47
+00:02:27,330 --> 00:02:30,240
+are still uppercase in the cipher
+text, and the characters that
+
+48
+00:02:30,240 --> 00:02:32,580
+were originally lowercase
+in the plain text
+
+49
+00:02:32,580 --> 00:02:34,920
+are still lowercase in the cipher text.
+
+50
+00:02:34,920 --> 00:02:37,530
+Any character that isn't
+a letter, like the space
+
+51
+00:02:37,530 --> 00:02:40,890
+or the digits or the punctuation,
+those haven't been changed at all.
+
+52
+00:02:40,890 --> 00:02:45,180
+And they're the same in both the
+plain text and the cipher text.
+
+53
+00:02:45,180 --> 00:02:49,260
+In addition, the key that your program
+takes as a command line argument
+
+54
+00:02:49,260 --> 00:02:51,150
+should be case insensitive.
+
+55
+00:02:51,150 --> 00:02:54,030
+Here, for example, the key
+is all uppercase letters.
+
+56
+00:02:54,030 --> 00:02:56,220
+But the program should
+behave exactly the same
+
+57
+00:02:56,220 --> 00:02:59,070
+if, for example, the key
+were all lowercase letters
+
+58
+00:02:59,070 --> 00:03:03,180
+or if there was a mix of uppercase and
+lowercase letters inside of the key.
+
+59
+00:03:03,180 --> 00:03:06,390
+However, not every key that's
+provided as a command line argument
+
+60
+00:03:06,390 --> 00:03:09,398
+is necessarily going to be
+a valid substitution cipher.
+
+61
+00:03:09,398 --> 00:03:11,190
+So there's some additional
+work you'll need
+
+62
+00:03:11,190 --> 00:03:14,950
+to do in order to validate the key
+to make sure it is indeed valid.
+
+63
+00:03:14,950 --> 00:03:18,510
+For example, if a user were
+to call dot slash substitution
+
+64
+00:03:18,510 --> 00:03:21,060
+but not provide a key at
+all, then your program
+
+65
+00:03:21,060 --> 00:03:24,570
+should remind the user of how to
+use the program by calling dot slash
+
+66
+00:03:24,570 --> 00:03:27,180
+substitution followed by a key.
+
+67
+00:03:27,180 --> 00:03:29,850
+What else might count as an invalid key?
+
+68
+00:03:29,850 --> 00:03:33,810
+Well, if a user were to call dot slash
+substitution and provide a key that's
+
+69
+00:03:33,810 --> 00:03:36,570
+fewer than 26 characters,
+then we're not going
+
+70
+00:03:36,570 --> 00:03:39,000
+to know how to map every
+single alphabetic character
+
+71
+00:03:39,000 --> 00:03:40,600
+to another character.
+
+72
+00:03:40,600 --> 00:03:43,170
+So in this case, your program,
+rather than prompting the user
+
+73
+00:03:43,170 --> 00:03:46,020
+to type in any plain text
+should instead report
+
+74
+00:03:46,020 --> 00:03:48,750
+that the key must contain
+26 characters and then
+
+75
+00:03:48,750 --> 00:03:52,560
+return with a status code
+of one to indicate an error.
+
+76
+00:03:52,560 --> 00:03:55,830
+What else might be
+considered an invalid key?
+
+77
+00:03:55,830 --> 00:03:59,760
+Well, if the user were to run dot
+slash substitution and then provide
+
+78
+00:03:59,760 --> 00:04:04,020
+this key, which is 26 characters
+but the last character
+
+79
+00:04:04,020 --> 00:04:07,200
+is the number two instead
+of an alphabetic character,
+
+80
+00:04:07,200 --> 00:04:10,890
+this key is not valid because
+in a valid substitution cipher,
+
+81
+00:04:10,890 --> 00:04:13,980
+every letter should be
+substituted for another letter.
+
+82
+00:04:13,980 --> 00:04:17,519
+So if any character in the key that
+is provided as a command line argument
+
+83
+00:04:17,519 --> 00:04:20,250
+is not an alphabetic
+character, then your program
+
+84
+00:04:20,250 --> 00:04:22,380
+should report that error,
+reporting to the user
+
+85
+00:04:22,380 --> 00:04:25,050
+that the key must only
+contain alphabetic characters
+
+86
+00:04:25,050 --> 00:04:27,600
+and then returning one,
+for example, to indicate
+
+87
+00:04:27,600 --> 00:04:29,670
+that there was, in fact, an error.
+
+88
+00:04:29,670 --> 00:04:34,140
+And finally, if the user were to run
+dot slash substitution and then provide
+
+89
+00:04:34,140 --> 00:04:37,200
+this key, where notice that
+the first character of the key
+
+90
+00:04:37,200 --> 00:04:41,310
+is the letter J and the last character
+of the key is also the letter J,
+
+91
+00:04:41,310 --> 00:04:43,880
+this too is not a valid substitution.
+
+92
+00:04:43,880 --> 00:04:45,630
+And your program should
+report to the user
+
+93
+00:04:45,630 --> 00:04:48,210
+that the key should not
+contain repeated characters,
+
+94
+00:04:48,210 --> 00:04:52,470
+and your program should, again,
+exit with a return code of one.
+
+95
+00:04:52,470 --> 00:04:55,230
+So in summary what do you
+need to do in this problem?
+
+96
+00:04:55,230 --> 00:04:57,478
+Well, you'll first need to get the key.
+
+97
+00:04:57,478 --> 00:04:59,520
+Then you'll need to validate
+the key to make sure
+
+98
+00:04:59,520 --> 00:05:01,280
+that it's a valid substitution.
+
+99
+00:05:01,280 --> 00:05:04,100
+Then you'll need to prompt the
+user to type in some plain text.
+
+100
+00:05:04,100 --> 00:05:07,820
+Then you'll need to encipher that
+plain text using your substitution key.
+
+101
+00:05:07,820 --> 00:05:11,090
+And then finally, you'll need
+to print out that cipher text.
+
+102
+00:05:11,090 --> 00:05:13,370
+How are you going to get the key?
+
+103
+00:05:13,370 --> 00:05:17,000
+Well, recall that the key is going to
+be provided as a command line argument.
+
+104
+00:05:17,000 --> 00:05:21,230
+The user is going to run your program by
+running dot slash substitution followed
+
+105
+00:05:21,230 --> 00:05:22,400
+by the key.
+
+106
+00:05:22,400 --> 00:05:24,890
+How do you extract that
+command line argument?
+
+107
+00:05:24,890 --> 00:05:27,230
+Well, you can structure your
+main function as something
+
+108
+00:05:27,230 --> 00:05:29,840
+like this, taking two
+arguments, one of which
+
+109
+00:05:29,840 --> 00:05:33,860
+is an int argc representing the
+number of command line arguments,
+
+110
+00:05:33,860 --> 00:05:38,270
+and one of which is an array of strings,
+argv, representing all of the command
+
+111
+00:05:38,270 --> 00:05:40,290
+line arguments that were provided.
+
+112
+00:05:40,290 --> 00:05:42,380
+Once you've collected the
+command line arguments,
+
+113
+00:05:42,380 --> 00:05:46,670
+the next step is going to be validating
+the key to make sure that it's valid.
+
+114
+00:05:46,670 --> 00:05:48,590
+And here, you should
+check the key length
+
+115
+00:05:48,590 --> 00:05:51,380
+to make sure that it is,
+in fact, 26 characters.
+
+116
+00:05:51,380 --> 00:05:54,680
+You should also check to make sure that
+there are no non-alphabetic characters
+
+117
+00:05:54,680 --> 00:05:58,280
+inside of the key, and you should
+also check for repeated characters
+
+118
+00:05:58,280 --> 00:06:02,000
+because every letter of the alphabet
+should appear once and only once
+
+119
+00:06:02,000 --> 00:06:06,380
+in the key, regardless of whether
+it's uppercase or lowercase.
+
+120
+00:06:06,380 --> 00:06:08,420
+After you've validated
+the key, then you can
+
+121
+00:06:08,420 --> 00:06:12,560
+start to prompt the user to type in
+some input by asking for plain text.
+
+122
+00:06:12,560 --> 00:06:14,990
+Here, you can use the
+function get_string,
+
+123
+00:06:14,990 --> 00:06:17,900
+declared in the CS50 library,
+as a way of getting input
+
+124
+00:06:17,900 --> 00:06:20,060
+from the user as a string.
+
+125
+00:06:20,060 --> 00:06:23,150
+After you've gotten the string,
+then you can encipher the text
+
+126
+00:06:23,150 --> 00:06:26,010
+where for each alphabetic
+character you'll need to determine,
+
+127
+00:06:26,010 --> 00:06:29,120
+based on the substitution cipher that
+you've collected as a command line
+
+128
+00:06:29,120 --> 00:06:32,480
+argument input, what character
+should this alphabetic character
+
+129
+00:06:32,480 --> 00:06:36,530
+map to, making sure to preserve case
+so that uppercase characters stay
+
+130
+00:06:36,530 --> 00:06:40,010
+uppercase and lowercase
+characters stay lowercase.
+
+131
+00:06:40,010 --> 00:06:43,970
+If there are any non-alphabetic
+characters like spaces or punctuation
+
+132
+00:06:43,970 --> 00:06:46,280
+or numbers, those
+characters should be left
+
+133
+00:06:46,280 --> 00:06:50,600
+as is and unchanged between the
+plain text and the cipher text.
+
+134
+00:06:50,600 --> 00:06:52,550
+Finally, after all of
+that, you should be
+
+135
+00:06:52,550 --> 00:06:54,680
+able to print out the
+cipher text to the user
+
+136
+00:06:54,680 --> 00:06:58,460
+so that they see the enciphered
+version of their original message.
+
+137
+00:06:58,460 --> 00:07:02,210
+You can test your code by running
+dot slash substitution followed
+
+138
+00:07:02,210 --> 00:07:07,040
+by a valid 26-character substitution
+key, then typing in some plain text
+
+139
+00:07:07,040 --> 00:07:10,280
+and making sure the cipher text
+is the result of substituting
+
+140
+00:07:10,280 --> 00:07:12,680
+all of the alphabetic
+characters for the characters
+
+141
+00:07:12,680 --> 00:07:15,110
+that are mapped to by the key.
+
+142
+00:07:15,110 --> 00:07:19,300
+My name is Brian, and
+this was substitution.
+
+143
+00:07:19,300 --> 00:07:19,920

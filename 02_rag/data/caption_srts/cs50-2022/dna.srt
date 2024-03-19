@@ -1,0 +1,768 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:02,009
+BRIAN YU: Let's analyze some DNA.
+
+3
+00:00:02,009 --> 00:00:05,610
+In this problem, your task is going
+to be to take a sequence of DNA
+
+4
+00:00:05,610 --> 00:00:09,360
+and determine which person
+it most likely belongs to.
+
+5
+00:00:09,360 --> 00:00:13,800
+Recall that a sequence of DNA is really
+just a sequence of nucleotide bases
+
+6
+00:00:13,800 --> 00:00:16,410
+where there are four different
+nucleotide bases that
+
+7
+00:00:16,410 --> 00:00:21,960
+are abbreviated T, C, A, and G. If
+you put enough of these in sequence,
+
+8
+00:00:21,960 --> 00:00:24,630
+you end up with a human's DNA sequence.
+
+9
+00:00:24,630 --> 00:00:27,690
+And interestingly, if you look
+at a human's DNA sequence,
+
+10
+00:00:27,690 --> 00:00:32,820
+you'll often find places in the DNA
+where certain parts of the DNA repeat.
+
+11
+00:00:32,820 --> 00:00:36,280
+Take a look at the
+sequence AGAT for example.
+
+12
+00:00:36,280 --> 00:00:39,360
+You'll notice that in this
+DNA sequence, it appears here.
+
+13
+00:00:39,360 --> 00:00:43,650
+And then it repeats right after it
+here and here and here and here.
+
+14
+00:00:43,650 --> 00:00:47,220
+And it repeats five times
+consecutively in a row.
+
+15
+00:00:47,220 --> 00:00:48,780
+This isn't a coincidence.
+
+16
+00:00:48,780 --> 00:00:51,240
+It's something called
+a short tandem repeat--
+
+17
+00:00:51,240 --> 00:00:54,050
+a sequence of DNA that
+repeats consecutively
+
+18
+00:00:54,050 --> 00:00:56,460
+in particular locations in human DNA.
+
+19
+00:00:56,460 --> 00:01:01,500
+The short tandem repeats, also called
+STRs, vary a lot in the population.
+
+20
+00:01:01,500 --> 00:01:04,349
+In particular, different
+people have each STR
+
+21
+00:01:04,349 --> 00:01:07,470
+repeated different numbers of times.
+
+22
+00:01:07,470 --> 00:01:09,810
+So what are the key observations here?
+
+23
+00:01:09,810 --> 00:01:14,280
+Well, for any STR, people in a
+population vary in how many times
+
+24
+00:01:14,280 --> 00:01:17,370
+that particular STR
+repeats consecutively.
+
+25
+00:01:17,370 --> 00:01:20,100
+You might have a particular
+STR repeated 25 times.
+
+26
+00:01:20,100 --> 00:01:21,960
+I might have it repeated 28 times.
+
+27
+00:01:21,960 --> 00:01:25,080
+Someone else might have it repeated
+some different number of times.
+
+28
+00:01:25,080 --> 00:01:30,510
+And matching STR counts can be used to,
+therefore, identify who a sample of DNA
+
+29
+00:01:30,510 --> 00:01:31,710
+belongs to.
+
+30
+00:01:31,710 --> 00:01:35,730
+If we take a sample of DNA and
+count up for each of the STRs--
+
+31
+00:01:35,730 --> 00:01:38,280
+how many times do they
+repeat consecutively
+
+32
+00:01:38,280 --> 00:01:42,150
+and it matches some existing
+piece of DNA in a DNA database,
+
+33
+00:01:42,150 --> 00:01:46,110
+for example, then it's pretty
+likely that those two pieces of DNA
+
+34
+00:01:46,110 --> 00:01:47,670
+came from the same person.
+
+35
+00:01:47,670 --> 00:01:51,840
+And in fact, the very DNA sequence
+that we were looking at earlier, AGAT,
+
+36
+00:01:51,840 --> 00:01:56,910
+is actually one of the STRs that the
+FBI uses in its own DNA database.
+
+37
+00:01:56,910 --> 00:02:00,220
+Your task in this problem is going
+to be to do something similar.
+
+38
+00:02:00,220 --> 00:02:03,570
+We're going to give you a DNA
+database of your very own, formatted
+
+39
+00:02:03,570 --> 00:02:07,980
+as a CSV file where each row is
+going to correspond to a person.
+
+40
+00:02:07,980 --> 00:02:11,700
+And each column is going to
+correspond to a particular STR,
+
+41
+00:02:11,700 --> 00:02:15,840
+a particular sequence of DNA that
+repeats some number of times.
+
+42
+00:02:15,840 --> 00:02:19,410
+We can take this CSV file, or
+comma separated value file,
+
+43
+00:02:19,410 --> 00:02:22,980
+and format it as a table in order
+to read it a little more easily.
+
+44
+00:02:22,980 --> 00:02:25,650
+And the way to interpret
+this is that Alice
+
+45
+00:02:25,650 --> 00:02:30,660
+has the DNA sequence AGAT repeated
+28 times consecutively somewhere
+
+46
+00:02:30,660 --> 00:02:31,980
+in her DNA.
+
+47
+00:02:31,980 --> 00:02:37,410
+She also has the sequence AATG repeated
+42 times consecutively somewhere
+
+48
+00:02:37,410 --> 00:02:38,430
+in her DNA.
+
+49
+00:02:38,430 --> 00:02:43,713
+And she has the TATC sequence repeated
+14 times elsewhere in her DNA.
+
+50
+00:02:43,713 --> 00:02:45,630
+Bob has the same thing
+with different numbers.
+
+51
+00:02:45,630 --> 00:02:49,107
+And Charlie has the same STRs
+with different numbers as well.
+
+52
+00:02:49,107 --> 00:02:50,940
+What we're going to
+give you in this problem
+
+53
+00:02:50,940 --> 00:02:54,660
+is we're going to give you a CSV
+file representing all of this data,
+
+54
+00:02:54,660 --> 00:02:58,110
+and we're also going to give you
+a DNA sequence formatted as a text
+
+55
+00:02:58,110 --> 00:03:00,990
+file called sequence.txt, for example.
+
+56
+00:03:00,990 --> 00:03:03,990
+And your task is going to
+be to take this DNA sequence
+
+57
+00:03:03,990 --> 00:03:07,050
+and figure out whether or
+not it matches all of the STR
+
+58
+00:03:07,050 --> 00:03:11,460
+counts for any person in the
+DNA database that we give you.
+
+59
+00:03:11,460 --> 00:03:13,150
+What does this actually mean?
+
+60
+00:03:13,150 --> 00:03:15,420
+Well, it means that
+your program will first
+
+61
+00:03:15,420 --> 00:03:18,390
+need to open the CSV
+file and the DNA sequence
+
+62
+00:03:18,390 --> 00:03:22,380
+and read the contents into
+memory in your Python program.
+
+63
+00:03:22,380 --> 00:03:25,320
+Next up, for each of
+the STRs, you're going
+
+64
+00:03:25,320 --> 00:03:29,790
+to compute the longest run of
+consecutive repeats of that STR
+
+65
+00:03:29,790 --> 00:03:32,150
+in the DNA sequence you've been given.
+
+66
+00:03:32,150 --> 00:03:33,900
+Once you've calculated
+the number of times
+
+67
+00:03:33,900 --> 00:03:36,780
+that each STR repeats
+consecutively, you're
+
+68
+00:03:36,780 --> 00:03:40,530
+going to compare those counts
+against every row in the CSV file
+
+69
+00:03:40,530 --> 00:03:41,788
+to look for a match.
+
+70
+00:03:41,788 --> 00:03:43,830
+If you find a match, you'll
+print out their name.
+
+71
+00:03:43,830 --> 00:03:45,747
+And if there's no match,
+you'll just print out
+
+72
+00:03:45,747 --> 00:03:50,410
+no match to indicate that there was no
+match for anyone in your DNA database.
+
+73
+00:03:50,410 --> 00:03:55,050
+So let's go through these steps one at
+a time, starting with opening the files.
+
+74
+00:03:55,050 --> 00:03:57,570
+When you open the CSV file,
+one thing you'll notice
+
+75
+00:03:57,570 --> 00:04:02,400
+is that the very first row of the
+CSV file has name as the first column
+
+76
+00:04:02,400 --> 00:04:07,020
+and every subsequent column is going to
+be an actual DNA sequence representing
+
+77
+00:04:07,020 --> 00:04:09,690
+the STRs that you should be counting.
+
+78
+00:04:09,690 --> 00:04:12,390
+Every other row of the CSV
+file is going to correspond
+
+79
+00:04:12,390 --> 00:04:16,079
+to a person, where the first column
+is going to be that person's name.
+
+80
+00:04:16,079 --> 00:04:19,890
+And all of the remaining columns are
+going to represent the number of times
+
+81
+00:04:19,890 --> 00:04:23,640
+that the STR repeats consecutively
+in that person's DNA.
+
+82
+00:04:23,640 --> 00:04:25,860
+So a couple of hints for doing this--
+
+83
+00:04:25,860 --> 00:04:28,310
+one thing to note is
+that Python has a CSV
+
+84
+00:04:28,310 --> 00:04:32,850
+module, a module designed with functions
+that will help you to read CSV files.
+
+85
+00:04:32,850 --> 00:04:36,360
+In particular, you might want to
+take a look at reader and DictReader
+
+86
+00:04:36,360 --> 00:04:40,560
+to read a CSV file as a sequence of
+lists or a sequence of dictionaries,
+
+87
+00:04:40,560 --> 00:04:41,730
+respectively.
+
+88
+00:04:41,730 --> 00:04:45,270
+You'll also note that Python has
+a sys module-- short for system--
+
+89
+00:04:45,270 --> 00:04:48,270
+which will give you access
+to sys.argv for the command
+
+90
+00:04:48,270 --> 00:04:51,780
+line arguments of the program where
+the first command line argument, other
+
+91
+00:04:51,780 --> 00:04:55,910
+than the program's name, is going to
+be the DNA database formatted as a CSV
+
+92
+00:04:55,910 --> 00:04:56,640
+file.
+
+93
+00:04:56,640 --> 00:04:58,680
+And the second argument
+is going to be the DNA
+
+94
+00:04:58,680 --> 00:05:02,530
+sequence so you're actually going
+to read and do some calculations on.
+
+95
+00:05:02,530 --> 00:05:06,280
+Another hint-- once you've opened
+up a file by calling open and then
+
+96
+00:05:06,280 --> 00:05:11,110
+passing in the file name in parentheses,
+you can read its contents using f.read
+
+97
+00:05:11,110 --> 00:05:13,990
+if f is the name of
+the file, for example.
+
+98
+00:05:13,990 --> 00:05:16,660
+Once you've opened up all
+of the files, the next step
+
+99
+00:05:16,660 --> 00:05:20,200
+is going to be to compute
+the individual STR accounts.
+
+100
+00:05:20,200 --> 00:05:25,420
+In other words, how many times do they
+repeat consecutively in a person's DNA?
+
+101
+00:05:25,420 --> 00:05:28,330
+Well, let's take a look at
+this DNA sequence for example
+
+102
+00:05:28,330 --> 00:05:31,360
+and look at the STR AGAT.
+
+103
+00:05:31,360 --> 00:05:34,900
+You'll notice that it
+appears once here, AGAT.
+
+104
+00:05:34,900 --> 00:05:37,570
+It also appears once here, AGAT.
+
+105
+00:05:37,570 --> 00:05:39,550
+And here it repeats twice in sequence--
+
+106
+00:05:39,550 --> 00:05:42,430
+AGAT and then AGAT after that.
+
+107
+00:05:42,430 --> 00:05:46,270
+And you could imagine doing this for
+every position within the DNA sequence,
+
+108
+00:05:46,270 --> 00:05:49,060
+computing at that particular
+place in the sequence
+
+109
+00:05:49,060 --> 00:05:53,620
+how many times does AGAT repeat
+starting from that position.
+
+110
+00:05:53,620 --> 00:05:55,910
+Once you've computed
+all of those values,
+
+111
+00:05:55,910 --> 00:05:58,990
+you could imagine taking whichever
+of those values is the biggest
+
+112
+00:05:58,990 --> 00:06:03,010
+and that's going to be the
+longest run of consecutive STRs
+
+113
+00:06:03,010 --> 00:06:06,310
+that you're going to find for
+this particular DNA sequence.
+
+114
+00:06:06,310 --> 00:06:09,280
+So what does this actually
+mean algorithmically?
+
+115
+00:06:09,280 --> 00:06:12,280
+Well, it means for each
+position in the DNA sequence,
+
+116
+00:06:12,280 --> 00:06:15,460
+you'll want to compute how
+many times the STR repeats
+
+117
+00:06:15,460 --> 00:06:17,470
+starting at that position.
+
+118
+00:06:17,470 --> 00:06:18,710
+How do you do that?
+
+119
+00:06:18,710 --> 00:06:22,990
+Well, for every position, you can keep
+checking successive substrings-- first,
+
+120
+00:06:22,990 --> 00:06:26,380
+checking to see whether the STR matches
+once, then to see if it matches twice,
+
+121
+00:06:26,380 --> 00:06:30,493
+then three times, so on and so forth
+until it doesn't repeat anymore.
+
+122
+00:06:30,493 --> 00:06:32,410
+And at the end, you'll
+just want to keep track
+
+123
+00:06:32,410 --> 00:06:36,700
+of what is the maximal number of
+times that this particular STR
+
+124
+00:06:36,700 --> 00:06:38,560
+repeats consecutively.
+
+125
+00:06:38,560 --> 00:06:41,050
+In order to do this, you
+might find the len function
+
+126
+00:06:41,050 --> 00:06:44,470
+in Python helpful, which will
+give you the length of a string s
+
+127
+00:06:44,470 --> 00:06:46,720
+or any other sequence for that matter.
+
+128
+00:06:46,720 --> 00:06:53,860
+And you can also take a string and get
+a substring of it by using s[i:j] which
+
+129
+00:06:53,860 --> 00:06:58,480
+takes the string s and will return the
+substring with all the characters from
+
+130
+00:06:58,480 --> 00:07:02,590
+character i up to but not
+including character j.
+
+131
+00:07:02,590 --> 00:07:05,530
+And that might be helpful if
+you've got a long sequence of DNA
+
+132
+00:07:05,530 --> 00:07:08,620
+and you want to find out whether
+a particular subsequence of it
+
+133
+00:07:08,620 --> 00:07:11,650
+matches some expected result.
+
+134
+00:07:11,650 --> 00:07:14,230
+Once you've computed
+all of these STR counts,
+
+135
+00:07:14,230 --> 00:07:17,950
+the last step is to compare it
+against the data in the CSV file
+
+136
+00:07:17,950 --> 00:07:19,390
+that we've given you.
+
+137
+00:07:19,390 --> 00:07:20,930
+How are you going to do that?
+
+138
+00:07:20,930 --> 00:07:24,730
+Well, you'll want to save the STR counts
+in some sort of data structure, maybe
+
+139
+00:07:24,730 --> 00:07:26,920
+a list, maybe a dictionary,
+maybe something else,
+
+140
+00:07:26,920 --> 00:07:28,780
+whatever makes most sense to you.
+
+141
+00:07:28,780 --> 00:07:30,880
+And then for each row
+in the data, you'll
+
+142
+00:07:30,880 --> 00:07:34,610
+want to check if each of
+the STR accounts matches.
+
+143
+00:07:34,610 --> 00:07:37,450
+And if each of the STR accounts
+matches for a particular person,
+
+144
+00:07:37,450 --> 00:07:41,200
+then the DNA is a match and you
+should print out that person's name.
+
+145
+00:07:41,200 --> 00:07:43,892
+Otherwise, you should
+just print out no match.
+
+146
+00:07:43,892 --> 00:07:45,850
+In order to do this, you
+might want to remember
+
+147
+00:07:45,850 --> 00:07:47,890
+that int is a function
+that you can actually
+
+148
+00:07:47,890 --> 00:07:52,000
+call in Python that takes a string
+and turns it into the integer
+
+149
+00:07:52,000 --> 00:07:53,420
+version of that string.
+
+150
+00:07:53,420 --> 00:07:56,260
+So if you took the string "2"
+for example in quotation marks
+
+151
+00:07:56,260 --> 00:08:01,140
+and passed it into the int function,
+what you'd get back is the integer 2.
+
+152
+00:08:01,140 --> 00:08:04,150
+And remember that to confirm a
+match for a particular person,
+
+153
+00:08:04,150 --> 00:08:08,380
+you'll need to check every column of the
+CSV file other than the first column,
+
+154
+00:08:08,380 --> 00:08:12,050
+because the first column just
+stores the person's name.
+
+155
+00:08:12,050 --> 00:08:16,350
+So once you've opened up the CSV file
+and the DNA sequence into memory,
+
+156
+00:08:16,350 --> 00:08:19,870
+calculated all the STR counts,
+and then compared those counts
+
+157
+00:08:19,870 --> 00:08:23,020
+against each row in your
+CSV file, you should then
+
+158
+00:08:23,020 --> 00:08:25,720
+have the ability to
+take a sequence of DNA
+
+159
+00:08:25,720 --> 00:08:29,650
+and figure out most likely
+who that DNA belongs to.
+
+160
+00:08:29,650 --> 00:08:33,240
+My name is Brian and this was DNA.
+
+161
+00:08:33,240 --> 00:08:34,366

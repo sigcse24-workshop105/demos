@@ -1,0 +1,1013 @@
+1
+00:00:00,710 --> 00:00:04,370
+BRIAN YU: In Movies, you are going to
+write a number of different SQL queries
+
+2
+00:00:04,370 --> 00:00:07,160
+to answer questions based
+on a database of movies
+
+3
+00:00:07,160 --> 00:00:08,975
+that we are going to provide to you.
+
+4
+00:00:08,975 --> 00:00:10,850
+When you begin the
+problem, we'll give to you
+
+5
+00:00:10,850 --> 00:00:15,680
+a file called movies.db, which is a
+SQLite database file, inside of which
+
+6
+00:00:15,680 --> 00:00:18,440
+contains a number of pieces
+of information about movies
+
+7
+00:00:18,440 --> 00:00:21,380
+and the people in those movies, as
+well as ratings for those movies,
+
+8
+00:00:21,380 --> 00:00:23,150
+provided by IMDb.
+
+9
+00:00:23,150 --> 00:00:25,880
+So what tables are
+inside of this database?
+
+10
+00:00:25,880 --> 00:00:28,100
+Well, first, there will
+be a table of movies,
+
+11
+00:00:28,100 --> 00:00:32,612
+a table of people for people that are
+in those movies, a table of directors,
+
+12
+00:00:32,612 --> 00:00:35,570
+of people who have directed movies,
+of stars of people who have starred
+
+13
+00:00:35,570 --> 00:00:38,900
+in movies, and then finally,
+a table of ratings for ratings
+
+14
+00:00:38,900 --> 00:00:41,170
+for each of those individual movies.
+
+15
+00:00:41,170 --> 00:00:43,880
+Let's now take a look at each
+of these tables one-by-one
+
+16
+00:00:43,880 --> 00:00:46,790
+to see what columns are
+in these tables and how
+
+17
+00:00:46,790 --> 00:00:49,010
+the tables relate to one another.
+
+18
+00:00:49,010 --> 00:00:51,080
+And we'll start with the movies table.
+
+19
+00:00:51,080 --> 00:00:53,420
+Inside of the movies table,
+we'll have rows of data
+
+20
+00:00:53,420 --> 00:00:55,610
+where every row has three entries--
+
+21
+00:00:55,610 --> 00:00:58,260
+an ID, a title, and a year.
+
+22
+00:00:58,260 --> 00:01:01,100
+So for example, your table might
+look a little something like this.
+
+23
+00:01:01,100 --> 00:01:03,960
+The IDs are probably different,
+but here in this example,
+
+24
+00:01:03,960 --> 00:01:06,080
+we have a row that
+represents the movie Titanic,
+
+25
+00:01:06,080 --> 00:01:09,560
+which is movie ID number 1, as well
+as the year in which that movie was
+
+26
+00:01:09,560 --> 00:01:11,210
+released, 1997.
+
+27
+00:01:11,210 --> 00:01:13,790
+And then we have another entry
+for each of the other movies
+
+28
+00:01:13,790 --> 00:01:16,510
+inside of this database.
+
+29
+00:01:16,510 --> 00:01:18,900
+In addition to a table
+for movies, we also
+
+30
+00:01:18,900 --> 00:01:22,290
+have a table for people-- for
+people that were somehow involved
+
+31
+00:01:22,290 --> 00:01:24,180
+with the development of those movies.
+
+32
+00:01:24,180 --> 00:01:27,870
+And so inside of the people
+table, we have three columns--
+
+33
+00:01:27,870 --> 00:01:31,560
+an ID column, a name column,
+and a birth column, where ID--
+
+34
+00:01:31,560 --> 00:01:35,370
+again, it's just a unique identifier
+representing that individual person.
+
+35
+00:01:35,370 --> 00:01:38,700
+Name is the name of the person
+that's being represented in that row.
+
+36
+00:01:38,700 --> 00:01:42,240
+And then birth is going to
+represent that person's birth year.
+
+37
+00:01:42,240 --> 00:01:45,060
+So here, for example, we have
+at least six different people.
+
+38
+00:01:45,060 --> 00:01:48,600
+Again, in the database we provide to
+you, these ID numbers may be different.
+
+39
+00:01:48,600 --> 00:01:51,550
+But here's just a sampling of
+what the table might look like.
+
+40
+00:01:51,550 --> 00:01:54,810
+So now we have a table of movies
+representing movies inside
+
+41
+00:01:54,810 --> 00:01:57,330
+of the database, as well
+as a table of people
+
+42
+00:01:57,330 --> 00:02:00,300
+representing all of the people
+involved with those movies.
+
+43
+00:02:00,300 --> 00:02:03,760
+But now we need some way of
+relating these two tables together.
+
+44
+00:02:03,760 --> 00:02:06,510
+And to do that, we're going to
+use what's known as an association
+
+45
+00:02:06,510 --> 00:02:08,199
+table, or a join table.
+
+46
+00:02:08,199 --> 00:02:12,000
+And the first of these join tables we'll
+take a look at is called directors.
+
+47
+00:02:12,000 --> 00:02:16,500
+And directors is going to be a
+table that maps movies onto people.
+
+48
+00:02:16,500 --> 00:02:18,900
+In other words, this
+table is going to tell us
+
+49
+00:02:18,900 --> 00:02:21,420
+which people directed which movies.
+
+50
+00:02:21,420 --> 00:02:24,908
+There are two columns in the
+table, movie_id and person_id.
+
+51
+00:02:24,908 --> 00:02:26,700
+And the table might
+look a little something
+
+52
+00:02:26,700 --> 00:02:31,530
+like this, where for every row we just
+have one number representing a movie ID
+
+53
+00:02:31,530 --> 00:02:34,410
+and one number representing a person ID.
+
+54
+00:02:34,410 --> 00:02:36,520
+How do you interpret this information?
+
+55
+00:02:36,520 --> 00:02:38,730
+Well, in order to understand
+it, we need to look back
+
+56
+00:02:38,730 --> 00:02:41,280
+to those previous tables
+we've just taken a look at--
+
+57
+00:02:41,280 --> 00:02:43,680
+the movies table and the people table.
+
+58
+00:02:43,680 --> 00:02:47,790
+This first row in the directors
+table says that movie ID 3
+
+59
+00:02:47,790 --> 00:02:50,160
+was directed by person ID 2.
+
+60
+00:02:50,160 --> 00:02:53,520
+So if we take the number 3, which
+is the ID in the movies table,
+
+61
+00:02:53,520 --> 00:02:58,680
+and look that up, we see that movie ID
+3 is Finding Nemo, released in 2003.
+
+62
+00:02:58,680 --> 00:03:00,540
+Who is the director of Finding Nemo?
+
+63
+00:03:00,540 --> 00:03:04,095
+Well, movie ID 3 maps onto person ID 2.
+
+64
+00:03:04,095 --> 00:03:08,790
+And so if we look in the people table
+and look at the entry with an ID of 2,
+
+65
+00:03:08,790 --> 00:03:13,410
+we see Andrew Stanton, born in
+1965, as the director of that movie.
+
+66
+00:03:13,410 --> 00:03:16,710
+And likewise, if we look at the
+second row, mapping a movie ID of 2
+
+67
+00:03:16,710 --> 00:03:20,670
+to a person ID of 6, we can see
+that Jurassic Park was directed
+
+68
+00:03:20,670 --> 00:03:22,990
+by Steven Spielberg, for instance.
+
+69
+00:03:22,990 --> 00:03:27,000
+So this table that maps movie
+IDs to person IDs, in combination
+
+70
+00:03:27,000 --> 00:03:29,580
+with the movies and
+people table, will tell us
+
+71
+00:03:29,580 --> 00:03:33,480
+which people directed which movies.
+
+72
+00:03:33,480 --> 00:03:36,810
+Likewise, we are also going to
+have a join table that represents
+
+73
+00:03:36,810 --> 00:03:38,552
+who starred in each of the movies.
+
+74
+00:03:38,552 --> 00:03:40,260
+And so for this, we'll
+have another table
+
+75
+00:03:40,260 --> 00:03:44,580
+called stars that has the exact same
+structure as the directors table--
+
+76
+00:03:44,580 --> 00:03:48,270
+just two columns, a movie_id
+column and a person_id column,
+
+77
+00:03:48,270 --> 00:03:52,830
+where every row in that table means
+that this particular person starred
+
+78
+00:03:52,830 --> 00:03:54,870
+in that particular movie.
+
+79
+00:03:54,870 --> 00:03:57,870
+So here, for example, our
+first row says that movie
+
+80
+00:03:57,870 --> 00:04:01,620
+ID 1 had a star given by person ID 4.
+
+81
+00:04:01,620 --> 00:04:04,810
+And so if we again look at
+those movies and people table,
+
+82
+00:04:04,810 --> 00:04:09,840
+we'll see that person ID with number
+4 is Leonardo DiCaprio, born in 1974,
+
+83
+00:04:09,840 --> 00:04:14,070
+who starred in movie ID 1,
+Titanic, released in 1997.
+
+84
+00:04:14,070 --> 00:04:16,290
+So using these tables
+in combination, we're
+
+85
+00:04:16,290 --> 00:04:19,200
+able to identify not only who
+directed each of the movies,
+
+86
+00:04:19,200 --> 00:04:21,480
+but also who starred
+in each of the movies.
+
+87
+00:04:21,480 --> 00:04:24,330
+And of course, a movie could
+have more than one star
+
+88
+00:04:24,330 --> 00:04:25,800
+and more than one director.
+
+89
+00:04:25,800 --> 00:04:30,420
+And likewise, an individual person might
+direct or star in more than one movie.
+
+90
+00:04:30,420 --> 00:04:35,310
+So you might see these IDs repeat across
+these join tables, directors and stars,
+
+91
+00:04:35,310 --> 00:04:37,353
+as well.
+
+92
+00:04:37,353 --> 00:04:39,270
+The final table that
+we'll take a look at here
+
+93
+00:04:39,270 --> 00:04:41,910
+is the ratings table,
+which represents the rating
+
+94
+00:04:41,910 --> 00:04:44,160
+for each of these individual movies.
+
+95
+00:04:44,160 --> 00:04:45,900
+This table will have three columns--
+
+96
+00:04:45,900 --> 00:04:49,560
+movie_id, rating, and
+votes, where movie_id
+
+97
+00:04:49,560 --> 00:04:52,350
+represents the ID of
+the movie being rated,
+
+98
+00:04:52,350 --> 00:04:57,330
+rating is the rating given to that movie
+by IMDb on a scale from 0 up to 10,
+
+99
+00:04:57,330 --> 00:04:59,610
+and votes is the number
+of people who have voted
+
+100
+00:04:59,610 --> 00:05:01,740
+for a rating for that particular movie.
+
+101
+00:05:01,740 --> 00:05:04,800
+In combination with the
+movies table, these two tables
+
+102
+00:05:04,800 --> 00:05:08,100
+can tell us, for any particular
+movie, what its rating is.
+
+103
+00:05:08,100 --> 00:05:11,700
+So if, for example, we wanted to
+know what Jurassic Park's rating is,
+
+104
+00:05:11,700 --> 00:05:14,460
+we would first look for Jurassic
+Park in the movies table
+
+105
+00:05:14,460 --> 00:05:18,123
+and find out that it has an
+ID of 2 in the movies table.
+
+106
+00:05:18,123 --> 00:05:20,040
+Then we would go and
+look at the ratings table
+
+107
+00:05:20,040 --> 00:05:23,580
+and look for a row with a
+movie ID of 2, and find out
+
+108
+00:05:23,580 --> 00:05:28,470
+that that movie has a rating of 8.1,
+with about 800,000 people or so who
+
+109
+00:05:28,470 --> 00:05:30,670
+have voted on that particular movie.
+
+110
+00:05:30,670 --> 00:05:32,880
+So the movie_id column
+in the ratings table
+
+111
+00:05:32,880 --> 00:05:36,220
+corresponds to the ID
+inside of the movies table.
+
+112
+00:05:36,220 --> 00:05:38,310
+And so now with all of
+these tables combined,
+
+113
+00:05:38,310 --> 00:05:41,560
+we can take any movie and figure
+out which people directed it,
+
+114
+00:05:41,560 --> 00:05:45,690
+which people starred in that movie, and
+also what rating that movie received.
+
+115
+00:05:45,690 --> 00:05:48,960
+And using that information, we
+can begin to answer questions
+
+116
+00:05:48,960 --> 00:05:52,380
+by writing SQL SELECT queries
+that are able to select data
+
+117
+00:05:52,380 --> 00:05:56,250
+from all of these tables to get
+the data that we are interested in.
+
+118
+00:05:56,250 --> 00:05:58,680
+If you'd like to try running
+some of these SELECT queries,
+
+119
+00:05:58,680 --> 00:06:02,760
+then inside of your Terminal, you
+can run the command sqlite3 followed
+
+120
+00:06:02,760 --> 00:06:06,150
+by the name of the database--
+in this case, movies.db--
+
+121
+00:06:06,150 --> 00:06:09,370
+in order to execute any
+individual SQL query.
+
+122
+00:06:09,370 --> 00:06:11,550
+So what are you going
+to do for this problem?
+
+123
+00:06:11,550 --> 00:06:13,770
+Well, for each question
+that we ask you, you
+
+124
+00:06:13,770 --> 00:06:17,800
+are going to write a single SQL
+query that will answer that question.
+
+125
+00:06:17,800 --> 00:06:21,700
+And importantly, your query should
+just be, one, a single query, but two,
+
+126
+00:06:21,700 --> 00:06:25,150
+it should only output the data
+that is explicitly asked for.
+
+127
+00:06:25,150 --> 00:06:27,880
+So if we only ask you for
+the title of the movie,
+
+128
+00:06:27,880 --> 00:06:30,160
+then you should output only
+the titles of the movies
+
+129
+00:06:30,160 --> 00:06:34,190
+and not also the years in which those
+movies were released, for example.
+
+130
+00:06:34,190 --> 00:06:38,260
+And finally, be careful not to
+assume the values of any IDs.
+
+131
+00:06:38,260 --> 00:06:41,740
+You'll notice that every person,
+every movie inside of your database
+
+132
+00:06:41,740 --> 00:06:43,210
+has a particular ID.
+
+133
+00:06:43,210 --> 00:06:45,340
+But you shouldn't assume
+what those ID values
+
+134
+00:06:45,340 --> 00:06:47,170
+will be when you're writing your query.
+
+135
+00:06:47,170 --> 00:06:48,910
+You should write your
+query in such a way
+
+136
+00:06:48,910 --> 00:06:51,160
+that even if the IDs
+were different, you're
+
+137
+00:06:51,160 --> 00:06:54,790
+still able to get the correct
+answer by running your query.
+
+138
+00:06:54,790 --> 00:06:56,980
+What are some sample
+queries you might write?
+
+139
+00:06:56,980 --> 00:07:00,430
+Well, in general, your queries are going
+to follow a format kind of like this.
+
+140
+00:07:00,430 --> 00:07:02,440
+If you're selecting
+something from a table,
+
+141
+00:07:02,440 --> 00:07:06,640
+SELECT * FROM table1, where
+table1 is the name of a table,
+
+142
+00:07:06,640 --> 00:07:08,950
+is perhaps the simplest
+query you could come up with,
+
+143
+00:07:08,950 --> 00:07:12,010
+just to select everything
+from one of the tables.
+
+144
+00:07:12,010 --> 00:07:14,530
+If you only want to
+select particular columns,
+
+145
+00:07:14,530 --> 00:07:17,740
+you could specify, using a
+comma-separated list of columns,
+
+146
+00:07:17,740 --> 00:07:19,450
+which columns you would like to select.
+
+147
+00:07:19,450 --> 00:07:23,510
+So if col1 and col2 are names
+of columns in that table,
+
+148
+00:07:23,510 --> 00:07:26,930
+then this query would extract
+from that table all of the rows,
+
+149
+00:07:26,930 --> 00:07:30,250
+but only looking at
+those particular columns.
+
+150
+00:07:30,250 --> 00:07:33,550
+If you don't want to get all of the rows
+and only want to get some of the rows,
+
+151
+00:07:33,550 --> 00:07:36,760
+you might filter this table
+based on a particular condition
+
+152
+00:07:36,760 --> 00:07:38,440
+with a query like this--
+
+153
+00:07:38,440 --> 00:07:40,990
+selecting particular
+columns from that table
+
+154
+00:07:40,990 --> 00:07:44,420
+where column 3, which is some
+other column, for example,
+
+155
+00:07:44,420 --> 00:07:46,960
+is equal to a particular
+value, where that value might
+
+156
+00:07:46,960 --> 00:07:49,240
+be a number or a string
+or whatever value it
+
+157
+00:07:49,240 --> 00:07:51,520
+is that you care about searching for.
+
+158
+00:07:51,520 --> 00:07:54,580
+For more complex queries, though,
+where the answer to your question
+
+159
+00:07:54,580 --> 00:07:56,890
+might not just come
+from one table but might
+
+160
+00:07:56,890 --> 00:07:59,410
+come from a combination of
+multiple different tables,
+
+161
+00:07:59,410 --> 00:08:03,590
+it might be helpful to nest one
+SQL query inside of another.
+
+162
+00:08:03,590 --> 00:08:07,840
+So in this case, for example, if you
+don't know what the value of col3 is,
+
+163
+00:08:07,840 --> 00:08:11,050
+you could instead replace
+value with a nested SQL
+
+164
+00:08:11,050 --> 00:08:14,320
+query where you might replace
+it with another SELECT query
+
+165
+00:08:14,320 --> 00:08:17,060
+where you're selecting a
+particular value, for example,
+
+166
+00:08:17,060 --> 00:08:20,105
+and then checking to see if
+col3 is equal to that inside
+
+167
+00:08:20,105 --> 00:08:20,980
+of a different table.
+
+168
+00:08:20,980 --> 00:08:23,950
+And you can do this over and
+over again, nesting SQL queries
+
+169
+00:08:23,950 --> 00:08:27,730
+inside of one another in order
+to build up more complex queries.
+
+170
+00:08:27,730 --> 00:08:31,480
+If your inner nested query doesn't
+just return a single result,
+
+171
+00:08:31,480 --> 00:08:33,980
+but maybe returns a list
+of possible results,
+
+172
+00:08:33,980 --> 00:08:38,140
+you can also use the IN keyword to
+find out if the value of column 3
+
+173
+00:08:38,140 --> 00:08:42,965
+is in some list of possible values that
+that column could take on, for example.
+
+174
+00:08:42,965 --> 00:08:45,340
+And that might help you to
+broaden your search parameters
+
+175
+00:08:45,340 --> 00:08:50,590
+to search for more possible rows inside
+of table1, in this particular case.
+
+176
+00:08:50,590 --> 00:08:54,440
+Other things that might prove useful
+are ordering the results in some way.
+
+177
+00:08:54,440 --> 00:08:57,220
+And so you could also
+say ORDER by col3 to say
+
+178
+00:08:57,220 --> 00:09:00,400
+that when you're selecting from table1,
+you would like for all of the rows
+
+179
+00:09:00,400 --> 00:09:04,330
+to be in order based on their
+value for col3, for whatever name
+
+180
+00:09:04,330 --> 00:09:06,230
+column 3 happens to be.
+
+181
+00:09:06,230 --> 00:09:10,330
+And you can also add the DESC keyword
+to the end of that for descending order
+
+182
+00:09:10,330 --> 00:09:13,930
+if you want to go in reverse order
+instead of increasing order, which
+
+183
+00:09:13,930 --> 00:09:15,670
+is the default.
+
+184
+00:09:15,670 --> 00:09:19,240
+Finally, you might find it useful
+to join two tables together,
+
+185
+00:09:19,240 --> 00:09:22,970
+where oftentimes these tables have
+fields that correspond to one another,
+
+186
+00:09:22,970 --> 00:09:25,510
+and so you might want to take
+two or three separate tables
+
+187
+00:09:25,510 --> 00:09:27,820
+and join them together
+into a single table
+
+188
+00:09:27,820 --> 00:09:30,880
+to make it easier to select
+and filter that table based
+
+189
+00:09:30,880 --> 00:09:32,450
+on particular conditions.
+
+190
+00:09:32,450 --> 00:09:35,800
+So to do that, the syntax is going
+to look a little something like this,
+
+191
+00:09:35,800 --> 00:09:39,800
+where you're going to select from
+table1 but join it with another table,
+
+192
+00:09:39,800 --> 00:09:41,950
+in this case called table2.
+
+193
+00:09:41,950 --> 00:09:46,410
+And then you need to tell SQL how
+to join these two tables together.
+
+194
+00:09:46,410 --> 00:09:52,090
+So here we're saying table1.col1
+corresponds to table2.col3.
+
+195
+00:09:52,090 --> 00:09:55,240
+So you'll need to figure out
+which column from the first table
+
+196
+00:09:55,240 --> 00:09:59,350
+corresponds to which other
+column from the second table.
+
+197
+00:09:59,350 --> 00:10:03,700
+You'll write each of these queries in
+individual .sql files that then can be
+
+198
+00:10:03,700 --> 00:10:06,040
+executed on your SQLite database.
+
+199
+00:10:06,040 --> 00:10:08,500
+And if you'd like to test
+running one of these SQL files
+
+200
+00:10:08,500 --> 00:10:12,230
+on your SQLite database, you
+can run a command like this.
+
+201
+00:10:12,230 --> 00:10:15,640
+cat 1.sql will output
+the contents of 1.sql,
+
+202
+00:10:15,640 --> 00:10:17,620
+and this vertical bar
+is called the pipe.
+
+203
+00:10:17,620 --> 00:10:22,630
+We're sending data from
+1.sql into sqlite3 movies.db,
+
+204
+00:10:22,630 --> 00:10:28,240
+which will run the query inside of
+1.sql on your movies.db database.
+
+205
+00:10:28,240 --> 00:10:32,230
+So you can test each of your individual
+SQL queries using this syntax.
+
+206
+00:10:32,230 --> 00:10:33,100
+And that's it.
+
+207
+00:10:33,100 --> 00:10:35,560
+Once you've written SQL
+files that have queries
+
+208
+00:10:35,560 --> 00:10:37,450
+that will answer each
+of the questions, you
+
+209
+00:10:37,450 --> 00:10:39,940
+can try running those SQL
+queries on your database
+
+210
+00:10:39,940 --> 00:10:42,500
+to see if the results are
+what you would expect.
+
+211
+00:10:42,500 --> 00:10:46,020
+My name is Brian, and this was Movies.
+

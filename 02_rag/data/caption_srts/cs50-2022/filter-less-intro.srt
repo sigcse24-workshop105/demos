@@ -1,0 +1,627 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:01,980
+SPEAKER 1: Let's dive into filter.
+
+3
+00:00:01,980 --> 00:00:05,400
+In filter, your task is going
+to be to take a bitmap image
+
+4
+00:00:05,400 --> 00:00:08,520
+and apply some number of
+different filters to that image.
+
+5
+00:00:08,520 --> 00:00:11,670
+You'll apply a filter to take an
+image and convert it into grayscale,
+
+6
+00:00:11,670 --> 00:00:12,995
+making it black and white.
+
+7
+00:00:12,995 --> 00:00:15,120
+You'll take the image and
+apply a filter to turn it
+
+8
+00:00:15,120 --> 00:00:19,050
+into sepia, giving everything a
+reddish brown, old time feel to it.
+
+9
+00:00:19,050 --> 00:00:21,540
+You'll take the image and
+reflect it, getting the mirror
+
+10
+00:00:21,540 --> 00:00:23,490
+image of the original picture.
+
+11
+00:00:23,490 --> 00:00:26,490
+And finally, you'll apply a blur
+filter that will take the image
+
+12
+00:00:26,490 --> 00:00:29,740
+and soften it so the details
+are a little bit less clear.
+
+13
+00:00:29,740 --> 00:00:32,009
+So these are the four
+parts of this project.
+
+14
+00:00:32,009 --> 00:00:35,040
+Grayscale, sepia, reflect, and blur.
+
+15
+00:00:35,040 --> 00:00:38,640
+But how do you go about applying
+filters to images at all?
+
+16
+00:00:38,640 --> 00:00:41,160
+Well, every image,
+remember, is just a sequence
+
+17
+00:00:41,160 --> 00:00:44,580
+of individual pixels arranged
+into a particular grid.
+
+18
+00:00:44,580 --> 00:00:46,770
+And how do we represent a pixel?
+
+19
+00:00:46,770 --> 00:00:50,190
+Well, on a computer screen,
+every pixel has three values,
+
+20
+00:00:50,190 --> 00:00:51,670
+which we might call channels.
+
+21
+00:00:51,670 --> 00:00:54,780
+A red channel, a green
+channel, and a blue channel,
+
+22
+00:00:54,780 --> 00:00:56,850
+where those values range from 0--
+
+23
+00:00:56,850 --> 00:00:59,250
+meaning none-- to 255--
+
+24
+00:00:59,250 --> 00:01:00,940
+meaning the maximum.
+
+25
+00:01:00,940 --> 00:01:03,120
+If we set the red
+value to a small value,
+
+26
+00:01:03,120 --> 00:01:05,760
+you'll see that we have a
+little bit of red in the pixel.
+
+27
+00:01:05,760 --> 00:01:08,490
+A higher red value means
+more red in the pixel.
+
+28
+00:01:08,490 --> 00:01:14,190
+And 255 means we have as much red as we
+possibly can in this particular pixel.
+
+29
+00:01:14,190 --> 00:01:17,470
+We set it back to 0, and the
+pixel goes back to black.
+
+30
+00:01:17,470 --> 00:01:22,000
+Why is it that each channel
+value goes from 0 to 255?
+
+31
+00:01:22,000 --> 00:01:26,590
+Well, 0 represented in binary
+is just 0, as you might imagine.
+
+32
+00:01:26,590 --> 00:01:31,060
+And 255 represented
+in binary is eight 1s,
+
+33
+00:01:31,060 --> 00:01:35,710
+which means that for each color
+value, we can use one byte or 8 bits
+
+34
+00:01:35,710 --> 00:01:38,570
+for each color-- red, green, and blue.
+
+35
+00:01:38,570 --> 00:01:43,630
+And since we have three of those, we can
+use three bytes or 24 bits per pixel.
+
+36
+00:01:43,630 --> 00:01:46,280
+So if you've ever heard
+the term 24-bit color,
+
+37
+00:01:46,280 --> 00:01:48,320
+that's what this is referring to.
+
+38
+00:01:48,320 --> 00:01:53,000
+So we can use the red channel to
+control how much red is in this pixel.
+
+39
+00:01:53,000 --> 00:01:56,800
+We can use the green channel to
+control how much green is in the pixel.
+
+40
+00:01:56,800 --> 00:02:00,820
+And we can use the blue channel to
+control how much blue is in the pixel.
+
+41
+00:02:00,820 --> 00:02:04,120
+But of course, we don't need to just
+use one of the channels at a time.
+
+42
+00:02:04,120 --> 00:02:08,350
+We can use them in combination to
+create any number of different colors.
+
+43
+00:02:08,350 --> 00:02:10,840
+If we have a lot of red
+and a little bit of blue,
+
+44
+00:02:10,840 --> 00:02:13,520
+we have a color that looks a
+little something like this.
+
+45
+00:02:13,520 --> 00:02:16,930
+And if we have a lot of green and a lot
+of blue but just a little bit of red,
+
+46
+00:02:16,930 --> 00:02:20,330
+then we get a turquoise color that
+looks a little something like this.
+
+47
+00:02:20,330 --> 00:02:23,480
+And if we set each of the
+channel values of red, green,
+
+48
+00:02:23,480 --> 00:02:28,030
+and blue to the maximum value
+of 255, well, that pixel
+
+49
+00:02:28,030 --> 00:02:31,670
+is just going to be a pure white pixel.
+
+50
+00:02:31,670 --> 00:02:35,120
+If we take enough of these pixels,
+set them to the right color value,
+
+51
+00:02:35,120 --> 00:02:37,340
+and arrange them in
+the appropriate order,
+
+52
+00:02:37,340 --> 00:02:39,770
+the result is that we can
+actually see an image that
+
+53
+00:02:39,770 --> 00:02:44,070
+looks like something by arranging
+colors in the correct position.
+
+54
+00:02:44,070 --> 00:02:47,970
+So what files do you actually
+need to work with in this problem?
+
+55
+00:02:47,970 --> 00:02:52,890
+Well, there's bmp.h, which is going to
+store information about bitmap images.
+
+56
+00:02:52,890 --> 00:02:55,220
+It's going to store some
+of the structs that you're
+
+57
+00:02:55,220 --> 00:02:58,760
+going to need to deal with in
+order to complete this assignment.
+
+58
+00:02:58,760 --> 00:03:01,820
+We've also given you filter.c,
+which is the program you'll
+
+59
+00:03:01,820 --> 00:03:04,310
+run to actually run these
+filters, which is going
+
+60
+00:03:04,310 --> 00:03:07,190
+to take care of the logic of
+reading the file from memory,
+
+61
+00:03:07,190 --> 00:03:11,210
+calling a function to apply a filter,
+and then writing the new image to disk
+
+62
+00:03:11,210 --> 00:03:12,930
+as a brand new file.
+
+63
+00:03:12,930 --> 00:03:15,980
+Helpers.c is the file
+that actually contains
+
+64
+00:03:15,980 --> 00:03:18,410
+all of the functions that
+are going to implement
+
+65
+00:03:18,410 --> 00:03:22,310
+each of the filters for this
+assignment-- blur, reflection, sepia,
+
+66
+00:03:22,310 --> 00:03:23,630
+grayscale.
+
+67
+00:03:23,630 --> 00:03:26,120
+Helpers.h is the header
+file that's going
+
+68
+00:03:26,120 --> 00:03:29,870
+to declare all of the functions that
+show up in helpers.c, telling you
+
+69
+00:03:29,870 --> 00:03:32,240
+what the return type of
+the function is and what
+
+70
+00:03:32,240 --> 00:03:35,210
+all of the types of the
+arguments for the functions are.
+
+71
+00:03:35,210 --> 00:03:38,030
+Finally, we've given you a
+makefile, which when you run make
+
+72
+00:03:38,030 --> 00:03:40,910
+is going to take all of these
+files and combine them together
+
+73
+00:03:40,910 --> 00:03:45,050
+into an executable that you can run to
+actually apply these filters to images
+
+74
+00:03:45,050 --> 00:03:46,310
+of your very own.
+
+75
+00:03:46,310 --> 00:03:49,700
+We've completed all of the
+files except for helpers.c,
+
+76
+00:03:49,700 --> 00:03:51,570
+and that's where you come in.
+
+77
+00:03:51,570 --> 00:03:55,070
+So how are you actually going to write
+the code to implement these filters?
+
+78
+00:03:55,070 --> 00:03:58,130
+Well, in bmp.h, we've
+defined a struct for you
+
+79
+00:03:58,130 --> 00:04:01,550
+called RGBTRIPLE, which is
+going to represent a pixel that
+
+80
+00:04:01,550 --> 00:04:03,500
+has a red, green, and blue value.
+
+81
+00:04:03,500 --> 00:04:06,020
+You'll notice that this
+struct has three fields.
+
+82
+00:04:06,020 --> 00:04:10,025
+A field called rgbtBlue representing
+the amount of blue in the triple,
+
+83
+00:04:10,025 --> 00:04:13,490
+a field called rgbtGreen
+representing the amount of green,
+
+84
+00:04:13,490 --> 00:04:17,510
+and a field called rgbtRed
+representing the amount of red.
+
+85
+00:04:17,510 --> 00:04:20,930
+Each field stores a byte worth
+of information-- remembering
+
+86
+00:04:20,930 --> 00:04:23,720
+that a byte is really just 8 bits.
+
+87
+00:04:23,720 --> 00:04:27,980
+Your task is going to be to implement
+the four functions in helpers.c;
+
+88
+00:04:27,980 --> 00:04:31,670
+grayscale, sepia, reflect, and blur.
+
+89
+00:04:31,670 --> 00:04:34,580
+Each of these functions
+takes three arguments.
+
+90
+00:04:34,580 --> 00:04:38,930
+An integer called height, an integer
+called width, and a two dimensional
+
+91
+00:04:38,930 --> 00:04:40,790
+array of RGBTRIPLES--
+
+92
+00:04:40,790 --> 00:04:46,010
+a 2D array of pixels where there
+are height rows and width columns.
+
+93
+00:04:46,010 --> 00:04:48,650
+So your image might look a
+little something like this.
+
+94
+00:04:48,650 --> 00:04:51,620
+A two dimensional array which
+has a particular height, which
+
+95
+00:04:51,620 --> 00:04:55,070
+will be an argument to your function,
+and has a particular width, which
+
+96
+00:04:55,070 --> 00:04:56,970
+will also be an argument.
+
+97
+00:04:56,970 --> 00:04:59,600
+So if we have an image which
+is a two dimensional array,
+
+98
+00:04:59,600 --> 00:05:03,110
+image[0] is going to represent
+the first row of that image.
+
+99
+00:05:03,110 --> 00:05:05,420
+Image[1] represents the second row.
+
+100
+00:05:05,420 --> 00:05:07,410
+Image[2] represents the third row.
+
+101
+00:05:07,410 --> 00:05:09,020
+So on and so forth.
+
+102
+00:05:09,020 --> 00:05:12,500
+How, for example would you
+get the last row in the image?
+
+103
+00:05:12,500 --> 00:05:16,340
+Well, if there are height many rows in
+the image and we start counting from
+
+104
+00:05:16,340 --> 00:05:20,690
+row 0, then the last row in the
+image is going to be image[height-1],
+
+105
+00:05:20,690 --> 00:05:22,710
+for example.
+
+106
+00:05:22,710 --> 00:05:24,530
+So that's how you get
+a row of the image.
+
+107
+00:05:24,530 --> 00:05:28,170
+But how do you get at a very
+particular pixel in that image?
+
+108
+00:05:28,170 --> 00:05:32,880
+Well, image[0] is a row of the
+image, which itself is just an array.
+
+109
+00:05:32,880 --> 00:05:35,510
+So if image[0] is the
+first row of the image,
+
+110
+00:05:35,510 --> 00:05:40,550
+image[0][0] is going to be the
+first pixel in that first row.
+
+111
+00:05:40,550 --> 00:05:43,280
+Image[0][1] is the
+second pixel in the row.
+
+112
+00:05:43,280 --> 00:05:45,740
+Image[0][2] is the
+third pixel in the row.
+
+113
+00:05:45,740 --> 00:05:47,010
+So on and so forth.
+
+114
+00:05:47,010 --> 00:05:50,660
+And we can use this notation to
+access any pixel in the image.
+
+115
+00:05:50,660 --> 00:05:56,120
+Image[2][3], for example, is the
+pixel in row 2 and column 3 of this
+
+116
+00:05:56,120 --> 00:05:58,180
+particular image.
+
+117
+00:05:58,180 --> 00:06:00,420
+So if we have a pixel,
+how do we actually
+
+118
+00:06:00,420 --> 00:06:03,630
+modify the pixel to
+change its color values?
+
+119
+00:06:03,630 --> 00:06:07,530
+Well, recall that every pixel is
+really just a struct that has values
+
+120
+00:06:07,530 --> 00:06:11,400
+rgbtRed, rgbtGreen, and rgbtBlue.
+
+121
+00:06:11,400 --> 00:06:14,970
+So to access the properties of a
+struct, we can use dot notation.
+
+122
+00:06:14,970 --> 00:06:21,120
+Using image[2][3].rgbtRed to set the red
+value of the pixel equal to something.
+
+123
+00:06:21,120 --> 00:06:24,280
+And doing the same for the green
+and the blue values, for example.
+
+124
+00:06:24,280 --> 00:06:26,700
+If we set the red, green,
+and blue values all to 0,
+
+125
+00:06:26,700 --> 00:06:28,560
+then we're going to
+turn this pixel black
+
+126
+00:06:28,560 --> 00:06:31,830
+because black is the color
+represented by values of 0
+
+127
+00:06:31,830 --> 00:06:34,680
+for each of red, green, and blue.
+
+128
+00:06:34,680 --> 00:06:39,810
+Your task in each of these functions--
+grayscale, sepia, reflect, and blur--
+
+129
+00:06:39,810 --> 00:06:43,620
+is going to be to take the image as
+input, as this two dimensional array,
+
+130
+00:06:43,620 --> 00:06:48,060
+and modify the two dimensional array,
+changing the individual pixels in order
+
+131
+00:06:48,060 --> 00:06:52,760
+to create the effect that you would
+get by applying one of these filters.
+
+132
+00:06:52,760 --> 00:06:54,080

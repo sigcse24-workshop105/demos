@@ -1,0 +1,734 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:03,240
+BRIAN: In Cash, your task is going
+to be to write a program that
+
+3
+00:00:03,240 --> 00:00:07,470
+takes the role of a cashier figuring
+out how many coins to give to a customer
+
+4
+00:00:07,470 --> 00:00:09,450
+to make a certain amount of change.
+
+5
+00:00:09,450 --> 00:00:11,910
+In the US, we have four
+main coin denominations.
+
+6
+00:00:11,910 --> 00:00:14,040
+We have pennies, which are worth $0.01.
+
+7
+00:00:14,040 --> 00:00:18,510
+Nickels, worth $0.05, dimes, worth
+$0.10, and quarters, worth $0.25.
+
+8
+00:00:18,510 --> 00:00:22,700
+So let's consider, for example, how
+you might make change for $0.30.
+
+9
+00:00:22,700 --> 00:00:27,360
+You could, for example, use 30
+pennies, which would require 30 coins.
+
+10
+00:00:27,360 --> 00:00:30,070
+But there are other
+ways to make as well.
+
+11
+00:00:30,070 --> 00:00:33,570
+For example, we could use
+three dimes, each worth $0.10,
+
+12
+00:00:33,570 --> 00:00:35,910
+and use a total of three coins there.
+
+13
+00:00:35,910 --> 00:00:40,260
+Or alternatively, we could use a
+quarter, worth $0.25, and a nickel,
+
+14
+00:00:40,260 --> 00:00:41,430
+worth $0.05.
+
+15
+00:00:41,430 --> 00:00:43,830
+In this case, only using two coins.
+
+16
+00:00:43,830 --> 00:00:46,320
+Your task in this
+problem is going to be,
+
+17
+00:00:46,320 --> 00:00:49,830
+given some amount of change, what
+is the fewest number of coins
+
+18
+00:00:49,830 --> 00:00:53,950
+you could use to provide
+that change to the customer?
+
+19
+00:00:53,950 --> 00:00:55,270
+How are we going to do that?
+
+20
+00:00:55,270 --> 00:00:57,750
+Well, we're going to do it
+using a greedy algorithm.
+
+21
+00:00:57,750 --> 00:01:00,930
+Which in this case means that
+at every step of the algorithm,
+
+22
+00:01:00,930 --> 00:01:03,720
+we're going to use the
+largest value coin possible.
+
+23
+00:01:03,720 --> 00:01:06,687
+If we're able to use a quarter to
+give us change, we'll use a quarter.
+
+24
+00:01:06,687 --> 00:01:09,270
+If we're not able to use a
+quarter, then we'll consider dimes.
+
+25
+00:01:09,270 --> 00:01:12,573
+If we're able to use a dime we'll
+use that, so on and so forth.
+
+26
+00:01:12,573 --> 00:01:14,490
+What does that actually
+look like in practice?
+
+27
+00:01:14,490 --> 00:01:16,420
+Well, let's take another example.
+
+28
+00:01:16,420 --> 00:01:19,980
+Let's try and make change
+for $0.61, for example.
+
+29
+00:01:19,980 --> 00:01:21,930
+In order to do that,
+the greedy algorithm
+
+30
+00:01:21,930 --> 00:01:25,950
+says that we should start by using the
+highest value coin we possibly can,
+
+31
+00:01:25,950 --> 00:01:28,000
+which in this case is a quarter.
+
+32
+00:01:28,000 --> 00:01:30,870
+So if we use a quarter,
+we've now used one coin.
+
+33
+00:01:30,870 --> 00:01:33,270
+And how much change is still owed?
+
+34
+00:01:33,270 --> 00:01:38,070
+Well, we started out by owning $0.61,
+and now we've given the customer $0.25,
+
+35
+00:01:38,070 --> 00:01:41,820
+so there's $0.36 in
+change that's still owed.
+
+36
+00:01:41,820 --> 00:01:43,380
+What coin do we use next?
+
+37
+00:01:43,380 --> 00:01:45,540
+Well again, the greedy
+algorithm says we should
+
+38
+00:01:45,540 --> 00:01:48,810
+use the largest value coin we
+possibly can, which in this case
+
+39
+00:01:48,810 --> 00:01:50,850
+is $0.25, another quarter.
+
+40
+00:01:50,850 --> 00:01:55,020
+We've now used two coins, and we
+now owe $0.11 to the customer.
+
+41
+00:01:55,020 --> 00:01:56,100
+What next?
+
+42
+00:01:56,100 --> 00:01:57,810
+Well, we can't use quarters anymore.
+
+43
+00:01:57,810 --> 00:02:03,040
+The change owed is $0.11, which is less
+than $0.25, the value of a quarter.
+
+44
+00:02:03,040 --> 00:02:06,360
+So we'll instead need to look
+to the next coin, a dime.
+
+45
+00:02:06,360 --> 00:02:08,160
+And we can use a dime in this case.
+
+46
+00:02:08,160 --> 00:02:11,820
+Using one dime, that brings our
+total coin count up to three cents.
+
+47
+00:02:11,820 --> 00:02:14,910
+And now there's only cent
+of change that we still owe.
+
+48
+00:02:14,910 --> 00:02:17,770
+A dime is not going to work for
+that and neither will a nickel.
+
+49
+00:02:17,770 --> 00:02:20,640
+So with the remaining change, we're
+going to use one penny in order
+
+50
+00:02:20,640 --> 00:02:22,170
+to make that amount of change.
+
+51
+00:02:22,170 --> 00:02:26,790
+And so the fewest number of coins we
+can use to make $0.61 worth of change
+
+52
+00:02:26,790 --> 00:02:27,990
+is four.
+
+53
+00:02:27,990 --> 00:02:30,060
+And this is what your
+program is going to do.
+
+54
+00:02:30,060 --> 00:02:34,710
+When you compile and run your program,
+you should run your program as ./cash,
+
+55
+00:02:34,710 --> 00:02:38,820
+and your program should prompt the
+user to type in how much change is owed
+
+56
+00:02:38,820 --> 00:02:39,970
+in dollars.
+
+57
+00:02:39,970 --> 00:02:44,790
+So if the user types in 0.61,
+for example, representing $0.61,
+
+58
+00:02:44,790 --> 00:02:48,990
+then your program should output four
+because we can use four coins in order
+
+59
+00:02:48,990 --> 00:02:52,200
+to make $0.61 of change.
+
+60
+00:02:52,200 --> 00:02:53,900
+What is your program then need to do?
+
+61
+00:02:53,900 --> 00:02:57,900
+So you should first prompt the user
+for some amount of change in dollars.
+
+62
+00:02:57,900 --> 00:03:00,830
+And then, using the largest
+coins you possibly can,
+
+63
+00:03:00,830 --> 00:03:04,890
+keep track of how many coins you've used
+until you've made change for the amount
+
+64
+00:03:04,890 --> 00:03:06,830
+that the user provided as input.
+
+65
+00:03:06,830 --> 00:03:10,250
+And then finally, you should print
+out that number of coins to the screen
+
+66
+00:03:10,250 --> 00:03:12,260
+so that the user can see it.
+
+67
+00:03:12,260 --> 00:03:15,560
+Let's take a closer look at how you
+might do each of these individual steps
+
+68
+00:03:15,560 --> 00:03:18,007
+starting with prompting
+the user for input.
+
+69
+00:03:18,007 --> 00:03:19,840
+So to prompt the user
+for input, we're going
+
+70
+00:03:19,840 --> 00:03:22,610
+to ask the user to type
+in some number of dollars.
+
+71
+00:03:22,610 --> 00:03:26,990
+So it might be 0.61, for
+example, to represent $0.61.
+
+72
+00:03:26,990 --> 00:03:30,080
+To do this, get int isn't
+going to work, because get int
+
+73
+00:03:30,080 --> 00:03:34,980
+asks for an integer number and a
+number like 0.61 isn't an integer.
+
+74
+00:03:34,980 --> 00:03:37,310
+We'll instead want to
+use a function like get
+
+75
+00:03:37,310 --> 00:03:40,700
+float, which gets a floating point
+number that might have a decimal in it,
+
+76
+00:03:40,700 --> 00:03:41,660
+for example.
+
+77
+00:03:41,660 --> 00:03:45,320
+But you'll also want to check to
+make sure that the user only types
+
+78
+00:03:45,320 --> 00:03:47,360
+in non-negative inputs.
+
+79
+00:03:47,360 --> 00:03:51,440
+If the user types in a negative
+amount, like -$1, for example,
+
+80
+00:03:51,440 --> 00:03:55,610
+you should re-prompt the user to type
+in another dollar value until they give
+
+81
+00:03:55,610 --> 00:03:57,440
+you a non-negative value.
+
+82
+00:03:57,440 --> 00:03:59,070
+How might you go about doing that?
+
+83
+00:03:59,070 --> 00:04:01,550
+Well, you can consider
+using a do while loop.
+
+84
+00:04:01,550 --> 00:04:04,070
+A loop that repeats some
+block of code, at least
+
+85
+00:04:04,070 --> 00:04:08,730
+once, but might continue to repeat it
+if some particular condition is true.
+
+86
+00:04:08,730 --> 00:04:11,790
+So think about what block of
+code you might want to repeat
+
+87
+00:04:11,790 --> 00:04:15,770
+and under what condition you would
+want to re-prompt the user to type
+
+88
+00:04:15,770 --> 00:04:18,200
+in some input again,
+and fill in those blanks
+
+89
+00:04:18,200 --> 00:04:20,300
+to figure out how you
+might use a do while loop
+
+90
+00:04:20,300 --> 00:04:23,070
+to prompt the user for input.
+
+91
+00:04:23,070 --> 00:04:26,700
+The next step is that the user is
+typing in their input in dollars,
+
+92
+00:04:26,700 --> 00:04:30,510
+but ultimately, most of our
+logic here has to do with cents.
+
+93
+00:04:30,510 --> 00:04:33,150
+So what you might want to do is
+convert the number of dollars
+
+94
+00:04:33,150 --> 00:04:35,380
+the user typed in to cents.
+
+95
+00:04:35,380 --> 00:04:37,740
+Of course there are
+100 cents in a bucket.
+
+96
+00:04:37,740 --> 00:04:40,770
+So if you take the dollar
+value and multiply it by 100
+
+97
+00:04:40,770 --> 00:04:42,810
+you'll get some number of cents.
+
+98
+00:04:42,810 --> 00:04:46,980
+You'll also want to be sure round the
+number of cents to the nearest penny
+
+99
+00:04:46,980 --> 00:04:50,340
+to make sure that your number
+of cents is in fact an integer.
+
+100
+00:04:50,340 --> 00:04:53,310
+There's a function called
+round, declared in math.h,
+
+101
+00:04:53,310 --> 00:04:56,100
+that o can take advantage of,
+that takes a floating point number
+
+102
+00:04:56,100 --> 00:04:58,390
+and rounds it to the nearest integer.
+
+103
+00:04:58,390 --> 00:05:02,440
+And this will help to handle issues
+of floating point imprecision as well.
+
+104
+00:05:02,440 --> 00:05:06,520
+So once you've converted some number
+of dollars into some number of cents,
+
+105
+00:05:06,520 --> 00:05:09,840
+the next step is to figure out how
+many coins you would need in order
+
+106
+00:05:09,840 --> 00:05:12,070
+to make that amount of change.
+
+107
+00:05:12,070 --> 00:05:13,380
+How are you going to do that?
+
+108
+00:05:13,380 --> 00:05:15,630
+Well, you'll want to keep
+track of a couple of things.
+
+109
+00:05:15,630 --> 00:05:19,680
+You'll want to keep track of how much
+change you still owe to the customer,
+
+110
+00:05:19,680 --> 00:05:22,200
+and you'll also want to
+keep track of how many coins
+
+111
+00:05:22,200 --> 00:05:25,150
+you've used so far as you go
+through this greedy algorithm.
+
+112
+00:05:25,150 --> 00:05:28,440
+We're first trying to use quarters,
+and then trying to use dimes,
+
+113
+00:05:28,440 --> 00:05:32,220
+and then trying to use nickels, and
+then finally using some pennies.
+
+114
+00:05:32,220 --> 00:05:35,100
+How might you go about actually
+implementing this algorithm?
+
+115
+00:05:35,100 --> 00:05:37,800
+Well, one approach might
+be to consider loops.
+
+116
+00:05:37,800 --> 00:05:40,710
+Ask yourself, while we can
+continue to use quarters,
+
+117
+00:05:40,710 --> 00:05:42,990
+go ahead and add a quarter
+to the coins that we're
+
+118
+00:05:42,990 --> 00:05:44,580
+using in order to make change.
+
+119
+00:05:44,580 --> 00:05:47,700
+And once we can't do that anymore,
+while we can still use dimes--
+
+120
+00:05:47,700 --> 00:05:51,600
+in other words, we have more than $0.10
+of change still remaining to give,
+
+121
+00:05:51,600 --> 00:05:52,980
+go ahead and use a dime.
+
+122
+00:05:52,980 --> 00:05:56,620
+And you can repeat this process
+for nickels and pennies as well.
+
+123
+00:05:56,620 --> 00:06:00,430
+But there are also other approaches you
+can use to solve this problem as well.
+
+124
+00:06:00,430 --> 00:06:03,030
+For example, you might
+consider how much change
+
+125
+00:06:03,030 --> 00:06:06,870
+would be left over after you've
+used up as many quarters as you can,
+
+126
+00:06:06,870 --> 00:06:07,860
+for example.
+
+127
+00:06:07,860 --> 00:06:10,800
+And if you can come up with
+some way to encode that idea,
+
+128
+00:06:10,800 --> 00:06:14,010
+then that might help you to figure
+out how many coins you need in order
+
+129
+00:06:14,010 --> 00:06:16,690
+to make change for this
+particular customer.
+
+130
+00:06:16,690 --> 00:06:19,750
+So there's a number of possible ways
+you can go about implementing this.
+
+131
+00:06:19,750 --> 00:06:23,280
+So think about what makes the most
+sense to you and try writing some code
+
+132
+00:06:23,280 --> 00:06:24,990
+in order to be able to do that.
+
+133
+00:06:24,990 --> 00:06:27,600
+Once you've calculated the
+number of coins that's required,
+
+134
+00:06:27,600 --> 00:06:30,570
+the next step, and the last step,
+is just printing the result out
+
+135
+00:06:30,570 --> 00:06:32,850
+to the screen so the user can see it.
+
+136
+00:06:32,850 --> 00:06:36,570
+If we knew in advance exactly how many
+coins it was going to take, printing it
+
+137
+00:06:36,570 --> 00:06:40,270
+would be as easy as just saying,
+printf and then four, for example,
+
+138
+00:06:40,270 --> 00:06:42,480
+if we knew that it
+would take four coins.
+
+139
+00:06:42,480 --> 00:06:44,940
+Of course, it might not
+be four coins it's likely
+
+140
+00:06:44,940 --> 00:06:46,870
+going to be some different value.
+
+141
+00:06:46,870 --> 00:06:49,710
+And so what we can do here
+instead is use a placeholder
+
+142
+00:06:49,710 --> 00:06:52,770
+we can use the percent I
+placeholder to mean we're going
+
+143
+00:06:52,770 --> 00:06:55,320
+to plug in some integer value here.
+
+144
+00:06:55,320 --> 00:06:57,330
+What integer value are
+we going to plug in?
+
+145
+00:06:57,330 --> 00:06:59,910
+It might be in a variable
+called coins, or a variable
+
+146
+00:06:59,910 --> 00:07:03,030
+called something else, that you'll
+provide as an additional argument
+
+147
+00:07:03,030 --> 00:07:04,170
+to printf.
+
+148
+00:07:04,170 --> 00:07:08,610
+Here we're basically saying, substitute
+in for percent I in this string,
+
+149
+00:07:08,610 --> 00:07:10,860
+the value of the variable coins.
+
+150
+00:07:10,860 --> 00:07:14,280
+And that will print out the
+variable coins to the screen.
+
+151
+00:07:14,280 --> 00:07:17,670
+Once you do that, you should be able
+to compile and run your program.
+
+152
+00:07:17,670 --> 00:07:21,660
+Running your program by running ./cash,
+then typing in some amount of money
+
+153
+00:07:21,660 --> 00:07:25,530
+in dollars, and then seeing how many
+coins it would take to make that amount
+
+154
+00:07:25,530 --> 00:07:26,730
+of change.
+
+155
+00:07:26,730 --> 00:07:30,320
+My name is Brian, and this was Cash.
+
+156
+00:07:30,320 --> 00:07:31,416

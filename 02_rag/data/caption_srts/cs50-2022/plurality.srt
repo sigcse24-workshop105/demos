@@ -1,0 +1,586 @@
+1
+00:00:00,000 --> 00:00:00,362
+
+
+2
+00:00:00,362 --> 00:00:02,070
+BRIAN YU: Let's take
+a look at plurality.
+
+3
+00:00:02,070 --> 00:00:04,260
+In plurality, your task
+is going to be to write
+
+4
+00:00:04,260 --> 00:00:06,660
+a program that simulates an election.
+
+5
+00:00:06,660 --> 00:00:09,420
+Your program will take a
+sequence of votes as input,
+
+6
+00:00:09,420 --> 00:00:12,570
+and your program will output
+the winner of that election.
+
+7
+00:00:12,570 --> 00:00:14,540
+Let's take a look at
+how you might do that.
+
+8
+00:00:14,540 --> 00:00:17,970
+Your election is going to have a
+sequence of candidates in the election.
+
+9
+00:00:17,970 --> 00:00:22,140
+This election has Alice, Bob, and
+Charlie as the candidates, for example.
+
+10
+00:00:22,140 --> 00:00:26,010
+And each voter is going to select
+one of those candidates to vote for.
+
+11
+00:00:26,010 --> 00:00:28,530
+If you take this voter's
+information in combination
+
+12
+00:00:28,530 --> 00:00:30,900
+with the information from
+all of the other voters,
+
+13
+00:00:30,900 --> 00:00:34,810
+you can use that information to figure
+out who the winner of the election is.
+
+14
+00:00:34,810 --> 00:00:36,810
+What information will you
+need to keep track of?
+
+15
+00:00:36,810 --> 00:00:38,910
+Well, you'll need to keep track
+of each of the candidates,
+
+16
+00:00:38,910 --> 00:00:41,520
+and for each of the candidates,
+how many votes they have.
+
+17
+00:00:41,520 --> 00:00:45,570
+In this case, Alice has three
+votes, Bob has one vote,
+
+18
+00:00:45,570 --> 00:00:47,340
+and Charlie has two votes.
+
+19
+00:00:47,340 --> 00:00:50,640
+So as a result, Alice is declared
+the winner of the election.
+
+20
+00:00:50,640 --> 00:00:54,900
+This is what we call a plurality vote,
+also known as first past the post.
+
+21
+00:00:54,900 --> 00:00:56,880
+The rules basically work like this.
+
+22
+00:00:56,880 --> 00:01:00,150
+Every voter chooses one candidate
+who they would like to vote for.
+
+23
+00:01:00,150 --> 00:01:02,610
+And at the end of the election,
+whichever candidate has
+
+24
+00:01:02,610 --> 00:01:06,010
+the most votes is declared
+the winner of that election.
+
+25
+00:01:06,010 --> 00:01:08,220
+So how is your program going to work?
+
+26
+00:01:08,220 --> 00:01:12,930
+Well, your program is going to be run
+as ./plurality followed by the names
+
+27
+00:01:12,930 --> 00:01:14,640
+of all of the candidates
+in the election.
+
+28
+00:01:14,640 --> 00:01:17,412
+In this case, Alice, Bob, and Charlie.
+
+29
+00:01:17,412 --> 00:01:19,620
+Your program will then prompt
+the user for the number
+
+30
+00:01:19,620 --> 00:01:20,940
+of voters in the election.
+
+31
+00:01:20,940 --> 00:01:23,340
+In this case, we might
+say four, for example.
+
+32
+00:01:23,340 --> 00:01:25,650
+And then now four times
+your program is going
+
+33
+00:01:25,650 --> 00:01:28,890
+to prompt the voter to type in
+who they're going to vote for.
+
+34
+00:01:28,890 --> 00:01:31,270
+So the first vote for
+Alice, for example.
+
+35
+00:01:31,270 --> 00:01:33,870
+And then the next voter might
+vote for Bob, for example.
+
+36
+00:01:33,870 --> 00:01:36,540
+And maybe the last two voters
+are going to vote for Charlie.
+
+37
+00:01:36,540 --> 00:01:38,790
+After all of the votes
+are in, your program
+
+38
+00:01:38,790 --> 00:01:42,660
+is going to figure out who the winner of
+the election is and output their name.
+
+39
+00:01:42,660 --> 00:01:44,880
+In this case, Charlie.
+
+40
+00:01:44,880 --> 00:01:46,963
+So how are you going to do this?
+
+41
+00:01:46,963 --> 00:01:49,380
+Well, recall that this is the
+data that you need to store.
+
+42
+00:01:49,380 --> 00:01:52,110
+For each candidate, you need
+to keep track of how many votes
+
+43
+00:01:52,110 --> 00:01:54,750
+they currently have, which
+means that for any candidate,
+
+44
+00:01:54,750 --> 00:01:57,270
+you're really storing two
+pieces of information.
+
+45
+00:01:57,270 --> 00:02:00,090
+And when you're storing
+multiple pieces of information,
+
+46
+00:02:00,090 --> 00:02:03,060
+one convenient way to
+represent that in a c program
+
+47
+00:02:03,060 --> 00:02:06,150
+is by storing the information
+inside of a struct.
+
+48
+00:02:06,150 --> 00:02:09,419
+Here, we've defined a struct
+called a candidate, inside
+
+49
+00:02:09,419 --> 00:02:11,520
+of which we're going
+to store two fields.
+
+50
+00:02:11,520 --> 00:02:15,810
+One field which is a string called
+name representing the candidate's name,
+
+51
+00:02:15,810 --> 00:02:20,070
+and one field which is an integer called
+votes representing the number of votes
+
+52
+00:02:20,070 --> 00:02:22,380
+that this candidate currently has.
+
+53
+00:02:22,380 --> 00:02:25,590
+We can take all of these candidates
+stored inside of these structs
+
+54
+00:02:25,590 --> 00:02:29,160
+and put them in a sequence by creating
+an array of candidates which we're
+
+55
+00:02:29,160 --> 00:02:33,270
+going to call candidates that's going
+to store all of the candidates that
+
+56
+00:02:33,270 --> 00:02:35,160
+are currently in the election.
+
+57
+00:02:35,160 --> 00:02:38,880
+Because this is an array, we can index
+into this array the same way we index
+
+58
+00:02:38,880 --> 00:02:42,840
+into any other array by using
+candidates[0] to mean the first
+
+59
+00:02:42,840 --> 00:02:46,650
+candidate in the election, candidates[1]
+to mean the second candidate,
+
+60
+00:02:46,650 --> 00:02:49,470
+and candidates[2] to
+mean the third candidate.
+
+61
+00:02:49,470 --> 00:02:51,630
+But remember that each
+candidate is itself
+
+62
+00:02:51,630 --> 00:02:54,630
+a struct that has a name
+and a number of votes.
+
+63
+00:02:54,630 --> 00:02:57,840
+So if we want to take this struct
+and access a property of it,
+
+64
+00:02:57,840 --> 00:03:01,320
+we could say candidates[2].name,
+for example--
+
+65
+00:03:01,320 --> 00:03:04,680
+using the dot syntax to access
+the name of this candidate--
+
+66
+00:03:04,680 --> 00:03:09,450
+and using candidates[2].votes to
+access the number of votes that Charlie
+
+67
+00:03:09,450 --> 00:03:10,720
+currently has.
+
+68
+00:03:10,720 --> 00:03:13,320
+So what are you going
+to do in plurality?
+
+69
+00:03:13,320 --> 00:03:15,420
+Well, you're going to
+implement two functions.
+
+70
+00:03:15,420 --> 00:03:18,750
+One called vote and one
+called a print_winner.
+
+71
+00:03:18,750 --> 00:03:21,330
+Your vote function is going
+to take as its argument
+
+72
+00:03:21,330 --> 00:03:23,730
+a string parameter called name.
+
+73
+00:03:23,730 --> 00:03:25,950
+And what your vote
+function is going to do
+
+74
+00:03:25,950 --> 00:03:27,990
+is it's going to look
+for a candidate who's
+
+75
+00:03:27,990 --> 00:03:30,780
+called name, who has that same name.
+
+76
+00:03:30,780 --> 00:03:33,180
+And if you're able to find
+a candidate with that name,
+
+77
+00:03:33,180 --> 00:03:37,030
+you're going to update their
+vote total and return true.
+
+78
+00:03:37,030 --> 00:03:39,390
+Otherwise, if you aren't
+able to find that candidate,
+
+79
+00:03:39,390 --> 00:03:41,700
+you're going to not update
+any vote totals at all,
+
+80
+00:03:41,700 --> 00:03:44,620
+and you're instead
+going to return false.
+
+81
+00:03:44,620 --> 00:03:45,900
+So how might that work?
+
+82
+00:03:45,900 --> 00:03:48,160
+Well, if the vote
+function is called on Bob,
+
+83
+00:03:48,160 --> 00:03:52,050
+for example, you might want to iterate
+through this array of candidates
+
+84
+00:03:52,050 --> 00:03:54,610
+starting with the first
+one and asking yourself,
+
+85
+00:03:54,610 --> 00:03:57,690
+does this candidate's name match Bob?
+
+86
+00:03:57,690 --> 00:03:58,830
+In this case, it doesn't.
+
+87
+00:03:58,830 --> 00:03:59,670
+So we move on.
+
+88
+00:03:59,670 --> 00:04:01,290
+We'd move to the next candidate.
+
+89
+00:04:01,290 --> 00:04:03,450
+Does this candidate's name match Bob?
+
+90
+00:04:03,450 --> 00:04:04,260
+Well, it does.
+
+91
+00:04:04,260 --> 00:04:07,860
+So we found a match, which means we can
+take the vote total and increment it,
+
+92
+00:04:07,860 --> 00:04:11,130
+moving it from 1 to 2 to
+keep track of this new vote.
+
+93
+00:04:11,130 --> 00:04:13,555
+And then our vote function
+would return true.
+
+94
+00:04:13,555 --> 00:04:16,680
+Of course, if we had voted for someone
+who wasn't in this election at all--
+
+95
+00:04:16,680 --> 00:04:18,269
+for example, Dave--
+
+96
+00:04:18,269 --> 00:04:22,540
+we wouldn't update any vote totals,
+and our function would return false.
+
+97
+00:04:22,540 --> 00:04:24,098
+So that's the vote function.
+
+98
+00:04:24,098 --> 00:04:26,640
+The second function you're going
+to implement in this program
+
+99
+00:04:26,640 --> 00:04:27,725
+is print_winner.
+
+100
+00:04:27,725 --> 00:04:30,600
+And the print_winner function is
+going to be tasked with printing out
+
+101
+00:04:30,600 --> 00:04:32,043
+the winner of the election.
+
+102
+00:04:32,043 --> 00:04:33,960
+So in this function,
+you're going to print out
+
+103
+00:04:33,960 --> 00:04:38,070
+the name of the candidate or
+candidates who have the most votes.
+
+104
+00:04:38,070 --> 00:04:40,800
+Because remember, it's possible
+that at the end of the election,
+
+105
+00:04:40,800 --> 00:04:44,430
+multiple people are tied for the
+most number of votes, in which case
+
+106
+00:04:44,430 --> 00:04:46,260
+each of them should
+be declared a winner.
+
+107
+00:04:46,260 --> 00:04:48,910
+And you'll want to print
+out each of their names.
+
+108
+00:04:48,910 --> 00:04:52,530
+So in this case where Alice has
+three votes, Bob has one vote,
+
+109
+00:04:52,530 --> 00:04:55,620
+and Charlie has two votes,
+Alice has the most votes,
+
+110
+00:04:55,620 --> 00:04:58,330
+and Alice is going to be declared
+the winner of the election.
+
+111
+00:04:58,330 --> 00:05:00,720
+So you should print out Alice's name.
+
+112
+00:05:00,720 --> 00:05:03,240
+But consider, for
+example, these vote totals
+
+113
+00:05:03,240 --> 00:05:05,760
+where both Alice and Bob
+each are tied for winning
+
+114
+00:05:05,760 --> 00:05:07,620
+the election at three votes each.
+
+115
+00:05:07,620 --> 00:05:11,280
+So your program should print out
+Alice on one line and then Bob
+
+116
+00:05:11,280 --> 00:05:12,810
+on the next line.
+
+117
+00:05:12,810 --> 00:05:16,083
+After you've implemented these two
+functions, vote and print_winner,
+
+118
+00:05:16,083 --> 00:05:18,000
+you should have implemented
+all you need to be
+
+119
+00:05:18,000 --> 00:05:20,220
+able to simulate a plurality election.
+
+120
+00:05:20,220 --> 00:05:24,780
+And by running ./plurality, you should
+be able to type in a sequence of votes
+
+121
+00:05:24,780 --> 00:05:28,560
+and have your program output who
+the winner of the election is.
+
+122
+00:05:28,560 --> 00:05:29,610
+My name is Brian.
+
+123
+00:05:29,610 --> 00:05:32,330
+And this was plurality.
+
+124
+00:05:32,330 --> 00:05:33,205

@@ -1,0 +1,1685 @@
+1
+00:00:00,000 --> 00:00:01,740
+BRIAN: Let's dive into Tideman.
+
+2
+00:00:01,740 --> 00:00:03,750
+In this program, your
+task is going to be
+
+3
+00:00:03,750 --> 00:00:07,500
+to write a program that implements
+the Tideman Voting System.
+
+4
+00:00:07,500 --> 00:00:11,610
+This voting system is an example of a
+ranked-preference voting system, which
+
+5
+00:00:11,610 --> 00:00:14,850
+means that every voter, instead
+of just voting for one candidate,
+
+6
+00:00:14,850 --> 00:00:17,950
+will get to rank their candidates
+in order of preference.
+
+7
+00:00:17,950 --> 00:00:21,040
+So a voter, instead of just
+voting for Alice for example,
+
+8
+00:00:21,040 --> 00:00:24,250
+might instead indicate that
+Alice is their top choice.
+
+9
+00:00:24,250 --> 00:00:26,100
+But their second choice is Charlie.
+
+10
+00:00:26,100 --> 00:00:28,440
+And their third choice is Bob.
+
+11
+00:00:28,440 --> 00:00:31,440
+And in particular, the Tideman
+voting method, otherwise known
+
+12
+00:00:31,440 --> 00:00:34,560
+as Ranked Pairs, determines
+the winner of an election
+
+13
+00:00:34,560 --> 00:00:38,410
+by looking at every possible pair
+of candidates in that election
+
+14
+00:00:38,410 --> 00:00:42,240
+and determining who would have won
+a race if the election was just
+
+15
+00:00:42,240 --> 00:00:44,310
+between those two candidates.
+
+16
+00:00:44,310 --> 00:00:47,650
+Let's take a look at an example
+of a Ranked Pairs election.
+
+17
+00:00:47,650 --> 00:00:49,440
+Here's an election
+with three candidates--
+
+18
+00:00:49,440 --> 00:00:53,130
+Alice, Bob, and Charlie,
+and five voters.
+
+19
+00:00:53,130 --> 00:00:57,300
+And what we're going to do is consider
+each pair of candidates, one pair
+
+20
+00:00:57,300 --> 00:00:58,450
+at a time.
+
+21
+00:00:58,450 --> 00:01:01,590
+Let's start just by
+considering Alice and Bob.
+
+22
+00:01:01,590 --> 00:01:04,530
+Based on these five voters,
+three of the five voters
+
+23
+00:01:04,530 --> 00:01:06,510
+think that Alice is better than Bob.
+
+24
+00:01:06,510 --> 00:01:09,900
+And two of the five voters think
+that Bob is better than Alice.
+
+25
+00:01:09,900 --> 00:01:13,560
+So between Alice and Bob, Alice
+would have won the election
+
+26
+00:01:13,560 --> 00:01:15,930
+if it was just between the two of them.
+
+27
+00:01:15,930 --> 00:01:18,900
+To represent that, we're going
+to write Alice and Bob's name
+
+28
+00:01:18,900 --> 00:01:21,870
+and draw an arrow
+pointing from Alice to Bob
+
+29
+00:01:21,870 --> 00:01:24,600
+to indicate that Alice
+would have beaten Bob
+
+30
+00:01:24,600 --> 00:01:27,760
+in a head-to-head match-up
+between the two of them.
+
+31
+00:01:27,760 --> 00:01:29,670
+Let's now consider the other pairs.
+
+32
+00:01:29,670 --> 00:01:32,340
+Let's look at Alice and
+Charlie, for example.
+
+33
+00:01:32,340 --> 00:01:34,620
+In this case, judging
+by these five voters,
+
+34
+00:01:34,620 --> 00:01:37,320
+three voters thought Charlie
+was better than Alice.
+
+35
+00:01:37,320 --> 00:01:40,440
+And only two voters thought
+Alice was better than Charlie.
+
+36
+00:01:40,440 --> 00:01:43,780
+So Charlie would have beaten
+Alice in a head-to-head match up.
+
+37
+00:01:43,780 --> 00:01:46,020
+So we're going to again,
+draw an arrow, this time
+
+38
+00:01:46,020 --> 00:01:48,510
+pointing from Charlie
+to Alice, indicating
+
+39
+00:01:48,510 --> 00:01:51,600
+that Charlie is preferred over Alice.
+
+40
+00:01:51,600 --> 00:01:55,260
+And finally, let's consider the
+last pair of Charlie and Bob.
+
+41
+00:01:55,260 --> 00:01:58,200
+And in this case, we can see
+that three of the five voters
+
+42
+00:01:58,200 --> 00:01:59,970
+think that Charlie is better than Bob.
+
+43
+00:01:59,970 --> 00:02:02,310
+Only two think Bob is
+better than Charlie.
+
+44
+00:02:02,310 --> 00:02:06,540
+So we'll draw one final arrow
+here, pointing from Charlie to Bob,
+
+45
+00:02:06,540 --> 00:02:10,600
+indicating that Charlie
+beats Bob in this election.
+
+46
+00:02:10,600 --> 00:02:12,580
+This structure that
+we've created is what
+
+47
+00:02:12,580 --> 00:02:16,060
+we call a graph, where we have each
+of these individual candidates.
+
+48
+00:02:16,060 --> 00:02:20,380
+And we have arrows, otherwise known
+as edges, pointing from one candidate
+
+49
+00:02:20,380 --> 00:02:22,780
+to another candidate
+if the first candidate
+
+50
+00:02:22,780 --> 00:02:24,880
+would have beaten the second candidate.
+
+51
+00:02:24,880 --> 00:02:28,810
+And now just using this graph and
+without looking at the ballots anymore,
+
+52
+00:02:28,810 --> 00:02:32,020
+we can determine who the winner
+of the election should be.
+
+53
+00:02:32,020 --> 00:02:36,010
+The winner of the election is the
+so-called source of the graph,
+
+54
+00:02:36,010 --> 00:02:39,118
+the person who has no arrows
+pointing at them, but does
+
+55
+00:02:39,118 --> 00:02:40,660
+have arrows pointing at other people.
+
+56
+00:02:40,660 --> 00:02:44,110
+In this case, Charlie has arrows
+pointing to Alice and Bob.
+
+57
+00:02:44,110 --> 00:02:46,600
+But there are no arrows that
+are pointing at Charlie,
+
+58
+00:02:46,600 --> 00:02:48,490
+which means nobody beats Charlie.
+
+59
+00:02:48,490 --> 00:02:53,420
+And Charlie therefore, we can conclude,
+should be the winner of this election.
+
+60
+00:02:53,420 --> 00:02:56,120
+Now this was a relatively
+simple election.
+
+61
+00:02:56,120 --> 00:02:58,790
+But there are some times where
+we might have an election where
+
+62
+00:02:58,790 --> 00:03:00,930
+there is no source of the graph.
+
+63
+00:03:00,930 --> 00:03:03,750
+And we need to figure out
+how to handle that situation.
+
+64
+00:03:03,750 --> 00:03:05,720
+Let's take a look at an example of that.
+
+65
+00:03:05,720 --> 00:03:08,360
+Here is an election that
+has nine voters, again
+
+66
+00:03:08,360 --> 00:03:09,710
+voting for three candidates--
+
+67
+00:03:09,710 --> 00:03:11,150
+Alice, Bob, and Charlie.
+
+68
+00:03:11,150 --> 00:03:14,990
+And let's consider each of these pairs
+of candidates one at a time again.
+
+69
+00:03:14,990 --> 00:03:18,560
+Between Alice and Bob,
+Alice beats Bob, 7 to 2.
+
+70
+00:03:18,560 --> 00:03:21,800
+Seven of these nine voters think
+that Alice is better than Bob.
+
+71
+00:03:21,800 --> 00:03:24,590
+So we'll draw an arrow
+from Alice to Bob.
+
+72
+00:03:24,590 --> 00:03:27,530
+Next we'll take a look at
+the pair of Bob and Charlie,
+
+73
+00:03:27,530 --> 00:03:30,410
+where we see that Bob
+beats Charlie 5 to 4.
+
+74
+00:03:30,410 --> 00:03:34,040
+Because five out of the nine voters
+think that Bob is better than Charlie.
+
+75
+00:03:34,040 --> 00:03:35,990
+So in this case, we'll
+draw another arrow,
+
+76
+00:03:35,990 --> 00:03:38,720
+this time pointing from Bob to Charlie.
+
+77
+00:03:38,720 --> 00:03:42,470
+And now let's consider the
+final pair, Alice and Charlie.
+
+78
+00:03:42,470 --> 00:03:47,360
+And what you'll notice here is that
+Charlie actually beats Alice 6 to 3.
+
+79
+00:03:47,360 --> 00:03:51,290
+Six of these nine voters think
+that Charlie is better than Alice.
+
+80
+00:03:51,290 --> 00:03:54,750
+So we'll draw an arrow
+from Charlie to Alice.
+
+81
+00:03:54,750 --> 00:03:57,150
+And what you'll notice
+in this resulting graph
+
+82
+00:03:57,150 --> 00:03:59,720
+is that there is no source of the graph.
+
+83
+00:03:59,720 --> 00:04:02,430
+There's nobody that is
+undefeated, so to speak.
+
+84
+00:04:02,430 --> 00:04:06,120
+Alice beats Bob, Bob beats
+Charlie, and Charlie beats Alice
+
+85
+00:04:06,120 --> 00:04:09,660
+in this rock, paper, scissors,
+reminiscent-style of graph.
+
+86
+00:04:09,660 --> 00:04:13,170
+And so it would be difficult to
+say who the winner of this election
+
+87
+00:04:13,170 --> 00:04:14,700
+should actually be.
+
+88
+00:04:14,700 --> 00:04:19,290
+But this is where the ranked pairs
+idea of Ranked Pairs Voting comes in.
+
+89
+00:04:19,290 --> 00:04:22,710
+Instead of adding all of these
+edges to the graph all at once,
+
+90
+00:04:22,710 --> 00:04:26,100
+we're going to add the edges
+one at a time in order,
+
+91
+00:04:26,100 --> 00:04:29,730
+based on the strength of
+victory for any particular pair.
+
+92
+00:04:29,730 --> 00:04:31,560
+So we'll first take these three pairs--
+
+93
+00:04:31,560 --> 00:04:34,830
+Alice and Bob, Bob and
+Charlie, and Charlie and Alice,
+
+94
+00:04:34,830 --> 00:04:38,190
+and put them in order based on
+the strength of their victory.
+
+95
+00:04:38,190 --> 00:04:40,560
+The strongest victory
+is Alice beating Bob--
+
+96
+00:04:40,560 --> 00:04:42,090
+7 votes to 2.
+
+97
+00:04:42,090 --> 00:04:44,160
+The next strongest is
+Charlie beating Alice--
+
+98
+00:04:44,160 --> 00:04:45,450
+6 votes to 3.
+
+99
+00:04:45,450 --> 00:04:49,380
+And the least strong margin of
+victory is Bob beating Charlie,
+
+100
+00:04:49,380 --> 00:04:52,300
+who only won on a 5 to 4 margin.
+
+101
+00:04:52,300 --> 00:04:56,610
+And now what we're going to do is
+add edges to this graph in order,
+
+102
+00:04:56,610 --> 00:04:58,780
+based on this strength of victory.
+
+103
+00:04:58,780 --> 00:05:03,060
+But we're not going to add an edge if
+it would create a cycle, a rock, paper,
+
+104
+00:05:03,060 --> 00:05:06,390
+scissors-style situation, where one
+candidate points to another which
+
+105
+00:05:06,390 --> 00:05:10,110
+might point to another, which eventually
+loops back to that original candidate.
+
+106
+00:05:10,110 --> 00:05:14,340
+Because in that sort of situation, we
+wouldn't know who the winner should be.
+
+107
+00:05:14,340 --> 00:05:16,620
+So to put this into
+practice, we would start
+
+108
+00:05:16,620 --> 00:05:19,200
+with Alice beating Bob,
+the strongest pair,
+
+109
+00:05:19,200 --> 00:05:21,540
+and draw an arrow from Alice to Bob.
+
+110
+00:05:21,540 --> 00:05:25,090
+The next pair is Charlie beating
+Alice on a 6 to 3 margin.
+
+111
+00:05:25,090 --> 00:05:27,810
+So we would draw an arrow
+from Charlie to Alice.
+
+112
+00:05:27,810 --> 00:05:30,420
+And next, Bob beats Charlie 5 to 4.
+
+113
+00:05:30,420 --> 00:05:34,260
+So we would have drawn an arrow from
+Bob to Charlie, but we shouldn't yet.
+
+114
+00:05:34,260 --> 00:05:36,480
+Because we should
+first notice that if we
+
+115
+00:05:36,480 --> 00:05:38,910
+were to draw an arrow
+from Bob to Charlie,
+
+116
+00:05:38,910 --> 00:05:41,810
+that would create a cycle,
+where Bob goes to Charlie, who
+
+117
+00:05:41,810 --> 00:05:44,190
+goes to Alice, who goes back to Bob.
+
+118
+00:05:44,190 --> 00:05:47,070
+Any time we would be adding
+an edge that creates a cycle,
+
+119
+00:05:47,070 --> 00:05:50,440
+we're just going to skip that edge
+and declare that now, in this case,
+
+120
+00:05:50,440 --> 00:05:53,160
+since we've made it through
+all of the pairs, we're done.
+
+121
+00:05:53,160 --> 00:05:55,440
+And we're going to look
+at this result graph
+
+122
+00:05:55,440 --> 00:05:58,140
+to determine who the winner
+of the election should be.
+
+123
+00:05:58,140 --> 00:06:00,150
+And in this case, the
+winner of the election
+
+124
+00:06:00,150 --> 00:06:04,600
+is again, the source of the graph,
+who in this case, is Charlie.
+
+125
+00:06:04,600 --> 00:06:08,600
+So in summary, the Tideman
+Voting Method works as follows--
+
+126
+00:06:08,600 --> 00:06:10,570
+we start by tallying up the votes.
+
+127
+00:06:10,570 --> 00:06:13,330
+Once all of the voters have
+indicated their preferences,
+
+128
+00:06:13,330 --> 00:06:15,760
+we're going to look at
+each pair of candidates
+
+129
+00:06:15,760 --> 00:06:17,890
+and determine who the
+winner of the election
+
+130
+00:06:17,890 --> 00:06:20,590
+would be for just that particular pair.
+
+131
+00:06:20,590 --> 00:06:23,140
+After we have all of
+those pairs, the next step
+
+132
+00:06:23,140 --> 00:06:26,800
+is going to be to sort those pairs we're
+going to sort the pairs of candidates
+
+133
+00:06:26,800 --> 00:06:30,850
+in decreasing strength of victory,
+where the strongest or widest margin
+
+134
+00:06:30,850 --> 00:06:32,020
+of victory is first.
+
+135
+00:06:32,020 --> 00:06:36,390
+And we go down to the smallest
+margin of victory at the end.
+
+136
+00:06:36,390 --> 00:06:40,830
+After we have the sorted pairs, the
+next step is to lock those pairs in one
+
+137
+00:06:40,830 --> 00:06:41,830
+at a time.
+
+138
+00:06:41,830 --> 00:06:45,330
+Starting with the strongest pair,
+we're going to lock in each pair.
+
+139
+00:06:45,330 --> 00:06:48,090
+That is to say add an
+edge to that graph,
+
+140
+00:06:48,090 --> 00:06:51,090
+as long as adding that edge
+isn't going to create a cycle.
+
+141
+00:06:51,090 --> 00:06:53,730
+If it would create a cycle,
+we're going to skip that edge
+
+142
+00:06:53,730 --> 00:06:56,310
+and just move on to the next pair.
+
+143
+00:06:56,310 --> 00:06:58,530
+And after we have that
+resulting graph, we
+
+144
+00:06:58,530 --> 00:07:01,200
+can determine the winner of
+the election by just checking
+
+145
+00:07:01,200 --> 00:07:03,870
+to see who the source of the graph is--
+
+146
+00:07:03,870 --> 00:07:08,170
+in other words, who has no
+arrows pointing at them.
+
+147
+00:07:08,170 --> 00:07:10,980
+So in order to implement
+this idea in C, we're
+
+148
+00:07:10,980 --> 00:07:13,720
+going to need to use some
+data structures and variables.
+
+149
+00:07:13,720 --> 00:07:15,720
+So let's take a look
+at the data structures
+
+150
+00:07:15,720 --> 00:07:18,420
+that you're going to be
+using in this program.
+
+151
+00:07:18,420 --> 00:07:22,170
+The first that you're going to have
+access to is an array of candidates.
+
+152
+00:07:22,170 --> 00:07:24,690
+Candidates is an array
+of strings that is just
+
+153
+00:07:24,690 --> 00:07:26,963
+an array of all of the candidates names.
+
+154
+00:07:26,963 --> 00:07:28,380
+So if there are three candidates--
+
+155
+00:07:28,380 --> 00:07:32,160
+Alice, Bob, and Charlie, you might
+have Alice as candidate number 0,
+
+156
+00:07:32,160 --> 00:07:36,720
+Bob as candidate number 1, and Charlie
+as candidate number 2, for example.
+
+157
+00:07:36,720 --> 00:07:40,380
+You're also going to have access
+to a variable called preferences.
+
+158
+00:07:40,380 --> 00:07:44,520
+And preferences is a two-dimensional
+array of integers interpreted
+
+159
+00:07:44,520 --> 00:07:45,540
+as follows--
+
+160
+00:07:45,540 --> 00:07:51,510
+preferences [i][j] is the number of
+voters who prefer a candidate i over
+
+161
+00:07:51,510 --> 00:07:52,800
+candidate j.
+
+162
+00:07:52,800 --> 00:07:56,800
+Let's take a look at an example to see
+what that actually means in context.
+
+163
+00:07:56,800 --> 00:07:59,160
+Here's an example of an
+election with three candidates--
+
+164
+00:07:59,160 --> 00:08:01,890
+Alice, Bob, and Charlie,
+And four voters.
+
+165
+00:08:01,890 --> 00:08:04,470
+And based on these four
+ballots, you might fill
+
+166
+00:08:04,470 --> 00:08:07,890
+in the preferences'
+two-dimensional array as follows--
+
+167
+00:08:07,890 --> 00:08:10,860
+this first row preference,
+of 0, represents
+
+168
+00:08:10,860 --> 00:08:15,360
+preferences for Alice, who's candidate
+number 0 in the candidates array.
+
+169
+00:08:15,360 --> 00:08:18,810
+That first cell, also with
+0, means that 0 people
+
+170
+00:08:18,810 --> 00:08:22,050
+think that Alice is better
+than Alice, which makes sense.
+
+171
+00:08:22,050 --> 00:08:25,140
+The next cell in this row
+3, means that three voters
+
+172
+00:08:25,140 --> 00:08:26,970
+think that Alice is better than Bob.
+
+173
+00:08:26,970 --> 00:08:29,190
+And the final cell here
+means that three voters
+
+174
+00:08:29,190 --> 00:08:31,590
+think Alice is better than Charlie.
+
+175
+00:08:31,590 --> 00:08:33,990
+The second row, meanwhile,
+preferences square bracket
+
+176
+00:08:33,990 --> 00:08:36,690
+1, that represents preferences for Bob.
+
+177
+00:08:36,690 --> 00:08:38,970
+One voter thinks Bob
+is better than Alice.
+
+178
+00:08:38,970 --> 00:08:40,950
+Nobody thinks Bob is better than Bob.
+
+179
+00:08:40,950 --> 00:08:43,919
+And one voter thinks Bob
+is better than Charlie.
+
+180
+00:08:43,919 --> 00:08:47,430
+And finally, this last row in the
+preferences two-dimensional array
+
+181
+00:08:47,430 --> 00:08:49,500
+represents preferences for Charlie.
+
+182
+00:08:49,500 --> 00:08:51,990
+One voter thinks Charlie
+is better than Alice.
+
+183
+00:08:51,990 --> 00:08:54,450
+Three voters think Charlie
+is better than Bob.
+
+184
+00:08:54,450 --> 00:08:57,690
+And nobody thinks Charlie
+is better than Charlie.
+
+185
+00:08:57,690 --> 00:09:00,510
+This two-dimensional
+array now captures all
+
+186
+00:09:00,510 --> 00:09:03,600
+of the data we need about
+individual voter preferences
+
+187
+00:09:03,600 --> 00:09:06,210
+to determine what the
+pairs are and who is
+
+188
+00:09:06,210 --> 00:09:08,820
+the winner of each pair in the election.
+
+189
+00:09:08,820 --> 00:09:11,430
+So we need now, some
+way to represent pairs.
+
+190
+00:09:11,430 --> 00:09:14,250
+And to do that, we've
+defined a struct for you.
+
+191
+00:09:14,250 --> 00:09:16,110
+This struct has two fields--
+
+192
+00:09:16,110 --> 00:09:20,370
+winner and loser-- each of which is
+an integer representing the candidate
+
+193
+00:09:20,370 --> 00:09:24,090
+index in that candidate's array,
+who is the winner or the loser
+
+194
+00:09:24,090 --> 00:09:26,760
+for this particular pair, respectively.
+
+195
+00:09:26,760 --> 00:09:29,460
+Those pairs are going
+to be added to pairs,
+
+196
+00:09:29,460 --> 00:09:32,250
+which is going to be an
+array of all of the pairs
+
+197
+00:09:32,250 --> 00:09:35,770
+where one candidate is
+preferred above another.
+
+198
+00:09:35,770 --> 00:09:39,300
+In other words, if there's a pair
+where the two candidates tie and no one
+
+199
+00:09:39,300 --> 00:09:41,160
+person is favored over
+the other, we're not
+
+200
+00:09:41,160 --> 00:09:44,930
+going to bother adding that
+pair to the pairs array.
+
+201
+00:09:44,930 --> 00:09:48,650
+You're then going to use that
+pairs array to generate a graph.
+
+202
+00:09:48,650 --> 00:09:50,210
+This graph is called locked.
+
+203
+00:09:50,210 --> 00:09:53,330
+And this is going to be a
+two-dimensional Boolean array,
+
+204
+00:09:53,330 --> 00:09:55,670
+representing the candidate graph.
+
+205
+00:09:55,670 --> 00:09:59,240
+And the way to interpret this
+two-dimensional array is that if locked
+
+206
+00:09:59,240 --> 00:10:04,130
+[i][j] is true, that means we have
+locked in the edge or the arrow
+
+207
+00:10:04,130 --> 00:10:07,850
+pointing from candidate
+i to candidate j.
+
+208
+00:10:07,850 --> 00:10:11,420
+So at first, all of the values in
+this two-dimensional Boolean array
+
+209
+00:10:11,420 --> 00:10:14,720
+are going to be false, because we
+have no arrows pointing anywhere
+
+210
+00:10:14,720 --> 00:10:16,400
+at the beginning of our algorithm.
+
+211
+00:10:16,400 --> 00:10:20,600
+But every time you want to add an arrow
+or an edge pointing from one candidate
+
+212
+00:10:20,600 --> 00:10:24,650
+to another candidate, you're going
+to change the value of locked [i][j]
+
+213
+00:10:24,650 --> 00:10:28,901
+to true, for some candidates i and j.
+
+214
+00:10:28,901 --> 00:10:31,530
+So let's take a look at the
+functions that you'll actually need
+
+215
+00:10:31,530 --> 00:10:33,720
+to write in order to implement Tideman.
+
+216
+00:10:33,720 --> 00:10:37,500
+You're going to implement six
+functions-- vote, record_preferences,
+
+217
+00:10:37,500 --> 00:10:42,240
+add_pairs, sort_pairs, lock_pairs,
+and print_winner, where
+
+218
+00:10:42,240 --> 00:10:44,280
+after you've completed
+all of these functions,
+
+219
+00:10:44,280 --> 00:10:47,440
+you'll have implemented
+the entire voting system.
+
+220
+00:10:47,440 --> 00:10:50,070
+So let's take a look at these
+functions one at a time,
+
+221
+00:10:50,070 --> 00:10:52,020
+beginning with the vote function.
+
+222
+00:10:52,020 --> 00:10:55,740
+The vote function is going to be
+called every time a voter indicates
+
+223
+00:10:55,740 --> 00:10:59,580
+that some candidate has some
+rank in their preferences.
+
+224
+00:10:59,580 --> 00:11:01,590
+The vote function
+takes in three inputs--
+
+225
+00:11:01,590 --> 00:11:03,960
+the rank itself, the
+name of the candidate,
+
+226
+00:11:03,960 --> 00:11:08,010
+as well as an array of all of
+that particular voter's ranks.
+
+227
+00:11:08,010 --> 00:11:09,930
+So what you're going
+to do in this function
+
+228
+00:11:09,930 --> 00:11:12,450
+is you're going to look
+through the candidate's array
+
+229
+00:11:12,450 --> 00:11:15,210
+for a candidate that has the same name.
+
+230
+00:11:15,210 --> 00:11:18,300
+And if you're able to find a
+candidate with the same name,
+
+231
+00:11:18,300 --> 00:11:21,930
+you're going to update the ranks
+array for that particular voter,
+
+232
+00:11:21,930 --> 00:11:24,150
+and your function should return true.
+
+233
+00:11:24,150 --> 00:11:28,350
+The way to interpret the
+ranks is that ranks [i]
+
+234
+00:11:28,350 --> 00:11:31,200
+represents the voter's ith preference.
+
+235
+00:11:31,200 --> 00:11:34,170
+So rank 0 is the
+candidate's top preference.
+
+236
+00:11:34,170 --> 00:11:38,560
+Ranks 1 is the candidate's next
+preference, so on and so forth.
+
+237
+00:11:38,560 --> 00:11:41,100
+And if no candidate
+is found that matches
+
+238
+00:11:41,100 --> 00:11:43,980
+the name that's provided
+as input to the function,
+
+239
+00:11:43,980 --> 00:11:46,080
+you shouldn't update any ranks at all.
+
+240
+00:11:46,080 --> 00:11:49,950
+And instead, your function
+should just return false.
+
+241
+00:11:49,950 --> 00:11:54,390
+Ultimately, you're going to use this
+ranks in another function as the input
+
+242
+00:11:54,390 --> 00:11:56,830
+to the record_preferences function.
+
+243
+00:11:56,830 --> 00:11:59,910
+This function is going to be
+called once for each voter.
+
+244
+00:11:59,910 --> 00:12:02,460
+And it takes as input, that users ranks.
+
+245
+00:12:02,460 --> 00:12:04,920
+All of their rankings for
+all of the candidates.
+
+246
+00:12:04,920 --> 00:12:08,100
+And what you're going to do in
+the record_preferences function
+
+247
+00:12:08,100 --> 00:12:11,670
+is update the preferences
+two-dimensional array based
+
+248
+00:12:11,670 --> 00:12:13,590
+on this current voter is ranks.
+
+249
+00:12:13,590 --> 00:12:17,280
+And this function again, is going
+to be called for each of the voters.
+
+250
+00:12:17,280 --> 00:12:20,550
+Let's take a look at an example
+for one particular voter.
+
+251
+00:12:20,550 --> 00:12:24,030
+Here's an example of one voter's
+ranks, where in this case,
+
+252
+00:12:24,030 --> 00:12:26,970
+candidate number 3 is
+this voters top choice.
+
+253
+00:12:26,970 --> 00:12:29,040
+Candidate 0 is their second choice.
+
+254
+00:12:29,040 --> 00:12:32,560
+Candidate 4 is their third
+choice, so on and so forth.
+
+255
+00:12:32,560 --> 00:12:34,770
+And based on this ranks
+array, you're going
+
+256
+00:12:34,770 --> 00:12:39,570
+to need to determine which candidates
+are preferred over other candidates.
+
+257
+00:12:39,570 --> 00:12:42,120
+And in this case, based
+on this particular array,
+
+258
+00:12:42,120 --> 00:12:44,940
+we might notice that
+candidate 3, the top choice,
+
+259
+00:12:44,940 --> 00:12:51,170
+is preferred over all of the other
+candidates-- candidate 0, 4, 1, and 2.
+
+260
+00:12:51,170 --> 00:12:56,150
+Meanwhile, candidate 0 is preferred
+over candidates 4, 1, and 2.
+
+261
+00:12:56,150 --> 00:12:59,390
+Candidate 4 is preferred
+over candidates 1 and 2.
+
+262
+00:12:59,390 --> 00:13:02,210
+Candidate 1 is preferred
+over candidate 2.
+
+263
+00:13:02,210 --> 00:13:05,450
+And candidate 2 is not
+preferred over anyone.
+
+264
+00:13:05,450 --> 00:13:07,850
+So for this particular
+ranks array, we were
+
+265
+00:13:07,850 --> 00:13:11,270
+able to determine which candidates
+are preferred over others.
+
+266
+00:13:11,270 --> 00:13:15,300
+And we would have to update our
+preferences array accordingly.
+
+267
+00:13:15,300 --> 00:13:18,870
+After we have a representation
+of all of the voters preferences,
+
+268
+00:13:18,870 --> 00:13:21,950
+the next step is going to be to
+look at each pair of candidates,
+
+269
+00:13:21,950 --> 00:13:25,730
+determine who the winner or the loser,
+if any, are for that particular pair,
+
+270
+00:13:25,730 --> 00:13:29,780
+and add them to the pairs array
+in the add_pairs function.
+
+271
+00:13:29,780 --> 00:13:31,850
+What the add_pairs
+function is going to do
+
+272
+00:13:31,850 --> 00:13:35,870
+is it's going to add each pair
+of candidates to the pairs array,
+
+273
+00:13:35,870 --> 00:13:38,270
+as long as one of the
+candidates is actually
+
+274
+00:13:38,270 --> 00:13:40,980
+preferred over the other
+candidate-- in other words,
+
+275
+00:13:40,980 --> 00:13:45,560
+as long as there's actually a winner
+and a loser for that particular pair.
+
+276
+00:13:45,560 --> 00:13:49,340
+This function should also update
+the global variable pair account
+
+277
+00:13:49,340 --> 00:13:54,070
+to represent the total number of pairs
+that you added to the pairs array.
+
+278
+00:13:54,070 --> 00:13:57,350
+So for example, if we had a
+two-dimensional array of preferences
+
+279
+00:13:57,350 --> 00:14:00,890
+as shown here, there are
+two pairs of candidates
+
+280
+00:14:00,890 --> 00:14:02,540
+that have a winner and a loser.
+
+281
+00:14:02,540 --> 00:14:05,960
+There is this pair of 0
+and 1 where candidate 0
+
+282
+00:14:05,960 --> 00:14:08,090
+is preferred over candidate 1.
+
+283
+00:14:08,090 --> 00:14:11,040
+And we know that because looking
+at the preferences array,
+
+284
+00:14:11,040 --> 00:14:14,810
+we can see that there are three
+voters that think that candidate 0 is
+
+285
+00:14:14,810 --> 00:14:16,250
+better than candidate 1.
+
+286
+00:14:16,250 --> 00:14:18,590
+But there's only one voter
+who thinks the candidate
+
+287
+00:14:18,590 --> 00:14:21,050
+1 is better than candidate 0.
+
+288
+00:14:21,050 --> 00:14:23,360
+The other pair that we
+could add to the pairs array
+
+289
+00:14:23,360 --> 00:14:27,770
+is the pair of candidates 2 and 0,
+where candidate 2 is the winner,
+
+290
+00:14:27,770 --> 00:14:29,540
+and 0 is the loser.
+
+291
+00:14:29,540 --> 00:14:32,910
+And again, we know that by
+looking at the preferences array.
+
+292
+00:14:32,910 --> 00:14:36,560
+We can see that there are three
+voters that think that candidate 2 is
+
+293
+00:14:36,560 --> 00:14:38,240
+better than candidate 0.
+
+294
+00:14:38,240 --> 00:14:41,720
+And there's only one voter
+who thinks that candidate 0 is
+
+295
+00:14:41,720 --> 00:14:44,340
+better than candidate 2.
+
+296
+00:14:44,340 --> 00:14:47,880
+The next step after we've added
+all of the pairs to the pairs array
+
+297
+00:14:47,880 --> 00:14:49,860
+is to sort all of those pairs.
+
+298
+00:14:49,860 --> 00:14:53,070
+And we're going to do that
+in the sort_pairs function.
+
+299
+00:14:53,070 --> 00:14:56,910
+What this function is going to do is
+it is going to sort the pairs in order
+
+300
+00:14:56,910 --> 00:14:59,220
+by decreasing strength of victory.
+
+301
+00:14:59,220 --> 00:15:01,380
+And you can measure the
+strength of a victory
+
+302
+00:15:01,380 --> 00:15:04,980
+by looking at how many people
+preferred the winner of that pair
+
+303
+00:15:04,980 --> 00:15:06,390
+over the loser of the pair.
+
+304
+00:15:06,390 --> 00:15:09,900
+If more people prefer the
+winner, it's a stronger victory.
+
+305
+00:15:09,900 --> 00:15:13,410
+You can use any sorting algorithm you'd
+like in order to sort those pairs.
+
+306
+00:15:13,410 --> 00:15:15,540
+But at the end of the
+sort_pairs function,
+
+307
+00:15:15,540 --> 00:15:19,200
+the pairs array should be sorted
+in order from strongest victory
+
+308
+00:15:19,200 --> 00:15:20,960
+to weakest victory.
+
+309
+00:15:20,960 --> 00:15:24,710
+Ultimately, we're going to use that
+sort of array in the next function--
+
+310
+00:15:24,710 --> 00:15:25,790
+lock_pairs--
+
+311
+00:15:25,790 --> 00:15:28,400
+which is going to go through
+those pairs one at a time
+
+312
+00:15:28,400 --> 00:15:30,590
+and lock them into the graph.
+
+313
+00:15:30,590 --> 00:15:33,050
+In particular, the
+lock_pairs function is
+
+314
+00:15:33,050 --> 00:15:37,400
+responsible for updating the locked
+two-dimensional Boolean array in order
+
+315
+00:15:37,400 --> 00:15:40,880
+to create the locked graph
+by adding all of the edges
+
+316
+00:15:40,880 --> 00:15:44,210
+in decreasing order of victory
+strength, as long as adding
+
+317
+00:15:44,210 --> 00:15:46,250
+that edge won't create a cycle.
+
+318
+00:15:46,250 --> 00:15:49,490
+If adding a particular edge
+between one candidate and another
+
+319
+00:15:49,490 --> 00:15:52,490
+would ultimately create a cycle
+inside of the candidate graph,
+
+320
+00:15:52,490 --> 00:15:53,960
+you shouldn't add that edge.
+
+321
+00:15:53,960 --> 00:15:56,550
+And you should skip and
+move on to the next one.
+
+322
+00:15:56,550 --> 00:15:59,960
+So you'll need some mechanism
+inside of your lock_pairs function
+
+323
+00:15:59,960 --> 00:16:04,160
+to detect whether or not adding an
+edge is going to lead to a cycle
+
+324
+00:16:04,160 --> 00:16:08,660
+where you could follow some path to
+get back to that original candidate.
+
+325
+00:16:08,660 --> 00:16:11,130
+To take a look at an
+example, here on the left,
+
+326
+00:16:11,130 --> 00:16:13,460
+you can see an example
+of a locked graph.
+
+327
+00:16:13,460 --> 00:16:17,400
+And on the right is the graphical
+representation of the same thing.
+
+328
+00:16:17,400 --> 00:16:20,210
+Notice that every time
+a true appears inside
+
+329
+00:16:20,210 --> 00:16:22,370
+of the locked
+two-dimensional array, that
+
+330
+00:16:22,370 --> 00:16:26,340
+represents an arrow pointing
+from one candidate to another.
+
+331
+00:16:26,340 --> 00:16:29,600
+So because locked 0,
+1 is true, that means
+
+332
+00:16:29,600 --> 00:16:32,300
+there is an arrow pointing
+from Alice to Bob.
+
+333
+00:16:32,300 --> 00:16:36,320
+Because locked 2, 0 is true, that
+means there's an arrow pointing
+
+334
+00:16:36,320 --> 00:16:37,880
+from Charlie to Alice.
+
+335
+00:16:37,880 --> 00:16:41,090
+And because locked 2,
+1 is also true, that
+
+336
+00:16:41,090 --> 00:16:45,130
+means there's also an arrow
+pointing from Charlie to Bob.
+
+337
+00:16:45,130 --> 00:16:47,350
+After you've generated
+this locked graph,
+
+338
+00:16:47,350 --> 00:16:50,680
+the final step is to print out
+the winner of the election.
+
+339
+00:16:50,680 --> 00:16:53,110
+Recall again that the
+winner of the election
+
+340
+00:16:53,110 --> 00:16:57,010
+is just going to be whichever
+candidate is the source of the graph.
+
+341
+00:16:57,010 --> 00:16:59,560
+And you can assume for the
+purposes of this program,
+
+342
+00:16:59,560 --> 00:17:01,940
+that there will not be
+more than one source.
+
+343
+00:17:01,940 --> 00:17:05,589
+So there's only going to be
+one winner for the election.
+
+344
+00:17:05,589 --> 00:17:08,140
+And recall again, that
+the source of the graph
+
+345
+00:17:08,140 --> 00:17:13,150
+is just whichever candidate doesn't have
+any arrows or edges pointing at them.
+
+346
+00:17:13,150 --> 00:17:15,490
+And so you might want
+to look at this graph
+
+347
+00:17:15,490 --> 00:17:20,470
+to figure out which of the candidates
+has no arrow that's pointed at them.
+
+348
+00:17:20,470 --> 00:17:24,550
+Once you've implemented these six
+functions-- vote, record_preferences,
+
+349
+00:17:24,550 --> 00:17:28,119
+add_pairs, sort_pairs,
+lock_pairs, and print_winner,
+
+350
+00:17:28,119 --> 00:17:30,340
+you'll have implemented
+all that you need in order
+
+351
+00:17:30,340 --> 00:17:34,240
+to simulate an election using
+the Tideman Voting System.
+
+352
+00:17:34,240 --> 00:17:37,740
+My name is Brian, and this was Tideman.
+
+353
+00:17:37,740 --> 00:17:39,016

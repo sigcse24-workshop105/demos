@@ -1,0 +1,339 @@
+1
+00:00:00,000 --> 00:00:00,127
+
+
+2
+00:00:00,127 --> 00:00:02,460
+BRAIN YU: When you're loading
+words into your dictionary
+
+3
+00:00:02,460 --> 00:00:05,400
+and when you're checking to see if
+a word is spelled correctly or not,
+
+4
+00:00:05,400 --> 00:00:07,830
+you're going to need to
+call on your hash function,
+
+5
+00:00:07,830 --> 00:00:10,020
+a function that's going
+to take a word and return
+
+6
+00:00:10,020 --> 00:00:14,370
+which index into your hash table you
+should use in order to find that word
+
+7
+00:00:14,370 --> 00:00:17,200
+or insert the word into
+your data structure.
+
+8
+00:00:17,200 --> 00:00:18,840
+So what is the hash function?
+
+9
+00:00:18,840 --> 00:00:21,750
+Well, the hash function is going
+to take a char star or a string
+
+10
+00:00:21,750 --> 00:00:24,900
+as input representing the word
+that you're going to hash.
+
+11
+00:00:24,900 --> 00:00:27,900
+And it's going to return an
+unsigned integer, an integer that
+
+12
+00:00:27,900 --> 00:00:31,440
+won't be negative, representing
+which index into the hash table
+
+13
+00:00:31,440 --> 00:00:34,570
+you should use that corresponds
+to that particular word.
+
+14
+00:00:34,570 --> 00:00:37,020
+So what does your hash
+function need to do?
+
+15
+00:00:37,020 --> 00:00:39,630
+Well, it needs to take as
+input a word, and that word
+
+16
+00:00:39,630 --> 00:00:41,490
+is going to have
+alphabetical characters,
+
+17
+00:00:41,490 --> 00:00:44,070
+and it may have
+apostrophes in it as well.
+
+18
+00:00:44,070 --> 00:00:48,870
+And the output of your hash function is
+going to be a numerical index between 0
+
+19
+00:00:48,870 --> 00:00:51,030
+and N minus 1 inclusive.
+
+20
+00:00:51,030 --> 00:00:53,710
+Recall that N is defined
+at the top of the file
+
+21
+00:00:53,710 --> 00:00:56,770
+and is the total number of
+buckets in your hash table,
+
+22
+00:00:56,770 --> 00:01:00,050
+in other words, the length of
+that array of linked lists.
+
+23
+00:01:00,050 --> 00:01:02,070
+We've, by default, set N equal to 1.
+
+24
+00:01:02,070 --> 00:01:04,940
+But you can and should set
+N to be some larger number
+
+25
+00:01:04,940 --> 00:01:07,213
+so that you have more
+buckets in your hash table
+
+26
+00:01:07,213 --> 00:01:09,630
+and, therefore, can spread
+your data out a little bit more
+
+27
+00:01:09,630 --> 00:01:11,790
+making for faster search times.
+
+28
+00:01:11,790 --> 00:01:14,880
+And importantly, your hash
+function should be deterministic.
+
+29
+00:01:14,880 --> 00:01:17,340
+If I give it the same
+input again and again,
+
+30
+00:01:17,340 --> 00:01:21,330
+I should get the same output, such
+that when I'm loading a word like apple
+
+31
+00:01:21,330 --> 00:01:23,370
+into the dictionary,
+I'll be able to calculate
+
+32
+00:01:23,370 --> 00:01:27,720
+the hash value of the word apple
+and insert apple into that index
+
+33
+00:01:27,720 --> 00:01:29,040
+into the hash table.
+
+34
+00:01:29,040 --> 00:01:32,520
+And then when I'm checking to see if the
+word apple is spelled correctly or not,
+
+35
+00:01:32,520 --> 00:01:35,610
+I should be able to call the
+hash function on the word apple,
+
+36
+00:01:35,610 --> 00:01:38,190
+get the same value as
+before, and then check
+
+37
+00:01:38,190 --> 00:01:40,950
+only that particular linked
+list in the hash table
+
+38
+00:01:40,950 --> 00:01:43,110
+to see if the word
+apple is there or not.
+
+39
+00:01:43,110 --> 00:01:45,800
+So you'll need to
+decide on a value of N,
+
+40
+00:01:45,800 --> 00:01:48,300
+the number of buckets that your
+hash table is going to have,
+
+41
+00:01:48,300 --> 00:01:52,080
+in other words, the length of your
+array, and also the possible values
+
+42
+00:01:52,080 --> 00:01:53,970
+that your hash function can return.
+
+43
+00:01:53,970 --> 00:01:57,210
+A larger N value means you have
+more buckets and your hash table
+
+44
+00:01:57,210 --> 00:01:59,010
+and, therefore, data
+is spread apart more
+
+45
+00:01:59,010 --> 00:02:01,110
+and could potentially
+mean faster search times.
+
+46
+00:02:01,110 --> 00:02:04,440
+But you'll need to make sure that
+the output of your hash function
+
+47
+00:02:04,440 --> 00:02:08,039
+is some value between 0
+and n minus 1 inclusive
+
+48
+00:02:08,039 --> 00:02:12,300
+because those will be the only
+valid indices into your hash table.
+
+49
+00:02:12,300 --> 00:02:15,030
+If your function were to end
+up with a value greater than N
+
+50
+00:02:15,030 --> 00:02:17,820
+you could always take that
+value mod N or the remainder
+
+51
+00:02:17,820 --> 00:02:20,610
+when you divide by N, in other
+words, to get a value that's
+
+52
+00:02:20,610 --> 00:02:22,440
+in the appropriate range.
+
+53
+00:02:22,440 --> 00:02:25,080
+Now what are some examples
+of some hash functions?
+
+54
+00:02:25,080 --> 00:02:28,770
+Well, a very simple hash function might
+just take the first letter of the word.
+
+55
+00:02:28,770 --> 00:02:33,030
+If the first letter of the word is A,
+then the hash value is going to be 0.
+
+56
+00:02:33,030 --> 00:02:35,430
+If the first letter of the
+word is B, the hash value
+
+57
+00:02:35,430 --> 00:02:37,050
+is 1, so on and so forth.
+
+58
+00:02:37,050 --> 00:02:41,070
+If the first letter of the word
+is Z, the hash value might be 25.
+
+59
+00:02:41,070 --> 00:02:44,070
+In this case, your value
+of N is 26 because you'd
+
+60
+00:02:44,070 --> 00:02:48,450
+have 26 different buckets, one
+for every letter of the alphabet.
+
+61
+00:02:48,450 --> 00:02:52,140
+Of course, 26 isn't very many buckets,
+especially considering the fact
+
+62
+00:02:52,140 --> 00:02:54,390
+that the large dictionary
+that we're going to give you
+
+63
+00:02:54,390 --> 00:02:57,510
+contains more than 143,000 words.
+
+64
+00:02:57,510 --> 00:02:59,760
+So you might consider
+using other hash functions,
+
+65
+00:02:59,760 --> 00:03:02,490
+like looking at the first
+two or three or more letters
+
+66
+00:03:02,490 --> 00:03:06,147
+or doing some sort of math using all of
+the individual values of the letters.
+
+67
+00:03:06,147 --> 00:03:07,980
+But once you've completed
+the hash function,
+
+68
+00:03:07,980 --> 00:03:10,340
+you'll now have the
+ability to take a word
+
+69
+00:03:10,340 --> 00:03:13,390
+and determine which of the linked
+lists inside of your hash table
+
+70
+00:03:13,390 --> 00:03:14,200
+it should correspond to.
+
