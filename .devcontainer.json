@@ -11,12 +11,6 @@
                 "ms-vscode.hexeditor",
                 "ms-vsliveshare.vsliveshare"
             ]
-        },
-        "settings": {
-            "git.enabled": false,
-            "notebook.output.textLineLimit": 200,
-            "workbench.colorTheme": "GitHub Dark Default",
-            "workbench.preferredDarkColorTheme": "GitHub Dark Default"
         }
     }
 }
