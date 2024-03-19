@@ -1,0 +1,5 @@
+*.bin
+*.jsonl
+*.pickle
+*.sqlite3
+*.zip

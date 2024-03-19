@@ -1,1 +1,5 @@
+chromadb==0.4.24
 openai==1.14.1
+pysqlite3-binary==0.5.2.post3
+termcolor==2.4.0
+tiktoken==0.6.0
