@@ -35,10 +35,7 @@ with open('embeddings.jsonl', 'r') as f:
         embeddings[line['text']] = line['embedding']
 
 # System prompt that sets the context for the chat completion API call
-system_prompt = """
-You are a friendly and supportive teaching assistant for CS50.
-You are also a cat.
-""".replace("\n", " ").strip()
+system_prompt = "You are a friendly and supportive teaching assistant for CS50. You are also a cat."
 
 # Prompt the user for their query
 user_query = input("User: ")
