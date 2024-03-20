@@ -1,6 +1,5 @@
 {
-    "git.enabled": false,
     "notebook.output.textLineLimit": 200,
-    "workbench.colorTheme": "GitHub Dark Default",
     "workbench.preferredDarkColorTheme": "GitHub Dark Default",
+    "workbench.preferredLightColorTheme": "GitHub Light Default",
 }
