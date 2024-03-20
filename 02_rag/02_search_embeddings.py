@@ -49,12 +49,17 @@ for chunk, embedding in embeddings.items():
     
     # Compute the similarity score as the dot product of the embedding vectors
     score = np.dot(embedding, query_embedding)
-    
+
     # If this score is better than the best score found so far,
     # update the best_chunk and best_score with the current chunk and score
     if score > best_score:
         best_chunk = chunk
         best_score = score
+    
+    # Note: OpenAI embeddings are normalized to length 1, which means that:
+    # Cosine similarity can be computed slightly faster using just a dot product
+    # Cosine similarity and Euclidean distance will result in the identical rankings
+    # https://help.openai.com/en/articles/6824809-embeddings-frequently-asked-questions
 
 # Print the chunk that is most similar to the query
 print(best_chunk)
